@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+~$*.xlsx
+*.tmp
+*.bak
+03_search/exports/*
+!03_search/exports/.gitkeep
+06_fulltext/papers/*
+!06_fulltext/papers/.gitkeep

@@ -1,0 +1,16 @@
+# Screening
+
+Stage 1:
+- INCLUDE_FULLTEXT
+- BACKGROUND
+- EXCLUDE_TITLE_ABSTRACT
+- UNCERTAIN
+
+Stage 2:
+- PRIMARY_CORE
+- PRIMARY_ADJACENT_SPARSE
+- PRIMARY_ADJACENT_METHOD
+- BACKGROUND
+- EXCLUDE_FULLTEXT
+
+Every full-text exclusion needs one primary controlled exclusion reason.

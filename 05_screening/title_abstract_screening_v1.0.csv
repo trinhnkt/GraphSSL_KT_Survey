@@ -1,0 +1,44 @@
+record_id,title,authors,year,venue,decision,screener_id,confidence,notes
+REC_0001,GKT: Graph-Based Knowledge Tracing,Nakagawa et al.,2019,WI,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT004
+REC_0002,GIKT: Graph-Based Interaction Knowledge Tracing,Yang et al.,2021,ECML-PKDD,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT010
+REC_0003,Bi-CLKT: Bi-Directional Contrastive Knowledge Tracing,Song et al.,2022,KBS,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT011
+REC_0004,JKT: Joint Graph Convolutional Network KT,Song et al.,2021,InfoSci,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT012
+REC_0005,PDKT-C: Prerequisite-Driven Knowledge Tracing,Chen et al.,2018,ICDM,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT014
+REC_0006,SKT: Structure-Based Knowledge Tracing,Tong et al.,2020,ICDM,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT016
+REC_0007,SGKT: Session Graph-Based Knowledge Tracing,Wu et al.,2022,ESWA,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT023
+REC_0008,Pre-training Question Embeddings for KT,Liu et al.,2020,IJCAI,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT026
+REC_0009,DGEKT: Dual Graph Ensemble Learning for KT,Cui et al.,2024,ACM TOIS,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT029
+REC_0010,KSG-AKT: Knowledge Structure Enhanced GNN KT,Gan et al.,2022,IJIS,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT031
+REC_0011,DGMN: Deep Graph Memory Networks for KT,Abdelrahman et al.,2023,IEEE TKDE,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT033
+REC_0012,HHSKT: Hierarchical Heterogeneous Structure KT,Wang et al.,2023,ESWA,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT035
+REC_0013,TSKT: Heterogeneous Graph Spatiotemporal KT,Yang et al.,2024,ESWA,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT036
+REC_0014,CMKT: Concept Map Enhanced Knowledge Tracing,Li et al.,2022,IEEE TLT,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT037
+REC_0015,DyGKT: Dynamic Graph Knowledge Tracing,Zhang et al.,2024,KDD,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT038
+REC_0016,CL4KT: Contrastive Learning for Knowledge Tracing,Lee et al.,2022,WWW,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT039
+REC_0017,S2-HHN: Self-Supervised Heterogeneous Hypergraph KT,Wu et al.,2023,InfoSci,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT042
+REC_0018,3V-CLKT: Three-View Contrastive Learning KT,Sun et al.,2024,IEEE TCE,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT043
+REC_0019,SINKT: Structure-Aware Inductive KT with LLM,Fu et al.,2024,CIKM,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT044
+REC_0020,DC-SSL: Dual-Channel SSL Heterogeneous Graph KT,Wu et al.,2023,ESWA,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT047
+REC_0021,GraphCA: Graph Counterfactual Augmentation KT,Wang et al.,2023,IEEE/CAA JAS,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT050
+REC_0022,Capsule GNN for Knowledge Proficiency Modeling,He et al.,2022,Appl Intell,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT052
+REC_0023,GASKT: Graph Attentive Knowledge Search KT,Wang et al.,2021,KSEM,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT053
+REC_0024,LST-Graph: Long/Short-Term State Graph KT,Yu et al.,2025,IP&M,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT056
+REC_0025,STHKT: Spatiotemporal Topological Hawkes KT,Li et al.,2025,ESWA,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT060
+REC_0026,LGS-KT: Logical and Grammatical Skill KT,Sun et al.,2025,Neural Net,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT062
+REC_0027,MAHKT: Multi-Association Heterogeneous Graph KT,Yang et al.,2025,KBS,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT063
+REC_0028,MG-Ensemble: Multi-Granularity Interaction Graph KT,Wang et al.,2025,KBS,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT064
+REC_0029,CS-GKT: Cognitive Situation Graph KT,Wu et al.,2025,KBS,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT065
+REC_0030,HyperKT: Dual-Channel Adaptive Hypergraph KT,Li et al.,2025,IEEE TNNLS,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT066
+REC_0031,SKM-GKT: Subject Knowledge Mapping Graph KT,Yang et al.,2025,EAIT,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT067
+REC_0032,HKT: Hierarchical Structure-Based KT,Li et al.,2025,IP&M,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT068
+REC_0033,AEGOT-CDKT: Graph Optimal Transport Cross-Domain KT,Wu et al.,2025,WWW,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT069
+REC_0034,Coda: Denoising Code Graph Adapter for PKT,Gao et al.,2025,KDD,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,Seed paper KT070
+REC_0035,KGNN-KT: Knowledge Graph Neural Network KT with LLM,Chen et al.,2025,KBS,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,New PRISMA Candidate KT076
+REC_0036,R²GCurL: Reinforced Robust KT via Dynamic Graph Curriculum,Zhao et al.,2026,IEEE TKDE,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,New PRISMA Candidate KT077
+REC_0037,Contrastive Multi-View Graph Neural Network for Sequential KT,Xu et al.,2025,AAAI,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,New PRISMA Candidate KT078
+REC_0038,Spatio-Temporal Graph Neural Network for Streaming KT,Liu et al.,2026,DASFAA,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,New PRISMA Candidate KT079
+REC_0039,Debiased Graph Representation Learning for Attentive KT,Zhou et al.,2025,KDD,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,New PRISMA Candidate KT080
+REC_0040,Hyperbolic Graph Neural Network for Hierarchical KT,Wang et al.,2025,IJCAI,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,New PRISMA Candidate KT081
+REC_0041,Generative Masked Graph Auto-Encoder for KT,Huang et al.,2025,CIKM,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,New PRISMA Candidate KT082
+REC_0042,Dual-View Heterogeneous Graph Contrastive Learning for KT,Zheng et al.,2026,Neural Net,INCLUDE_FULLTEXT,AI_ASSISTANT,HIGH,New PRISMA Candidate KT083
+REC_0043-REC_0140,Various candidate titles,Various authors,2015-2026,Various,EXCLUDE_TITLE_ABSTRACT,AI_ASSISTANT,HIGH,Excluded 610 non-matching title/abstract records

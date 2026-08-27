@@ -1,0 +1,36 @@
+{
+  "project": "GraphSSL_KT_Survey_2026",
+  "title": "Graph-Based and Self-Supervised Knowledge Tracing in Sparse-Concept Settings: A Systematic Survey and Research Agenda",
+  "date": "2026-08-09",
+  "scope": {
+    "version": "1.0",
+    "status": "FROZEN"
+  },
+  "rqs": {
+    "version": "1.0",
+    "status": "FROZEN"
+  },
+  "slr_protocol": {
+    "version": "1.0",
+    "status": "FROZEN"
+  },
+  "coding_codebook": {
+    "version": "0.3",
+    "status": "PILOT_NOT_FROZEN"
+  },
+  "seed_corpus": {
+    "records": 75,
+    "status": "AUDITED_SEED_ONLY"
+  },
+  "pilot": {
+    "total": 15,
+    "wave_A": {
+      "KT004": "ADJUDICATED",
+      "KT039": "PRIMARY_CODED",
+      "KT035": "PARTIAL_FULLTEXT_REQUIRED",
+      "KT014": "PRIMARY_CODED"
+    }
+  },
+  "next_task": "Resolve CB13-CB17 and create coding_codebook_v0.4_PILOT.md",
+  "bulk_coding_allowed": false
+}

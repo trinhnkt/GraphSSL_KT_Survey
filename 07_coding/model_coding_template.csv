@@ -1,0 +1,1 @@
+﻿model_entry_id,paper_id,model_name,graph_source,graph_provenance,graph_representation,directed,weighted,typed_edges,dynamic,gnn_encoder,temporal_backbone,fusion_type,ssl_family,augmentation_type,educational_structure_preservation
