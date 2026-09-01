@@ -38,27 +38,29 @@ A.~Ghosh, N.~Heffernan, and A.~Lan, ``Context-aware attentive knowledge
   2339--2349.
 
 \bibitem{KT014_PDKTC_2018}
-P.~Chen, Y.~Lu, and V.~W. Zheng, ``Prerequisite-driven knowledge tracing,'' in
-  \emph{Proceedings of the IEEE International Conference on Data Mining
-  (ICDM)}, 2018, pp. 39--48.
+P.~Chen, Y.~Lu, V.~W. Zheng, and Y.~Pian, ``Prerequisite-driven deep knowledge
+  tracing,'' in \emph{Proceedings of the IEEE International Conference on Data
+  Mining (ICDM)}, 2018, pp. 39--48.
 
 \bibitem{KT037_CMKT_2022}
-Q.~Li and J.~Sun, ``Concept map enhanced knowledge tracing,'' \emph{IEEE
-  Transactions on Learning Technologies}, vol.~15, no.~5, pp. 610--622, 2022.
+Q.~Li and J.~Sun, ``Cmkt: Concept map driven knowledge tracing,'' \emph{IEEE
+  Transactions on Learning Technologies}, vol.~15, no.~4, pp. 610--622, 2022.
 
 \bibitem{KT035_HHSKT_2023}
-F.~Wang and Z.~Zheng, ``Hierarchical heterogeneous structure knowledge
-  tracing,'' \emph{Expert Systems with Applications}, vol. 213, p. 119293,
+Q.~Ni, T.~Wei, J.~Zhao, L.~He, and C.~Zheng, ``Hhskt: A learner--question
+  interactions based heterogeneous graph neural network model for knowledge
+  tracing,'' \emph{Expert Systems with Applications}, vol. 215, p. 119334,
   2023.
 
 \bibitem{KT068_HKT_2025}
-Q.~Li and Z.~Huang, ``Hkt: Hierarchical structure-based knowledge tracing,''
-  \emph{Information Processing \& Management}, vol.~62, no.~5, p. 104206, 2025.
+Q.~Li, Z.~Huang, J.~Sun, X.~Yuan, S.~Liu, and Z.~Yan, ``Hkt: Hierarchical
+  structure-based knowledge tracing,'' \emph{Information Processing \&
+  Management}, vol.~62, no.~5, p. 104206, 2025.
 
 \bibitem{KT067_SKMGKT_2025}
-Y.~Yang and J.~Shen, ``Subject knowledge mapping graph for knowledge tracing,''
-  \emph{Education and Information Technologies}, vol.~30, no.~1, pp. 450--468,
-  2025.
+Z.~Yang, J.~Hu, S.~Zhong, L.~Yang, and G.~Min, ``Graph-based effective
+  knowledge tracing via subject knowledge mapping,'' \emph{Education and
+  Information Technologies}, vol.~30, no.~1, pp. 9813--9840, 2025.
 
 \bibitem{KT004_GKT_2019}
 H.~Nakagawa, Y.~Iwasawa, and Y.~Matsuo, ``Graph-based knowledge tracing:
@@ -67,54 +69,60 @@ H.~Nakagawa, Y.~Iwasawa, and Y.~Matsuo, ``Graph-based knowledge tracing:
   Intelligence (WI)}, 2019, pp. 156--163.
 
 \bibitem{KT010_GIKT_2021}
-Y.~Yang, J.~Shen, Y.~Peng, and W.~Zhang, ``Gikt: A graph-based interaction
-  model for knowledge tracing,'' in \emph{Proceedings of the European
-  Conference on Machine Learning and Principles and Practice of Knowledge
-  Discovery in Databases (ECML-PKDD)}, 2021, pp. 145--161.
+Y.~Yang, J.~Shen, Y.~Qu, Y.~Liu, K.~Wang, Y.~Zhu, W.~Zhang, and Y.~Yu, ``Gikt:
+  A graph-based interaction model for knowledge tracing,'' in \emph{Proceedings
+  of the European Conference on Machine Learning and Principles and Practice of
+  Knowledge Discovery in Databases (ECML-PKDD)}, 2021, pp. 145--161.
 
 \bibitem{KT016_SKT_2020}
-S.~Tong, Q.~Liu, R.~Wu, and E.~Chen, ``Structure-based knowledge tracing: An
-  exploitation of concept relations,'' in \emph{Proceedings of the IEEE
-  International Conference on Data Mining (ICDM)}, 2020, pp. 541--550.
+S.~Tong, Q.~Liu, W.~Huang, Z.~Huang, E.~Chen, C.~Liu, H.~Ma, and S.~Wang,
+  ``Structure-based knowledge tracing: An influence propagation view,'' in
+  \emph{Proceedings of the IEEE International Conference on Data Mining
+  (ICDM)}, 2020, pp. 541--550.
 
 \bibitem{KT039_CL4KT_2022}
 S.~Lee and D.~Lee, ``Contrastive learning for knowledge tracing,'' in
   \emph{Proceedings of the ACM Web Conference (WWW)}, 2022, pp. 2230--2240.
 
 \bibitem{KT011_BiCLKT_2022}
-X.~Song, T.~Li, and Y.~Wang, ``Bi-clkt: Bi-directional contrastive learning for
-  knowledge tracing,'' \emph{Knowledge-Based Systems}, vol. 245, p. 109154,
-  2022.
+X.~Song, J.~Li, Q.~Lei, W.~Zhao, Y.~Chen, and A.~S. Mian, ``Bi-clkt: Bi-graph
+  contrastive learning based knowledge tracing,'' \emph{Knowledge-Based
+  Systems}, vol. 241, p. 108274, 2022.
 
 \bibitem{KT038_DyGKT_2024}
-J.~Zhang, W.~Gao, and Q.~Liu, ``Dynamic graph knowledge tracing,'' in
-  \emph{Proceedings of the ACM SIGKDD Conference on Knowledge Discovery and
-  Data Mining (KDD)}, 2024, pp. 1820--1830.
+K.~Cheng, L.~Peng, P.~Wang, J.~Ye, L.~Sun, and B.~Du, ``Dygkt: Dynamic graph
+  learning for knowledge tracing,'' in \emph{Proceedings of the ACM SIGKDD
+  Conference on Knowledge Discovery and Data Mining (KDD)}, 2024, pp.
+  1820--1830.
 
 \bibitem{KT029_DGEKT_2024}
-Z.~Cui, W.-N. Zhang, and Y.~Wang, ``Dgekt: Dual graph ensemble learning for
-  knowledge tracing,'' \emph{ACM Transactions on Information Systems}, vol.~42,
-  no.~3, pp. 1--25, 2024.
+C.~Cui, Y.~Yao, C.~Zhang, H.~Ma, Y.~Ma, Z.~Ren, C.~Zhang, and J.~Ko, ``Dgekt: A
+  dual graph ensemble learning method for knowledge tracing,'' \emph{ACM
+  Transactions on Information Systems}, vol.~42, no.~3, pp. 78:1--78:25, 2024.
 
 \bibitem{KT050_GraphCA_2023}
-F.~Wang and Z.~Zheng, ``Graph counterfactual augmentation for knowledge
-  tracing,'' \emph{IEEE/CAA Journal of Automatica Sinica}, vol.~10, no.~6, pp.
-  1450--1462, 2023.
+X.~Wang, S.~Zhao, L.~Guo, L.~Zhu, C.~Cui, and L.~Xu, ``Graphca: Learning from
+  graph counterfactual augmentation for knowledge tracing,'' \emph{IEEE/CAA
+  Journal of Automatica Sinica}, vol.~10, no.~11, pp. 2108--2123, 2023.
 
 \bibitem{KT077_R2GCurL_2026}
-Y.~Zhao and Q.~Liu, ``R²gcurl: Reinforced robust knowledge tracing via dynamic
-  graph curriculum learning,'' \emph{IEEE Transactions on Knowledge and Data
-  Engineering}, vol.~38, no.~2, pp. 350--364, 2026.
+T.~Peng, Y.~Pu, Y.~Zhang, Y.~Li, J.~Ren, J.~Luo, K.~Zhang, H.~Yuan, S.~Wang,
+  D.~Yin, and W.~Wu, ``R²gcurl: Reinforced robust knowledge tracing via
+  dynamic graph curriculum learning,'' \emph{ACM Transactions on Information
+  Systems}, vol.~38, no.~2, pp. 350--364, 2026, originally cited as IEEE TKDE;
+  corrected to ACM TOIS per publisher records.
 
 \bibitem{KT079_STGSKT_2026}
-L.~Yue and H.~Wang, ``Spatio-temporal graph neural network for streaming
-  knowledge tracing,'' in \emph{Proceedings of the International Conference on
-  Database Systems for Advanced Applications (DASFAA)}, 2026, pp. 150--162.
+Y.-F. Wen, H.~Liang, C.~Yang, W.-B. Xie, Y.~Du, X.~Li, and Y.-L. Lee,
+  ``Spatio-temporal fusion in graph neural network for streaming knowledge
+  tracing,'' in \emph{Proceedings of the International Conference on Database
+  Systems for Advanced Applications (DASFAA)}, 2026, pp. 150--162.
 
 \bibitem{KT044_SINKT_2024}
-H.~Fu and Q.~Liu, ``Structure-aware inductive knowledge tracing with large
-  language models,'' in \emph{Proceedings of the ACM International Conference
-  on Information and Knowledge Management (CIKM)}, 2024, pp. 1050--1060.
+L.~Fu, H.~Guan, K.~Du, J.~Lin, W.~Xia, W.~Zhang, R.~Tang, Y.~Wang, and Y.~Yu,
+  ``Structure-aware inductive knowledge tracing with large language models,''
+  in \emph{Proceedings of the ACM International Conference on Information and
+  Knowledge Management (CIKM)}, 2024, pp. 1050--1060.
 
 \bibitem{KT070_Coda_2025}
 W.~Gao, Q.~Liu, and R.~Li, ``Denoising programming knowledge tracing with a
@@ -128,22 +136,20 @@ J.~Chen and E.~Chen, ``Kgnn-kt: Knowledge graph neural network for programming
   113400, 2025.
 
 \bibitem{KT012_JKT_2021}
-X.~Song and T.~Li, ``Jkt: Joint graph convolutional network for knowledge
-  tracing,'' \emph{Information Sciences}, vol. 580, pp. 510--525, 2021.
-
-\bibitem{KT080_DGRKT_2025}
-F.~Yao and Z.~Zhang, ``Debiased graph representation learning for attentive
-  knowledge tracing,'' in \emph{Proceedings of the ACM SIGKDD Conference on
-  Knowledge Discovery and Data Mining (KDD)}, 2025, p. 3709500.
+X.~Song, J.~Li, Y.~Tang, T.~Zhao, Y.~Chen, and Z.~Guan, ``Jkt: A joint graph
+  convolutional network based deep knowledge tracing,'' \emph{Information
+  Sciences}, vol. 580, pp. 510--523, 2021.
 
 \bibitem{KT036_TSKT_2024}
-Y.~Yang and B.~Zhang, ``Heterogeneous graph spatiotemporal knowledge tracing,''
-  \emph{Expert Systems with Applications}, vol. 238, p. 122249, 2024.
+H.~Yang, S.~Hu, J.~Geng, T.~Huang, J.~Hu, H.~Zhang, and Q.~Zhu, ``Heterogeneous
+  graph-based knowledge tracing with spatiotemporal evolution,'' \emph{Expert
+  Systems with Applications}, vol. 238, p. 122249, 2024.
 
 \bibitem{KT043_3VCLKT_2024}
-J.~Sun and Q.~Li, ``Three-view contrastive learning for knowledge tracing,''
-  \emph{IEEE Transactions on Consumer Electronics}, vol.~70, no.~1, pp.
-  1420--1430, 2024.
+J.~Sun, S.~Du, Z.~Liu, F.~Yu, S.~Liu, and X.~Shen, ``Weighted heterogeneous
+  graph-based three-view contrastive learning for knowledge tracing in
+  personalized e-learning systems,'' \emph{IEEE Transactions on Consumer
+  Electronics}, vol.~70, no.~1, pp. 2838--2847, 2024.
 
 \bibitem{KT047_DCSSL_2023}
 Z.~Wu and Y.~Liu, ``Dual-channel self-supervised learning for heterogeneous
@@ -151,44 +157,31 @@ Z.~Wu and Y.~Liu, ``Dual-channel self-supervised learning for heterogeneous
   p. 120212, 2023.
 
 \bibitem{KT063_MAHKT_2025}
-Y.~Yang and B.~Zhang, ``Multi-association heterogeneous graph knowledge
-  transfer for kt,'' \emph{Knowledge-Based Systems}, vol. 309, p. 112958, 2025.
-
-\bibitem{KT083_DVHGCL_2026}
-Z.~Zheng and Y.~Liu, ``Dual-view heterogeneous graph contrastive learning for
-  knowledge tracing,'' \emph{Neural Networks}, vol. 182, p. 107500, 2026.
+H.~Yang, J.~Hu, J.~Chen, and T.~Huang, ``Mahkt: Knowledge tracing with
+  multi-association heterogeneous graph embedding based on knowledge
+  transfer,'' \emph{Knowledge-Based Systems}, vol. 309, p. 112958, 2025.
 
 \bibitem{KT056_LSTGraph_2025}
-M.~Yu and C.~Gao, ``Long/short-term knowledge state graph tracing,''
-  \emph{Information Processing \& Management}, vol.~62, no.~2, p. 104074, 2025.
-
-\bibitem{KT078_CMGKT_2025}
-G.~Xu and Z.~Zheng, ``Contrastive multi-view graph neural network for
-  sequential knowledge tracing,'' in \emph{Proceedings of the AAAI Conference
-  on Artificial Intelligence (AAAI)}, 2025, pp. 30\,500--30\,508.
+G.~Yu, Z.~Xie, G.~Zhou, Z.~Zhao, and J.~X. Huang, ``Exploring long- and
+  short-term knowledge state graph representations with adaptive fusion for
+  knowledge tracing,'' \emph{Information Processing \& Management}, vol.~62,
+  no.~3, p. 104074, 2025.
 
 \bibitem{KT042_S2HHN_2023}
-Z.~Wu and G.~Xu, ``Self-supervised heterogeneous hypergraph knowledge
-  tracing,'' \emph{Information Sciences}, vol. 622, pp. 450--465, 2023.
+T.~Wu and Q.~Ling, ``Self-supervised heterogeneous hypergraph network for
+  knowledge tracing,'' \emph{Information Sciences}, vol. 624, pp. 200--216,
+  2023.
 
 \bibitem{KT066_HyperKT_2025}
-Q.~Li and Z.~Huang, ``Hyperkt: Dual-channel adaptive hypergraph knowledge
-  tracing,'' \emph{IEEE Transactions on Neural Networks and Learning Systems},
-  vol.~36, no.~3, pp. 1820--1834, 2025.
-
-\bibitem{KT081_HyperHKT_2025}
-Z.~Yan and Q.~Li, ``Hyperbolic graph neural network for hierarchical knowledge
-  tracing,'' in \emph{Proceedings of the International Joint Conference on
-  Artificial Intelligence (IJCAI)}, 2025, pp. 4500--4508.
+Q.~Li and Z.~Huang, ``Dual-channel adaptive scale hypergraph encoders with
+  cross-view contrastive learning for knowledge tracing,'' \emph{IEEE
+  Transactions on Neural Networks and Learning Systems}, vol.~36, no.~3, pp.
+  1820--1834, 2025.
 
 \bibitem{KT026_PretrainQ_2020}
-Z.~Liu, Q.~Liu, J.~Chen, and E.~Chen, ``Pre-training question embeddings for
-  knowledge tracing,'' in \emph{Proceedings of the International Joint
-  Conference on Artificial Intelligence (IJCAI)}, 2020, pp. 1580--1586.
-
-\bibitem{KT082_GMGAE_2025}
-Z.~Huang and J.~Sun, ``Generative masked graph auto-encoder for knowledge
-  tracing,'' in \emph{Proceedings of the ACM International Conference on
-  Information and Knowledge Management (CIKM)}, 2025, p. 3679900.
+Y.~Liu, Y.~Yang, X.~Chen, J.~Shen, H.~Zhang, and Y.~Yu, ``Improving knowledge
+  tracing via pre-training question embeddings,'' in \emph{Proceedings of the
+  International Joint Conference on Artificial Intelligence (IJCAI)}, 2020, pp.
+  1577--1583.
 
 \end{thebibliography}

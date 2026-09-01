@@ -30,7 +30,7 @@
 
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-Deep Knowledge Tracing (DKT) models suffer from representation collapse and severe performance degradation under interaction data sparsity and unobserved concept conditions. Graph Neural Networks (GNNs) and Self-Supervised Learning (SSL) have emerged as primary paradigms to incorporate explicit domain structures and regularize student state representations. Guided by PRISMA 2020 guidelines, we systematically search, screen, code, and synthesize 42 primary core papers published between 2015 and 2026 across 7 bibliographic databases (Scopus, WoS, ACM DL, IEEE Xplore, ScienceDirect, SpringerLink, arXiv). We present a novel two-dimensional taxonomy classifying Graph-KT (GNN encoders, provenance, fusion mechanisms) and SSL-KT (pretext tasks, multi-view contrast, generative masked pre-training). We uncover a critical methodological flaw in the literature: while 95.2\% of studies cite data sparsity, only 4.8\% evaluate strict zero-exposure concept cold-start protocols. Finally, we outline 6 evidence-derived future directions, highlighting LLM-assisted knowledge graph construction, non-Euclidean hyperbolic state spaces, and calibrated trustworthy KT.
+Deep Knowledge Tracing (DKT) models suffer from representation collapse and severe performance degradation under interaction data sparsity and unobserved concept conditions. Graph Neural Networks (GNNs) and Self-Supervised Learning (SSL) have emerged as primary paradigms to incorporate explicit domain structures and regularize student state representations. Guided by PRISMA 2020 guidelines, we systematically search, screen, code, and synthesize 36 primary core papers published between 2018 and 2026 across 7 bibliographic databases (Scopus, WoS, ACM DL, IEEE Xplore, ScienceDirect, SpringerLink, arXiv). We present a novel two-dimensional taxonomy classifying Graph-KT (GNN encoders, provenance, fusion mechanisms) and SSL-KT (pretext tasks, multi-view contrast, generative masked pre-training). We uncover a critical methodological flaw in the literature: while 94.4\% of studies cite data sparsity, only 5.6\% evaluate strict zero-exposure concept cold-start protocols. Finally, we outline 6 evidence-derived future directions, highlighting LLM-assisted knowledge graph construction, non-Euclidean hyperbolic state spaces, and calibrated trustworthy KT.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -105,7 +105,7 @@ While previous surveys (e.g., Abdelrahman et al., pyKT benchmark suite) have exa
 \midrule
 Primary Focus & Deep KT Models & Benchmark Evaluation & Graph \& SSL-KT \\
 PRISMA 2020 Protocol & Partial & No & \textbf{Full 7-Database} \\
-Full Core Corpus Size & 28 Papers & 11 Models & \textbf{42 Core Papers} \\
+Full Core Corpus Size & 28 Papers & 11 Models & \textbf{36 Core Papers} \\
 Graph Provenance Lens & Limited & No & \textbf{Full Taxonomy} \\
 SSL Pretext Taxonomy & No & No & \textbf{4-Family Taxonomy} \\
 Cold-Start Split Audit & No & No & \textbf{Explicit Audit} \\
@@ -146,22 +146,22 @@ The systematic screening pipeline proceeded in four transparent stages (Figure~\
     \item \textbf{Identification}: 1,935 total raw records retrieved across all database search runs.
     \item \textbf{Deduplication}: 1,185 duplicate records removed via automated 4-tier matching, yielding 750 unique deduplicated records.
     \item \textbf{Stage 1 Screening (Title/Abstract)}: 610 records excluded for failing basic relevance; 140 articles passed to full-text assessment.
-    \item \textbf{Stage 2 Screening (Full-Text Eligibility)}: 98 articles excluded with explicit primary exclusion codes (EC1--EC7).
-    \item \textbf{Final Primary Core Corpus}: \textbf{42 PRIMARY\_CORE papers} (34 seed core papers + 8 PRISMA expansion core papers).
+    \item \textbf{Stage 2 Screening (Full-Text Eligibility)}: 104 articles excluded with explicit primary exclusion codes (EC1--EC7).
+    \item \textbf{Final Primary Core Corpus}: \textbf{36 PRIMARY\_CORE papers} (33 seed core papers + 3 PRISMA expansion core papers).
 \end{enumerate}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{../11_figures_tables/fig_prisma_flow.pdf}
-\caption{PRISMA 2020 Flow Diagram of Literature Search, Deduplication, Screening, and Study Eligibility Pipeline ($N = 42$ Core Papers).}
+\caption{PRISMA 2020 Flow Diagram of Literature Search, Deduplication, Screening, and Study Eligibility Pipeline ($N = 36$ Core Papers).}
 \label{fig:prisma_flow}
 \end{figure}
 
-Quality Assessment (QA1--QA8) across all 42 core papers achieved a mean quality score of \textbf{0.7768} (MODERATE-HIGH Quality).
+Quality Assessment (QA1--QA8) across all 36 core papers achieved a mean quality score of \textbf{0.7820} (MODERATE-HIGH Quality).
 
 \section{Taxonomy and Synthesis of Graph-Based Knowledge Tracing (RQ1 \& RQ2)}
 
-Graph-Based Knowledge Tracing (Graph-KT) leverages explicit topological structures to model domain concept relationships, exercise prerequisite dependencies, and dynamic student interaction histories. Across our primary core corpus of 42 studies, 42 papers (100.0\%) incorporate structural graph mechanisms. Figure~\ref{fig:taxonomy_2d} illustrates our two-dimensional taxonomy framework.
+Graph-Based Knowledge Tracing (Graph-KT) leverages explicit topological structures to model domain concept relationships, exercise prerequisite dependencies, and dynamic student interaction histories. Across our primary core corpus of 36 studies, 36 papers (100.0\%) incorporate structural graph mechanisms. Figure~\ref{fig:taxonomy_2d} illustrates our two-dimensional taxonomy framework.
 
 \begin{figure*}[t]
 \centering
@@ -189,18 +189,17 @@ We classify graph sources into four primary categories (Figure~\ref{fig:graph_pi
 \subsection{Topological Representations and GNN Encoders}
 As detailed in Table~\ref{tab:graph_taxonomy} and Figure~\ref{fig:meta_charts}, GNN encoder architectures include:
 \begin{itemize}
-    \item \textbf{Graph Convolutional Networks (GCN - 40.5\%)}: Primary baseline for local neighborhood aggregation across concept graphs (Bi-CLKT \cite{KT011_BiCLKT_2022}, JKT \cite{KT012_JKT_2021}, DGEKT \cite{KT029_DGEKT_2024}, CL4KT \cite{KT039_CL4KT_2022}, SINKT \cite{KT044_SINKT_2024}, Coda \cite{KT070_Coda_2025}, DGR-KT \cite{KT080_DGRKT_2025}).
-    \item \textbf{Heterogeneous GNNs (23.8\%)}: Models multi-modal educational entities (students, exercises, concepts) with type-specific message passing (HHSKT \cite{KT035_HHSKT_2023}, TSKT \cite{KT036_TSKT_2024}, 3V-CLKT \cite{KT043_3VCLKT_2024}, DC-SSL \cite{KT047_DCSSL_2023}, GraphCA \cite{KT050_GraphCA_2023}, MAHKT \cite{KT063_MAHKT_2025}, KGNN-KT \cite{KT076_KGNNKT_2025}, DV-HGCL \cite{KT083_DVHGCL_2026}).
-    \item \textbf{Graph Attention Networks (GAT - 11.9\%)}: Dynamic attention weighting over concept neighbors (GIKT \cite{KT010_GIKT_2021}, SKT \cite{KT016_SKT_2020}, LST-Graph \cite{KT056_LSTGraph_2025}, CMG-KT \cite{KT078_CMGKT_2025}).
-    \item \textbf{Hypergraph Neural Networks (4.8\%)}: Captures non-pairwise, high-order co-occurrence hyperedges connecting multiple concepts simultaneously (S2-HHN \cite{KT042_S2HHN_2023}, HyperKT \cite{KT066_HyperKT_2025}).
-    \item \textbf{Hyperbolic GNNs (2.4\%)}: Embeds hierarchical concept trees into non-Euclidean Poincaré ball manifolds, preventing representation distortion in deep trees (Hyper-HKT \cite{KT081_HyperHKT_2025}).
-    \item \textbf{Dynamic \& Spatiotemporal GNNs (7.1\%)}: Models time-evolving interaction streaming windows (DyGKT \cite{KT038_DyGKT_2024}, R²GCurL \cite{KT077_R2GCurL_2026}, STG-SKT \cite{KT079_STGSKT_2026}).
+    \item \textbf{Graph Convolutional Networks (GCN)}: Primary baseline for local neighborhood aggregation across concept graphs (Bi-CLKT \cite{KT011_BiCLKT_2022}, JKT \cite{KT012_JKT_2021}, DGEKT \cite{KT029_DGEKT_2024}, CL4KT \cite{KT039_CL4KT_2022}, SINKT \cite{KT044_SINKT_2024}, Coda \cite{KT070_Coda_2025}).
+    \item \textbf{Heterogeneous GNNs}: Models multi-modal educational entities (students, exercises, concepts) with type-specific message passing (HHSKT \cite{KT035_HHSKT_2023}, TSKT \cite{KT036_TSKT_2024}, 3V-CLKT \cite{KT043_3VCLKT_2024}, DC-SSL \cite{KT047_DCSSL_2023}, GraphCA \cite{KT050_GraphCA_2023}, MAHKT \cite{KT063_MAHKT_2025}, KGNN-KT \cite{KT076_KGNNKT_2025}).
+    \item \textbf{Graph Attention Networks (GAT)}: Dynamic attention weighting over concept neighbors (GIKT \cite{KT010_GIKT_2021}, SKT \cite{KT016_SKT_2020}, LST-Graph \cite{KT056_LSTGraph_2025}).
+    \item \textbf{Hypergraph Neural Networks}: Captures non-pairwise, high-order co-occurrence hyperedges connecting multiple concepts simultaneously (S2-HHN \cite{KT042_S2HHN_2023}, HyperKT \cite{KT066_HyperKT_2025}).
+    \item \textbf{Dynamic \& Spatiotemporal GNNs}: Models time-evolving interaction streaming windows (DyGKT \cite{KT038_DyGKT_2024}, R²GCurL \cite{KT077_R2GCurL_2026}, STG-SKT \cite{KT079_STGSKT_2026}).
 \end{itemize}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{../11_figures_tables/fig_meta_analysis_charts.pdf}
-\caption{Quantitative Meta-Analysis Distribution of Graph Neural Network (GNN) Encoder Architectures across the Primary Core Corpus ($N = 42$).}
+\caption{Quantitative Meta-Analysis Distribution of Graph Neural Network (GNN) Encoder Architectures across the Primary Core Corpus ($N = 36$).}
 \label{fig:meta_charts}
 \end{figure}
 
@@ -219,12 +218,8 @@ To overcome the limitations of static graphs, DyGKT \cite{KT038_DyGKT_2024} intr
 \subsubsection{SINKT (Fu et al., 2024)}
 SINKT \cite{KT044_SINKT_2024} addresses the inductive cold-start bottleneck by integrating Large Language Models (LLMs) with Graph Neural Networks. SINKT extracts structural Abstract Syntax Trees (ASTs) and semantic textual representations from programming exercises via LLMs. By projecting LLM semantic embeddings into a shared GNN concept representation space, SINKT predicts student mastery over unobserved cold-start exercises without requiring historical student interaction logs.
 
-\subsubsection{Hyper-HKT (Yan \& Li, 2025)}
-Recognizing that Euclidean embeddings cause representation distortion when mapping deep hierarchical concept trees, Hyper-HKT \cite{KT081_HyperHKT_2025} projects concept graphs into a non-Euclidean Poincaré hypergraph manifold $\mathbb{B}^d$. Message passing is computed via Möbius addition:
-\begin{equation}
-x \oplus_{\mathbf{c}} y = \frac{(1 + 2\mathbf{c}\langle x, y \rangle + \mathbf{c}\|y\|^2)x + (1 - \mathbf{c}\|x\|^2)y}{1 + 2\mathbf{c}\langle x, y \rangle + \mathbf{c}^2\|x\|^2\|y\|^2}
-\end{equation}
-This hyperbolic geometry preserves exponential tree expansion, outperforming Euclidean baselines on hierarchical curricula.
+\subsubsection{HyperKT (Li et al., 2025)}
+Recognizing that standard pairwise graph edges fail to capture multi-concept exercise dependencies, HyperKT \cite{KT066_HyperKT_2025} introduces dual-channel adaptive scale hypergraph encoders. HyperKT constructs hyperedges connecting arbitrary subsets of questions and knowledge components, computing hypergraph convolution alongside cross-view contrastive alignment to preserve high-order relational semantics across sparse interaction sequences.
 
 \begin{table*}[t]
 \caption{Taxonomy Table 1: Graph Construction, Topological Representation \& GNN Architecture (RQ1 \& RQ2)}
@@ -263,7 +258,6 @@ This hyperbolic geometry preserves exponential tree expansion, outperforming Euc
 \textbf{KT062} & LGSKT & Logical Skill & External Expert & Directed Graph & GCN & Self-Attention Transformer & Skill Gate Fusion \\
 \textbf{KT063} & MAHKT & Multi-Association & Precomputed Log & Heterogeneous Graph & Heterogeneous GNN & RNN / LSTM & Multi-Association Gate \\
 \textbf{KT064} & MG-Ensemble & Multi-Granularity & Precomputed Log & Multi-Graph & Dynamic GNN & RNN / LSTM & Ensemble Fusion \\
-\textbf{KT065} & CSGKT & Cognitive Graph & Jointly Learned & Heterogeneous Graph & Heterogeneous GNN & RNN / GRU & Cognitive Situation Gate \\
 \textbf{KT066} & HyperKT & Hypergraph & Dynamic Adaptive & Adaptive Hypergraph & Hypergraph GNN & Self-Attention Transformer & Hypergraph Pooling \\
 \textbf{KT067} & SKM-GKT & Subject Mapping & External Expert & Directed Graph & GCN & RNN / LSTM & Subject Gate \\
 \textbf{KT068} & HKT & Hierarchical Graph & External Expert & Hierarchical Tree & GCN & Self-Attention Transformer & Hierarchical Pooling \\
@@ -271,12 +265,7 @@ This hyperbolic geometry preserves exponential tree expansion, outperforming Euc
 \textbf{KT070} & Coda & Code AST Graph & LLM Extracted & Programming AST & GCN & Self-Attention Transformer & Adapter Tuning \\
 \textbf{KT076} & KGNN-KT & Knowledge Graph & LLM Extracted & Knowledge Graph & Heterogeneous GNN & Self-Attention Transformer & LLM Projection \\
 \textbf{KT077} & R²GCurL & Curriculum Graph & Jointly Learned & Dynamic Graph & Dynamic GNN & RNN / LSTM & Curriculum Gate \\
-\textbf{KT078} & CMG-KT & Multi-view Graph & Precomputed Log & Heterogeneous Graph & GCN & Self-Attention Transformer & Contrastive Alignment \\
 \textbf{KT079} & STG-SKT & Streaming Graph & Dynamic Window & Dynamic Graph & Dynamic GNN & RNN / GRU & Streaming Gate \\
-\textbf{KT080} & DGR-KT & Causal Graph & Jointly Learned & Directed Graph & GCN & Self-Attention Transformer & Debiased Causal Gate \\
-\textbf{KT081} & Hyper-HKT & Hyperbolic Tree & External Expert & Poincaré Manifold & Hyperbolic GNN & Self-Attention Transformer & Hyperbolic Manifold Mapping \\
-\textbf{KT082} & GMGAE & Auto-Encoder & Jointly Learned & Graph Auto-Encoder & Graph Auto-Encoder & Self-Attention Transformer & Generative Masked Recon \\
-\textbf{KT083} & DV-HGCL & Dual-View Graph & Precomputed Log & Heterogeneous Graph & Heterogeneous GNN & Self-Attention Transformer & Dual-View Contrast \\
 \bottomrule
 \end{tabular}
 }
@@ -284,7 +273,7 @@ This hyperbolic geometry preserves exponential tree expansion, outperforming Euc
 
 \section{Taxonomy and Synthesis of Self-Supervised Knowledge Tracing (RQ3)}
 
-Self-Supervised Learning (SSL) has emerged as a crucial paradigm in Knowledge Tracing to address interaction data sparsity, alleviate over-smoothing in deep GNNs, and improve representation robustness. Within our primary core corpus of 42 studies, 16 papers (38.1\%) incorporate self-supervised auxiliary objectives. Figure~\ref{fig:ssl_framework} illustrates our four-family taxonomy framework for SSL-KT.
+Self-Supervised Learning (SSL) has emerged as a crucial paradigm in Knowledge Tracing to address interaction data sparsity, alleviate over-smoothing in deep GNNs, and improve representation robustness. Within our primary core corpus of 36 studies, 12 papers (33.3\%) incorporate self-supervised auxiliary objectives. Figure~\ref{fig:ssl_framework} illustrates our four-family taxonomy framework for SSL-KT.
 
 \begin{figure*}[t]
 \centering
@@ -296,10 +285,10 @@ Self-Supervised Learning (SSL) has emerged as a crucial paradigm in Knowledge Tr
 \subsection{Taxonomy of SSL Pretext Objectives}
 We categorize SSL-KT techniques into four distinct paradigm families (Table~\ref{tab:ssl_taxonomy}):
 \begin{enumerate}
-    \item \textbf{Multi-View Contrastive Learning (37.5\%)}: Constructing multiple augmented structural or temporal views and maximizing mutual information between positive view pairs using InfoNCE loss (Bi-CLKT \cite{KT011_BiCLKT_2022}, 3V-CLKT \cite{KT043_3VCLKT_2024}, HyperKT \cite{KT066_HyperKT_2025}, CMG-KT \cite{KT078_CMGKT_2025}, DV-HGCL \cite{KT083_DVHGCL_2026}).
-    \item \textbf{Graph Structural Contrastive Learning (31.3\%)}: Performing node, edge, or subgraph perturbations on concept graphs to regularize GNN embeddings against noise (DC-SSL \cite{KT047_DCSSL_2023}, GraphCA \cite{KT050_GraphCA_2023}, HKT \cite{KT068_HKT_2025}).
-    \item \textbf{Hypergraph Contrastive Learning (12.5\%)}: Contrasting hyperedge embeddings against node-level representations to capture high-order group interaction semantics (S2-HHN \cite{KT042_S2HHN_2023}, HyperKT \cite{KT066_HyperKT_2025}).
-    \item \textbf{Generative Masked Graph Auto-Encoding (12.5\%)}: Masking concept nodes or structural edges and training a Graph Auto-Encoder (GAE) to reconstruct unobserved topology prior to downstream KT fine-tuning (Pre-train Q-Emb \cite{KT026_PretrainQ_2020}, GMGAE \cite{KT082_GMGAE_2025}).
+    \item \textbf{Multi-View Contrastive Learning}: Constructing multiple augmented structural or temporal views and maximizing mutual information between positive view pairs using InfoNCE loss (Bi-CLKT \cite{KT011_BiCLKT_2022}, 3V-CLKT \cite{KT043_3VCLKT_2024}, HyperKT \cite{KT066_HyperKT_2025}).
+    \item \textbf{Graph Structural Contrastive Learning}: Performing node, edge, or subgraph perturbations on concept graphs to regularize GNN embeddings against noise (DC-SSL \cite{KT047_DCSSL_2023}, GraphCA \cite{KT050_GraphCA_2023}, HKT \cite{KT068_HKT_2025}).
+    \item \textbf{Hypergraph Contrastive Learning}: Contrasting hyperedge embeddings against node-level representations to capture high-order group interaction semantics (S2-HHN \cite{KT042_S2HHN_2023}, HyperKT \cite{KT066_HyperKT_2025}).
+    \item \textbf{Generative Masked Graph Auto-Encoding}: Masking concept nodes or structural edges and training a Graph Auto-Encoder (GAE) to reconstruct unobserved topology prior to downstream KT fine-tuning (Pre-train Q-Emb \cite{KT026_PretrainQ_2020}).
 \end{enumerate}
 
 \subsection{Mathematical Formulations of SSL Pretext Losses}
@@ -312,7 +301,7 @@ Most contrastive SSL-KT models compute InfoNCE loss across positive view represe
 where $\tau$ denotes the temperature hyperparameter and $\text{sim}(\cdot, \cdot)$ represents cosine similarity.
 
 \subsubsection{Generative Masked Graph Reconstruction Loss}
-Generative models such as GMGAE \cite{KT082_GMGAE_2025} compute Mean Squared Error (MSE) or binary cross-entropy over masked adjacency matrices $\tilde{\mathbf{A}}$:
+Generative models such as Pre-train Q-Emb \cite{KT026_PretrainQ_2020} and Graph Auto-Encoders compute Mean Squared Error (MSE) or reconstruction cross-entropy over masked adjacency matrices $\tilde{\mathbf{A}}$:
 \begin{equation}
 \mathcal{L}_{\text{Recon}} = \|\mathbf{A} - \sigma(\mathbf{Z} \mathbf{Z}^T)\|_F^2
 \end{equation}
@@ -343,9 +332,6 @@ Bi-CLKT \cite{KT011_BiCLKT_2022} extends contrastive learning to bi-directional 
 \textbf{KT050} & GraphCA & GRAPH\_CONTRASTIVE & Counterfactual graph contrast & Counterfactual graph rewiring & YES\_EXPLICIT & JOINT\_END\_TO\_END & Counterfactual Loss \\
 \textbf{KT066} & HyperKT & MULTIVIEW\_CONTRASTIVE & Adaptive hypergraph contrast & Hypergraph view perturbation & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
 \textbf{KT068} & HKT & HIERARCHICAL\_CONTRAST & Cross-level concept contrast & Hierarchical graph masking & YES\_EXPLICIT & JOINT\_END\_TO\_END & Hierarchical InfoNCE \\
-\textbf{KT078} & CMG-KT & MULTIVIEW\_CONTRASTIVE & Multi-view graph alignment & Edge drop \& Node mask & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
-\textbf{KT082} & GMGAE & MASKED\_PRETRAINING & Masked graph auto-encoding & Masked node/edge reconstruction & YES\_EXPLICIT & TWO\_STAGE\_PRETRAIN & Graph Reconstruction MSE \\
-\textbf{KT083} & DV-HGCL & GRAPH\_CONTRASTIVE & Dual-view graph contrast & Question \& Concept perturbation & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
 \bottomrule
 \end{tabular}
 }
@@ -355,7 +341,7 @@ Bi-CLKT \cite{KT011_BiCLKT_2022} extends contrastive learning to bi-directional 
 
 A central contribution of our survey is clarifying the construct ambiguity surrounding "sparsity" in Knowledge Tracing literature. We distinguish between two fundamentally different evaluation settings (Table~\ref{tab:sparse_taxonomy}):
 \begin{enumerate}
-    \item \textbf{Generic Interaction Data Sparsity}: Student interaction logs are randomly partitioned (e.g., 80/20 train/test learner split). While the overall interaction matrix is sparse, \textbf{every Knowledge Component (KC) appears multiple times in the training split}. 40 out of 42 core studies (95.2\%) evaluate exclusively under generic interaction data sparsity.
+    \item \textbf{Generic Interaction Data Sparsity}: Student interaction logs are randomly partitioned (e.g., 80/20 train/test learner split). While the overall interaction matrix is sparse, \textbf{every Knowledge Component (KC) appears multiple times in the training split}. 34 out of 36 core studies (94.4\%) evaluate exclusively under generic interaction data sparsity.
     \item \textbf{Strict Zero-Exposure KC Cold-Start}: A subset of KCs is completely withheld from training interaction logs (zero training exposure). The model must predict student mastery over unobserved KCs strictly using external structural graphs, LLM semantic priors, or concept metadata. Only 2 core studies (\textbf{SINKT} \cite{KT044_SINKT_2024}, \textbf{HHSKT} \cite{KT035_HHSKT_2023}) isolate strict zero-exposure cold-start protocols.
 \end{enumerate}
 
@@ -411,10 +397,6 @@ As shown in Table~\ref{tab:empirical_validation}, standard sequence and graph ar
 \textbf{KT068} & HKT & Hierarchical Data Sparsity & \textbf{NO} & Generic Learner Split & Hierarchical Graph & Fails to isolate unobserved KCs \\
 \textbf{KT076} & KGNN-KT & Code Data Sparsity & \textbf{NO} & Generic Learner Split & Knowledge Graph + LLM & Fails to isolate unobserved KCs \\
 \textbf{KT077} & R²GCurL & Robust Data Sparsity & \textbf{NO} & Generic Learner Split & Curriculum Graph & Fails to isolate unobserved KCs \\
-\textbf{KT078} & CMG-KT & Multi-view Data Sparsity & \textbf{NO} & Generic Learner Split & Multi-view Graph & Fails to isolate unobserved KCs \\
-\textbf{KT081} & Hyper-HKT & Hierarchical Data Sparsity & \textbf{NO} & Generic Learner Split & Hyperbolic Tree Graph & Fails to isolate unobserved KCs \\
-\textbf{KT082} & GMGAE & Pre-training Data Sparsity & \textbf{NO} & Generic Learner Split & Graph Auto-Encoder & Fails to isolate unobserved KCs \\
-\textbf{KT083} & DV-HGCL & Heterogeneous Data Sparsity & \textbf{NO} & Generic Learner Split & Dual-View Graph & Fails to isolate unobserved KCs \\
 \bottomrule
 \end{tabular}
 }
@@ -422,16 +404,16 @@ As shown in Table~\ref{tab:empirical_validation}, standard sequence and graph ar
 
 \section{Reliability, Reproducibility \& Calibration Audit (RQ5)}
 
-We systematically audited all 42 primary core studies across eight quality criteria (QA1--QA8):
+We systematically audited all 36 primary core studies across eight quality criteria (QA1--QA8):
 \begin{itemize}
     \item \textbf{QA1 Task Clarity (1.95 / 2.00)}: Excellent problem formulation across all studies.
-    \item \textbf{QA2 Data Transparency (1.90 / 2.00)}: 92.9\% evaluate on public benchmark datasets (ASSISTments, EdNet, Statics, Junyi).
-    \item \textbf{QA3 Split Control (1.76 / 2.00)}: Most studies describe train/test splits, though graph precomputation leakage risk remains unaddressed in 28.6\% of papers.
-    \item \textbf{QA4 Baseline Adequacy (1.90 / 2.00)}: Strong baseline comparisons against DKT, SAKT, AKT, and CL4KT.
+    \item \textbf{QA2 Data Transparency (1.90 / 2.00)}: 94.4\% evaluate on public benchmark datasets (ASSISTments, EdNet, Statics, Junyi).
+    \item \textbf{QA3 Split Control (1.78 / 2.00)}: Most studies describe train/test splits, though graph precomputation leakage risk remains unaddressed in 27.8\% of papers.
+    \item \textbf{QA4 Baseline Adequacy (1.92 / 2.00)}: Strong baseline comparisons against DKT, SAKT, AKT, and CL4KT.
     \item \textbf{QA5 Statistical Rigor (1.10 / 2.00)}: Significant gap: less than 15\% perform formal significance testing (t-test / Wilcoxon) or report confidence intervals.
-    \item \textbf{QA6 Reproducibility Artifacts (1.45 / 2.00)}: 38.1\% provide official open-source code repositories verified in pyKT benchmarks.
-    \item \textbf{QA7 Sparse Construct Validity (1.05 / 2.00)}: Major weakness: 95.2\% fail to evaluate strict zero-exposure cold-start splits.
-    \item \textbf{QA8 Computational Transparency (1.38 / 2.00)}: Only 42.9\% report empirical training times, GPU memory consumption, or asymptotic bounds.
+    \item \textbf{QA6 Reproducibility Artifacts (1.48 / 2.00)}: 41.7\% provide official open-source code repositories verified in pyKT benchmarks.
+    \item \textbf{QA7 Sparse Construct Validity (1.05 / 2.00)}: Major weakness: 94.4\% fail to evaluate strict zero-exposure cold-start splits.
+    \item \textbf{QA8 Computational Transparency (1.42 / 2.00)}: Only 44.4\% report empirical training times, GPU memory consumption, or asymptotic bounds.
 \end{itemize}
 
 \subsection{Asymptotic Computational Complexity \& GPU Memory Footprint Audit}
@@ -443,7 +425,7 @@ To assist practitioners in deploying Graph-SSL KT models, we derive the asymptot
     \item \textbf{Hyperbolic Poincaré GNNs}: Exponential map and Möbius addition evaluations increase wall-clock training time by $2.4\times$ over Euclidean GCNs, though memory overhead remains comparable ($\approx 3.2$ GB).
 \end{enumerate}
 
-Furthermore, \textbf{0 out of 42 primary core studies report Expected Calibration Error (ECE)}:
+Furthermore, \textbf{0 out of 36 primary core studies report Expected Calibration Error (ECE)}:
 \begin{equation}
 \text{ECE} = \sum_{m=1}^{M} \frac{|B_m|}{N} \left| \text{acc}(B_m) - \text{conf}(B_m) \right|
 \end{equation}
@@ -451,7 +433,7 @@ In intelligent tutoring systems, uncalibrated probability outputs lead to inappr
 
 \section{Evidence-Derived Research Agenda (RQ6)}
 
-Based on our meta-analysis of 42 core studies, we formulate six evidence-derived research agenda pillars, providing explicit mathematical formalizations for future research:
+Based on our meta-analysis of 36 core studies, we formulate six evidence-derived research agenda pillars, providing explicit mathematical formalizations for future research:
 
 \subsection{Pillar 1: LLM-GNN Multimodal Fusion for Open-Domain Knowledge Graphs}
 Moving beyond static pre-extracted LLM embeddings toward end-to-end multimodal alignment. Future Graph-SSL KT models should project LLM semantic representations $\mathbf{E}_{\text{LLM}}$ and GNN topological states $\mathbf{H}_{\text{GNN}}$ via cross-attention alignment:
