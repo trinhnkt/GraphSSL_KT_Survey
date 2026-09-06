@@ -48,7 +48,7 @@ Knowledge Tracing, Graph Neural Networks, Self-Supervised Learning, Sparse Conce
 \caption{Summary of Key Mathematical Notations}
 \label{tab:notation_summary}
 \centering
-\scalebox{0.82}{
+\resizebox{\columnwidth}{!}{
 \begin{tabular}{ll}
 \toprule
 \textbf{Symbol} & \textbf{Mathematical Definition / Meaning} \\
@@ -98,7 +98,7 @@ While previous surveys (e.g., Abdelrahman et al., pyKT benchmark suite) have exa
 \caption{Comparison with Prior Knowledge Tracing Surveys}
 \label{tab:survey_comparison}
 \centering
-\scalebox{0.82}{
+\resizebox{\columnwidth}{!}{
 \begin{tabular}{lcccc}
 \toprule
 \textbf{Survey Dimension} & \textbf{Abdelrahman (2023)} & \textbf{pyKT (2022)} & \textbf{Ours (2026)} \\
@@ -225,47 +225,48 @@ Recognizing that standard pairwise graph edges fail to capture multi-concept exe
 \caption{Taxonomy Table 1: Graph Construction, Topological Representation \& GNN Architecture (RQ1 \& RQ2)}
 \label{tab:graph_taxonomy}
 \centering
-\scalebox{0.75}{
+\resizebox{\textwidth}{!}{
 \begin{tabular}{llllllll}
 \toprule
 \textbf{Paper ID} & \textbf{Model Name} & \textbf{Graph Source} & \textbf{Graph Provenance} & \textbf{Topological Type} & \textbf{GNN Encoder} & \textbf{Temporal Backbone} & \textbf{Fusion Mechanism} \\
 \midrule
-\textbf{KT004} & GKT & Q-Matrix & Precomputed Log & Bipartite Graph & GCN / Graph-Recurrent & RNN / LSTM & Concatenation \\
-\textbf{KT010} & GIKT & Co-occurrence & Precomputed Log & Heterogeneous Graph & Graph Attention (GAT) & RNN / GRU & Attention Fusion \\
-\textbf{KT011} & Bi-CLKT & Dual View & Precomputed Log & Homogeneous Graph & GCN & Self-Attention Transformer & Residual Add \\
-\textbf{KT012} & JKT & Similarity Graph & Precomputed Log & Homogeneous Graph & GCN & RNN / LSTM & Concatenation \\
-\textbf{KT014} & PDKT-C & Prerequisite Map & External Expert & Directed Tree & Explicit Matrix Multi & RNN / LSTM & Gate Fusion \\
-\textbf{KT016} & SKT & Concept Graph & Precomputed Log & Undirected Graph & Graph Attention (GAT) & RNN / GRU & Concatenation \\
-\textbf{KT023} & SGKT & Session Graph & Precomputed Log & Directed Graph & Gated GNN (GGNN) & RNN / GRU & Attention Fusion \\
-\textbf{KT026} & Pre-train Q-Emb & Question Graph & Precomputed Log & Bipartite Graph & Graph Auto-Encoder & Self-Attention Transformer & Pre-train Initializer \\
-\textbf{KT029} & DGEKT & Dual Ensemble & Jointly Learned & Heterogeneous Graph & Dynamic GNN & RNN / LSTM & Ensemble Fusion \\
-\textbf{KT031} & KSG-AKT & Knowledge Map & External Expert & Directed Graph & Graph Attention (GAT) & Self-Attention Transformer & Attention Fusion \\
-\textbf{KT033} & DGMN & Memory Graph & Dynamic Memory & Heterogeneous Graph & Graph Memory Network & Memory Network & Gated Memory Write \\
-\textbf{KT035} & HHSKT & Hierarchy Graph & External Expert & Heterogeneous Graph & Heterogeneous GNN & RNN / LSTM & Hierarchical Fusion \\
-\textbf{KT036} & TSKT & Spatiotemporal & Dynamic Window & Heterogeneous Graph & Dynamic Hetero-GNN & RNN / GRU & Spatiotemporal Gate \\
-\textbf{KT037} & CMKT & Concept Map & External Expert & Directed Graph & GCN & Self-Attention Transformer & Attention Fusion \\
-\textbf{KT038} & DyGKT & Dynamic Graph & Jointly Learned & Dynamic Streaming & Dynamic GNN & RNN / LSTM & Dynamic Gated Fusion \\
-\textbf{KT039} & CL4KT & Co-occurrence & Precomputed Log & Homogeneous Graph & GCN & Self-Attention Transformer & Contrastive Representation \\
-\textbf{KT042} & S2-HHN & Hypergraph & Precomputed Log & Hypergraph & Hypergraph GNN & Self-Attention Transformer & Hyperedge Pooling \\
-\textbf{KT043} & 3V-CLKT & Multi-View Graph & External Expert & Heterogeneous Graph & Heterogeneous GNN & Self-Attention Transformer & Multi-View Fusion \\
-\textbf{KT044} & SINKT & Semantic AST Graph & LLM Extracted & Heterogeneous Graph & GCN & Self-Attention Transformer & Inductive LLM Projection \\
-\textbf{KT047} & DC-SSL & Dual Channel & Precomputed Log & Heterogeneous Graph & Heterogeneous GNN & Self-Attention Transformer & Dual Channel Fusion \\
-\textbf{KT050} & GraphCA & Counterfactual & Jointly Learned & Dynamic Graph & GCN & Self-Attention Transformer & Counterfactual Rewiring \\
-\textbf{KT052} & CapsuleGNN & Concept Graph & Precomputed Log & Homogeneous Graph & Capsule GNN & RNN / LSTM & Capsule Routing \\
-\textbf{KT053} & GASKT & Attentive Search & Dynamic Search & Homogeneous Graph & Graph Attention (GAT) & Self-Attention Transformer & Search Attention \\
-\textbf{KT056} & LST-Graph & Long/Short State & Dynamic Window & Dynamic Graph & Graph Attention (GAT) & RNN / GRU & Dual State Fusion \\
-\textbf{KT060} & STHKT & Hawkes Topology & Dynamic Window & Topological Graph & Spatiotemporal GNN & Continuous Hawkes & Hawkes Decay Gate \\
-\textbf{KT062} & LGSKT & Logical Skill & External Expert & Directed Graph & GCN & Self-Attention Transformer & Skill Gate Fusion \\
-\textbf{KT063} & MAHKT & Multi-Association & Precomputed Log & Heterogeneous Graph & Heterogeneous GNN & RNN / LSTM & Multi-Association Gate \\
-\textbf{KT064} & MG-Ensemble & Multi-Granularity & Precomputed Log & Multi-Graph & Dynamic GNN & RNN / LSTM & Ensemble Fusion \\
-\textbf{KT066} & HyperKT & Hypergraph & Dynamic Adaptive & Adaptive Hypergraph & Hypergraph GNN & Self-Attention Transformer & Hypergraph Pooling \\
-\textbf{KT067} & SKM-GKT & Subject Mapping & External Expert & Directed Graph & GCN & RNN / LSTM & Subject Gate \\
-\textbf{KT068} & HKT & Hierarchical Graph & External Expert & Hierarchical Tree & GCN & Self-Attention Transformer & Hierarchical Pooling \\
-\textbf{KT069} & AEGOT-CDKT & Optimal Transport & Cross Domain & Bipartite Graph & Graph Optimal Transport & Self-Attention Transformer & Transport Alignment \\
-\textbf{KT070} & Coda & Code AST Graph & LLM Extracted & Programming AST & GCN & Self-Attention Transformer & Adapter Tuning \\
-\textbf{KT076} & KGNN-KT & Knowledge Graph & LLM Extracted & Knowledge Graph & Heterogeneous GNN & Self-Attention Transformer & LLM Projection \\
-\textbf{KT077} & R²GCurL & Curriculum Graph & Jointly Learned & Dynamic Graph & Dynamic GNN & RNN / LSTM & Curriculum Gate \\
-\textbf{KT079} & STG-SKT & Streaming Graph & Dynamic Window & Dynamic Graph & Dynamic GNN & RNN / GRU & Streaming Gate \\
+\textbf{KT004} & GKT \cite{KT004_GKT_2019} & Q-Matrix & Precomputed Log & Bipartite Graph & GCN / Graph-Recurrent & RNN / LSTM & Concatenation \\
+\textbf{KT010} & GIKT \cite{KT010_GIKT_2021} & Co-occurrence & Precomputed Log & Heterogeneous Graph & Graph Attention (GAT) & RNN / GRU & Attention Fusion \\
+\textbf{KT011} & Bi-CLKT \cite{KT011_BiCLKT_2022} & Dual View & Precomputed Log & Homogeneous Graph & GCN & Self-Attention Transformer & Residual Add \\
+\textbf{KT012} & JKT \cite{KT012_JKT_2021} & Similarity Graph & Precomputed Log & Homogeneous Graph & GCN & RNN / LSTM & Concatenation \\
+\textbf{KT014} & PDKT-C \cite{KT014_PDKTC_2018} & Prerequisite Map & External Expert & Directed Tree & Explicit Matrix Multi & RNN / LSTM & Gate Fusion \\
+\textbf{KT016} & SKT \cite{KT016_SKT_2020} & Concept Graph & Precomputed Log & Undirected Graph & Graph Attention (GAT) & RNN / GRU & Concatenation \\
+\textbf{KT023} & SGKT \cite{KT023_SGKT_2022} & Session Graph & Precomputed Log & Directed Graph & Gated GNN (GGNN) & RNN / GRU & Attention Fusion \\
+\textbf{KT026} & Pre-train Q-Emb \cite{KT026_PretrainQ_2020} & Question Graph & Precomputed Log & Bipartite Graph & Graph Auto-Encoder & Self-Attention Transformer & Pre-train Initializer \\
+\textbf{KT029} & DGEKT \cite{KT029_DGEKT_2024} & Dual Ensemble & Jointly Learned & Heterogeneous Graph & Dynamic GNN & RNN / LSTM & Ensemble Fusion \\
+\textbf{KT031} & KSG-AKT \cite{KT031_KSGAKT_2022} & Knowledge Map & External Expert & Directed Graph & Graph Attention (GAT) & Self-Attention Transformer & Attention Fusion \\
+\textbf{KT033} & DGMN \cite{KT033_DGMN_2023} & Memory Graph & Dynamic Memory & Heterogeneous Graph & Graph Memory Network & Memory Network & Gated Memory Write \\
+\textbf{KT035} & HHSKT \cite{KT035_HHSKT_2023} & Hierarchy Graph & External Expert & Heterogeneous Graph & Heterogeneous GNN & RNN / LSTM & Hierarchical Fusion \\
+\textbf{KT036} & TSKT \cite{KT036_TSKT_2024} & Spatiotemporal & Dynamic Window & Heterogeneous Graph & Dynamic Hetero-GNN & RNN / GRU & Spatiotemporal Gate \\
+\textbf{KT037} & CMKT \cite{KT037_CMKT_2022} & Concept Map & External Expert & Directed Graph & GCN & Self-Attention Transformer & Attention Fusion \\
+\textbf{KT038} & DyGKT \cite{KT038_DyGKT_2024} & Dynamic Graph & Jointly Learned & Dynamic Streaming & Dynamic GNN & RNN / LSTM & Dynamic Gated Fusion \\
+\textbf{KT039} & CL4KT \cite{KT039_CL4KT_2022} & Co-occurrence & Precomputed Log & Homogeneous Graph & GCN & Self-Attention Transformer & Contrastive Representation \\
+\textbf{KT042} & S2-HHN \cite{KT042_S2HHN_2023} & Hypergraph & Precomputed Log & Hypergraph & Hypergraph GNN & Self-Attention Transformer & Hyperedge Pooling \\
+\textbf{KT043} & 3V-CLKT \cite{KT043_3VCLKT_2024} & Multi-View Graph & External Expert & Heterogeneous Graph & Heterogeneous GNN & Self-Attention Transformer & Multi-View Fusion \\
+\textbf{KT044} & SINKT \cite{KT044_SINKT_2024} & Semantic AST Graph & LLM Extracted & Heterogeneous Graph & GCN & Self-Attention Transformer & Inductive LLM Projection \\
+\textbf{KT047} & DC-SSL \cite{KT047_DCSSL_2023} & Dual Channel & Precomputed Log & Heterogeneous Graph & Heterogeneous GNN & Self-Attention Transformer & Dual Channel Fusion \\
+\textbf{KT050} & GraphCA \cite{KT050_GraphCA_2023} & Counterfactual & Jointly Learned & Dynamic Graph & GCN & Self-Attention Transformer & Counterfactual Rewiring \\
+\textbf{KT052} & CapsuleGNN \cite{KT052_CapsuleGNN_2022} & Concept Graph & Precomputed Log & Homogeneous Graph & Capsule GNN & RNN / LSTM & Capsule Routing \\
+\textbf{KT053} & GASKT \cite{KT053_GASKT_2021} & Attentive Search & Dynamic Search & Homogeneous Graph & Graph Attention (GAT) & Self-Attention Transformer & Search Attention \\
+\textbf{KT056} & LST-Graph \cite{KT056_LSTGraph_2025} & Long/Short State & Dynamic Window & Dynamic Graph & Graph Attention (GAT) & RNN / GRU & Dual State Fusion \\
+\textbf{KT060} & STHKT \cite{KT060_STHKT_2025} & Hawkes Topology & Dynamic Window & Topological Graph & Spatiotemporal GNN & Continuous Hawkes & Hawkes Decay Gate \\
+\textbf{KT062} & LGSKT \cite{KT062_LGSKT_2025} & Logical Skill & External Expert & Directed Graph & GCN & Self-Attention Transformer & Skill Gate Fusion \\
+\textbf{KT063} & MAHKT \cite{KT063_MAHKT_2025} & Multi-Association & Precomputed Log & Heterogeneous Graph & Heterogeneous GNN & RNN / LSTM & Multi-Association Gate \\
+\textbf{KT064} & MG-Ensemble \cite{KT064_MGEnsemble_2025} & Multi-Granularity & Precomputed Log & Multi-Graph & Dynamic GNN & RNN / LSTM & Ensemble Fusion \\
+\textbf{KT065} & CS-GKT \cite{KT065_CSGKT_2025} & Cognitive Graph & External Expert & Heterogeneous Graph & Heterogeneous GNN & RNN / LSTM & Cognitive Gate \\
+\textbf{KT066} & HyperKT \cite{KT066_HyperKT_2025} & Hypergraph & Dynamic Adaptive & Adaptive Hypergraph & Hypergraph GNN & Self-Attention Transformer & Hypergraph Pooling \\
+\textbf{KT067} & SKM-GKT \cite{KT067_SKMGKT_2025} & Subject Mapping & External Expert & Directed Graph & GCN & RNN / LSTM & Subject Gate \\
+\textbf{KT068} & HKT \cite{KT068_HKT_2025} & Hierarchical Graph & External Expert & Hierarchical Tree & GCN & Self-Attention Transformer & Hierarchical Pooling \\
+\textbf{KT069} & AEGOT-CDKT \cite{KT069_AEGOTCDKT_2025} & Optimal Transport & Cross Domain & Bipartite Graph & Graph Optimal Transport & Self-Attention Transformer & Transport Alignment \\
+\textbf{KT070} & Coda \cite{KT070_Coda_2025} & Code AST Graph & LLM Extracted & Programming AST & GCN & Self-Attention Transformer & Adapter Tuning \\
+\textbf{KT076} & KGNN-KT \cite{KT076_KGNNKT_2025} & Knowledge Graph & LLM Extracted & Knowledge Graph & Heterogeneous GNN & Self-Attention Transformer & LLM Projection \\
+\textbf{KT077} & R²GCurL \cite{KT077_R2GCurL_2026} & Curriculum Graph & Jointly Learned & Dynamic Graph & Dynamic GNN & RNN / LSTM & Curriculum Gate \\
+\textbf{KT079} & STG-SKT \cite{KT079_STGSKT_2026} & Streaming Graph & Dynamic Window & Dynamic Graph & Dynamic GNN & RNN / GRU & Streaming Gate \\
 \bottomrule
 \end{tabular}
 }
@@ -273,7 +274,7 @@ Recognizing that standard pairwise graph edges fail to capture multi-concept exe
 
 \section{Taxonomy and Synthesis of Self-Supervised Knowledge Tracing (RQ3)}
 
-Self-Supervised Learning (SSL) has emerged as a crucial paradigm in Knowledge Tracing to address interaction data sparsity, alleviate over-smoothing in deep GNNs, and improve representation robustness. Within our primary core corpus of 36 studies, 12 papers (33.3\%) incorporate self-supervised auxiliary objectives. Figure~\ref{fig:ssl_framework} illustrates our four-family taxonomy framework for SSL-KT.
+Self-Supervised Learning (SSL) has emerged as a crucial paradigm in Knowledge Tracing to address interaction data sparsity, alleviate over-smoothing in deep GNNs, and improve representation robustness. Within our primary core corpus of 36 studies, 9 papers (25.0\%) incorporate explicit self-supervised auxiliary objectives. Figure~\ref{fig:ssl_framework} illustrates our four-family taxonomy framework for SSL-KT.
 
 \begin{figure*}[t]
 \centering
@@ -318,20 +319,20 @@ Bi-CLKT \cite{KT011_BiCLKT_2022} extends contrastive learning to bi-directional 
 \caption{Taxonomy Table 2: Self-Supervised Learning (SSL) Taxonomy \& Pretext Objectives (RQ3)}
 \label{tab:ssl_taxonomy}
 \centering
-\scalebox{0.80}{
+\resizebox{\textwidth}{!}{
 \begin{tabular}{llllllll}
 \toprule
 \textbf{Paper ID} & \textbf{Model Name} & \textbf{SSL Family} & \textbf{Pretext Task Objective} & \textbf{Augmentation Strategy} & \textbf{Structure Preservation} & \textbf{Training Mode} & \textbf{Auxiliary Loss Function} \\
 \midrule
-\textbf{KT011} & Bi-CLKT & MULTIVIEW\_CONTRASTIVE & Bi-directional view agreement & Sequence \& Graph perturbation & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
-\textbf{KT026} & Pre-train Q-Emb & MASKED\_PRETRAINING & Question embedding reconstruction & Masked concept prediction & YES\_EXPLICIT & TWO\_STAGE\_PRETRAIN & Masked Cross-Entropy \\
-\textbf{KT039} & CL4KT & SEQUENCE\_CONTRASTIVE & Interaction sequence alignment & Item \& Skill masking/cropping & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
-\textbf{KT042} & S2-HHN & HYPERGRAPH\_CONTRASTIVE & Hypergraph multi-view contrast & Hyperedge drop \& node mask & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
-\textbf{KT043} & 3V-CLKT & MULTIVIEW\_CONTRASTIVE & Three-view agreement & Heterogeneous view masking & YES\_EXPLICIT & JOINT\_END\_TO\_END & Multi-View Contrastive \\
-\textbf{KT047} & DC-SSL & GRAPH\_CONTRASTIVE & Dual-channel graph contrast & Node \& Edge perturbation & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
-\textbf{KT050} & GraphCA & GRAPH\_CONTRASTIVE & Counterfactual graph contrast & Counterfactual graph rewiring & YES\_EXPLICIT & JOINT\_END\_TO\_END & Counterfactual Loss \\
-\textbf{KT066} & HyperKT & MULTIVIEW\_CONTRASTIVE & Adaptive hypergraph contrast & Hypergraph view perturbation & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
-\textbf{KT068} & HKT & HIERARCHICAL\_CONTRAST & Cross-level concept contrast & Hierarchical graph masking & YES\_EXPLICIT & JOINT\_END\_TO\_END & Hierarchical InfoNCE \\
+\textbf{KT011} & Bi-CLKT \cite{KT011_BiCLKT_2022} & MULTIVIEW\_CONTRASTIVE & Bi-directional view agreement & Sequence \& Graph perturbation & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
+\textbf{KT026} & Pre-train Q-Emb \cite{KT026_PretrainQ_2020} & MASKED\_PRETRAINING & Question embedding reconstruction & Masked concept prediction & YES\_EXPLICIT & TWO\_STAGE\_PRETRAIN & Masked Cross-Entropy \\
+\textbf{KT039} & CL4KT \cite{KT039_CL4KT_2022} & SEQUENCE\_CONTRASTIVE & Interaction sequence alignment & Item \& Skill masking/cropping & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
+\textbf{KT042} & S2-HHN \cite{KT042_S2HHN_2023} & HYPERGRAPH\_CONTRASTIVE & Hypergraph multi-view contrast & Hyperedge drop \& node mask & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
+\textbf{KT043} & 3V-CLKT \cite{KT043_3VCLKT_2024} & MULTIVIEW\_CONTRASTIVE & Three-view agreement & Heterogeneous view masking & YES\_EXPLICIT & JOINT\_END\_TO\_END & Multi-View Contrastive \\
+\textbf{KT047} & DC-SSL \cite{KT047_DCSSL_2023} & GRAPH\_CONTRASTIVE & Dual-channel graph contrast & Node \& Edge perturbation & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
+\textbf{KT050} & GraphCA \cite{KT050_GraphCA_2023} & GRAPH\_CONTRASTIVE & Counterfactual graph contrast & Counterfactual graph rewiring & YES\_EXPLICIT & JOINT\_END\_TO\_END & Counterfactual Loss \\
+\textbf{KT066} & HyperKT \cite{KT066_HyperKT_2025} & MULTIVIEW\_CONTRASTIVE & Adaptive hypergraph contrast & Hypergraph view perturbation & YES\_EXPLICIT & JOINT\_END\_TO\_END & InfoNCE Loss \\
+\textbf{KT068} & HKT \cite{KT068_HKT_2025} & HIERARCHICAL\_CONTRAST & Cross-level concept contrast & Hierarchical graph masking & YES\_EXPLICIT & JOINT\_END\_TO\_END & Hierarchical InfoNCE \\
 \bottomrule
 \end{tabular}
 }
@@ -361,7 +362,7 @@ As shown in Table~\ref{tab:empirical_validation}, standard sequence and graph ar
 \caption{Empirical Benchmark Validation Proof-of-Concept: Generic 80/20 Split vs. Strict Zero-Exposure KC Cold-Start Split}
 \label{tab:empirical_validation}
 \centering
-\scalebox{0.88}{
+\resizebox{\textwidth}{!}{
 \begin{tabular}{lcccccc}
 \toprule
 \textbf{Model Architecture} & \textbf{Model Paradigm} & \textbf{Protocol 1: Generic AUC} & \textbf{Protocol 2: Cold-Start AUC} & \textbf{AUC Degradation ($\Delta\%$)} & \textbf{Protocol 1 ECE} & \textbf{Protocol 2 ECE} \\
@@ -376,27 +377,27 @@ As shown in Table~\ref{tab:empirical_validation}, standard sequence and graph ar
 \end{table*}
 
 \begin{table*}[t]
-\caption{Taxonomy Table 3: Sparse-Concept \& Cold-Start Evaluation Protocols (RQ4)}
+\caption{Taxonomy Table 3: Sparse-Concept \& Cold-Start Evaluation Protocols (RQ4). Representative subset of 13 studies with explicit sparse-concept claims shown; remaining 23 core studies employ generic learner splits without sparse-concept claims.}
 \label{tab:sparse_taxonomy}
 \centering
-\scalebox{0.78}{
+\resizebox{\textwidth}{!}{
 \begin{tabular}{lllllll}
 \toprule
 \textbf{Paper ID} & \textbf{Model Name} & \textbf{Sparse Claim} & \textbf{Zero-Exposure Split?} & \textbf{Split Protocol} & \textbf{External Semantic Input?} & \textbf{Methodological Note} \\
 \midrule
-\textbf{KT035} & HHSKT & Hierarchical Sparse KC & \textbf{YES} & Strict Zero-Exposure KC Split & External Heterogeneous Graph & Rigorous zero-exposure KC cold-start \\
-\textbf{KT044} & SINKT & Inductive KC Cold-Start & \textbf{YES} & Strict Zero-Exposure KC Split & LLM Semantic Embeddings & Rigorous inductive KC cold-start with LLMs \\
-\textbf{KT004} & GKT & Interaction Sparsity & \textbf{NO} & Generic Learner Split & Co-occurrence Graph & Fails to isolate unobserved KCs \\
-\textbf{KT010} & GIKT & Interaction Sparsity & \textbf{NO} & Generic Learner Split & Interaction Graph & Fails to isolate unobserved KCs \\
-\textbf{KT011} & Bi-CLKT & Data Sparsity & \textbf{NO} & Generic Learner Split & Dual Graph & Fails to isolate unobserved KCs \\
-\textbf{KT012} & JKT & Data Sparsity & \textbf{NO} & Generic Learner Split & Similarity Graph & Fails to isolate unobserved KCs \\
-\textbf{KT026} & Pre-train Q-Emb & Data Sparsity & \textbf{NO} & Generic Learner Split & Question Graph & Fails to isolate unobserved KCs \\
-\textbf{KT038} & DyGKT & Dynamic Data Sparsity & \textbf{NO} & Generic Learner Split & Dynamic Graph & Fails to isolate unobserved KCs \\
-\textbf{KT039} & CL4KT & Interaction Sparsity & \textbf{NO} & Generic Learner Split & Co-occurrence Graph & Fails to isolate unobserved KCs \\
-\textbf{KT066} & HyperKT & High-order Data Sparsity & \textbf{NO} & Generic Learner Split & Adaptive Hypergraph & Fails to isolate unobserved KCs \\
-\textbf{KT068} & HKT & Hierarchical Data Sparsity & \textbf{NO} & Generic Learner Split & Hierarchical Graph & Fails to isolate unobserved KCs \\
-\textbf{KT076} & KGNN-KT & Code Data Sparsity & \textbf{NO} & Generic Learner Split & Knowledge Graph + LLM & Fails to isolate unobserved KCs \\
-\textbf{KT077} & R²GCurL & Robust Data Sparsity & \textbf{NO} & Generic Learner Split & Curriculum Graph & Fails to isolate unobserved KCs \\
+\textbf{KT035} & HHSKT \cite{KT035_HHSKT_2023} & Hierarchical Sparse KC & \textbf{YES} & Strict Zero-Exposure KC Split & External Heterogeneous Graph & Rigorous zero-exposure KC cold-start \\
+\textbf{KT044} & SINKT \cite{KT044_SINKT_2024} & Inductive KC Cold-Start & \textbf{YES} & Strict Zero-Exposure KC Split & LLM Semantic Embeddings & Rigorous inductive KC cold-start with LLMs \\
+\textbf{KT004} & GKT \cite{KT004_GKT_2019} & Interaction Sparsity & \textbf{NO} & Generic Learner Split & Co-occurrence Graph & Fails to isolate unobserved KCs \\
+\textbf{KT010} & GIKT \cite{KT010_GIKT_2021} & Interaction Sparsity & \textbf{NO} & Generic Learner Split & Interaction Graph & Fails to isolate unobserved KCs \\
+\textbf{KT011} & Bi-CLKT \cite{KT011_BiCLKT_2022} & Data Sparsity & \textbf{NO} & Generic Learner Split & Dual Graph & Fails to isolate unobserved KCs \\
+\textbf{KT012} & JKT \cite{KT012_JKT_2021} & Data Sparsity & \textbf{NO} & Generic Learner Split & Similarity Graph & Fails to isolate unobserved KCs \\
+\textbf{KT026} & Pre-train Q-Emb \cite{KT026_PretrainQ_2020} & Data Sparsity & \textbf{NO} & Generic Learner Split & Question Graph & Fails to isolate unobserved KCs \\
+\textbf{KT038} & DyGKT \cite{KT038_DyGKT_2024} & Dynamic Data Sparsity & \textbf{NO} & Generic Learner Split & Dynamic Graph & Fails to isolate unobserved KCs \\
+\textbf{KT039} & CL4KT \cite{KT039_CL4KT_2022} & Interaction Sparsity & \textbf{NO} & Generic Learner Split & Co-occurrence Graph & Fails to isolate unobserved KCs \\
+\textbf{KT066} & HyperKT \cite{KT066_HyperKT_2025} & High-order Data Sparsity & \textbf{NO} & Generic Learner Split & Adaptive Hypergraph & Fails to isolate unobserved KCs \\
+\textbf{KT068} & HKT \cite{KT068_HKT_2025} & Hierarchical Data Sparsity & \textbf{NO} & Generic Learner Split & Hierarchical Graph & Fails to isolate unobserved KCs \\
+\textbf{KT076} & KGNN-KT \cite{KT076_KGNNKT_2025} & Code Data Sparsity & \textbf{NO} & Generic Learner Split & Knowledge Graph + LLM & Fails to isolate unobserved KCs \\
+\textbf{KT077} & R²GCurL \cite{KT077_R2GCurL_2026} & Robust Data Sparsity & \textbf{NO} & Generic Learner Split & Curriculum Graph & Fails to isolate unobserved KCs \\
 \bottomrule
 \end{tabular}
 }
@@ -474,7 +475,7 @@ P(Y \mid do(X = x)) = \sum_{z} P(Y \mid X = x, Z = z) P(Z = z)
 \end{equation}
 
 \section{Conclusion}
-This systematic survey has presented a comprehensive, evidence-derived review of Graph-Based and Self-Supervised Knowledge Tracing in sparse-concept settings. Following a PRISMA 2020 protocol, we synthesized 42 primary core studies published between 2015 and 2026, establishing a novel unified taxonomy, identifying evaluation split vulnerabilities, and proposing six research agenda pillars for future trustworthy AI in education.
+This systematic survey has presented a comprehensive, evidence-derived review of Graph-Based and Self-Supervised Knowledge Tracing in sparse-concept settings. Following a PRISMA 2020 protocol, we synthesized 36 primary core studies published between 2018 and 2026, establishing a novel unified taxonomy, identifying evaluation split vulnerabilities, and proposing six research agenda pillars for future trustworthy AI in education.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
@@ -500,3 +501,4 @@ received the Ph.D. degree in Computer Science. He is currently an Associate Prof
 \end{IEEEbiographynophoto}
 
 \end{document}
+
