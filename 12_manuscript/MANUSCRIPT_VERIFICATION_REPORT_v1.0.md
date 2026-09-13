@@ -13,10 +13,10 @@
 |---|---|---|
 | **Primary Core Corpus Size** | **PASSED** | 42 `PRIMARY_CORE` papers verified (34 seed core + 8 PRISMA expansion core). |
 | **Gateway Criterion Alignment** | **PASSED** | 100% of included primary core papers satisfy `PRIMARY_CORE = KT AND (GRAPH_BASED OR SELF_SUPERVISED)`. |
-| **PRISMA 2020 Flow Metrics** | **PASSED** | 1,935 raw records $\rightarrow$ 1,185 duplicates removed $\rightarrow$ 750 screened $\rightarrow$ 140 full-text $\rightarrow$ 42 core papers. |
+| **PRISMA 2020 Flow Metrics** | **PASSED** | 2,017 raw records $\rightarrow$ 1,267 duplicates removed $\rightarrow$ 750 screened $\rightarrow$ 140 full-text $\rightarrow$ 42 core papers. |
 | **BibTeX Bibliography Audit** | **PASSED** | All 42 primary core papers have valid BibTeX entries in `12_manuscript/references.bib`. |
 | **Quality Score (QA1–QA8) Consistency** | **PASSED** | Mean quality score of 0.7768 verified across all coded field evidence tables. |
-| **LaTeX Compilation Target** | **PASSED** | Valid IEEEtran LaTeX source generated in `12_manuscript/main_tkde.tex`. |
+| **LaTeX Compilation Target** | **PASSED** | Valid IEEEtran LaTeX source generated in `12_manuscript/Graph_Based_SSL_KT_Sparse_Concept_Survey_2026.tex`. |
 | **Traceability & Lock Protocol** | **PASSED** | Strict adherence to `SCOPE_v1.0_LOCKED.md`, `RQs_v1.0_LOCKED.md`, and `SLR_PROTOCOL_v1.0_LOCKED.md`. |
 
 ---
@@ -24,7 +24,7 @@
 # 2. Key Manuscript File Inventory
 
 1. **Master Monolith Survey Manuscript**: [`12_manuscript/FULL_SURVEY_MANUSCRIPT_v1.0.md`](file:///g:/Other%20computers/My%20Computer/LT/Ebooks/TIEN%20SI/LUAN%20AN/GraphSSL_KT_Survey_2026/12_manuscript/FULL_SURVEY_MANUSCRIPT_v1.0.md)
-2. **IEEE TKDE LaTeX Source File**: [`12_manuscript/main_tkde.tex`](file:///g:/Other%20computers/My%20Computer/LT/Ebooks/TIEN%20SI/LUAN%20AN/GraphSSL_KT_Survey_2026/12_manuscript/main_tkde.tex)
+2. **IEEE TKDE LaTeX Source File**: [`12_manuscript/Graph_Based_SSL_KT_Sparse_Concept_Survey_2026.tex`](file:///g:/Other%20computers/My%20Computer/LT/Ebooks/TIEN%20SI/LUAN%20AN/GraphSSL_KT_Survey_2026/12_manuscript/Graph_Based_SSL_KT_Sparse_Concept_Survey_2026.tex)
 3. **BibTeX Bibliography Database**: [`12_manuscript/references.bib`](file:///g:/Other%20computers/My%20Computer/LT/Ebooks/TIEN%20SI/LUAN%20AN/GraphSSL_KT_Survey_2026/12_manuscript/references.bib)
 4. **Individual Manuscript Sections (1–8)**: [`12_manuscript/SECTION_1_INTRODUCTION.md`](file:///g:/Other%20computers/My%20Computer/LT/Ebooks/TIEN%20SI/LUAN%20AN/GraphSSL_KT_Survey_2026/12_manuscript/SECTION_1_INTRODUCTION.md) through [`SECTION_8_CONCLUSION.md`](file:///g:/Other%20computers/My%20Computer/LT/Ebooks/TIEN%20SI/LUAN%20AN/GraphSSL_KT_Survey_2026/12_manuscript/SECTION_8_CONCLUSION.md)
 5. **Meta-Analysis Statistics**: [`10_analysis/META_ANALYSIS_STATISTICS_v1.0.md`](file:///g:/Other%20computers/My%20Computer/LT/Ebooks/TIEN%20SI/LUAN%20AN/GraphSSL_KT_Survey_2026/10_analysis/META_ANALYSIS_STATISTICS_v1.0.md)

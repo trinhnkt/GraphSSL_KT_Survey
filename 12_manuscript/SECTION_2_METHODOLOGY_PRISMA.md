@@ -32,8 +32,8 @@ We executed four verbatim search query families (`Q-G` Graph-KT, `Q-S` Self-Supe
 
 The systematic screening pipeline proceeded in four transparent stages:
 
-1. **Identification**: 1,935 total raw records retrieved across all database search runs.
-2. **Deduplication**: 1,185 duplicate records removed via automated 4-tier matching (DOI $\rightarrow$ Title $\rightarrow$ Author+Year $\rightarrow$ Manual resolution), yielding 750 unique deduplicated records.
+1. **Identification**: 2,017 total raw records retrieved across all database search runs.
+2. **Deduplication**: 1,267 duplicate records removed via automated 4-tier matching (DOI $\rightarrow$ Title $\rightarrow$ Author+Year $\rightarrow$ Manual resolution), yielding 750 unique deduplicated records.
 3. **Stage 1 Screening (Title/Abstract)**: 610 records excluded for failing basic relevance (e.g., non-educational GNNs, Cognitive Diagnosis only, Recommender Systems only). 140 articles passed to full-text assessment.
 4. **Stage 2 Screening (Full-Text Eligibility)**: 98 articles excluded with explicit primary exclusion codes (`EC1_NO_KT`: 28, `EC4_GENERIC_GRAPH_SSL`: 18, `EC2_CD_ONLY`: 14, `EC3_RECOMMENDATION_ONLY`: 12, `EC6_SPARSE_ATTENTION_ONLY`: 10, `EC5_LLM_TUTOR_ONLY`: 8, `EC7_WRONG_PUBLICATION_TYPE`: 8).
 5. **Final Primary Core Corpus**: **42 `PRIMARY_CORE` papers** (34 seed core papers + 8 PRISMA expansion core papers).

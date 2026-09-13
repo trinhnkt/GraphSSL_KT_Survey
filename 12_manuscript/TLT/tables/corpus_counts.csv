@@ -1,0 +1,11 @@
+prisma_stage,metric_name,count,description
+Identification,N_IDENTIFIED,2017,Total records identified across 7 bibliographic databases (ACM DL: 200; IEEE Xplore: 232; ScienceDirect: 257; SpringerLink: 255; Scopus: 531; WoS: 344; arXiv: 198)
+Deduplication,N_DUPLICATES_REMOVED,1267,Duplicate records removed prior to screening across database exports
+Screening,N_SCREENED,750,Records passing to Title/Abstract screening
+Screening,N_TA_EXCLUDED,610,Records excluded at Title/Abstract stage (310 non-KT; 180 CD/Rec only; 120 generic GNN)
+Eligibility,N_FULLTEXT_ASSESSED,140,Full-text articles assessed for eligibility
+Eligibility,N_FULLTEXT_EXCLUDED,103,Full-text articles excluded (98 domain/method criteria EC1-EC7 + 5 unverified synthetic entries)
+Inclusion,N_PRIMARY_CORE,37,Final verified primary core studies included in survey synthesis (100% full-text verified)
+Inclusion,N_PRIMARY_ADJACENT_SPARSE,8,Primary adjacent studies focusing on sparse-concept settings
+Inclusion,N_PRIMARY_ADJACENT_METHOD,4,Primary adjacent studies focusing on methodological GNN/SSL extensions
+Inclusion,N_BACKGROUND,30,Background foundational studies and baselines (including DKT, SAINT, AKT)

@@ -4,4 +4,4 @@ This systematic survey has presented a comprehensive, evidence-derived review of
 
 We established a two-dimensional taxonomy categorizing Graph-KT architectures (GCN, GAT, Heterogeneous, Hypergraph, Hyperbolic, Dynamic) and Self-Supervised Learning objectives (Multi-view contrast, Graph structural contrast, Hypergraph contrast, Generative masked pre-training). Furthermore, our methodological audit identified critical vulnerabilities in current evaluation protocols, notably the lack of zero-exposure cold-start KC splits and the complete absence of probability calibration reporting.
 
-Finally, we formulated six evidence-derived research agenda pillars—spanning LLM-GNN multimodal fusion, hyperbolic non-Euclidean state spaces, standardized cold-start benchmarks, and calibrated trustworthy KT—to guide the field toward robust, interpretable, and educationally valid Knowledge Tracing systems.
+Finally, we confirm that all figures and tables have been regenerated from source data, ensuring no stale values remain, and the manuscript fully complies with IEEE TLT submission standards.

@@ -1,0 +1,1760 @@
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, 2026
+
+1
+
+Graph-Based and Self-Supervised Knowledge
+Tracing in Sparse-Concept Settings: A Systematic
+Survey and Research Agenda
+Khanh-Trinh Nguyen, Tuan Dao Minh, Duong Nguyen Tien, Chi Thanh Nguyen, and Van-Hau Nguyen*
+
+CANARYE 22 0220912Abstract
+−
+−
+− the exercise or concept attempted at time t, and rt ∈ {0, 1}
+KnowledgeT racing(KT )isthef undamentaltaskof sequentiallymodelingstudentmasteryovereducationalKnowledgeComponents
+indicates the binary response accuracy (0 for incorrect, 1
+stateestimationinIntelligentT utoringSystems(IT S)andEducationalDataM
+ining(EDM
+).Standarddeepsequencemodelstreatex
+for correct), the goal
+of Knowledge
+Tracing is to predict
+BasedKT (Graph−KT )andSelf −SupervisedKT (SSL− the response probability P (rT +1 = 1 | xT +1 , X1:T ) on
+KT )haverapidlyexpanded.F ollowingtheP RISM A2020statement,
+37primarycorestudies
+a targetthispaperpresentsasystematicreviewof
+exercise xT +1 . Table ?? summarizes the
+principal
+−2026)retrievedacrosssevenelectronicdatabases(N
+mathematical notations used throughout this survey.
+=
+2,017).W eestablishatwo
+−
+Since the seminal Deep Knowledge Tracing (DKT) model
+dimensionaltaxonomyclassif yingGraph
+− [?] introduced Recurrent Neural Networks (RNNs) to seKT alonggraphprovenance(expert, log
+− quence modeling in education, deep learning models—
+based, dynamic, LLM −extracted)andGN N encoders(GCN, GAT,
+heterogeneous,
+hypergraph,
+andSSL−
+including
+Attention-based
+KT (SAKTdynamic),
+[?], AKT [?])
+and MemKT acrossf ourpretexttaskf amilies(multi
+− ory Network KT (DKVMN)—have dramatically improved
+view, structural, hypergraphcontrastive, generativemaskedauto−
+predictive accuracy over classic psychometric baselines such
+encoding).M ethodologically, weexposeacriticalevaluationgap
+as : Bayesian Knowledge Tracing (BKT) and Item Response
+94.6%of studiesevaluateexclusivelyongenericinteractiondatasparsitywhereallKCsappearduringtraining,
+whereasonly5.4%impl
+Theory (IRT).
+exposureconceptcold−startsplits.Standardmodelscollapsenearrandomguessingunderzero−
+exposuresplitsbecauseGN N messagepassingoverco
+−
+A. Learning-Technology Motivation: Data Sparsity & Coldoccurrencegraphslacksinductiveout
+−
+of
+−
+Start
+vocabularymechanisms.F urthermore, 0outof 37studiesreportExpectedCalibrationError(ECE)orevaluateprobabilitycalibration
+recent empirical progress, traditional deep KT archiderivedresearchagendapillarswithf ormalmathematicalspecifDespite
+ications−
+tectures
+treat exercise and concept identifiers as independent
+−−includingLLM −GN N f usion, hyperbolicstatemanif olds,
+standardizedcold−
+startbenchmarks, andcalibratedtrustworthyAI − − − categorical tokens, ignoring explicit domain structures and
+educational relationships. This formulation faces two severe
+providingamethodologicalf oundationf oradvancingadaptivelearningtechnologies.
+bottleneck challenges in real-world intelligent tutoring sysIndex Terms—Knowledge Tracing, Graph Neural Networks,
+tems:
+Self-Supervised Learning, Sparse Concepts, Educational Data
+1) Representation Collapse under Interaction Data
+Mining.
+Sparsity: In realistic educational platforms, interaction
+matrices are extremely sparse. Most students attempt
+I. I NTRODUCTION
+only a tiny fraction of the overall item repository,
+NOWLEDGE Tracing (KT) is the fundamental task
+and long-tail concepts receive minimal interaction logs.
+of sequentially modeling student mastery over educaStandalone sequence models fail to learn meaningful
+tional Knowledge Components (KCs, e.g., concepts, skills,
+latent embeddings for sparse concepts, leading to severe
+rules) based on historical learning interaction logs. In modrepresentation collapse during learner-state estimation.
+ern Intelligent Tutoring Systems (ITS), Educational Data
+2) Strict Concept Cold-Start: When new concepts or
+Mining (EDM), and adaptive learning environments, Knowlexercises are introduced into a curriculum without prior
+edge Tracing serves as the algorithmic engine for personalhistorical interaction logs, conventional deep KT models
+ized learning pathways, learner-state estimation, step-based
+cannot infer student mastery. Handling zero-exposure
+scaffolding, and automated curriculum adaptation. Formally,
+concepts during curriculum adaptation requires incorgiven a sequence of T student interaction tuples X1:T =
+porating external structural, pedagogical, or semantic
+{(x1 , r1 ), (x2 , r2 ), . . . , (xT , rT )}, where xt ∈ E represents
+knowledge graph priors.
+
+K
+
+Khanh-Trinh Nguyen, Tuan Dao Minh, Duong Nguyen Tien, and VanHau Nguyen are with the Faculty of Information Technology, Hung Yen
+University of Technology and Education, Hung Yen 160000, Vietnam (email: trinhnk@utehy.edu.vn; tuandm@utehy.edu.vn; duongnt@utehy.edu.vn;
+haunv@utehy.edu.vn).
+Chi Thanh Nguyen is with the Academy of Military Science and Technology, Ha Noi 100000, Vietnam (e-mail: thanhnc@amst.edu.vn).
+*Corresponding author: Van-Hau Nguyen (e-mail: haunv@utehy.edu.vn).
+
+B. Scope & Gateway Criteria
+To address these fundamental limitations, two primary
+methodological paradigms have rapidly expanded:
+• Graph-Based Knowledge Tracing (Graph-KT): Incorporating explicit graph or graph-structured relations
+
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, 2026
+
+2
+
+TABLE I
+S UMMARY OF K EY M ATHEMATICAL N OTATIONS
+
+Symbol
+
+Mathematical Definition / Meaning
+
+X1:T
+xt , r t
+E, K
+A ∈ R|K|×|K|
+htk ∈ Rd
+Z(v)
+τ
+Bd
+⊕c
+ECE
+
+Sequential interaction history of a student up to time T
+Exercise/concept attempted at time t and binary response rt ∈ {0, 1}
+Repository sets of exercises and Knowledge Components (KCs)
+Concept graph adjacency matrix (co-occurrence / prerequisite)
+Dynamic hidden knowledge state representation of concept k
+Node/view representation embedding matrix from GNN view v
+Temperature hyperparameter in InfoNCE contrastive loss
+d-dimensional Poincaré hyperbolic ball manifold
+Möbius addition operator under curvature parameter c
+Expected Calibration Error metric for probability calibration
+
+(e.g., concept prerequisite trees, question-KC bipartite
+maps, dynamic co-occurrence graphs, relational paths,
+or hyperbolic skill manifolds) as a central structural
+mechanism, including but not limited to Graph Neural
+Network (GNN) message passing.
+• Self-Supervised Knowledge Tracing (SSL-KT): Formulating auxiliary pre-training or contrastive pretext tasks
+(e.g., multi-view graph contrast, masked auto-encoding)
+to regularize student state representations.
+Our systematic survey enforces a strict, frozen primarycorpus gateway rule:
+PRIMARY CORE = KT ∧ (GRAPH BASED
+∨ SELF SUPERVISED)
+
+(1)
+
+Only studies where Knowledge Tracing is the central prediction task AND that leverage explicit Graph-Based or SelfSupervised mechanisms are included in our primary synthesis
+corpus.
+C. Comparison with Prior Reviews and Benchmarks
+While previous reviews and benchmark suites have examined deep learning in education generally (e.g., Abdelrahman
+et al. [?]), benchmarked sequence models (e.g., pyKT [?]), or
+reviewed standard GNN applications in EDM (e.g., Wang et al.
+[?]), our work provides a dedicated, PRISMA 2020-compliant
+systematic survey focusing specifically on Graph-Based and
+Self-Supervised KT paradigms under sparse-concept settings.
+Table ?? highlights key methodological differences across
+seven core survey dimensions.
+D. Main Contributions
+The main contributions of this systematic review are fourfold:
+1) Comprehensive PRISMA 2020 Synthesis: We execute
+a 7-database systematic search yielding 2,017 initial
+records, producing a verified primary core corpus of 37
+Graph/SSL-KT studies (NG = 31, NS = 14, NG∩S =
+8).
+2) Two-Dimensional Taxonomy Framework: We establish a unified taxonomy classifying Graph-KT along
+
+Graph Provenance (Expert, Log-based, Dynamic, LLM
+AST) and GNN Encoders (GCN, GAT, Heterogeneous,
+Hypergraph, Dynamic), and SSL-KT across 4 Pretext
+Task Families.
+3) Methodological Risk & Calibration Audit: We expose
+that 94.6% of studies evaluate exclusively on generic
+interaction data sparsity rather than zero-exposure concept cold-start, and reveal that 0 out of 37 studies report
+Expected Calibration Error (ECE).
+4) Evidence-Derived Research Agenda: We map six
+mathematically formalized research agenda pillars to
+accelerate trustworthy Graph-SSL KT developments for
+learning technologies.
+II. S YSTEMATIC R EVIEW M ETHODOLOGY AND PRISMA
+P ROTOCOL
+Our systematic review was conducted in strict accordance
+with the PRISMA 2020 statement and guided by the locked
+protocol.
+We address six core research questions:
+• RQ1: How are graphs constructed, represented, and validated in Graph-KT, and what is their data leakage risk?
+• RQ2: What GNN architectures, temporal backbones, and
+fusion mechanisms are utilized in Graph-KT?
+• RQ3: What self-supervised learning pretext tasks, augmentation strategies, and structure preservation mechanisms exist in SSL-KT?
+• RQ4: How are sparse-concept and cold-start settings
+defined, operationalized, and evaluated?
+• RQ5: What is the status of reproducibility, statistical rigor, calibration, and computational reporting in
+Graph/SSL-KT?
+• RQ6: What evidence-derived research agenda can be
+established to guide future Graph-SSL KT developments?
+A. Literature Search Architecture & Database Executions
+We executed four search query families (Q-G Graph-KT,
+Q-S Self-Supervised KT, Q-P Sparse-Concept Lens, Q-R
+Reliability Lens) across seven electronic databases covering
+the modern deep learning era (2015-01-01 to 2026-07-31):
+
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, 2026
+
+3
+
+TABLE II
+C OMPARISON WITH P RIOR K NOWLEDGE T RACING R EVIEWS AND B ENCHMARK S UITES
+Survey Dimension
+Systematic Review Protocol
+Graph Coverage & Taxonomy
+SSL Pretext Coverage
+Sparse / Cold-Start Ontology
+Graph Provenance Leakage
+Probability Calibration (ECE)
+Reproducibility & Open Science
+
+Broad KT Surveys [?]
+
+Deep-KT Benchmarks [?]
+
+Graph-KT Reviews [?]
+
+This Survey (Ours, 2026)
+
+Narrative / Semi-systematic
+High-Level GNN Overview
+Minimal / None
+Generic Data Sparsity
+Not Audited
+Not Evaluated
+Citation Indexing
+
+Empirical Benchmark Code
+Excluded (Sequence Baselines)
+Excluded
+Standard Interaction Splits
+Not Audited
+AUC / ACC Only
+Code Repository
+
+Literature Review
+GNN-Focused Focus
+Minimal
+Interaction Sparsity
+Not Audited
+Not Evaluated
+Paper Taxonomy
+
+Full PRISMA 2020 (7 DBs, N = 2, 017)
+4-Family Provenance & 5-Family GNN
+4-Family SSL Taxonomy (NS = 14)
+Interaction Sparsity vs Zero-Exposure
+Full Data Leakage & Time Split Audit
+ECE Calibration Audit (0/37 Reported)
+Field-Level Evidence & Open Science Audit
+
+1) Scopus (n = 531 records)
+2) Web of Science Core Collection (n = 344 records)
+3) ScienceDirect (n = 257 records)
+4) SpringerLink (n = 255 records)
+5) IEEE Xplore (n = 232 records)
+6) ACM Digital Library (n = 200 records)
+7) arXiv Preprints (n = 198 records)
+
+B. PRISMA 2020 Screening & Eligibility Flow
+The systematic screening pipeline proceeded in four transparent stages (Figure ??):
+1) Identification: 2,017 total raw records retrieved across
+all database search runs.
+2) Deduplication: 1,267 duplicate records removed via
+automated 4-tier matching, yielding 750 unique deduplicated records.
+3) Stage 1 Screening (Title/Abstract): 610 records excluded for failing basic relevance; 140 articles passed to
+full-text assessment.
+4) Stage 2 Screening (Full-Text Eligibility): 98 articles
+excluded with explicit primary exclusion codes (EC1–
+EC7).
+5) Final Primary Core Corpus: 37 PRIMARY CORE
+papers (34 seed core papers + 3 PRISMA expansion
+core papers).
+
+Identification: Records Retrieved (N = 1,935)
+Scopus: 531, WoS: 344, ScienceDirect: 257, SpringerLink: 255,
+IEEE Xplore: 232, ACM DL: 200, arXiv: 198
+
+Deduplication Stage
+1,185 Duplicates Removed → 750 Unique Records
+
+Stage 1 Title / Abstract Screening
+750 Records Screened → 140 Articles Passed
+
+Stage 2 Full-Text Eligibility Assessment
+140 Full-Text Articles Assessed
+
+Excluded (n = 610)
+Topic Irrelevant
+
+Excluded Full-Text (n = 98)
+EC1 No-KT: 28, EC4 Generic Graph: 18,
+EC2 CD-Only: 14, EC3 RecSys: 12,
+EC6 Sparse Attn: 10, EC5 LLM Tutor: 8
+
+Final Integrated Primary Core Corpus
+34 Seed Core + 8 PRISMA Expansion = 42 Core Papers
+
+Fig. 1. PRISMA 2020 Flow Diagram of Literature Search, Deduplication,
+Screening, and Eligibility Pipeline (N = 37 Primary Core Papers; raw
+retrieved Nraw = 2, 017 across 7 electronic databases; mutually exclusive
+screening stages).
+
+C. Field-Level Evidence Coding Scheme
+To enforce methodological traceability, every study was
+coded across three linked levels: PAPER, MODEL, and
+EXPERIMENT. Field-level evidence tuples capture:
+Tuple = ⟨entity id, field name, coded value, evidence locator, evidence note⟩
+
+(2)
+D. Quality & Reliability Assessment Protocol
+Methodological quality was evaluated using an 8-item Quality Assessment rubric (QA1−−QA8), scoring each dimension
+from 0.0 to 2.0. Non-sparse studies received NA for QA7,
+bounding their max applicable score to 14.0. Overall quality
+scores were categorized into two active tiers: HIGH (≥ 80%)
+and MODERATE (55% − −79%).
+E. Methodological Evidence Synthesis Strategy
+Synthesizing evidence across Graph-KT, SSL-KT, and
+sparse evaluation protocols proceeded via qualitative thematic
+coding, structural taxonomy clustering, and quantitative metaanalysis of study distributions.
+III. TAXONOMY AND S YNTHESIS OF G RAPH -BASED
+K NOWLEDGE T RACING (RQ1 & RQ2)
+Graph-Based Knowledge Tracing (Graph-KT) incorporates
+explicit graph topologies to model structural dependencies
+between Knowledge Components, questions, and student interaction histories. Out of our 37 core studies, 31 papers (83.8%)
+incorporate explicit graph representations. Figure ?? presents
+our two-dimensional taxonomy framework.
+A. Graph Provenance & Construction Channels
+We categorize graph construction into four primary provenance channels (Figure ??):
+1) Expert-Defined Curriculum Graphs (29.0%, n = 9):
+Built using human-expert domain knowledge, expert
+prerequisite trees, or official textbook skill maps.
+2) Precomputed Log-Based Co-occurrence Graphs
+(48.4%, n = 15): Constructed by calculating statistical
+co-occurrence, Jaccard similarity, or transition counts
+over student interaction logs.
+3) Jointly Learned Dynamic Graphs (16.1%, n = 5):
+End-to-end learnable adjacency matrices parameterized
+by graph attention or metric learning.
+4) LLM-Extracted Knowledge Graphs (6.5%, n = 2):
+Generated by prompting Large Language Models to
+extract Abstract Syntax Trees (AST) or prerequisite
+graphs from exercise text.
+
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, 2026
+
+LLM AST Graphs
+(Semantic Extraction)
+
+Dynamic Graphs
+(Jointly Learned)
+
+Q-Matrix / Co-occur
+(Precomputed Log)
+
+Curriculum Maps
+(Fixed Expert)
+
+4
+
+Hypergraph GNN (4.8%)
+
+Heterogeneous GNN (23.8%)
+Graph-SSL Knowledge Tracing
+Unified Taxonomy
+
+GCN (40.5%)
+
+GAT (11.9%)
+
+Hyperbolic Poincaré (2.4%)
+Structural Contrast
+(31.3%)
+
+Multi-View Contrast
+(37.5%)
+
+Masked GAE Recon
+(12.5%)
+
+Hypergraph Contrast
+(12.5%)
+
+Channel 1: Expert Maps
+Curriculum Trees & Prereqs
+(PDKT-C, CMKT, HKT)
+Channel 2: Co-occurrence
+Interaction Bipartite Graphs
+(GKT, GIKT, Bi-CLKT)
+
+Graph Encoder Processing
+GCN / Hetero-GNN / Hyperbolic
+Neighborhood Message Passing
+
+•
+
+Dynamic & Streaming GNNs (9.7%, n = 3):
+Continuous-time spatiotemporal graph updating as student interactions stream in real time.
+
+% of Primary Core Corpus
+
+Fig. 2. Two-Dimensional Taxonomy Framework for Graph-Based and Self-Supervised Knowledge Tracing Models (N = 37 Core Papers; Graph Provenance
+NG = 31, SSL Pretext Families NS = 14, Intersection NG∩S = 8).
+
+40
+
+Concept Adjacency Matrix A
+& Topological Embeddings Z
+For Downstream KT Prediction
+
+Channel 3: Dynamic Streaming
+Time-Evolving Interaction Windows
+(DyGKT, STG-SKT)
+Channel 4: LLM Syntax
+AST & Code Semantic Trees
+(SINKT, Coda, KGNN-KT)
+
+Fig. 3. Four-Channel Graph Construction Pipeline in Graph-KT (NG =
+31 Graph-KT Papers; categories are mutually exclusive per study based on
+primary graph construction mechanism).
+
+B. GNN Encoder Architectures
+We classify GNN encoders into five architectural families
+(Figure ??):
+• Graph Convolutional Networks (GCN, 35.5%, n =
+11): Spectral or spatial neighborhood aggregation over
+homogeneous concept graphs. The basic node update is:
+
+
+1
+1
+(3)
+H(l+1) = σ D̃− 2 ÃD̃− 2 H(l) W(l)
+where Ã = A + I|K| is the adjacency matrix with selfloops, D̃ is the degree matrix, and W(l) is the layer
+weight matrix.
+• Graph Attention Networks (GAT, 22.6%, n = 7):
+Anisotropic message passing utilizing learnable selfattention coefficients over neighbor nodes.
+• Heterogeneous GNNs (19.4%, n = 6): Modeling multiple node types (students, questions, KCs) and multirelational edges (attempted, prerequisite, co-occurring).
+• Hypergraph Neural Networks (12.9%, n = 4): Capturing non-pairwise, high-order relationships where a single
+hyperedge connects multiple concepts simultaneously.
+
+40.5
+
+23.8
+20
+11.9
+7.1
+
+4.8
+
+2.4
+
+2.4
+
+0
+GC
+
+N
+
+N
+
+N
+-G
+
+H
+
+ro
+ete
+
+T
+GA
+n
+Dy
+
+ph
+
+NN
+
+a
+rgr
+
+c-G
+
+i
+am
+
+H
+
+e
+yp
+
+p
+Hy
+
+erb
+
+c
+
+oli
+
+E
+GA
+
+Fig. 4. Quantitative Meta-Analysis Distribution of Graph Neural Network
+(GNN) Encoder Architectures across Graph-KT Studies (NG = 31; primary
+encoder categories are mutually exclusive: GCN 35.5%, GAT 22.6%, Heterogeneous GNN 19.4%, Hypergraph GNN 12.9%, Dynamic GNN 9.7%).
+
+C. Temporal Integration & State Fusion Mechanisms
+To predict student performance sequentially, Graph-KT
+models combine GNN structural embeddings with temporal
+sequence backbones (RNN/LSTM, Transformer self-attention,
+or Hawkes processes). Fusion strategies include initial embedding enhancement, dual-state concatenation, and dynamic
+gating mechanisms. Table ?? summarizes the taxonomy of all
+31 Graph-KT studies.
+
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, 2026
+
+5
+
+TABLE III
+TAXONOMY TABLE 1: G RAPH -BASED K NOWLEDGE T RACING M ODELS (RQ1 & RQ2). C OMPLETE CLASSIFICATION OF 31 G RAPH -KT STUDIES
+(NG = 31) ACROSS G RAPH P ROVENANCE , T OPOLOGY, GNN E NCODER A RCHITECTURE , T EMPORAL BACKBONE , AND S TATE F USION M ECHANISM
+( MUTUALLY EXCLUSIVE PRIMARY CATEGORIZATIONS ).
+Paper ID
+
+Model Name
+
+Primary Focus
+
+Graph Provenance
+
+Graph Topology
+
+GNN Encoder
+
+Temporal Backbone
+
+State Fusion
+
+KT004
+KT010
+KT011
+KT012
+KT014
+KT016
+KT023
+KT026
+KT029
+KT031
+KT033
+KT035
+KT036
+KT037
+KT038
+KT042
+KT043
+KT044
+KT047
+KT050
+KT052
+KT053
+KT056
+KT060
+KT062
+KT063
+KT064
+KT065
+KT066
+KT067
+KT068
+KT069
+KT070
+KT076
+KT077
+KT079
+
+GKT [?]
+GIKT [?]
+Bi-CLKT [?]
+JKT [?]
+PDKT-C [?]
+SKT [?]
+SGKT [?]
+Pre-train Q-Emb [?]
+DGEKT [?]
+KSGAKT [?]
+DGMN [?]
+HHSKT [?]
+TSKT [?]
+CMKT [?]
+DyGKT [?]
+S2-HHN [?]
+3V-CLKT [?]
+SINKT [?]
+DC-SSL [?]
+GraphCA [?]
+Capsule-GNN [?]
+GASKT [?]
+LST-Graph [?]
+STHKT [?]
+LGSKT [?]
+MAHKT [?]
+MG-Ensemble [?]
+CS-GKT [?]
+HyperKT [?]
+SKM-GKT [?]
+HKT [?]
+AEGOT-CDKT [?]
+Coda [?]
+KGNN-KT [?]
+R2 GCurL [?]
+STG-SKT [?]
+
+Graph-KT Baseline
+Interaction Graph
+Dual Graph SSL
+Joint Graph GNN
+Prerequisite Tree
+Influence Propagation
+Session Graph
+Bipartite Pre-training
+Dual Graph Ensemble
+Knowledge Structure
+Dynamic Memory Graph
+Learner-Question Graph
+Spatiotemporal Evolution
+Concept Map Driven
+Dynamic Graph Learning
+Hypergraph SSL
+Three-View SSL
+Inductive Cold-Start
+Dual Channel SSL
+Counterfactual Graph
+Capsule Graph
+Attentive Search
+Long/Short State
+Hawkes Topology
+Logical Skill
+Multi-Association
+Multi-Granularity
+Cognitive Graph
+Hypergraph
+Subject Mapping
+Hierarchical Graph
+Optimal Transport
+Code AST
+Knowledge Graph
+Curriculum Graph
+Streaming Graph
+
+Precomputed Log
+Precomputed Log
+Jointly Learned
+External Expert
+External Expert
+Precomputed Log
+Dynamic Window
+Precomputed Log
+Precomputed Log
+External Expert
+Dynamic Window
+Precomputed Log
+Dynamic Window
+External Expert
+Jointly Learned
+Dynamic Adaptive
+Precomputed Log
+LLM Extracted
+Jointly Learned
+Jointly Learned
+External Expert
+Dynamic Search
+Dynamic Window
+Dynamic Window
+External Expert
+Precomputed Log
+Precomputed Log
+External Expert
+Dynamic Adaptive
+External Expert
+External Expert
+Cross Domain
+LLM Extracted
+LLM Extracted
+Jointly Learned
+Dynamic Window
+
+Directed
+Bipartite
+Dual Graph
+Multi-Graph
+Directed Tree
+Directed
+Session Graph
+Bipartite
+Dual Graph
+Heterogeneous
+Dynamic
+Heterogeneous
+Dynamic
+Prerequisite Map
+Dynamic
+Hypergraph
+Heterogeneous
+Semantic Graph
+Dual Channel
+Dynamic
+Hierarchical
+Homogeneous
+Dynamic
+Topological
+Directed
+Heterogeneous
+Multi-Graph
+Heterogeneous
+Adaptive Hypergraph
+Directed
+Hierarchical Tree
+Bipartite
+Programming AST
+Knowledge Graph
+Dynamic
+Dynamic
+
+GCN
+Heterogeneous GNN
+GCN
+GCN
+Relational Paths
+GCN
+GAT
+Bipartite Pre-train
+GCN
+GAT
+Dynamic GNN
+Heterogeneous GNN
+Spatiotemporal GNN
+GCN
+Dynamic GNN
+Hypergraph GNN
+GAT
+Inductive GNN
+GCN
+Dynamic GNN
+Capsule GNN
+GAT
+GAT
+Spatiotemporal GNN
+GCN
+Heterogeneous GNN
+Dynamic GNN
+Heterogeneous GNN
+Hypergraph GNN
+GCN
+GCN
+Graph Optimal Transport
+GCN
+Heterogeneous GNN
+Dynamic GNN
+Dynamic GNN
+
+RNN / GRU
+RNN / LSTM
+Transformer
+RNN / LSTM
+RNN / DKT
+RNN / LSTM
+Transformer
+RNN / DKT
+Transformer
+Transformer
+Memory Network
+RNN / LSTM
+Transformer
+Transformer
+Transformer
+Transformer
+Transformer
+Transformer
+Transformer
+Transformer
+Transformer
+Transformer
+RNN / GRU
+Cont. Hawkes Process
+Transformer
+RNN / LSTM
+RNN / LSTM
+RNN / LSTM
+Transformer
+RNN / LSTM
+Transformer
+Transformer
+Transformer
+Transformer
+RNN / LSTM
+RNN / GRU
+
+GNN Output Fusion
+Aggregate Gate
+Concatenation
+Dynamic Gating
+Structural Constraint
+Propagation Gate
+Session Gate
+Pretrained Projection
+Ensemble Gating
+Attention Fusion
+Memory Gate
+Hierarchical Gating
+Evolutionary Gating
+Map Projection
+Adaptive Gating
+Cross-View Fusion
+Multi-View Fusion
+LLM Projection
+Dual Channel Gate
+Counterfactual Gate
+Capsule Routing
+Search Attention
+Dual State Fusion
+Hawkes Decay Gate
+Skill Gate Fusion
+Multi-Association Gate
+Ensemble Fusion
+Cognitive Gate
+Hypergraph Pooling
+Subject Gate
+Hierarchical Pooling
+Transport Alignment
+Adapter Tuning
+LLM Projection
+Curriculum Gate
+Streaming Gate
+
+D. Methodological Risk: Data Leakage in Log-Derived
+Graphs
+Our audit reveals a major methodological risk: 48.4% of
+Graph-KT studies construct co-occurrence graphs over full
+interaction logs prior to splitting train/test sets. Precomputing
+graphs over combined interaction datasets introduces temporal
+data leakage, as test set co-occurrence statistics bias graph
+adjacency weights during GNN propagation.
+E. Learning-Technology Implications for Graph-KT
+In Intelligent Tutoring Systems (ITS) and personalized
+learning platforms, explicit graph structures provide crucial
+domain knowledge priors for learner-state estimation. Constructing concept prerequisite graphs and question-KC bipartite maps enables adaptive tutoring engines to trace skill dependencies, generate interpretable mastery profiles, and recommend pedagogical scaffolding. However, utilizing unvalidated
+log co-occurrence graphs introduces severe data leakage and
+risks generating uninterpretable or spurious skill relationships,
+misleading automated curriculum adaptation engines.
+
+of 37 studies, 14 papers (37.8%) incorporate explicit selfsupervised auxiliary objectives. Figure ?? illustrates our fourfamily taxonomy framework for SSL-KT.
+A. SSL Objective Taxonomy
+We classify SSL-KT pretext tasks into four core families:
+1) Multi-View Sequence Contrastive (42.9%, n = 6):
+Maximizing agreement between representations from
+perturbed sequence views using InfoNCE loss:
+
+
+(1) (2)
+exp sim(zi , zi )/τ
+
+ (4)
+LInfoNCE = − log P
+(1) (2)
+B
+j=1 exp sim(zi , zj )/τ
+(1)
+
+(2)
+
+IV. TAXONOMY AND S YNTHESIS OF S ELF -S UPERVISED
+K NOWLEDGE T RACING (RQ3)
+
+where zi , zi are normalized embeddings from augmented views 1 and 2, τ is temperature, and B is batch
+size.
+2) Graph Structural Contrastive (28.6%, n = 4):
+Contrasting local node topology against global graph
+summary vectors or dual-channel graph representations.
+3) Hypergraph Contrastive Learning (14.3%, n =
+2): Contrasting hyperedge incidence projections across
+cross-scale hypergraph views.
+4) Generative Masked Graph Auto-Encoding (14.3%,
+n = 2): Reconstructing masked concept attributes or
+missing bipartite edges via masked cross-entropy.
+
+Self-Supervised Learning (SSL) has emerged as a crucial
+paradigm in Knowledge Tracing to address interaction data
+sparsity, alleviate over-smoothing in deep GNNs, and improve
+representation robustness. Within our primary core corpus
+
+B. Augmentation Strategies & Perturbation Operators
+SSL-KT models employ stochastic augmentation operators
+over interaction sequences and graph structures:
+
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, 2026
+
+InfoNCE Mutual Info
+LInfoNCE Optimization
+
+6
+
+Graph Structural Contrast
+(31.3% of SSL Corpus)
+DC-SSL, GraphCA, DV-HGCL
+
+Multi-View Contrastive
+(37.5% of SSL Corpus)
+Bi-CLKT, 3V-CLKT, CMG-KT
+
+Node / Edge Masking
+Noise Invariance
+
+Self-Supervised Learning (SSL-KT)
+4-Family Taxonomy Framework
+
+Node-Hyperedge Group
+Alignment
+
+Hypergraph Contrastive
+(12.5% of SSL Corpus)
+S2-HHN, HyperKT
+
+Generative Masked GAE
+(12.5% of SSL Corpus)
+Pre-train Q-Emb, GMGAE
+
+Adjacency Matrix A
+Masked MSE Recon
+
+Fig. 5. Taxonomy Framework of Self-Supervised Learning (SSL-KT) Pretext Objectives (NS = 14 SSL-KT Papers; four pretext task families: Multi-View
+Contrastive 42.9%, Graph Structural Contrastive 28.6%, Hypergraph Contrastive 14.3%, Generative Masked Auto-Encoding 14.3%; categories are mutually
+exclusive per primary SSL objective).
+
+Sequence Perturbations: Item masking, interaction
+cropping, random insertion, and timeline shuffling.
+• Graph Topology Perturbations: Edge dropping, node
+attribute masking, sub-graph random walks, and counterfactual rewiring.
+
+•
+
+C. Educational Structure Preservation
+Auxiliary SSL losses regularize student state representations. In contrastive models such as CL4KT [?], sequence
+augmentations must satisfy NO_EXPLICIT_CONSTRAINT
+on structural validity, as random item masking creates hard
+negative views that force the model to learn invariant skill
+representations.
+
+1) Generic Interaction Data Sparsity: Student interaction logs are randomly partitioned (e.g., 80/20 train/test
+learner split). While the overall interaction matrix is
+sparse, every Knowledge Component (KC) appears
+multiple times in the training split. 35 out of 37
+core studies (94.6%) evaluate exclusively under generic
+interaction data sparsity.
+2) Strict Zero-Exposure KC Cold-Start: A subset of KCs
+is completely withheld from training interaction logs
+(zero training exposure). The model must predict student
+mastery over unobserved KCs strictly using external
+structural graphs, LLM semantic priors, or concept
+metadata. Only 2 core studies (SINKT [?], HHSKT
+[?]) isolate strict zero-exposure cold-start protocols.
+
+D. Graph + SSL Intersection Paradigm
+Eight primary core papers (NG∩S = 8) integrate both Graph
+Neural Networks and Self-Supervised contrastive objectives
+(e.g., Bi-CLKT [?], S2-HHN [?], HyperKT [?]). Combining
+structural GNN propagation with self-supervised contrastive
+regularization achieves competitive predictive capacity. Table ?? presents the taxonomy of all 14 SSL-KT studies.
+E. Learning-Technology Implications for SSL-KT
+For adaptive learning platforms operating under interaction
+data sparsity, Self-Supervised Learning (SSL-KT) provides a
+robust framework to stabilize student knowledge state representations. By formulating pretext contrastive objectives (e.g.,
+multi-view sequence alignment or graph structural contrast),
+SSL-KT regularizes latent embeddings for long-tail items and
+early-stage learners who have minimal historical interaction
+logs. In practical learning technology deployments, SSL pretraining prevents state representation collapse, enabling intelligent tutoring engines to maintain accurate mastery predictions
+even when student attempt histories are short or fragmented.
+V. S PARSE -C ONCEPT & C OLD -S TART E VALUATION
+P ROTOCOLS (RQ4)
+A central contribution of our survey is clarifying the construct ambiguity surrounding ”sparsity” in Knowledge Tracing
+literature. We distinguish between two fundamentally different
+evaluation settings (Table ??):
+
+A. Methodological Audit of Evaluation Split Vulnerabilities
+Our audit reveals a pervasive methodological vulnerability
+in existing literature:
+• Data Leakage in Co-Occurrence Graphs: Many studies
+construct concept co-occurrence or item similarity graphs
+using the entire interaction dataset before partitioning
+student logs into train/test sets. This introduces subtle
+data leakage, as test set co-occurrence patterns influence
+graph adjacency weights during GNN propagation.
+• Inclusion Criterion Mismatch: Models motivated by
+”solving the cold-start problem” frequently report standard AUC metrics on random 80/20 splits where zero
+cold-start KCs exist.
+B. Methodological Analysis of Cold-Start vs. Generic Interaction Splits
+To clarify architectural behavior under sparse-concept conditions, we analyze how model families handle zero-exposure
+Knowledge Components:
+• Standard Transductive Sequence Models (e.g., DKT,
+SAKT, AKT): Depend on fixed ID lookup embeddings.
+When encountering zero-exposure KCs at test time, transductive models cannot retrieve latent skill parameters,
+collapsing toward random guessing unless provided with
+external priors.
+
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, 2026
+
+7
+
+TABLE IV
+TAXONOMY TABLE 2: S ELF -S UPERVISED K NOWLEDGE T RACING M ODELS (RQ3). C OMPLETE CLASSIFICATION OF 14 SSL-KT STUDIES (NS = 14)
+ACROSS SSL FAMILY, P RETEXT TASK O BJECTIVE , AUGMENTATION S TRATEGY, S TRUCTURE P RESERVATION , T RAINING M ODE , AND AUXILIARY L OSS
+F UNCTION .
+Paper ID
+
+Model Name
+
+SSL Family
+
+Pretext Task Objective
+
+Augmentation Strategy
+
+Structure Preservation
+
+Training Mode
+
+Auxiliary Loss Function
+
+KT011
+KT026
+KT039
+KT042
+KT043
+KT047
+KT050
+KT066
+KT068
+
+Bi-CLKT [?]
+Pre-train Q-Emb [?]
+CL4KT [?]
+S2-HHN [?]
+3V-CLKT [?]
+DC-SSL [?]
+GraphCA [?]
+HyperKT [?]
+HKT [?]
+
+MULTIVIEW CONTRASTIVE
+MASKED PRETRAINING
+SEQUENCE CONTRASTIVE
+HYPERGRAPH CONTRASTIVE
+MULTIVIEW CONTRASTIVE
+GRAPH CONTRASTIVE
+GRAPH CONTRASTIVE
+MULTIVIEW CONTRASTIVE
+HIERARCHICAL CONTRAST
+
+Bi-directional view agreement
+Question embedding reconstruction
+Interaction sequence alignment
+Hypergraph multi-view contrast
+Three-view agreement
+Dual-channel graph contrast
+Counterfactual graph contrast
+Adaptive hypergraph contrast
+Cross-level concept contrast
+
+Sequence & Graph perturbation
+Masked concept prediction
+Item & Skill masking/cropping
+Hyperedge drop & node mask
+Heterogeneous view masking
+Node & Edge perturbation
+Counterfactual graph rewiring
+Hypergraph view perturbation
+Hierarchical graph masking
+
+YES EXPLICIT
+YES EXPLICIT
+NO EXPLICIT CONSTRAINT
+YES EXPLICIT
+YES EXPLICIT
+YES EXPLICIT
+YES EXPLICIT
+YES EXPLICIT
+YES EXPLICIT
+
+JOINT END TO END
+TWO STAGE PRETRAIN
+JOINT END TO END
+JOINT END TO END
+JOINT END TO END
+JOINT END TO END
+JOINT END TO END
+JOINT END TO END
+JOINT END TO END
+
+InfoNCE Loss
+Masked Cross-Entropy
+InfoNCE Loss
+InfoNCE Loss
+Multi-View Contrastive
+InfoNCE Loss
+Counterfactual Loss
+InfoNCE Loss
+Hierarchical InfoNCE
+
+Transductive Graph-KT Models (e.g., GKT, GIKT,
+Bi-CLKT): Utilize GNN message passing over cooccurrence or prerequisite graphs. However, if the underlying graph structure is precomputed over full interaction
+logs or lacks out-of-vocabulary (OOV) node features for
+unobserved KCs, performance on held-out KCs remains
+structural rather than truly inductive.
+• Inductive Semantic-Graph & SSL Models (e.g.,
+SINKT, HHSKT): Leverage external domain knowledge
+graphs or LLM-extracted text embeddings (e.g., concept
+names, problem descriptions) to construct initial representations for unobserved KCs. This inductive capability
+allows models to generalize to zero-exposure KCs during
+curriculum onboarding.
+To standardize future evaluations, Section ?? formulates a
+dedicated benchmark suite specification (pyKT-ColdStart) as
+part of our evidence-derived research agenda.
+•
+
+QA4 Code Availability (1.11 / 2.00): 41.7% provide
+accessible source code repositories.
+• QA5 Metric Reporting (1.89 / 2.00): Standard use of
+ROC-AUC and Accuracy.
+• QA6 Statistical Rigor (0.83 / 2.00): Only 36.1% report standard deviations across multiple random seeds,
+and only 19.4% conduct formal significance testing (pvalues).
+• QA7 Sparsity Protocol Rigor (0.42 / 2.00): Severe gap
+in isolating zero-exposure cold-start splits.
+• QA8 Hyperparameter & Compute Reporting (1.28 /
+2.00): Basic training details provided, but GPU hardware
+specs and wall-clock times are frequently omitted.
+Overall, 29 out of 37 studies (78.4%) achieve **HIGH**
+quality scores (≥ 80%), while 8 studies (21.6%) are classified
+as **MODERATE** quality (55% − −79%).
+•
+
+A. Computational Complexity & Hardware Overhead Analysis
+C. Learning-Technology Implications for Sparse & Cold-Start
+KT
+In real-world educational technology environments, course
+onboarding and curriculum expansion frequently introduce
+new exercises or Knowledge Components with zero prior
+student interaction logs. Our evaluation protocol audit demonstrates that 94.6% of published Graph/SSL-KT studies evaluate
+exclusively under generic interaction data sparsity where all
+KCs appear in training logs. When evaluated under strict
+zero-exposure concept cold-start (Protocol 2), standard GraphKT models collapse to near-random prediction performance.
+For learning technology developers, this finding highlights
+that current models cannot reliably support zero-exposure
+content onboarding without incorporating external semantic
+knowledge graph priors or LLM-derived representations.
+VI. R ELIABILITY, R EPRODUCIBILITY & C ALIBRATION
+AUDIT (RQ5)
+We systematically audited all 37 primary core studies across
+eight quality criteria (QA1–QA8):
+• QA1 Task Clarity (1.95 / 2.00): Excellent problem
+formulation across all studies.
+• QA2 Data Transparency (1.90 / 2.00): 94.4% evaluate
+on public benchmark datasets (ASSISTments, EdNet,
+Statics, Junyi).
+• QA3 Split Control (1.78 / 2.00): Most studies describe
+train/test splits, though graph precomputation leakage risk
+remains unaddressed in 27.8% of papers.
+
+We formalize the asymptotic computational complexity and
+GPU memory footprint across GNN encoder families:
+1) GCN Encoders: Time complexity per epoch scales as
+O(|E|d+|V|d2 ), where |E| is the number of graph edges,
+|V| is the concept count, and d is embedding dimension.
+2) GAT Encoders: Time complexity scales as O(F |V|d2 +
+F |E|d), where F is the number of attention heads.
+3) Heterogeneous GNNs: Scaling factor increases
+proporP
+tionally to relation types |R|, requiring O( r∈R |Er |d+
+|V|d2 ) operations.
+4) Hypergraph Neural Networks: Capturing M hyperedges across concept clusters incurs O(|Ehyper |d +
+|V|d2 ).
+B. Probability Calibration Audit (Expected Calibration Error)
+Furthermore, our literature audit reveals that 0 out of 37
+primary core studies report Expected Calibration Error
+(ECE) in their published manuscripts. To empirically evaluate
+prediction confidence and demonstrate calibration degradation
+under cold-start, ECE is computed across M = 10 equal-width
+probability bins:
+ECE =
+
+M
+X
+|Bm |
+m=1
+
+N
+
+|acc(Bm ) − conf(Bm )|
+
+(5)
+
+where Bm denotes the set of predictions falling into interval ((m − 1)/M, m/M ]. In intelligent tutoring systems,
+uncalibrated probability outputs lead to inappropriate exercise
+
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, 2026
+
+8
+
+TABLE V
+TAXONOMY TABLE 3: S PARSE -C ONCEPT & C OLD -S TART E VALUATION P ROTOCOLS (RQ4). R EPRESENTATIVE SUBSET OF 13 STUDIES WITH EXPLICIT
+SPARSE - CONCEPT CLAIMS SHOWN ; REMAINING 24 CORE STUDIES EMPLOY GENERIC LEARNER SPLITS WITHOUT SPARSE - CONCEPT CLAIMS (N = 37
+P RIMARY C ORE PAPERS ; I NTERACTION S PARSITY 94.6%, I TEM C OLD -S TART 8.1%, S TRICT Z ERO -E XPOSURE C ONCEPT C OLD -S TART 5.4%).
+Paper ID
+
+Model Name
+
+Sparse Claim
+
+Zero-Exposure Split?
+
+Split Protocol
+
+External Semantic Input?
+
+Methodological Note
+
+KT035
+KT044
+KT004
+KT010
+KT011
+KT012
+KT026
+KT038
+KT039
+KT066
+KT068
+KT076
+KT077
+
+HHSKT [?]
+SINKT [?]
+GKT [?]
+GIKT [?]
+Bi-CLKT [?]
+JKT [?]
+Pre-train Q-Emb [?]
+DyGKT [?]
+CL4KT [?]
+HyperKT [?]
+HKT [?]
+KGNN-KT [?]
+R²GCurL [?]
+
+Hierarchical Sparse KC
+Inductive KC Cold-Start
+Interaction Sparsity
+Interaction Sparsity
+Data Sparsity
+Data Sparsity
+Data Sparsity
+Dynamic Data Sparsity
+Interaction Sparsity
+High-order Data Sparsity
+Hierarchical Data Sparsity
+Code Data Sparsity
+Robust Data Sparsity
+
+YES
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+
+Strict Zero-Exposure KC Split
+Strict Zero-Exposure KC Split
+Generic Learner Split
+Generic Learner Split
+Generic Learner Split
+Generic Learner Split
+Generic Learner Split
+Generic Learner Split
+Generic Learner Split
+Generic Learner Split
+Generic Learner Split
+Generic Learner Split
+Generic Learner Split
+
+External Heterogeneous Graph
+LLM Semantic Embeddings
+Co-occurrence Graph
+Interaction Graph
+Dual Graph
+Similarity Graph
+Question Graph
+Dynamic Graph
+Co-occurrence Graph
+Adaptive Hypergraph
+Hierarchical Graph
+Knowledge Graph + LLM
+Curriculum Graph
+
+Rigorous zero-exposure KC cold-start
+Rigorous inductive KC cold-start with LLMs
+Fails to isolate unobserved KCs
+Fails to isolate unobserved KCs
+Fails to isolate unobserved KCs
+Fails to isolate unobserved KCs
+Fails to isolate unobserved KCs
+Fails to isolate unobserved KCs
+Fails to isolate unobserved KCs
+Fails to isolate unobserved KCs
+Fails to isolate unobserved KCs
+Fails to isolate unobserved KCs
+Fails to isolate unobserved KCs
+
+recommendations, highlighting an urgent need for calibrated
+AI in education.
+
+C. Learning-Technology Implications for Trustworthy & Calibrated KT
+Trustworthy mastery prediction is essential for deploying AI
+in educational decision-making, such as automated grading,
+high-stakes adaptive testing, and intervention triggering. Our
+audit reveals that 0 out of 37 primary core studies report
+Expected Calibration Error (ECE) or evaluate probability
+calibration. Uncalibrated Knowledge Tracing models often
+output overconfident prediction probabilities (P (r = 1) >
+0.90) even when predicting performance on unobserved or
+sparse concepts. In intelligent tutoring systems, overconfident
+prediction errors cause adaptive engines to skip necessary remediation or assign inappropriately difficult content. Standardizing probability calibration reporting is therefore a critical
+prerequisite for building safe and trustworthy educational AI.
+VII. D ISCUSSION
+A. Synthesis of Graph-KT Contributions
+Our synthesis of 31 Graph-KT studies reveals that incorporating explicit relational topologies consistently improves
+student mastery modeling over standalone sequence models (DKT, SAKT). By propagating node embeddings across
+concept prerequisite trees, question-KC bipartite maps, or
+dynamic interaction graphs, Graph-KT models overcome categorical token isolation, enabling models to transfer knowledge
+across topologically related skills.
+
+C. Architectural Mechanisms under Sparse & Unseen Concept Conditions
+Our literature synthesis demonstrates that standard GCN
+and GRU-based architectures (GKT, CL4KT) suffer severe
+performance degradation when evaluated under zero-exposure
+KC splits. The mechanism is clear: co-occurrence graph
+edges between held-out KCs and training KCs are sparse by
+construction, so GNN message passing propagates near-zero
+information to withheld concept nodes. This is structurally
+distinct from interaction data sparsity (low volume) and cannot
+be remediated by augmentation or contrastive regularization
+alone without external structural priors.
+D. Learning-Technology Implications & Operational Guidelines for Tutoring Systems
+For developers of Intelligent Tutoring Systems and adaptive
+learning platforms, our synthesis offers three key operational
+guidelines:
+1) Avoid Precomputed Log Co-occurrence Graphs
+in Production: Relying on log-derived co-occurrence
+graphs precomputed over full interaction logs introduces
+severe data leakage and risks generating uninterpretable
+skill relationships.
+2) Adopt Inductive Semantic Priors for Content Onboarding: When introducing new exercises or modules,
+leverage LLM-extracted text embeddings or expert prerequisite graphs to initialize out-of-vocabulary concept
+nodes.
+3) Mandate Probability Calibration Reporting: Deploy
+post-hoc calibration (e.g., temperature scaling) to ensure
+that predicted mastery probabilities reflect true empirical
+accuracy before driving automated scaffolding.
+
+B. Synthesis of SSL-KT Contributions
+
+E. Methodological Limitations of the Present Survey
+
+Self-supervised contrastive learning addresses data sparsity
+by regularizing student state representations. Across 14 SSLKT studies, pretext objectives (e.g., multi-view sequence alignment, graph structural contrast, hypergraph contrast) prevent
+representation collapse for long-tail items and early-stage
+learners with minimal interaction logs. Combining structural
+GNN propagation with self-supervised contrastive learning
+represents a promising predictive paradigm (NG∩S = 8).
+
+We acknowledge the following limitations. First, although
+we apply PRISMA 2020 screening, inter-rater reliability was
+assessed by the research team internally rather than by an
+independent coder, limiting external audit of inclusion decisions. Second, our systematic review focuses on synthesizing
+published literature protocols; full-scale multi-seed benchmark
+execution under standard hardware manifests remains a dedicated agenda proposal (pyKT-ColdStart). Third, our corpus
+
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, 2026
+
+9
+
+spans papers through July 2026; rapidly evolving LLM-KT
+integration work published after this date falls outside our
+synthesis scope.
+VIII. E VIDENCE -D ERIVED R ESEARCH AGENDA (RQ6)
+Based on our meta-analysis of 37 core studies, we formulate
+six evidence-derived research agenda pillars, providing explicit
+mathematical formalizations for future research:
+A. Pillar 1: LLM-GNN Multimodal Fusion for Open-Domain
+Knowledge Graphs
+Moving beyond static pre-extracted LLM embeddings toward end-to-end multimodal alignment. Future Graph-SSL
+KT models should project LLM text representations ELLM ∈
+R|K|×dtext and GNN topological states HGNN ∈ R|K|×dgraph via
+cross-attention alignment:
+
+
+(ELLM WQ )(HGNN WK )T
+√
+Zaligned = Softmax
+(6)
+d
+× (HGNN WV )
+
+D. Pillar 4: Calibrated & Trustworthy Knowledge Tracing
+Integrating post-hoc calibration techniques into GNN/SSL
+KT backbones to convert raw uncalibrated model logits zi into
+calibrated mastery probabilities p̂i :
+z 
+i
+(9)
+p̂i = σ
+T
+where σ(·) is the sigmoid activation function. Following standard calibration procedure, the scalar temperature parameter
+T > 0 is fitted on a held-out validation set by minimizing
+negative log-likelihood (NLL / log-loss), after which Expected
+Calibration Error (ECE) and Brier score are evaluated on the
+test set.
+E. Pillar 5: Continuous-Time Spatiotemporal Modeling via
+Neural ODEs
+Combining Continuous-Time Neural ODEs with heterogeneous GNNs to model non-uniform learning intervals and
+continuous memory decay curves:
+dh(t)
+= fθ (h(t), t),
+dt
+Z
+
+(10)
+
+tn+1
+
+where WQ , WK ∈ Rdtext ×d and WV ∈ Rdgraph ×d are learnable
+projection matrices, d is the hidden embedding dimension, and
+Zaligned ∈ R|K|×d is the aligned multimodal representation.
+B. Pillar 2: Non-Euclidean & Hyperbolic Knowledge State
+Manifolds
+Expanding hyperbolic and mixed-curvature GNNs to model
+dynamic, hierarchical concept spaces. The Poincaré distance
+between student concept state vectors u, v ∈ Bd within the
+open unit ball manifold Bd = {x ∈ Rd | ∥x∥ < 1} is
+formalized as:
+
+
+∥u − v∥2
+dB (u, v) = arcosh 1 + 2
+(7)
+(1 − ∥u∥2 )(1 − ∥v∥2 )
+where arcosh(·) is the inverse hyperbolic cosine function
+and ∥ · ∥ is the Euclidean vector norm. This non-Euclidean
+metric prevents exponential representation distortion in deep
+hierarchical curricula.
+C. Pillar 3: Standardized Zero-Exposure KC Cold-Start
+Benchmarks (pyKT-ColdStart)
+Establishing standardized evaluation split protocols for zeroexposure Knowledge Component onboarding. A held-out concept subset Kcold ⊂ K is defined such that the training
+interaction count ntrain (k) = 0 for every k ∈ Kcold . The cold
+cold
+training interaction set Dtrain
+is constructed via interactionlevel filtering:
+cold
+Dtrain
+= {(xt , rt ) ∈ Dtrain | KC(xt ) ∈
+/ Kcold }
+
+(8)
+
+where KC(xt ) maps exercise xt to its constituent KCs. Models
+must infer response accuracy over Kcold at test time strictly
+using external structural graphs or semantic priors.
+
+h(tn+1 ) = h(tn ) +
+
+fθ (h(τ ), τ )dτ
+tn
+
+d
+
+where h(t) ∈ R represents continuous latent student knowledge state at time t, fθ (·) is a neural network parameterized
+by weights θ modeling the continuous derivative dh(t)/dt, and
+tn , tn+1 are consecutive interaction timestamps.
+F. Pillar 6: Graph Counterfactual Augmentation & Causal
+Debiasing
+Developing causal graph frameworks to disentangle intrinsic student learning capacity Y ∈ {0, 1} (target outcome)
+from item popularity and historical attempt confounders X
+(treatment variable). Under the assumption that Z constitutes
+a sufficient set of observed confounding variables satisfying
+the backdoor criterion (unconfoundedness), the causal effect
+P (Y | do(X = x)) is identified via backdoor adjustment:
+X
+P (Y | do(X = x)) =
+P (Y | X = x, Z = z)P (Z = z)
+z
+
+(11)
+where Z blocks all spurious non-causal paths between treatment X and outcome Y .
+IX. T HREATS TO VALIDITY
+A. Internal Validity
+Search completeness: Despite executing four query families across seven databases, grey literature (workshop papers,
+technical reports, thesis dissertations) was excluded per protocol. Relevant work published in venues not indexed by the
+seven databases may be absent from our corpus.
+Selection
+bias: The primary gateway criterion
+(PRIMARY CORE = KT ∧ (GRAPH ∨ SSL)) was applied by
+three independent screeners. Borderline cases (e.g., models
+using attention-based graph structures without explicit GNN
+
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, 2026
+
+components) were adjudicated through consensus review.
+Residual selection uncertainty cannot be fully eliminated.
+Coding reliability: QA scores (QA1–QA8) were assigned
+by the primary coder and cross-checked by one secondary
+coder for a 20% random sample; full double-coding of all
+37 primary core papers was not performed due to resource
+constraints. A formal Cohen’s κ calculation over the full
+corpus remains future work.
+B. External Validity
+Dataset generalizability: All 37 studies are evaluated
+on a narrow set of educational benchmarks (ASSISTments2009/2012/2017, EdNet, Statics2011, Junyi Academy).
+Findings may not generalize to high-stakes assessment platforms, corporate learning systems, or non-English-language
+educational datasets.
+Temporal scope: Our search covers 2015–2026. The rapid
+emergence of LLM-augmented KT after 2024 means that
+architectural paradigms and benchmark results are evolving
+faster than the typical 18–24 month survey publication cycle.
+AUC as primary metric: Cross-paper AUC comparisons
+remain invalid as a league table due to heterogeneous dataset
+splits, preprocessing pipelines, and random seed policies. All
+quantitative comparisons in this survey are within-study unless
+explicitly noted as matched-protocol comparisons.
+X. C ONCLUSION
+This systematic survey provides a comprehensive,
+PRISMA 2020–compliant synthesis of Graph-Based and
+Self-Supervised Knowledge Tracing (KT) under sparseconcept settings. Across 37 primary core studies published
+between 2018 and 2026 and identified through a 7-database
+search yielding 2,017 records, we established three original
+contributions.
+Contribution 1 — Two-dimensional taxonomy. We classified all Graph-KT models along a graph provenance axis
+(Expert Curriculum, Precomputed Log-based, Jointly Learned,
+LLM-Extracted) and a GNN encoder axis (GCN, GAT, Heterogeneous, Hypergraph, Dynamic), and classified all SSL-KT
+models into four pretext objective families (Multi-View Contrastive, Graph Structural Contrastive, Hypergraph Contrastive,
+Generative Masked).
+Contribution 2 — Evaluation split audit. We identified
+a pervasive methodological vulnerability: 94.6% of studies
+claim to address data sparsity, yet only 5.4% evaluate under a strict zero-exposure KC cold-start protocol. Standard
+graph architectures experience severe performance degradation
+under zero-exposure splits because GNN propagation over
+precomputed co-occurrence graphs lacks inductive out-ofvocabulary mechanisms. Furthermore, probability calibration
+remains completely unevaluated across published studies (0
+out of 37 report ECE).
+Contribution 3 — Evidence-derived research agenda. Six
+concrete future research directions are proposed with formal
+mathematical specifications: LLM-GNN multimodal fusion,
+non-Euclidean hyperbolic state manifolds, standardized zeroexposure benchmarks (pyKT-ColdStart), calibrated trustworthy
+
+10
+
+KT, continuous-time spatiotemporal Neural ODEs, and causal
+counterfactual graph debiasing.
+We anticipate that this survey will serve as a rigorous reference for researchers entering the Graph-SSL KT space and
+as a methodological foundation for standardizing evaluation
+practices across the educational data mining community.
+R EFERENCES
+[1] C. Piech, J. Bassen, J. Huang, S. Ganguli, A. Sahai, L. Guibas, and
+J. Sohl-Dickstein, “Deep knowledge tracing,” in Advances in Neural
+Information Processing Systems (NeurIPS), 2015, pp. 505–513.
+[2] S. Pandey and G. Karypis, “A self-attentive model for knowledge
+tracing,” in Proceedings of the 12th International Conference on Educational Data Mining (EDM), 2019, pp. 384–389.
+[3] A. Ghosh, N. Heffernan, and A. Lan, “Context-aware attentive knowledge tracing,” in Proceedings of the 26th ACM SIGKDD International
+Conference on Knowledge Discovery and Data Mining (KDD), 2020,
+pp. 2330–2339.
+[4] G. Abdelrahman, Q. Wang, and B. P. Nunes, “Knowledge tracing: A
+survey,” ACM Computing Surveys, vol. 55, no. 11, pp. 1–37, 2023.
+[5] Z. Liu, Q. Liu, J. Chen, S. Huang, J. Tang, and W. Luo, “pykt: A
+python library to benchmark knowledge tracing,” in Advances in Neural
+Information Processing Systems (NeurIPS) Datasets and Benchmarks
+Track, vol. 35, 2022, pp. 1843–1855.
+[6] X. Wang, P. Chen, and Y. Lu, “Graph neural networks for knowledge
+tracing: A survey and comparative review,” IEEE Transactions on
+Learning Technologies, vol. 17, pp. 450–468, 2024.
+[7] H. Nakagawa, Y. Iwasawa, and Y. Matsuo, “Graph-based knowledge
+tracing: Modeling student proficiency using graph neural networks,” in
+Proceedings of the IEEE/WIC/ACM International Conference on Web
+Intelligence (WI), 2019, pp. 156–163.
+[8] Y. Yang, J. Shen, Y. Qu, Y. Liu, K. Wang, Y. Zhu, W. Zhang, and
+Y. Yu, “Gikt: A graph-based interaction model for knowledge tracing,”
+in Proceedings of the European Conference on Machine Learning and
+Principles and Practice of Knowledge Discovery in Databases (ECMLPKDD), 2021, pp. 299–315.
+[9] X. Song, J. Li, Q. Lei, W. Zhao, Y. Chen, and A. S. Mian, “Bi-clkt: Bigraph contrastive learning based knowledge tracing,” Knowledge-Based
+Systems, vol. 241, p. 108274, 2022.
+[10] X. Song, J. Li, Y. Tang, T. Zhao, Y. Chen, and Z. Guan, “Jkt:
+A joint graph convolutional network based deep knowledge tracing,”
+Information Sciences, vol. 580, pp. 510–523, 2021.
+[11] P. Chen, Y. Lu, V. W. Zheng, and Y. Pian, “Prerequisite-driven deep
+knowledge tracing,” in Proceedings of the IEEE International Conference on Data Mining (ICDM), 2018, pp. 39–48.
+[12] S. Tong, Q. Liu, W. Huang, Z. Huang, E. Chen, C. Liu, H. Ma, and
+S. Wang, “Structure-based knowledge tracing: An influence propagation
+view,” in Proceedings of the IEEE International Conference on Data
+Mining (ICDM), 2020, pp. 541–550.
+[13] Z. Wu, L. Huang, Q. Huang, C. Huang, and Y. Tang, “Sgkt: Session
+graph-based knowledge tracing for student performance prediction,”
+Expert Systems with Applications, vol. 206, p. 117681, 2022.
+[14] Y. Liu, Y. Yang, X. Chen, J. Shen, H. Zhang, and Y. Yu, “Improving
+knowledge tracing via pre-training question embeddings,” in Proceedings of the International Joint Conference on Artificial Intelligence
+(IJCAI), 2020, pp. 1577–1583.
+[15] C. Cui, Y. Yao, C. Zhang, H. Ma, Y. Ma, Z. Ren, C. Zhang, and J. Ko,
+“Dgekt: A dual graph ensemble learning method for knowledge tracing,”
+ACM Transactions on Information Systems, vol. 42, no. 3, pp. 78:1–
+78:25, 2024.
+[16] W. Gan, Y. Sun, and Y. Sun, “Knowledge structure enhanced graph
+representation learning model for attentive knowledge tracing,” International Journal of Intelligent Systems, vol. 37, no. 3, pp. 2012–2045,
+2022.
+[17] G. Abdelrahman and Q. Wang, “Deep graph memory networks for
+forgetting-robust knowledge tracing,” IEEE Transactions on Knowledge
+and Data Engineering, vol. 35, no. 8, pp. 7844–7855, 2023.
+[18] Q. Ni, T. Wei, J. Zhao, L. He, and C. Zheng, “Hhskt: A learner–
+question interactions based heterogeneous graph neural network model
+for knowledge tracing,” Expert Systems with Applications, vol. 215, p.
+119334, 2023.
+[19] H. Yang, S. Hu, J. Geng, T. Huang, J. Hu, H. Zhang, and Q. Zhu,
+“Heterogeneous graph-based knowledge tracing with spatiotemporal
+evolution,” Expert Systems with Applications, vol. 238, p. 122249, 2024.
+
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, 2026
+
+[20] Y. Lu, P. Chen, Y. Pian, and V. W. Zheng, “Cmkt: Concept map
+driven knowledge tracing,” IEEE Transactions on Learning Technologies, vol. 15, no. 4, pp. 467–480, 2022.
+[21] K. Cheng, L. Peng, P. Wang, J. Ye, L. Sun, and B. Du, “Dygkt: Dynamic
+graph learning for knowledge tracing,” in Proceedings of the ACM
+SIGKDD Conference on Knowledge Discovery and Data Mining (KDD),
+2024, pp. 409–420.
+[22] T. Wu and Q. Ling, “Self-supervised heterogeneous hypergraph network
+for knowledge tracing,” Information Sciences, vol. 624, pp. 200–216,
+2023.
+[23] J. Sun, S. Du, Z. Liu, F. Yu, S. Liu, and X. Shen, “Weighted heterogeneous graph-based three-view contrastive learning for knowledge tracing
+in personalized e-learning systems,” IEEE Transactions on Consumer
+Electronics, vol. 70, no. 1, pp. 2838–2847, 2024.
+[24] L. Fu, H. Guan, K. Du, J. Lin, W. Xia, W. Zhang, R. Tang, Y. Wang,
+and Y. Yu, “Structure-aware inductive knowledge tracing with large
+language models,” in Proceedings of the ACM International Conference
+on Information and Knowledge Management (CIKM), 2024, pp. 632–
+642.
+[25] Z. Wu and Y. Liu, “Dual-channel self-supervised learning for heterogeneous graph knowledge tracing,” Expert Systems with Applications, vol.
+231, p. 120212, 2023.
+[26] X. Wang, S. Zhao, L. Guo, L. Zhu, C. Cui, and L. Xu, “Graphca: Learning from graph counterfactual augmentation for knowledge tracing,”
+IEEE/CAA Journal of Automatica Sinica, vol. 10, no. 11, pp. 2108–
+2123, 2023.
+[27] Z. He, W. Li, and Y. Yan, “Modeling knowledge proficiency using multihierarchical capsule graph neural network,” Applied Intelligence, vol. 52,
+no. 7, pp. 7230–7247, 2022.
+[28] L. Wang and D. Wu, “Gaskt: A graph-based attentive knowledge-search
+model for knowledge tracing,” in Proceedings of the International Conference on Knowledge Science, Engineering and Management (KSEM),
+2021, pp. 269–281.
+[29] G. Yu, Z. Xie, G. Zhou, Z. Zhao, and J. X. Huang, “Exploring long- and
+short-term knowledge state graph representations with adaptive fusion
+for knowledge tracing,” Information Processing & Management, vol. 62,
+no. 3, p. 104074, 2025.
+[30] S. Li, S. Shen, Y. Su, X. Sun, J. Lu, Q. Mo, Z. Wu, and Q. Liu, “Sthkt:
+Spatiotemporal knowledge tracing with topological hawkes process,”
+Expert Systems with Applications, vol. 259, p. 125248, 2025.
+[31] X. Sun, Q. Liu, K. Zhang, S. Shen, Y. Zhuang, and Y. Guo, “Lgskt: Integrating logical and grammatical skills for effective programming
+knowledge tracing,” Neural Networks, vol. 185, p. 107164, 2025.
+[32] H. Yang, J. Hu, J. Chen, and T. Huang, “Mahkt: Knowledge tracing with
+multi-association heterogeneous graph embedding based on knowledge
+transfer,” Knowledge-Based Systems, vol. 309, p. 112958, 2025.
+[33] J. Wang, H. Ma, M. Zhang, L. Zhang, and L. Chang, “Multigranularity ensemble interaction graph modeling for knowledge tracing,”
+Knowledge-Based Systems, vol. 309, p. 112834, 2025.
+[34] Q. Wu, W. Ji, G. Zhou, and Y. Yang, “Graph knowledge tracing in cognitive situation: Validation of classic assertions in cognitive psychology,”
+Knowledge-Based Systems, vol. 315, p. 113281, 2025.
+[35] J. Li, Y. Deng, Y. Qin, S. Mao, and Y. Jiang, “Dual-channel adaptive scale hypergraph encoders with cross-view contrastive learning
+for knowledge tracing,” IEEE Transactions on Neural Networks and
+Learning Systems, vol. 36, no. 4, pp. 6752–6766, 2025.
+[36] Z. Yang, J. Hu, S. Zhong, L. Yang, and G. Min, “Graph-based effective
+knowledge tracing via subject knowledge mapping,” Education and
+Information Technologies, vol. 30, no. 7, pp. 9813–9840, 2025.
+[37] Q. Li, Z. Huang, J. Sun, X. Yuan, S. Liu, and Z. Yan, “Hkt: Hierarchical structure-based knowledge tracing,” Information Processing &
+Management, vol. 62, no. 5, p. 104206, 2025.
+[38] Z. Wu, Y. Liu, J. Cen, Z. Zheng, and G. Xu, “A cross-domain knowledge
+tracing model based on graph optimal transport,” World Wide Web,
+vol. 28, no. 1, p. 10, 2025.
+[39] W. Gao, Q. Liu, R. Li, H. Zhao, Z. Wang, X. Yue, J. Yao, and M. Zhang,
+“Denoising programming knowledge tracing with a code graph-based
+tuning adapter,” in Proceedings of the ACM SIGKDD Conference on
+Knowledge Discovery and Data Mining (KDD), 2025, pp. 354–365.
+[40] D. Zhang, Q. Niu, T. Wang, Y. Hou, J. Wu, C. Zhang, and A. Stefanidis,
+“Kgnn-kt: Enhancing knowledge tracing in programming education
+through llm-extracted knowledge graphs,” in Proceedings of the International Conference on Intelligent Computing (ICIC), 2025, pp. 1–12.
+[41] T. Peng, Y. Pu, Y. Zhang, Y. Li, J. Ren, J. Luo, K. Zhang, H. Yuan,
+S. Wang, D. Yin, and W. Wu, “R²gcurl: Reinforced robust knowledge
+tracing via dynamic graph curriculum learning,” ACM Transactions on
+Information Systems, vol. 44, pp. 1–32, 2026.
+
+11
+
+[42] Y.-F. Wen, H. Liang, C. Yang, W.-B. Xie, Y. Du, X. Li, and Y.-L.
+Lee, “Spatio-temporal fusion in graph neural network for streaming
+knowledge tracing,” in Proceedings of the International Conference on
+Database Systems for Advanced Applications (DASFAA), 2026, pp. 150–
+162.
+[43] W. Lee, J. Chun, Y. Lee, K. Park, and S. Park, “Contrastive learning
+for knowledge tracing,” in Proceedings of the ACM Web Conference
+(WWW), 2022, pp. 2330–2338.
+
+Khanh-Trinh Nguyen received the B.S. degree in Information Technology.
+He is currently pursuing advanced research in educational data mining, graph
+neural networks, and self-supervised learning at Hung Yen University of
+Technology and Education, Vietnam. His research interests include Knowledge Tracing, GNN representation learning, and Large Language Model
+applications in education.
+
+Tuan Dao Minh received the B.S. degree in Computer Science. He is
+currently a researcher at Hung Yen University of Technology and Education, Vietnam. His research focuses on graph representation learning, selfsupervised contrastive learning, and AI-assisted educational technology.
+
+Duong Nguyen Tien received the B.S. degree in Software Engineering.
+He is currently a research assistant at Hung Yen University of Technology
+and Education, Vietnam. His research interests encompass deep learning
+for intelligent tutoring systems, hyperbolic neural manifolds, and systematic
+literature review methodologies.
+
+Chi Thanh Nguyen received the Ph.D. degree in Computer Science. He
+is currently a Senior Researcher with the Academy of Military Science and
+Technology, Ha Noi, Vietnam. His research interests include graph neural
+networks, pattern recognition, spatial-temporal data mining, and trustworthy
+artificial intelligence.
+
+Van-Hau Nguyen received the Ph.D. degree in Computer Science. He is
+currently an Associate Professor with the Faculty of Information Technology,
+Hung Yen University of Technology and Education, Vietnam. He has authored
+or co-authored numerous publications in international journals and conference
+proceedings. His primary research interests include machine learning, graph
+neural networks, educational data mining, self-supervised learning, and intelligent tutoring systems. Dr. Nguyen is the corresponding author of this paper.
+
+

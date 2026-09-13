@@ -50,7 +50,7 @@ GraphSSL_KT_Survey_2026/
 │   ├── SECTION_7_RESEARCH_AGENDA.md      # Section 7: Evidence-Derived Research Agenda (6 Pillars)
 │   ├── SECTION_8_CONCLUSION.md           # Section 8: Conclusion
 │   ├── FULL_SURVEY_MANUSCRIPT_v1.0.md    # Complete Monolith Survey Manuscript (Sections 1–8 Integrated)
-│   ├── main_tkde.tex                     # IEEE TKDE LaTeX source code file
+│   ├── Graph_Based_SSL_KT_Sparse_Concept_Survey_2026.tex  # IEEE TKDE LaTeX source code file
 │   ├── references.bib                    # BibTeX bibliography database
 │   └── MANUSCRIPT_VERIFICATION_REPORT_v1.0.md # Final Quality Audit & Verification Report
 └── 13_supplementary/                    # Open science supplementary materials index

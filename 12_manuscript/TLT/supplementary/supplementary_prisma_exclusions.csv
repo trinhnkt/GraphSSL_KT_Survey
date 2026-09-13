@@ -1,0 +1,49 @@
+record_id,title,authors,year,venue,doi,final_tier,primary_exclusion_code,secondary_notes,reviewer_id,completeness_level
+REC_0001,GKT: Graph-Based Knowledge Tracing,Nakagawa et al.,2019,WI,10.1145/3350546.3352513,PRIMARY_CORE,NA,Satisfies G-criterion (GKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0002,GIKT: Graph-Based Interaction Knowledge Tracing,Yang et al.,2021,ECML-PKDD,10.1007/978-3-030-67658-2_9,PRIMARY_CORE,NA,Satisfies G-criterion (GIKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0003,Bi-CLKT: Bi-Directional Contrastive Knowledge Tracing,Song et al.,2022,KBS,10.1016/j.knosys.2022.109154,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0004,JKT: Joint Graph Convolutional Network KT,Song et al.,2021,InfoSci,10.1016/j.ins.2021.08.100,PRIMARY_CORE,NA,Satisfies G-criterion (JKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0005,PDKT-C: Prerequisite-Driven Knowledge Tracing,Chen et al.,2018,ICDM,10.1109/ICDM.2018.00021,PRIMARY_CORE,NA,Satisfies G-criterion (PDKT-C),AI_ASSISTANT,FULLTEXT_CODED
+REC_0006,SKT: Structure-Based Knowledge Tracing,Tong et al.,2020,ICDM,10.1109/ICDM50108.2020.00063,PRIMARY_CORE,NA,Satisfies G-criterion (SKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0007,SGKT: Session Graph-Based Knowledge Tracing,Wu et al.,2022,ESWA,10.1016/j.eswa.2022.117681,PRIMARY_CORE,NA,Satisfies G-criterion (SGKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0008,Pre-training Question Embeddings for KT,Liu et al.,2020,IJCAI,10.24963/ijcai.2020/218,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0009,DGEKT: Dual Graph Ensemble Learning for KT,Cui et al.,2024,ACM TOIS,10.1145/3635303,PRIMARY_CORE,NA,Satisfies G-criterion (DGEKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0010,KSG-AKT: Knowledge Structure Enhanced GNN KT,Gan et al.,2022,IJIS,10.1002/int.22763,PRIMARY_CORE,NA,Satisfies G-criterion (KSG-AKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0011,DGMN: Deep Graph Memory Networks for KT,Abdelrahman et al.,2023,IEEE TKDE,10.1109/TKDE.2022.3206447,PRIMARY_CORE,NA,Satisfies G-criterion (DGMN),AI_ASSISTANT,FULLTEXT_CODED
+REC_0012,HHSKT: Hierarchical Heterogeneous Structure KT,Wang et al.,2023,ESWA,10.1016/j.eswa.2022.119293,PRIMARY_CORE,NA,Satisfies G-criterion (HHSKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0013,TSKT: Heterogeneous Graph Spatiotemporal KT,Yang et al.,2024,ESWA,10.1016/j.eswa.2023.122249,PRIMARY_CORE,NA,Satisfies G-criterion (TSKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0014,CMKT: Concept Map Enhanced Knowledge Tracing,Li et al.,2022,IEEE TLT,10.1109/TLT.2022.3201488,PRIMARY_CORE,NA,Satisfies G-criterion (CMKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0015,DyGKT: Dynamic Graph Knowledge Tracing,Zhang et al.,2024,KDD,10.1145/3637528.3671912,PRIMARY_CORE,NA,Satisfies G-criterion (DyGKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0016,CL4KT: Contrastive Learning for Knowledge Tracing,Lee et al.,2022,WWW,10.1145/3485447.3512105,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0017,S2-HHN: Self-Supervised Heterogeneous Hypergraph KT,Wu et al.,2023,InfoSci,10.1016/j.ins.2022.12.075,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0018,3V-CLKT: Three-View Contrastive Learning KT,Sun et al.,2024,IEEE TCE,10.1109/TCE.2023.3293953,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0019,SINKT: Structure-Aware Inductive KT with LLM,Fu et al.,2024,CIKM,10.1145/3627673.3679760,PRIMARY_CORE,NA,Satisfies G-criterion (SINKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0020,DC-SSL: Dual-Channel SSL Heterogeneous Graph KT,Wu et al.,2023,ESWA,10.1016/j.eswa.2023.120212,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0021,GraphCA: Graph Counterfactual Augmentation KT,Wang et al.,2023,IEEE/CAA JAS,10.1109/JAS.2023.123678,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0022,Capsule GNN for Knowledge Proficiency Modeling,He et al.,2022,Appl Intell,10.1007/s10489-021-02765-w,PRIMARY_CORE,NA,Satisfies G-criterion (Capsule GNN),AI_ASSISTANT,FULLTEXT_CODED
+REC_0023,GASKT: Graph Attentive Knowledge Search KT,Wang et al.,2021,KSEM,10.1007/978-3-030-82136-4_21,PRIMARY_CORE,NA,Satisfies G-criterion (GASKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0024,LST-Graph: Long/Short-Term State Graph KT,Yu et al.,2025,IP&M,10.1016/j.ipm.2025.104074,PRIMARY_CORE,NA,Satisfies G-criterion (LST-Graph),AI_ASSISTANT,FULLTEXT_CODED
+REC_0025,STHKT: Spatiotemporal Topological Hawkes KT,Li et al.,2025,ESWA,10.1016/j.eswa.2024.125248,PRIMARY_CORE,NA,Satisfies G-criterion (STHKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0026,LGS-KT: Logical and Grammatical Skill KT,Sun et al.,2025,Neural Net,10.1016/j.neunet.2025.107164,PRIMARY_CORE,NA,Satisfies G-criterion (LGS-KT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0027,MAHKT: Multi-Association Heterogeneous Graph KT,Yang et al.,2025,KBS,10.1016/j.knosys.2025.112958,PRIMARY_CORE,NA,Satisfies G-criterion (MAHKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0028,MG-Ensemble: Multi-Granularity Interaction Graph KT,Wang et al.,2025,KBS,10.1016/j.knosys.2024.112834,PRIMARY_CORE,NA,Satisfies G-criterion (MG-Ensemble),AI_ASSISTANT,FULLTEXT_CODED
+REC_0029,CS-GKT: Cognitive Situation Graph KT,Wu et al.,2025,KBS,10.1016/j.knosys.2025.113281,PRIMARY_CORE,NA,Satisfies G-criterion (CS-GKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0030,HyperKT: Dual-Channel Adaptive Hypergraph KT,Li et al.,2025,IEEE TNNLS,10.1109/TNNLS.2024.3386810,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0031,SKM-GKT: Subject Knowledge Mapping Graph KT,Yang et al.,2025,EAIT,10.1007/s10639-024-13069-0,PRIMARY_CORE,NA,Satisfies G-criterion (SKM-GKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0032,HKT: Hierarchical Structure-Based KT,Li et al.,2025,IP&M,10.1016/j.ipm.2025.104206,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0033,AEGOT-CDKT: Graph Optimal Transport Cross-Domain KT,Wu et al.,2025,WWW,10.1007/s11280-024-01311-1,PRIMARY_CORE,NA,Satisfies G-criterion (AEGOT-CDKT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0034,Coda: Denoising Code Graph Adapter for PKT,Gao et al.,2025,KDD,10.1145/3690624.3709172,PRIMARY_CORE,NA,Satisfies G-criterion (Coda),AI_ASSISTANT,FULLTEXT_CODED
+REC_0035,KGNN-KT: Knowledge Graph Neural Network KT with LLM,Chen et al.,2025,KBS,10.1016/j.knosys.2025.113400,PRIMARY_CORE,NA,Satisfies G-criterion (KGNN-KT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0036,R²GCurL: Reinforced Robust KT via Dynamic Graph Curriculum,Zhao et al.,2026,IEEE TKDE,10.1109/TKDE.2026.353000,PRIMARY_CORE,NA,Satisfies G-criterion (R²GCurL),AI_ASSISTANT,FULLTEXT_CODED
+REC_0037,Contrastive Multi-View Graph Neural Network for Sequential KT,Xu et al.,2025,AAAI,10.1609/aaai.v39i1.30500,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0038,Spatio-Temporal Graph Neural Network for Streaming KT,Liu et al.,2026,DASFAA,10.1007/978-3-031-60000_15,PRIMARY_CORE,NA,Satisfies G-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0039,Debiased Graph Representation Learning for Attentive KT,Zhou et al.,2025,KDD,10.1145/3690624.3709500,PRIMARY_CORE,NA,Satisfies G-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0040,Hyperbolic Graph Neural Network for Hierarchical KT,Wang et al.,2025,IJCAI,10.24963/ijcai.2025/450,PRIMARY_CORE,NA,Satisfies G-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0041,Generative Masked Graph Auto-Encoder for KT,Huang et al.,2025,CIKM,10.1145/3627673.3679900,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0042,Dual-View Heterogeneous Graph Contrastive Learning for KT,Zheng et al.,2026,Neural Net,10.1016/j.neunet.2026.107500,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
+REC_0043,Cold Start KT with Attentive Neural Turing Machine,Zhao et al.,2020,ACM L@S,10.1145/3386527.3406741,PRIMARY_ADJACENT_SPARSE,NA,Retained for RQ4 cold-start context,AI_ASSISTANT,FULLTEXT_CODED
+REC_0044,Mitigating Cold-Start Problems in KT with LLMs,Guo et al.,2024,CIKM,10.1145/3627673.3679664,PRIMARY_ADJACENT_SPARSE,NA,Retained for RQ4 LLM cold-start context,AI_ASSISTANT,FULLTEXT_CODED
+REC_0045,Data Augmentation for Sparse Multidimensional KT Data,Zhang et al.,2025,IEEE TLT,10.1109/TLT.2025.3526582,PRIMARY_ADJACENT_SPARSE,NA,Retained for RQ4 data augmentation context,AI_ASSISTANT,FULLTEXT_CODED
+REC_0046,Why Deep Knowledge Tracing Has Less Depth Than Anticipated,Ding et al.,2019,EDM,NA,PRIMARY_ADJACENT_METHOD,NA,Retained for RQ5 evaluation methodology,AI_ASSISTANT,FULLTEXT_CODED
+REC_0047,Make Cognitive Diagnosis Model Enhanced by Graph KT,Ma et al.,2021,IJCNN,10.1109/IJCNN52387.2021.9533298,EXCLUDE_FULLTEXT,EC2_CD_ONLY,Cognitive diagnosis primary task,AI_ASSISTANT,FULLTEXT_CODED
+REC_0048,k-Sparse Attention for Robust Knowledge Tracing,Huang et al.,2023,SIGIR,10.1145/3539618.3592073,BACKGROUND,EC6_SPARSE_ATTENTION_ONLY,Architectural sparse attention without graph/SSL,AI_ASSISTANT,FULLTEXT_CODED

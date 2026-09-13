@@ -41,7 +41,7 @@ The search architecture executed four verbatim query families (`Q-G`, `Q-S`, `Q-
 │   • Scopus (n = 531)                                                    │
 │   • Web of Science Core Collection (n = 344)                            │
 │   • arXiv Preprints (n = 198)                                           │
-│   Total Records Identified: N = 1,935                                   │
+│   Total Records Identified: N = 2,017                                   │
 └────────────────────────────────────┬────────────────────────────────────┘
                                      │
                                      ▼
@@ -49,7 +49,7 @@ The search architecture executed four verbatim query families (`Q-G`, `Q-S`, `Q-
 │                              DEDUPLICATION                              │
 ├─────────────────────────────────────────────────────────────────────────┤
 │ Records removed before screening:                                       │
-│   • Duplicate records across databases (n = 1,185)                      │
+│   • Duplicate records across databases (n = 1,267)                      │
 │ Records passing to Title/Abstract Screening: N = 750                    │
 └────────────────────────────────────┬────────────────────────────────────┘
                                      │

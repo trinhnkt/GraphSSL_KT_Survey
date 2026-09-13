@@ -7,7 +7,7 @@
 
 ## Key Highlights
 
-- **PRISMA 2020 Systematic Protocol**: We audit 1,935 candidate records across 7 electronic databases, synthesizing an integrated primary core corpus of 42 studies (2015–2026).
+- **PRISMA 2020 Systematic Protocol**: We audit 2,017 candidate records across 7 electronic databases, synthesizing an integrated primary core corpus of 42 studies (2018–2026).
 - **Unified 2D Taxonomy Framework**: We formulate a comprehensive two-dimensional taxonomy classifying Graph-KT (GNN encoders, provenance, dynamic fusion) and SSL-KT (pretext objectives, structure preservation).
 - **Critical Evaluation Protocol Audit**: We uncover a key methodological gap: while 95.2% of studies claim "data sparsity", only 4.8% evaluate strict zero-exposure concept cold-start splits.
 - **Probability Calibration Audit**: We conduct the first quality audit revealing that 0 out of 42 primary core studies report Expected Calibration Error (ECE) or reliability diagrams.

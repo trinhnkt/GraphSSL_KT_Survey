@@ -34,7 +34,7 @@ Only studies where Knowledge Tracing is the central prediction task AND that lev
 ## 1.4 Primary Survey Contributions
 
 This systematic survey provides four primary contributions to the educational data mining and machine learning literature:
-1. **PRISMA 2020 Systematic Protocol**: We execute a comprehensive, transparent literature search across 7 bibliographic databases (Scopus, WoS, ACM DL, IEEE Xplore, ScienceDirect, SpringerLink, arXiv), auditing 1,935 candidate records to establish an integrated core corpus of 42 primary studies published between 2015 and 2026.
+1. **PRISMA 2020 Systematic Protocol**: We execute a comprehensive, transparent literature search across 7 bibliographic databases (Scopus, WoS, ACM DL, IEEE Xplore, ScienceDirect, SpringerLink, arXiv), auditing 2,017 candidate records to establish an integrated core corpus of 42 primary studies published between 2015 and 2026.
 2. **Unified Taxonomy Framework**: We propose a two-dimensional structural taxonomy covering Graph-KT (GNN encoders, provenance, fusion mechanisms) and SSL-KT (pretext tasks, multi-view contrast, generative masked pre-training).
 3. **Critical Audit of Sparse-Concept Protocols**: We uncover a critical methodological gap: while 95.2% of core studies motivate their models via "data sparsity", only 4.8% evaluate strict zero-exposure concept cold-start protocols.
 4. **Evidence-Derived Research Agenda**: We outline 6 concrete future research pillars, highlighting LLM-GNN multimodal fusion, non-Euclidean hyperbolic state spaces, and calibrated trustworthy KT.

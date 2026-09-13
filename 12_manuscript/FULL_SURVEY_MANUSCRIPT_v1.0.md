@@ -36,7 +36,7 @@ $$\text{PRIMARY\_CORE} = \text{KT} \land (\text{GRAPH\_BASED} \lor \text{SELF\_S
 Our systematic review addresses six core research questions (RQ1–RQ6) covering graph provenance, GNN architectures, SSL objectives, sparse-concept constructs, reliability/calibration, and research agenda inference.
 
 ## 2.2 Literature Search Architecture & Screening
-We executed search queries across 7 bibliographic databases (1,935 raw records). After automated deduplication (1,185 duplicates removed) and 2-stage screening (Title/Abstract $\rightarrow$ Full-Text), **42 `PRIMARY_CORE` papers** were included. Quality Assessment (QA1–QA8) revealed a mean quality score of **0.7768** (MODERATE-HIGH Quality).
+We executed search queries across 7 bibliographic databases (2,017 raw records). After automated deduplication (1,267 duplicates removed) and 2-stage screening (Title/Abstract $\rightarrow$ Full-Text), **42 `PRIMARY_CORE` papers** were included. Quality Assessment (QA1–QA8) revealed a mean quality score of **0.7768** (MODERATE-HIGH Quality).
 
 ---
 
