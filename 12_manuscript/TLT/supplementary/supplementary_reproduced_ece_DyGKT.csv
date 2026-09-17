@@ -1,0 +1,2 @@
+paper_id,model,dataset,split,n,ece_equal_width_M10,brier,test_auc_author_metric,test_ap_author_metric,seed,evidence_source_type,note
+KT038,DyGKT,assist17,test,94156,0.0361,0.1770,0.8025,0.7178,0,REPRODUCED,"Survey-computed on author DyGKT code; does not change manuscript-reported ECE 0/37"

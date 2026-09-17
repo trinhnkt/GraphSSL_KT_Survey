@@ -1,0 +1,10 @@
+note,value
+decision,KEEP_CURRENT
+rule,QA7 applicable for 37/37 because RQ4 scores evaluation-protocol evidence adequacy; not because authors claimed to solve sparsity
+HIGH,11
+MODERATE,26
+LIMITED,0
+mean_normalized,0.76
+applicable_max,16
+source,supplementary/supplementary_quality_scores.csv
+two_variable_table,tables/H2_qa7_two_variables.csv

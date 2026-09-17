@@ -1,36 +1,66 @@
-\documentclass[tikz,border=5pt]{standalone}
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows}
+\usetikzlibrary{positioning}
+
+\definecolor{ink}{HTML}{1F2937}
+\definecolor{muted}{HTML}{6B7280}
+\definecolor{head}{HTML}{1E3A5F}
+\definecolor{prov}{HTML}{1D4ED8}
+\definecolor{provbg}{HTML}{EFF6FF}
+\definecolor{enc}{HTML}{047857}
+\definecolor{encbg}{HTML}{ECFDF5}
+\definecolor{outc}{HTML}{5B21B6}
+\definecolor{outbg}{HTML}{F5F3FF}
 
 \begin{document}
-\begin{tikzpicture}[
-    node distance=1.0cm and 1.2cm,
-    font=\sffamily\small,
-    channel/.style={rectangle, draw=blue!70!black, fill=blue!10, thick, rounded corners=4pt, align=center, minimum width=3.8cm, minimum height=1.1cm, drop shadow},
-    process/.style={rectangle, draw=green!70!black, fill=green!10, thick, rounded corners=4pt, align=center, minimum width=3.8cm, minimum height=1.1cm, drop shadow},
-    output/.style={rectangle, draw=purple!80!black, fill=purple!15, ultra thick, rounded corners=5pt, align=center, minimum width=4.5cm, minimum height=1.2cm, drop shadow},
-    arrow/.style={-{Stealth[length=6pt]}, thick, draw=gray!80}
-]
+\begin{tikzpicture}[font=\sffamily]
 
-% Channels
-\node[channel] (c1) {\textbf{Channel 1: Expert Maps}\\Curriculum Trees \& Prereqs\\(PDKT-C, CMKT, HKT)};
-\node[channel, below=0.5cm of c1] (c2) {\textbf{Channel 2: Co-occurrence}\\Interaction Bipartite Graphs\\(GKT, GIKT, Bi-CLKT)};
-\node[channel, below=0.5cm of c2] (c3) {\textbf{Channel 3: Dynamic Streaming}\\Time-Evolving Interaction Windows\\(DyGKT, STG-SKT)};
-\node[channel, below=0.5cm of c3] (c4) {\textbf{Channel 4: LLM Syntax}\\AST \& Code Semantic Trees\\(SINKT, Coda, KGNN-KT)};
+\tikzset{
+  pcard/.style={rectangle, rounded corners=3.5pt, align=center,
+    minimum width=4.95cm, minimum height=2.45cm, inner sep=6pt,
+    draw=prov, fill=provbg, line width=0.65pt, text=ink},
+  ecard/.style={rectangle, rounded corners=3.5pt, align=center,
+    minimum width=7.55cm, minimum height=1.70cm, inner sep=5pt,
+    draw=enc, fill=encbg, line width=0.65pt, text=ink},
+  ocard/.style={rectangle, rounded corners=3.5pt, align=center,
+    minimum width=7.55cm, minimum height=1.70cm, inner sep=5pt,
+    draw=outc, fill=outbg, line width=0.65pt, text=ink}
+}
 
-% Processing GNN Encoders
-\node[process, right=2.2cm of c2] (gnn) {\textbf{Graph Encoder Processing}\\GCN / Hetero-GNN / Hyperbolic\\Neighborhood Message Passing};
+\fill[head, rounded corners=4pt] (0,0) rectangle (16.2,1.05);
+\node[anchor=west, text=white, font=\sffamily\bfseries] at (0.35,0.68)
+  {Graph~provenance~pipeline};
+\node[anchor=west, text=white!88, font=\sffamily\small] at (0.35,0.30)
+  {Three mutually exclusive provenance codes under the locked survey protocol};
+\node[anchor=east, text=white, font=\sffamily\bfseries] at (15.85,0.52) {$N_G=36$};
 
-% Graph Representation Output
-\node[output, right=2.0cm of gnn] (out) {\textbf{Concept Adjacency Matrix $\mathbf{A}$}\\ \& Topological Embeddings $\mathbf{Z}$\\For Downstream KT Prediction};
+\node[pcard] (c1) at (2.70,-2.10) {%
+  {\color{prov}\fontsize{16}{18}\selectfont\bfseries 18}\\[2pt]
+  {\small\bfseries Model-defined fixed}\\[3pt]
+  {\scriptsize Author-specified topology}\\[1pt]
+  {\scriptsize\color{muted}e.g.\ GKT, GIKT, Bi-CLKT}};
+\node[pcard] (c2) at (8.10,-2.10) {%
+  {\color{prov}\fontsize{16}{18}\selectfont\bfseries 9}\\[2pt]
+  {\small\bfseries External fixed}\\[3pt]
+  {\scriptsize Expert, map, or LLM graph}\\[1pt]
+  {\scriptsize\color{muted}e.g.\ PDKT-C, CMKT, SINKT}};
+\node[pcard] (c3) at (13.50,-2.10) {%
+  {\color{prov}\fontsize{16}{18}\selectfont\bfseries 9}\\[2pt]
+  {\small\bfseries Dynamically learned}\\[3pt]
+  {\scriptsize Adjacency updated in training}\\[1pt]
+  {\scriptsize\color{muted}e.g.\ DyGKT, Coda, STSKT}};
 
-% Arrows
-\draw[arrow, blue!80!black] (c1.east) -- (gnn.west);
-\draw[arrow, blue!80!black] (c2.east) -- (gnn.west);
-\draw[arrow, blue!80!black] (c3.east) -- (gnn.west);
-\draw[arrow, blue!80!black] (c4.east) -- (gnn.west);
-
-\draw[arrow, purple!80!black] (gnn.east) -- (out.west);
+\node[ecard] (enc) at (4.00,-4.35) {%
+  {\small\bfseries Coded encoder}\\[3pt]
+  {\scriptsize GCN/generic 12 \quad Heterogeneous 7 \quad Other 6}\\[1pt]
+  {\scriptsize GAT 4 \quad Hypergraph 2 \quad Dynamic 2 \quad NONE 3}};
+\node[ocard] (out) at (12.20,-4.35) {%
+  {\small\bfseries Graph-KT corpus}\\[3pt]
+  {\scriptsize $N_G=36$ papers; CL4KT excluded}\\[1pt]
+  {\scriptsize\color{muted}One paper, one provenance code}};
 
 \end{tikzpicture}
 \end{document}

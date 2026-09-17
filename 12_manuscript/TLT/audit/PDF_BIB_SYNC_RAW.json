@@ -1,0 +1,409 @@
+[
+  {
+    "key": "KT004_GKT_2019",
+    "pdf": "Graph-Based Knowledge Tracing Modeling Student Proficiency Using Graph Neural Networks.pdf",
+    "authors_bib": "Hiromi Nakagawa and Yusuke Iwasawa and Yutaka Matsuo",
+    "title_bib": "Graph-Based Knowledge Tracing: Modeling Student Proficiency Using Graph Neural Networks",
+    "status": "OK",
+    "missing_last": [],
+    "head": ". . Latest updates: hps://dl.acm.org/doi/10.1145/3350546.3352513 . . RESEARCH-ARTICLE Graph-based Knowledge Tracing: Modeling Student Proficiency Using Graph Neural Network HIROMI NAKAGAWA, The University of Tokyo, Tokyo, Japan . YUSUKE IWASAWA, The University of Tokyo, Tokyo, Japan . YUTAKA MATSUO, The University of Tokyo, Tokyo, Japan . . . Open Access Support provided by: . The University of Tokyo . PDF Download 3350546.3352513.pdf 16 March 2026 Total Citations: 258 Total Downloads: 2617 . . . . Published: 14 October 2019 . . Citation in BibTeX format . . WI '19: IEEE/WIC/ACM International Conference on Web Intelligence October 14 - 17, 2019 Thessaloniki, Greece . . WI '19: IEEE/WIC/ACM International Conference on Web Intelligence (October 2019) hps://doi.org/10.1145/3350546.3352513 ISBN: 9781450369343 . Graph-based Knowledge Tracing: Modeling Student Proficiency Using Graph Neural "
+  },
+  {
+    "key": "KT010_GIKT_2021",
+    "pdf": "GIKT A Graph-Based Interaction Model for Knowledge Tracing.pdf",
+    "authors_bib": "Yang Yang and Jian Shen and Yanru Qu and Yunfei Liu and Kerong Wang and Yaoming Zhu and Weinan Zhang and Yong Yu",
+    "title_bib": "GIKT: A Graph-Based Interaction Model for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "GIKT: A Graph-based Interaction Model for Knowledge Tracing Yang Yang1, Jian Shen 1, Yanru Qu2, Yunfei Liu1, Kerong Wang1, Yaoming Zhu1, Weinan Zhang1(\u0000 ), and Yong Yu1(\u0000 ) 1 Shanghai Jiao Tong University {yyang,rockyshen,ymzhu,yyu}@apex.sjtu.edu.cn, {liuyunfei,wangkerong,wnzhang}@sjtu.edu.cn 2 University of Illinois, Urbana-Champaign yanruqu2@illinois.edu Abstract. With the rapid development in online education, knowledge tracing (KT) has become a fundamental problem which traces students’ knowledge status and predicts their performance on new questions. Ques- tions are often numerous in online education systems, and are always associated with much fewer skills. However, the previous literature fails to involve question information together with high-order question-skill correlations, which is mostly limited by data sparsity and multi-skill problems. From the model perspective, previous"
+  },
+  {
+    "key": "KT011_BiCLKT_2022",
+    "pdf": "Bi-CLKT Bi-Graph Contrastive Learning Based Knowledge Tracing.pdf",
+    "authors_bib": "Xiangyu Song and Jianxin Li and Qiuyu Lei and Wei Zhao and Yunliang Chen and Ajmal Saeed Mian",
+    "title_bib": "Bi-CLKT: Bi-Graph Contrastive Learning Based Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Bi-CLKT: Bi-Graph Contrastive Learning based Knowledge Tracing Xiangyu Songa, Jianxin Lia,∗, Qi Leib, Wei Zhaoc, Yunliang Chend,∗, Ajmal Miane aSchool of IT, Faculty of Science, Engineering and Built Environment, Deakin University, Geelong, VIC 3220, Australia bSchool of Information Engineering, Chang’an University, Xi’an, China cSchool of Computer Science and Technology, Xidian University, Xi’an, China dSchool of Computer Science, China University of Geosciences, Wuhan, China eDepartment of Computer Science and Software Engineering, The University of Western Australia, Perth, Australia Abstract The goal of Knowledge Tracing (KT) is to estimate how well students have mastered a concept based on their historical learning of related exercises. The benefit of knowledge tracing is that students’ learning plans can be better organised and adjusted, and interventions can be made when necessary"
+  },
+  {
+    "key": "KT012_JKT_2021",
+    "pdf": "JKT A Joint Graph Convolutional Network Based Deep Knowledge Tracing.pdf",
+    "authors_bib": "Xiangyu Song and Jianxin Li and Yilun Tang and Tao Zhao and Yilong Chen and Zhiyong Guan",
+    "title_bib": "JKT: A Joint Graph Convolutional Network Based Deep Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "JKT: A joint graph convolutional network based Deep Knowledge Tracing Xiangyu Song a, Jianxin Li a,⇑, Yifu Tang a, Taige Zhao a, Yunliang Chen b, Ziyu Guan c a School of IT, Faculty of Science, Engineering and Built Environment, Deakin University, Geelong, VIC 3220, Australia b China University of Geosciences, China c State Key Lab of ISN, School of Computer Science and Technology, Xidian University, Xi’an, China article info Article history: Received 8 June 2021 Received in revised form 12 August 2021 Accepted 29 August 2021 Available online 2 September 2021 Keywords: Knowledge Tracing Graph neural network Learning analytics Intelligent tutoring systems Network representation learning abstract Knowledge Tracing (KT) aims to trace the student’s state of evolutionary mastery for a par- ticular knowledge or concept based on the student’s historical learning interactions with the correspond"
+  },
+  {
+    "key": "KT014_PDKTC_2018",
+    "pdf": "Prerequisite-Driven Deep Knowledge Tracing.pdf",
+    "authors_bib": "Penghe Chen and Yu Lu and Vincent Wenchen Zheng and Yang Pian",
+    "title_bib": "Prerequisite-Driven Deep Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Prerequisite-Driven Deep Knowledge Tracing Penghe Chen1,Y uL u1,2, *, Vincent W. Zheng3, Yang Pian1 1Advanced Innovation Center for Future Education, Beijing Normal University, Beijing, China 2School of Educational Technology, Faculty of Education, Beijing Normal University, Beijing, China 3Advanced Digital Sciences Center , Singapore chenpenghe@bnu.edu.cn, vincent.zheng@adsc.com.sg, bianyang@bnu.edu.cn *Corresponding Author: Yu Lu, luyu@bnu.edu.cn Abstract—Knowledge tracing serves as the key technique in the computer supported education environment (e.g., intelligent tutoring systems) to model student’s knowledge states. While the Bayesian knowledge tracing and deep knowledge tracing models have been developed, the sparseness of student’s exercise data still limits knowledge tracing’s performance and applications. In order to address this issue, we advocate for and propose to incorporat"
+  },
+  {
+    "key": "KT016_SKT_2020",
+    "pdf": "Structure-Based Knowledge Tracing An Influence Propagation View.pdf",
+    "authors_bib": "Shiwei Tong and Qi Liu and Wei Huang and Zhenya Huang and Enhong Chen and Chuanren Liu and Haiping Ma and Shijin Wang",
+    "title_bib": "Structure-Based Knowledge Tracing: An Influence Propagation View",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Structure-based Knowledge Tracing: An Influence Propagation View Shiwei Tong1,Q iL i u1,∗, Wei Huang 1, Zhenya Huang 1, Enhong Chen 1, Chuanren Liu 2, Haiping Ma 3, Shijin Wang 4,5 1Anhui Province Key Laboratory of Big Data Analysis and Application, School of Data Science & School of Computer Science and Technology, University of Science and Technology of China 2Business Analytics and Statistics, University of Tennessee, 3Anhui University, 4iFL YTEK Research, iFL YTEK CO., LTD.,5State Key Laboratory of Cognitive Intelligence, {tongsw, ustc0411}@mail.ustc.edu.cn,{qiliuql, huangzhy, cheneh}@ustc.edu.cn cliu89@utk.edu, hpma@ahu.edu.cn, sjwang3@iflytek.com Abstract—Knowledge Tracing (KT) is a fundamental but challenging task in online education that traces learners’ evolving knowledge states. Much attention has been drawn to this area and several works such as Bayesian and Deep Knowledge Tra"
+  },
+  {
+    "key": "KT023_SGKT_2022",
+    "pdf": "SGKT Session Graph-Based Knowledge Tracing for Student Performance Prediction.pdf",
+    "authors_bib": "Zhengyang Wu and Li Huang and Qionghao Huang and Changqin Huang and Yong Tang",
+    "title_bib": "SGKT: Session Graph-Based Knowledge Tracing for Student Performance Prediction",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Expert Systems With Applications 206 (2022) 117681 Available online 15 June 2022 0957-4174/© 2022 Elsevier Ltd. All rights reserved. Contents lists available at ScienceDirect Expert Systems With Applications journal homepage: www.elsevier.com/locate/eswa SGKT: Session graph-based knowledge tracing for student performance prediction Zhengyang Wu a, Li Huanga, Qionghao Huangb, Changqin Huangb,∗, Yong Tangc,∗ a School of Computer Science, South China Normal University, Guangzhou, Guangdong, 510631, China b Key Laboratory of Intelligent Education Technology and Application of Zhejiang Province, Zhejiang Normal University, Jinhua, Zhejiang, 321004, China c Guangzhou Key Laboratory of Big Data and Intelligent Education, Guangzhou, Guangdong, 510631, China A R T I C L E I N F O Keywords: Knowledge tracing Graph Convolutional Network Gated Graph Neural Networks Attention Mechanism A B S T R A C "
+  },
+  {
+    "key": "KT026_PretrainQ_2020",
+    "pdf": "Improving Knowledge Tracing via Pre-training Question Embeddings.pdf",
+    "authors_bib": "Yunfei Liu and Yang Yang and Xianyu Chen and Jian Shen and Haifeng Zhang and Yong Yu",
+    "title_bib": "Improving Knowledge Tracing via Pre-training Question Embeddings",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Proceedings of the Twenty-Ninth International Joint Conference on Artificial Intelligence (IJCAI-20) 1556 Improving Knowledge Tracing via Pre-training Question Embeddings Yunfei Liu1 , Yang Yang1 , Xianyu Chen1 , Jian Shen1 , Haifeng Zhang2 and Y ong Yu1∗ 1Shanghai Jiao Tong University 2The Center on Frontiers of Computing Studies, Peking University {liuyunfei, yyang0324, xianyujun}@sjtu.edu.cn, rockyshen@apex.sjtu.edu.cn, pkuzhf@pku.edu.cn, yyu@apex.sjtu.edu.cn Abstract Knowledge tracing (KT) defines the task of pre- dicting whether students can correctly answer ques- tions based on their historical response. Although much research has been devoted to exploiting the question information, plentiful advanced informa- tion among questions and skills hasn’t been well extracted, making it challenging for previous work to perform adequately. In this paper, we demon- strate that large gains on"
+  },
+  {
+    "key": "KT029_DGEKT_2024",
+    "pdf": "DGEKT A Dual Graph Ensemble Learning Method for Knowledge Tracing.pdf",
+    "authors_bib": "Chaoran Cui and Yumo Yao and Chunyun Zhang and Hebo Ma and Yuling Ma and Zhaochun Ren and Chen Zhang and James Ko",
+    "title_bib": "DGEKT: A Dual Graph Ensemble Learning Method for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "78 DGEKT: A Dual Graph Ensemble Learning Method for Knowledge Tracing CHAORAN CUI, YUMO YAO, CHUNYUN ZHANG,a n dHEBO MA,Shandong University of Finance and Economics, China YULING MA,Shandong Jianzhu University, China ZHAOCHUN REN,Leiden University, The Netherlands CHEN ZHANG,Hong Kong Polytechnic University, China JAMES KO,Education University of Hong Kong, China Knowledgetracingaimstotracestudents’evolvingknowledgestatesbypredictingtheirfutureperformance on concept-related exercises. Recently, some graph-based models have been developed to incorporate the relationships between exercises to improve knowledge tracing, but only a single type of relationship information is generally explored. In this article, we present a novel Dual Graph Ensemble learning method for Knowledge Tracing (DGEKT), which establishesa dual graph structureofstudents’learning interactions to capture the heterogeneo"
+  },
+  {
+    "key": "KT031_KSGAKT_2022",
+    "pdf": "Knowledge Structure Enhanced Graph Representation Learning Model for Attentive Knowledge Tracing.pdf",
+    "authors_bib": "Wenbin Gan and Yuan Sun and Yi Sun",
+    "title_bib": "Knowledge Structure Enhanced Graph Representation Learning Model for Attentive Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Received: 15 April 2021 | Accepted: 11 November 2021 DOI: 10.1002/int.22763 RESEARCH ARTICLE Knowledge structure enhanced graph representation learning model for attentive knowledge tracing Wenbin Gan 1 | Yuan Sun 1 | Yi Sun 2 1National Institute of Informatics, Sokendai, Tokyo, Japan 2School of Computer Science and Technology, University of Chinese Academy of Sciences, Beijing, China Correspondence Wenbin Gan, National Institute of Informatics, Sokendai, Tokyo, Japan. Email: wenbingan@nii.ac.jp Funding information Japan Society for the Promotion of Science, Grant/Award Numbers: 18K11597, 20J15339 Abstract Knowledge tracing (KT) is a f undamental personalized‐ tutoring technique for learners in online learning sys- tems. Recent KT methods employ flexible deep neural network‐based models that excel at this task. However, the adequacy of KT is still challenged by the sparseness of the lear"
+  },
+  {
+    "key": "KT033_DGMN_2023",
+    "pdf": "Deep Graph Memory Networks for Forgetting-Robust Knowledge Tracing.pdf",
+    "authors_bib": "Ghodai Abdelrahman and Qing Wang",
+    "title_bib": "Deep Graph Memory Networks for Forgetting-Robust Knowledge Tracing",
+    "status": "MISSING_LAST",
+    "missing_last": [
+      "abdelrahman",
+      "wang"
+    ],
+    "head": "Model Generalization: A Sharpness Aware Optimization Perspective Jozef Marus Coldenhoff ∗ School of Computer and Communication Sciences EPFL Chengkun Li ∗ School of Engineering EPFL Yurui Zhu∗ College of Humanities EPFL Abstract—Sharpness-Aware Minimization (SAM) and adaptive sharpness-aware minimization (ASAM) aim to improve the model generalization. And in this project, we proposed three experiments to valid their generalization from the sharpness aware perspective. And our experiments show that sharpness aware-based optimization techniques could help to provide models with strong generalization ability. Our experiments also show that ASAM could improve the generalization performance on un-normalized data, but further research is needed to confirm this. Index Terms—Machine Learning, Optimization, Loss sharpness, SAM, ASAM. I. I NTRODUCTION In recent years, the generalization of deep ne"
+  },
+  {
+    "key": "KT035_HHSKT_2023",
+    "pdf": "HHSKT A Learner-Question Interactions Based Heterogeneous Graph Neural Network Model for Knowledge Tracing.pdf",
+    "authors_bib": "Qin Ni and Tingjiang Wei and Jiabao Zhao and Liang He and Chanjin Zheng",
+    "title_bib": "HHSKT: A Learner--Question Interactions Based Heterogeneous Graph Neural Network Model for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Expert Systems With Applications 215 (2023) 119334 Available online 23 November 2022 0957-4174/© 2022 Elsevier Ltd. All rights reserved. Contents lists available at ScienceDirect Expert Systems With Applications journal homepage: www.elsevier.com/locate/eswa HHSKT: A learner–question interactions based heterogeneous graph neural network model for knowledge tracing✩ Qin Ni a, Tingjiang Wei a,∗, Jiabao Zhao b, Liang He b, Chanjin Zheng c,∗ a Institute of Artificial Intelligence on Education, Shanghai Normal University, Shanghai, 201418, China b National Intelligent Society Governance Experimental Base (Education), East China Normal University, Shanghai, 200062, China c Department of Educational Psychology and Shanghai Institute of AI in Education, East China Normal University, Shanghai, 200062, China A R T I C L E I N F O Keywords: Intelligent education Knowledge tracing Graph neural netwo"
+  },
+  {
+    "key": "KT036_TSKT_2024",
+    "pdf": "Heterogeneous Graph-Based Knowledge Tracing with Spatiotemporal Evolution.pdf",
+    "authors_bib": "Hua Yang and Shengze Hu and Jing Geng and Tao Huang and Junjie Hu and Hao Zhang and Qiang Zhu",
+    "title_bib": "Heterogeneous Graph-Based Knowledge Tracing with Spatiotemporal Evolution",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Expert Systems With Applications 238 (2024) 122249 Available online 30 October 2023 0957-4174/© 2023 Elsevier Ltd. All rights reserved. Heterogeneous graph-based knowledge tracing with spatiotemporal evolution Huali Yang a , Shengze Hu b , c , Jing Geng b , c , Tao Huang b , c , d , * , Junjie Hu b , c , Hao Zhang b , c , Qiang Zhu a a School of Computer Science and Artificial Intelligence, Wuhan Textile University, Wuhan 430200, China b Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan 430079, China c National Engineering Research Center of Educational Big Data, Central China Normal University, Wuhan 430079, China d Ningxia Normal University, Ningxia 756000, China ARTICLE INFO Keywords: Knowledge tracing Heterogeneous graph Knowledge construction Spatiotemporal evolution ABSTRACT Knowledge tracing (KT), in which the future performance of students is"
+  },
+  {
+    "key": "KT037_CMKT_2022",
+    "pdf": "CMKT Concept Map Driven Knowledge Tracing.pdf",
+    "authors_bib": "Yu Lu and Penghe Chen and Yang Pian and Vincent W. Zheng",
+    "title_bib": "CMKT: Concept Map Driven Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "CMKT: Concept Map Driven Knowledge Tracing Yu Lu , Penghe Chen , Yang Pian , and Vincent W. Zheng Abstract— In this article, we advocate for and propose a novel concept map driven knowledge tracing (CMKT) model, which utilizes educational concept map for learner modeling. This article particularly addresses the issue of learner data sparseness caused by the unwillingness to practice and irregular learning behaviors on the learner side. CMKT considers the concept map as a new information source and explicitly exploits it s inherent information to help the estimation of the learner’s knowledge state. Specifically, the pairwise educational relations in the con cept map are formulated as the ordering pairs and are used as mat hematical constraints for model construction. The topology in f o r m a t i o ni nt h ec o n c e p tm a pi s extracted and used as the model input by employing the netw"
+  },
+  {
+    "key": "KT038_DyGKT_2024",
+    "pdf": "DyGKT Dynamic Graph Learning for Knowledge Tracing.pdf",
+    "authors_bib": "Ke Cheng and Linzhi Peng and Pengyang Wang and Junchen Ye and Leilei Sun and Bowen Du",
+    "title_bib": "DyGKT: Dynamic Graph Learning for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "DyGKT: Dynamic Graph Learning for Knowledge Tracing Ke Cheng∗ ckpassenger@buaa.edu.cn SKLSDE Lab, Beihang University Beijing, China Linzhi Peng∗ lzpeng626@buaa.edu.cn SKLSDE Lab, Beihang University Beijing, China Pengyang Wang pywang@um.edu.mo SKL-IOTSC, Department of Computer and Information Science, University of Macau Macau, China Junchen Ye† junchenye@buaa.edu.cn School of Transportation Science and Engineering, Beihang University Beijing, China Leilei Sun leileisun@buaa.edu.cn SKLSDE Lab, Beihang University Beijing, China Bowen Du dubowen@buaa.edu.cn Zhongguancun Laboratory School of Transportation Science and Engineering, Beihang University Beijing, China Abstract Knowledge Tracing aims to assess student learning states by pre- dicting their performance in answering questions. Different from the existing research which utilizes fixed-length learning sequence to obtain the student s"
+  },
+  {
+    "key": "KT039_CL4KT_2022",
+    "pdf": "Contrastive Learning for Knowledge Tracing.pdf",
+    "authors_bib": "Wonsung Lee and Jaeyoon Chun and Youngmin Lee and Kyoungsoo Park and Sungrae Park",
+    "title_bib": "Contrastive Learning for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": ". . Latest updates: hps://dl.acm.org/doi/10.1145/3485447.3512105 . . RESEARCH-ARTICLE Contrastive Learning for Knowledge Tracing WONSUNG LEE . JAEYOON CHUN . YOUNGMIN LEE, Korea Advanced Institute of Science and Technology, Daejeon, South Korea . KYOUNGSOO PARK . SUNGRAE PARK . . . Open Access Support provided by: . Korea Advanced Institute of Science and Technology . PDF Download 3485447.3512105.pdf 16 March 2026 Total Citations: 95 Total Downloads: 4805 . . Published: 25 April 2022 . . Citation in BibTeX format . . WWW '22: The ACM Web Conference 2022 April 25 - 29, 2022 Virtual Event, Lyon, France . . Conference Sponsors: SIGWEB WWW '22: Proceedings of the ACM Web Conference 2022 (April 2022) hps://doi.org/10.1145/3485447.3512105 ISBN: 9781450390965 . Contrastive Learning for Knowledge Tracing Wonsung Lee Upstage Republic of Korea wonsung.lee@upstage.ai Jaeyoon Chun i-Scream Edu Co."
+  },
+  {
+    "key": "KT042_S2HHN_2023",
+    "pdf": "Self-Supervised Heterogeneous Hypergraph Network for Knowledge Tracing.pdf",
+    "authors_bib": "Tangjie Wu and Qiang Ling",
+    "title_bib": "Self-Supervised Heterogeneous Hypergraph Network for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Self-supervised heterogeneous hypergraph network for knowledge tracing Tangjie Wu, Qiang Ling ⇑ University of Science and Technology of China, Hefei, Anhui 230027, China article info Article history: Received 3 May 2022 Received in revised form 24 December 2022 Accepted 27 December 2022 Available online 30 December 2022 Keyword: Heterogeneous graph neural network Hypergraph network Contrastive learning Self-supervised learning Knowledge tracing abstract Recently online intelligent education has caught more and more attention, especially due to the global influence of Covid-19. A major task of intelligent education is Knowledge Tracing (KT) which aims to capture students’ dynamic status based on their historical inter- action records and predict their responses to new questions. However, most existing KT methods suffer from the record data sparsity problem. In reality, there are a huge nu"
+  },
+  {
+    "key": "KT043_3VCLKT_2024",
+    "pdf": "Weighted Heterogeneous Graph-Based Three-View Contrastive Learning for Knowledge Tracing in Personalized e-Learning Systems.pdf",
+    "authors_bib": "Jianwen Sun and Shangheng Du and Zhi Liu and Fenghua Yu and Sannyuya Liu and Xiaoxuan Shen",
+    "title_bib": "Weighted Heterogeneous Graph-Based Three-View Contrastive Learning for Knowledge Tracing in Personalized e-Learning Systems",
+    "status": "OK",
+    "missing_last": [],
+    "head": "2838 IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 70, NO. 1, FEBRUARY 2024 Weighted Heterogeneous Graph-Based Three-View Contrastive Learning for Knowledge Tracing in Personalized e-Learning Systems Jianwen Sun , Shangheng Du , Zhi Liu , Fenghua Yu, Sannyuya Liu , and Xiaoxuan Shen Abstract—Personalized e-learning systems are applications of consumer electronics in the field of education that provide indi- vidualized and adaptive services for users. Knowledge tracing (KT), as a key technology, aims to model learners’ knowledge states through the interactions between learners and learning resources, and predicts their future performance. However, the problem of interaction sparsity in educational resources leads to the fact that simple representations of questions usually fail to accurately capture students’ knowledge states. In this paper, inspired by the data-driven paradigm, we prop"
+  },
+  {
+    "key": "KT044_SINKT_2024",
+    "pdf": "Structure-Aware Inductive Knowledge Tracing with Large Language Models.pdf",
+    "authors_bib": "Lingyue Fu and Hao Guan and Kounianhua Du and Jianghao Lin and Wei Xia and Weinan Zhang and Ruiming Tang and Yasheng Wang and Yong Yu",
+    "title_bib": "{SINKT}: A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model",
+    "status": "OK",
+    "missing_last": [],
+    "head": "SINKT: A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model Lingyue Fu Shanghai Jiao Tong University Shanghai, China fulingyue@sjtu.edu.cn Hao Guan Shanghai Jiao Tong University Shanghai, China Guanhao2022@sjtu.edu.cn Kounianhua Du Shanghai Jiao Tong University Shanghai, China kounianhuadu@sjtu.edu.cn Jianghao Lin Shanghai Jiao Tong University Shanghai, China chiangel@sjtu.edu.cn Wei Xia Huawei Noah’s Ark Lab Shenzhen, China xiawei24@huawei.com Weinan Zhang Shanghai Jiao Tong University Shanghai, China wnzhang@sjtu.edu.cn Ruiming Tang Huawei Noah’s Ark Lab Shenzhen, China tangruiming@huawei.com Yasheng Wang Huawei Noah’s Ark Lab Shenzhen, China wangyasheng@huawei.com Yong Yu∗ Shanghai Jiao Tong University Shanghai, China yyu@apex.sjtu.edu.cn ABSTRACT Knowledge Tracing (KT) aims to determine whether students will respond correctly to the next question, which is a "
+  },
+  {
+    "key": "KT047_DCSSL_2023",
+    "pdf": "Fusing hybrid attentive network with self-supervised dual-channel heterogeneous graph for knowledge tracing.pdf",
+    "authors_bib": "Tangjie Wu and Qiang Ling",
+    "title_bib": "Fusing Hybrid Attentive Network with Self-Supervised Dual-Channel Heterogeneous Graph for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Expert Systems With Applications 225 (2023) 120212 Available online 21 April 2023 0957-4174/© 2023 Elsevier Ltd. All rights reserved. Contents lists available at ScienceDirect Expert Systems With Applications journal homepage: www.elsevier.com/locate/eswa Fusing hybrid attentive network with self-supervised dual-channel heterogeneous graph for knowledge tracing Tangjie Wu, Qiang Ling ∗ University of Science and Technology of China, 440 Huangshan Road, Hefei, 230027, Anhui, China A R T I C L E I N F O Keywords: Heterogeneous graph neural network Contrastive learning Self-supervised learning Attention mechanism Knowledge tracing A B S T R A C T Recently the large-scale influence of Covid-19 promoted the fast development of intelligent tutoring systems (ITS). As a major task of ITS, Knowledge Tracing (KT) aims to capture a student’s dynamic knowledge state based on his historical response s"
+  },
+  {
+    "key": "KT050_GraphCA_2023",
+    "pdf": "GraphCA Learning From Graph Counterfactual Augmentation for Knowledge Tracing.pdf",
+    "authors_bib": "Xinhua Wang and Shasha Zhao and Lei Guo and Lei Zhu and Chaoran Cui and Liancheng Xu",
+    "title_bib": "GraphCA: Learning From Graph Counterfactual Augmentation for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": " GraphCA: Learning From Graph Counterfactual Augmentation for Knowledge Tracing Xinhua Wang, Shasha Zhao, Lei Guo, Lei Zhu, Chaoran Cui, and Liancheng Xu Abstract—With the popularity of online learning in educa- tional settings, knowledge tracing (KT) plays an increasingly sig- nificant role. The task of KT is to help students learn more effec- tively by predicting their next mastery of knowledge based on their historical exercise sequences. Nowadays, many related works have emerged in this field, such as Bayesian knowledge tracing and deep knowledge tracing methods. Despite the progress that has been made in KT, existing techniques still have the following limitations: 1) Previous studies address KT by only exploring the observational sparsity data distribution, and the counterfactual data distribution has been largely ignored. 2) Cur- rent works designed for KT only consider either the"
+  },
+  {
+    "key": "KT052_CapsuleGNN_2022",
+    "pdf": "Modeling Knowledge Proficiency Using Multi-Hierarchical Capsule Graph Neural Network.pdf",
+    "authors_bib": "Zeyu He and Wang Li and Yonghong Yan",
+    "title_bib": "Modeling Knowledge Proficiency Using Multi-Hierarchical Capsule Graph Neural Network",
+    "status": "OK",
+    "missing_last": [],
+    "head": "https://doi.org/10.1007/s10489-021-02765-w Modelingknowledgeproficiencyusingmulti-hierarchicalcapsule graphneuralnetwork ZeyuHe1,2,3 ·WangLi1 ·YonghongYan1,4,5 Accepted:11August2021 ©TheAuthor(s),underexclusivelicencetoSpringerScience+BusinessMedia,LLC,partofSpringerNature2021 Abstract Knowledge Tracking (KT) predicts student performance by modeling the mastery of knowledge components in past interactions. Although the latest research on KT is excellent to model behavior changes, the increasingly complex knowledge components and semantic relationships of new exercises have made courses sparse and difficult to adequately diagnose knowledge mastery. Hence, it is not enough to satisfy only the personalized learning. This paper proposes a graph-based method with multi-hierarchical network (Caps-HAGKT) for tracking capsule knowledge, which integrates rich structural information of the knowled"
+  },
+  {
+    "key": "KT053_GASKT_2021",
+    "pdf": "GASKT A Graph-Based Attentive Knowledge-Search Model for Knowledge Tracing.pdf",
+    "authors_bib": "Mengdan Wang and Chao Peng and Rui Yang and Chenchao Wang and Yao Chen and Xiaohua Yu",
+    "title_bib": "GASKT: A Graph-Based Attentive Knowledge-Search Model for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "GASKT: A Graph-Based Attentive Knowledge-Search Model for Knowledge Tracing Mengdan Wang1, Chao Peng1(B), Rui Yang1, Chenchao Wang1, Yao Chen1, and Xiaohua Yu2 1 Institute of Software Engineering, East China Normal University, Shanghai, China 51194501177@stu.ecnu.edu.cn, cpeng@sei.ecnu.edu.cn 2 Department of Education Information Technology, East China Normal University, Shanghai, China xhyu@deit.ecnu.edu.cn Abstract. Knowledge tracking (KT) is a fundamental tool to customize personalized learning paths for students so that they can take charge of their own learning pace. The main task of KT is to model the learning state of the students, however the process is quite involved. First, due to the sparsity of real-world educational data, the previous KT mod- els ignore the high-order information in question-skill; second, the long sequence of student interactions poses a demanding challenge"
+  },
+  {
+    "key": "KT056_LSTGraph_2025",
+    "pdf": "Exploring Long- and Short-Term Knowledge State Graph Representations with Adaptive Fusion for Knowledge Tracing.pdf",
+    "authors_bib": "Ganfeng Yu and Zhiwen Xie and Guangyou Zhou and Zhuo Zhao and Jimmy Xiangji Huang",
+    "title_bib": "Exploring Long- and Short-Term Knowledge State Graph Representations with Adaptive Fusion for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Contents lists available at ScienceDirect Information Processing and Management journal homepage: www.elsevier.com/locate/ipm Exploring long- and short-term knowledge state graph representations with adaptive fusion for knowledge tracing Ganfeng Yu a, Zhiwen Xie b, Guangyou Zhou b ,∗, Zhuo Zhao a, Jimmy Xiangji Huang c a Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan, 430079, Hubei, China b Hubei Provincial Key Laboratory of Artificial Intelligence and Smart Learning & School of Computer, Central China Normal University, Wuhan, 430079, Hubei, China c Information Retrieval and Knowledge Management Research Lab, York University, Toronto, Canada A R T I C L E I N F O Keywords: Knowledge tracing Knowledge states Graph representation learning Temporal graph prediction Educational AI A B S T R A C T Knowledge Tracing (KT) is an important research area i"
+  },
+  {
+    "key": "KT060_STHKT_2025",
+    "pdf": "STHKT Spatiotemporal Knowledge Tracing with Topological Hawkes Process.pdf",
+    "authors_bib": "Shuting Li and Shuanghong Shen and Yu Su and Xinjie Sun and Junyu Lu and Qi Mo and Zhenyi Wu and Qi Liu",
+    "title_bib": "STHKT: Spatiotemporal Knowledge Tracing with Topological Hawkes Process",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Contents lists available at ScienceDirect Expert Systems With Applications journal homepage: www.elsevier.com/locate/eswa STHKT: Spatiotemporal Knowledge Tracing with Topological Hawkes Process Shuting Li a,b, Shuanghong Shenc, Yu Sub,d,∗, Xinjie Sunc, Junyu Lub,c, Qi Moa,b, Zhenyi Wua,b, Qi Liu b,c a AHU-IAI AI Joint Laboratory, Anhui University, Hefei, Anhui, China b Institute of Artificial Intelligence, Hefei Comprehensive National Science Center, Hefei, Anhui, China c School of Data Science, University of Science and Technology of China, Hefei, Anhui, China d Key Laboratory of Philosophy and Social Science of Anhui Province on Adolescent Mental Health and Crisis Intelligence Intervention, China A R T I C L E I N F O Keywords: Knowledge Tracing Topological graph Hawkes process Attention mechanism A B S T R A C T Knowledge Tracing (KT) is a method that seeks to forecast students’ futur"
+  },
+  {
+    "key": "KT062_LGSKT_2025",
+    "pdf": "LGS-KT Integrating Logical and Grammatical Skills for Effective Programming Knowledge Tracing.pdf",
+    "authors_bib": "Xinjie Sun and Qi Liu and Kai Zhang and Shuanghong Shen and Yan Zhuang and Yuxiang Guo",
+    "title_bib": "LGS-KT: Integrating Logical and Grammatical Skills for Effective Programming Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Neural Networks 185 (2025) 107164 Available online 18 January 2025 0893-6080/© 2025 Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and similar technologies. Contents lists available at ScienceDirect Neural Networks journal homepage: www.elsevier.com/locate/neunet Full Length Article LGS-KT: Integrating logical and grammatical skills for effective programming knowledge tracing Xinjie Sun a,b,d , Qi Liu c,d,∗, Kai Zhang b,d, Shuanghong Shen b,d, Yan Zhuang b,d, Yuxiang Guo b,d a School of Computer Science, Liupanshui Normal University, Liupanshui, China b School of Computer Science and Technology, University of Science and Technology of China, Hefei, China c School of Artificial Intelligence and Data Science, University of Science and Technology of China, Hefei, China d State Key Laboratory of Cognitive Intelligence, Hefei, China A R T I C L E"
+  },
+  {
+    "key": "KT063_MAHKT_2025",
+    "pdf": "MAHKT Knowledge Tracing with Multi-Association Heterogeneous Graph Embedding Based on Knowledge Transfer.pdf",
+    "authors_bib": "Huali Yang and Junjie Hu and Jinjin Chen and Shengze Hu and Jing Geng and Qiang Zhu and Tao Huang",
+    "title_bib": "MAHKT: Knowledge Tracing with Multi-Association Heterogeneous Graph Embedding Based on Knowledge Transfer",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Knowledge-Based Systems 310 (2025) 112958 Available online 7 January 2025 0950-7051/© 2025 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies. Contents lists available at ScienceDirect Knowledge-Based Systems journal homepage: www.elsevier.com/locate/knosys MAHKT: Knowledge tracing with multi-association heterogeneous graph embedding based on knowledge transfer Huali Yang a , Junjie Hu c , Jinjin Chen c, Shengze Hu c , Jing Geng d , Qiang Zhu a, Tao Huang b,c ,∗ a School of Computer Science and Artificial Intelligence, Wuhan Textile University, Wuhan, 430200, China b Ningxia normal University, Ningxia, 756000, China c National Engineering Research Center of Educational Big Data, Central China Normal University, Wuhan, 430079, China d School of Education, Jianghan University, Wuhan, 430056, China A R T I C L E I N F O Key"
+  },
+  {
+    "key": "KT064_MGEnsemble_2025",
+    "pdf": "Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing.pdf",
+    "authors_bib": "Jing Wang and Huifang Ma and Mengyuan Zhang and Lei Zhang and Liang Chang",
+    "title_bib": "Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Contents lists available at ScienceDirect Knowledge-Based Systems journal homepage: www.elsevier.com/locate/knosys Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing Jing Wang a, Huifang Ma a ,∗, Mengyuan Zhang a, Lei Zhang b, Liang Chang c a College of Computer Science and Engineering, Northwest Normal University, Lanzhou, Gansu 730070, China b College of Information Technology and Communication, Hexi University, Zhangye, Gansu 730040, China c School of Computer Science and Information Security, Guilin University of Electronic Technology, Guilin, Guangxi 541004, China A R T I C L E I N F O Keywords: Intelligent education Knowledge tracing Correctness prediction Graph Neural Networks A B S T R A C T Knowledge tracing (KT) is a crucial educational tool that models students’ mastery of various knowledge concepts by analyzing their historical learning records. Mains"
+  },
+  {
+    "key": "KT066_HyperKT_2025",
+    "pdf": "Dual-Channel Adaptive Scale Hypergraph Encoders With Cross-View Contrastive Learning for Knowledge Tracing.pdf",
+    "authors_bib": "Jiawei Li and Yuanfei Deng and Yixiu Qin and Shun Mao and Yuncheng Jiang",
+    "title_bib": "Dual-Channel Adaptive Scale Hypergraph Encoders With Cross-View Contrastive Learning for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "6752 IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 36, NO. 4, APRIL 2025 Dual-Channel Adaptive Scale Hypergraph Encoders With Cross-View Contrastive Learning for Knowledge Tracing Jiawei Li , Yuanfei Deng , Yixiu Qin , Shun Mao , and Yuncheng Jiang , Member, IEEE Abstract— Knowledge tracing (KT) refers to predicting learn- ers’ performance in the future according to their historical responses, which has become an essential task in intelligent tutoring systems. Most deep learning-based methods usually model the learners’ knowledge states via recurrent neural networks (RNNs) or attention mechanisms. Recently emerging graph neural networks (GNNs) assist the KT model to capture the relationships such as question–skill and question–learner. However, non-pairwise and complex higher-order information among responses is ignored. In addition, a single-channel encoded hidden vect"
+  },
+  {
+    "key": "KT067_SKMGKT_2025",
+    "pdf": "Graph-Based Effective Knowledge Tracing via Subject Knowledge Mapping.pdf",
+    "authors_bib": "Ziyan Yang and Jia Hu and Shaochun Zhong and Lan Yang and Geyong Min",
+    "title_bib": "Graph-Based Effective Knowledge Tracing via Subject Knowledge Mapping",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Vol.:(0123456789) Education and Information Technologies (2025) 30:9813–9840 https://doi.org/10.1007/s10639-024-13069-0 Graph‑based effective knowledge tracing via subject knowledge mapping Ziyan Yang1 · Jia Hu2 · Shaochun Zhong1 · Lan Yang1 · Geyong Min2 Received: 23 June 2024 / Accepted: 20 September 2024 / Published online: 10 December 2024 © The Author(s), under exclusive licence to Springer Science+Business Media, LLC, part of Springer Nature 2024 Abstract Intelligent technology plays a pivotal role in revolutionizing learning assess- ments, overcoming the constraints of traditional assessment methods and driving educational innovation. Knowledge tracing (KT) emerges as a critical component for assessing students’ learning states and forecasting their future performance. However, existing graph-based KT models often ignore certain real-world factors (e.g., sequence dependencies, que"
+  },
+  {
+    "key": "KT068_HKT_2025",
+    "pdf": "HKT Hierarchical Structure-Based Knowledge Tracing.pdf",
+    "authors_bib": "Qing Li and Zhijun Huang and Jianwen Sun and Xin Yuan and Shengyingjie Liu and Zhonghua Yan",
+    "title_bib": "HKT: Hierarchical Structure-Based Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": " Contents lists available at ScienceDirect Information Processing and Management journal homepage: www.elsevier.com/locate/ipm HKT: Hierarchical structure-based knowledge tracing Qing Li a,b , Zhijun Huang a,b , Jianwen Sun a,b , Xin Yuan a,b , Shengyingjie Liu a,b ,∗, Zhonghua Yan a,b a National Engineering Research Center of Educational Big Data, Central China Normal University, Wuhan 430079, China b Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan 430079, China A R T I C L E I N F O Keywords: Knowledge tracing Graph representation learning Graph contrastive learning Hierarchical modeling Educational data mining A B S T R A C T Knowledge tracing (KT) is a fundamental task in Intelligent Tutoring Systems, aiming to predict learners’ performance on specific questions and trace their evolving knowledge state. With the advancement of deep learning in "
+  },
+  {
+    "key": "KT069_AEGOTCDKT_2025",
+    "pdf": "A Cross-Domain Knowledge Tracing Model Based on Graph Optimal Transport.pdf",
+    "authors_bib": "Zhengyang Wu and Yuqi Liu and Jianwei Cen and Zetao Zheng and Guandong Xu",
+    "title_bib": "A Cross-Domain Knowledge Tracing Model Based on Graph Optimal Transport",
+    "status": "OK",
+    "missing_last": [],
+    "head": "World Wide Web (2025) 28:10 https://doi.org/10.1007/s11280-024-01311-1 A cross-domain knowledge tracing model based on graph optimal transport Zhengyang Wu 1,2 · Yuqi Liu 2 · Jianwei Cen 2 · Zetao Zheng 3 · Guandong Xu 4 Received: 31 July 2024 / Revised: 10 October 2024 / Accepted: 15 October 2024 / Published online: 26 December 2024 © The Author(s), under exclusive licence to Springer Science+Business Media, LLC, part of Springer Nature 2024 Abstract Knowledge tracing (KT) is an essential technology in intelligent education that predicts stu- dents’ performance by analyzing their learning behavior data. Despite significant advances in KT, most existing research focuses on improving performance within a single domain (i.e., a specific academic discipline or school), with limited attention to Cross-Domain Knowl- edge Tracing (CDKT). CDKT aims to efficiently transfer the capabilities of a "
+  },
+  {
+    "key": "KT070_Coda_2025",
+    "pdf": "Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor.pdf",
+    "authors_bib": "Weibo Gao and Qi Liu and Rui Li and Yuze Zhao and Hao Wang and Linan Yue and Fangzhou Yao and Zheng Zhang",
+    "title_bib": "Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor",
+    "status": "OK",
+    "missing_last": [],
+    "head": "arXiv:2506.11107v1 [cs.SE] 7 Jun 2025 Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor Weibo Gao State Key Laboratory of Cognitive Intelligence, University of Science and Technology of China Hefei, China weibogao@mail.ustc.edu.cn Qi Liu∗ State Key Laboratory of Cognitive Intelligence, University of Science and Technology of China Institute of Artificial Intelligence, Hefei Comprehensive National Science Center Hefei, China qiliuql@ustc.edu.cn Rui Li State Key Laboratory of Cognitive Intelligence, University of Science and Technology of China Hefei, China ruili2000@mail.ustc.edu.cn Yuze Zhao State Key Laboratory of Cognitive Intelligence, University of Science and Technology of China Hefei, China yuzezhao@mail.ustc.edu.cn Hao Wang State Key Laboratory of Cognitive Intelligence, University of Science and Technology of China Hefei, China wanghao3@ustc.edu.cn Li"
+  },
+  {
+    "key": "KT076_KGNNKT_2025",
+    "pdf": "KGNN-KT Enhancing Knowledge Tracing in Programming Education Through LLM-Extracted Knowledge Graphs.pdf",
+    "authors_bib": "Di Zhang and Qiang Niu and Tianshi Wang and Yuntian Hou and Jinheng Wu and Chao Zhang and Angelos Stefanidis",
+    "title_bib": "KGNN-KT: Enhancing Knowledge Tracing in Programming Education Through LLM-Extracted Knowledge Graphs",
+    "status": "MISSING_LAST",
+    "missing_last": [
+      "zhang",
+      "niu",
+      "wang",
+      "hou",
+      "wu",
+      "zhang",
+      "stefanidis"
+    ],
+    "head": " "
+  },
+  {
+    "key": "KT077_R2GCurL_2026",
+    "pdf": "R2GCurL Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning.pdf",
+    "authors_bib": "Tianhao Peng and Yanjun Pu and Yongqi Zhang and Yuchen Li and Jian Ren and Jie Luo and Kui Zhang and Haitao Yuan and Shuaiqiang Wang and Dawei Yin and Wenjun Wu",
+    "title_bib": "R{\\texttwosuperior}GCurL: Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning",
+    "status": "OK",
+    "missing_last": [],
+    "head": "R2GCurL: Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning TIANHAO PENG, Beihang University, Beijing, China and Nanyang Technological University, Singapore, Singapore YANJUN PU, Beihang University, Beijing, China YONGQI ZHANG, Hong Kong University of Science and Technology (Guangzhou), Guangzhou, China YUCHEN LI, Baidu Inc., Beijing, China JIAN REN, JIE LUO, and KUI ZHANG, Beihang University, Beijing, China HAITAO YUAN, Tsinghua University, Beijing, China SHUAIQIANG W ANGand DA WEI YIN, Baidu Inc., Beijing, China WENJUN WU, Beihang University, Beijing, China With the rise of AI in education, knowledge tracing (KT) has become important for modeling students’ knowledge from interaction data. However, existing methods still face three major challenges, including limited modeling of personalized exercise–concept relations, low robustness to noisy interactions, and ine"
+  },
+  {
+    "key": "KT065_CSGKT_2025",
+    "pdf": "Graph knowledge tracing in cognitive situation Validation of classic assertions in cognitive psychology.pdf",
+    "authors_bib": "Qianxi Wu and Weidong Ji and Guohui Zhou and Yingchun Yang",
+    "title_bib": "Graph Knowledge Tracing in Cognitive Situation: Validation of Classic Assertions in Cognitive Psychology",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Knowledge-Based Systems 315 (2025) 113281 Available online 8 March 2025 0950-7051/© 2025 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies. Contents lists available at ScienceDirect Knowledge-Based Systems journal homepage: www.elsevier.com/locate/knosys Graph knowledge tracing in cognitive situation: Validation of classic assertions in cognitive psychology Qianxi Wu a, Weidong Ji a,b ,∗, Guohui Zhou a,b, Yingchun Yang c a College of Computer Information Engineering, Harbin Normal University, Harbin, 150025, China b Future Teachers Teaching and Intelligent Development Laboratory, Harbin Normal University, Harbin, 150025, China c College of Literature and History and Culture, Qiqihar University, Qiqihar, 161000, China A R T I C L E I N F O Keywords: Knowledge Tracing Cognitive situation Hyper-Graph Neural Network Directe"
+  },
+  {
+    "key": "KT079_STGSKT_2026",
+    "pdf": "Spatio-Temporal Fusion in Graph Neural Network for Streaming Knowledge Tracing.pdf",
+    "authors_bib": "Yi-Fei Wen and Hang Liang and Carl Yang and Wen-Bo Xie and Yajun Du and Xianyong Li and Yan-Li Lee",
+    "title_bib": "Spatio-Temporal Fusion in Graph Neural Network for Streaming Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Spatio-Temporal Fusion in Graph Neural Network for Streaming Knowledge Tracing Yi-Fei Wen1, Hang Liang1, Carl Yang2, Wen-Bo Xie3, Yajun Du1, Xianyong Li1, and Yan-Li Lee1B 1 School of Computer and Software Engineering, Xihua University, Chengdu 610039, China {wenyifei77, lianghang}@stu.xhu.edu.cn, {duyajun, lixy}@mail.xhu.edu.cn, yanlicomplex@gmail.comB 2 Department of Computer Science, Emory University, Atlanta, Georgia, USA j.carlyang@emory.edu 3 School of Computer Science, Southwest Petroleum University, Chengdu 610500, China wenboxie@swpu.edu.cn Abstract.Knowledge tracing is an important research area in personalized education, aiming to predict students’ future performance based on their his- torical interaction data. Existing knowledge tracing models face limitations in spatio-temporal information modeling. In the spatial dimension, the dynamic interactions between students and que"
+  },
+  {
+    "key": "Piech_DKT_2015",
+    "pdf": "Deep Knowledge Tracing.pdf",
+    "authors_bib": "Chris Piech and Jonathan Bassen and Jonathan Huang and Surya Ganguli and Mehran Sahami and Leonidas Guibas and Jascha Sohl-Dickstein",
+    "title_bib": "Deep Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Deep Knowledge Tracing Chris Piech∗, Jonathan Bassen∗, Jonathan Huang∗‡, Surya Ganguli∗, Mehran Sahami∗, Leonidas Guibas∗, Jascha Sohl-Dickstein∗† ∗Stanford University,†Khan Academy,‡Google {piech,jbassen}@cs.stanford.edu, jascha@stanford.edu , Abstract Knowledge tracing—where a machine models the knowledge of a student as they interact with coursework—is a well established problem in computer supported education. Though effectively modeling student knowledge would have high ed- ucational impact, the task has many inherent challenges. In this paper we explore the utility of using Recurrent Neural Networks (RNNs) to model student learning. The RNN family of models have important advantages over previous methods in that they do not require the explicit encoding of human domain knowledge, and can capture more complex representations of student knowledge. Using neu- ral networks results in s"
+  },
+  {
+    "key": "Pandey_SAKT_2019",
+    "pdf": "A Self-Attentive Model for Knowledge Tracing.pdf",
+    "authors_bib": "Shalini Pandey and George Karypis",
+    "title_bib": "A Self-Attentive Model for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "A Self-Attentive model for Knowledge Tracing Shalini Pandey University of Minnesota T win Cities, MN 55455, USA pande103@umn.edu George Karypis University of Minnesota T win Cities, MN 55455, USA karypis@umn.edu ABSTRACT Knowledge tracing is the task of modeling each student’s mastery of knowledge concepts (KCs) as (s)he engages with a sequence of learning activities. Each student’s knowledge is modeled by estimating the performance of the student on the learning activities. It is an important research area for providing a personalized learning platform to students. In recent years, methods based on Recurrent Neural Net- works (RNN) such as Deep Knowledge Tracing (DKT) and Dynamic Key-Value Memory Network (DKVMN) outper- formed all the traditional methods because of their ability to capture complex representation of human learning. How- ever, these methods face the issue of not generaliz"
+  },
+  {
+    "key": "Ghosh_AKT_2020",
+    "pdf": "Context-Aware Attentive Knowledge Tracing.pdf",
+    "authors_bib": "Aritra Ghosh and Neil Heffernan and Andrew Lan",
+    "title_bib": "Context-Aware Attentive Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": ". . Latest updates: hps://dl.acm.org/doi/10.1145/3394486.3403282 . . RESEARCH-ARTICLE Context-Aware Aentive Knowledge Tracing ARITRA GHOSH, University of Massachuses Amherst, Amherst, MA, United States . NEIL HEFFERNAN, Worcester Polytechnic Institute, Worcester, MA, United States . ANDREW S. LAN, University of Massachuses Amherst, Amherst, MA, United States . . . Open Access Support provided by: . University of Massachuses Amherst . Worcester Polytechnic Institute . PDF Download 3394486.3403282.pdf 16 March 2026 Total Citations: 432 Total Downloads: 4953 . . Published: 20 August 2020 . . Citation in BibTeX format . . KDD '20: The 26th ACM SIGKDD Conference on Knowledge Discovery and Data Mining July 6 - 10, 2020 CA, Virtual Event, USA . . Conference Sponsors: SIGMOD SIGKDD KDD '20: Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining (Aug"
+  },
+  {
+    "key": "Zhang_DKVMN_2017",
+    "pdf": "Dynamic Key-Value Memory Networks for Knowledge Tracing.pdf",
+    "authors_bib": "Jiani Zhang and Xingjian Shi and Irwin King and Dit-Yan Yeung",
+    "title_bib": "Dynamic Key-Value Memory Networks for Knowledge Tracing",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Dynamic Key-Value Memory Networks for Knowledge Tracing Jiani Zhang 1,2, Xingjian Shi 3, Irwin King 1,2, Dit-Y an Y eung3 1Shenzhen Key Laboratory of Rich Media Big Data Analytics and Application, Shenzhen Research Institute, The Chinese University of Hong Kong, Shenzhen, China 2Department of Computer Science and Engineering, The Chinese University of Hong Kong, Shatin, N.T ., Hong Kong {jnzhang, king}@cse.cuhk.edu.hk 3Department of Computer Science and Engineering, Hong Kong University of Science and T echnology , Kowloon, Hong Kong {xshiab, dyyeung}@cse.ust.hk ABSTRACT Knowledge Tracing (KT) is a task of tracing evolving knowl- edge state of students with respect to one or more con- cepts as they engage in a sequence of learning activities. One important purpose of KT is to personalize the prac- tice sequence to help students learn knowledge concepts eﬃ- ciently. However, existing meth"
+  },
+  {
+    "key": "Abdelrahman_Survey_2023",
+    "pdf": "Knowledge Tracing A Survey.pdf",
+    "authors_bib": "Ghodai Abdelrahman and Qing Wang and Bernardo Pereira Nunes",
+    "title_bib": "Knowledge Tracing: A Survey",
+    "status": "OK",
+    "missing_last": [],
+    "head": "Knowledge Tracing: A Survey GHODAI ABDELRAHMAN, QING WANG, and BERNARDO PEREIRA NUNES,School of Computing, Australian National University Humans’ ability to transfer knowledge through teaching is one of the essential aspects for human intelligence. A human teacher can track the knowledge of students to customize the teaching on students’ needs. With the rise of online education platforms, there is a similar need for machines to track the knowledge of students and tailor their learning experience. This is known as the Knowledge Tracing (KT) problem in the literature. Effectively solving the KT problem would unlock the potential of computer-aided education applications such as intelligent tutoring systems, curriculum learning, and learning materials’ recommendation. Moreover, from a more general viewpoint, a student may represent any kind of intelligent agents including both human and arti"
+  },
+  {
+    "key": "Liu_pyKT_2022",
+    "pdf": "PYKT A Python Library to Benchmark Deep Learning based Knowledge Tracing Models.pdf",
+    "authors_bib": "Zitao Liu and Qiongqiong Liu and Jiahao Chen and Shuyan Huang and Jiliang Tang and Weiqi Luo",
+    "title_bib": "{pyKT}: A {Python} Library to Benchmark Deep Learning based Knowledge Tracing Models",
+    "status": "OK",
+    "missing_last": [],
+    "head": "PYKT: A Python Library to Benchmark Deep Learning based Knowledge Tracing Models Zitao Liu Guangdong Institute of Smart Education Jinan University Guangzhou, Guangdong, China liuzitao@jnu.edu.cn Qiongqiong Liu Think Academy International Education TAL Education Group Beijing, China liuqiongqiong1@tal.com Jiahao Chen Think Academy International Education TAL Education Group Beijing, China chenjiahao@tal.com Shuyan Huang⇤ Think Academy International Education TAL Education Group Beijing, China huangshuyan@tal.com Jiliang Tang Computer Science and Engineering Department Michigan State University East Lansing, MI, United States tangjili@msu.edu Weiqi Luo Guangdong Institute of Smart Education Jinan University Guangzhou, Guangdong, China lwq@jnu.edu.cn Abstract Knowledge tracing (KT) is the task of using students’ historical learning interaction data to model their knowledge mastery over time"
+  },
+  {
+    "key": "Shen_KTSurvey_2024",
+    "pdf": "A Survey of Knowledge Tracing Models Variants and Applications.pdf",
+    "authors_bib": "Shuanghong Shen and Qi Liu and Zhenya Huang and Yonghe Zheng and Minghao Yin and Minjuan Wang and Enhong Chen",
+    "title_bib": "A Survey of Knowledge Tracing: Models, Variants, and Applications",
+    "status": "OK",
+    "missing_last": [],
+    "head": "JOURNAL OF LATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 1 A Survey of Knowledge Tracing: Models, Variants, and Applications Shuanghong Shen, Qi Liu, Member, IEEE, Zhenya Huang, Member, IEEE, Yonghe Zheng, Minghao Yin, Member, IEEE, Minjuan Wang, Member, IEEE, and Enhong Chen, Fellow, IEEE Abstract—Modern online education has the capacity to provide intelligent educational services by automatically analyzing sub- stantial amounts of student behavioral data. Knowledge Tracing (KT) is one of the fundamental tasks for student behavioral data analysis, aiming to monitor students’ evolving knowledge state during their problem-solving process. In recent years, a substantial number of studies have concentrated on this rapidly growing field, significantly contributing to its advancements. In this survey, we will conduct a thorough investigation of these progressions. Firstly, we present three t"
+  }
+]

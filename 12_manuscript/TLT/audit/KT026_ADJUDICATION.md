@@ -22,6 +22,12 @@ Where:
 
 ## 2. S-Criterion & Taxonomy Classification
 
-- **Satisfies S-Criterion?** **YES** (Unsupervised pre-training objective on graph structure prior to downstream KT sequence modeling).
-- **SSL Family Classification:** `GRAPH_EMBEDDING_PRETRAINING` / `MASKED_PRETRAINING`.
-- **Prose Correction:** PEBG does **NOT** use contrastive InfoNCE loss or masked concept prediction. Any manuscript text asserting "masked concept prediction" or "contrastive learning" for KT026 has been corrected to: *bipartite graph representation pre-training preserving local topological similarity and difficulty regression*.
+- **Satisfies S-Criterion?** **YES** (ADJUDICATED 2026-09-13).
+- **Locked `ssl_family`:** `GRAPH_RECONSTRUCTION` (`coding_codebook_v1.0_LOCKED.md` §14).
+- **Not coded:** `GRAPH_EMBEDDING_PRETRAINING`, `GRAPH_RELATION_RECONSTRUCTION`, `MASKED_PRETRAINING` (none of these are locked tokens; the last is also factually wrong).
+- **Targets:** `EXPLICIT_QS_RELATION` + `IMPLICIT_QQ_SIMILARITY` + `IMPLICIT_SS_SIMILARITY`.
+- **Pretext:** `BIPARTITE_RELATION_RECONSTRUCTION`. **Training:** `TWO_STAGE_PRETRAIN`.
+- **`masked_autoencoding=N`.** **`masked_concept_prediction=N`.**
+- **Prose:** PEBG is bipartite relation reconstruction (\(L_1\)–\(L_3\)), not InfoNCE and not masked concept prediction. \(L_4\) is an auxiliary side-information loss and is not used to justify SSL.
+
+Canonical lock: `02_pilot_coding/wave_C/KT026/KT026_S_CRITERION_ADJUDICATION_v1.1.md`.

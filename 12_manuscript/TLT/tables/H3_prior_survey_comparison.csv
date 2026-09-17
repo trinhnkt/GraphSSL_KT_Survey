@@ -1,0 +1,7 @@
+survey,year,venue,protocol,graph_kt,ssl_kt,sparse_coldstart,provenance_split,ece,artifacts
+Abdelrahman et al.,2023,ACM CSUR,Narrative / semi-systematic,High-level GNN overview,Minimal/none,Generic sparsity,Not audited,Not evaluated,Citation index
+Liu et al. pyKT,2022,NeurIPS D&B,Empirical benchmark,Sequence-first (GKT as one model),Not SSL taxonomy,Standard splits,Benchmark splits,AUC/ACC,pyKT repo
+Liu et al. DLKT,2025,IEEE TKDE,Review + tool + empirical,DLKT component framework,Not SSL taxonomy,Standard DLKT eval,Not a leakage audit,AUC/ACC,pyKT
+Shen et al.,2024,IEEE TLT,Narrative TLT review,Graph-KT as one DL variant,Not dedicated SSL-KT,Learning-process variants,Not audited,Not evaluated,EduData/EduKTM
+Xu et al.,2026,JEDM,Dedicated Graph-KT survey,Structure x propagation,Not SSL-KT survey,Dataset catalogue,Not a provenance audit,Not ECE audit,Dataset guidance
+This survey,2026,IEEE TLT (target),PRISMA 2020 N=2017,Provenance x encoder NG=36,S-criterion NS=9,Strict KC vs interaction sparsity,Coded; no locked leakage %,ECE 0/37,QA6 coding

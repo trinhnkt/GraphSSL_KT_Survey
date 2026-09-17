@@ -8,7 +8,7 @@
 ## Inventory of Supplementary CSV Artifacts
 
 1. **supplementary_corpus_inventory.csv**: Complete per-paper metadata and gateway status for all primary core papers ( = 37$).
-2. **supplementary_coding_matrix.csv**: Complete taxonomy coding matrix across Graph Provenance, GNN Encoder Architecture, SSL Pretext Objective, and Evaluation Protocols ( = 37$).
+2. **supplementary_ssl_taxonomy_Ns9.csv**: SSL taxonomy for the locked \(N_S=9\) papers only (author sign-off 2026-09-13). Do **not** upload `supplementary_coding_matrix.csv` (historical 14-row file; five G-only papers are not SSL).
 3. **supplementary_quality_scores.csv**: Itemized Quality Assessment scores ($\text{QA1}--\text{QA8}$) and overall quality tier assignments ($\text{HIGH} \ge 80\%$, $\text{MODERATE} \in [55\%, 79\%]$) for all 37 primary core papers.
 4. **supplementary_prisma_exclusions.csv**: Stage 2 full-text eligibility screening exclusion records ( = 98$ excluded studies) with explicit primary exclusion codes ($\text{EC1}--\text{EC7}$) and evidence locators.
 5. **supplementary_doi_audit.csv**: Reference DOI audit and physical PDF deposit status for all 43 references cited in the manuscript.

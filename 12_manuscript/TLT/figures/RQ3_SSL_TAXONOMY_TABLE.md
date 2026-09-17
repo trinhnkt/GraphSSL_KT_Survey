@@ -11,7 +11,7 @@ Comprehensive systematic taxonomy table classifying all **16 SSL-enhanced `PRIMA
 | **KT039** | CL4KT | SEQUENCE_CONTRASTIVE | Interaction sequence contrastive alignment | Item & Skill masking/cropping | YES_EXPLICIT | JOINT_END_TO_END | InfoNCE Loss |
 | **KT042** | S2-HHN | HYPERGRAPH_CONTRASTIVE | Hypergraph multi-view contrastive learning | Hyperedge dropping & node masking | YES_EXPLICIT | JOINT_END_TO_END | InfoNCE Loss |
 | **KT043** | 3V-CLKT | MULTIVIEW_CONTRASTIVE | Three-view agreement (Question, Skill, Student) | Heterogeneous view masking | YES_EXPLICIT | JOINT_END_TO_END | Multi-View Contrastive |
-| **KT047** | DC-SSL | GRAPH_CONTRASTIVE | Dual-channel heterogeneous graph contrast | Node & Edge perturbation | YES_EXPLICIT | JOINT_END_TO_END | InfoNCE Loss |
+| **KT047** | DC-SSL | MULTIVIEW_CONTRASTIVE | Dual-channel heterogeneous graph contrast | Node & Edge perturbation | YES_EXPLICIT | JOINT_END_TO_END | InfoNCE Loss |
 | **KT050** | GraphCA | GRAPH_CONTRASTIVE | Graph counterfactual augmentation contrast | Counterfactual graph rewiring | YES_EXPLICIT | JOINT_END_TO_END | Counterfactual Loss |
 | **KT066** | HyperKT | MULTIVIEW_CONTRASTIVE | Dual-channel adaptive hypergraph contrast | Hypergraph view perturbation | YES_EXPLICIT | JOINT_END_TO_END | InfoNCE Loss |
 | **KT068** | HKT | HIERARCHICAL_CONTRAST | Cross-level hierarchical concept contrast | Hierarchical graph masking | YES_EXPLICIT | JOINT_END_TO_END | Hierarchical InfoNCE |
