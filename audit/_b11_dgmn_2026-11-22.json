@@ -1,0 +1,43 @@
+{
+  "doi": "10.1109/TKDE.2022.3206447",
+  "crossref": {
+    "title": "Deep Graph Memory Networks for Forgetting-Robust Knowledge Tracing",
+    "container": "IEEE Transactions on Knowledge and Data Engineering",
+    "volume": null,
+    "issue": null,
+    "page": "1-13",
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "published-online": null,
+    "type": "journal-article",
+    "author": [
+      "Ghodai Abdelrahman",
+      "Qing Wang"
+    ]
+  },
+  "openalex": {
+    "title": "Deep Graph Memory Networks for Forgetting-Robust Knowledge Tracing",
+    "publication_year": 2022,
+    "publication_date": "2022-01-01",
+    "biblio": {
+      "volume": null,
+      "issue": null,
+      "first_page": "1",
+      "last_page": "13"
+    },
+    "source": "IEEE Transactions on Knowledge and Data Engineering",
+    "type": "article"
+  }
+}

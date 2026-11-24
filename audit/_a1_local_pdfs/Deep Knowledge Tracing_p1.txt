@@ -1,0 +1,111 @@
+Deep Knowledge Tracing
+Chris Piech∗, Jonathan Bassen∗, Jonathan Huang∗‡, Surya Ganguli∗,
+Mehran Sahami∗, Leonidas Guibas∗, Jascha Sohl-Dickstein∗†
+∗Stanford University, †Khan Academy, ‡Google
+{piech,jbassen}@cs.stanford.edu, jascha@stanford.edu,
+Abstract
+Knowledge tracing—where a machine models the knowledge of a student as they
+interact with coursework—is a well established problem in computer supported
+education. Though effectively modeling student knowledge would have high ed-
+ucational impact, the task has many inherent challenges. In this paper we explore
+the utility of using Recurrent Neural Networks (RNNs) to model student learning.
+The RNN family of models have important advantages over previous methods
+in that they do not require the explicit encoding of human domain knowledge,
+and can capture more complex representations of student knowledge. Using neu-
+ral networks results in substantial improvements in prediction performance on a
+range of knowledge tracing datasets. Moreover the learned model can be used for
+intelligent curriculum design and allows straightforward interpretation and dis-
+covery of structure in student tasks. These results suggest a promising new line of
+research for knowledge tracing and an exemplary application task for RNNs.
+1
+Introduction
+Computer-assisted education promises open access to world class instruction and a reduction in the
+growing cost of learning. We can develop on this promise by building models of large scale student
+trace data on popular educational platforms such as Khan Academy, Coursera, and EdX.
+Knowledge tracing is the task of modelling student knowledge over time so that we can accurately
+predict how students will perform on future interactions. Improvement on this task means that re-
+sources can be suggested to students based on their individual needs, and content which is predicted
+to be too easy or too hard can be skipped or delayed. Already, hand-tuned intelligent tutoring sys-
+tems that attempt to tailor content show promising results [28]. One-on-one human tutoring can
+produce learning gains for the average student on the order of two standard deviations [5] and ma-
+chine learning solutions could provide these beneﬁts of high quality personalized teaching to anyone
+in the world for free. The knowledge tracing problem is inherently difﬁcult as human learning is
+grounded in the complexity of both the human brain and human knowledge. Thus, the use of rich
+models seems appropriate. However most previous work in education relies on ﬁrst order Markov
+models with restricted functional forms.
+In this paper we present a formulation that we call Deep Knowledge Tracing (DKT) in which we
+apply ﬂexible recurrent neural networks that are ‘deep’ in time to the task of knowledge tracing. This
+family of models represents latent knowledge state, along with its temporal dynamics, using large
+vectors of artiﬁcial ‘neurons’, and allows the latent variable representation of student knowledge to
+be learned from data rather than hard-coded. The main contributions of this work are:
+1. A novel way to encode student interactions as input to a recurrent neural network.
+2. A 25% gain in AUC over the best previous result on a knowledge tracing benchmark.
+3. Demonstration that our knowledge tracing model does not need expert annotations.
+4. Discovery of exercise inﬂuence and generation of improved exercise curricula.
+1
+
+Exercise index
+1.0
+0.0
+0.5
+10
+20
+30
+40
+50
+Line graph intuition
+Slope of a line
+Solving for y-intercept
+Solving for x-intercept
+Graphing linear equations
+Square roots
+Exercise attempted:     correct,      incorrect
+Predicted 
+Probability
+E[p]
+Figure 1: A single student and her predicted responses as she solves 50 Khan Academy exercises. She seems to
+master ﬁnding x and y intercepts and then has trouble transferring knowledge to graphing linear equations.
+The task of knowledge tracing can be formalized as: given observations of interactions x0 . . . xt
+taken by a student on a particular learning task, predict aspects of their next interaction xt+1 [6].
+In the most ubiquitous instantiation of knowledge tracing, interactions take the form of a tuple of
+xt = {qt, at} that combines a tag for the exercise being answered qt with whether or not the exercise
+was answered correctly at. When making a prediction, the model is provided the tag of the exercise
+being answered, qt and must predict whether the student will get the exercise correct, at. Figure 1
+shows a visualization of tracing knowledge for a single student learning 8th grade math. The student
+ﬁrst answers two square root problems correctly and then gets a single x-intercept exercise incorrect.
+In the subsequent 47 interactions the student solves a series of x-intercept, y-intercept and graphing
+exercises. Each time the student answers an exercise we can make a prediction as to whether or not
+she would answer an exercise of each type correctly on her next interaction. In the visualization
+we only show predictions over time for a relevant subset of exercise types. In most previous work,
+exercise tags denote the single “concept” that human experts assign to an exercise. Our model
+can leverage, but does not require, such expert annotation. We demonstrate that in the absence of
+annotations the model can autonomously learn content substructure.
+2
+Related Work
+The task of modelling and predicting how human beings learn is informed by ﬁelds as diverse
+as education, psychology, neuroscience and cognitive science. From a social science perspective
+learning has been understood to be inﬂuenced by complex macro level interactions including affect
+[21], motivation [10] and even identity [4]. The challenges present are further exposed on the micro
+level. Learning is fundamentally a reﬂection of human cognition which is a highly complex process.
+Two themes in the ﬁeld of cognitive science that are particularly relevant are theories that the human
+mind, and its learning process, are recursive [12] and driven by analogy [13].
+The problem of knowledge tracing was ﬁrst posed, and has been heavily studied within the intelligent
+tutoring community. In the face of aforementioned challenges it has been a primary goal to build
+models which may not capture all cognitive processes, but are nevertheless useful.
+2.1
+Bayesian Knowledge Tracing
+Bayesian Knowledge Tracing (BKT) is the most popular approach for building temporal models
+of student learning. BKT models a learner’s latent knowledge state as a set of binary variables,
+each of which represents understanding or non-understanding of a single concept [6]. A Hidden
+Markov Model (HMM) is used to update the probabilities across each of these binary variables, as a
+learner answers exercises of a given concept correctly or incorrectly. The original model formulation
+assumed that once a skill is learned it is never forgotten. Recent extensions to this model include
+contextualization of guessing and slipping estimates [7], estimating prior knowledge for individual
+learners [33], and estimating problem difﬁculty [23].
+With or without such extensions, Knowledge Tracing suffers from several difﬁculties. First, the
+binary representation of student understanding may be unrealistic. Second, the meaning of the
+hidden variables and their mappings onto exercises can be ambiguous, rarely meeting the model’s
+expectation of a single concept per exercise. Several techniques have been developed to create and
+reﬁne concept categories and concept-exercise mappings. The current gold standard, Cognitive Task
+Analysis [31] is an arduous and iterative process where domain experts ask learners to talk through
+2

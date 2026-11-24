@@ -1,0 +1,103 @@
+Received: 15 April 2021 |
+Accepted: 11 November 2021
+DOI: 10.1002/int.22763
+R E S E A R C H A R T I C L E
+Knowledge structure enhanced graph
+representation learning model for attentive
+knowledge tracing
+Wenbin Gan1
+|
+Yuan Sun1
+|
+Yi Sun2
+1National Institute of Informatics,
+Sokendai, Tokyo, Japan
+2School of Computer Science and
+Technology, University of Chinese
+Academy of Sciences, Beijing, China
+Correspondence
+Wenbin Gan, National Institute of
+Informatics, Sokendai, Tokyo, Japan.
+Email: wenbingan@nii.ac.jp
+Funding information
+Japan Society for the Promotion of
+Science, Grant/Award Numbers:
+18K11597, 20J15339
+Abstract
+Knowledge tracing (KT) is a fundamental personalized‐
+tutoring technique for learners in online learning sys-
+tems. Recent KT methods employ flexible deep neural
+network‐based models that excel at this task. However,
+the adequacy of KT is still challenged by the sparseness of
+the learners' exercise data. To alleviate the sparseness
+problem, most of the exiting KT studies are performed at
+the skill‐level rather than the question‐level, as questions
+are often numerous and associated with much fewer
+skills. However, at the skill level, KT neglects the dis-
+tinctive information related to the questions themselves
+and their relations. In this case, the models can im-
+precisely infer the learners' knowledge states and might
+fail to capture the long‐term dependencies in the ex-
+ercising sequences. In the knowledge domain, skills are
+naturally linked as a graph (with the edges being the
+prerequisite relations between pedagogical concepts). We
+refer to such a graph as a knowledge structure (KS). In-
+corporating a KS into the KT procedure can potentially
+resolve both the sparseness and information loss, but
+this avenue has been underexplored because obtaining
+the complete KS of a domain is challenging and labor‐
+intensive. In this paper, we propose a novel KS‐enhanced
+graph representation learning model for KT with an
+attention mechanism (KSGKT). We first explore eight
+methods that automatically infer the domain KS from
+Int J Intell Syst. 2022;37:2012–2045.
+wileyonlinelibrary.com/journal/int
+2012 |
+© 2021 Wiley Periodicals LLC
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+learner response data and integrate it into the KT pro-
+cedure. Leveraging a graph representation learning
+model, we then obtain the question and skill embeddings
+from the KS‐enhanced graph. To incorporate more dis-
+tinctive information on the questions, we extract the
+cognitive question difficulty from the learning history of
+each learner. We then propose a convolutional re-
+presentation method that fuses these disctinctive fea-
+tures, thus obtaining a comprehensive representation of
+each question. These representations are input to the
+proposed KT model, and the long‐term dependencies are
+handled by the attention mechanism. The model finally
+predicts the learner's performance on new problems.
+Extensive experiments conducted from six perspectives
+on three real‐world data sets demonstrated the super-
+iority and interpretability of our model for learner‐
+performance modeling. Based on the KT results, we also
+suggest three potential applications of our model.
+K E Y W O R D S
+cognitive question difficulty, graph representation learning,
+intelligent tutoring systems, knowledge structure discovery,
+knowledge tracing, learner proficiency estimation
+1
+|
+INTRODUCTION
+The popularity of online learning has increased in recent years, with increasingly many in-
+telligent tutoring systems (ITSs) and massive open online course (MOOC) platforms becoming
+available to learners.1–3 In general, these platforms enable knowledge‐acquisition through a
+series of individualized learning activities that accommodate learners with different needs and
+knowledge proficiencies. A key technique underlying these adaptive tutoring services is learner
+modeling.4,5 In this paper, we model the knowledge proficiencies of learners. This task, known
+as knowledge tracing (KT),6–12 aims to model learner performance and hence discover the
+latent knowledge proficiencies of learners in mastering knowledge concepts.
+Knowledge tracing (KT) in an online learning system assesses the learning outcomes at the
+knowledge‐concepts granularity in a longitudinal manner. A KT task is generally formulated as the
+problem of predicting learners' performance on new problems based on their learning histories4,6
+(note that learners' current knowledge states are latent but their performances on questions based on
+their knowledge proficiencies are explicit and easily obtainable). As in traditional educational en-
+vironments, KT evaluates a learner's knowledge through questions or quizzes, but unlike traditional
+learning, is based on the accumulated exercise records of learners over a long time. Based on their
+inferred knowledge states, learners are provided with various adaptive services that suit their
+GAN ET AL.
+|
+2013
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License

@@ -1,0 +1,125 @@
+8.
+REFERENCES
+[1] A. Bordes, N. Usunier, S. Chopra, and J. Weston.
+Large-scale simple question answering with memory
+networks. arXiv preprint arXiv:1506.02075, 2015.
+[2] T. Chen, M. Li, Y. Li, M. Lin, N. Wang, M. Wang,
+T. Xiao, B. Xu, C. Zhang, and Z. Zhang. Mxnet: A
+ﬂexible and eﬃcient machine learning library for
+heterogeneous distributed systems. In In Neural
+Information Processing Systems, Workshop on
+Machine Learning Systems, 2015.
+[3] A. T. Corbett and J. R. Anderson. Knowledge tracing:
+Modeling the acquisition of procedural knowledge.
+volume 4, pages 253–278. Springer, 1994.
+[4] R. S. d Baker, A. T. Corbett, and V. Aleven. More
+accurate student modeling through contextual
+estimation of slip and guess probabilities in bayesian
+knowledge tracing. In International Conference on
+Intelligent Tutoring Systems, pages 406–415. Springer,
+2008.
+[5] M. Feng, N. Heﬀernan, and K. Koedinger. Addressing
+the assessment challenge with an online system that
+tutors as it assesses. User Modeling and User-Adapted
+Interaction, 19(3):243–266, 2009.
+[6] A. Graves, G. Wayne, and I. Danihelka. Neural turing
+machines. arXiv preprint arXiv:1410.5401, 2014.
+[7] A. Graves, G. Wayne, M. Reynolds, T. Harley,
+I. Danihelka, A. Grabska-Barwi´nska, S. G.
+Colmenarejo, E. Grefenstette, T. Ramalho,
+J. Agapiou, et al. Hybrid computing using a neural
+network with dynamic external memory. Nature,
+538(7626):471–476, 2016.
+[8] E. Grefenstette, K. M. Hermann, M. Suleyman, and
+P. Blunsom. Learning to transduce with unbounded
+memory. In Advances in Neural Information
+Processing Systems, pages 1828–1836, 2015.
+[9] S. Hochreiter and J. Schmidhuber. Long short-term
+memory. Neural computation, 9(8):1735–1780, 1997.
+[10] A. Joulin and T. Mikolov. Inferring algorithmic
+patterns with stack-augmented recurrent nets. In
+Advances in Neural Information Processing Systems,
+pages 190–198, 2015.
+[11] M. Khajah, R. V. Lindsey, and M. C. Mozer. How
+deep is knowledge tracing? In Educational Data
+Mining 2016, 2016.
+[12] K. R. Koedinger, R. S. Baker, K. Cunningham,
+A. Skogsholm, B. Leber, and J. Stamper. A data
+repository for the edm community: The pslc datashop.
+Handbook of educational data mining, 43, 2010.
+[13] A. Krizhevsky, I. Sutskever, and G. E. Hinton.
+Imagenet classiﬁcation with deep convolutional neural
+networks. In Advances in Neural Information
+Processing Systems, pages 1097–1105, 2012.
+[14] Y. LeCun, Y. Bengio, and G. Hinton. Deep learning.
+Nature, 521(7553):436–444, 2015.
+[15] L. v. d. Maaten and G. Hinton. Visualizing data using
+t-sne. Journal of Machine Learning Research,
+9(11):2579–2605, 2008.
+[16] T. Mikolov, I. Sutskever, K. Chen, G. S. Corrado, and
+J. Dean. Distributed representations of words and
+phrases and their compositionality. In Advances in
+Neural Information Processing Systems, pages
+3111–3119, 2013.
+[17] A. Miller, A. Fisch, J. Dodge, A.-H. Karimi,
+A. Bordes, and J. Weston. Key-value memory
+networks for directly reading documents. arXiv
+preprint arXiv:1606.03126, 2016.
+[18] G. B. Orr and K.-R. M¨uller. Neural networks: tricks
+of the trade. Springer, 2003.
+[19] Z. A. Pardos and N. T. Heﬀernan. Modeling
+individualization in a bayesian networks
+implementation of knowledge tracing. In User
+Modeling, Adaptation, and Personalization, pages
+255–266. Springer, 2010.
+[20] Z. A. Pardos and N. T. Heﬀernan. Kt-idem:
+Introducing item diﬃculty to the knowledge tracing
+model. In User Modeling, Adaption and
+Personalization, pages 243–254. Springer, 2011.
+[21] R. Pascanu, T. Mikolov, and Y. Bengio. On the
+diﬃculty of training recurrent neural networks. In
+Proceedings of The 30th International Conference on
+Machine Learning, pages 1310–1318, 2013.
+[22] C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami,
+L. J. Guibas, and J. Sohl-Dickstein. Deep knowledge
+tracing. In Advances in Neural Information Processing
+Systems, pages 505–513, 2015.
+[23] J. Reye. Student modelling based on belief networks.
+International Journal of Artiﬁcial Intelligence in
+Education, 14(1):63–96, 2004.
+[24] A. Santoro, S. Bartunov, M. Botvinick, D. Wierstra,
+and T. Lillicrap. Meta-learning with
+memory-augmented neural networks. In Proceedings of
+The 33rd International Conference on Machine
+Learning, pages 1842–1850, 2016.
+[25] J. Schmidhuber. Deep learning in neural networks: An
+overview. Neural Networks, 61:85–117, 2015.
+[26] P. Steif and N. Bier. Oli engineering statics - fall 2011.
+Feb. 2014.
+[27] S. Sukhbaatar, J. Weston, R. Fergus, et al. End-to-end
+memory networks. In Advances in neural information
+processing systems, pages 2440–2448, 2015.
+[28] O. Vinyals, C. Blundell, T. Lillicrap, D. Wierstra,
+et al. Matching networks for one shot learning. In
+Advances in Neural Information Processing Systems,
+pages 3630–3638, 2016.
+[29] P. Viola and W. M. Wells III. Alignment by
+maximization of mutual information. International
+Journal of Computer Vision, 24(2):137–154, 1997.
+[30] J. Weston, S. Chopra, and A. Bordes. Memory
+networks. International Conference on Learning
+Representations, 2015.
+[31] K. H. Wilson, X. Xiong, M. Khajah, R. V. Lindsey,
+S. Zhao, Y. Karklin, E. G. Van Inwegen, B. Han,
+C. Ekanadham, J. E. Beck, et al. Estimating student
+proﬁciency: Deep learning is not the panacea. In In
+Neural Information Processing Systems, Workshop on
+Machine Learning for Education, 2016.
+[32] X. Xiong, S. Zhao, E. G. Van Inwegen, and J. E. Beck.
+Going deeper with deep knowledge tracing. In
+Educational Data Mining 2016, 2016.
+[33] M. V. Yudelson, K. R. Koedinger, and G. J. Gordon.
+Individualized bayesian knowledge tracing models. In
+Artiﬁcial intelligence in education, pages 171–180.
+Springer, 2013.
+774

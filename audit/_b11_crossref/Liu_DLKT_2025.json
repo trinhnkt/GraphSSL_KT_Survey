@@ -1,0 +1,164 @@
+{
+  "title": [
+    "Deep Learning Based Knowledge Tracing: A Review, a Tool and Empirical Studies"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0003-0491-307X",
+      "authenticated-orcid": false,
+      "given": "Zitao",
+      "family": "Liu",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "Jinan University, Guangzhou, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-6604-475X",
+      "authenticated-orcid": false,
+      "given": "Teng",
+      "family": "Guo",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Jinan University, Guangzhou, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-7558-0431",
+      "authenticated-orcid": false,
+      "given": "Qianru",
+      "family": "Liang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Jinan University, Guangzhou, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-5225-2195",
+      "authenticated-orcid": false,
+      "given": "Mingliang",
+      "family": "Hou",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "TAL Education Group, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Bojun",
+      "family": "Zhan",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Jinan University, Guangzhou, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-7125-3898",
+      "authenticated-orcid": false,
+      "given": "Jiliang",
+      "family": "Tang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Data Science and Engineering Lab, Michigan State University, East Lansing, MI, USA"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-5605-7397",
+      "authenticated-orcid": false,
+      "given": "Weiqi",
+      "family": "Luo",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Jinan University, Guangzhou, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Jian",
+      "family": "Weng",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Jinan University, Guangzhou, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2025,
+        8
+      ]
+    ]
+  },
+  "container-title": [
+    "IEEE Transactions on Knowledge and Data Engineering"
+  ],
+  "volume": "37",
+  "issue": "8",
+  "page": "4512-4536",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "DOI": "10.1109/tkde.2025.3552759",
+  "type": "journal-article"
+}

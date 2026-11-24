@@ -1,0 +1,39 @@
+{
+  "title": "Contrastive Learning Based on Bipartite Graphs for Interpretable Knowledge Tracing",
+  "container": "Lecture Notes in Computer Science",
+  "author": [
+    "Kai Chen",
+    "Shun Mao",
+    "Qiwen Zheng",
+    "Yuncheng Jiang"
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2024,
+        12,
+        15
+      ]
+    ]
+  },
+  "published-print": {
+    "date-parts": [
+      [
+        2025
+      ]
+    ]
+  },
+  "published-online": {
+    "date-parts": [
+      [
+        2024,
+        12,
+        15
+      ]
+    ]
+  },
+  "page": "206-220",
+  "volume": null,
+  "publisher": "Springer Nature Singapore",
+  "type": "book-chapter"
+}

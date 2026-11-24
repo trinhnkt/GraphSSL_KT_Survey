@@ -1,0 +1,568 @@
+KDD ’25, August 3–7, 2025, Toronto, ON, Canada
+Weibo Gao et al.
+References
+[1] Alexander A Alemi, Ian Fischer, Joshua V Dillon, and Kevin Murphy. 2016. Deep
+variational information bottleneck. arXiv preprint arXiv:1612.00410 (2016).
+[2] Uri Alon, Meital Zilberstein, Omer Levy, and Eran Yahav. 2018. code2vec: Learn-
+ing Distributed Representations of Code. arXiv:1803.09473 [cs.LG]
+[3] Jianxin Chang, Chen Gao, Yu Zheng, Yiqun Hui, Yanan Niu, Yang Song, Depeng
+Jin, and Yong Li. 2021. Sequential recommendation with graph neural networks.
+In Proceedings of the 44th international ACM SIGIR conference on research and
+development in information retrieval. 378–387.
+[4] Yu Chen, Lingfei Wu, and Mohammed Zaki. 2020. Iterative deep graph learning
+for graph neural networks: Better and robust node embeddings. Advances in
+neural information processing systems 33 (2020), 19314–19326.
+[5] Zhangyin Feng, Daya Guo, Duyu Tang, Nan Duan, Xiaocheng Feng, Ming
+Gong, Linjun Shou, Bing Qin, Ting Liu, Daxin Jiang, and Ming Zhou. 2020.
+CodeBERT: A Pre-Trained Model for Programming and Natural Languages.
+arXiv:2002.08155 [cs.CL]
+[6] Weibo Gao, Qi Liu, Zhenya Huang, Yu Yin, Haoyang Bi, Mu-Chun Wang, Jianhui
+Ma, Shijin Wang, and Yu Su. 2021. Rcd: Relation map driven cognitive diagnosis
+for intelligent education systems. In Proceedings of the 44th International ACM
+SIGIR Conference on Research and Development in Information Retrieval. 501–510.
+[7] Weibo Gao, Qi Liu, Hao Wang, Linan Yue, Haoyang Bi, Yin Gu, Fangzhou Yao,
+Zheng Zhang, Xin Li, and Yuanjing He. 2024. Zero-1-to-3: Domain-Level Zero-
+Shot Cognitive Diagnosis via One Batch of Early-Bird Students towards Three
+Diagnostic Objectives. In Proceedings of the AAAI Conference on Artificial Intelli-
+gence, Vol. 38. 8417–8426.
+[8] Aritra Ghosh, Neil Heffernan, and Andrew S Lan. 2020. Context-aware atten-
+tive knowledge tracing. In Proceedings of the 26th ACM SIGKDD international
+conference on knowledge discovery & data mining. 2330–2339.
+[9] Xavier Glorot and Yoshua Bengio. 2010. Understanding the difficulty of training
+deep feedforward neural networks. In Proceedings of the thirteenth international
+conference on artificial intelligence and statistics. JMLR Workshop and Conference
+Proceedings, 249–256.
+[10] Siqi Han, Yu Wang, and Xuesong Lu. 2023. ErrorCLR: Semantic Error Classi-
+fication, Localization and Repair for Introductory Programming Assignments.
+In Proceedings of the 46th International ACM SIGIR Conference on Research and
+Development in Information Retrieval. 1345–1354.
+[11] John A Hartigan and Manchek A Wong. 1979. Algorithm AS 136: A k-means
+clustering algorithm. Journal of the royal statistical society. series c (applied
+statistics) 28, 1 (1979), 100–108.
+[12] Jonathan Ho, Ajay Jain, and Pieter Abbeel. 2020. Denoising diffusion probabilistic
+models. Advances in neural information processing systems 33 (2020), 6840–6851.
+[13] Sepp Hochreiter and Jürgen Schmidhuber. 1997. Long short-term memory. Neural
+computation 9, 8 (1997), 1735–1780.
+[14] Edward J Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean
+Wang, Lu Wang, and Weizhu Chen. 2021. Lora: Low-rank adaptation of large
+language models. arXiv preprint arXiv:2106.09685 (2021).
+[15] Yilun Jin, Kai Chen, and Qiang Yang. 2023. Transferable graph structure learning
+for graph-based traffic forecasting across cities. In Proceedings of the 29th ACM
+SIGKDD Conference on Knowledge Discovery and Data Mining. 1032–1043.
+[16] Jin-Hwa Kim, Kyoung-Woon On, Woosang Lim, Jeonghee Kim, Jung-Woo Ha,
+and Byoung-Tak Zhang. 2016. Hadamard product for low-rank bilinear pooling.
+arXiv preprint arXiv:1610.04325 (2016).
+[17] Diederik P Kingma and Jimmy Ba. 2014. Adam: A method for stochastic opti-
+mization. arXiv preprint arXiv:1412.6980 (2014).
+[18] Philip IS Lei and António José Mendes. 2021. A systematic literature review on
+knowledge tracing in learning programming. In 2021 IEEE Frontiers in Education
+Conference (FIE). IEEE, 1–7.
+[19] Haoyang Li, Xin Wang, Ziwei Zhang, Jianxin Ma, Peng Cui, and Wenwu Zhu. 2021.
+Intention-aware sequential recommendation with structured intent transition.
+IEEE Transactions on Knowledge and Data Engineering 34, 11 (2021), 5403–5414.
+[20] Mingjia Li, Hong Qian, Jinglan Lv, Mengliang He, Wei Zhang, and Aimin Zhou.
+2025. Foundation model enhanced derivative-free cognitive diagnosis. Frontiers
+of Computer Science 19, 1 (2025), 191318.
+[21] Ruixin Li, Yu Yin, Le Dai, Shuanghong Shen, Xin Lin, Yu Su, and Enhong Chen.
+2022. PST: Measuring Skill Proficiency in Programming Exercise Process via
+Programming Skill Tracing. In Proceedings of the 45th International ACM SIGIR
+Conference on Research and Development in Information Retrieval. 2601–2606.
+[22] Rongfan Li, Ting Zhong, Xinke Jiang, Goce Trajcevski, Jin Wu, and Fan Zhou.
+2022. Mining spatio-temporal relations via self-paced graph contrastive learning.
+In Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and
+Data Mining. 936–944.
+[23] Yu Liang, Tianhao Peng, Yanjun Pu, and Wenjun Wu. 2022. HELP-DKT: an
+interpretable cognitive model of how students learn programming based on deep
+knowledge tracing. Scientific Reports 12, 1 (2022), 1–11.
+[24] Jiayu Liu, Zhenya Huang, Zhiyuan Ma, Qi Liu, Enhong Chen, Tianhuang Su, and
+Haifeng Liu. 2023. Guiding Mathematical Reasoning via Mastering Commonsense
+Formula Knowledge. In Proceedings of the 29th ACM SIGKDD Conference on
+Knowledge Discovery and Data Mining. 1477–1488.
+[25] Naiming Liu, Zichao Wang, Richard G Baraniuk, and Andrew Lan. 2022. GPT-
+based Open-Ended Knowledge Tracing. arXiv preprint arXiv:2203.03716 (2022).
+[26] Qi Liu, Zhenya Huang, Yu Yin, Enhong Chen, Hui Xiong, Yu Su, and Guoping Hu.
+2019. Ekt: Exercise-aware knowledge tracing for student performance prediction.
+IEEE Transactions on Knowledge and Data Engineering 33, 1 (2019), 100–115.
+[27] Shuo Liu, Junhao Shen, Hong Qian, and Aimin Zhou. 2024. Inductive Cognitive
+Diagnosis for Fast Student Learning in Web-Based Intelligent Education Systems.
+In Proceedings of the ACM on Web Conference 2024. Singapore, 4260–4271.
+[28] Haiping Ma, Yong Yang, Chuan Qin, Xiaoshan Yu, Shangshang Yang, Xingyi
+Zhang, and Hengshu Zhu. 2024. HD-KT: Advancing Robust Knowledge Tracing
+via Anomalous Learning Interaction Detection. In Proceedings of the ACM on Web
+Conference 2024. 4479–4488.
+[29] Andy Nguyen, Christopher Piech, Jonathan Huang, and Leonidas Guibas. 2014.
+Codewebs: scalable homework search for massive open online programming
+courses. In Proceedings of the 23rd international conference on World wide web.
+491–502.
+[30] Adam Paszke, Sam Gross, Francisco Massa, Adam Lerer, James Bradbury, Gregory
+Chanan, Trevor Killeen, Zeming Lin, Natalia Gimelshein, Luca Antiga, et al. 2019.
+Pytorch: An imperative style, high-performance deep learning library. Advances
+in neural information processing systems 32 (2019).
+[31] Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran Sahami,
+Leonidas J Guibas, and Jascha Sohl-Dickstein. 2015. Deep knowledge tracing.
+Advances in neural information processing systems 28 (2015).
+[32] Ruchir Puri, David S. Kung, Geert Janssen, Wei Zhang, Giacomo Domeniconi,
+Vladimir Zolotov, Julian Dolby, Jie Chen, Mihir Choudhury, Lindsey Decker,
+Veronika Thost, Luca Buratti, Saurabh Pujar, Shyam Ramji, Ulrich Finkler, Susan
+Malaika, and Frederick Reiss. 2021. CodeNet: A Large-Scale AI for Code Dataset
+for Learning a Diversity of Coding Tasks. arXiv:2105.12655 [cs.SE]
+[33] Sebastian Ruder. 2016. An overview of gradient descent optimization algorithms.
+arXiv preprint arXiv:1609.04747 (2016).
+[34] Shuanghong Shen, Qi Liu, Enhong Chen, Zhenya Huang, Wei Huang, Yu Yin, Yu
+Su, and Shijin Wang. 2021. Learning Process-consistent Knowledge Tracing. In
+KDD ’21: The 27th ACM SIGKDD Conference on Knowledge Discovery and Data
+Mining, Virtual Event, Singapore, August 14-18, 2021, Feida Zhu, Beng Chin Ooi,
+and Chunyan Miao (Eds.). ACM, 1452–1460. doi:10.1145/3447548.3467237
+[35] Shuanghong Shen, Qi Liu, Zhenya Huang, Yonghe Zheng, Minghao Yin, Minjuan
+Wang, and Enhong Chen. 2024. A survey of knowledge tracing: Models, variants,
+and applications. IEEE Transactions on Learning Technologies (2024).
+[36] Yang Shi, Min Chi, Tiffany Barnes, and Thomas Price. 2022. Code-DKT: A
+Code-based Knowledge Tracing Model for Programming Tasks. arXiv preprint
+arXiv:2206.03545 (2022).
+[37] Fei Wang, Weibo Gao, Qi Liu, Jiatong Li, Guanhao Zhao, Zheng Zhang, Zhenya
+Huang, Mengxiao Zhu, Shijin Wang, Wei Tong, et al. 2024. A survey of models
+for cognitive diagnosis: New developments and future directions. arXiv preprint
+arXiv:2407.05458 (2024).
+[38] Fei Wang, Qi Liu, Enhong Chen, Zhenya Huang, Yu Yin, Shijin Wang, and Yu Su.
+2022. NeuralCD: a general framework for cognitive diagnosis. IEEE Transactions
+on Knowledge and Data Engineering 35, 8 (2022), 8312–8327.
+[39] Lisa Wang, Angela Sy, Larry Liu, and Chris Piech. 2017. Deep knowledge tracing
+on programming exercises. In Proceedings of the fourth (2017) ACM conference on
+learning@ scale. 201–204.
+[40] Xiao Wang, Meiqi Zhu, Deyu Bo, Peng Cui, Chuan Shi, and Jian Pei. 2020. Am-
+gcn: Adaptive multi-channel graph convolutional networks. In Proceedings of
+the 26th ACM SIGKDD International conference on knowledge discovery & data
+mining. 1243–1253.
+[41] Bogdan M Wilamowski and Hao Yu. 2010. Improved computation for Levenberg–
+Marquardt training. IEEE transactions on neural networks 21, 6 (2010), 930–937.
+[42] Yaqiang Wu, Hui Zhu, Chenyang Wang, Fujian Song, Haiping Zhu, Yan Chen,
+Qinghua Zheng, and Feng Tian. 2024. Programming Knowledge Tracing Based on
+Heterogeneous Graph Representation. Knowledge-Based Systems (2024), 112161.
+[43] Zhengyang Wu, Ming Li, Yong Tang, and Qingyu Liang. 2020. Exercise recom-
+mendation based on knowledge concept prediction. Knowledge-Based Systems
+210 (2020), 106481.
+[44] Feng Xia, Ke Sun, Shuo Yu, Abdul Aziz, Liangtian Wan, Shirui Pan, and Huan
+Liu. 2021. Graph learning: A survey. IEEE Transactions on Artificial Intelligence 2,
+2 (2021), 109–127.
+[45] Rui Xu and Donald Wunsch. 2005. Survey of clustering algorithms. IEEE Trans-
+actions on neural networks 16, 3 (2005), 645–678.
+[46] Fangzhou Yao, Qi Liu, Linan Yue, Weibo Gao, Jiatong Li, Xin Li, and Yuanjing
+He. 2024. Adard: An adaptive response denoising framework for robust learner
+modeling. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge
+Discovery and Data Mining. 3886–3895.
+[47] Yu Yin, Le Dai, Zhenya Huang, Shuanghong Shen, Fei Wang, Qi Liu, Enhong
+Chen, and Xin Li. 2023. Tracing Knowledge Instead of Patterns: Stable Knowledge
+Tracing with Diagnostic Transformer. In Proceedings of the ACM Web Conference
+2023. 855–864.
+
+Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor
+KDD ’25, August 3–7, 2025, Toronto, ON, Canada
+[48] Yang Yu, Yingbo Zhou, Yaokang Zhu, Yutong Ye, Liangyu Chen, and Mingsong
+Chen. 2024. ECKT: Enhancing Code Knowledge Tracing via Large Language
+Models. In Proceedings of the Annual Meeting of the Cognitive Science Society,
+Vol. 46.
+[49] Linan Yue, Qi Liu, Ye Liu, Weibo Gao, Fangzhou Yao, and Wenfeng Li. 2024. Coop-
+erative classification and rationalization for graph generalization. In Proceedings
+of the ACM on Web Conference 2024. 344–352.
+[50] Zheng Zhang, Le Wu, Qi Liu, Jiayu Liu, Zhenya Huang, Yu Yin, Yan Zhuang,
+Weibo Gao, and Enhong Chen. 2024. Understanding and improving fairness in
+cognitive diagnosis. Science China Information Sciences 67, 5 (2024), 152106.
+[51] Chuang Zhao, Hongke Zhao, Xiaomeng Li, Ming He, Jiahui Wang, and Jianping
+Fan. 2023. Cross-domain recommendation via progressive structural alignment.
+IEEE Transactions on Knowledge and Data Engineering (2023).
+[52] Hao Zhao, Ming Lu, Anbang Yao, Yiwen Guo, Yurong Chen, and Li Zhang.
+2017. Physics inspired optimization on semantic transfer features: An alternative
+method for room layout estimation. In Proceedings of the IEEE conference on
+computer vision and pattern recognition. 10–18.
+[53] Man Zhou, Jie Xiao, Yifan Chang, Xueyang Fu, Aiping Liu, Jinshan Pan, and
+Zheng-Jun Zha. 2021. Image de-raining via continual learning. In Proceedings of
+the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 4907–4916.
+[54] Renyu Zhu, Dongxiang Zhang, Chengcheng Han, Ming Gaol, Xuesong Lu, Wein-
+ing Qian, and Aoying Zhou. 2022. Programming knowledge tracing: A compre-
+hensive dataset and a new model. In 2022 IEEE International Conference on Data
+Mining Workshops (ICDMW). IEEE, 298–307.
+[55] IS Zinovieva, VO Artemchuk, Anna V Iatsyshyn, OO Popov, VO Kovach, Andrii V
+Iatsyshyn, YO Romanenko, and OV Radchenko. 2021. The use of online coding
+platforms as additional distance tools in programming education. In Journal of
+physics: Conference series, Vol. 1840. IOP Publishing, 012029.
+A
+Proof
+Property 1. L𝑛𝑎𝑣
+𝑏
+is bounded as follows:
+L𝑛𝑎𝑣
+𝑏
+≤
+
+
+∇𝜃𝑏−1L𝑝𝑘𝑡(𝜃𝑏−1)
+𝑇 · |𝛿𝜃𝑏−1| + |𝛿𝜃𝑏−1|𝑇· |𝐽𝑇𝐽| · |𝛿𝜃𝑏−1| ,
+(15)
+where 𝐽is the Jacobian matrix [41]. The proof is as follows:
+Proof. Given the following equations,
+L𝑛𝑎𝑣
+𝑏
+=
+
+𝑁
+∑︁
+𝑢=1
+𝑇𝑢
+∑︁
+𝑡=1
+L𝑝𝑘𝑡
+𝑢,𝑡(𝜃𝑏) −
+𝑁
+∑︁
+𝑢=1
+𝑇𝑢
+∑︁
+𝑡=1
+L𝑝𝑘𝑡
+𝑢,𝑡(𝜃𝑏−1)
+, 𝛿𝜃𝑏−1 = 𝜃𝑏−𝜃𝑏−1,
+(16)
+and let L𝑝𝑘𝑡(𝜃𝑏) and L𝑝𝑘𝑡(𝜃𝑏−1) denote Í𝑁
+𝑢=1
+Í𝑇𝑢
+𝑡=1 L𝑝𝑘𝑡
+𝑢,𝑡(𝜃𝑏) and
+Í𝑁
+𝑢=1
+Í𝑇𝑢
+𝑡=1 L𝑝𝑘𝑡
+𝑢,𝑡(𝜃𝑏−1) respectively, we take the Taylor expansion
+of L𝑝𝑘𝑡(𝜃𝑏−1) at point 𝜃𝑏−1, which is an infinite sum of terms that
+are expressed in the form of loss function’s derivatives at a single
+point:
+L𝑝𝑘𝑡(𝜃𝑏−1 + 𝛿𝜃𝑏−1) = L𝑝𝑘𝑡(𝜃𝑏−1) +
+
+∇𝜃𝑏−1L𝑝𝑘𝑡(𝜃𝑏−1)
+𝑇
+· 𝛿𝜃𝑏−1
++ 1
+2 (𝛿𝜃𝑏−1)𝑇· 𝐻· 𝛿𝜃𝑏−1 + 𝑂
+
+∥𝛿𝜃𝑏−1∥3
+,
+(17)
+where 𝐻denotes Hessian matrix:
+𝐻= ∇𝜃𝑏−1L𝑝𝑘𝑡(𝜃𝑏−1).
+(18)
+Then L𝑛𝑎𝑣
+𝑏
+can be derived as:
+L𝑛𝑎𝑣
+𝑏
+=
+L𝑝𝑘𝑡(𝜃𝑏) −L𝑝𝑘𝑡(𝜃𝑏−1)
+
+=
+L𝑝𝑘𝑡(𝜃𝑏−1 + 𝛿𝜃𝑏−1) −L𝑝𝑘𝑡(𝜃𝑏−1)
+
+≈
+
+
+∇𝜃𝑏−1L𝑝𝑘𝑡(𝜃𝑏−1)
+𝑇
+· 𝛿𝜃𝑏−1 + 1
+2 (𝛿𝜃𝑏−1)𝑇· 𝐻· 𝛿𝜃𝑏−1
+ .
+(19)
+It is evident that Eq.(19) significantly reduces the computational
+demands on each training datum compared to Eq.(17), thereby ac-
+celerating the calculation of the total loss. However, the storage
+requirements associated with Hessian matrices remain substan-
+tial [53]. Therefore, drawing inspiration from the Gauss-Newton
+method [41], we approximate 𝐻as 2 · 𝐽𝑇𝐽for the Hessian matrix,
+where 𝐽represents the Jacobian matrix. Consequently, we arrive at
+the final formulation of L𝑛𝑎𝑣
+𝑏
+as follows:
+L𝑛𝑎𝑣
+𝑏
+≈
+
+
+∇𝜃𝑏−1L𝑝𝑘𝑡(𝜃𝑏−1)
+𝑇
+· 𝛿𝜃𝑏−1 + (𝛿𝜃𝑏−1)𝑇· 𝐽𝑇𝐽· 𝛿𝜃𝑏−1
+
+≤
+
+
+∇𝜃𝑏−1L𝑝𝑘𝑡(𝜃𝑏−1)
+𝑇 · |𝛿𝜃𝑏−1| + |𝛿𝜃𝑏−1|𝑇· |𝐽𝑇𝐽| · |𝛿𝜃𝑏−1|
+(20)
+where | · | in the Eq. (20) denotes element-wise absolute value in
+our implementation. The proof is completed.
+□
+Algorithm 1 The training and test of PKT backbone models
+Require: Training dataset 𝐷𝑡𝑟𝑎𝑖𝑛, test dataset 𝐷𝑡𝑒𝑠𝑡, learning rate
+𝛼, number of epochs 𝑁
+Ensure: Trained PKT backbone model 𝑀
+1: Initialize model parameters 𝑊randomly
+2: Training started
+3: for 𝑒𝑝𝑜𝑐ℎ= 1 to 𝑁do
+4:
+for all 𝑙𝑢∈𝐷𝑡𝑟𝑎𝑖𝑛do
+5:
+// 𝑙𝑢denotes a programming sequence of learner 𝑢and its
+length is 𝑇𝑢
+6:
+for 𝑡= 1 to 𝑇𝑢−1 do
+7:
+Compute programming performance at the next step
+ˆ𝑟𝑢,𝑡+1 = 𝑀(𝑙𝑢,1:𝑡;𝑊)
+8:
+// 𝑙𝑢,1:𝑡is programming records of 𝑢from step 1 to 𝑡
+9:
+Compute cross-entropy loss L𝑝𝑘𝑡
+𝑢,𝑡= 𝐵𝐶𝐸 𝑟𝑢,𝑡+1, ˆ𝑟𝑢,𝑡+1
+
+10:
+Update parameters 𝑊= 𝑊−𝛼∇L𝑝𝑘𝑡
+𝑢,𝑡
+11:
+end for
+12:
+end for
+13: end for
+14: Training completed
+15:
+16: Testing started
+17: for all 𝑙𝑢∈𝐷𝑡𝑒𝑠𝑡do
+18:
+for 𝑡= 1 to 𝑇𝑢−1 do
+19:
+Compute programming performance at the next step
+ˆ𝑟𝑢,𝑡+1 = 𝑀(𝑙𝑢;𝑊)
+20:
+Compute performance metric using 𝑟𝑢,𝑡+1 and ˆ𝑟𝑢,𝑡+1
+21:
+end for
+22: end for
+23: Testing completed
+B
+Datasets and Preprocessing
+BePKT[54] comprises extensive programming submission records
+in several languages authored by college students. We retain sub-
+mission records written in C, C++, Python, and Java. AtCoder is
+collected from the online programming competition website At-
+coder.org, consisting of codes in multiple languages, as published by
+
+KDD ’25, August 3–7, 2025, Toronto, ON, Canada
+Weibo Gao et al.
+Algorithm 3 The Algorithm of Coda (Part 2)
+1: BEGIN MAIN FUNCTION:
+2: Initialize: learning rate 𝑙𝑟, 𝑒𝑝𝑜𝑐ℎ←0, 𝐵𝑎𝑡𝑐ℎ𝑆𝑖𝑧𝑒,𝑇𝑜𝑡𝑎𝑙𝐸𝑝𝑜𝑐ℎ,
+the number of clusters 𝐶𝑘, the number of GCN layers 𝐿.
+3: // Training process:
+4: repeat
+5:
+For 𝑏from 1 to |D𝑡𝑟𝑎𝑖𝑛|/𝐵𝑎𝑡𝑐ℎ𝑆𝑖𝑧𝑒:
+6:
+Initialize prediction loss L𝑝←0
+7:
+For each 𝑢∈D𝑡𝑟𝑎𝑖𝑛𝑏:
+8:
+{𝐺𝑢,𝑖}𝑛
+𝑖=1, I𝑢←CodeGraphConstruction(𝑙𝑢).
+9:
+I∗
+𝑢, {𝐺𝑢,𝑖}𝑛
+𝑖=1 ←UnwantedSignalsIdentification(I𝑢,
+{S𝑞𝑗}𝑀
+𝑗=1, {𝐺𝑢,𝑖}𝑛
+𝑖=1).
+10:
+{(𝐶𝑢,𝑐𝑙, W𝑢,𝑐𝑙)}𝐶𝑘
+𝑐𝑙=1
+←
+ClusterAwareWeakSignalFusion({𝐺𝑢,𝑖}𝑛
+𝑖=1,
+{®𝑥𝑢,𝑖}𝑇𝑢
+𝑖=1,
+𝐶𝑘, 𝐿).
+11:
+// Tuning Adaptor for PKT
+12:
+For 𝑡from 1 to 𝑇𝑢−1:
+13:
+Construct prompt ®𝑝𝑢,𝑡via I𝑢, {(𝐶𝑢,𝑐𝑙, W𝑢,𝑐𝑙)}𝐶𝑘
+𝑐𝑙=1.
+14:
+// Calculate correction signal.
+15:
+®ℎ′𝑡𝑢,𝑎←(W𝑇
+𝐴· W𝐵) ⊙®𝑝𝑢,𝑡.
+16:
+// Update knowledge state ®ℎ𝑢,𝑡learned by the PKT
+backbone M𝑃𝐾𝑇.
+17:
+®ℎ′𝑢,𝑡←®ℎ𝑢,𝑡+ ®ℎ′𝑢,𝑡𝑎.
+18:
+// Compute programming performance at the step 𝑡+ 1
+via programming records of 𝑢from step 1 to 𝑡.
+19:
+ˆ𝑟𝑢,𝑡+1 = M𝑃𝐾𝑇(𝑙𝑢,1:𝑡; ®ℎ′𝑢,𝑡)
+20:
+Compute loss L𝑝= L𝑝𝑘𝑡
+𝑢,𝑡+ L𝑎𝑑𝑎𝑝𝑡𝑜𝑟
+𝑢,𝑡
+.
+21:
+End for
+22:
+End for
+23:
+Calculate 𝜃𝑏←𝜃𝑏−1 −𝑙𝑟· ∇𝜃L𝑝, without gradient back-
+propagating.
+24:
+Calculate L𝑛𝑎𝑣
+𝑏
+via 𝜃𝑏, 𝜃𝑏−1.
+25:
+L𝐶𝑜𝑑𝑎←L𝑝+ L𝑛𝑎𝑣
+𝑏
+26:
+Update parameters𝜃𝑏←𝜃𝑏−1−𝑙𝑟·∇𝜃L𝑛𝑎𝑣
+𝑏
+, with gradient
+backpropagating.
+27:
+End for
+28: until 𝑒𝑝𝑜𝑐ℎequals 𝑇𝑜𝑡𝑎𝑙𝐸𝑝𝑜𝑐ℎ
+29: // Test process:
+30: For each 𝑢∈D𝑡𝑒𝑠𝑡:
+31:
+For 𝑡from 1 to 𝑇𝑢−1:
+32:
+{𝐺𝑢,𝑖}𝑛
+𝑖=1, I𝑢←CodeGraphConstruction(𝑙𝑢,1:𝑡).
+33:
+I∗
+𝑢, {𝐺𝑢,𝑖}𝑛
+𝑖=1 ←UnwantedSignalsIdentification(I𝑢,
+{S𝑞𝑗}𝑀
+𝑗=1, {𝐺𝑢,𝑖}𝑛
+𝑖=1).
+34:
+{(𝐶𝑢,𝑐𝑙, W𝑢,𝑐𝑙)}𝐶𝑘
+𝑐𝑙=1
+←
+ClusterAwareWeakSignalFusion({𝐺𝑢,𝑖}𝑛
+𝑖=1,
+{®𝑥𝑢,𝑖}𝑇𝑢
+𝑖=1,
+𝐶𝑘, 𝐿).
+35:
+Construct prompt ®𝑝𝑢,𝑡via I𝑢, {(𝐶𝑢,𝑐𝑙, W𝑢,𝑐𝑙)}𝐶𝑘
+𝑐𝑙=1.
+36:
+®ℎ′𝑡𝑢,𝑎←(W𝑇
+𝐴· W𝐵) ⊙®𝑝𝑢,𝑡.
+37:
+®ℎ′𝑢,𝑡←®ℎ𝑢,𝑡+ ®ℎ′𝑢,𝑡𝑎.
+38:
+ˆ𝑟𝑢,𝑡+1 = M𝑃𝐾𝑇(𝑙𝑢,1:𝑡; ®ℎ′𝑢,𝑡)
+39:
+Compute performance metric using 𝑟𝑢,𝑡+1 and ˆ𝑟𝑢,𝑡+1.
+40:
+End for
+41: End for
+the CodeNet project[32]. We retain submission records in C, C++,
+and Python as the coding languages. Furthermore, since PST [21]
+only supports single-language programming scenarios, we addition-
+ally sample submissions written in C++ from BePKT to generate the
+BePKT_C++ dataset and submissions written in C from AtCoder to
+generate the AtCoder_C dataset, enabling us to evaluate PST. For
+each dataset, we exclude learners with fewer than five submissions
+to ensure that every learner has a sufficient number of records for
+tracing.
+Algorithm 2 The Algorithm of Coda (Part 1)
+1: Input: 𝑁learners’ programming sequences {𝑙1,𝑙2, · · · ,𝑙𝑁}, the
+optimized backbone PKT model M𝑃𝐾𝑇, correct solution feature
+set {S𝑞𝑗}𝑀
+𝑗=1 of 𝑀questions, training set D𝑡𝑟𝑎𝑖𝑛, test set D𝑡𝑒𝑠𝑡.
+2: Parameters (𝜃): W, W𝑎, W𝑐, W𝐴, W𝐵.
+3: Function CodeGraphConstruction(𝑙𝑢):
+4:
+// Construct code graph based on code semantic similarity.
+5:
+// 𝑙𝑢= {(𝑞𝑢,1,𝑐𝑢,1,𝑥𝑢,1,𝑟𝑢,1), . . . , (𝑞𝑢,𝑇𝑢,𝑐𝑢,𝑇𝑢,𝑥𝑢,𝑇𝑢,𝑟𝑢,𝑇𝑢)}
+6:
+For each pair of codes < 𝑥𝑢,𝑖,𝑥𝑢,𝑗> in 𝑙𝑢:
+7:
+Calculate indicator matrix 𝑀𝑢,<𝑖,𝑗>.
+8:
+End for
+9:
+Generate binary adjacency matrix 𝐴𝑢via Rank𝜖.
+10:
+// Note that 𝐴𝑢may not guarantee a connected graph, and it
+may contain 𝑛subgraphs.
+11:
+Return code graph set: {𝐺𝑢,𝑖}𝑛
+𝑖=1, isolated code set: I𝑢.
+12: Function UnwantedSignalsIdentification(I𝑢, {S𝑞𝑗}𝑀
+𝑗=1,
+{𝐺𝑢,𝑖}𝑛
+𝑖=1):
+13:
+// Identify unwanted submissions from isolated nodes.
+14:
+Initialize an unwanted set I∗
+𝑢←∅
+15:
+For each isolated node 𝑖∈I𝑢:
+16:
+Obtain question ID 𝑞𝑢,𝑖corresponding to code 𝑖
+17:
+For each 𝑥𝑢,𝑗′ in S𝑞𝑢,𝑖:
+18:
+𝑠𝑖,𝑗′ ←sim(W ⊙®𝑥𝑢,𝑖, W ⊙®𝑥𝑢,𝑗′).
+19:
+End for
+20:
+𝑆𝑖←{𝑠𝑖,𝑗′; 𝑗′ ∈S𝑞𝑢,𝑖}
+21:
+If mean(𝑆𝑖) < median(𝑆𝑖):
+22:
+Mark node 𝑖as unwanted and I∗
+𝑢∪{𝑖}.
+23:
+Else:
+24:
+Link code node 𝑖with {𝐺𝑢,𝑖}𝑛
+𝑖=1.
+25:
+End for
+26:
+Return unwanted set: I∗
+𝑢, updated code graphs: {𝐺𝑢,𝑖}𝑛
+𝑖=1.
+27: Function
+ClusterAwareWeakSignalFusion({𝐺𝑢,𝑖}𝑛
+𝑖=1,
+{®𝑥𝑢,𝑖}𝑇𝑢
+𝑖=1, 𝐶𝑘, 𝐿):
+28:
+// Apply 𝐿-layer cluster-aware GCN to update node features.
+29:
+{ ®𝑥′𝑢,𝑖}𝑇𝑢
+𝑖=1 ←GCN({®𝑥𝑢,𝑖}𝑇𝑢
+𝑖=1, {𝐺𝑢,𝑖}𝑛
+𝑖=1, W, Wa, Wc)
+30:
+𝐶𝑘clusters ←KMeans({ ®𝑥′𝑢,𝑖},𝐶𝑘).
+31:
+Mark core submissions and weak signals for each cluster.
+32:
+Return a core submission and its related weak signal set for
+each cluster 𝑐𝑙: {(𝐶𝑢,𝑐𝑙, W𝑢,𝑐𝑙)}𝐶𝑘
+𝑐𝑙=1.
+C
+Algorithms
+Algorithm 1 shows the pseudo-code of training and testing a PKT
+backbone model. Algorithms 2 and 3 show the workflow of Coda.

@@ -1,0 +1,98 @@
+{
+  "title": [
+    "Bi-CLKT: Bi-Graph Contrastive Learning based Knowledge Tracing"
+  ],
+  "author": [
+    {
+      "given": "Xiangyu",
+      "family": "Song",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-9059-330X",
+      "authenticated-orcid": false,
+      "given": "Jianxin",
+      "family": "Li",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Qi",
+      "family": "Lei",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Wei",
+      "family": "Zhao",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yunliang",
+      "family": "Chen",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Ajmal",
+      "family": "Mian",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2022,
+        4
+      ]
+    ]
+  },
+  "container-title": [
+    "Knowledge-Based Systems"
+  ],
+  "volume": "241",
+  "issue": null,
+  "page": "108274",
+  "publisher": "Elsevier BV",
+  "DOI": "10.1016/j.knosys.2022.108274",
+  "type": "journal-article"
+}

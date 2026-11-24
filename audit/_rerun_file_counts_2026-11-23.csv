@@ -1,0 +1,13 @@
+file,records,records_after_2026,papers
+arxiv_qg_20261114.xml,273,0,
+arxiv_qs_20261114.xml,199,0,
+ieee_qg_20261114.csv,112,0,
+ieee_qs_20261114.csv,27,0,CoSKT
+sciencedirect_qg_20261114.bib,66,0,Han;HCMKT
+sciencedirect_qs_20261114.bib,25,0,SPCLKT;Han;HCMKT
+scopus_qg_20261114.csv,381,0,DECKT;Han;HCMKT;CLBG
+scopus_qp_20261114.csv,85,0,DECKT;SPCLKT;HCMKT
+scopus_qr_20261114.csv,38,0,
+scopus_qs_20261114.csv,192,0,DECKT;DTransformer;SPCLKT;Han;HCMKT;CLBG;CoSKT
+springer_qg_20261114.csv,558,0,CLBG
+springer_qs_20261114.csv,546,0,CLBG

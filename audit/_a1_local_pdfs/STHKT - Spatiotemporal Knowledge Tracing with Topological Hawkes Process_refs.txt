@@ -1,0 +1,123 @@
+S. Li et al.
+Fig. 7. The visualization of attention scores using different attention mechanisms in the spatiotemporal attention part is presented as a heatmap in the figure. Both the 𝑥-axis and
+𝑦-axis represent the sequence of answering questions, with the direction from left to right and from top to bottom indicating the chronological order. Since the information from
+subsequent and current moments is not to be referred to at a certain moment, the attention scores in the main diagonal and upper triangular area are all zero. The color bar on
+the right indicates the variation in color corresponding to the attention scores.
+References
+Abdelrahman, G., Wang, Q., & Nunes, B. (2023). Knowledge tracing: A survey. ACM
+Computing Surveys, 55(11), 1–37.
+Brin, S., & Page, L. (1998). The anatomy of a large-scale hypertextual web search
+engine. Computer Networks and ISDN Systems, 30(1–7), 107–117.
+Cai, R., Wu, S., Qiao, J., Hao, Z., Zhang, K., & Zhang, X. (2022). THPs: Topological
+hawkes processes for learning causal structure on event sequences. IEEE Transactions
+on Neural Networks and Learning Systems.
+Cho, K., Van Merriënboer, B., Gulcehre, C., Bahdanau, D., Bougares, F., Schwenk, H.,
+& Bengio, Y. (2014). Learning phrase representations using RNN encoder-decoder
+for statistical machine translation. arXiv preprint arXiv:1406.1078.
+Cui, P., & Sachan, M. (2023). Adaptive and personalized exercise generation for online
+language learning. In The 61st annual meeting of the Association for Computational
+Linguistics.
+Cui, C., Yao, Y., Zhang, C., Ma, H., Ma, Y., Ren, Z., Zhang, C., & Ko, J. (2024). DGEKT:
+a dual graph ensemble learning method for knowledge tracing. ACM Transactions
+on Information Systems, 42(3), 1–24.
+Defferrard, M., Bresson, X., & Vandergheynst, P. (2016). Convolutional neural networks
+on graphs with fast localized spectral filtering. Advances in Neural Information
+Processing Systems, 29.
+Dong, Y., Chawla, N. V., & Swami, A. (2017). metapath2vec: Scalable representation
+learning for heterogeneous networks. In Proceedings of the 23rd ACM SIGKDD
+international conference on knowledge discovery and data mining (pp. 135–144).
+Eddy, S. R. (1996). Hidden markov models. Current Opinion in Structural Biology, 6(3),
+361–365.
+Ghosh, A., Heffernan, N., & Lan, A. S. (2020). Context-aware attentive knowledge
+tracing. In Proceedings of the 26th ACM SIGKDD international conference on knowledge
+discovery & data mining (pp. 2330–2339).
+Hawkes, A. G. (1971). Point spectra of some mutually exciting point processes. Journal
+of the Royal Statistical Society. Series B. Statistical Methodology, 33(3), 438–443.
+Huang, Z., Liu, Q., Chen, Y., Wu, L., Xiao, K., Chen, E., Ma, H., & Hu, G. (2020).
+Learning or forgetting? a dynamic approach for tracking the knowledge proficiency
+of students. ACM Transactions on Information Systems (TOIS), 38(2), 1–33.
+Jiang, H., Xiao, B., Luo, Y., & Ma, J. (2023). A self-attentive model for tracing
+knowledge and engagement in parallel. Pattern Recognition Letters, 165, 25–32.
+Keikha, M. M., Rahgozar, M., & Asadpour, M. (2018). Community aware random walk
+for network embedding. Knowledge-Based Systems, 148, 47–54.
+Khan, B., Wu, J., Yang, J., & Ma, X. (2023). Heterogeneous hypergraph neural
+network for social recommendation using attention network. ACM Transactions on
+Recommender Systems.
+Lipton, Z. C., Berkowitz, J., & Elkan, C. (2015). A critical review of recurrent neural
+networks for sequence learning. arXiv preprint arXiv:1506.00019.
+Liu, Q., Shen, S., Huang, Z., Chen, E., & Zheng, Y. (2021). A survey of knowledge
+tracing. arXiv preprint arXiv:2105.15106.
+Luaces, O., Díez, J., Alonso-Betanzos, A., Troncoso, A., & Bahamonde, A. (2017).
+Content-based methods in peer assessment of open-response questions to grade
+students as authors and as graders. Knowledge-Based Systems, 117, 79–87.
+Luo, D., Xu, H., Zhen, Y., Ning, X., Zha, H., Yang, X., & Zhang, W. (2015). Multi-task
+multi-dimensional hawkes processes for modeling event sequences. ACM.
+Lyu, H., Sha, N., Qin, S., Yan, M., Xie, Y., & Wang, R. (2019). Advances in neural
+information processing systems. Advances in Neural Information Processing Systems,
+32.
+Nakagawa, H., Iwasawa, Y., & Matsuo, Y. (2019). Graph-based knowledge tracing:
+modeling student proficiency using graph neural network. In IEEE/WIC/aCM
+international conference on web intelligence (pp. 156–163).
+Ni, Q., Wei, T., Zhao, J., He, L., & Zheng, C. (2023). HHSKT: A learner–question
+interactions based heterogeneous graph neural network model for knowledge
+tracing. Expert Systems with Applications, 215, Article 119334.
+Piech, C., Bassen, J., Huang, J., Ganguli, S., Sahami, M., Guibas, L. J., & Sohl-
+Dickstein, J. (2015). Deep knowledge tracing. Advances in Neural Information
+Processing Systems, 28.
+Shang, J., & Sun, M. (2019). Geometric hawkes processes with graph convolutional
+recurrent neural networks. In Proceedings of the AAAI conference on artificial
+intelligence, vol. 33, no. 01 (pp. 4878–4885).
+Shannon, C. E. (1948). A mathematical theory of communication. The Bell System
+Technical Journal, 27(3), 379–423.
+Shen, S., Liu, Q., Chen, E., Huang, Z., Huang, W., Yin, Y., Su, Y., & Wang, S. (2021).
+Learning process-consistent knowledge tracing. In Proceedings of the 27th ACM
+SIGKDD conference on knowledge discovery & data mining (pp. 1452–1460).
+Song, X., Li, J., Tang, Y., Zhao, T., Chen, Y., & Guan, Z. (2021). Jkt: A joint graph
+convolutional network based deep knowledge tracing. Information Sciences, 580,
+510–523.
+Su, Y., Cheng, Z., Wu, J., Dong, Y., Huang, Z., Wu, L., Chen, E., Wang, S., &
+Xie, F. (2022). Graph-based cognitive diagnosis for intelligent tutoring systems.
+Knowledge-Based Systems, 253, Article 109547.
+Tong, S., Liu, Q., Huang, W., Hunag, Z., Chen, E., Liu, C., Ma, H., & Wang, S. (2020).
+Structure-based knowledge tracing: An influence propagation view. In 2020 IEEE
+international conference on data mining (pp. 541–550). IEEE.
+Van der Maaten, L., & Hinton, G. (2008). Visualizing data using t-SNE. Journal of
+Machine Learning Research, 9(11).
+Wang, C., Ma, W., Zhang, M., Lv, C., Wan, F., Lin, H., Tang, T., Liu, Y., & Ma, S.
+(2021). Temporal cross-effects in knowledge tracing. In Proceedings of the 14th ACM
+international conference on web search and data mining (pp. 517–525).
+Wang, X., Zheng, Z., Zhu, J., & Yu, W. (2023). What is wrong with deep knowledge
+tracing? Attention-based knowledge tracing. Applied Intelligence: The International
+Journal of Artificial Intelligence, Neural Networks, and Complex Problem-Solving
+Technologies, 53(3), 2850–2861.
+Wen, Q., Sun, L., Yang, F., Song, X., Gao, J., Wang, X., & Xu, H. (2020). Time series
+data augmentation for deep learning: A survey. arXiv preprint arXiv:2002.12478.
+Wu, T., & Ling, Q. (2023). Self-supervised heterogeneous hypergraph network for
+knowledge tracing. Information Sciences, 624, 200–216.
+Xu, B., Huang, Z., Liu, J., Shen, S., Liu, Q., Chen, E., Wu, J., & Wang, S. (2023).
+Learning behavior-oriented knowledge tracing. In Proceedings of the 29th ACM
+SIGKDD conference on knowledge discovery and data mining (pp. 2789–2800).
+Yin, Y., Dai, L., Huang, Z., Shen, S., Wang, F., Liu, Q., Chen, E., & Li, X. (2023).
+Tracing knowledge instead of patterns: Stable knowledge tracing with diagnostic
+transformer. In Proceedings of the ACM web conference 2023 (pp. 855–864).
+Expert Systems With Applications 259 (2025) 125248 
+12 
+
+S. Li et al.
+Yudelson, M. V., Koedinger, K. R., & Gordon, G. J. (2013). Individualized bayesian
+knowledge tracing models. In Artificial intelligence in education: 16th international
+conference, AIED 2013, Memphis, TN, USA, July 9-13, 2013. proceedings 16 (pp.
+171–180). Springer.
+Zhang, Y., An, R., Zhang, W., Liu, S., & Shang, X. (2023). Deep knowledge tracing with
+concept trees. In International conference on advanced data mining and applications
+(pp. 377–390). Springer.
+Zhang, J., Shi, X., King, I., & Yeung, D.-Y. (2017). Dynamic key-value memory networks
+for knowledge tracing. In Proceedings of the 26th international conference on world
+wide web (pp. 765–774).
+Zhang, S., Tong, H., Xu, J., & Maciejewski, R. (2019). Graph convolutional networks:
+A comprehensive review. Computational Social Networks, 6(1), 1–23.
+Zhou, K., Zha, H., & Song, L. (2013). Learning triggering kernels for multi-dimensional
+hawkes processes. In International conference on machine learning (pp. 1301–1309).
+PMLR.
+Expert Systems With Applications 259 (2025) 125248 
+13 

@@ -33,7 +33,7 @@ REC_0031,SKM-GKT: Subject Knowledge Mapping Graph KT,Yang et al.,2025,EAIT,10.10
 REC_0032,HKT: Hierarchical Structure-Based KT,Li et al.,2025,IP&M,10.1016/j.ipm.2025.104206,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
 REC_0033,AEGOT-CDKT: Graph Optimal Transport Cross-Domain KT,Wu et al.,2025,WWW,10.1007/s11280-024-01311-1,PRIMARY_CORE,NA,Satisfies G-criterion (AEGOT-CDKT),AI_ASSISTANT,FULLTEXT_CODED
 REC_0034,Coda: Denoising Code Graph Adapter for PKT,Gao et al.,2025,KDD,10.1145/3690624.3709172,PRIMARY_CORE,NA,Satisfies G-criterion (Coda),AI_ASSISTANT,FULLTEXT_CODED
-REC_0035,KGNN-KT: Knowledge Graph Neural Network KT with LLM,Chen et al.,2025,KBS,10.1016/j.knosys.2025.113400,PRIMARY_CORE,NA,Satisfies G-criterion (KGNN-KT),AI_ASSISTANT,FULLTEXT_CODED
+REC_0035,KGNN-KT: Knowledge Graph Neural Network KT with LLM,Chen et al.,2025,KBS,10.1016/j.knosys.2025.113400,PRIMARY_CORE,NA,Chen et al. KBS 113400 — not the deposited KT076 (Zhang et al. ICIC 2025 DOI 10.1007/978-981-96-9986-5_12),AI_ASSISTANT,FULLTEXT_CODED
 REC_0036,R²GCurL: Reinforced Robust KT via Dynamic Graph Curriculum,Zhao et al.,2026,IEEE TKDE,10.1109/TKDE.2026.353000,PRIMARY_CORE,NA,Satisfies G-criterion (R²GCurL),AI_ASSISTANT,FULLTEXT_CODED
 REC_0037,Contrastive Multi-View Graph Neural Network for Sequential KT,Xu et al.,2025,AAAI,10.1609/aaai.v39i1.30500,PRIMARY_CORE,NA,Satisfies G-criterion and S-criterion,AI_ASSISTANT,FULLTEXT_CODED
 REC_0038,Spatio-Temporal Graph Neural Network for Streaming KT,Liu et al.,2026,DASFAA,10.1007/978-3-031-60000_15,PRIMARY_CORE,NA,Satisfies G-criterion,AI_ASSISTANT,FULLTEXT_CODED

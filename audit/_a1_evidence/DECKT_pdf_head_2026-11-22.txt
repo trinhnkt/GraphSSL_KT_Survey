@@ -1,0 +1,121 @@
+
+
+===== PAGE 1 =====
+Academic Editors: Zoran H. Peri´ c,
+Vlado Deli´ c, Vladimir Despotovic,
+Zoran Ognjanovi´ c and Marko S.
+Andjelkovi´ c
+Received: 27 May 2025
+Revised: 21 June 2025
+Accepted: 25 June 2025
+Published: 26 June 2025
+Citation: Bai, Y.; Wu, X.; Wei, T.; He,
+L. A Dual-Encoder Contrastive
+Learning Model for Knowledge
+Tracing. Entropy 2025, 27, 685.
+https://doi.org/10.3390/e27070685
+Copyright: © 2025 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license
+(https://creativecommons.org/
+licenses/by/4.0/).
+Article
+A Dual-Encoder Contrastive Learning Model for Knowledge T racing
+Yanhong Bai 1,†, Xingjiao Wu 2,†, Tingjiang Wei 1,* and Liang He 3
+1 Laboratory of AI for Education, East China Normal University, Shanghai 200062, China;
+lucky_byh369@163.com
+2 School of Pharmacy, East China Normal University, Shanghai 200062, China; xjwu@pharm.ecnu.edu.cn
+3 School of Computer Science and Technology, East China Normal University, Shanghai 200062, China;
+lhe@cs.ecnu.edu.cn
+* Correspondence: mxdlzg@163.com
+† These authors contributed equally to this work.
+Abstract
+Knowledge tracing (KT) models learners’ evolving knowledge states to predict future
+performance, serving as a fundamental component in personalized education systems.
+However, existing methods suffer from data sparsity challenges, resulting in inadequate
+representation quality for low-frequency knowledge concepts and inconsistent model-
+ing of students’ actual knowledge states. To address this challenge, we propose Dual-
+Encoder Contrastive Knowledge Tracing (DECKT), a contrastive learning framework that
+improves knowledge state representation under sparse data conditions. DECKT employs
+a momentum-updated dual-encoder architecture where the primary encoder processes
+current input data while the momentum encoder maintains stable historical representations
+through exponential moving average updates. These encoders naturally form contrastive
+pairs through temporal evolution, effectively enhancing representation capabilities for low-
+frequency knowledge concepts without requiring destructive data augmentation operations
+that may compromise knowledge structure integrity. To preserve semantic consistency
+in learned representations, DECKT incorporates a graph structure constraint loss that
+leverages concept–question relationships to maintain appropriate similarities between
+related concepts in the embedding space. Furthermore, an adversarial training mechanism
+applies perturbations to embedding vectors, enhancing model robustness and generaliza-
+tion. Extensive experiments on benchmark datasets demonstrate that DECKT significantly
+outperforms existing state-of-the-art methods, validating the effectiveness of the proposed
+approach in alleviating representation challenges in sparse educational data.
+Keywords: knowledge tracing; contrastive learning; graph neural network; data mining;
+deep learning
+1. Introduction
+With the rapid advancement of online education platforms and intelligent learning
+systems, personalized learning has emerged as a central objective of modern education [1,2].
+Personalization techniques have demonstrated effectiveness across diverse domains, from
+educational content delivery to user preference modeling in various applications [3,4]. Driven
+by breakthroughs in artificial intelligence and machine learning, adaptive learning systems
+have revolutionized educational delivery by automatically adjusting content difficulty , pac-
+ing, and instructional strategies based on individual learner characteristics and real-time
+performance indicators. These systems leverage learning analytics, recommendation en-
+gines, and intelligent tutoring systems to provide tailored instructional content and real-time
+Entropy 2025, 27, 685 https://doi.org/10.3390/e27070685
+
+===== PAGE 2 =====
+Entropy 2025, 27, 685 2 of 22
+feedback. Modern online education platforms integrate AI-powered assessment tools and
+adaptive algorithms to monitor learning progress continuously and optimize educational
+pathways dynamically , creating unprecedented opportunities for data-driven educational
+interventions [5,6].
+Within this paradigm, knowledge tracing (KT) plays a pivotal role by modeling
+and predicting students’ evolving knowledge states over time, thereby enabling accurate
+learning assessment and informed instructional decision-making [ 7,8]. High-precision
+KT models are essential for capturing individual learning trajectories, understanding the
+complex interplay between knowledge components, and providing reliable cognitive state
+representations that drive personalized educational recommendations. Traditional knowl-
+edge tracing techniques, such as Bayesian knowledge tracing (BKT) [ 9], rely on hidden
+Markov models to estimate student knowledge states through probabilistic inference, treat-
+ing knowledge mastery as binary states transitioning between learned and unlearned
+conditions. While effective for simple learning scenarios, these classical approaches strug-
+gle to capture the complexity of real-world learning behaviors, particularly the non-linear
+dynamics of knowledge acquisition, forgetting phenomena, and prerequisite relationships
+between knowledge components. Recent advances in deep learning have revolutionized
+this field, leading to sophisticated models based on recurrent neural networks, atten-
+tion mechanisms, and memory-augmented structures [ 10,11]. These neural approaches
+demonstrate significant improvements in modeling capability and predictive accuracy by
+leveraging large-scale learning interaction data and capturing temporal dependencies in
+student learning processes. Deep KT models such as deep knowledge tracing (DKT) [12],
+dynamic key–value memory networks (DKVMNs) [ 11], and self-attentive knowledge
+tracing (SAKT) [10] have shown superior performance across diverse educational domains.
+However, when confronted with data sparsity challenges, these methods still exhibit
+limited effectiveness in modeling low-frequency questions and knowledge concepts, partic-
+ularly in realistic educational settings where student interaction patterns follow long-tail
+distributions. The fundamental issues stem from two critical aspects that significantly
+impact model performance in sparse data environments. On one hand, existing methods
+predominantly rely on predefined knowledge concept labels, treating all questions under
+the same concept as equivalent representations and overlooking fine-grained variations
+in content complexity, difficulty levels, and semantic expressions [9,11,12]. On the other
+hand, current approaches lack effective mechanisms to leverage structural relationships
+and contextual information within knowledge graphs, missing opportunities to exploit the
+hierarchical nature of knowledge domains and the semantic connections between related
+concepts. Without proper structural support and cross-concept semantic enrichment, low-
+frequency knowledge concepts suffer from insufficient training signals, leading to poor
+representation quality, increased prediction uncertainty, and degraded model generaliza-
+tion in sparse data environments.
+To tackle these challenges, graph neural networks (GNNs) have been introduced
+to capture concept relations through structured graphs [13–16]. GNN-based approaches
+represent knowledge concepts and questions as nodes in a graph, with edges encoding
+relationships such as prerequisite dependencies and semantic similarities. This graph-based
+modeling enables the capture of high-order interactions and structural dependencies that
+are not apparent in traditional sequential models. While GNN-based methods enhance
+node representations by modeling semantic dependencies and propagating information
+through graph structures, they often suffer from limited message propagation on low-
+degree nodes, leading to degraded embeddings for low-frequency knowledge concepts.
+The message passing mechanism tends to favor well-connected nodes that receive rich
+information from multiple neighbors, while sparsely connected nodes struggle to obtain

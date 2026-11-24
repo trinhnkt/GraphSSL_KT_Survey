@@ -1,0 +1,267 @@
+Knowledge-Based Systems 310 (2025) 112958
+12
+H. Yang et al.
+observe that near-transfer attention scores are generally higher than
+far-transfer scores, supporting the idea that the greater the similarity
+between entities, the more likely near transfer occurs [18], resulting
+in higher attention scores. Conversely, when the similarity is lower,
+far transfer tends to occur [15], but with lower attention scores. By
+dynamically allocating more attention to the more significant associ-
+ations, the proposed model effectively propagates knowledge through
+the graph, enhancing its interpretability and offering deeper insights
+into the underlying mechanisms of knowledge transfer.
+6. Conclusion
+In this study, guided by the principles of knowledge transfer the-
+ory, we explored the evolution of knowledge states to predict future
+performance. However, traditional graph-based KT methods overlook
+the intricate multi-association relationships among entities, leading
+to deviations in the overall semantic characteristics of the problem
+representation and inappropriate knowledge transfer propagation. This
+further results in discrepancies between the actual and represented
+knowledge states during the transfer process, ultimately affecting the
+prediction performance of the model. To overcome these limitations,
+we proposed a novel method called MAHKT, which was designed
+to enhance both interpretability and performance. MAHKT effectively
+captures the complex and diverse associations between questions and
+concepts through a multi-association heterogeneous graph, encompass-
+ing prerequisites, similarities, and correlations. The model employs
+an attention mechanism to quantify node similarity and leverages
+both near and far transfer mechanisms within knowledge propagation
+to extract rich associative information. Additionally, MAHKT utilizes
+dual LSTM models to independently track the evolution of knowledge
+states for both questions and concepts, providing a more accurate
+and interpretable representation of learners’ evolving knowledge states.
+Extensive experiments conducted on real-world datasets demonstrate
+that MAHKT consistently outperforms existing models. Furthermore,
+ablation studies have confirmed the significant impact of each module
+on the overall model performance.
+Even though our MAHKT model has demonstrated strong perfor-
+mance, several promising directions for future research remain. First,
+learner performance is not solely determined by correct or incorrect
+responses; behavioral factors during the learning process also play
+a crucial role. Future work could explore the impact of multimodal
+learning data, such as clickstream data [63] and response times [28], on
+learners’ knowledge states to enable a more comprehensive modeling
+of the learning process. Additionally, learners’ responses are often influ-
+enced by outlier behaviors, such as guessing or careless mistakes [64].
+Investigating these anomalies could enhance the tracking of knowledge
+state evolution. Finally, exploring causal inference to understand the
+underlying reasons for learners’ performance could help uncover causal
+relationships [65] that drive changes in knowledge states, thereby
+enabling more interpretable knowledge tracing. These directions hold
+significant potential for advancing the field in the future.
+CRediT authorship contribution statement
+Huali Yang: Writing – review & editing, Writing – original draft,
+Methodology. Junjie Hu: Writing – original draft, Visualization, Vali-
+dation. Jinjin Chen: Writing – original draft, Validation, Methodology,
+Formal analysis. Shengze Hu: Writing – original draft, Validation,
+Methodology, Formal analysis. Jing Geng: Writing – original draft, Re-
+sources, Investigation. Qiang Zhu: Validation, Writing – review & edit-
+ing. Tao Huang: Writing – original draft, Supervision, Methodology,
+Conceptualization.
+Declaration of competing interest
+The authors declare that they have no known competing finan-
+cial interests or personal relationships that could have appeared to
+influence the work reported in this paper.
+Acknowledgments
+This research was supported by the National Key R&D Program
+of China (Grant No. 2023YFC3305600), the National Natural Sci-
+ence Foundation of China (Grant No. 62307029), the 2023 General
+Project of the Hubei Province Education Science Planning (Grant No.
+2023GB021), the Ningxia Hui Autonomous Region Key R&D Program
+Project (Grant No. 2024BEG02030), and the Education and Teaching
+Reform and Research Funding Project of Wuhan Textile University.
+Data availability
+Data will be made available on request.
+References
+[1] A.T. Corbett, J.R. Anderson, Knowledge tracing: Modeling the acquisition of
+procedural knowledge, User Model. User-Adapt. Interact. 4 (1994) 253–278.
+[2] M.C. Desmarais, R.S.d. Baker, A review of recent advances in learner and skill
+modeling in intelligent learning environments, User Model. User-Adapt. Interact.
+22 (2012) 9–38.
+[3] S.C. Hoi, D. Sahoo, J. Lu, P. Zhao, Online learning: A comprehensive survey,
+Neurocomputing 459 (2021) 249–289.
+[4] S. Drissi, A. Chefrour, K. Boussaha, H. Zarzour, Exploring the effects of person-
+alized recommendations on student’s motivation and learning achievement in
+gamified mobile learning framework, Educ. Inf. Technol. (2024) 1–38.
+[5] D. Hooshyar, Y.-M. Huang, Y. Yang, GameDKT: Deep knowledge tracing in
+educational games, Expert Syst. Appl. 196 (2022) 116670.
+[6] F. Wang, W. Gao, Q. Liu, J. Li, G. Zhao, Z. Zhang, Z. Huang, M. Zhu, S. Wang,
+W. Tong, E. Chen, A survey of models for cognitive diagnosis: New developments
+and future directions, 2024, arXiv preprint arXiv:2407.05458.
+[7] M. Yudelson, Individualization of Bayesian knowledge tracing through Elo-
+infusion, in: International Conference on Artificial Intelligence in Education,
+Springer, 2021, pp. 412–416.
+[8] F.B. Baker, The Basics of Item Response Theory, ERIC, 2001.
+[9] P.I. Pavlik, H. Cen, K.R. Koedinger, Performance factors analysis–a new alter-
+native to knowledge tracing, in: Artificial Intelligence in Education, Ios Press,
+2009, pp. 531–538.
+[10] C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami, L.J. Guibas, J.
+Sohl-Dickstein, Deep knowledge tracing, Adv. Neural Inf. Process. Syst. 28
+(2015).
+[11] F. Wang, Q. Liu, E. Chen, Z. Huang, Y. Yin, S. Wang, Y. Su, NeuralCD: A general
+framework for cognitive diagnosis, IEEE Trans. Knowl. Data Eng. 35 (8) (2023)
+8312–8327.
+[12] S. Tong, Q. Liu, W. Huang, Z. Hunag, E. Chen, C. Liu, H. Ma, S. Wang,
+Structure-based knowledge tracing: An influence propagation view, in: 2020 IEEE
+International Conference on Data Mining, ICDM, IEEE, 2020, pp. 541–550.
+[13] Y. Long, W. Yu, J. Huang, T. Zhang, N. Lai, MGKT: A multi-relation en-
+hanced graph-based model for knowledge tracing, in: 2024 International Joint
+Conference on Neural Networks, IJCNN, 2024, pp. 1–8.
+[14] S.M. Barnett, S.J. Ceci, When and where do we apply what we learn?: A
+taxonomy for far transfer, Psychol. Bull. 128 (4) (2002) 612.
+[15] A. Pahor, A.R. Seitz, S.M. Jaeggi, Near transfer to an unrelated N-back task
+mediates the effect of N-back working memory training on matrix reasoning,
+Nat. Hum. Behav. 6 (9) (2022) 1243–1256.
+[16] R.S. Woodworth, E.L. Thorndike, The influence of improvement in one mental
+function upon the efficiency of other functions.(I)., Psychol. Rev. 8 (3) (1901)
+247.
+[17] G. Sala, N.D. Aksayli, K.S. Tatlidil, T. Tatsumi, Y. Gondo, F. Gobet, Near and far
+transfer in cognitive training: A second-order meta-analysis, Collabra: Psychol. 5
+(1) (2019) 18.
+[18] K.B. Cartwright, A.M. Bock, J.H. Clause, E.A.C. August, H.G. Saunders, K.J.
+Schmidt, Near-and far-transfer effects of an executive function intervention for
+2nd to 5th-grade struggling readers, Cogn. Dev. 56 (2020) 100932.
+[19] W.G. Chase, H.A. Simon, Perception in chess, Cogn. Psychol. 4 (1) (1973) 55–81.
+[20] N.A. Taatgen, The nature and transfer of cognitive skills, Psychol. Rev. 120 (3)
+(2013) 439.
+[21] G. Abdelrahman, Q. Wang, B. Nunes, Knowledge tracing: A survey, ACM Comput.
+Surv. 55 (11) (2023) 1–37.
+[22] T. Huang, J. Geng, H. Yang, S. Hu, X. Ou, J. Hu, Z. Yang, Interpretable
+neuro-cognitive diagnostic approach incorporating multidimensional features,
+Knowl.-Based Syst. 304 (2024) 112432.
+[23] S. Shen, Q. Liu, E. Chen, Z. Huang, W. Huang, Y. Yin, Y. Su, S. Wang, Learning
+process-consistent knowledge tracing, in: Proceedings of the 27th ACM SIGKDD
+Conference on Knowledge Discovery & Data Mining, KDD ’21, Association for
+Computing Machinery, 2021, pp. 1452–1460.
+
+Knowledge-Based Systems 310 (2025) 112958
+13
+H. Yang et al.
+[24] S. Liu, R. Zou, J. Sun, K. Zhang, L. Jiang, D. Zhou, J. Yang, A hierarchical
+memory network for knowledge tracing, Expert Syst. Appl. 177 (2021) 114935.
+[25] G. Abdelrahman, Q. Wang, Knowledge tracing with sequential key-value memory
+networks, in: Proceedings of the 42nd International ACM SIGIR Conference on
+Research and Development in Information Retrieval, 2019, pp. 175–184.
+[26] T. Huang, H. Yang, Z. Li, H. Xie, J. Geng, H. Zhang, A dynamic knowl-
+edge diagnosis approach integrating cognitive features, IEEE Access 9 (2021)
+116814–116829.
+[27] X. Guo, Z. Huang, J. Gao, M. Shang, M. Shu, J. Sun, Enhancing knowledge
+tracing via adversarial training, in: Proceedings of the 29th ACM International
+Conference on Multimedia, 2021, pp. 367–375.
+[28] T. Huang, S. Hu, H. Yang, J. Geng, Z. Li, Z. Xu, X. Ou, Response speed enhanced
+fine-grained knowledge tracing: A multi-task learning perspective, Expert Syst.
+Appl. 238 (2024) 122107.
+[29] G. Abdelrahman, Q. Wang, Deep graph memory networks for forgetting-robust
+knowledge tracing, IEEE Trans. Knowl. Data Eng. 35 (8) (2022) 7844–7855.
+[30] H. Yang, S. Hu, J. Geng, T. Huang, J. Hu, H. Zhang, Q. Zhu, Heterogeneous
+graph-based knowledge tracing with spatiotemporal evolution, Expert Syst. Appl.
+238 (2024) 122249.
+[31] Z. Wu, S. Pan, F. Chen, G. Long, C. Zhang, S.Y. Philip, A comprehensive survey
+on graph neural networks, IEEE Trans. Neural Netw. Learn. Syst. 32 (1) (2020)
+4–24.
+[32] H. Cai, V.W. Zheng, K.C.-C. Chang, A comprehensive survey of graph embedding:
+Problems, techniques, and applications, IEEE Trans. Knowl. Data Eng. 30 (9)
+(2018) 1616–1637.
+[33] H. Nakagawa, Y. Iwasawa, Y. Matsuo, Graph-based knowledge tracing: modeling
+student proficiency using graph neural network, in: IEEE/WIC/ACM International
+Conference on Web Intelligence, 2019, pp. 156–163.
+[34] Y. Yang, J. Shen, Y. Qu, Y. Liu, K. Wang, Y. Zhu, W. Zhang, Y. Yu, GIKT: a
+graph-based interaction model for knowledge tracing, in: Machine Learning and
+Knowledge Discovery in Databases: European Conference, ECML PKDD 2020,
+Ghent, Belgium, September 14–18, 2020, Proceedings, Part I, Springer, 2021,
+pp. 299–315.
+[35] C. Li, J. Fu, Y. Yan, Z. Zhao, Q. Zeng, Higher order heterogeneous graph neural
+network based on node attribute enhancement, Expert Syst. Appl. 238 (2024)
+122404.
+[36] A. Salamat, X. Luo, A. Jafari, HeteroGraphRec: A heterogeneous graph-based
+neural networks for social recommendations, Knowl.-Based Syst. 217 (2021)
+106817.
+[37] B. Wu, K.-M. Chao, Y. Li, Heterogeneous graph neural networks for fraud
+detection and explanation in supply chain finance, Inf. Syst. 121 (2024) 102335.
+[38] C.-Y. Sang, J.-J. Chen, S.-G. Liao, DyHGTCR-Cas: Learning unified spatio-
+temporal features based on dynamic heterogeneous graph neural network for
+information cascade prediction, Inf. Process. Manage. 62 (3) (2025) 104029.
+[39] N. Guan, D. Song, L. Liao, Knowledge graph embedding with concepts,
+Knowl.-Based Syst. 164 (2019) 38–44.
+[40] J. Zhang, Y. Mo, C. Chen, X. He, GKT-CD: Make cognitive diagnosis model
+enhanced by graph-based knowledge tracing, in: 2021 International Joint
+Conference on Neural Networks, IJCNN, IEEE, 2021, pp. 1–8.
+[41] Y. Liu, Y. Yang, X. Chen, J. Shen, H. Zhang, Y. Yu, Improving knowledge tracing
+via pre-training question embeddings, in: IJCAI International Joint Conference
+on Artificial Intelligence, Vol. 2021-Janua, 2020, pp. 1577–1583.
+[42] M. Wang, C. Peng, R. Yang, C. Wang, Y. Chen, X. Yu, Gaskt: A graph-
+based attentive knowledge-search model for knowledge tracing, in: Knowledge
+Science, Engineering and Management: 14th International Conference, KSEM
+2021, Tokyo, Japan, August 14–16, 2021, Proceedings, Part I 14, Springer, 2021,
+pp. 268–279.
+[43] W. Gan, Y. Sun, Y. Sun, Knowledge structure enhanced graph representation
+learning model for attentive knowledge tracing, Int. J. Intell. Syst. 37 (3) (2022)
+2012–2045.
+[44] X. Song, J. Li, Y. Tang, T. Zhao, Y. Chen, Z. Guan, Jkt: A joint graph
+convolutional network based deep knowledge tracing, Inform. Sci. 580 (2021)
+510–523.
+[45] Y. Wu, H. Zhu, C. Wang, F. Song, H. Zhu, Y. Chen, Q. Zheng, F. Tian,
+Programming knowledge tracing based on heterogeneous graph representation,
+Knowl.-Based Syst. 300 (2024) 112161.
+[46] W. Wang, H. Ma, Y. Zhao, Z. Li, Pre-training question embeddings for improving
+knowledge tracing with self-supervised Bi-graph Co-contrastive learning, ACM
+Trans. Knowl. Discov. Data 18 (4) (2024) 1–20.
+[47] C. Cui, Y. Yao, C. Zhang, H. Ma, Y. Ma, Z. Ren, C. Zhang, J. Ko, DGEKT: A dual
+graph ensemble learning method for knowledge tracing, ACM Trans. Inf. Syst.
+42 (3) (2024).
+[48] M. Zhang, X. Zhu, C. Zhang, Y. Ji, F. Pan, C. Yin, Multi-factors aware dual-
+attentional knowledge tracing, in: International Conference on Information and
+Knowledge Management, Proceedings, 2021, pp. 2588–2597.
+[49] S. Cheng, Q. Liu, E. Chen, K. Zhang, Z. Huang, Y. Yin, X. Huang, Y. Su,
+Adaptkt: A domain adaptable method for knowledge tracing, in: Proceedings
+of the Fifteenth ACM International Conference on Web Search and Data Mining,
+2022, pp. 123–131.
+[50] F. Lu, P. Cong, X. Huang, Utilizing textual information in knowledge graph
+embedding: A survey of methods and applications, IEEE Access 8 (2020)
+92072–92088.
+[51] Y. Dai, S. Wang, N.N. Xiong, W. Guo, A survey on knowledge graph embedding:
+Approaches, applications and benchmarks, Electronics 9 (5) (2020) 750.
+[52] J. Zhang, X. Shi, I. King, D.-Y. Yeung, Dynamic key-value memory networks
+for knowledge tracing, in: Proceedings of the 26th International Conference on
+World Wide Web, 2017, pp. 765–774.
+[53] C.-K. Yeung, D.-Y. Yeung, Addressing two problems in deep knowledge tracing
+via prediction-consistent regularization, in: Proceedings of the Fifth Annual ACM
+Conference on Learning At Scale, 2018, pp. 1–10.
+[54] S. Cheng, Q. Liu, E. Chen, Z. Huang, Z. Huang, Y. Chen, H. Ma, G. Hu,
+Dirt: Deep learning enhanced item response theory for cognitive diagnosis,
+in: Proceedings of the 28th ACM International Conference on Information and
+Knowledge Management, 2019, pp. 2397–2400.
+[55] A. Ghosh, N. Heffernan, A.S. Lan, Context-aware attentive knowledge tracing,
+in: Proceedings of the ACM SIGKDD International Conference on Knowledge
+Discovery and Data Mining, 2020, pp. 2330–2339.
+[56] T. Long, Y. Liu, J. Shen, W. Zhang, Y. Yu, Tracing knowledge state with individ-
+ual cognition and acquisition estimation, in: Proceedings of the 44th International
+ACM SIGIR Conference on Research and Development in Information Retrieval,
+2021, pp. 173–182.
+[57] Z. Liu, Q. Liu, J. Chen, S. Huang, B. Gao, W. Luo, J. Weng, Enhancing
+deep knowledge tracing with auxiliary tasks, in: Proceedings of the ACM Web
+Conference 2023, 2023, pp. 4178–4187.
+[58] S. Sarsa, J. Leinonen, A. Hellas, Empirical evaluation of deep learning models
+for knowledge tracing: Of hyperparameters and metrics on performance and
+replicability, J. Educ. Data Min. 14 (2) (2022).
+[59] Z. Lai, L. Wang, Q. Ling, Recurrent knowledge tracing machine based on the
+knowledge state of students, Expert Syst. 38 (8) (2021) e12782.
+[60] W. Gan, Y. Sun, X. Peng, Y. Sun, Modeling learner’s dynamic knowledge
+construction procedure and cognitive item difficulty for knowledge tracing, Appl.
+Intell. 50 (2020) 3894–3912.
+[61] Z. Liu, Q. Liu, J. Chen, S. Huang, J. Tang, W. Luo, pyKT: a python library
+to benchmark deep learning based knowledge tracing models, Adv. Neural Inf.
+Process. Syst. 35 (2022) 18542–18555.
+[62] Q. Wang, Z. Mao, B. Wang, L. Guo, Knowledge graph embedding: A survey
+of approaches and applications, IEEE Trans. Knowl. Data Eng. 29 (12) (2017)
+2724–2743.
+[63] D.J. Lemay, T. Doleck, Predicting completion of massive open online course
+(MOOC) assignments from video viewing behavior, Interact. Learn. Environ. 30
+(10) (2022) 1782–1793.
+[64] T. Huang, J. Geng, H. Yang, S. Hu, Y. Chen, J. Zhang, Long short-term attentional
+neuro-cognitive diagnostic model for skill growth assessment in intelligent
+tutoring systems, Expert Syst. Appl. 238 (2024) 122048.
+[65] C. Huang, H. Wei, Q. Huang, F. Jiang, Z. Han, X. Huang, Learning consistent
+representations with temporal and causal enhancement for knowledge tracing,
+Expert Syst. Appl. 245 (2024) 123128.

@@ -1,0 +1,278 @@
+JOURNAL OF LATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021
+1
+A Survey of Knowledge Tracing: Models, Variants,
+and Applications
+Shuanghong Shen, Qi Liu, Member, IEEE, Zhenya Huang, Member, IEEE, Yonghe Zheng,
+Minghao Yin, Member, IEEE, Minjuan Wang, Member, IEEE, and Enhong Chen, Fellow, IEEE
+Abstract—Modern online education has the capacity to provide
+intelligent educational services by automatically analyzing sub-
+stantial amounts of student behavioral data. Knowledge Tracing
+(KT) is one of the fundamental tasks for student behavioral
+data analysis, aiming to monitor students’ evolving knowledge
+state during their problem-solving process. In recent years, a
+substantial number of studies have concentrated on this rapidly
+growing field, significantly contributing to its advancements. In
+this survey, we will conduct a thorough investigation of these
+progressions. Firstly, we present three types of fundamental KT
+models with distinct technical routes. Subsequently, we review
+extensive variants of the fundamental KT models that consider
+more stringent learning assumptions. Moreover, the development
+of KT cannot be separated from its applications, thereby we
+present typical KT applications in various scenarios. To facilitate
+the work of researchers and practitioners in this field, we
+have developed two open-source algorithm libraries: EduData
+that enables the download and preprocessing of KT-related
+datasets, and EduKTM that provides an extensible and unified
+implementation of existing mainstream KT models. Finally, we
+discuss potential directions for future research in this rapidly
+growing field. We hope that the current survey will assist both
+researchers and practitioners in fostering the development of KT,
+thereby benefiting a broader range of students.
+Index Terms—Online Education, Knowledge Tracing, Educa-
+tional Data Mining, Adaptive Learning, User Modeling.
+I. INTRODUCTION
+W
+ITH the proliferation of the Internet and mobile com-
+munication technology, online education has become
+increasingly popular and is now developing at an unprece-
+dented scale [1, 2, 3]. This innovative style of learning pro-
+S. Shen, and E. Chen (corresponding author) are with the School of
+Data Science, University of Science and Technology of China & State Key
+Laboratory of Cognitive Intelligence, Hefei, Anhui, 230026, China. Email:
+closer@mail.ustc.edu.cn, cheneh@ustc.edu.cn
+Q. Liu (corresponding author), and Z. Huang are with the School of
+Computer Science and Techonology, University of Science and Technology
+of China & State Key Laboratory of Cognitive Intelligence & Institute of
+Artificial Intelligence, Hefei Comprehensive National Science Center, Hefei,
+Anhui, 230026, China. Email: {qiliuql, huangzhy}@ustc.edu.cn
+Y. Zheng is with the Research Institute of Science Education, Faculty
+of Education, Beijing Normal University, Haidian, Beijing, 100875, China.
+Email: zhengyonghe@bnu.edu.cn
+M. Yin is with the School of Information Science and Technology,
+Northeast Normal University, Changchun, Jilin, 130117, China. Email:
+ymh@nenu.edu.cn
+M. Wang is with The Education University of Hong Kong, Hong Kong
+SAR, 999077, China and San Diego State University, San Diego, CA 92182
+USA. Email: mwang@sdsu.edu
+vides a degree of flexibility that conventional education cannot
+match, which enables teaching and learning to occur at any
+time and any place. Meanwhile, online learning systems (e.g.,
+Coursera, ASSISTment) [4, 5, 6] have proven to be even more
+effective than traditional learning styles, since they can offer
+more intelligent educational services, such as recommending
+individualized learning resources to students [7, 8]. To provide
+these intelligent services, online learning systems continuously
+record a massive amount of available data about student-
+system interactions (e.g., responding to exercises), which can
+be further mined to assess their knowledge levels, learn-
+ing preferences, and other attributes. Specifically, Knowledge
+Tracing (KT) [9] is one of the most fundamental and critical
+tasks for analyzing students’ learning behavior data, which
+aims to explore the recorded student-system interactions to
+monitor their evolving knowledge states [10, 11].
+Fig. 1 presents a simple schematic diagram of knowledge
+tracing. During the learning process, online learning systems
+continuously record students’ learning behavioral data, in-
+cluding exercises and their related knowledge concepts (e.g.,
+equality, inequality, plane vector, probability, represented in
+various colors), and students’ answers (i.e., correct or incorrect
+responses). A substantial amount of supplementary informa-
+tion is also simultaneously recorded, including response time,
+opportunity count, and tutor intervention, which provides a
+more comprehensive reflection of students’ learning process.
+Based on the collected learning data, researchers are striving
+to maintain an estimate of students’ evolving knowledge
+states. For illustration, we give a case in Fig. 1, where the
+student’s prior knowledge is quantified as 0.2, 0.4, 0.4, and
+0.5 across four distinct knowledge concepts. The radar map
+serves as a visual representation of the student’s knowledge
+mastery, which progressively expands as the student continues
+to acquire new knowledge in learning. After a period of
+learning, the student’s knowledge states reach 0.9, 0.8, 0.8, and
+0.7 respectively, suggesting good knowledge growth. In the
+aforementioned learning process, KT models aim to monitor
+changes in students’ knowledge states. Once we understand
+students’ knowledge states, the learning system can customize
+more suitable learning schemes for different students, thereby
+enabling the teaching of students in accordance with their
+proficiency. It also allows students to better comprehend their
+learning process and gradually focus on improving their skills
+with poorly mastered concepts [12, 13].
+Knowledge tracing has been studied for decades, with the
+first studies tracing back to the late 1970s. These initial
+works primarily focused on confirming the effectiveness of
+arXiv:2105.15106v4  [cs.CY]  11 Apr 2024
+
+JOURNAL OF LATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021
+2
+k1：equality
+k2：inequality
+k3：plane vector
+e2
+e3
+e4
+e5
+e6
+e7
+e8
+e1
+e9
+Knowledge
+Components
+Exercises
+Side Information
+response time, opportunity count, tutor intervention, engagement …
+Answers
+Knowledge
+State
+k4：probability
+e10
+e11
+e12
+×
+√
+×
+×
+×
+√
+√
+√
+√
+√
+√
+×
+0.2
+0.4
+0.4
+0.5
+0.7
+0.5
+0.4
+0.5
+0.7
+0.8
+0.4
+0.5
+0.6
+0.6
+0.4
+0.4
+0.7
+0.6
+0.4
+0.4
+0.8
+0.7
+0.4
+0.4
+0.8
+0.9
+0.3
+0.4
+0.8
+0.9
+0.5
+0.4
+0.9
+0.9
+0.5
+0.4
+0.9
+0.8
+0.5
+0.3
+0.8
+0.8
+0.7
+0.4
+0.9
+0.8
+0.8
+0.7
+Student
+Fig. 1. A simple schematic diagram of knowledge tracing. Different knowledge concepts are represented in different colors, while exercises are also depicted
+in the color relevant to the knowledge concepts. During the learning process, different kinds of side information are also recorded. The evolving process of
+the knowledge state is assessed by KT models and illustrated by the radar maps.
+mastery learning [14]. To the best of our knowledge, Corbett
+and Anderson [9] were the first to introduce the concept of
+knowledge tracing, employing Bayesian networks to model the
+student learning process, which they referred to as Bayesian
+Knowledge Tracing. Since then, the significance of KT has
+been recognized by a broader spectrum of researchers, and
+increasing attention has been directed towards KT-related
+research. Many logistic models have been applied to KT,
+including Learning Factor Analysis [15] and Performance
+Factor Analysis [16]. In recent years, deep learning has
+greatly enhanced research into the KT task, largely due to
+its capacity to extract and represent features and discover
+intricate structure. For instance, Deep Knowledge Tracing
+introduced recurrent neural networks (RNNs) [17] into the
+KT task and was found to significantly outperform previous
+methods [18]. Following this, various methods have been
+introduced that employ various types of neural networks to
+the KT task, considering various characteristics of the learning
+sequence [19, 20, 21]. Moreover, due to the requirements of
+practical applications, many variants of KT models have been
+continuously developed, and KT has already been broadly
+applied in numerous educational scenarios.
+While novel KT models continue to emerge, there remains
+a lack of comprehensive surveys exploring this young research
+field, particularly regarding its numerous variants and appli-
+cations. To this end, the current survey aims to systematically
+review the development of KT. As depicted in Figure 2,
+we initially categorize existing KT models from a technical
+perspective, which is consistent with the majority of existing
+surveys [22, 23]. This categorization splits them into three cat-
+egories: (1) Bayesian models, (2) logistic models, and (3) deep
+learning models. In each category, we further organize specific
+KT methods according to their various techniques. Subse-
+quently, we introduce extensive variants of these fundamental
+KT models, which consider more stringent assumptions about
+more complete learning process in different learning phases.
+In addition, we present several typical applications of KT in
+real learning scenarios. Due to the complexity of different KT
+models, we have open sourced two algorithm libraries to better
+aid researchers and practitioners in implementing KT models
+and facilitate community development in this domain. These
+libraries, EduData1 and EduKTM2, include most existing KT-
+related datasets, extensible, and unified implementations of
+existing KT models, and relevant resources. Finally, we discuss
+potential future research directions. In summary, this paper
+presents an extensive survey of KT that can serve as a
+comprehensive guide for both researchers and practitioners.
+The remainder of this survey is structured as follows.
+Section II presents an overview of the KT task and we discuss
+the differences between this and previous surveys. Section III
+provides a review of the three categories of fundamental KT
+models. Section IV describes the variants of fundamental KT
+models. Section V introduces the extensive applications of
+KT in different scenarios. Section VI gives the summary of
+existing datasets for evaluating KT models and details of the
+algorithm libraries we have released. Section VII discusses
+some potential future research directions. Finally, section VIII
+summarizes the paper.
+II. OVERVIEW
+A. Problem Definition
+In an online learning system, supposing there exists a set of
+students S and a set of exercises E. Each exercise is related
+to specific Knowledge Concepts (KCs). Generally, the name
+given to the knowledge related to exercises differs across
+online learning platforms. For instance, it is named skill in
+ASSISTments [24]. To promote better understanding, we refer
+to these uniformly as knowledge concepts throughout this pa-
+per, and denote the set of all KCs as KC. Moreover, M and K
+are respectively used to represent the total number of exercises
+and KCs. Students are asked to answer different exercises in
+order to achieve mastery of the related knowledge. Therefore,
+the learning sequence of a student can be formulated as X =
+{([e1, ke1], a1, r1), ([e2, ke2], a2, r2), ..., ([et, ket], at, rt), ...,
+([eN, keN ], aN, rN)}, where the tuple ([et, ket], at, rt) rep-
+resents the learning interaction at the t−th time step, et
+represents the exercise, ket represents the exercise’s related
+KCs, at represents the correctness label (i.e., with 1 for correct
+and 0 for incorrect answers), rt stands for the side information
+recorded in this learning interaction, and N is the length of the
+learning sequence. The research problem of knowledge tracing
+can thus be defined as follows:
+1https://github.com/bigdata-ustc/EduData
+2https://github.com/bigdata-ustc/EduKTM

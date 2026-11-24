@@ -1,0 +1,256 @@
+
+## KT004 exists=True
+p.3: r that particular exercise correctly. The training objective is to minimize the negative log- likelihood (NLL) of the observed sequence of student responses under the model. 2.2 GNN The GNN [8] is a type of neura
+p.4: rm for node k, andσ is a sigmoid function. The model is trained to minimize the NLL of the observations. We can utilize the edge information to collect the knowledge state from the neighboring concepts; 
+p.5: tion [16], and fk is a neural network for the k-th edge type. VAE minimizes the NLL and the Kullback–Leibler divergence between the encoded distribution q(z|x) and prior distribution p(z). Using one edge
+HITS 3 CHARS 45640
+
+## KT010 exists=True
+p.1: oblem which traces students’ knowledge status and predicts their performance on new questions. Ques- tions are often numerous in online education systems, and are always associated with much fewer skills. However
+p.1:  level, KT solves the problem of predicting whether the students can answer the new question correctly according to their arXiv:2009.05991v1 [cs.AI] 13 Sep 2020
+p.3: on weight with the intention of noise reduction. Considering the mastery of the new question and its related skills, we general- ize the interaction module and interact the relevant exercises and the current hidd
+p.3: eraction module, our model can better model the student’s mastery degree of the new question and its related skills in a consis- tent way. 3) Empirically we conduct extensive experiments on three benchmark datase
+p.5: nswered qi correctly. Given an exercise sequenceXXX ={x1, x2,..., xt−1} and the new questionqt, the goal of KT is to predict the probability of the student correctly answering itp(at = 1|XXX,q t). Question-Skill 
+p.6: N ... RNN Recap Fig. 2. An illustration of GIKT at time step t, where qt is the new question. First we use GCN to aggregate question and skill embeddings. Then a recurrent neural network is used to model the sequ
+HITS 6 CHARS 16080
+
+## KT011 exists=True
+HITS 0 CHARS 54457
+
+## KT012 exists=True
+p.8: c ij /C16/C17/C16/C17 ð14Þ The loss function of JKT is degined according to the negative log likelihood. We sequentially input the sequence of stu- dents’ exercise embedding from step 1 to T. Speciﬁcally, at t-th
+HITS 1 CHARS 56958
+
+## KT014 exists=True
+p.7: pular regression metrics: Mean Absolute Error (MAE) and Root Mean Square Error (RMSE) to evaluate our model performance. For our model PDKT-C, the number of hidden units is set to 32 for GRU network. In a
+p.7: e models, we can see PDKT-C obtains higher AUC and ACC values and lower MAE and RMSE values, which means a better performance. More speciﬁcally, compared to DKT, PDKT-C obtains 10% improvement on average.
+p.9: (a) AUC (b) ACC (c) MAE (d) RMSE Fig. 6: Impact of prerequisite number. C. Impact of Parameters Impact of trade-off parameters. For PDKT-C, there are tw
+HITS 3 CHARS 43363
+
+## KT016 exists=True
+HITS 0 CHARS 56178
+
+## KT023 exists=True
+p.6: aph-based KT model, we conduct the knowledge state evolution experiment and the cold start experiment using our approaches, DKT and DKT+. Finally, we conducted two ablation studies to observe the core module an
+p.9: t the prediction ability of our approach is more stable than DKT and DKT+. 5.5. Cold start Knowledge tracing also faces the cold start issue. Referring to the literature (Zhao et al. , 2020), we study the perfo
+p.9: rmance in two cold start scenarios, i.e., training with data of a few students and new students with short exercise sequences . • scenario 1: Tr
+p.9: s’ interactions as possible and applies it to new unseen samples. • scenario 2: New students with short exercise sequences occurs when new students enter the online learning system and the lack of exercise recor
+p.9: eated exercises in the exercise session is small in this dataset. In scenario 2 New students with short exercise sequences , we first cat- egorize the training data into eight groups, each with a different range
+p.10:  with the cold start problem of new students (scenario 2). Table 4 Comparison of the performance of the SGKT based on the different submodules. Model ASSIST09 ASSI
+HITS 6 CHARS 44897
+
+## KT026 exists=True
+p.2: the goal is to predict the probability that the student will correctly answer a new question, i.e.,P (ct = 1jqt;X ). LetQ =fqigjQj i=1 be the set of all distinctjQj questions and S =fsjgjSj j=1 be the set of all 
+HITS 1 CHARS 34575
+
+## KT029 exists=True
+HITS 0 CHARS 78189
+
+## KT031 exists=True
+p.9: atest timestamp. Given a learner's past exercising sequence X in a system and a new question qt+1, our goal is to model the learner –question interaction procedure, and hence track the evolution of a learner's kn
+p.17: ism that accounts for the impact of previous attempts on the current attempt. A new question will likely be strongly affected by similar questions or questions requiring the same skillset as the new question. Mor
+p.18: s' exercise histories, how well does KSGKT predict the learners' performance on new questions? (See Section 6.1). 2. How does embedding learning on the KS ‐enhanced graph affect the performance of the proposed mo
+HITS 3 CHARS 101611
+
+## KT033 exists=True
+p.1: nceptually, the KT problem is to predict the probability of correctly answering new questions given a history of question answering sequence [1]. Early work has attempted to address the KT problem using Bayesian 
+p.2: ce of prior information about student knowledge states; thus, it can operate in cold-start scenarios. To the best of our knowledge, the work presented in this paper is the ﬁrst deep learning approach that consi
+p.4: ls decide the proportion of information being changed on Mv t after observing a new question and its answer from the student. at decides new information to be written to the memory, while et decides old informati
+HITS 3 CHARS 55836
+
+## KT035 exists=True
+p.3: odel the learners’ answer outcome. The feature calculation is complex and has a cold start problem. DASH (Lindsey, Shroyer, Pashler, & Mozer, 2014) Self-Explaining The DASH model is involved in memory forgettin
+p.8: ifference between the final prediction of the model and the dataset labels, the negative log likelihood of the observed series was used as the loss function.  = − ∑ 𝑖∈𝐼 (𝑟𝑖 log(𝑝𝑖 ) +(1 −𝑟𝑖 ) log(1 −𝑝𝑖 )) (15) S
+p.9: aluation metric for all experiments of the KT task, and Root Mean Square Error (RMSE) and F1 are introduced as secondary metrics. 5.2. Experimental results In this section, the HHSKT results are compared 
+HITS 3 CHARS 80344
+
+## KT036 exists=True
+HITS 0 CHARS 80178
+
+## KT037 exists=True
+p.8:  1. Accordingly, the mean absolute error (MAE) and the root- mean-square error (RMSE) can be used as two metrics for the model evaluation. In the experiment, for each dataset, 90% data are randomly select
+p.8: lustrates the evaluation results of the four metrics, namely AUC, ACC, MAE, and RMSE, on all ﬁve datasets. We have several key observations from the ﬁgure: First, com- pared to other existing models, both
+p.8:  the CMKT and CMKT-C models obtain higher AUC and ACC and lower MAE and RMSE on all the datasets. Speciﬁcally, over the ﬁve datasets, the average AUC, ACC, MAE, and RMSE of CMKT are 0.82, 0.75, 0.
+p.8: % and 9.2% on AUC and ACC at least, and a decrease of 19.7% and 9.1% on MAE and RMSE at least. These results validate that the infor- mation from the concept map signiﬁcantly improves the accu- racy of es
+p.8: els might have a more robust property. Fourth, comparing AUC and ACC to MAE and RMSE on all datasets, the results are consistent with both the classiﬁcation and the regression metrics. To further observe 
+HITS 5 CHARS 73556
+
+## KT038 exists=True
+p.2: is continu- ously increasing, the prediction should be multi-step and robust on unseen questions. Sequence-based problem formalization on KT can not fit the real-world application, and the ID-embedding- based repres
+p.5:  question difficulty, rather than ID-embedding in existing methods to deal with unseen questions in the training data. We try to address the challenge of not having prior knowledge of the average accuracy or diffi- 
+HITS 2 CHARS 65903
+
+## KT039 exists=True
+p.7:  Performance comparison of different models on six datasets in terms of AUC and RMSE. We conduct 5-fold cross validation and report the average value. The best performance and second best performance mode
+p.7: SAKT AKT CL4KT algebra05 AUC 0.7141 0.7481 0.7636 0.7562 0.7637 0.7676 0.7891∗∗ RMSE 0.4005 0.3932 0.3921 0.3907 0.3899 0.3952 0.3815∗∗ algebra06 AUC 0.6559 0.7460 0.7589 0.7463 0.7512 0.7474 0.7733∗∗ RMS
+p.7: 0.3896 0.3791∗∗ assist09 AUC 0.6708 0.7284 0.7504 0.7475 0.7491 0.7532 0.7624∗∗ RMSE 0.4631 0.4444 0.4371 0.4375 0.4381 0.4372 0.4333∗∗ slepemapy AUC 0.6210 0.6583 0.6986 0.7064 0.6846 0.7090 0.7218∗∗ RMS
+p.7: 2 0.3978 0.3926∗∗ spanish AUC 0.6956 0.7467 0.8066 0.8027 0.8065 0.8097 0.8289∗ RMSE 0.4596 0.4428 0.4139 0.4156 0.4179 0.4177 0.4049∗ statics AUC 0.7404 0.7489 0.7674 0.7736 0.7492 0.7872 0.7943∗ RMSE 0.
+p.7: under the receiver operating characteristic curve) and root mean squared error (RMSE). 4.1.3 Baselines. For comparison, we use the following baselines. • IRT [17]: Item Response Theory (IRT) takes a form 
+p.7: contrast to most existing work using only AUC, our experiments use both AUC and RMSE for a more comprehensive comparison. From the results, we have the following observations. First, in most cases, DKT ou
+HITS 6 CHARS 33473
+
+## KT040 exists=True
+p.7: rmer – (w/o CL) assist09 MAE 0.4105 0.3581 0.3132 0.3342 0.3459 - 0.3097 0.3033 RMSE 0.4387 0.4172 0.4161 0.4194 0.4172 0.4333 0.4007 0.4062 ACC 0.6482 0.7438 0.7458 0.7418 0.7418 - 0.7632 0.7579 AUC 0.79
+p.7: 4 0.8146 0.8056 assist17 MAE 0.4143 0.4385 0.4064 0.4207 0.3867 - 0.3760 0.3831 RMSE 0.4543 0.4655 0.4543 0.4609 0.4385 - 0.4371 0.4404 ACC 0.6971 0.6633 0.6775 0.6735 0.7071 - 0.7078 0.7010 AUC 0.6809 0.
+p.7:  0.7506 0.7451 algebra05 MAE 0.3498 0.2774 0.2315 0.2304 0.2319 - 0.2201 0.2302 RMSE 0.3798 0.3630 0.3424 0.3406 0.3454 0.3815 0.3403 0.3423 ACC 0.8263 0.8337 0.8315 0.8337 0.8361 - 0.8424 0.8392 AUC 0.75
+p.7: 91 0.7946 0.7878 statics MAE 0.3828 0.3215 0.2635 0.2557 0.3017 - 0.2612 0.2797 RMSE 0.4087 0.3956 0.3801 0.3786 0.3908 0.3945 0.3621 0.3632 ACC 0.7355 0.7727 0.7910 0.7887 0.7757 - 0.7962 0.7948 AUC 0.81
+p.7: ets, under the metrics of Mean Absolute Error (MAE), Rooted Mean Squared Error (RMSE), Accuracy (ACC) and Area Under Curve (AUC). There are several important observations from the table. First, DTransform
+HITS 5 CHARS 64827
+
+## KT042 exists=True
+p.1:  based on their historical inter- action records and predict their responses to new questions. However, most existing KT methods suffer from the record data sparsity problem. In reality, there are a huge number o
+p.1: tudents based on their historical interactions and predict their responses to a new question. According to the predicted results, teach- ers can know the mastery of students’ knowledge levels in advance and perso
+p.2:  structural features. In the online tutoring systems, KT usually encounters the cold-start or long-tail problem, i.e., most questions are only interacted by a few students. How to tackle such problem and build 
+p.3: edge state according to his interactive questions and predict his response to a new question. DKT [7], the ﬁrst attempt to employ RNN-based methods in KT, utilizes the LSTM network to model the interactive questi
+p.4:  qt ; rtðÞfg , our task is to predict the next response rtþ1 corresponding to a new question qtþ1. 3.2. Notations and Deﬁnitions Deﬁnition 1 (Heterogeneous Information Network ). A Heterogeneous Information Netwo
+p.10: er Curve (AUC) and Accuracy (ACC) for classiﬁcation and Root Mean Square Error (RMSE) for regression. We compare our model with different baselines across all datasets. The experimental results of overall
+HITS 6 CHARS 44225
+
+## KT043 exists=True
+HITS 0 CHARS 52796
+
+## KT044 exists=True
+p.1: KT scenarios, transductive ID-based methods often face severe data sparsity and cold start problems, where interactions between individual students and questions are sparse, and new questions and concepts consi
+p.2: ive KT models. However, as illustrated in Figure 1, when a new concept 𝑐4 and a new question𝑞5 are added to the database of ITS, transduc- tive KT models lack interaction data to learn their representations, thus
+p.2: ne for ITS to inductively trace mastery of new concepts and predict response to new questions, which is the first model to realize inductive knowledge tracing. • We utilize LLMs for the first time to carefully in
+p.2: against 12 baselines, as well as superior capabilities to predict responses for unseen questions. 2 RELATED WORK 2.1 Knowledge Tracing To investigate the learning patterns of students in ITS, numerous KT models have
+p.3:  correct and 0 for incorrect). Given the learning history 𝑅𝑠 of a student and a new question 𝑞𝑇+1, the goal of the KT task is to predict the probability that the student correctly answers the new question, denote
+p.5: nable parameters. To train all parameters in SINKT, we choose the cross-entropy log loss between the predicted response 𝑦𝑡+1 and the ground-truth response 𝑟𝑡+1 as the objective function L =− 𝑇∑︁ 𝑡 =1 (𝑟𝑡 log 
+HITS 6 CHARS 27018
+
+## KT047 exists=True
+p.1: which aims to analyze a student’s knowledge state and predict his response to a new question. According to the prediction results, teachers can adjust the teaching plans and develop personalized strategies (Adeso
+p.4: ues- tions , our task is to learn 𝑓 (⋅) to predict his next response 𝑟𝑡+1 to a new question 𝑞𝑡+1, which is formulated as [𝑺𝒕, , 𝑞𝑡+1] 𝑓 ⟹𝑟𝑡+1. (1) 3.2. Dual-channel heterogeneous graph network This section intr
+p.13: , Y., & Shi, C. (2020). Meta-learning on heterogeneous information networks for cold-start recommendation. In Proceedings of the 26th ACM SIGKDD international conference on knowledge discovery & data mining (pp
+HITS 3 CHARS 74673
+
+## KT050 exists=True
+p.15: u, I. Ounis, C. Macdonald, and Z. Meng, “A heterogeneous graph neural model for cold-start recommendation,” in Proc. 43rd Int. ACM SIGIR Conf. Research and Development in Infor. Retrieval, 2020, pp. 2029–2032. 
+HITS 1 CHARS 93959
+
+## KT052 exists=True
+p.5: torical interactive exercises. It can also predict the possibility of answering new questions correctly. We further assume that the exercise question Q involves C implicit concepts, and the concept hierarchy is d
+p.10: 4.5Optimizations The training optimization goal of the model is to minimize the negative log likelihood between the observed performance of real students and the model prediction result. During the training proce
+HITS 2 CHARS 69224
+
+## KT053 exists=True
+p.5: ﬂow of GASKT 4.1 Embedding Module The correctness of students’ responses to the new question predominantly depends on their mastery states of the similar questions and skills. Consequently, the feature embedding 
+HITS 1 CHARS 30409
+
+## KT056 exists=True
+p.10: cs: area under the ROC curve (AUC), accuracy (ACC), and root mean square error (RMSE). AUC measures the model’s ability to distinguish between the samples correctly, ACC assesses the overall prediction ac
+p.10: curacy, and RMSE evaluates the variance of predicted values from actual values. Higher AUC and ACC values indicate better performance, w
+p.11:  of 7.1%, 0.89%, and 0.47% in ACC, and reductions of 2.63%, 0.37%, and 0.38% in RMSE. Compared with the SOTA method LBKT, our L-SKSKT achieves improvements of 5.85%, 3.52%, and 0.46% in AUC on the Informa
+p.12: lts of baselines vs. our L-SKSKT regarding the evaluation metrics AUC, ACC, and RMSE on ASSIST2009 and ASSIST2012. Model ASSIST2009 ASSIST2012 AUC ACC RMSE AUC ACC RMSE BKT (Corbett, 2000) 0.6571 0.6209 0
+p.12: lts of baselines vs. our L-SKSKT regarding the evaluation metrics AUC, ACC, and RMSE on Junyi and Slepemapy. The IRT, KTM, DKT-DSC, GIKT, and DGEKT models are unable to perform the KT analysis on these tw
+HITS 5 CHARS 88511
+
+## KT060 exists=True
+p.1: uming that students’ responses are binary (i.e., correct or incorrect). Given a new question, the output of the knowledge tracing model is the probability of students answering it correctly. This is one of the mo
+HITS 1 CHARS 70990
+
+## KT062 exists=True
+HITS 0 CHARS 82393
+
+## KT063 exists=True
+p.7: r approach, out- putting the probability that a learner will correctly answer a new question. Future performance prediction. First, the hidden knowledge state from the current time step ℎ𝑡 is concatenated with th
+p.8: 48 0.6813 0.6889 0.6928 0.6913 0.7018 0.6928 0.7055 0.7151 0.7087 0.6955 0.7352 RMSE 0.4510 0.4518 0.4473 0.4509 0.4469 0.4399 0.4447 0.4362 0.4308 0.4346 0.4436 0.4187 MAE 0.4017 0.4069 0.3978 0.4069 0.4
+p.8: 95 0.8422 0.8420 0.8420 0.8420 0.8477 0.8418 0.8432 0.8475 0.8472 0.7924 0.8503 RMSE 0.3528 0.3491 0.3491 0.3495 0.3491 0.3390 0.3494 0.3439 0.3394 0.3360 0.3798 0.3358 MAE 0.2500 0.2446 0.2433 0.2448 0.2
+p.8: 05 0.6984 0.7055 0.7025 0.7027 0.7136 0.7076 0.7217 0.7285 0.7282 0.7176 0.7346 RMSE 0.4413 0.4419 0.4383 0.4398 0.4397 0.4257 0.4365 0.4290 0.4246 0.4245 0.4319 0.4209 MAE 0.3886 0.3914 0.3819 0.3863 0.3
+p.8: 49 0.8241 0.8270 0.8236 0.8309 0.8320 0.7788 0.8374 0.8374 0.8369 0.8345 0.8386 RMSE 0.3546 0.3551 0.3522 0.3558 0.3549 0.3462 0.3845 0.3534 0.3406 0.3410 0.3435 0.3387 MAE 0.2479 0.2491 0.2427 0.2515 0.2
+p.8: r operating characteristic curve (AUC), accuracy (ACC), root mean-square error (RMSE), and mean absolute error (MAE) as the experimental evaluation metrics. 5.2. Performance prediction (RQ1) To evaluate t
+HITS 6 CHARS 47433
+
+## KT064 exists=True
+HITS 0 CHARS 74596
+
+## KT065 exists=True
+p.5: 𝑎𝑖 = 1, the answer is correct. Given a learner’s past learning sequence 𝑆 and a new question 𝑞𝑡+1, we need to model the learner’s historical learning sequences to trace the changes in their knowledge state over t
+p.5:  predict the probability 𝑃 (𝑎𝑡+1 = 1 ∣ 𝑆,𝑞𝑡+1) that the learner will answer the new question correctly based on the current knowledge state. 3.2. Forming schemas HGNN [55] extends the concept of traditional GNN t
+p.10: random guess performance. Additionally, Accuracy (ACC), Root Mean Square Error (RMSE), and F1- score were employed as supplementary evaluation metrics. ACC reflects the model’s overall accuracy, RMSE quan
+p.10: edicting learner per- formance, aligning with educational assessment standards. RMSE helps identify significant deviations in model predictions, particularly useful for understanding model performance on 
+p.10: ble 3 presents detailed performance metrics for all models, including AUC, ACC, RMSE, and F1-score. The exceptional performance of the CSGKT model on these metrics not only reflects its predictive accurac
+p.11: .8515 ACC 0.7534 0.7646 0.7582 0.7749 0.7665 0.8125 0.8168 0.8027 0.7543 0.8068 RMSE 0.4965 0.4562 0.4440 0.4235 0.4249 0.4038 0.4013 0.4164 0.3985 0.4164 F1 0.7514 – – – 0.7543 0.7212 0.7885 0.7432 0.726
+HITS 6 CHARS 74056
+
+## KT066 exists=True
+p.7:  state hypergraph. Similar to the global state hypergraph encoding channel, the new question embedding concatenates the reverse position embedding and the learner’s answer in the collaborative hypergraph convolut
+p.7:  σ ( W 6 [¯θ ⊕ xt+1 ] + b5 ) . (16) The objective function of predicting is the negative log-likelihood of the observed sequence of learners’ exercising process from step 1 to T + 1. We also optimize a standard c
+p.9: e (AUC), accuracy (ACC), mean absolute error (MAE), and root-mean-square error (RMSE). In our implementation of HyperKT, the dimension size of question embeddings, multilevel knowledge states, and reverse
+HITS 3 CHARS 78193
+
+## KT067 exists=True
+p.6: None Better performance, Solve expert dependencies, Multiple knowledge concepts Cold start problem, Large amount of training data, Complex model, lack of explainability, Failure to consider learning features, F
+p.16: ed by all nodes. The aim of the model’s training is to reduce the observations’ negative log-likelihood (NLL). The knowledge state from the nearby ideas can be gathered by using the edge information. Nevertheless
+p.21: ts’ learning trajectories on specific knowledge concepts and their responses to new questions. Fig. 7 Loss changes of all compared models on the ASSISTments validation set Table 4 Question number and its correspo
+HITS 3 CHARS 73678
+
+## KT068 exists=True
+p.10: ion history between learners and questions, predicting learners’ performance on new questions. • DKT+: Based on the forgetting curve, DKT+ (Yeung & Yeung, 2018) incorporates forgetting information to better captu
+p.11: e second-best results are underlined. Type Metric ASSIST2017 Eedi Junyi AUC ACC RMSE AUC ACC RMSE AUC ACC RMSE POI-KT BKT 0.6368 0.6463 0.4700 0.6226 0.6513 0.4683 0.6206 0.9609 0.4688 DKT 0.7430 0.6958 0
+p.11: cs: area under the ROC curve (AUC), accuracy (ACC), and root mean square error (RMSE). AUC measures the model’s ability to distinguish between the samples correctly, ACC assesses the overall prediction ac
+p.11: curacy, and RMSE evaluates the variance of predicted values from actual values. Higher AUC and ACC values indicate better performance, w
+p.11: all datasets, with AUC increasing by 0.31% to 0.41%, ACC by 0.18% to 0.24%, and RMSE decreasing by 0.11% to 0.48%, Which shows the effectiveness of hierarchical knowledge-level modeling. Information Proce
+p.12: sults of the ablation experiments. Dataset ASSIST2017 Eedi Junyi Metric AUC ACC RMSE AUC ACC RMSE AUC ACC RMSE HKT 0.7703 0.7165 0.4317 0.8010 0.7435 0.4140 0.7981 0.8529 0.3331 WO-KHT 0.7665 0.714 0.4321
+HITS 6 CHARS 52237
+
+## KT069 exists=True
+p.4: d In real-world scenarios, KT often encounters challenges such as missing data, cold start, and domain discrepancies, which constrain the effectiveness of traditional KT models. In response to these domain-spec
+p.24: Lv, R., Wang, S.: Leveraging transferable knowledge concept graph embedding for cold-start cognitive diagnosis. In: Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Info
+p.24: i, H., Gu, Y ., Y ao, F., Zhang, Z., Li, X., He, Y .: Zero-1-to-3: Domain-level zero-shot cognitive diagnosis via one batch of early-bird students towards three diagnostic objectives. In: Proceedings of the AA
+HITS 3 CHARS 69127
+
+## KT070 exists=True
+p.7: test datasets [7, 20, 21]. To evaluate model performance, we adopt ACC, AUC and RMSE as metrics from the perspectives of classification and regression following the [6, 46]. 4.2.3 Implementation Details. 
+p.8:  (%)↑ 9.30 12.51 10.0710.13 14.68 21.03 31.65 - 34.32 26.96 31.39 34.22 36.03 - RMSE (%)↓ 44.67 30.59 31.7842.93 40.01 34.56 31.96 - 35.44 41.24 39.03 34 .25 31.33 - AtCoder AUC (%)↑ 52.37 53.34 54.6252.4
+p.8: e (%)↑ 7.00 15.96 22.747.02 16.39 27.42 31.44 - 32.40 16.31 34.69 35.37 33.21 - RMSE (%)↓ 45.17 41.88 38.8244.37 39.66 31.63 39.42 - 37.54 43.20 38.27 30.32 38.36 - BePKT_C++ AUC (%)↑ 52.96 54.17 53.2954.
+p.8: 37 10.24 10.0110.32 14.29 18.21 33.75 28.57 27.92 27.16 30.65 33.49 37.19 37.40 RMSE (%)↓ 44.28 43.77 43.8242.09 40.66 34.08 31.30 31.07 32.03 40.89 39.57 33.65 30.97 30.20 AtCoder_C AUC (%)↑ 52.51 53.07 
+p.8: .67 12.428.49 12.33 24 .99 33 .89 51 .74 52.04 18.31 32 .33 40 .67 36 .08 61.28 RMSE (%)↓ 43.20 42.96 41.7742.20 41.30 38 .41 38 .03 40 .80 40.01 41.11 40 .93 38 .28 37.90 39.26 Table 2: The statistics of
+p.8:  by removing the Table 3: Ablation study on BePKT_C++. Methods AUC (%)↑ F1 (%)↑ RMSE (%)↓ Coda-PST 63.75 37.40 30.20 w/o iso 62.57 36.92 30.60w/o sim 63.32 37.23 30.63w/o uw 62.21 37.02 31.43w/o gcn 63.00
+HITS 6 CHARS 46411
+
+## KT076 exists=True
+HITS 0 CHARS 0
+
+## KT077 exists=True
+p.20: able 5, showcasing the AUC metric for each model. Additional metrics, including RMSE and precision, are provided in Table 6. With the graph modeling module capturing the structural information within exer
+p.21: e ranking of the models across all datasets. Table 6. Performance Comparison of RMSE and Precision on Two Datasets (50% Noise) Dataset ASSISTments2017 Junyi-Sub Metric RMSE ↓ Precision ↑ RMSE ↓ Precision 
+HITS 2 CHARS 111861
+
+## KT079 exists=True
+HITS 0 CHARS 47963
+
+## KT084 exists=True
+p.4: t advances include alternate autore- gressive knowledge tracing (AAKT) [27] and cold-start knowledge tracing with kernel bias and cone attention (csKT) [28] to overcome limitations in sequence modeling. The dev
+p.5: providing more accurate difficulty predictions. Researchers have also addressed cold-start problems via semantic feature extraction [38], enabling knowledge tracing systems to handle previously unseen questions
+p.21: H.; Xia, X.; Xu, Y.; Dou, W. Cmclrec: Cross-Modal Contrastive Learning for User Cold-Start Sequential Recommendation. In Proceedings of the 47th International ACM SIGIR Conference on Research and Development in
+p.21: Li, X.; Liu, Z.; Huang, Y.; Guo, T.; Hou, M.; Xia, F.; Luo, W. csKT: Addressing cold-start problem in knowledge tracing via kernel bias and cone attention. Expert Syst. Appl. 2025, 266, 125988. [CrossRef] 29. P
+p.22: 38. Guo, Y.; Shen, S.; Liu, Q.; Huang, Z.; Zhu, L.; Su, Y.; Chen, E. Mitigating Cold-Start Problems in Knowledge Tracing with Large Language Models: An Attribute-Aware Approach. In Proceedings of the 33rd ACM I
+HITS 5 CHARS 76306
+
+## KT085 exists=True
+p.9: ertainty measurement techniques, including Kullback–Leibler (KL) divergence and negative log-likelihood (NLL) [ 18]. We first examine the probability distribution of graph generation between KT-Deeper and the com
+p.9: , the KT-Deeper demonstrates excellent generalization with the smallest average NLL gap. Furthermore, we evaluate the accuracy of graph generation by in- vestigating the Precision@K (P@K) and Mean Averag
+HITS 2 CHARS 79577
+
+## KT086 exists=True
+p.8: t al. Table 4 Performance comparison of diﬀerent methods based on AUC, ACC, and RMSE across four datasets. Experiments for CL4KT and DisKT were not conducted on the Junyi and YMath datasets due to unmet e
+p.8: CC 0.7492 0.7961 0.7994 0.7859 0.7916 0.6415 0.7958 0.7369 0.7497 0.7987 0.7997 RMSE 0.4358 0.3715 0.3705 0.3801 0.3788 0.4698 0.4371 0.4208 0.4134 0.3698 0.3687 ASSISTments2017 AUC 0.6341 0.6908 0.7220 0
+p.8: CC 0.6154 0.6861 0.7006 0.6580 0.7124 0.6124 0.6961 0.6566 0.7028 0.7082 0.7146 RMSE 0.5354 0.4514 0.4431 0.4700 0.5363 0.4743 0.4445 0.4690 0.4440 0.4363 0.4329 Junyi AUC 0.8289 0.8575 0.8702 0.7806 0.82
+p.8: 6 0.8803 ACC 0.8095 0.8094 0.8479 0.7631 0.7574 0.8162 0.8425 – – 0.8363 0.8360 RMSE 0.4054 0.3728 0.3430 0.4284 0.4068 0.3705 0.3449 – – 0.3504 0.3501 YMath AUC 0.8591 0.9062 0.9063 0.9036 0.9001 0.8889 
+p.8: 9 0.9072 ACC 0.7870 0.8233 0.8193 0.8223 0.8158 0.8011 0.8235 – – 0.8231 0.8239 RMSE 0.4054 0.3520 0.3543 0.3541 0.3585 0.3703 0.3517 – – 0.3515 0.3512 attention-based models including SAKT, AKT, FGKT and
+p.8: , we use Area Under the Curve (AUC), Accuracy (ACC) and Root Mean Square Error (RMSE) as the performance evaluation metrics of all experiments. We split all the datasets in the ratio of 6:2:2, where 60 % 
+HITS 6 CHARS 47242
+
+## KT087 exists=True
+p.11:  in K, which further demonstrates the stability of our model. H. Discussions on Cold Start Problem The cold start problem is a signiﬁcant issue in KT, particularly in learning environments with an insufﬁcient n
+p.11: deteriorates compared with the optimal scenario, highlighting the impact of the cold start problem on our method. In the second case, KT models encounter difﬁculties when attempting to accurately model a studen
+p.11: suggested length of 50 in DKT framework. To address the challenges posed by the cold start problem, one possible strategy involves incorporating students’ side in- formation during modeling their learning seque
+p.12: , leveraging side information represents a promising approach to mitigating the cold start problem. I. Case Study To visualize the effect of collaborative information on the prediction of next exercise response
+HITS 4 CHARS 64905
+
+## KT088 exists=True
+HITS 0 CHARS 64024
+
+## KT089 exists=True
+HITS 0 CHARS 38859

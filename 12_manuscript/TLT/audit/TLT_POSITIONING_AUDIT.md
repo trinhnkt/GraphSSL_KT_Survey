@@ -47,7 +47,7 @@ All unsupported "first systematic survey" assertions have been systematically au
 
 The prior literature comparison has been rebuilt to explicitly compare four primary categories of review and benchmark works across seven rigorous audit dimensions:
 
-| Audit Dimension | Broad KT Surveys<br>*(Abdelrahman et al., 2023)* | Deep-KT Benchmark Suites<br>*(Liu et al. pyKT, 2022/2025)* | Dedicated Graph-KT Reviews<br>*(Wang et al., 2024)* | **This Systematic Survey**<br>*(Ours, 2026)* |
+| Audit Dimension | Broad KT Surveys<br>*(Abdelrahman et al., 2023)* | Deep-KT Benchmark Suites<br>*(Liu et al. pyKT, 2022)* | TLT KT Survey<br>*(Shen et al., 2024)* | **This Systematic Survey**<br>*(Ours, 2026)* |
 | :--- | :--- | :--- | :--- | :--- |
 | **1. Systematic Protocol** | Narrative / Semi-systematic | Empirical benchmark code | Qualitative literature review | **Full PRISMA 2020 (7 databases, $N=2,017$)** |
 | **2. Graph Coverage** | High-level GNN overview | Standard sequence baselines | GNN-focused taxonomy | **4-family Graph Provenance & 5-family GNN Encoder** |

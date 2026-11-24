@@ -1,0 +1,40 @@
+==== main_tlt_anonymous.pdf pages=17 chars=89905
+  '2,017' 12
+  'Task clarity' 1
+  'Interaction sparsity only' 8
+  'Generic sparsity only' 0
+  '0/37' 21
+  'Expected calibration error' 1
+  N_rec-ish True raw_N_mathrm 686
+==== main_tlt_full.pdf pages=18 chars=92175
+  '2,017' 12
+  'Task clarity' 1
+  'Interaction sparsity only' 8
+  'Generic sparsity only' 0
+  '0/37' 21
+  'Expected calibration error' 1
+  N_rec-ish True raw_N_mathrm 709
+==== manuscript_TLT_FORMATTED_v1.3.pdf pages=18 chars=92175
+  '2,017' 12
+  'Task clarity' 1
+  'Interaction sparsity only' 8
+  'Generic sparsity only' 0
+  '0/37' 21
+  'Expected calibration error' 1
+  N_rec-ish True raw_N_mathrm 709
+==== COVER_LETTER.pdf pages=2 chars=4970
+  '2,017' 2
+  'Task clarity' 0
+  'Interaction sparsity only' 0
+  'Generic sparsity only' 0
+  '0/37' 4
+  'Expected calibration error' 0
+  N_rec-ish True raw_N_mathrm 19
+==== COVER_LETTER.pdf pages=2 chars=4970
+  '2,017' 2
+  'Task clarity' 0
+  'Interaction sparsity only' 0
+  'Generic sparsity only' 0
+  '0/37' 4
+  'Expected calibration error' 0
+  N_rec-ish True raw_N_mathrm 19

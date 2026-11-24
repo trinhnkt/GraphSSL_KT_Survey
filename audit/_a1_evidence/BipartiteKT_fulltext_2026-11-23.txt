@@ -1,0 +1,806 @@
+
+
+===== PAGE 1 =====
+
+Contrastive Learning Based on Bipartite
+Graphs for Interpretable Knowledge
+Tracing
+Kai Chen1,S h u nM a o2, Qiwen Zheng1, and Yuncheng Jiang1,2(B)
+1 School of Artiﬁcial Intelligence, South China Normal University,
+Foshan 528225, China
+{kylechen,shunm,zhengqiwen}@m.scnu.edu.cn
+2 School of Computer Science, South China Normal University,
+Guangzhou 510631, China
+ycjiang@scnu.edu.cn
+Abstract. The use of online educational platforms has become an
+increasingly popular way for people to acquire knowledge from the Inter-
+net. Knowledge tracking tasks are deﬁned as predicting learners’ future
+performance based on their historical interaction data. Many researchers
+employ the bipartite graph representation of the relationship between
+two diﬀerent types of nodes, exercises and knowledge concepts, to make
+better predictions. However, the implicit associations between nodes of
+the same type in this graph cannot be well captured, which limits the
+model’s ability to extract deep relationships and semantic information,
+resulting in poor generalisation ability. To address this limitation, we
+propose a bipartite graph-based contrastive learning method with dual-
+view data augmentation, which captures implicit associations between
+nodes of the same type while improving the representation of relation-
+ships between exercises and concepts. In addition, the application of
+deep learning methods in knowledge tracing often suﬀers from poor
+interpretability of prediction results. To address this issue, this paper
+incorporates the mastery scores of exercises and knowledge concepts into
+the predictions to improve the interpretability of the model. Experimen-
+tal results show that our model outperforms related models on several
+datasets.
+Keywords: Knowledge tracing
+· Bipartite graph contrastive learning ·
+Interpretable prediction layer
+1 Introduction
+The development of Knowledge Tracing (KT), an important ﬁeld in educational
+technology, aims to analyse learners’ behaviour and performance data to assess
+their knowledge acquisition in real time and predict future learning outcomes.
+With the rapid advancement of information technology and data science, knowl-
+edge tracing techniques have also been constantly evolving and innovating. While
+c⃝ The Author(s), under exclusive license to Springer Nature Singapore Pte Ltd. 2025
+Q. Z. Sheng et al. (Eds.): ADMA 2024, LNAI 15389, pp. 206–220, 2025.
+https://doi.org/10.1007/978-981-96-0821-8
+_14
+
+===== PAGE 2 =====
+
+Bipartite Graph-Based CL for Interpretable KT 207
+traditional models such as Bayesian Knowledge Tracing (BKT) [ 2] have laid
+the groundwork by using probabilistic methods to assess student mastery of
+knowledge items, they often struggle with the complexity of larger data sets
+and diverse learning behaviours. Deep Knowledge Tracing (DKT) [ 14] repre-
+sents a shift towards deep learning models that employ Recurrent Neural Net-
+works (RNNs) to handle more complex data and learning patterns, signiﬁcantly
+improving prediction accuracy.
+Regarding the inherent data sparsity problem in knowledge tracing, schol-
+ars have attempted to address this issue by exploiting the relationship graphs
+between exercises and knowledge concepts, but existing methods still face signif-
+icant challenges. This paper focuses on two prominent issues: (1) The intrinsic
+associations between nodes of the same type in this bipartite graph are not eﬀec-
+tively captured, which limits the model’s ability to extract deep connections and
+semantic information. In the real world, learning concepts in one domain can
+help you understand similar concepts in another domain. There are also simi-
+lar solutions between diﬀerent exercises. These connections are often overlooked
+in traditional models, weakening the models’ ability to generalise across diﬀer-
+ent educational settings. (2) Although existing deep learning models have good
+predictive capabilities, due to tens of thousands of parameters, these models
+often lack ﬁne-grained interpretability and cannot analyse their inference pro-
+cess based on the prediction results. As a result, online learning platforms are
+unable to more comprehensively analyse learners’ learning situations based on
+KT tasks to make recommendations for further learning.
+To address these critical gaps, our research proposes innovative solutions: (1)
+introduces a novel bipartite graph-based contrastive learning approach to knowl-
+edge tracing, which can capture the implicit associations within the exercise set
+and within the knowledge concept set, respectively, and enhance the depth of
+associations between exercises and concepts, thereby enriching the representation
+of the model and increasing its adaptability to diverse learning environments;
+(2) addresses the common problem of low interpretability associated with deep
+learning models in KT, we integrate the mastery scores of exercises and knowl-
+edge concepts into our predictions, allowing us to explain the result from two
+perspectives: understanding of the exercise and mastery of the knowledge con-
+cepts. This enhancement signiﬁcantly increases the interpretability of our model,
+providing educators with a more transparent and actionable understanding of
+predicted student outcomes.
+In summary, we are bridging the gap between advanced predictive accuracy
+and the essential need for interpretability in educational applications, with the
+aim of fostering a more informed and adaptive educational landscape, tailored
+to the diverse and evolving needs of learners.
+2 Related Work
+The rapid evolution of deep learning has inspired a multitude of approaches
+to address the intricacies of Knowledge Tracing, each seeking to enhance the
+accuracy and depth of learner analysis within intelligent tutoring systems.
+
+===== PAGE 3 =====
+
+208 K. Chen et al.
+Deep Knowledge Tracing (DKT) [14] represents a shift in knowledge tracing
+research into the era of deep learning, using recurrent neural networks (RNN)
+to predict learner performance. Contrastive Learning for Knowledge Tracing
+(CL4FT) [ 24] and DTransformer [ 22] introduce the framework of sequence-
+based contrastive learning, which aims to produce robust embeddings of learner
+interactions by distinguishing between positive and negative samples, thereby
+strengthening the accuracy and resilience of knowledge state predictions. FGKT
+[9] obtains exercise representations based on knowledge concepts and diﬀer-
+ences, and uses an attention mechanism to capture the relevance between assess-
+ment exercises and historical interactions to assess individual prior knowledge.
+GKT [10], GIKT [ 20]a n dD B G C N[6] integrate graph structures to capture
+higher order relationships and dependencies between knowledge. KSGAN [ 8]
+fully exploits the knowledge structure between concepts and exercises to obtain
+eﬀective exercise representations and reduce the sparsity of educational data.
+DEGKT [3] uses hypergraph modeling and directed graph modeling to establish
+the dual graph structure of student learning interaction to capture the hetero-
+geneous practice of concept association and interactive transformation. These
+models exploit the relational dynamics of educational data, transforming the
+relationships between exercises and concepts into graph representations to enrich
+predictive capabilities. This graph-based strategy deepens the models’ under-
+standing of complex educational interdependencies and provides a more nuanced
+representation of knowledge states. However, the implicit associations between
+nodes of the same type in this graph cannot be well captured, which limits the
+model’s ability to extract deep-level associations and semantic information, and
+the model’s generalization ability is weak.
+Additionally, interpretability remains a challenge in KT, particularly with
+sophisticated models. Deep-IRT [ 21] employs the Item Response Theory [ 5]
+model to estimate the probability that a student will answer an item correctly
+using estimated student ability and item diﬃculty, providing a psychological
+interpretation of both students and items. Interpretable Knowledge Tracing
+(IKT) [16] seeks to bridge this gap by incorporating three principal elements
+into its prediction algorithm: mastery of individual concepts, exercise diﬃculty,
+and learners’ response tendencies, thereby yielding more transparent insights
+into the educational process. While IKT revisits the BKT framework for its pre-
+dictions, it still faces limitations in handling large-scale data. QIKT [1] employs
+an item response theory based prediction layer to produce interpretable pre-
+diction results based on the utilization of deep learning models. However, the
+experimental data from the corresponding model papers indicate that these KT
+models that account for interpretability often result in a trade-oﬀ between pre-
+dictive performance and interpretability.
+To combine the strengths and mitigate the limitations of these predeces-
+sors, our research proposes a novel bipartite graph-based contrastive learning
+approach to knowledge tracing that enhances the representation of these inter-
+actions and captures deep connections across exercises and concepts. In addition,
+
+===== PAGE 4 =====
+
+Bipartite Graph-Based CL for Interpretable KT 209
+our approach integrates the mastery scores of exercises and knowledge concepts
+into the prediction process, thereby improving the interpretability of the model.
+3 Methodology
+3.1 Problem Deﬁnition
+Knowledge tracing aims to capture learners’ knowledge state from their past
+learning interactions and predict future exercises. Speciﬁcally, learners’ practice
+interactions are formalised as a sequence of tuples {x1,x 2,...,x t}, where xt =
+(et,r t) represents the result rt of a learner answering the exercise et at time
+step t. Here, rt ∈{ 1,0} indicates whether the learner’s answer to the exercise is
+correct or not. The goal of knowledge tracing is to predict whether the learner’s
+answer to the exercise e
+t+1 at the next time step will be correct, based on the
+sequence of learner interactions from time step 1 to t. We use two metrics to
+evaluate the performance of the model: AUC (area under the curve) and ACC
+(accuracy). Higher values indicate a better predictive ability of the model.
+3.2 Model Overview
+The main structure of the model is shown in Fig. 1. We have divided it into
+two main parts: the prediction part and the bipartite graph contrastive learning
+part. The prediction part primarily employs a modiﬁed version of the GATs
+(Graph Attention Layer) [18] which uses a bipartite graph of exercises, knowledge
+concepts, and their relations as embeddings for training. This is combined with
+the learner’s knowledge state of exercises and knowledge concepts to improve the
+accuracy of predictions. The bipartite graph contrastive learning part includes
+two perspectives: inter-class and intra-class. Finally, the total loss is obtained by
+combining the learner’s exercise mastery state loss, knowledge concept mastery
+state loss, prediction loss, and the bipartite graph contrastive learning total loss
+with diﬀerent weights, which is then optimized.
+3.3 Embedding and Knowledge Structure
+The dataset used for knowledge tracing contains interaction data between stu-
+dents and exercises, as well as the corresponding knowledge concepts of these
+exercises. We extract the exercise and knowledge concept data and deﬁne them
+as E = {e
+1,e 2,...,e |E|} and C = {c1,c 2,...,c |C|}, where |E| and |C| represent
+the number of exercises and knowledge concepts, respectively. Empirical evi-
+dence suggests that there is a complex, reciprocal relationship between exercises
+and knowledge concepts. This relationship can be represented as a bipartite
+graph of exercise-concept relationships G
+1 = {(ei,r (ei,c j),c j)|ei ∈E ,c j ∈C },
+where r(ei,c j) indicates whether exercise ei is related to knowledge concept cj
+(if related, r(ei,c j) = 1; otherwise, r(ei,c j) = 0).
+On this basis, we divide it into inter-class and intra-class perspectives for
+bipartite graph contrastive learning. The inter-class perspective focuses on the
+
+===== PAGE 5 =====
+
+210 K. Chen et al.
+Bipartite Graphs Contrastive LearningPrediction Module
+Graph Encoder Graph Encoder Graph Encoder
+q1
+q2
+q3
+q4
+q5
+q1
+q2
+q3
+q4
+q5
+Intra-viewInter-view
+kc-adj
+c1
+c2
+c3
+c4
+c5
+c1
+c2
+c3
+c4
+c5
+ex-adj
+c2
+c3
+c1
+q4
+q3
+q2
+q1
+Bipartite Graph
+x1
+x2
+xn
+e1
+e2
+en
+Exercise Embedding
+c1
+c2
+cn
+Concept Embedding
+ResponseData
+q1
+c1
+c2
+c3
+s1
+Bipartite Graph
+Interaction Data
+r1
+rt-1
+rt
+Interaction Data
+r1
+rt-1
+rt
+c2
+c3
+c1
+q4
+q3
+q2
+q1
+c2
+c3
+c1
+q4
+q3
+q2
+q1
+LSTM
+x1 h1 f2
+xt-1 ht-1 ft
+xt ht ft+1
+r1
+rt-1
+rt
+LSTM
+s2 k1 x1
+st kt-1 xt-1
+st+1 kt xt+1
+r1
+rt-1
+rt
+q1 q2 q3 qnq4 c3 c2 c3 cn q1 q2 q3 qnq4 c3 c2 c3 cn
+c2
+c3
+c1
+q4
+q3
+q2
+q1
+BGAT Layer
+Fig. 1. The architecture of CLBG. G(+)
+m , Z(+)
+m and L represent the bipartite graphs,
+the node representations, and the loss of each part of the model, respectively.
+connections between exercises and knowledge concepts, while the intra-class
+perspective focuses on the relationships within exercises or within knowledge
+concepts. To achieve this, we need to generate adjacency matrices representing
+intra-class relationships. These relationships can be represented as the exercise
+correlation graph G
+2 = {(ei,r (ei,e j),e j)|ei,e j ∈E } and the knowledge concept
+correlation graph G3 = {(ci,r (ci,c j),c j)|ci,c j ∈C }, where r(ei,e j)a n dr(ci,c j)
+indicate whether exercises or knowledge concepts are related (if related, r =1 ;
+otherwise, r = 0).
+Through these deﬁnitions, we embed all the exercises and knowledge concepts
+in two matrices, namely the exercise embedding matrix EE ∈ R|E|×d and the
+knowledge concept embedding matrix EC ∈ R|C|×d, where d is the dimension of
+the embeddings. Each row inEE and EC represents the embedding of a particular
+exercise or knowledge concept.
+In practice, an exercise embedding should include the knowledge concept
+information it covers, but this is diﬃcult to achieve through direct training.
+Therefore, we utilize the exercise-concept bipartite graph G1, the exercise cor-
+relation graph G2, the knowledge concept correlation graph G3, and the embed-
+dings EE and EC to address this problem. Through these embeddings and the
+knowledge structure, we can train the model more eﬃciently and improve its
+performance using bipartite graph contrastive learning.
+
+===== PAGE 6 =====
+
+Bipartite Graph-Based CL for Interpretable KT 211
+3.4 Bipartite Graph Attention Network
+Inspired by Graph Attention Networks (GATs) [17], we propose a method based
+on bipartite graph attention networks (BGATs) to obtain exercise representa-
+tions. Unlike GATs, which aggregate nodes of the same type, our task involves
+two types of data: exercises E
+E = {e1,e 2,...,e |E|} and knowledge concepts
+EC = {c1,c 2,...,c |C|}. Therefore, we modiﬁed the conventional GAT model so
+that the features of these two sets of nodes are aggregated through an attention
+mechanism into a new set of node features X = {x
+1,x 2,...,x |E|}, where each
+row represents a speciﬁc exercise representation.
+In the bipartite graph, each exercise is directly linked to its corresponding
+knowledge concept. The model utilises this graph structure to embed the charac-
+teristic features of the relevant knowledge concepts for a given exercise. First, the
+embeddings undergo a uniﬁed linear transformation before being concatenated
+and then perform attention is calculated on the concatenated vectors.
+β
+ij = a[W1ei,W 1cj] (1)
+where [·,·] indicates the act of vector concatenation, andβij quantiﬁes the atten-
+tional weights that connect the embeddings of the exercises to those of the
+knowledge concepts. The transformation and attention processes are facilitated
+by weight matrices W
+1 ∈ Rd×d and a ∈ R1×2d, respectively.
+Following this, we calculate the attention coeﬃcient αij corresponding to
+each knowledge concept cj that is adjacent to the exercise node ei within the
+bipartite graph G1. The neighboring knowledge concept nodes forei are denoted
+by Ni. The formulation for this calculation of the attention coeﬃcient is outlined
+as follows:
+αij = exp(LeakyReLU(βij))∑
+kk∈Ni
+exp(LeakyReLU(βic)) (2)
+where the negative input slope of the LeakyReLU activation function is 0.2
+in our experiments. Utilizing the attention coeﬃcients, we then aggregate the
+relevant knowledge concept embeddings into a summary vector that represents
+the knowledge concepts associated with the exercise node e
+i:
+si = σ
+⎛
+⎝ ∑
+kj∈Ni
+αijW2cj
+⎞
+⎠ (3)
+where W2 ∈ Rd×d,a n dσ(x) denotes the function as: Sigmoid(x)= 1
+1+e− x .
+Finally, to derive a robust representation of an exercise, we employ an inte-
+gration function that merges the exercise embeddings with corresponding con-
+ceptual vectors, resulting in a comprehensive exercise representation:
+xi =[ si,(si ⊙ (I · ei))] (4)
+where xi results from an integration function with dimension D. Element-wise
+multiplication is denoted by ⊙ and I ∈ Rd×d is a trainable matrix. We form
+
+===== PAGE 7 =====
+
+212 K. Chen et al.
+X =( x1, x2, ...,x|E|) to represent exercise nodes, with each row corresponding
+to a unique exercise. Additionally, we use a multi-head attention mechanism to
+construct h versions of X and average them to advance to the next stage.
+To represent a learner’s accuracy on the exercisee
+i at a given timet, we aug-
+ment xi
+t by adding a vector composed entirely of zeros,pt ∈{ 0}D, corresponding
+the dimension of xi
+t. So we deﬁne yi
+t ∈ R2D as follows:
+yi
+t =
+{ [xi
+t, pt], if pt =1
+[pt, xi
+t], if pt =0 (5)
+3.5 Bipartite Graph Contrastive Learning
+Inspired by SBGCL [24], we propose an unsupervised unsigned bipartite graph
+contrastive learning model that learns deep associations and semantic informa-
+tion between exercises and concepts and the implicit relationships between nodes
+of the same type. Figure 1 shows the overall architecture. Bipartite graph con-
+trastive learning mainly consists of two steps: (1) graph data augmentation; (2)
+dual-view contrastive learning. Speciﬁcally, we ﬁrst create two diﬀerent views of
+the original bipartite graph, namely the inter-class view and the intra-class view,
+capturing the explicit relationships between knowledge concepts and exercises
+r(e
+i,c j) and the implicit relationships between their internal nodes r(ei,e j),
+r(ci,c j). In each graph view, we use random graph augmentation to generate
+augmented graphs, which are combined with the original graph to form positive
+sample pairs and encoded as adjacency matrices. Finally, we calculate contrastive
+loss for each view, maximizing the similarity between positive sample pairs to
+improve the performance of the model.
+Data Augmentation. Due to the discreteness of data annotations, most exer-
+cises involve few knowledge concepts, and some concepts correspond to few exer-
+cises, leading to sparse intra-class correlation matrices. To support model embed-
+ding and graph contrastive learning, we augment graphs representing inter-class
+and intra-class node relationships, increasing their density and enhancing model
+generalization. Previous works [25] use random graph augmentations by perturb-
+ing graph structures and attributes, aiming to learn representations that remain
+robust to these perturbations [ 19]. Before training, we augment the exercise-
+concept bipartite graph G
+1, exercise correlation bipartite graph G2, and knowl-
+edge concept correlation bipartite graphG3 by randomly adding or deleting edges
+with probability p, resulting in three augmented graphs.
+Graph Encoder. After data augmentation, we obtain three augmented graphs,
+as shown in the Fig.1, where G+
+1 belongs to the inter-class view, andG+
+2 and G+
+3
+belong to the intra-class view. Next, we use GNN to learn node representations
+of both Gm and G+
+m. Formally, the node representation in each graph is calculated
+as follows:
+hl+1,(+)
+i,m =G N Nm(hl,(+)
+i,m ,G(+)
+m ) (6)
+
+===== PAGE 8 =====
+
+Bipartite Graph-Based CL for Interpretable KT 213
+z(+)
+i,m =
+[
+h0,(+)
+i,m ∥h1,(+)
+i,m ∥···∥ hL,(+)
+i,m
+]
+W (+)
+m (7)
+where m refers to the m-th graph, L denotes the number of GNN layers, h0,(+)
+i,m
+denotes the input feature vector of thei-th node, and W (+)
+m is a learnable trans-
+formation matrix.
+Contrastive Objective. A ss h o w ni nt h eF i g .1, after graph augmentation in
+the inter-class view and intra-class view, CLBG creates three augmented graphs,
+G
++
+1 , G+
+2 ,a n dG+
+3 . Nodes in the augmented graphs and the original graph form
+positive samples with the same node and negative samples with diﬀerent nodes.
+For any graph in each view, to obtain node representations invariant to small
+perturbations, CLBG maximizes the similarity between the representations of
+the same node learned from another augmented graph in the same view while
+minimizing the similarity between representations of diﬀerent nodes. For a pair
+of positive samples G
+1 and G+
+1 in the inter-class view, and two pairs of positive
+samples G2, G+
+2 and G3, G+
+3 in the intra-class view, we calculate the contrastive
+loss inspired by InfoNCE loss [11,15,25], denoted asL1, L2,a n dL3, respectively.
+The contrastive loss is deﬁned as follows:
+L1,2,3 = −1
+I
+I∑
+i=1
+log
+exp(sim(zi,m,z +
+i,m)/τ)
+∑ I
+j=1,j̸=i exp(sim(zi,m,z +
+j,m)/τ)
+(8)
+where I is the number of nodes in the mini-batch, zi,m and z+
+i,m represent the
+representation of nodei in the m-th graph positive sample pairs, sim(·,·) denotes
+the cosine similarity function, and τ is the temperature parameter. Finally, the
+total contrastive learning loss is combined as follows:
+Lcl = L1 + L2 + L3 (9)
+3.6 Prediction
+Inspired by QIKT [ 1], we designed two prediction modules: (1) an Exercise
+Acquisition (EA) module, and (2) a Concept Acquisition (CA) module.
+In the EA module, we use the learner’s performance on speciﬁc exercises as
+input to a Long Short-Term Memory (LSTM) network to sequentially capture
+the learner’s exercise acquisition state h
+t:
+ht =L S T M (yi
+t,h t−1) (10)
+where ht ∈ R2d. Then, we concatenate the learner’s current exercise acquisition
+state ht with the representation of the next exercisexi
+t+1 to predict the learner’s
+response score ft+1. The process is as follows:
+ft+1 = Wf 2(ReLU(Wf 1[ht,x i
+t+1]+ bf 1)) +bf 2 (11)
+
+===== PAGE 9 =====
+
+214 K. Chen et al.
+where Wf 1,W f 2 ∈ Rd×(2d+D) and bf 1,b f 2 ∈ Rd are parameters learned during
+training.
+In the CA module, similar to the exercise acquisition state modeling in the EA
+module, we use another LSTM unit to update the student’s concept acquisition
+state kt after receiving each answer:
+kt =L S T M (yi
+t,k t−1) (12)
+where kt ∈ R2d. In this module, the LSTM unit uses the concept inputct instead
+of the exercise input et. Similar to the EA module, we concatenate the learner’s
+current state of concept acquisitionkt with the representation of the next exercise
+xi
+t+1 to predict the response score at the next time step st+1. The procedure is
+as follows:
+st+1 = Ws2(ReLU(Ws1[kt,x i
+t+1]+ bs1)) +bs2 (13)
+where Ws1,W s2 ∈ Rd×(2d+D) and bs1,b s2 ∈ Rd are parameters learned during
+training.
+Finally, we average the exercise mastery scoreft+1 and the concept mastery
+score st+1 obtained from the two modules to calculate the ﬁnal prediction:
+ˆpt+1 =a v g (ft+1,s t+1) (14)
+This step does not involve any trainable parameters.
+3.7 Model Optimization
+Our model’s loss function comprises two primary components: the contrastive
+learning loss and the prediction loss. The calculation of the contrastive learning
+loss is detailed in Sect. 3.5, where we employ cosine similarity minimization as
+part of our contrastive learning strategy. The prediction loss is calculated using
+cross-entropy, which measures the accuracy of the predictions.
+Here is a breakdown of each component involved in the total loss calculation,
+where f
+i, si,ˆpi and ri represent the exercise mastery score, the concept mastery
+score, the ﬁnal prediction and the student’s actual response respectively:
+- Exercise Mastery State Loss ( Lea): This loss evaluates the accuracy of
+the model in predicting the student’s mastery level of speciﬁc exercises. It is
+calculated as follows:
+Lea = −
+N∑
+i=1
+[ri log(fi)+( 1 − ri) log(1− fi)] (15)
+- Knowledge Concept Mastery State Loss ( Lca): This component measures
+the student’s learning ability regarding diﬀerent knowledge concepts.
+Lca = −
+N∑
+i=1
+[ri log(si)+( 1 − ri) log(1− si)] (16)
+
+===== PAGE 10 =====
+
+Bipartite Graph-Based CL for Interpretable KT 215
+- Prediction Loss (Lp): Evaluate how well the model predicts actual outcomes
+based on the input data.
+Lp = −
+N∑
+i=1
+[ri log(ˆpi)+( 1 − ri) log(1− ˆpi)] (17)
+- Contrastive Learning Loss ( Lcl): This loss is derived from the method
+outlined in Sect. 3.5, emphasizing the contrastive objectives that enhance the
+model’s feature discrimination capabilities.
+The total loss function is then formulated as a weighted sum of these com-
+ponents, optimized by the settings of weights λca,λ p,a n dλcl:
+Ltotal = Lea + λcaLca + λpLp + λclLcl (18)
+This structured approach ensures that each aspect of the learning process
+is appropriately weighted, contributing to a comprehensive evaluation of the
+learner’s performance across diﬀerent dimensions.
+4 Experimental Results
+4.1 Datasets
+To validate the eﬀectiveness of our proposed model, we conduct experiments on
+the following datasets, and detailed statistics are summarised in Table1:
+T able 1. Dataset Statistics.
+Dataset Learners Exercises Concepts
+Assist09 3.7k 16.9k 111
+Assist17 1.7k 3.1k 411
+slepemapy 81.7k 2.9k 1.4k
+spanish 182 409 221
+– ASSISTments 2009(Assist09): This dataset comes from ASSISTments online
+education platform [4] during the school year 2009–2010.
+– ASSISTments 2017(Assist17): This dataset is similar to ASSIST09. It is col-
+lected during the school year 2017–2018.
+– Slepemapy: This dataset originates from the slepemapy.cz system [13], which
+provides adaptive exercises focused on geography facts.
+– Spanish [ 7]: This dataset consists of records of middle school students prac-
+ticing Spanish exercises.
+
+===== PAGE 11 =====
+
+216 K. Chen et al.
+4.2 Baselines and Experimental Settings
+We conducted a comparative analysis of our proposed model against several
+established baseline models, which include:
+– DKT [ 14] employs RNN to model learning process. In our experiments, we
+develop DKT with LSTM network.
+– DKVMN [ 23] utilizes a memory-augmented neural network to predict learn-
+ers’ future performance.
+–S A K T [12] employs a pure self-attention mechanism to make predictions for
+KT.
+– KSGAN [8] explores the structural relationships between exercises and knowl-
+edge concepts to deepen the understanding of their interrelationships.
+–C L 4 F T [24] incorporates contrastive learning to reﬁne feature representation,
+improving the model’s ability to capture subtle nuances.
+–Q I K T [1] provides ﬁne-grained, question-centric cognitive representations by
+integrating knowledge acquisition and problem-solving modules.
+Each model brings distinct methodologies and enhancements to the ﬁeld of
+knowledge tracing, providing diﬀerent perspectives on how to best model and
+understand student learning trajectories.
+4.3 Implementation Details
+The Area Under Curve (AUC) and Accuracy (ACC) are used as the metrics
+to report the performance. In each experiment, an Adam optimizer is adopted
+to minimize the loss value. The embedding dimension d, batch size, dropout
+rate, learning rate and maximum length N are set to 64, 16, 0.3, 0.005 and 50,
+respectively. Moreover, the candidate values for the hyperparametersλ
+ca,λp and
+λcl are set to 0.8, 1 and 0.5 respectively. All the models are implemented using
+Python with Pytorch on a Linux server.
+4.4 Performance Analysis
+T able 2. Performance comparison of all KT methods.
+Dataset Metric DKT DKVMN SAKT KSGAN CL4KT QIKT CLBG
+Assist09 AUC 0.7550 0.6327 0.7138 0.7760 0.7381 0.7743 0.7840
+ACC 0.7254 0.6687 0.7016 0.7348 0.7149 0.7406 0.7465
+Assist17 AUC 0.7715 0.6675 0.7023 0.7766 0.6599 0.7769 0.7850
+ACC 0.7192 0.6545 0.6858 0.7221 0.6425 0.7203 0.7288
+Slepemapy AUC 0.7702 0.7270 0.7585 0.7676 0.7163 0.7668 0.7787
+ACC 0.8121 0.8061 0.8087 0.8113 0.8120 0.8114 0.8139
+Spanish AUC 0.8296 0.8165 0.8354 0.8340 0.8151 0.8349 0.8451
+ACC 0.8140 0.8096 0.8205 0.8191 0.7408 0.8274 0.8267
+
+===== PAGE 12 =====
+
+Bipartite Graph-Based CL for Interpretable KT 217
+The results, detailed in the provided Table 2, show that our proposed model
+(CLBG) consistently outperforms the baseline models on both metrics across
+all datasets (except ACC metric QIKT in the Spanish dataset). CL4KT intro-
+duces contrastive learning to improve the robustness of the model, but similar to
+DKT, DKVMN, SAKT and other models, it does not use the relationship graph
+between tasks and knowledge concepts to improve the task representation, hence
+the poor performance of the model. KSGAN uses this relationship to improve
+the prediction performance of the model, but the performance of the model still
+has room for improvement. QIKT uses question-centric cognitive module and
+introduces an IRT-based prediction layer, but this still has a slight impact on
+the model’s prediction performance. Our model captures a variety of potential
+relationships between exercises and knowledge concepts well and achieves an
+excellent experimental result.
+Fig. 2. The prediction process of CLBG.
+4.5 Interpretability Discussion
+To demonstrate the interpretability of our model, we randomly selected a student
+from the dataset and observed the model’s prediction process for the student’s
+answers to a problem and its related concepts at timest and t+1. As shown in the
+Fig.2, the model predicted the student’s mastery scores for the exercise at these
+two time steps as st =0 .5083 and st+1 =0 .6074, and the mastery scores for the
+concepts related to the exercise asft =0 .4759 and ft+1 =0 .6426. In the predic-
+tion module, our model combines the scores from these two parts to calculate the
+student’s overall ability scores for the exercisese
+t and et+1 as 0.4921 and 0.6250,
+respectively. Clearly, the prediction process is interpretable. Speciﬁcally: (1) If
+the student answers the exerciseet incorrectly, this can be interpreted as the stu-
+dent having a generally poor understanding of the concept. We can observe that
+the probability of the student answering the problem correctly is higher than 0.5,
+but since the overall mastery score for the concept is only 0.4759, this indicates
+
+===== PAGE 13 =====
+
+218 K. Chen et al.
+that the student has a relatively weak understanding of the concept. The online
+learning platform can then recommend targeted training for the student on this
+weak concept. (2) If the student answers the exercise e
+t+1 correctly, this can be
+attributed to the student’s good understanding of the related knowledge concept
+and strong knowledge transfer ability, demonstrating an ability to apply knowl-
+edge broadly in learning. In summary, this predictive process allows us to explain
+the model’s predictions from two perspectives: understanding of the exercise and
+mastery of the knowledge concepts, thus providing a psychologically meaningful
+explanation of the student’s learning process.
+4.6 Ablation Study
+To comprehensively evaluate the eﬀectiveness of the bipartite graph contrastive
+learning and interpretability prediction modules, we designed a series of ablation
+experiments. These experiments compare diﬀerent module combinations to ana-
+lyze the impact of each module on the overall model performance. Speciﬁcally,
+we conducted comparisons in the following conﬁgurations:
+T able 3. Ablation study on three datasets.
+Dataset Metric CLBG-C CLBG-I CLBG-CI CLBG
+Assist09 AUC 0.7707 0.7774 0.7730 0.7840
+ACC 0.7370 0.7445 0.7420 0.7465
+Assist17 AUC 0.7788 0.7820 0.7810 0.7850
+ACC 0.7243 0.7272 0.7260 0.7288
+slepemapy AUC 0.7717 0.7734 0.7713 0.7787
+ACC 0.8122 0.8120 0.8122 0.8139
+spanish AUC 0.8343 0.8414 0.8341 0.8451
+ACC 0.8197 0.8229 0.8192 0.8267
+– CLBG-C removes the bipartite graph contrastive learning module.
+– CLBG-I removes the interpretable prediction module.
+– CLBG-CI removes both the bipartite graph contrastive learning and inter-
+pretable prediction modules.
+– CLBG includes both the bipartite graph contrastive learning and inter-
+pretable prediction modules.
+Table3 presents the results of our ablation study, illustrating the performance
+impact of diﬀerent conﬁgurations of our model across multiple datasets. The full
+model conﬁguration, denoted as CLBG, outperforms its counterparts CLBG-C,
+CLBG-I, and CLBG-CI in both AUC and ACC metrics, suggesting the notion
+that both the bipartite graph contrastive learning and interpretability prediction
+modules contribute signiﬁcantly to the model’s eﬀectiveness.
+
+===== PAGE 14 =====
+
+Bipartite Graph-Based CL for Interpretable KT 219
+4.7 Conclusion
+This paper presents the Contrastive Learning Bipartite Graph (CLBG) model, a
+novel approach designed to improve the prediction accuracy and interpretability
+of Knowledge Tracing (KT) systems. By incorporating a bipartite graph con-
+trastive learning module alongside an interpretability prediction module, CLBG
+eﬀectively leverages the intricate relationships between exercises and knowledge
+concepts, ensuring a deep and nuanced understanding of learner data.
+Unlike traditional KT models, which may rely on additional external infor-
+mation or simpler interactions, CLBG focuses solely on the intrinsic knowledge
+structure embedded within educational data. This targeted approach allows for
+more accurate predictions by directly modeling the complex interrelationships
+inherent in the learning process. The model’s dual focus on contrastive learning
+and interpretability ensures that it not only achieves high accuracy but also pro-
+vides clear, actionable insights into the learning trajectories of students, which
+are critical for practical educational applications. The eﬀectiveness of the CLBG
+model has been rigorously tested against several baseline models on multiple
+real-world datasets, demonstrating superior performance in both AUC and ACC
+metrics.
+Acknowledgements. The works described in this paper are supported by The
+National Natural Science Foundation of China under Grant Nos. 61772210 and
+U1911201; Key Research and Development Program of Guangdong of China under
+Grant No. 2023B0303010004; The Innovation Team Project for Universities in Guang-
+dong Province in China under Grant No. 2023KCXTD011.
+References
+1. Chen, J., Liu, Z., Huang, S., Liu, Q., Luo, W.: Improving interpretability of deep
+sequential knowledge tracing models with question-centric cognitive representa-
+tions. In: Proceedings of the AAAI Conference on Artiﬁcial Intelligence (2023)
+2. Corbett, A.T., Anderson, J.R.: Knowledge tracing: Modeling the acquisition of
+procedural knowledge. User modeling and user-adapted interaction (1994)
+3. Cui, C., et al.: DGEKT: a dual graph ensemble learning method for knowledge
+tracing. ACM Trans. Inf. Syst. 42(3), 1–24 (2024)
+4. Feng, M., Heﬀernan, N.T., Koedinger, K.R.: Addressing the assessment challenge
+with an online system that tutors as it assesses. User Model. User Adapt. Interact
+19(3), 243–266 (2009)
+5. Hambleton, R.K., Swaminathan, H., Rogers, H.J.: Fundamentals of item response
+theory, vol. 2. Sage (1991)
+6. Hu, P., Li, Z., Zhang, P., Gao, J., Zhang, L.: DBGCN: a knowledge tracing model
+based on dynamic breadth graph convolutional networks. Int. J. Web Based Learn.
+Teach. Technol. 19(1), 1–20 (2024)
+7. Lindsey, R.V., Khajah, M., Mozer, M.C.: Automatic discovery of cognitive skills
+to improve the prediction of student learning. In: Advances in Neural Information
+Processing Systems (2014)
+8. Mao, S., Zhan, J., Li, J., Jiang, Y.: Knowledge structure-aware graph-attention net-
+works for knowledge tracing. In: International Conference on Knowledge Science,
+Engineering and Management (2022)
+
+===== PAGE 15 =====
+
+220 K. Chen et al.
+9. Mao, S., Zhan, J., Wang, Y., Jiang, Y.: Improving knowledge tracing via consid-
+ering two types of actual diﬀerences from exercises and prior knowledge. IEEE
+Trans. Learn. Technol. 16(3), 324–338 (2023)
+10. Nakagawa, H., Iwasawa, Y., Matsuo, Y.: Graph-based knowledge tracing: Modeling
+student proﬁciency using graph neural networks. Web Intell. (2021)
+11. van den Oord, A., Li, Y., Vinyals, O.: Representation learning with contrastive
+predictive coding. CoRR (2018)
+12. Pandey, S., Karypis, G.: A self attentive model for knowledge tracing. In: Proceed-
+ings of the 12th International Conference on Educational Data Mining, EDM 2019,
+Montr´eal, Canada, July 2-5, 2019 (2019)
+13. Papousek, J., Pel´anek, R., Stanislav, V.: Adaptive geography practice data set. J.
+Learn. Anal. 3(2), 317–321 (2016)
+14. Piech, C., et al.: Deep knowledge tracing. In: Advances in Neural Information
+Processing Systems (2015)
+15. Sohn, K.: Improved deep metric learning with multi-class n-pair loss objective.
+In: Advances in Neural Information Processing Systems 29: Annual Conference
+on Neural Information Processing Systems 2016, December 5-10, 2016, Barcelona,
+Spain (2016)
+16. Sun, J., Yu, F., Wan, Q., Li, Q., Liu, S., Shen, X.: Interpretable knowledge tracing
+with multiscale state representation. In: Proceedings of the ACM on Web Confer-
+ence 2024, WWW 2024, Singapore, May 13-17, 2024 (2024)
+17. Veliˇckovi´c, P., Cucurull, G., Casanova, A., Romero, A., Lio, P., Bengio, Y.: Graph
+attention networks. arXiv preprint arXiv:1710.10903 (2017)
+18. Velickovic, P., Cucurull, G., Casanova, A., Romero, A., Li`o, P., Bengio, Y.: Graph
+attention networks. In: 6th International Conference on Learning Representations,
+ICLR 2018, Vancouver, BC, Canada, April 30 - May 3, 2018, Conference Track
+Proceedings (2018)
+19. Xiao, T., Wang, X., Efros, A.A., Darrell, T.: What should not be contrastive in
+contrastive learning. In: 9th International Conference on Learning Representations,
+ICLR 2021, Virtual Event, Austria, May 3-7, 2021 (2021)
+20. Yang, Y., et al.: GIKT: a graph-based interaction model for knowledge tracing. In:
+Machine Learning and Knowledge Discovery in Databases - European Conference,
+ECML PKDD 2020, Ghent, Belgium, September 14-18, 2020, Proceedings, Part I
+(2020)
+21. Yeung, C.: Deep-IRT: make deep learning based knowledge tracing explainable
+using item response theory. In: Proceedings of the 12th International Conference
+on Educational Data Mining, EDM 2019, Montr´eal, Canada, July 2-5, 2019 (2019)
+22. Yin, Y., et al.: Tracing knowledge instead of patterns: stable knowledge tracing
+with diagnostic transformer. In: Proceedings of the ACM Web Conference 2023,
+WWW 2023, Austin, TX, USA, 30 April 2023 - 4 May 2023 (2023)
+23. Zhang, J., Shi, X., King, I., Yeung, D.: Dynamic key-value memory networks for
+knowledge tracing. In: Proceedings of the 26th International Conference on World
+Wide Web, WWW 2017, Perth, Australia, April 3-7, 2017 (2017)
+24. Zhang, Z., Liu, J., Zhao, K., Yang, S., Zheng, X., Wang, Y.: Contrastive learning
+for signed bipartite graphs. In: Proceedings of the 46th International ACM SIGIR
+Conference on Research and Development in Information Retrieval, pp. 1629–1638
+(2023)
+25. Zhu, Y., Xu, Y., Yu, F., Liu, Q., Wu, S., Wang, L.: Graph contrastive learning
+with adaptive augmentation. In: WWW ’21: The Web Conference 2021, Virtual
+Event/Ljubljana, Slovenia, April 19-23, 2021 (2021)

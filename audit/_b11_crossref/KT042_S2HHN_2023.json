@@ -1,0 +1,48 @@
+{
+  "title": [
+    "Self-supervised heterogeneous hypergraph network for knowledge tracing"
+  ],
+  "author": [
+    {
+      "given": "Tangjie",
+      "family": "Wu",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Qiang",
+      "family": "Ling",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2023,
+        5
+      ]
+    ]
+  },
+  "container-title": [
+    "Information Sciences"
+  ],
+  "volume": "624",
+  "issue": null,
+  "page": "200-216",
+  "publisher": "Elsevier BV",
+  "DOI": "10.1016/j.ins.2022.12.075",
+  "type": "journal-article"
+}

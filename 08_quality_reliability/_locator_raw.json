@@ -1,0 +1,1464 @@
+{
+  "KT004": {
+    "file": "Graph-based Knowledge Tracing - Modeling Student Proficiency Using Graph Neural Network.pdf",
+    "exists": true,
+    "pages": 9,
+    "chars": 45633,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 4,
+          "text": "] apply the multi-head attention mechanism [20] to the GNN and enable learning edge weights during training without requiring their predefinition. Neural relational inference (NRI) [13] leverages a variational autoencoder (VAE) [12] to learn the latent graph structure in an unsupervised manner. Our method assumes a latent graph structure underlying the knowledge concepts of a coursework and models the temporal transition of t"
+        },
+        {
+          "page": 5,
+          "text": "j ) = 1 K Õ k ∈K αk ij fk(h′t i , h′t j ), where k is the head index among a total of K heads, αk ij is the k-th head’s attention weight from vi to vj, and fk is a neural network for the k-th head. Variational autoencoder (VAE) assumes the discrete latent variable that represents the types of edges and infers them based on node features. fneighbor is defined as follows: fneighbor(h′t i , h′t j ) = Õ k ∈K zk ij fk(h′t i , h′t"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 2,
+          "text": "tive bias can improve its performance; however, previous methods, such as deep knowledge tracing, did not consider such a latent graph structure. Inspired by the recent successes of the graph neural net- work (GNN), we herein propose a GNN-based knowledge tracing method, i.e., graph-based knowledge tracing. Casting the knowl- edge structure as a graph enabled us to reformulate the knowledge tracing task as a time-series"
+        },
+        {
+          "page": 2,
+          "text": "performance; however, previous methods, such as deep knowledge tracing, did not consider such a latent graph structure. Inspired by the recent successes of the graph neural net- work (GNN), we herein propose a GNN-based knowledge tracing method, i.e., graph-based knowledge tracing. Casting the knowl- edge structure as a graph enabled us to reformulate the knowledge tracing task as a time-series node-level classification"
+        },
+        {
+          "page": 3,
+          "text": "er 14–17, 2019, Thessaloniki, Greece Nakagawa, et al. the process of coursework proficiency while considering the latent knowledge structure. A challenge encountered when performing knowledge tracing using the GNN is the definition of the latent graph structure. The GNN possesses considerable expressive power for modeling graph- structured data; however, in several cases of knowledge tracing settings, the graph structur"
+        },
+        {
+          "page": 3,
+          "text": "process of coursework proficiency while considering the latent knowledge structure. A challenge encountered when performing knowledge tracing using the GNN is the definition of the latent graph structure. The GNN possesses considerable expressive power for modeling graph- structured data; however, in several cases of knowledge tracing settings, the graph structure itself, i.e., the related concepts and the strength of"
+        },
+        {
+          "page": 4,
+          "text": "ious research areas, such as computer vision. However, CNNs can only operate on regular Euclidean data such as images and texts, whereas several applications in the real world generate non- Euclidean data. The GNN, on the other hand, regards these non- Euclidean data structures as graphs and enables the same advan- tages of the CNN to be reflected on these highly diverse data. Battaglia et al. [2] explained such an expr"
+        },
+        {
+          "page": 4,
+          "text": "regards these non- Euclidean data structures as graphs and enables the same advan- tages of the CNN to be reflected on these highly diverse data. Battaglia et al. [2] explained such an expressive power of the GNN and CNN from the perspective of relational inductive biases, which improve the sample efficiency of machine learning models by in- corporating the human’s prior knowledge about the nature of data. Among the se"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 2,
+          "text": "hod, i.e., graph-based knowledge tracing. Casting the knowl- edge structure as a graph enabled us to reformulate the knowledge tracing task as a time-series node-level classification problem in the GNN. As the knowledge graph structure is not explicitly provided in most cases, we propose various implementations of the graph structure. Empirical validations on two open datasets indicated that our method could potentially improve the"
+        },
+        {
+          "page": 3,
+          "text": "data; however, in several cases of knowledge tracing settings, the graph structure itself, i.e., the related concepts and the strength of the relationships, is not explicitly provided. It is possible for human experts to heuristically and manually anno- tate the contents relationships; however, it requires deep domain knowledge and a substantial amount of time; therefore, it is diffi- cult to define in advance the graph st"
+        },
+        {
+          "page": 3,
+          "text": "empirically validate their ef- fectiveness. Researchers can benefit from a performance boost without requiring costly annotations by human ex- perts about the relationships between concepts. The edu- cational experts can have a new criterion to consider what the good knowledge structure is to improve the curriculum design. 2 RELATED WORK 2.1 Knowledge Tracing Knowledge tracing is the task of predicting student performance"
+        },
+        {
+          "page": 4,
+          "text": "RN ×e is a matrix embedding the concept index, Ec(k) represents the k-th row of Ec, and e is the embedding size. 3.2.2 Update. Next, the model updates the hidden states based on the aggregated features and the knowledge graph structure: mt+1 k = \u001a fself(h′t k) (k = i) fneighbor(h′t i , h′t k) (k , i) (1) ˜mt+1 k = Gea(mt+1 k ) ht+1 k = Gдru( ˜mt+1 k , ht k) where fself is a multilayer perceptron (MLP), Gea is an erase–add gate used"
+        },
+        {
+          "page": 5,
+          "text": "ify them based on two aspects. First, we calculate the edge weights based on the static features, such as the embeddings of concepts and responses, instead of the dynamic ones. This enables the learning of the knowledge graph structure invariant to students and time steps, which is more natural considering the actual knowledge tracing settings. Second, for the VAE, we limit the edge-type inference for nodes related to the answers a"
+        },
+        {
+          "page": 7,
+          "text": "ed in bold, for each dataset. In both the datasets, GKT indicated the highest AUC score. This suggests that GKT can trace the student knowledge state better than the previous methods, which do not consider the knowledge graph structure. In the statistics-based approaches, the transition or DKT graph outperformed the simple dense graph. This indicates that rep- resenting sparse relationships between nodes in a certain manner enables"
+        }
+      ],
+      "cold_start": [],
+      "ece_cal": []
+    }
+  },
+  "KT011": {
+    "file": "Bi-CLKT - Bi-Graph Contrastive Learning Based Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 12,
+    "chars": 54471,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 1,
+          "text": "Bi-CLKT: Bi-Graph Contrastive Learning based Knowledge Tracing Xiangyu Songa, Jianxin Lia,∗, Qi Leib, Wei Zhaoc, Yunliang Chend,∗, Ajmal Miane aSchool of IT, Faculty of Science, Engineering and Built Environment, Deakin University, Geelong"
+        },
+        {
+          "page": 1,
+          "text": "they struggle to eﬀectively establish spatial associations and complex structures of the nodes; and 3) they represent either concepts or exercises only, without integrating them. Inspired by recent advances in self-supervised learning, we propose a Bi-Graph Contrastive Learning based Knowledge Tracing (Bi-CLKT) to address these limitations. Speciﬁcally, we design a two-layer comparative learning scheme based on an “exercise-to-ex"
+        },
+        {
+          "page": 2,
+          "text": "eﬀectively establishing spatial associations and complex structures of the nodes; and 3) representing only concepts or exercises without integrating them. Due to the diﬃculty and inaccuracy of data labelling, self-supervised learning has become increasingly popu- lar, with great success in many areas such as computer vision [19, 20, 21] and natural language processing [22, 23]. The speciality of self-supervised learning is in de"
+        },
+        {
+          "page": 2,
+          "text": "of data labelling, self-supervised learning has become increasingly popu- lar, with great success in many areas such as computer vision [19, 20, 21] and natural language processing [22, 23]. The speciality of self-supervised learning is in dealing with low quality or missing labels, which is a requirement for supervised learning and uses the input data itself for incremental layers as supervised labels for the learning model. Th"
+        },
+        {
+          "page": 3,
+          "text": "• To the best of our knowledge, we present the ﬁrst self-supervised learning based knowledge-tracing framework. Through contrastive self-supervised learning, we solve a number of problems encoun- tered by traditional GNN-based knowledge-tracing models leading to signiﬁcant i"
+        },
+        {
+          "page": 3,
+          "text": "• To the best of our knowledge, we present the ﬁrst self-supervised learning based knowledge-tracing framework. Through contrastive self-supervised learning, we solve a number of problems encoun- tered by traditional GNN-based knowledge-tracing models leading to signiﬁcant improvement in the accuracy of the ﬁnal prediction results. • For K"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 2,
+          "text": "atasets, but is still in its infancy for problems on the graphs such as retrieval, recommendation, graph mining, and social network anal- ysis. In this paper, we address the problems encountered by traditional GNN based KT models and propose a self-supervised learning framework along with Bi-Graph Contrastive Learning based Knowledge Tracing (Bi- CLKT) model. Our model employs contrastive learning with global-bilayer an"
+        },
+        {
+          "page": 3,
+          "text": "e best of our knowledge, we present the ﬁrst self-supervised learning based knowledge-tracing framework. Through contrastive self-supervised learning, we solve a number of problems encoun- tered by traditional GNN-based knowledge-tracing models leading to signiﬁcant improvement in the accuracy of the ﬁnal prediction results. • For Knowledge Tracing, we design a two- layer contrastive learning framework, which per- forms"
+        },
+        {
+          "page": 3,
+          "text": "s. The main representative of the genera- tive model is the automatic coding which is very popular. The main approach on graph data is to learn the embed- ding of nodes of the graph into a latent space through GNN, and then reconstruct the structure and properties of the original graph through the learned representations. 3"
+        },
+        {
+          "page": 6,
+          "text": "related views ˆGi, ˆG j (i.e. augmented graphs), which are treated as a positive pair in the global graph CL. Whereas in the local graph CL, all positive pairs and negative pairs exist in the both two views. • GCN-based encoder. GCN-based encoders node- level f φ and graph-level gθ for augmented graphs ˆGi, ˆG j to extract representation vectors hj. • Projection head. A non-linear transformation h(·) named projection he"
+        },
+        {
+          "page": 6,
+          "text": "ˆG j (i.e. augmented graphs), which are treated as a positive pair in the global graph CL. Whereas in the local graph CL, all positive pairs and negative pairs exist in the both two views. • GCN-based encoder. GCN-based encoders node- level f φ and graph-level gθ for augmented graphs ˆGi, ˆG j to extract representation vectors hj. • Projection head. A non-linear transformation h(·) named projection head maps augmented r"
+        },
+        {
+          "page": 7,
+          "text": "level and graph-level GCNs as en- coders for the exercises and concepts respectively. The speciﬁc structural form is as follows GCi(X, A) = σ \u0010 ˆD−1 2 ˆA ˆD−1 2 XWi \u0011 f(X, A) = GC2 (GC1(X, A), A) (7) where the adjacency matrix is ˆA = A + I and the de- gree matrix is ˆD = P i ˆAi and is the non-linear activation function we use σ(·). 4.2.3. Projection Head Furthermore, in Bi-CLKT we map the enhanced rep- resentations to a uni"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 5,
+          "text": "j e) P m f o(Vie, Vme ) (1) where Qi j e is the co-correctness rate of exercises V j e and Vi e among all the answered co-occurred exercises involv- ing Vi e. f c and f o denote the count of co-correctness and co-occurrence respectively. Edge Ee (V j e, Vi e) only exists when Qi j e is larger than a certain threshold τ. Example 1. As shown in Figure 1, we constructed an example of an exercise inﬂuence subgraph by assuming a high"
+        }
+      ],
+      "cold_start": [],
+      "ece_cal": []
+    }
+  },
+  "KT014": {
+    "file": "Prerequisite-Driven Deep Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 10,
+    "chars": 43530,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [],
+      "graph_encoder": [],
+      "graph_source": [
+        {
+          "page": 1,
+          "text": "Prerequisite-Driven Deep Knowledge Tracing Penghe Chen1, Yu Lu1,2, *, Vincent W. Zheng3, Yang Pian1 1Advanced Innovation Center for Future Education, Beijing Normal University, Beijing, China 2School of Educational Technol"
+        },
+        {
+          "page": 1,
+          "text": "ent’s exercise data still limits knowledge tracing’s performance and applications. In order to address this issue, we advocate for and propose to incorporate the knowledge structure information, especially the prerequisite relations between pedagogical concepts, into the knowledge tracing model. Speciﬁcally, by considering how students master pedagogical concepts and their prerequisites, we model prerequisite concept pairs as or"
+        },
+        {
+          "page": 2,
+          "text": "To address this challenge, by analyzing the characteristics of prerequisites, we propose to model each prerequisite as an ordering pair between a student’s mastery levels on two concepts. That is, suppose concept k1 is the prerequisite of concept k2; then we enforce the probability of"
+        },
+        {
+          "page": 2,
+          "text": "To address this challenge, by analyzing the characteristics of prerequisites, we propose to model each prerequisite as an ordering pair between a student’s mastery levels on two concepts. That is, suppose concept k1 is the prerequisite of concept k2; then we enforce the probability of a student mastering k1 as always larger"
+        },
+        {
+          "page": 3,
+          "text": "ion j ∈Q contains concept k ∈C, and Oj,k = 0 otherwise. Obtaining this data is not trivial and there are two main approaches to do it: either automatically recognized by computer systems or manually labeled by experts. There is research work utilizing machine learning algorithms to identifying concepts contained in each question [31]. In this work, since the focus is knowledge tracing rather than identifying concept in que"
+        },
+        {
+          "page": 3,
+          "text": "ll example of the matrix is shown with the “Question-Concept Mapping” matrix in Figure 1. For the purpose of better visualization, this example drops all 0s and replace all 1s with the “✓” mark. Deﬁnition 3: A prerequisite matrix E ∈{0, 1}|C|×|C| is a binary matrix, where Ek1,k2 = 1 if concept k1 ∈C is the prerequisite of concept k2 ∈C, and Ek1,k2 = 0 otherwise. Similar to the question-concept matrix, Identifying the prerequisit"
+        }
+      ],
+      "cold_start": [],
+      "ece_cal": []
+    }
+  },
+  "KT026": {
+    "file": "Improving Knowledge Tracing via Pre-training Question Embeddings.pdf",
+    "exists": true,
+    "pages": 7,
+    "chars": 34440,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 1,
+          "text": "Proceedings of the Twenty-Ninth International Joint Conference on Artiﬁcial Intelligence (IJCAI-20) 1556 Improving Knowledge Tracing via Pre-training Question Embeddings Yunfei Liu1 , Yang Yang1 , Xianyu Chen1 , Jian Shen1 , Haifeng Zhang2 and Yong Yu1∗ 1Shanghai Jiao Tong University 2The Center on Frontiers of Computing Studies, Peking University {liuyu"
+        },
+        {
+          "page": 1,
+          "text": "ced informa- tion among questions and skills hasn’t been well extracted, making it challenging for previous work to perform adequately. In this paper, we demon- strate that large gains on KT can be realized by pre-training embeddings for each question on abun- dant side information, followed by training deep KT models on the obtained embeddings. To be speciﬁc, the side information includes question dif- ﬁculty and three kinds"
+        },
+        {
+          "page": 2,
+          "text": "ion-skill relations, we consider the implicit skill similarity and question similar- ity, which haven’t been well exploited in previous work. Taking everything into consideration, in this paper, we pro- pose a pre-training approach, called Pre-training Embeddings via Bipartite Graph (PEBG), to learn a low-dimensional em- bedding for each question with all the useful side information. To be speciﬁc, the side information includ"
+        },
+        {
+          "page": 2,
+          "text": "er the implicit skill similarity and question similar- ity, which haven’t been well exploited in previous work. Taking everything into consideration, in this paper, we pro- pose a pre-training approach, called Pre-training Embeddings via Bipartite Graph (PEBG), to learn a low-dimensional em- bedding for each question with all the useful side information. To be speciﬁc, the side information includes question difﬁcul- ties toge"
+        },
+        {
+          "page": 3,
+          "text": "All the ques- tion difﬁculties form a vector d = [di] ∈R|Q|. 4 Method In this section, we will give a detailed introduction of our PEBG framework, of which the overview architecture is given by Figure 2. PEBG pre-trains question embeddings us- ing four loss functions respectively designed for the side in- formation: explicit skill-question relations, implicit question similarity and skill similarity, and question difﬁculty."
+        },
+        {
+          "page": 3,
+          "text": "us- ing four loss functions respectively designed for the side in- formation: explicit skill-question relations, implicit question similarity and skill similarity, and question difﬁculty. 4.1 Input Features To pre-train the question embeddings, we use three kinds of features as follows. It should be noted that the vertex fea- tures are initialized randomly and will be updated in the pre- training stage, which is equivalent to"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 2,
+          "text": "includes many questions and one question is related to several skills. So the question-skill relations can be naturally represented as a bipartite graph G = (Q, S,R) where R = [rij] ∈{0, 1}|Q|×|S| is a binary adjacency matrix. If there is an edge between the question qi and the skill sj, then rij = 1; otherwise rij = 0. Here we introduce the information we will use to train embeddings in our model, including the information"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 2,
+          "text": ", uses a key-value memory network to automatically discover the relations between exercises and their underlying concepts and traces each concept state. The PDKT-C model [Chen et al., 2018] manually labels the prerequisite relations among skills, which however is not suitable for large-scale data. The GKT model [Nakagawa et al., 2019] builds a similarity graph of skills randomly, and automatically learns the edge weights of the"
+        },
+        {
+          "page": 7,
+          "text": "cognitive model evaluation and improvement. In Interna- tional Conference on Intelligent Tutoring Systems, pages 164–175. Springer, 2006. [Chen et al., 2018] Penghe Chen, Yu Lu, Vincent W Zheng, and Yang Pian. Prerequisite-driven deep knowledge trac- ing. In 2018 IEEE International Conference on Data Min- ing (ICDM), pages 39–48. IEEE, 2018. [Choi et al., 2019] Youngduck Choi, Youngnam Lee, Dong- min Shin, Junghyun Cho, Seoyon P"
+        }
+      ],
+      "cold_start": [
+        {
+          "page": 2,
+          "text": "ns X = {(q1, c1), ..., (qt−1, ct−1)} where ci is the correct- ness of the student’s answer to the question qi at the time step i, the goal is to predict the probability that the student will correctly answer a new question, i.e., P(ct = 1|qt, X). Let Q = {qi}|Q| i=1 be the set of all distinct |Q| questions and S = {sj}|S| j=1 be the set of all distinct |S| skills. Usually, one skill includes many questions and one question is re"
+        }
+      ],
+      "ece_cal": []
+    }
+  },
+  "KT031": {
+    "file": "Knowledge Structure Enhanced Graph Representation Learning Model for Attentive Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 34,
+    "chars": 101392,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 6,
+          "text": "d models The relations between questions and skills have been considered in various graph‐based KT models.12,14,25,27 Liu et al.14 built a question–skill bipartite graph based on the Q‐matrix in the domain and pretrained the question and skill embedding in the graph using three constraints of explicit question–skill relations and implicit relations of skill similarity and question similarity. As the dense embeddings of quest"
+        },
+        {
+          "page": 20,
+          "text": "2Vec, we set the length of all meta‐paths as ℘= 7 and the number of paths as ℵ= 100 for each question node in the graph. The em- bedding dimension d of the skill and question representations was set to 128. We pretrain these embeddings in the graph and obtain the stable results based on Equation (7), and fix them in the training and testing process. The final dimension of the convolutional question re- presentation was d = 2"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 6,
+          "text": "s the baseline models. Yang et al.12 proposed the graph‐based interaction KT (GIKT) model and incorporated the question–skill correlations via embedding propagation on the question–skill relation graph using a graph convolutional network (GCN). Sun et al.42 proposed a question‐question collaborative embedding method for KT (CoKT) and took the learned question embeddings based on the question similarity as input. GAN ET AL. | 2017 10"
+        },
+        {
+          "page": 6,
+          "text": "t al.12 proposed the graph‐based interaction KT (GIKT) model and incorporated the question–skill correlations via embedding propagation on the question–skill relation graph using a graph convolutional network (GCN). Sun et al.42 proposed a question‐question collaborative embedding method for KT (CoKT) and took the learned question embeddings based on the question similarity as input. GAN ET AL. | 2017 1098111x, 2022, 3"
+        },
+        {
+          "page": 7,
+          "text": "y experts, and models the prerequisite as an ordering pair. In this way, the mastery of related skills is constrained by referring to the KS. Nakagawa et al. used the KS information and a graph neural network (GNN) to update the learners' hidden knowledge states. Unlike these earlier works, our method learns the KS from learner response data and integrates it with the Q‐matrix to build a KS‐ enhanced relation graph. Lev"
+        },
+        {
+          "page": 8,
+          "text": "on Parameters Skill‐level constant ✕ ✕ ✕ Multiple ✕ Deep learning model DKT, DKVMN, SAINT, AKT, IEKT RNN, LSTM, MANN, Transformer One hot encoding – ✕ ✕ ✕ Single ✓ Graph‐based model GIKT, PEBG, RKT, HGKT, CoKT GCN, GNN Dense embedding Constant ✓ ✕ ✕ Multiple ✓ Our model Metapath2Vec Convolutional dense embedding Multilevel, adaptive ✓ ✓ ✓ Multiple ✓ GAN ET AL. | 2019 1098111x, 2022, 3, Downloaded from https://onlinelib"
+        },
+        {
+          "page": 8,
+          "text": "rameters Skill‐level constant ✕ ✕ ✕ Multiple ✕ Deep learning model DKT, DKVMN, SAINT, AKT, IEKT RNN, LSTM, MANN, Transformer One hot encoding – ✕ ✕ ✕ Single ✓ Graph‐based model GIKT, PEBG, RKT, HGKT, CoKT GCN, GNN Dense embedding Constant ✓ ✕ ✕ Multiple ✓ Our model Metapath2Vec Convolutional dense embedding Multilevel, adaptive ✓ ✓ ✓ Multiple ✓ GAN ET AL. | 2019 1098111x, 2022, 3, Downloaded from https://onlinelibrary."
+        },
+        {
+          "page": 9,
+          "text": "he obtained graph‐based embeddings can be directly used for various downstream tasks. In the deep‐learning models of KT tasks, they alleviate the sparsity problem of the one‐hot representation. One widely used GNN model is the GCN, which was recently used as the input‐question representation of KT.12,27 GCNs are especially suitable for isomorphic graphs, in which the nodes are of the same type. Recent graph‐to‐vector mo"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 1,
+          "text": "nfer the learners' knowledge states and might fail to capture the long‐term dependencies in the ex- ercising sequences. In the knowledge domain, skills are naturally linked as a graph (with the edges being the prerequisite relations between pedagogical concepts). We refer to such a graph as a knowledge structure (KS). In- corporating a KS into the KT procedure can potentially resolve both the sparseness and information loss, but"
+        },
+        {
+          "page": 3,
+          "text": "corresponds to the skill “addition of integers”), and each skill is related to many questions. The question–skill mapping information is typically encoded as a Q‐matrix of prior knowledge provided by education experts,11,13 and can be naturally represented as a question–skill relation graph (for an example, see Figure 1(left)). Most of the existing KT methods train the KT models on skills rather than questions, as the numb"
+        },
+        {
+          "page": 4,
+          "text": "cing learner proficiency over the long‐term. The interdependencies between the skills in the knowledge structure (KS) have long been acknowledged in both cognitive science and artificial intelligence.20,21 The prerequisites between pedagogical concepts can be represented as a knowledge graph22 (see Figure 1(right), for an ex- ample). Nevertheless, the KS (which specifies the relations among skills) has rarely been integrated in"
+        },
+        {
+          "page": 4,
+          "text": "between the skills in the knowledge structure (KS) have long been acknowledged in both cognitive science and artificial intelligence.20,21 The prerequisites between pedagogical concepts can be represented as a knowledge graph22 (see Figure 1(right), for an ex- ample). Nevertheless, the KS (which specifies the relations among skills) has rarely been integrated in KT models because obtaining the complete KS of a domain is labor‐inten"
+        },
+        {
+          "page": 7,
+          "text": "rmation of the skills in the domain. Similarly to our work, Nakagawa et al.25 and Chen et al.20 incorporated the KS information into the KT procedure. Chen et al.'s work assumes that the KS is already given by experts, and models the prerequisite as an ordering pair. In this way, the mastery of related skills is constrained by referring to the KS. Nakagawa et al. used the KS information and a graph neural network (GNN) to"
+        },
+        {
+          "page": 7,
+          "text": "the domain. Similarly to our work, Nakagawa et al.25 and Chen et al.20 incorporated the KS information into the KT procedure. Chen et al.'s work assumes that the KS is already given by experts, and models the prerequisite as an ordering pair. In this way, the mastery of related skills is constrained by referring to the KS. Nakagawa et al. used the KS information and a graph neural network (GNN) to update the learners' hidden kn"
+        }
+      ],
+      "cold_start": [
+        {
+          "page": 3,
+          "text": "ing have achieved good performance. In skill‐level KT models, all questions pertaining to a specific skill are considered as the same inputs (and multiple skills corresponding to a question are merged into one new skill). This approach loses the distinctive information related to individual questions, leading to imprecise inferences of the learners' knowledge states.12,14–16 For example, in Figure 1(left), the questions “3+5”"
+        },
+        {
+          "page": 9,
+          "text": "at timestamp t. A learner's exercising process is then modeled as a sequence X n n n = { , , …, } T 1 2 , where T indicates the latest timestamp. Given a learner's past exercising sequence X in a system and a new question qt+1, our goal is to model the learner–question interaction procedure, and hence track the evolution of a learner's knowledge proficiency over time. Based on the learner knowledge proficiency, we then predict"
+        },
+        {
+          "page": 17,
+          "text": "output gates, respectively, ct is the cell memory vector, and W* and b* are network parameters. We then employ an attention mechanism that accounts for the impact of previous attempts on the current attempt. A new question will likely be strongly affected by similar questions or questions requiring the same skillset as the new question. Moreover, ac- cording to forgetting‐curve theory, the impact exponentially decays as time pas"
+        },
+        {
+          "page": 17,
+          "text": "ttention mechanism that accounts for the impact of previous attempts on the current attempt. A new question will likely be strongly affected by similar questions or questions requiring the same skillset as the new question. Moreover, ac- cording to forgetting‐curve theory, the impact exponentially decays as time passes.53 To describe these effects, we assume that the learner‐knowledge state in the current step is the weighted su"
+        },
+        {
+          "page": 18,
+          "text": "ntal aims Our experiments aimed to answer the following questions: 1. Based on the knowledge proficiency inferred from the learners' exercise histories, how well does KSGKT predict the learners' performance on new questions? (See Section 6.1). 2. How does embedding learning on the KS‐enhanced graph affect the performance of the proposed model? (See Section 6.2.1). 3. Does the question embedding learned on the graph provides mean"
+        },
+        {
+          "page": 31,
+          "text": "nto our model in an end‐to‐end manner. The KS will then be automatically learned in the training process rather than computed from the learner performance data. Such automation can potentially expand the KS to new skills in the domain, for example, enlarging the KS of mathematics from the primary school to high school level. Moreover, we plan to integrate KT in real educational scenarios, providing stu- dents with proper adap"
+        }
+      ],
+      "ece_cal": []
+    }
+  },
+  "KT035": {
+    "file": "HHSKT - A Learner-Question Interactions Based Heterogeneous Graph Neural Network Model for Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 13,
+    "chars": 80164,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 3,
+          "text": "CN to aggregate embedding representations under concept and exercise relations. The model is complex, the training scale is large, and it is not pedagogically interpretable. PEBG (Liu et al., 2020) Graph-based pre-trained skill features are used to enrich the feature information used by the model. The features of the graph structure are not well taken into account. HGKT (Tong, Wang, Liu, Zhou and Han, 2020) Black box models,"
+        },
+        {
+          "page": 9,
+          "text": "ore specifically, GIKT uses graph convolutional net- works (GCN) to merge the relevance of problems and skills (Yang et al., 2020). • PEBG-DKT: PEBG demonstrates that significant gains in KT can be achieved by pre-training embeddings for each problem on rich auxiliary features (Liu et al., 2020). • FBKT: FBKT proposes a fuzzy Bayesian KT model to cope with continuous scoring scenarios to extend the applicability of the KT mod"
+        },
+        {
+          "page": 12,
+          "text": "Transactions on Knowledge and Data Engineering, 33(1), 100–115. http://dx.doi.org/10.1109/TKDE. 2019.2924374. Liu, Y., Yang, Y., Chen, X., Shen, J., Zhang, H., & Yu, Y. (2020). Improving knowledge tracing via pre-training question embeddings. In Proceedings of the twenty-ninth international joint conference on artificial intelligence (pp. 1577–1583). http://dx.doi. org/10.24963/ijcai.2020/219. Ma, T., & Chen, J. (2021). Unsu"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 1,
+          "text": "/© 2022 Elsevier Ltd. All rights reserved. Contents lists available at ScienceDirect Expert Systems With Applications journal homepage: www.elsevier.com/locate/eswa HHSKT: A learner–question interactions based heterogeneous graph neural network model for knowledge tracing✩ Qin Ni a, Tingjiang Wei a,∗, Jiabao Zhao b, Liang He b, Chanjin Zheng c,∗ a Institute of Artificial Intelligence on Education, Shanghai Normal University, Shanghai,"
+        },
+        {
+          "page": 1,
+          "text": "owledge structures and short-term memory enhancement will be used to model the effects of different interaction sequences on learners. Specifically, knowledge structure features are extracted by constructing a heterogeneous graph-based graph information augmentation component. Question differentiation parameters are derived by transforming the TrueSkill system. Besides, learners’ history-related practices are emphasized by windowing at"
+        },
+        {
+          "page": 2,
+          "text": "oach can assign various weights to sequential characteristics. Attention has visual explanatory advantages, but nevertheless resists the memory process of the learner. This work proposes HHSKT, a heterogeneous GNN-based model for multi-level summarization of knowledge structures and learner atten- tion reinforcement. Higher-order relationships between items and skills are extracted by heterogeneous GNN, a rich represent"
+        },
+        {
+          "page": 2,
+          "text": ", a heterogeneous GNN-based model for multi-level summarization of knowledge structures and learner atten- tion reinforcement. Higher-order relationships between items and skills are extracted by heterogeneous GNN, a rich representation of skill-level information is obtained by heterogeneous graph coarsening, and the final prediction is completed by item differentiation in conjunction with the attention mechanism of win"
+        },
+        {
+          "page": 3,
+          "text": "network methods in the KT domain. Lack of ability to deal with multiple concepts and complex relationships between conceptual problems. GIKT (Yang et al., 2020) The problem of data sparsity is solved by using GCN to aggregate embedding representations under concept and exercise relations. The model is complex, the training scale is large, and it is not pedagogically interpretable. PEBG (Liu et al., 2020) Graph-based pr"
+        },
+        {
+          "page": 4,
+          "text": "majority of data in the area of education are non-Euclidean structured graph data, and numerous approaches have been developed to handle graph-structured data (Veliković et al., 2017; Zhao, Song et al., 2020). Graph convolutional networks (GCN) are inspired by CNN ideas to update their own representation based on neighboring nodes on graph-structured input, which may be aggregated to higher- order neighbor information via multi-layer"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 1,
+          "text": "Expert Systems With Applications 215 (2023) 119334 Available online 23 November 2022 0957-4174/© 2022 Elsevier Ltd. All rights reserved. Contents lists available at ScienceDirect Expert Systems With Applications jour"
+        },
+        {
+          "page": 1,
+          "text": "Expert Systems With Applications 215 (2023) 119334 Available online 23 November 2022 0957-4174/© 2022 Elsevier Ltd. All rights reserved. Contents lists available at ScienceDirect Expert Systems With Applications journal homepage: www.elsevier.com/locate/eswa HHSKT: A learner–question interactions based heterogeneous graph neural network model for knowledge tracing✩ Qin Ni a, Tingjiang Wei a,∗"
+        },
+        {
+          "page": 2,
+          "text": "Expert Systems With Applications 215 (2023) 119334 2 Q. Ni et al. Fig. 1. An illustration of exercising process. The exercising process of a learner and the corresponding KS of each exercise. Bhatt, Thille, Zimmaro a"
+        },
+        {
+          "page": 3,
+          "text": "Expert Systems With Applications 215 (2023) 119334 3 Q. Ni et al. Table 1 Existing major related work in the field of Knowledge Tracing. Model Interpretability Advantage Limitation BKT (Zhao, Bhatt et al., 2020) Self"
+        },
+        {
+          "page": 3,
+          "text": "pretable. For the first time, item response theory (IRT) is combined with a knowledge tracing model based on a deep neural network structure of dynamic key–value memory network (DKVMN). Due to the fixed binary Q-matrix designed by the expert, it lacks a personalized description of the student at the input level. GKT (Nakagawa, Iwasawa, & Matsuo, 2019) Black box model, graph structure can be interpreted based on local feature"
+        },
+        {
+          "page": 4,
+          "text": "Expert Systems With Applications 215 (2023) 119334 4 Q. Ni et al. based on ensemble learning is another essential KT subdiscipline (Zia et al., 2021). However, ensemble learning is a stable learning tech- nique and t"
+        }
+      ],
+      "cold_start": [],
+      "ece_cal": []
+    }
+  },
+  "KT037": {
+    "file": "CMKT - Concept Map Driven Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 14,
+    "chars": 73326,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [],
+      "graph_encoder": [
+        {
+          "page": 13,
+          "text": "G. Wang, “DAG-recurrent neural net- works for scene labeling,” in Proc. IEEE Conf. Comput. Vis. Pattern Recognit., 2016, pp. 3620–3629. [27] Z. Liu et al., “Distance-aware DAG embedding for proximity search on heterogeneous graphs,” in Proc. AAAI Conf. Artif. Intell., 2018, pp. 2355–2362. [28] Q. Liu et al., “EKT: Exercise-aware knowledge tracing for student per- formance prediction,” IEEE Trans. Knowl. Data Eng., vol. 33, no. 1, pp. 1"
+        },
+        {
+          "page": 14,
+          "text": "or semantic compositionality,” in Proc. Conf. North Amer. Chap- ter Assoc. Comput. Linguistics: Hum. Lang. Technol., 2016, pp. 917–926. [84] Z. Liu et al., “Distance-aware DAG embedding for proximity search on heterogeneous graphs,” in Proc. 32nd AAAI Conf. Artif. Intell., 2018, pp. 2355–2362. Yu Lu received the Ph.D. degree in computer engi- neering from the National University of Singapore, Singapore, in 2012. He is currently an Asso"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 1,
+          "text": "CMKT: Concept Map Driven Knowledge Tracing Yu Lu , Penghe Chen , Yang Pian , and Vincent W. Zheng Abstract—In this article, we advocate for and propose a novel concept map driven knowledge tracing (CMKT) model, which utilizes e"
+        },
+        {
+          "page": 1,
+          "text": "CMKT: Concept Map Driven Knowledge Tracing Yu Lu , Penghe Chen , Yang Pian , and Vincent W. Zheng Abstract—In this article, we advocate for and propose a novel concept map driven knowledge tracing (CMKT) model, which utilizes educational concept map for learner modeling. This article particularly addresses the issue of learner data sparseness caused by the unwillingness to pract"
+        },
+        {
+          "page": 2,
+          "text": "In general, two types of information from the concept map can aid the knowledge state estimation and be used by KT models: 1) educational relation information and 2) topology information. The educational relations in concept maps pri- marily specify the implicit but"
+        },
+        {
+          "page": 2,
+          "text": "ral, two types of information from the concept map can aid the knowledge state estimation and be used by KT models: 1) educational relation information and 2) topology information. The educational relations in concept maps pri- marily specify the implicit but educationally signiﬁcant dependencies between pedagogical concepts, which are com- monly used to optimize the learning and teaching processes. Take one type of educational"
+        },
+        {
+          "page": 3,
+          "text": "that learner ui answers at time t. Deﬁnition 2: A question-concept matrix O 2 f0; 1gjQj\u0002jCj is a binary matrix, where Oj;k ¼ 1 if question qj 2 Q contains concept ck 2 C, and Oj;k ¼ 0 otherwise. Deﬁnition 3: A concept map G ¼ ðC; EÞ is a graphic repre- sentation of pedagogical concepts and their educational rela- tions, where C is the set of nodes in G denoting the pedagogical concepts, and E is the set of edges denoting the ed"
+        },
+        {
+          "page": 3,
+          "text": "ational relations between the concepts. With the above deﬁnitions, the input for the KT problem can be simply summarized as follows: 1) each learner’s exercise sequence si; 2) a question-concept matrix O; 3) a concept map G. For the KT problem output, we aim to learn: the knowledge state of learner ui at time t, denoted as yi;t. In most cases, the exercise sequence data si can be obtained from ITSs or online education platforms"
+        }
+      ],
+      "cold_start": [],
+      "ece_cal": []
+    }
+  },
+  "KT038": {
+    "file": "DyGKT - Dynamic Graph Learning for Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 12,
+    "chars": 66122,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [],
+      "graph_encoder": [
+        {
+          "page": 1,
+          "text": "DyGKT: Dynamic Graph Learning for Knowledge Tracing Ke Cheng∗ ckpassenger@buaa.edu.cn SKLSDE Lab, Beihang University Beijing, China Linzhi Peng∗ lzpeng626@buaa.edu.cn SKLSDE Lab, Beihang University Beijing, China Pengyang Wang pyw"
+        },
+        {
+          "page": 1,
+          "text": "een students, questions and concepts are evolv- ing. The three dynamical characteristics above contain the great potential to revolutionize the existing knowledge tracing methods. Along this line, we propose a Dynamic Graph-based Knowledge Tracing model, namely DyGKT. In particular, a continuous-time dynamic question-answering graph for knowledge tracing is con- structed to deal with the infinitely growing answering behaviors, an"
+        },
+        {
+          "page": 2,
+          "text": "… … … … ①Growing Scale time ∆��ℎ��� ∆����� mastery estimation for �� mastery estimation for �� ③Evolving Structure … … … … Rest mastery degree During a test During a class Figure 1: Knowledge tracing with dynamic graph to trace students’ learning states. This task has three dynamics: 1) constantly growing scale; 2) varying semantics of time in- tervals between long and short time intervals; 3) evolving relationships between"
+        },
+        {
+          "page": 2,
+          "text": "partite graphs, treating the student answering a question as a single link, which can not capture the complex structural pattern in KT either. To address the issue above, we propose a novel method named called Dynamic Graph-based Knowledge Tracing (DyGKT). This method aims to trace students’ dynamic learning process through a continuous time dynamic graph. In this graph, students and ques- tions are represented as nodes, while th"
+        },
+        {
+          "page": 3,
+          "text": "DyGKT: Dynamic Graph Learning for Knowledge Tracing KDD ’24, August 25–29, 2024, Barcelona, Spain. models are evolving beyond temporal sequence models, Attentive Knowledge Tracing Models incorporate an attention mechanism, allowin"
+        },
+        {
+          "page": 3,
+          "text": "cepts and ques- tions by external key-value memory space to keep longer sequence dependencies. GKT[19], GIKT[35], HIN[9] utilize graph neural net- works to create concepts and question relationship graphs. 2.2 Dynamic Graph Learning Dynamic graphs denote entities as nodes and represent their in- teractions as edges with timestamps. This is a powerful way to model the dynamics and evolution of complex systems over time. In particu"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 10,
+          "text": "quence to sequence learning with neural networks. Advances in neural information processing systems 27 (2014). [30] Dai H. Trivedi R. and Song L.. Wang Y. 2017. Know-evolve: Deep temporal reasoning for dynamic knowledge graphs. In International Conference on Machine Learning (ICML). 3462–3471. [31] Andrew Z Wang, Rex Ying, Pan Li, Nikhil Rao, Karthik Subbian, and Jure Leskovec. 2021. Bipartite dynamic representations for abuse dete"
+        },
+        {
+          "page": 11,
+          "text": "e encoding function to capture temporal patterns. DyGFormer model represents nodes with additional structural information. It extracts the first hop neighbor sequence of the end nodes and computes the neighbor co-occurrence encoding as the first-order relative position label. The comparison of details of baselines and DyGKT is shown in Table 3. A.3 Supplementary to Experiment Results The ablation results of EdnetKT1 are revealed"
+        }
+      ],
+      "cold_start": [
+        {
+          "page": 2,
+          "text": "the knowledge state of the student or the difficulty of the question. but in real-world scenarios, the length of learning records is continu- ously increasing, the prediction should be multi-step and robust on unseen questions. Sequence-based problem formalization on KT can not fit the real-world application, and the ID-embedding- based representation does not provide information for questions not contained in the training data. Se"
+        }
+      ],
+      "ece_cal": []
+    }
+  },
+  "KT039": {
+    "file": "Contrastive Learning for Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 10,
+    "chars": 54976,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 1,
+          "text": ". . Latest updates: hps://dl.acm.org/doi/10.1145/3485447.3512105 . . RESEARCH-ARTICLE Contrastive Learning for Knowledge Tracing WONSUNG LEE . JAEYOON CHUN . YOUNGMIN LEE, Korea Advanced Institute of Science and Technology, Daejeon, South Korea . KYOUNGSOO PARK . SUNGRAE PARK . . . Open Access Support prov"
+        },
+        {
+          "page": 2,
+          "text": "Contrastive Learning for Knowledge Tracing Wonsung Lee Upstage Republic of Korea wonsung.lee@upstage.ai Jaeyoon Chun i-Scream Edu Co. Ltd Republic of Korea jaeychun@i-screamedu.co.kr Youngmin Lee KAIST Republic of Korea c"
+        },
+        {
+          "page": 2,
+          "text": "due to the sparse interac- tions between students and questions, the hidden representations can be easily over-fitted and often fail to capture student’s knowl- edge states accurately. This paper introduces a contrastive learning framework for knowledge tracing that reveals semantically similar or dissimilar examples of a learning history and stimulates to learn their relationships. To deal with the complexity of knowledge ac-"
+        },
+        {
+          "page": 3,
+          "text": "WWW ’22, April 25–29, 2022, Virtual Event, Lyon, France Lee et al. devised various ways, e.g., pre-trained embeddings [24] and com- paring predicted probabilities of original and augmented samples [21]. However, none of the previous attempts for enhancing the representations adopts an end-to-end architecture to d"
+        },
+        {
+          "page": 3,
+          "text": "s [21]. However, none of the previous attempts for enhancing the representations adopts an end-to-end architecture to discriminate instances based on low-dimensional latent vectors. In this paper, we propose a contrastive learning (CL) framework for KT, named CL4KT. The main idea of CL4KT is to learn effec- tive representations by pulling similar learning histories together and pushing dissimilar learning histories apart in rep"
+        },
+        {
+          "page": 4,
+          "text": "Contrastive Learning for Knowledge Tracing WWW ’22, April 25–29, 2022, Virtual Event, Lyon, France Question Enc. g!(⋅; 𝐦\") Interaction Enc. g#(⋅; 𝐦\") 𝑠$ 𝑠% 𝑠& … Prediction Layer ̂𝑟&'$ 𝑠&'$ ℒ!\" Original Interaction Sequen"
+        }
+      ],
+      "graph_encoder": [],
+      "graph_source": [
+        {
+          "page": 6,
+          "text": "tomatically constructed relationship between questions. Inspired by the previous pedagogical literature [7], we exploit a knowledge structure capturing cognitive rela- tions among the learning materials (e.g., prerequisite relations). For simplicity, we posit that the knowledge structure is a chain-type directed acyclic graph based on the question difficulty. To be spe- cific, we build the question sequence that sorted in the de"
+        }
+      ],
+      "cold_start": [
+        {
+          "page": 7,
+          "text": "ith less than five interactions and remove all interactions that are not associated with a named concept. Since questions can be tagged with multiple skills, we converted each unique combination of skills to a new skill. Table 1 illustrates the main characteristics of the datasets. 4.1.2 Evaluation Metrics. We perform 5-fold cross-validation for quantitative evaluation, in which folds are split based on the stu- dents. Additi"
+        }
+      ],
+      "ece_cal": [
+        {
+          "page": 9,
+          "text": "E), without each augmentation method (\\Mask, \\Crop, \\Perm, \\Repl), and without hard negative samples (\\HN). 0.0 0.2 0.4 0.6 0.8 1.0 Predicted probability 0.0 0.2 0.4 0.6 0.8 1.0 Fraction of positives Perfectly calibrated AKT CL4KT w/ Mask Only CL4KT w/ Crop Only CL4KT w/ Perm Only CL4KT w/ Repl Only CL4KT Figure 7: Calibration binned by predictions on assist09. 4.5 Ablation Study (RQ4) To verify the effectiveness of each com"
+        },
+        {
+          "page": 9,
+          "text": "0.0 0.2 0.4 0.6 0.8 1.0 Predicted probability 0.0 0.2 0.4 0.6 0.8 1.0 Fraction of positives Perfectly calibrated AKT CL4KT w/ Mask Only CL4KT w/ Crop Only CL4KT w/ Perm Only CL4KT w/ Repl Only CL4KT Figure 7: Calibration binned by predictions on assist09. 4.5 Ablation Study (RQ4) To verify the effectiveness of each component, we compare CL4KT with six variants in terms of AUC: \\BE replacing mb with mc in Eq. (5) (without bi"
+        }
+      ]
+    }
+  },
+  "KT042": {
+    "file": "Self-Supervised Heterogeneous Hypergraph Network for Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 17,
+    "chars": 71598,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 1,
+          "text": "Self-supervised heterogeneous hypergraph network for knowledge tracing Tangjie Wu, Qiang Ling ⇑ University of Science and Technology of China, Hefei, Anhui 230027, China a r t i c l e i n f o Article history: Received 3 May"
+        },
+        {
+          "page": 1,
+          "text": "i n f o Article history: Received 3 May 2022 Received in revised form 24 December 2022 Accepted 27 December 2022 Available online 30 December 2022 Keyword: Heterogeneous graph neural network Hypergraph network Contrastive learning Self-supervised learning Knowledge tracing a b s t r a c t Recently online intelligent education has caught more and more attention, especially due to the global inﬂuence of Covid-19. A major task of"
+        },
+        {
+          "page": 2,
+          "text": "the corresponding graph. A joint graph convolutional network based Deep Knowledge Tracing (JKT) [14] models the multi-dimensional relationships of ‘‘exercise-to-exercise” and ‘‘concept-to-concept” into graph. Pre-training Question Embeddings via Relation Map for Improving Knowledge Tracing (PERM) [15] innovatively exploits two relation maps between questions, including co-occurrence and answer-agreement, and leverages a two-"
+        },
+        {
+          "page": 2,
+          "text": "n the database, the observed student-question interactions just provide feedback for a very small set of them, making it very difﬁcult to learn quality representations. To address this limitation, we introduce self-supervised learning (SSL) into our model, which can ﬁnd supervised signals from T. Wu and Q. Ling Information Sciences 624 (2023) 200–216 201"
+        },
+        {
+          "page": 3,
+          "text": "the input data itself and exploit unobserved relations spontaneously to reinforce the question representation. Speciﬁcally, we generate multi-views of graphs in different manners to conduct contrastive learning [20,21]. As an effective method of SSL, contrastive learning can learn discriminative embeddings by maximizing the similarity between positive pairs while minimizing the similarity between negative-sa"
+        },
+        {
+          "page": 3,
+          "text": "ved relations spontaneously to reinforce the question representation. Speciﬁcally, we generate multi-views of graphs in different manners to conduct contrastive learning [20,21]. As an effective method of SSL, contrastive learning can learn discriminative embeddings by maximizing the similarity between positive pairs while minimizing the similarity between negative-sampled counterparts. To further enhance the robustness of hype"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 1,
+          "text": "Self-supervised heterogeneous hypergraph network for knowledge tracing Tangjie Wu, Qiang Ling ⇑ University of Science and Technology of China, Hefei, Anhui 230027, China a r t i c l e i n f o Article history: Received 3 May 2022 Received in revised f"
+        },
+        {
+          "page": 1,
+          "text": "gy of China, Hefei, Anhui 230027, China a r t i c l e i n f o Article history: Received 3 May 2022 Received in revised form 24 December 2022 Accepted 27 December 2022 Available online 30 December 2022 Keyword: Heterogeneous graph neural network Hypergraph network Contrastive learning Self-supervised learning Knowledge tracing a b s t r a c t Recently online intelligent education has caught more and more attention, especially due to the"
+        },
+        {
+          "page": 2,
+          "text": "T) [12] introduces a monotonic attention mechanism that integrates the exponential decay and characterizes the importance of memory decay in modeling long interaction sequences. Recently, Graph Neural Network (GNN) has emerged as a powerful strategy for analyzing graph-structured data and found many applications in KT. GNN can sufﬁciently learn node embeddings by aggregating graph attributive and structural features. In"
+        },
+        {
+          "page": 2,
+          "text": "importance of memory decay in modeling long interaction sequences. Recently, Graph Neural Network (GNN) has emerged as a powerful strategy for analyzing graph-structured data and found many applications in KT. GNN can sufﬁciently learn node embeddings by aggregating graph attributive and structural features. In the online tutoring systems, KT usually encounters the cold-start or long-tail problem, i.e., most questions a"
+        },
+        {
+          "page": 3,
+          "text": "tive learning can learn discriminative embeddings by maximizing the similarity between positive pairs while minimizing the similarity between negative-sampled counterparts. To further enhance the robustness of hypergraph learn- ing, we introduce data augmentation to change the hypergraph structure and generate the augmented view for questions. Different from the previous methods, which drop nodes or edges uniformly, we take th"
+        },
+        {
+          "page": 3,
+          "text": "similarity between positive pairs while minimizing the similarity between negative-sampled counterparts. To further enhance the robustness of hypergraph learn- ing, we introduce data augmentation to change the hypergraph structure and generate the augmented view for questions. Different from the previous methods, which drop nodes or edges uniformly, we take the importance of nodes into account and emphasize the important conne"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 2,
+          "text": "xercise” and ‘‘concept-to-concept” into graph. Pre-training Question Embeddings via Relation Map for Improving Knowledge Tracing (PERM) [15] innovatively exploits two relation maps between questions, including co-occurrence and answer-agreement, and leverages a two-level attention mechanism to fuse multi-faceted information. However, most GNN-based KT methods are susceptible to the subjective tendency of experts within the Q-matr"
+        },
+        {
+          "page": 2,
+          "text": ", including co-occurrence and answer-agreement, and leverages a two-level attention mechanism to fuse multi-faceted information. However, most GNN-based KT methods are susceptible to the subjective tendency of experts within the Q-matrix. To resolve this issue, tracking knowledge proﬁciency of students with calibrated Q-matrix (CQKT) [16] devises a novel Calibrated Q-matrix-based framework and achieves the state-of-the-art"
+        },
+        {
+          "page": 3,
+          "text": "o obtain semantic-enhanced question embeddings. GIKT [13] builds a relation graph to extract the underlying relations between questions and skills. PERM [15] exploits two relation maps from two perspectives of co-occurrence and answer-agreement. CQKT [16] proposes a calibrated Q-matrix-based framework to dynamically track knowledge proﬁciency of students. Although those recurrent and attentive models have shown their superiority"
+        },
+        {
+          "page": 3,
+          "text": "elation graph to extract the underlying relations between questions and skills. PERM [15] exploits two relation maps from two perspectives of co-occurrence and answer-agreement. CQKT [16] proposes a calibrated Q-matrix-based framework to dynamically track knowledge proﬁciency of students. Although those recurrent and attentive models have shown their superiority of modeling the sequential data in KT, they all suffer from the"
+        },
+        {
+          "page": 9,
+          "text": "er 2 years with more than 780 K users in Korea, which contains various features of students’ actions, such as the learning materials, the response, the time spent on solving a given question or reading through experts’ commentary. Note that EdNet is composed of a total of 131441538 interactions collected from 784,309 students, which is too large for training. So we randomly select 5000 students and their interactive record"
+        },
+        {
+          "page": 10,
+          "text": "template of the ASSISTments platform. Similar questions are collected in the same template. \u0007 Assign (A). A unique tag is used for identifying an assignment with questions in ASSISTments2017. \u0007 Bundle (B). The expert-annotated bundle for each question. Each bundle can contain from 1 to 5 questions. \u0007 Topic (T). The topic of each question represents a predominant concept in the knowledge map. \u0007 Area (A). The knowledge area"
+        }
+      ],
+      "cold_start": [
+        {
+          "page": 1,
+          "text": "ﬂuence of Covid-19. A major task of intelligent education is Knowledge Tracing (KT) which aims to capture students’ dynamic status based on their historical inter- action records and predict their responses to new questions. However, most existing KT methods suffer from the record data sparsity problem. In reality, there are a huge number of questions in the online database and students can only interact with a very small set of"
+        },
+        {
+          "page": 1,
+          "text": "ent intelli- gently [2]. As an emerging paradigm of ITS, knowledge tracing (KT) [3] aims to accurately infer the latent state of students based on their historical interactions and predict their responses to a new question. According to the predicted results, teach- ers can know the mastery of students’ knowledge levels in advance and personalize learning plans for each student. KT methods can date back to the late 1960s. In the"
+        },
+        {
+          "page": 2,
+          "text": "-structured data and found many applications in KT. GNN can sufﬁciently learn node embeddings by aggregating graph attributive and structural features. In the online tutoring systems, KT usually encounters the cold-start or long-tail problem, i.e., most questions are only interacted by a few students. How to tackle such problem and build better representation for questions has attracted much attention. A Graph-based Interactio"
+        },
+        {
+          "page": 3,
+          "text": "DNN) has found more and more applications in diverse ﬁelds, including knowledge tracing (KT). KT aims to capture a student’s knowledge state according to his interactive questions and predict his response to a new question. DKT [7], the ﬁrst attempt to employ RNN-based methods in KT, utilizes the LSTM network to model the interactive questions sequences. DKVMN [9] leverages the memory-augmented network to retain long-term depend"
+        },
+        {
+          "page": 4,
+          "text": "(1 means correct and 0 means incor- rect). Formally, given an observed interactive sequence St ¼ q1; r1 ð Þ; q2; r2 ð Þ; \u0001 \u0001 \u0001 ; qt; rt ð Þ f g, our task is to predict the next response rtþ1 corresponding to a new question qtþ1. 3.2. Notations and Deﬁnitions Deﬁnition 1 (Heterogeneous Information Network). A Heterogeneous Information Network (HIN) [17] is deﬁned as G ¼ V; E ð Þ, where V is the node set and E is the edge set. The"
+        }
+      ],
+      "ece_cal": [
+        {
+          "page": 2,
+          "text": "se multi-faceted information. However, most GNN-based KT methods are susceptible to the subjective tendency of experts within the Q-matrix. To resolve this issue, tracking knowledge proﬁciency of students with calibrated Q-matrix (CQKT) [16] devises a novel Calibrated Q-matrix-based framework and achieves the state-of-the-art performance. In sum- mary, the graph structure can effectively capture the latent relations among qu"
+        },
+        {
+          "page": 2,
+          "text": "based KT methods are susceptible to the subjective tendency of experts within the Q-matrix. To resolve this issue, tracking knowledge proﬁciency of students with calibrated Q-matrix (CQKT) [16] devises a novel Calibrated Q-matrix-based framework and achieves the state-of-the-art performance. In sum- mary, the graph structure can effectively capture the latent relations among questions and enrich the representation of ques- t"
+        },
+        {
+          "page": 3,
+          "text": "builds a relation graph to extract the underlying relations between questions and skills. PERM [15] exploits two relation maps from two perspectives of co-occurrence and answer-agreement. CQKT [16] proposes a calibrated Q-matrix-based framework to dynamically track knowledge proﬁciency of students. Although those recurrent and attentive models have shown their superiority of modeling the sequential data in KT, they all suff"
+        },
+        {
+          "page": 17,
+          "text": "edge Tracing, in: International Conference on Database Systems for Advanced Applications, Springer, 2022, pp. 281–288. [16] W. Wang, H. Ma, Y. Zhao, Z. Li, X. He, Tracking knowledge proﬁciency of students with calibrated Q-matrix, Expert Systems with Applications 192 (2022) 116454. [17] Y. Sun, J. Han, Mining heterogeneous information networks: a structural analysis approach, ACM SIGKDD Explorations Newsletter 14 (2) (2013)"
+        }
+      ]
+    }
+  },
+  "KT043": {
+    "file": "Weighted Heterogeneous Graph-Based Three-View Contrastive Learning for Knowledge Tracing in Personalized e-Learning Systems.pdf",
+    "exists": true,
+    "pages": 10,
+    "chars": 52673,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 1,
+          "text": "2838 IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 70, NO. 1, FEBRUARY 2024 Weighted Heterogeneous Graph-Based Three-View Contrastive Learning for Knowledge Tracing in Personalized e-Learning Systems Jianwen Sun , Shangheng Du , Zhi Liu , Fenghua Yu, Sannyuya Liu , and Xiaoxuan Shen Abstract—Personalized e-learning systems are applications o"
+        },
+        {
+          "page": 1,
+          "text": "ually fail to accurately capture students’ knowledge states. In this paper, inspired by the data-driven paradigm, we propose a novel knowledge tracing method named weighted heterogeneous graph-based Three-view Contrastive Learning framework for Knowledge Tracing (TCL4KT). Technically, three different view encoders in TCL4KT complement each other to obtain ques- tion embeddings with rich information. Speciﬁcally, TCL4KT consider"
+        },
+        {
+          "page": 2,
+          "text": "hat introduce student enti- ties [28], [29], due to the different types of three entities and inconsistent interaction modes, we expand the heterogeneous graph to a weighted heterogeneous graph, and employ the contrastive learning method to mine the weight information on different edges to capture higher-order semantics between questions. Self-supervised learning technology [30] uses pretext tasks to extract supervision informa"
+        },
+        {
+          "page": 2,
+          "text": "pand the heterogeneous graph to a weighted heterogeneous graph, and employ the contrastive learning method to mine the weight information on different edges to capture higher-order semantics between questions. Self-supervised learning technology [30] uses pretext tasks to extract supervision information from large-scale unsuper- vised data, and trains the network through the constructed supervision information, so as to learn val"
+        },
+        {
+          "page": 3,
+          "text": "the question-question or skill-skill bipartite graphs [37]. Different from them, we construct a weighted heterogeneous graph for KT, considering both skill and student information when embedding questions. B. Contrastive Learning on Graphs Contrastive learning is one of the main method in self- supervised learning [38], which learns the general character- istics of datasets by letting models learn the similarities or differenc"
+        },
+        {
+          "page": 3,
+          "text": "-skill bipartite graphs [37]. Different from them, we construct a weighted heterogeneous graph for KT, considering both skill and student information when embedding questions. B. Contrastive Learning on Graphs Contrastive learning is one of the main method in self- supervised learning [38], which learns the general character- istics of datasets by letting models learn the similarities or differences between data points. Graph c"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 1,
+          "text": "2838 IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 70, NO. 1, FEBRUARY 2024 Weighted Heterogeneous Graph-Based Three-View Contrastive Learning for Knowledge Tracing in Personalized e-Learning Systems Jianwen Sun , Shangheng Du , Zhi Liu , Fenghua Yu, Sannyuya Liu , and Xiaoxuan Shen Abstract—Personalized e-learni"
+        },
+        {
+          "page": 2,
+          "text": "SUN et al.: WEIGHTED HETEROGENEOUS GRAPH-BASED THREE-VIEW CL FOR KT 2839 allocation and scheduling [21], addressing feature redun- dancy [22], etc. Consequently, researchers began to introduce graph structure to alleviate the problem of data sparsity"
+        },
+        {
+          "page": 2,
+          "text": "s. Different from other KT studies that introduce student enti- ties [28], [29], due to the different types of three entities and inconsistent interaction modes, we expand the heterogeneous graph to a weighted heterogeneous graph, and employ the contrastive learning method to mine the weight information on different edges to capture higher-order semantics between questions. Self-supervised learning technology [30] uses pretext tasks to"
+        },
+        {
+          "page": 3,
+          "text": "2840 IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 70, NO. 1, FEBRUARY 2024 Fig. 2. Architecture of the TCL4KT model. differences through meta-paths. Additionally, the graph convo- lution network (GCN) is introduced to aggregate information on the question-question or skill-skill bipartite graphs [37]. Different from them, we construct a weighted heterogeneous graph for KT, considering both skill and studen"
+        },
+        {
+          "page": 3,
+          "text": "data, and it can solve the problem of traditional CL sacriﬁcing struc- tural information [30], [39]. For a large number of unlabeled graph data, GCL aims to train a graph encoder, such as graph neural network (GNN), to retain the characteristics of graph data. Sun et al. consider node representation and graph rep- resentation of a graph as two views, aiming to capture the consistency of local-global [40]. Wang et al. [4"
+        },
+        {
+          "page": 4,
+          "text": "SUN et al.: WEIGHTED HETEROGENEOUS GRAPH-BASED THREE-VIEW CL FOR KT 2841 the answer is incorrect, 1 means correct). Similar to the current KT models, our goal is to model students’ knowledge states and predict the probability P(at+1 = 1|qt+1, Xt) of"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 4,
+          "text": "que, a biased ran- dom walk algorithm on these meta-paths is employed, with the idea being that for question nodes with the same neighbor, the closer the weight between them and the neighbor, the greater their co-occurrence probabilities are: θvn = 1 −|wn′,v −wv,n| Dt , (2) where θvn is the walking probability of node v to neighbor n, n and n′ are the neighbors of v on the sampled meta-path, rep- resenting the previous step and t"
+        },
+        {
+          "page": 9,
+          "text": "text-aware attentive knowl- edge tracing,” in Proc. 26th ACM SIGKDD Int. Conf. Knowl. Discov. Data Min. (SIGKDD), 2020, pp. 2330–2339. [14] S. Liu et al., “A hierarchical memory network for knowledge tracing,” Expert Syst. Appl., vol. 177, Sep. 2021, Art. no. 114935. [15] S. Liu et al., “Ability boosted knowledge tracing,” Inf. Sci., vol. 596, pp. 567–587, Jun. 2022. [16] L. Zhang, X. Xiong, S. Zhao, A. Botelho, and N. T."
+        }
+      ],
+      "cold_start": [],
+      "ece_cal": []
+    }
+  },
+  "KT044": {
+    "file": "SINKT - A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model.pdf",
+    "exists": true,
+    "pages": 11,
+    "chars": 56431,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 2,
+          "text": "te the transition graph originated from learning history and use Graph Neural Networks (GNNs) [17] to extract represen- tations from graph data. CL4KT [2] designs positive and negative sample pairs and employs contrastive learning [13] to generate more accurate representations of questions. LBKT [45] introduces various learning behaviors, including speed, attempts, and hints, to identify the learning patterns of students. Despi"
+        },
+        {
+          "page": 2,
+          "text": "knowledge base with minimal manual in- tervention. Specifically, SINKT first employs LLMs to generate a concept-question heterogeneous graph that contains useful struc- tural information in ITS. Then, we use a Pretrained Language Model (PLM) to encode semantic information of questions and concepts instead of training ID embeddings. Subsequently, we encode the concept-question graph by applying a carefully designed structural"
+        },
+        {
+          "page": 4,
+          "text": "edge state, and predicts the final response by an interaction predictor. 4.1 Textual Information Encoder The introduction of LLMs bridges the gap between semantic infor- mation and plain text. SINKT utilizes a Pretrained Language Model (PLM) as semantic encoder to get representations of the plain text of concepts and questions. For each concept 𝑐𝑖, we input its plain text TEXT(𝑐𝑖) into the PLM and acquire its representation"
+        },
+        {
+          "page": 5,
+          "text": "SINKT: A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model CIKM ’24, October 21–25, 2024, Boise, ID, USA. Concept-Question Graph Addition Pretrained Language Model (Textual Encoder) (a) Textual Information Encoder (TIEnc). C-C GAT C-Q GAT Q-C GAT Linear Linear ReLU ReLU Graph Encode Layer 1 Graph Encode Layer 2 ... ... (b) Structural Information Encoder"
+        },
+        {
+          "page": 10,
+          "text": "CIKM ’24, October 21–25, 2024, Boise, ID, USA. Fu et al. REFERENCES [1] 2020. MindSpore. https://www.mindspore.cn/ [2] 2022. Contrastive Learning for Knowledge Tracing. In TheWebConf 2022. [3] Ghodai Abdelrahman and Qing Wang. 2019. Knowledge Tracing with Sequential Key-Value Memory Networks. In Proceedings of the 42nd International ACM SIGIR C"
+        },
+        {
+          "page": 10,
+          "text": "dge tracing: Modeling the acquisition of procedural knowledge. User modeling and user-adapted interaction 4, 4 (1994), 253–278. [9] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2018. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv preprint arXiv:1810.04805 (2018). [10] Yihao Fang, Xianzhi Li, Stephen W. Thomas, and Xiaodan Zhu. 2023. ChatGPT as Data Augmentation for"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 1,
+          "text": "consis- tently arrive in the database. In addition, existing KT models only implicitly consider the correlation between concepts and questions, lacking direct modeling of the more complex relationships in the heterogeneous graph of concepts and questions. In this paper, we propose a Structure-aware INductive Knowledge Tracing model with large language model (dubbed SINKT), which, for the first time, introduces large language models (L"
+        },
+        {
+          "page": 2,
+          "text": "- formation by LLMs for the first time, enabling it to dynamically update and expand its knowledge base with minimal manual in- tervention. Specifically, SINKT first employs LLMs to generate a concept-question heterogeneous graph that contains useful struc- tural information in ITS. Then, we use a Pretrained Language Model (PLM) to encode semantic information of questions and concepts instead of training ID embeddings. Subsequently, we"
+        },
+        {
+          "page": 3,
+          "text": "ted factors with a dual attention mechanism, show- cases the field’s advancement towards more granular and complex models. Alongside these developments, graph-based KT models like GKT [30] and GIKT [48] employ GNN [17] to leverage the relational data among concepts. 2.2 LLM-Enhanced User Modeling There have been some works using LLMs to enhance the perfor- mance of user modeling [22, 38]. Some work [23–25, 47] apply LLM"
+        },
+        {
+          "page": 4,
+          "text": "The mas- tery of both the target concept and its related concepts, as well as the related questions, can provide valuable information for the assessment of KT models. Therefore, the three types of edges in the heterogeneous graph G, i.e., concept-question, concept-concept, and question-concept, are considered by SINKT. To encode such structural information, we carefully design a multi-layer heteroge- neous graph encoder. In the graph G"
+        },
+        {
+          "page": 4,
+          "text": "the graph G, denote neighbor questions of the concept 𝑐𝑖 be N𝑐𝑐𝑖and N𝑞 𝑐𝑖, respectively. The set of neighbor concepts of the question 𝑞𝑖is denoted as N𝑐𝑞𝑖. We apply three different Graph At- tention Networks (GAT) to aggregate neighborhood information for vertexes. Concept-Question GAT layer fuse neighbor concept representations of the target concept 𝑐𝑖. Specifically, the Concept- Concept GAT can be expressed as: 𝛼𝑐𝑞 𝑖"
+        },
+        {
+          "page": 5,
+          "text": "e Tracing Model with Large Language Model CIKM ’24, October 21–25, 2024, Boise, ID, USA. Concept-Question Graph Addition Pretrained Language Model (Textual Encoder) (a) Textual Information Encoder (TIEnc). C-C GAT C-Q GAT Q-C GAT Linear Linear ReLU ReLU Graph Encode Layer 1 Graph Encode Layer 2 ... ... (b) Structural Information Encoder (SIEnc). Concatenate Interaction Predictor GRU Cell ... (c) Student State Encoder an"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 1,
+          "text": "SINKT: A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model Lingyue Fu Shanghai Jiao Tong University Shanghai, China fulingyue@sjtu.edu.cn Hao Guan Shanghai Jiao Tong University Shanghai, China Guanhao2022@sjtu.edu.cn Kounianhua Du Shanghai Jiao Tong University S"
+        },
+        {
+          "page": 1,
+          "text": "and questions, lacking direct modeling of the more complex relationships in the heterogeneous graph of concepts and questions. In this paper, we propose a Structure-aware INductive Knowledge Tracing model with large language model (dubbed SINKT), which, for the first time, introduces large language models (LLMs) and realizes induc- tive knowledge tracing. Firstly, SINKT utilizes LLMs to introduce structural relationships between c"
+        },
+        {
+          "page": 2,
+          "text": ", SINKT is the first work that can achieve predictions for newly ingested questions, i.e., realize inductive knowledge tracing. Our framework also integrates open-world semantic and structural in- formation by LLMs for the first time, enabling it to dynamically update and expand its knowledge base with minimal manual in- tervention. Specifically, SINKT first employs LLMs to generate a concept-question heterogeneous grap"
+        },
+        {
+          "page": 2,
+          "text": "pen-world semantic and structural in- formation by LLMs for the first time, enabling it to dynamically update and expand its knowledge base with minimal manual in- tervention. Specifically, SINKT first employs LLMs to generate a concept-question heterogeneous graph that contains useful struc- tural information in ITS. Then, we use a Pretrained Language Model (PLM) to encode semantic information of questions and concepts"
+        },
+        {
+          "page": 3,
+          "text": "SINKT: A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model CIKM ’24, October 21–25, 2024, Boise, ID, USA. Transformer architecture [41], attention mechanisms [5] have been incorporated into deep learning KT models for capturing the re- lationships among question"
+        },
+        {
+          "page": 3,
+          "text": "field’s advancement towards more granular and complex models. Alongside these developments, graph-based KT models like GKT [30] and GIKT [48] employ GNN [17] to leverage the relational data among concepts. 2.2 LLM-Enhanced User Modeling There have been some works using LLMs to enhance the perfor- mance of user modeling [22, 38]. Some work [23–25, 47] apply LLMs as profilers to involve the creation of prompts based on us"
+        }
+      ],
+      "cold_start": [
+        {
+          "page": 1,
+          "text": "udents will respond correctly to the next question, which is a crucial task in intelligent tutoring systems (ITS). In educational KT scenarios, transductive ID-based methods often face severe data sparsity and cold start problems, where interactions between individual students and questions are sparse, and new questions and concepts consis- tently arrive in the database. In addition, existing KT models only implicitly consider"
+        },
+        {
+          "page": 1,
+          "text": "g systems (ITS). In educational KT scenarios, transductive ID-based methods often face severe data sparsity and cold start problems, where interactions between individual students and questions are sparse, and new questions and concepts consis- tently arrive in the database. In addition, existing KT models only implicitly consider the correlation between concepts and questions, lacking direct modeling of the more complex relatio"
+        },
+        {
+          "page": 2,
+          "text": "and predict responses to those questions that have appeared in the dataset. Existing KT models are all ID-based and are therefore considered transductive KT models. However, as illustrated in Figure 1, when a new concept 𝑐4 and a new question 𝑞5 are added to the database of ITS, transduc- tive KT models lack interaction data to learn their representations, thus unable to predict the response of the student A. Models that could"
+        },
+        {
+          "page": 2,
+          "text": "s to those questions that have appeared in the dataset. Existing KT models are all ID-based and are therefore considered transductive KT models. However, as illustrated in Figure 1, when a new concept 𝑐4 and a new question 𝑞5 are added to the database of ITS, transduc- tive KT models lack interaction data to learn their representations, thus unable to predict the response of the student A. Models that could predict those questio"
+        },
+        {
+          "page": 3,
+          "text": "estion answered by the student at time step 𝑡, and 𝑟𝑡∈{0, 1} indicates whether the student 𝑠correctly answers the question 𝑞𝑡(1 for correct and 0 for incorrect). Given the learning history 𝑅𝑠of a student and a new question 𝑞𝑇+1, the goal of the KT task is to predict the probability that the student correctly answers the new question, denoted as 𝑝(𝑟𝑇+1 = 1|𝑅𝑠,𝑞𝑇+1). Note that in a real ITS, teachers continually expand the ques- t"
+        },
+        {
+          "page": 3,
+          "text": "e question 𝑞𝑡(1 for correct and 0 for incorrect). Given the learning history 𝑅𝑠of a student and a new question 𝑞𝑇+1, the goal of the KT task is to predict the probability that the student correctly answers the new question, denoted as 𝑝(𝑟𝑇+1 = 1|𝑅𝑠,𝑞𝑇+1). Note that in a real ITS, teachers continually expand the ques- tion and concept set, meaning that both the question set Q and the concept set C are in a state of ongoing growth"
+        }
+      ],
+      "ece_cal": []
+    }
+  },
+  "KT047": {
+    "file": "Fusing Hybrid Attentive Network with Self-Supervised Dual-Channel Heterogeneous Graph for Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 13,
+    "chars": 74366,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 1,
+          "text": "957-4174/© 2023 Elsevier Ltd. All rights reserved. Contents lists available at ScienceDirect Expert Systems With Applications journal homepage: www.elsevier.com/locate/eswa Fusing hybrid attentive network with self-supervised dual-channel heterogeneous graph for knowledge tracing Tangjie Wu, Qiang Ling ∗ University of Science and Technology of China, 440 Huangshan Road, Hefei, 230027, Anhui, China A R T I C L E I N F O Keywords:"
+        },
+        {
+          "page": 1,
+          "text": "for knowledge tracing Tangjie Wu, Qiang Ling ∗ University of Science and Technology of China, 440 Huangshan Road, Hefei, 230027, Anhui, China A R T I C L E I N F O Keywords: Heterogeneous graph neural network Contrastive learning Self-supervised learning Attention mechanism Knowledge tracing A B S T R A C T Recently the large-scale influence of Covid-19 promoted the fast development of intelligent tutoring systems (ITS). As a"
+        },
+        {
+          "page": 2,
+          "text": "between questions. As most KT methods are based on a supervised learning paradigm, which is limited by the data sparsity in real scenarios, making it incapable to learn quality representa- tions, we introduce self-supervised learning into DHGN, aiming to exploit unobserved relations and reinforce the question representations. Specifically, we utilize the question representations learned by the two channels of DHGN to conduct con"
+        },
+        {
+          "page": 2,
+          "text": "vised learning into DHGN, aiming to exploit unobserved relations and reinforce the question representations. Specifically, we utilize the question representations learned by the two channels of DHGN to conduct contrastive learning, which maximizes the similarity between positive pairs while minimizing the similarity between negative-sampled counterparts. To the best of our knowledge, the potential of contrastive learning for he"
+        },
+        {
+          "page": 3,
+          "text": "Expert Systems With Applications 225 (2023) 120212 3 T. Wu and Q. Ling self-supervised learning adopted in this paper can find supervised signals from the input data itself and exploit unobserved relations spontaneously to reinforce the question representation. ∙We conduct extensive experiment"
+        },
+        {
+          "page": 3,
+          "text": "this gap by constructing the heterogeneous graph between questions and then propose a dual-channel heterogeneous graph network to aggregate neighbors’ information and enhance the question representation. 2.3. Contrastive learning As an emerging paradigm in self-supervised learning, contrastive learning aims to learn discriminative representations by contrasting positive and negative pairs. It was firstly used in visual represe"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 1,
+          "text": "All rights reserved. Contents lists available at ScienceDirect Expert Systems With Applications journal homepage: www.elsevier.com/locate/eswa Fusing hybrid attentive network with self-supervised dual-channel heterogeneous graph for knowledge tracing Tangjie Wu, Qiang Ling ∗ University of Science and Technology of China, 440 Huangshan Road, Hefei, 230027, Anhui, China A R T I C L E I N F O Keywords: Heterogeneous graph neural network"
+        },
+        {
+          "page": 1,
+          "text": "ed dual-channel heterogeneous graph for knowledge tracing Tangjie Wu, Qiang Ling ∗ University of Science and Technology of China, 440 Huangshan Road, Hefei, 230027, Anhui, China A R T I C L E I N F O Keywords: Heterogeneous graph neural network Contrastive learning Self-supervised learning Attention mechanism Knowledge tracing A B S T R A C T Recently the large-scale influence of Covid-19 promoted the fast development of intelligent tu"
+        },
+        {
+          "page": 2,
+          "text": "ledge Tracing (AKT) (Ghosh et al., 2020) introduces a monotonic attention mechanism that integrates the exponential decay and characterizes the importance of memory decay in KT. Recently, graph neural network (GNN) (Dong et al., 2023, 2022; Kipf & Welling, 2016; Schlichtkrull et al., 2018; Wang et al., 2019) shows superior performance on the relation network and graph- structured data, and can encode rich context inform"
+        },
+        {
+          "page": 2,
+          "text": "2018; Wang et al., 2019) shows superior performance on the relation network and graph- structured data, and can encode rich context information by aggre- gating graph attributive and structural features. Some GNN-based methods (Ni et al., 2023; Song et al., 2021; Wang et al., 2022; Wu et al., 2022; Yang et al., 2020) have been leveraged in the KT field, like A Graph-based Interaction Model for Knowledge Tracing (GIKT)"
+        },
+        {
+          "page": 3,
+          "text": "between questions and skills. Along this line, CQKT (Wang et al., 2022) proposes a calibrated Q- matrix-based framework to track knowledge proficiency of students dynamically. HHN (Wu & Ling, 2023) develops a hypergraph network to capture the complex beyond-pairwise semantic relations among questions. SGKT (Wu et al., 2022) constructs an exercise session graph to model a student’s answering process and takes the self-attentio"
+        },
+        {
+          "page": 3,
+          "text": "eir superiority in the KT field, they are limited by the data sparsity problem, making it difficult to learn high-quality representations for students’ historical in- teractions. Although Graph Neural Network (GNN)-based methods can alleviate the aforementioned issue to some extent, they fail to capture the complex and higher-order correlations between questions. To this end, we propose a novel graph structure to model"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 1,
+          "text": "Expert Systems With Applications 225 (2023) 120212 Available online 21 April 2023 0957-4174/© 2023 Elsevier Ltd. All rights reserved. Contents lists available at ScienceDirect Expert Systems With Applications journal"
+        },
+        {
+          "page": 1,
+          "text": "Expert Systems With Applications 225 (2023) 120212 Available online 21 April 2023 0957-4174/© 2023 Elsevier Ltd. All rights reserved. Contents lists available at ScienceDirect Expert Systems With Applications journal homepage: www.elsevier.com/locate/eswa Fusing hybrid attentive network with self-supervised dual-channel heterogeneous graph for knowledge tracing Tangjie Wu, Qiang Ling ∗ Uni"
+        },
+        {
+          "page": 2,
+          "text": "Expert Systems With Applications 225 (2023) 120212 2 T. Wu and Q. Ling Over the past decade, there has emerged some attempts to construct nonlinear modeling approaches (Fersini et al., 2014; Hedrea & Petriu, 2021), w"
+        },
+        {
+          "page": 3,
+          "text": "Expert Systems With Applications 225 (2023) 120212 3 T. Wu and Q. Ling self-supervised learning adopted in this paper can find supervised signals from the input data itself and exploit unobserved relations spontaneou"
+        },
+        {
+          "page": 4,
+          "text": "Expert Systems With Applications 225 (2023) 120212 4 T. Wu and Q. Ling Fig. 1. An illustration of the heterogeneous graph for KT, which includes three types of nodes and two types of meta-paths. For simplicity, we on"
+        },
+        {
+          "page": 5,
+          "text": "Expert Systems With Applications 225 (2023) 120212 5 T. Wu and Q. Ling Fig. 2. The architecture of DHGN. The question embedding is learned through the meta-path and network schema channels. Then the two representatio"
+        }
+      ],
+      "cold_start": [
+        {
+          "page": 1,
+          "text": "change of his knowledge state. Nowadays knowledge tracing (KT) (Corbett & Anderson, 1994) has become a hot research topic of ITS, which aims to analyze a student’s knowledge state and predict his response to a new question. According to the prediction results, teachers can adjust the teaching plans and develop personalized strategies (Adesope et al., 2017) for each student in online education systems. ∗Corresponding author. E-ma"
+        },
+        {
+          "page": 3,
+          "text": "development of neural network (NN) promotes considerable advances of knowledge tracing (KT). KT aims to capture a student’s knowledge state according to his interactive questions and predict his response to a new question. DKT (Piech et al., 2015), the first attempt to employ RNN-based methods in KT, utilizes the LSTM network to model the interactive question sequences. DKVMN (Zhang et al., 2017), DSCMN (Minn et al., 2019) and"
+        },
+        {
+          "page": 3,
+          "text": "ses LSTM networks to aggre- gate feature information of sampled neighboring nodes to obtain the ultimate node embedding. MetaHIN (Lu et al., 2020) develops a meta- learning paradigm based on HIN to resolve the cold-start problem of recommendation systems. Generally, the performance of GNNs is vulnerable to noisy information. To resolve this issue, DNAG (Dong et al., 2023) presents a novel de-noising aggregator, which utilizes"
+        },
+        {
+          "page": 4,
+          "text": ". Given a student’s interactive sequence 𝑺𝒕 ={(𝑞1, 𝑟1), (𝑞2, 𝑟2), ......(𝑞𝑡, 𝑟𝑡)} and the pre-defined heterogeneous graph between ques- tions , our task is to learn 𝑓(⋅) to predict his next response 𝑟𝑡+1 to a new question 𝑞𝑡+1, which is formulated as [𝑺𝒕, , 𝑞𝑡+1] 𝑓 ⟹𝑟𝑡+1. (1) 3.2. Dual-channel heterogeneous graph network This section introduces the proposed Dual-channel Heterogeneous Graph Network (DHGN), which aims to capture"
+        },
+        {
+          "page": 13,
+          "text": ". (2021). A hierarchical memory network for knowledge tracing. Expert Systems with Applications, 177, Article 114935. Lu, Y., Fang, Y., & Shi, C. (2020). Meta-learning on heterogeneous information networks for cold-start recommendation. In Proceedings of the 26th ACM SIGKDD international conference on knowledge discovery & data mining (pp. 1563–1573). Van der Maaten, L., & Hinton, G. (2008). Visualizing data using t-SNE. Journ"
+        }
+      ],
+      "ece_cal": [
+        {
+          "page": 3,
+          "text": "he content information in real scenarios. GIKT (Yang et al., 2020) builds a relation graph to extract the underlying relations between questions and skills. Along this line, CQKT (Wang et al., 2022) proposes a calibrated Q- matrix-based framework to track knowledge proficiency of students dynamically. HHN (Wu & Ling, 2023) develops a hypergraph network to capture the complex beyond-pairwise semantic relations among questions"
+        },
+        {
+          "page": 13,
+          "text": "racing. In Proceedings of the 14th ACM international conference on web search and data mining (pp. 517–525). Wang, W., Ma, H., Zhao, Y., Li, Z., & He, X. (2022). Tracking knowledge proficiency of students with calibrated Q-matrix. Expert Systems with Applications, 192, Article 116454. Wang, Y., Tang, S., Lei, Y., Song, W., Wang, S., & Zhang, M. (2020). DisenHAN: Disen- tangled heterogeneous graph attention network for recomm"
+        }
+      ]
+    }
+  },
+  "KT050": {
+    "file": "GraphCA - Learning From Graph Counterfactual Augmentation for Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 16,
+    "chars": 92810,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 1,
+          "text": "the counterfactual world, we conduct counterfactual transformations on students’ learning graphs by changing the corresponding treatments and then exploit the counterfactual outcomes in a contrastive learning framework. We conduct extensive experiments on three real-world datasets, and the experimental results demonstrate the superiority of our proposed GraphCA method compared with several"
+        },
+        {
+          "page": 1,
+          "text": "xperiments on three real-world datasets, and the experimental results demonstrate the superiority of our proposed GraphCA method compared with several state-of-the-art base- lines. Index Terms— Contrastive learning, counterfactual representation, graph neural network, knowledge tracing. I. Introduction T HE development of computer science and artificial intelli- gence has promoted the progress of the educati"
+        },
+        {
+          "page": 2,
+          "text": "to model their higher-order relationships. Then, we intervene on the observed answers by generating interrupted sub-graphs, from which we can obtain counterfactual student representation via counterfactual contrastive graph learning. In counterfactual learning, we perform counterfactual graph transformations from two views based on two factual observa- tions. First, the student’s knowledge state represented by the q"
+        },
+        {
+          "page": 3,
+          "text": "by directly corrupting the student’s original representation (the details can be seen in Section III-E-3). Then, to effectively learn a more stable user representation, we further conduct contrastive learning between the observa- tional and the counterfactual user representations. That is, by contrast with such out-of-distribution hard negative samples, the learned representations are potentially more stab"
+        },
+        {
+          "page": 3,
+          "text": "ly GraphCA. More concretely, we first obtain the counterfactual positive samples by generating interrupted sub-graphs based on two observational facts, and then learn an enhanced user representation by a contrastive graph learning method. 2) We consider the multiple relationships among students, questions, and concepts in a unified heterogeneous graph to enhance the representations of students by the concep"
+        },
+        {
+          "page": 4,
+          "text": "er the entity relationships between questions and concepts, or between two concepts, and none of them investigates the rela- tions among students, questions, and concepts, simultane- ously. C. Contrastive Learning-Based KT Methods Contrastive learning is a type of self-supervised learning method that aims at learning more robust and accurate repre- sentations by pulling similar representations closer and"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 1,
+          "text": "for knowledge tracing. Concretely, to consider the multiple relation- ships among different entities, we first uniform students, ques- tions, and concepts in graphs, and then leverage a heterogeneous graph convolutional network to conduct representation learning. To model the counterfactual world, we conduct counterfactual transformations on students’ learning graphs by changing the corresponding treatments a"
+        },
+        {
+          "page": 1,
+          "text": ", which solves the data sparsity problem by using the hierarchi- cal information between questions and concepts to obtain only the rich relationships between questions and concepts. Yang et al. [5] utilize the graph convolutional network (GCN) to cap- ture the inter-question and inter-concept abundant relations and propose a graph-based knowledge tracing interaction model to mitigate the data sparsity in KT. Chen et al. ["
+        },
+        {
+          "page": 3,
+          "text": "re-train- ing approach by considering question-question, question-con- cept, and concept-concept relationships in a bipartite graph to enhance the representations of questions. Nakagawa et al. [31] propose a GNN-based knowledge tracing method, which defines the knowledge structure as a graph to transform the KT task into a time-series node-level classification problem in the GNN. Yang et al. [5] prop"
+        },
+        {
+          "page": 3,
+          "text": "a et al. [31] propose a GNN-based knowledge tracing method, which defines the knowledge structure as a graph to transform the KT task into a time-series node-level classification problem in the GNN. Yang et al. [5] propose a graph-based interaction model for knowledge tracing model by using GCN to incorpo- rate the relationship between questions and concepts while 2110 IEEE/CAA JOURNAL OF"
+        },
+        {
+          "page": 4,
+          "text": "is work we propose to solve the data sparsity prob- lem by modeling the counterfactual data distribution from a counterfactual perspective rather than solely the observational data distribution. E. Heterogeneous Graph Neural Networks. Heterogeneous graph neural network (HGNN) is a kind of graph network that models different types of nodes and links [43], [44]. Compared with traditional graphs, hierarchical graphs are"
+        },
+        {
+          "page": 4,
+          "text": "sparsity prob- lem by modeling the counterfactual data distribution from a counterfactual perspective rather than solely the observational data distribution. E. Heterogeneous Graph Neural Networks. Heterogeneous graph neural network (HGNN) is a kind of graph network that models different types of nodes and links [43], [44]. Compared with traditional graphs, hierarchical graphs are more capable of expressing complex an"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 1,
+          "text": "N) to cap- ture the inter-question and inter-concept abundant relations and propose a graph-based knowledge tracing interaction model to mitigate the data sparsity in KT. Chen et al. [6] pro- vide prerequisite relationships between concepts for KT by incorporating the knowledge structure information and creat- ing links between questions for dealing with the data sparsity problem. However, the data sparsity is"
+        },
+        {
+          "page": 4,
+          "text": "t there are some related works that have been focused on solving the data sparsity issue in KT. For example, Chen et al. [6] deal with the data sparsity problem by incorpo- rating knowledge structure to obtain prerequisite relationships between concepts. Pandey and Kargpis [3] identify the knowl- edge concepts from the student’s past activities by a self- attention network. Wang et al. [4] solve the data sparsity prob-"
+        },
+        {
+          "page": 14,
+          "text": "ph-based interaction model for knowledge tracing,” in Proc. Joint European Conf. Machine Learning and Knowledge Discovery in Databases, 2020, pp. 299–315. [5] P. Chen, Y. Lu, V. W. Zheng, and Y. Pian, “Prerequisite-driven deep knowledge tracing,” in Proc. IEEE Int. Conf. Data Mining, 2018, pp. 39–48. [6] S. Zhang, D. Yao, Z. Zhao, T.-S. Chua, and F. Wu, “CauseRec: Counter- factual user sequence synthesis for sequen"
+        }
+      ],
+      "cold_start": [
+        {
+          "page": 15,
+          "text": "g, and J. Zhou, “Heterogeneous graph neural network for recommendation,” arXiv preprint arXiv: 2009.00799, 2020. [47] S. Liu, I. Ounis, C. Macdonald, and Z. Meng, “A heterogeneous graph neural model for cold-start recommendation,” in Proc. 43rd Int. ACM SIGIR Conf. Research and Development in Infor. Retrieval, 2020, pp. 2029–2032. [48] J. Zhao, X. Wang, C. Shi, B. Hu, G. Song, and Y. Ye, “Heterogeneous graph structure"
+        }
+      ],
+      "ece_cal": []
+    }
+  },
+  "KT066": {
+    "file": "Dual-Channel Adaptive Scale Hypergraph Encoders With Cross-View Contrastive Learning for Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 15,
+    "chars": 77988,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 1,
+          "text": "6752 IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 36, NO. 4, APRIL 2025 Dual-Channel Adaptive Scale Hypergraph Encoders With Cross-View Contrastive Learning for Knowledge Tracing Jiawei Li , Yuanfei Deng , Yixiu Qin , Shun Mao , and Yuncheng Jiang , Member, IEEE Abstract— Knowledge tracing (KT) refers to predicting learn- ers’ performance in the future ac"
+        },
+        {
+          "page": 1,
+          "text": "l encoded hidden vector struggles to represent multigranularity knowledge states. To tackle the above problems, we propose a novel KT model named dual-channel adaptive scale hypergraph encoders with cross-view contrastive learning (HyperKT). Specifically, we design an adaptive scale hyperedge distillation component for generating knowledge-aware hyperedges and pattern-aware hyperedges that reflect non-pairwise higher-order feat"
+        },
+        {
+          "page": 2,
+          "text": "fact, response sequences under different views represent diverse knowledge states of learners. To address the above issues, this article proposes dual-channel adaptive scale hypergraph encoders with cross-view contrastive learning for KT (HyperKT), which consists of three key learning components. First, to cap- ture the non-pairwise and complex high-order relationships among responses, we propose a hyperedge distillation com- p"
+        },
+        {
+          "page": 2,
+          "text": "matrices and attention weight matrices. Finally, to address the issue of insufficient supervision signals in the state hypergraph caused by the sparsity of response sequences, we design a cross-view hypergraph contrastive learning mechanism, performing local and global contrastive learning between two hypergraph views and their transformed line graph views. The cross-view con- trastive learning on the state hypergraphs maximize"
+        },
+        {
+          "page": 3,
+          "text": "ture encoding. Therefore, we introduce dual-channel hypergraph encoders for modeling multigranularity knowledge states and design an adaptive scale hyperedge distillation component for hyperedge generation. C. Contrastive Learning Contrastive learning has achieved great success in self-supervised representation, which applies to computer vision [40] and natural language processing [41]. The latest advances in this area have ext"
+        },
+        {
+          "page": 3,
+          "text": "ore, we introduce dual-channel hypergraph encoders for modeling multigranularity knowledge states and design an adaptive scale hyperedge distillation component for hyperedge generation. C. Contrastive Learning Contrastive learning has achieved great success in self-supervised representation, which applies to computer vision [40] and natural language processing [41]. The latest advances in this area have extended contrastive lea"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 1,
+          "text": "6752 IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 36, NO. 4, APRIL 2025 Dual-Channel Adaptive Scale Hypergraph Encoders With Cross-View Contrastive Learning for Knowledge Tracing Jiawei Li , Yuanfei Deng , Yixiu Qin , Shun Mao , and Yuncheng Jiang , Member, IEEE Abstract— Knowledge tracing (KT) refers to predicting lea"
+        },
+        {
+          "page": 1,
+          "text": "gnored. In addition, a single-channel encoded hidden vector struggles to represent multigranularity knowledge states. To tackle the above problems, we propose a novel KT model named dual-channel adaptive scale hypergraph encoders with cross-view contrastive learning (HyperKT). Specifically, we design an adaptive scale hyperedge distillation component for generating knowledge-aware hyperedges and pattern-aware hyperedges that r"
+        },
+        {
+          "page": 2,
+          "text": "LI et al.: DUAL-CHANNEL ADAPTIVE SCALE HYPERGRAPH ENCODERS 6753 deep learning-based KT approaches encode learners’ response sequences via recurrent neural networks (RNNs) [11], memory networks [12], and attention mechanism [9]. Recent stud- ies have focused o"
+        },
+        {
+          "page": 2,
+          "text": "non-pairwise high-order relationship among responses of interacting sub- sequence reflects the learner’s knowledge state within that time span. Unlike graph-based models that emphasize pairwise relationships, hypergraph generalizes edges to connect more than two nodes [23], [24], offering a natural manner to capture complex higher-order relationships among responses. While the incorporation of hypergraphs to model higher-orde"
+        },
+        {
+          "page": 3,
+          "text": "to model learners’ knowledge states. Even though the above KT method shows excellent performance, it is still unable to model non-pairwise and complex higher-order information among responses. We leverage the hypergraph’s ability to model high-order features and propose dual-channel hypergraph encoders to capture multigranular knowledge states from con- structed state hypergraphs. B. Hypergraph Learning In recent years, there"
+        },
+        {
+          "page": 3,
+          "text": "excellent performance, it is still unable to model non-pairwise and complex higher-order information among responses. We leverage the hypergraph’s ability to model high-order features and propose dual-channel hypergraph encoders to capture multigranular knowledge states from con- structed state hypergraphs. B. Hypergraph Learning In recent years, there has been a rise in interest in hyper- graph learning as a result of its ad"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 9,
+          "text": "information to trace knowledge states. 10) GFLDKT [20] designs two gating-controlled mech- anisms to model explicitly forgetting and learning behaviors. In addition, it is a graph-based method, which uses the Q-matrix-induced partial-order-based method to pre-train the exercise embedding. Authorized licensed use limited to: University of Pittsburgh. Downloaded on July 08,2026 at 03:16:02 UTC from IEEE Xplore. Restrictions"
+        },
+        {
+          "page": 15,
+          "text": "ATIONAL SOCIAL SYSTEMS (TCSS), Knowledge-Based Systems (KBS), and International Con- ference on Computer Supported Cooperative Work in Design (CSCWD). His current research interests include semantic computing, knowledge graph, and data science. Yixiu Qin received the M.S. degree in computer science and technology from Guilin University of Electronic Science and Technology, Guilin, China, in 2018. He is currently pursuing the Ph.D."
+        },
+        {
+          "page": 15,
+          "text": "iples and Practice of Knowledge Discovery in Databases (ECML PKDD), and International Conference on Knowledge Science, Engineering and Management (KSEM). His current research interests include graph computing, knowledge graphs, graph neural networks, educational artificial intelligence, and data science. Dr. Jiang is a member of KSEM Steering Committee, the Vice Chair for the IEEE Task Force on Educational Data Mining, and a Distin"
+        }
+      ],
+      "cold_start": [
+        {
+          "page": 7,
+          "text": ": X(l+1) ls = D−1/2 ls ˜HlsB−1 ls ˜HT ls D−1/2 ls X(l) ls (13) where X(l+1) ls denotes the questions embedding matrix in the local state hypergraph. Similar to the global state hypergraph encoding channel, the new question embedding concatenates the reverse position embedding and the learner’s answer in the collaborative hypergraph convolution channel ¯xl t = σ W 4 \u0002 xl t ⊕at ⊕pm−t+1 \u0003 + b3 \u0001 (14) where W 4 and b3 are the learn"
+        }
+      ],
+      "ece_cal": []
+    }
+  },
+  "KT068": {
+    "file": "HKT - Hierarchical Structure-Based Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 18,
+    "chars": 74193,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 1,
+          "text": "uhan 430079, China b Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan 430079, China A R T I C L E I N F O Keywords: Knowledge tracing Graph representation learning Graph contrastive learning Hierarchical modeling Educational data mining A B S T R A C T Knowledge tracing (KT) is a fundamental task in Intelligent Tutoring Systems, aiming to predict learners’ performance on specific quest"
+        },
+        {
+          "page": 2,
+          "text": "entations that not only indicate the level of each knowledge concept but also capture the distances between levels. These embeddings are further refined through the application of a cross-graph, hierarchical contrastive learning strategy. For (2), we propose weight allocation networks that can dynamically assess the impact of different levels of knowledge concepts on prediction results. By adaptively assigning different lev"
+        },
+        {
+          "page": 3,
+          "text": "chical framework. 2. We introduce the KHT and KAG, which model the relations between knowledge concepts across different levels and within the same level. These are integrated into a cross-graph, hierarchical contrastive learning framework to improve the model’s representation ability. 3. We design the weight allocation networks that dynamically assign weights to knowledge concepts at different levels, integrating these weig"
+        },
+        {
+          "page": 3,
+          "text": "the Skip-gram model to learn node embeddings. These methods effectively capture structural information by maximizing local neighborhood similarity. Furthermore, techniques such as negative sampling and noise contrastive estimation (NCE) (Gutmann & Hyvärinen, 2010) are widely adopted to optimize embeddings, improving their robustness and discriminative power. Information Processing and Management 62 (2025) 104206 3"
+        },
+        {
+          "page": 4,
+          "text": "key direction in graph representation learning (Khoshraftar & An, 2024). GCL focuses on learning robust and semantically rich node embeddings by constructing positive and negative sample pairs and employing contrastive loss functions, such as InfoNCE loss (Oord, Li, & Vinyals, 2018). Notable approaches, such as GraphCL (You et al., 2020) and Deep Graph Infomax (Veličković et al., 2018), enhance the performance and generaliz"
+        },
+        {
+          "page": 4,
+          "text": "on learning (Khoshraftar & An, 2024). GCL focuses on learning robust and semantically rich node embeddings by constructing positive and negative sample pairs and employing contrastive loss functions, such as InfoNCE loss (Oord, Li, & Vinyals, 2018). Notable approaches, such as GraphCL (You et al., 2020) and Deep Graph Infomax (Veličković et al., 2018), enhance the performance and generalization of graph representation l"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 15,
+          "text": "ion, particularly excelling in single-step inference speed, where it outperforms most deep learning-based KT methods. It is important to note that the GKT model involves extensive batch matrix operations and graph convolutional layers, processed step-by-step with only one time step of data being handled at a time. This results in lower efficiency compared to other models. However, excluding the GKT model, our method still shows ex"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 2,
+          "text": "ge concepts. It provides a more nuanced understanding of learner performance, distinguishing it from existing methods, as depicted in Fig. 1(d). For (1), we introduce a Knowledge Hierarchy Tree (KHT) based on expert prior knowledge, which models the vertical hierarchical relationships between knowledge concepts and establishes a top-down knowledge organization framework. Meanwhile, we construct a Knowledge Association G"
+        },
+        {
+          "page": 4,
+          "text": "where 𝑘= {𝑣∈∣𝜙(𝑣) = 𝑘} is the set of nodes at the 𝑘th level, 𝑘 is the set of edges representing relations between these nodes. The edges 𝑘 are constructed based on semantic dependencies, derived from the co-occurrence patterns of knowledge concepts in learners’ response sequences. By analyzing how knowledge concepts appear together in responses, we identify and quantify their relations, which are then represented as edges"
+        },
+        {
+          "page": 17,
+          "text": "Extending context window of attention based knowledge tracing models via length extrapolation. In ECAI 2024. IOS Press. Li, Z., Jian, Y., Xue, Z., Zheng, Y., Zhang, M., Zhang, Y., et al. (2024). Text-enhanced knowledge graph representation learning with local structure. Information Processing & Management, (5). Liu, F., Hu, X., Bu, C., & Yu, K. (2022). Fuzzy Bayesian knowledge tracing. IEEE Transactions on Fuzzy Systems. Liu, Z.,"
+        }
+      ],
+      "cold_start": [
+        {
+          "page": 10,
+          "text": "KT: Based on the self-attention mechanism, SAKT (Xu, Ruan, Korpeoglu, Kumar, & Achan, 2019) focuses on the relations between learners’ past responses and current questions, predicting learners’ performance on new questions. • AKT: Based on the attention mechanism, AKT (Ghosh et al., 2020) captures global dependencies and incorporates temporal interval information to model long-range dependencies, thereby improving the performa"
+        }
+      ],
+      "ece_cal": []
+    }
+  },
+  "KT070": {
+    "file": "Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor.pdf",
+    "exists": true,
+    "pages": 12,
+    "chars": 72380,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 7,
+          "text": "[21]. We call them Coda-X, e.g., Coda-PDKT and Coda-Help-DKT. We split 70%, 10% and 20% programming sequences of each dataset as the train- ing set, the valid set, and the test set, respectively. We utilize a pre-trained Code-Bert3 to encode input codes for each baseline with the setting of dimension 𝑑is 768. The setups for training PKT backbone models refer to the original papers and each backbone is trained on training dat"
+        },
+        {
+          "page": 10,
+          "text": "nformation processing systems 33 (2020), 19314–19326. [5] Zhangyin Feng, Daya Guo, Duyu Tang, Nan Duan, Xiaocheng Feng, Ming Gong, Linjun Shou, Bing Qin, Ting Liu, Daxin Jiang, and Ming Zhou. 2020. CodeBERT: A Pre-Trained Model for Programming and Natural Languages. arXiv:2002.08155 [cs.CL] [6] Weibo Gao, Qi Liu, Zhenya Huang, Yu Yin, Haoyang Bi, Mu-Chun Wang, Jianhui Ma, Shijin Wang, and Yu Su. 2021. Rcd: Relation map driven"
+        },
+        {
+          "page": 10,
+          "text": "nce on Research and Development in Information Retrieval. 2601–2606. [22] Rongfan Li, Ting Zhong, Xinke Jiang, Goce Trajcevski, Jin Wu, and Fan Zhou. 2022. Mining spatio-temporal relations via self-paced graph contrastive learning. In Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining. 936–944. [23] Yu Liang, Tianhao Peng, Yanjun Pu, and Wenjun Wu. 2022. HELP-DKT: an interpretable cognitive mod"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 1,
+          "text": "ation rights licensed to ACM. ACM ISBN 979-8-4007-1245-6/25/08 https://doi.org/10.1145/3690624.3709172 unwanted signals can be identified from a semantic similarity per- spective. We then apply a cluster-aware GCN to the code graph, which improves the discrimination of weak signals and enables their clustering for identification. Finally, a lightweight yet effec- tive adaptor is incorporated into the PKT task through op"
+        },
+        {
+          "page": 2,
+          "text": "we assess unwanted signals from unrelated codes by examining semantic similarities between codes and their correlations with questions. To distinguish weak signals from submissions, we em- ploy a cluster-aware Graph Convolution Network (GCN) over the code graph, which improves the discrimination of weak signals and enables their clustering for identification. In the adaptive PKT stage, a tuning adaptor facilitates the adaptation of t"
+        },
+        {
+          "page": 2,
+          "text": "from unrelated codes by examining semantic similarities between codes and their correlations with questions. To distinguish weak signals from submissions, we em- ploy a cluster-aware Graph Convolution Network (GCN) over the code graph, which improves the discrimination of weak signals and enables their clustering for identification. In the adaptive PKT stage, a tuning adaptor facilitates the adaptation of the PKT task t"
+        },
+        {
+          "page": 4,
+          "text": "ge Adaptive PKT Stage (g) Constraints for guiding knowledge correction Tuning adaptor Tuning adaptor Tuning adaptor Tuning adaptor … … Coding sequence Code graph unwanted signal (d) K-means (c) Cluster-aware GCN core signal in a cluster prompt ℎ′𝑢,𝑡 ℎ′𝑢,𝑡 ℎ𝑢,𝑡 Ԧ𝑝𝑢,𝑡 … ℒ𝑢,𝑡 𝑤𝑒𝑎𝑘 ℒ𝑢,𝑡 𝑢𝑤 ℎ′𝑢,𝑡−1 ℎ′𝑢,𝑡+1 ℎ′𝑢,𝑡 Core Unrelated Weak Tuning Frozen Figure 3: The overall architecture of Coda. Left shows the stage for noisy sig"
+        },
+        {
+          "page": 4,
+          "text": "h programming practice sequence to explore the distribution of different coding signals. Technically speaking, this module aims to construct an undirected code graph 𝐺𝑢= {𝑉𝑢,𝐴𝑢} where 𝐴𝑢∈R𝑇𝑢×𝑇𝑢is the learnable adjacency matrix, and 𝑉𝑢is the submitted code set of a learner. Each node 𝑣𝑢,𝑖∈𝑉𝑢corresponds to the code 𝑥𝑢,𝑖at the attempting step 𝑖within the programming sequence. The node embedding vector ®𝑥𝑢,𝑖∈R𝑑is obtained from th"
+        },
+        {
+          "page": 5,
+          "text": "ity of the graph. Specifically, we mask off those elements in M𝑢 that are smaller than a hyper-parameter by setting them to zero, which is obtained by ranking the metric value in M𝑢, to generate an informative adjacency matrix 𝐴𝑢, as follows: 𝐴𝑢,<𝑖,𝑗> = ( 1, 𝑀𝑢,<𝑖,𝑗> ≥Rank𝜖(M𝑢) 0, otherwise (4) where Rank𝜖(M𝑢) returns the value of the 𝜖-th largest value in the metric matrix M𝑢to control the sparsity of the code graph. Note th"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 7,
+          "text": "into account code modification content between consecutive submissions to capture knowledge state changes. • ECKT integrates code features with questions’ knowledge con- cepts and descriptions generated by an LLM from codes. In this paper, we generate knowledge concept embeddings based on the original datasets and generate each question description embedding by mean-pooling all codes related to the question. 4.2.2 Eval"
+        },
+        {
+          "page": 9,
+          "text": "d codes in order to model their programming skills and knowledge, achieving state-of-the-art performance. ECKT [48] integrates code features with questions’ knowledge concepts and descriptions gen- erated by a large language model (LLM) from the code. GPKT [42] learns informative code and question representations from a code- question-knowledge network for better prediction. However, all these methods are limited by noise in stude"
+        },
+        {
+          "page": 9,
+          "text": "del their programming skills and knowledge, achieving state-of-the-art performance. ECKT [48] integrates code features with questions’ knowledge concepts and descriptions gen- erated by a large language model (LLM) from the code. GPKT [42] learns informative code and question representations from a code- question-knowledge network for better prediction. However, all these methods are limited by noise in students’ answer"
+        },
+        {
+          "page": 11,
+          "text": "de Graph-based Tuning Adaptor KDD ’25, August 3–7, 2025, Toronto, ON, Canada [48] Yang Yu, Yingbo Zhou, Yaokang Zhu, Yutong Ye, Liangyu Chen, and Mingsong Chen. 2024. ECKT: Enhancing Code Knowledge Tracing via Large Language Models. In Proceedings of the Annual Meeting of the Cognitive Science Society, Vol. 46. [49] Linan Yue, Qi Liu, Ye Liu, Weibo Gao, Fangzhou Yao, and Wenfeng Li. 2024. Coop- erative classification and rationali"
+        }
+      ],
+      "cold_start": [],
+      "ece_cal": []
+    }
+  },
+  "KT076": {
+    "file": "KGNN-KT - Enhancing Knowledge Tracing in Programming Education Through LLM-Extracted Knowledge Graphs.pdf",
+    "exists": true,
+    "pages": 11,
+    "chars": 0,
+    "extractable": false,
+    "hits": {
+      "ssl_pretext": [],
+      "graph_encoder": [],
+      "graph_source": [],
+      "cold_start": [],
+      "ece_cal": []
+    }
+  },
+  "KT077": {
+    "file": "R2GCurL - Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning.pdf",
+    "exists": true,
+    "pages": 32,
+    "chars": 111360,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 30,
+          "text": "i, Zhonghao Lyu, Yongqi Zhang, Hao Zhang, Tianhao Peng, Haoyi Xiong, Shuaiqiang Wang, Linghe Kong, Guihai Chen, and Dawei Yin. 2025. S3PRank: Towards satisfaction-oriented learning to rank with semi-supervised pre-training. IEEE Transactions on Knowledge and Data Engineering 38 (2025), 559–572. [24] Yuchen Li, Haoyi Xiong, Yongqi Zhang, Jiang Bian, Tianhao Peng, Xuhong Li, Shuaiqiang Wang, Linghe Kong, and Dawei Yin. 2025. Ra"
+        },
+        {
+          "page": 30,
+          "text": "nowledge and Data Engineering 38 (2025), 559–572. [24] Yuchen Li, Haoyi Xiong, Yongqi Zhang, Jiang Bian, Tianhao Peng, Xuhong Li, Shuaiqiang Wang, Linghe Kong, and Dawei Yin. 2025. RankElectra: Semi-supervised pre-training of learning-to-rank electra for web-scale search. In Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V. 1, 2415–2425. [25] Timothy P. Lillicrap, Jonathan J. Hunt, Alexan"
+        },
+        {
+          "page": 31,
+          "text": "ng via fuzzy reasoning. ACM Transactions on Information Systems 42, 5 (2024), 139:1–139:26. [28] Yunfei Liu, Yang Yang, Xianyu Chen, Jian Shen, Haifeng Zhang, and Yong Yu. 2021. Improving knowledge tracing via pre-training question embeddings. In Proceedings of the 29th International Conference on International Joint Conferences on Artificial Intelligence, 1556–1562. [29] Frederic M. Lord. 2012. Applications of Item Response"
+        },
+        {
+          "page": 31,
+          "text": "matic differentiation in pytorch. In Proceedings of the NeurIPS. [38] Tianhao Peng, Xuhong Li, Haitao Yuan, Yuchen Li, and Haoyi Xiong. 2025. SOLA-GCL: Subgraph-oriented learnable augmentation method for graph contrastive learning. In Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 39, 19875–19883. [39] Tianhao Peng, Wenjun Wu, Haitao Yuan, Zhifeng Bao, Zhao Pengrui, Xin Yu, Xuetao Lin, Yu Liang, and Yanjun"
+        },
+        {
+          "page": 32,
+          "text": "Illia Polosukhin. 2017. Attention is all you need. In Advances in Neural Information Processing Systems, Vol. 30, 5998–6008. [53] Chengyi Wang, Yu Wu, Shujie Liu, Ming Zhou, and Zhenglu Yang. 2020. Curriculum pre-training for end-to-end speech translation. In Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics, 3728–3738. [54] Xin Wang, Yudong Chen, and Wenwu Zhu. 2021. A survey on curricu"
+        },
+        {
+          "page": 32,
+          "text": "ing, Big Data and Algorithms (EEBDA). IEEE, 382–386. [59] Sean Bin Yang, Chenjuan Guo, Jilin Hu, Bin Yang, Jian Tang, and Christian S. Jensen. 2022. Weakly-supervised temporal path representation learning with contrastive curriculum learning. In Proceedings of the 2022 IEEE 38th International Conference on Data Engineering (ICDE). IEEE, 2873–2885. [60] Yang Yang, Jian Shen, Yanru Qu, Yunfei Liu, Kerong Wang, Yaoming Zhu, Weinan"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 1,
+          "text": "R2GCurL: Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning TIANHAO PENG, Beihang University, Beijing, China and Nanyang Technological University, Singapore, Singapore YANJUN PU, Beihang University, Beijing, China YONGQI ZHANG, Hong Kong University"
+        },
+        {
+          "page": 1,
+          "text": "nefficient training due to suboptimal data selection. To address these issues, we propose R2GCurL, a novel KT framework with two key designs. First, we recast KT as a graph classification problem and construct dynamic graphs from student responses, enabling the model to capture structural relations between exercises and concepts for more personalized KT. Second, we introduce a data-centric curriculum learning strategy based on dy"
+        },
+        {
+          "page": 2,
+          "text": "129:2 T. Peng et al. CCS Concepts: • Applied computing →Education; • Information systems →Data mining; • Computing methodologies →Neural networks; Additional Key Words and Phrases: Knowledge Tracing, Dynamic Graph, Curriculum Learning, Reinforcement Learning ACM Reference format: Tianhao Peng, Yanjun Pu, Yongqi Zhang, Yuchen Li, Jian Ren, Jie Luo, Kui Zhang, Haitao Yuan, Shuaiqiang Wang, Dawei Yin, and Wenjun Wu. 2026."
+        },
+        {
+          "page": 2,
+          "text": "Reference format: Tianhao Peng, Yanjun Pu, Yongqi Zhang, Yuchen Li, Jian Ren, Jie Luo, Kui Zhang, Haitao Yuan, Shuaiqiang Wang, Dawei Yin, and Wenjun Wu. 2026. R2GCurL: Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning. ACM Trans. Inf. Syst. 44, 6, Article 129 (July 2026), 32 pages. https://doi.org/10.1145/3818614 1 Introduction Intelligent Tutoring Systems (ITS) support personalized practice, feedback, a"
+        },
+        {
+          "page": 3,
+          "text": "R2GCurL: Reinforced Robust KT via Dynamic Graph Curriculum Learning 129:3 Fig. 1. An example illustrating the KT task in intelligent education. Each column denotes an exercise at a timestamp, the colored circles in the three concept rows indicate the concep"
+        },
+        {
+          "page": 3,
+          "text": "uses on high-value samples, allowing the training to adapt to the evolving data-driven learning state of the model. To address the above challenges, we propose a novel approach, termed Reinforced Robust KT via Dynamic Graph Curriculum Learning (R2GCurL), which tackles the challenges from the perspectives of data structure design, noise robustness, and data efficiency. In particular, to address the data structure design challenge,"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 8,
+          "text": ".1.1 Exercise–Concept Bipartite Graph Construction. Given the exercise set Q ={푞1, . . . ,푞푀}, the concept set C ={푐1, . . . ,푐퐾}, the response sequence 푅= [(푞1,푟1), (푞2,푟2), . . . , (푞푇,푟푇)], and the exercise–concept mapping D : Q →2C, we build a graph at every step 1 ≤푡≤푇. At step 푡, the 푄-graph contains only the current exercise 푞푡and its associated concepts, so it provides a local structural view of the current interaction."
+        },
+        {
+          "page": 17,
+          "text": "quation (13). For any scheduler policy 휋, define the action-value function as: 푄휋(푠,푎) = E휋 \" 푇Õ 푘=푡 훾푘−푡푟(푆푘,퐴푘) 푆푡= 푠, 퐴푡= 푎 # . Let 푄★and 푉★denote the optimal action-value and value functions. By the Bellman optimality equation, 푄★(푠,푎) = 푟(푠,푎) +훾E[푉★(푆푡+1) | 푆푡= 푠,퐴푡= 푎]. Hence, the optimal scheduler evaluates an action using both its immediate reward and its effect on future training states. By contrast, a my"
+        }
+      ],
+      "cold_start": [
+        {
+          "page": 27,
+          "text": "ion is important because a clean topic switch and noisy corruption can both reduce continuity, but they do not induce the same structural pattern. A topic switch typically produces a coherent transition into a new concept region, whereas noisy responses tend to create more irregular and less consistent disruptions relative to both nearby interactions and the accumulated learning history. Accordingly, the analysis in Table 10 is"
+        }
+      ],
+      "ece_cal": []
+    }
+  },
+  "KT079": {
+    "file": "Spatio-Temporal Fusion in Graph Neural Network for Streaming Knowledge Tracing.pdf",
+    "exists": true,
+    "pages": 16,
+    "chars": 47248,
+    "extractable": true,
+    "hits": {
+      "ssl_pretext": [
+        {
+          "page": 15,
+          "text": "ACM SIGKDD International Conference on Knowledge Discovery & Data Mining, Virtual Event, CA, USA, 2020, pp. 2330–2339. 8. Yi-Fei Wen, Hang Liang, Carl Yang, Tao Zhou, Jia Liu, Yajun Du, Yan-Li Lee. Sequential contrastive learning for progressive knowledge tracing. Knowledge-Based Systems, 2025, 329: 114413. 9. Hiromi Nakagawa, Yusuke Iwasawa, Yutaka Matsuo. Graph-based knowledge tracing: Modeling student proficiency using grap"
+        }
+      ],
+      "graph_encoder": [
+        {
+          "page": 1,
+          "text": "at our key designs in graph construc- tion, temporal modeling, and fusion mechanism effectively enhance prediction performance. Keywords: Knowledge tracing · Educational data mining · Graph Neural Net- works · Dynamic graph 1 Introduction Knowledge Tracing (KT), as a core support tool in personalized education, plays an important role in cognitive diagnosis and instructional feedback [1], and has attracted growing attention from"
+        },
+        {
+          "page": 2,
+          "text": "ited data. Additionally, by modeling student-question interactions within a limited time window, response sequences are transformed into structured spatio-temporal graphs, which not only reduce the sparsity of dynamic graphs but also improve the efficiency of subse- quent model training. In terms of temporal modeling, STSKT embeds the time inter- vals between student interactions in a periodic manner, enabling the model to captur"
+        },
+        {
+          "page": 2,
+          "text": "llows: – We propose a spatio-temporal streaming KT framework for streaming data, which can dynamically capture and fuse the spatio-temporal information of student- question interactions. – We propose a dynamic heterogeneous graph construction method to more accu- rately model the associations among questions, capture peer effects without rely-"
+        },
+        {
+          "page": 3,
+          "text": "and HGKT [11], which constructs hierarchical exercise graphs to cap- ture deeper dependencies. More recent research shifts towards capturing the dynamic nature of these relationships. DyGformer [18] proposes a dynamic graph Transformer architecture. DyGKT [12] further advances this by modeling the continuous-time dy- namic growth of student behavior with a question-answering graph. However, existing graph-based models often use s"
+        },
+        {
+          "page": 4,
+          "text": "4 Yi-Fei Wen et al. Definition 2 (Dynamic heterogeneous graph). Given a student interaction stream Xt, we define a dynamic heterogeneous graph Gt = (Vt, Et), where the node set Vt in- cludes students and questions, and the edge set Et comprises three types of edges: (i)"
+        },
+        {
+          "page": 4,
+          "text": "4 Yi-Fei Wen et al. Definition 2 (Dynamic heterogeneous graph). Given a student interaction stream Xt, we define a dynamic heterogeneous graph Gt = (Vt, Et), where the node set Vt in- cludes students and questions, and the edge set Et comprises three types of edges: (i) question co-occurrence edge eo, indicating questions that share at least one comm"
+        }
+      ],
+      "graph_source": [
+        {
+          "page": 2,
+          "text": "this paper proposes a Spatio-Temporal Stream- ing Evolving Streaming Knowledge Tracing model (STSKT for short), designed for streaming data scenarios. In terms of spatial topology modeling, STSKT considers the co-occurrence relationships of questions on skills to alleviate the challenges of sparse question representations at the knowledge level. By leveraging the temporal co-occurrence of students on the same questions, collabora"
+        },
+        {
+          "page": 2,
+          "text": "atial topology modeling, STSKT considers the co-occurrence relationships of questions on skills to alleviate the challenges of sparse question representations at the knowledge level. By leveraging the temporal co-occurrence of students on the same questions, collaborative edges are constructed between students to address the challenge of capturing peer effects under limited data. Additionally, by modeling student-question interac"
+        },
+        {
+          "page": 4,
+          "text": "a student interaction stream Xt, we define a dynamic heterogeneous graph Gt = (Vt, Et), where the node set Vt in- cludes students and questions, and the edge set Et comprises three types of edges: (i) question co-occurrence edge eo, indicating questions that share at least one common concept; (ii) collaboration association edge ec, capturing the collaborative relationship between students who attempt the same question within a re"
+        },
+        {
+          "page": 4,
+          "text": "nsformer Rhythm-aware temporal representation hs Temporal hs Temporal 1 hs Temporal 1 Linear g · g · (1-g) hs hs1 hs1 Gated adaptive fusion hs Temporal 1 Linear g · g · (1-g) hs1 Gated adaptive fusion Question co-occurrence edges Collaboration association edges Temporal proximity edges Question co-occurrence edges Collaboration association edges Temporal proximity edges q3 q1 K1 t6t6 t1t1 ＜θ2 t6 t1 ＜θ2 ③ Performance prediction m"
+        },
+        {
+          "page": 5,
+          "text": "on This section introduces how the three types of edges are updated in the dynamic heterogeneous graph, evolving from Gt to GT , given the newly arrived data ∆XT . The specific methods are as follows. Question Co-occurrence Edges: Existing research often represents question in- formation based on the relationships between questions and skills [19] or between ques- tions and students [20]. Nevertheless, the semantic representation"
+        },
+        {
+          "page": 5,
+          "text": "ill tags or question types (e.g., multiple-choice, fill-in-the-blank) tend to exhibit a high degree of similarity in terms of both knowledge assessment and required cognitive abilities. Therefore, we construct co-occurrence edges between ques- tions in the dynamic heterogeneous graph. An edge is created between questions qi and qj if they share the same skill or belong to the same question type, and the edge weight wo qiqj ≥0.3."
+        }
+      ],
+      "cold_start": [],
+      "ece_cal": []
+    }
+  }
+}

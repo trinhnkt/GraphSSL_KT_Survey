@@ -1,0 +1,9 @@
+﻿metric,value,note
+seed_n,34,PRIMARY_CORE rows of 01_seed_corpus/included_papers_seed_audited_v1.0.csv
+retrieved_seed_actual,NEEDS_EVIDENCE,raw exports not deposited
+seed_recall_actual = retrieved_seed / 34,NEEDS_EVIDENCE,not computable
+simulated_retrieved_union_14_queries,34,simulation on title+abstract of deposited PDFs; not retrieval evidence
+simulated_seed_recall_union,1.0,simulation only
+simulated_retrieved_Scopus_only,31,"KT014, KT016, KT037 not reachable with Scopus terms"
+simulated_seed_recall_Scopus_only,0.912,simulation only
+ledger_asserted_duplicate_groups,34,04_deduplication/deduplication_audit_v1.0.csv; AI_ASSISTANT-authored; not accepted as retrieval evidence

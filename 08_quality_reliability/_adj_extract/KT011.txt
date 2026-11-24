@@ -1,0 +1,720 @@
+                                                   Bi-CLKT: Bi-Graph Contrastive Learning based Knowledge Tracing
+
+                                                              Xiangyu Songa , Jianxin Lia,∗, Qi Leib , Wei Zhaoc , Yunliang Chend,∗, Ajmal Miane
+                                                     a School of IT, Faculty of Science, Engineering and Built Environment, Deakin University, Geelong, VIC 3220, Australia
+                                                                            b School of Information Engineering, Chang’an University, Xi’an, China
+                                                                         c School of Computer Science and Technology, Xidian University, Xi’an, China
+                                                                         d School of Computer Science, China University of Geosciences, Wuhan, China
+                                                       e Department of Computer Science and Software Engineering, The University of Western Australia, Perth, Australia
+arXiv:2201.09020v1 [cs.LG] 22 Jan 2022
+
+
+
+
+                                         Abstract
+                                         The goal of Knowledge Tracing (KT) is to estimate how well students have mastered a concept based on their historical
+                                         learning of related exercises. The benefit of knowledge tracing is that students’ learning plans can be better organised
+                                         and adjusted, and interventions can be made when necessary. With the recent rise of deep learning, Deep Knowledge
+                                         Tracing (DKT) has utilised Recurrent Neural Networks (RNNs) to accomplish this task with some success. Other works
+                                         have attempted to introduce Graph Neural Networks (GNNs) and redefine the task accordingly to achieve significant
+                                         improvements. However, these efforts suffer from at least one of the following drawbacks: 1) they pay too much
+                                         attention to details of the nodes rather than to high-level semantic information; 2) they struggle to effectively establish
+                                         spatial associations and complex structures of the nodes; and 3) they represent either concepts or exercises only, without
+                                         integrating them. Inspired by recent advances in self-supervised learning, we propose a Bi-Graph Contrastive Learning
+                                         based Knowledge Tracing (Bi-CLKT) to address these limitations. Specifically, we design a two-layer comparative
+                                         learning scheme based on an “exercise-to-exercise” (E2E) relational subgraph. It involves node-level contrastive
+                                         learning of subgraphs to obtain discriminative representations of exercises, and graph-level contrastive learning to
+                                         obtain discriminative representations of concepts. Moreover, we designed a joint contrastive loss to obtain better
+                                         representations and hence better prediction performance. Also, we explored two different variants, using RNN and
+                                         memory-augmented neural networks as the prediction layer for comparison to obtain better representations of exercises
+                                         and concepts respectively. Extensive experiments on four real-world datasets show that the proposed Bi-CLKT and its
+                                         variants outperform other baseline models.
+                                         Keywords:
+                                         Contrastive Learning, Self-supervised Learning, Deep Knowledge Tracing, Graph Neural Network, Intelligent
+                                         Tutoring Systems
+
+
+                                         1. Introduction                                                           answer the next exercise relevant to a concept, given their
+                                                                                                                   previous learning interactions. In recent years, KT tasks
+                                            With growing developments in online education plat-                    have received significant attention in academic areas,
+                                         forms, vast amounts of online learning data is available                  and many scholars have conducted research to propose
+                                         to keep accurate and timely trace of students’ learning                   numerous methods that deal with this problem. Conven-
+                                         status. To trace students’ mastery of specific knowledge                  tional approaches in this domain are mainly divided into
+                                         points or concepts, a fundamental task called Knowledge                   the Bayesian Knowledge Tracing model using Hidden
+                                         Tracing (KT) has been proposed [1], which uses a se-                      Markov Models [1] and Deep Knowledge Tracing using
+                                         ries of student interactions with exercises to predict their              Deep Neural Networks [2] and its derivative methods
+                                         mastery of the concepts corresponding to those exercises.                 [3, 4, 5, 6].
+                                         Specifically, Knowledge Tracing addresses the problem
+                                                                                                                      Existing KT methods [7, 4, 2] generally target the
+                                         of predicting whether students will be able to correctly
+                                                                                                                   concept to which the exercise belongs rather than dis-
+                                                                                                                   tinguishing between the exercises themselves to build
+                                            ∗ Corresponding author.                                                predictive models. Such an approach assumes that the
+                                             Email address: jianxin.li@deakin.edu.au (Jianxin Li)                  ability of a student to solve the relevant exercise cor-
+                                         Preprint submitted to Knowledge-Based Systems                                                                                January 25, 2022
+rectly to a certain extent directly reflects that student’s        research [14, 18] has turned to redefining this task in
+mastery of the concept. Therefore, prediction based on             terms of graphs. However, these efforts face several
+concepts in such a way is a viable option, however, this           problems: 1) too much attention to the details of the
+reduces the difficulty of the task itself, given the lim-          nodes rather than high-level semantic information; 2)
+ited performance of the model. Generally, a KT task                difficulty in effectively establishing spatial associations
+comprises multiple concepts and a large number of ex-              and complex structures of the nodes; and 3) representing
+ercises with an even larger number of situations where             only concepts or exercises without integrating them.
+a concept is associated with many exercises, and a pro-               Due to the difficulty and inaccuracy of data labelling,
+portion of situations where an exercise may correspond             self-supervised learning has become increasingly popu-
+to multiple concepts. Traditional models can only deal             lar, with great success in many areas such as computer
+with the former, while for the latter, they often have to          vision [19, 20, 21] and natural language processing
+resort to dividing these cross-concept exercises into mul-         [22, 23]. The speciality of self-supervised learning is in
+tiple single-concept exercises. Such an approach, while            dealing with low quality or missing labels, which is a
+enhancing the feasibility of these models, nevertheless            requirement for supervised learning and uses the input
+interferes with the accuracy of the overall task.                  data itself for incremental layers as supervised labels
+   Although these concept-based KT methods have been               for the learning model. This can be as powerful as su-
+somewhat successful, the characteristics of the exercises          pervised models with specifically labelled information
+themselves are often overlooked. This can lead to a re-            and eliminates the tedious labelling work required by
+duction in the ultimate predictive accuracy of the model           supervised models. Specifically, self-supervised learning
+and a failure to predict specific exercises. Even if two ex-       eliminates the need to label specific tasks which is the
+ercises have the same concept, the difference in their dif-        biggest bottleneck in supervised learning. Especially for
+ficulty level may ultimately lead to a large difference in         large amounts of network data, obtaining high quality
+the probability of them being answered correctly. There-           labels at scale is often very expensive and time consum-
+fore, some previous works [8, 9, 10, 11, 12, 13] have              ing. Self-supervised learning has been shown to excel
+attempted to use exercise features as a supplement to con-         in tasks with textual and image datasets, but is still in
+cept input, achieving success to some extent. However,             its infancy for problems on the graphs such as retrieval,
+due to the relatively large difference between the number          recommendation, graph mining, and social network anal-
+of exercises and the number of exercises students actu-            ysis.
+ally interact with, each student may only interact with               In this paper, we address the problems encountered
+a very small fraction of the exercises, leading to prob-           by traditional GNN based KT models and propose a
+lems of sparse data. Furthermore, for those exercises that         self-supervised learning framework along with Bi-Graph
+span concepts, simply adding features to the exercises             Contrastive Learning based Knowledge Tracing (Bi-
+loses potential inter-exercise and inter-concept informa-          CLKT) model. Our model employs contrastive learning
+tion. Therefore, the use of higher-order information such          with global-bilayer and local-bilayer structures, where
+as “exercise-to-exercise” (E2E) and “concept-to-concept”           they apply graph-level and node-level GCNs to extract
+(C2C) is necessary to address these issues.                        “exercise-to-exercise” (E2E) and “concept-to-concept”
+   The idea of redefining the Knowledge Tracing prob-              (C2C) relational information, respectively. Finally, the
+lem in terms of graphs has recently gained significant             prediction on students’ performance is carried out by a
+momentum due to the widespread deployment of GNNs                  prediction layer based on a deep neural network.
+[14, 10, 15, 16, 17] and breakthroughs in addressing                  Our approach has been fully validated using four
+the unpredictability of traditional approaches to cross-           benchmark datasets. In terms of prediction performance,
+concept exercises. Traditional KT usually takes sequen-            our model and its variants outperformed traditional deep
+tial data as input in the form of concepts corresponding           learning-based methods, showing great potential for
+to the input exercises and their responses. This leads to          knowledge-tracing prediction accuracy. Furthermore,
+a lack of information between exercises, and only the              through a series of ablation studies, we have analysed
+relationship between exercises and concepts is available.          each module separately, making the model more inter-
+Recent research in graph theory has opened up the pos-             pretable. Our proposed model also has some technical
+sibility of breaking this bottleneck. Unlike sequential            innovations and improvements. Due to the specificity of
+data, graph data can capture the higher order informa-             this task, which requires separate representation learning
+tion of “exercise-to-exercise” (E2E) and “concept-to-              for two related but independent entities, our two-layer
+concept” (C2C) very well due to the multivariate node              comparative learning structure fits well into this. Our
+and edge structure of the graph itself. As a result, some          specific contributions are described as follows:
+                                                               2
+  • To the best of our knowledge, we present the first         networks (RNNs) to track students’ knowledge states and
+    self-supervised learning based knowledge-tracing           became the first deep KT method to achieve excellent
+    framework. Through contrastive self-supervised             results. Another example is the Dynamic Key-Value
+    learning, we solve a number of problems encoun-            Memory Network (DKVMN) [4] that builds a static
+    tered by traditional GNN-based knowledge-tracing           and dynamic matrix to store and update all concepts
+    models leading to significant improvement in the           and students’ learning states respectively. Xu et al. [29]
+    accuracy of the final prediction results.                  propose a pioneering deep matrix factorization method
+                                                               for conceptual representation learning from multi-view
+  • For Knowledge Tracing, we design a two-                    data. However, these classical models consider the most
+    layer contrastive learning framework, which per-           basic concept features only, and the absence of exercise
+    forms “exercise-to-exercise” (E2E) and “concept-to-        features leads to unreliable final predictions.
+    concept” (C2C) relational information at the global           Some deeper KT methods have since been proposed
+    and local levels respectively. The representation of       that do take into account the features of the exercises
+    exercise is learned eventually and effectively com-        in their predictions. For example, Exercise-Enhanced
+    bined by a joint contrastive loss function. Such a         Recurrent Neural Network with attention mechanism
+    structure allows an exercise embedding to have both        (EERNNA) [6] uses information about the text of the
+    exercise and concept structural information, which         exercise to allow the embedding itself to contain the
+    has a positive effect on the final prediction task.        features of the exercise, but in reality it is difficult to
+  • We perform thorough experiments on four real-              collect such textual information, and doing so intro-
+    world open datasets, and the results show that our         duces too much interference into the embedding itself.
+    proposed framework and its variants all have a sig-        Dynamic Student Classification on Memory Networks
+    nificant improvement in predictive efficiency com-         (DSCMIN) [8] uses modelling of problem difficulty to
+    pared to the individual baseline models. We also           help distinguish between different problems under the
+    perform ablations studies to analyse the validity of       same concept. DHKT, on the other hand, augments DKT
+    each individual module, which greatly enhances the         by using relationships between problems and skills to ob-
+    model interpretability.                                    tain a representation of the exercises. However, this does
+                                                               not capture the relationships between exercises and con-
+                                                               cepts due to the data sparsity issues. Due to the presence
+2. Related Work                                                of long-term dependencies in practice sequences, the
+                                                               Sequence Key Value Memory Network (SKVMN) [11]
+2.1. Knowledge Tracing                                         has improved the LSTM with good results in order to
+   There are two main approaches to using machine learn-       improve the ability to capture such dependencies. Our
+ing for Knowledge Tracing. The first one is the tradi-         approach differs from these methods in that they build
+tional machine learning KT approach represented by             the graph of exercise-influence relations from the origi-
+Bayesian Knowledge Tracing (BKT) [1]. BKT primarily            nal “exercise-to-concept” (E2C) relations by certain as-
+applies the Hidden Markov Model, which uses Bayesian           sumptions and use graph-level and node-level GCNs,
+rules to update the state of each concept considered as        respectively, to extract the “exercise-to exercise” (E2E)
+a binary variable. Several works have extended the ba-         and “concept-to-concept” (C2C) relational information.
+sic BKT model and introduced additional variables such         On the other hand, to reduce the interference of too much
+as slip and guess probabilities [7], concept difficulty        detailed information, we use contrast learning model to
+[24] and student personalisation [25, 26, 13]. On the          learn the concepts and exercises separately for represen-
+other hand, traditional machine learning KT models also        tation.
+include factor analysis models such as item response
+theory (IRT) [27] and performance factor analysis (PFA)        2.2. Self-supervised Learning
+[28, 16], which tend to focus on learning general param-          Research on self-supervised learning can be broadly
+eters from historical data to make predictions.                divided into two branches: generative models and con-
+   With the development of Deep Neural Networks, the           trastive models. The main representative of the genera-
+literature has experienced advances in Deep Knowledge          tive model is the automatic coding which is very popular.
+Tracing methods that have proved to be more effective          The main approach on graph data is to learn the embed-
+in learning valid representations for large amounts of         ding of nodes of the graph into a latent space through
+data for more accurate predictions. For example, Deep          GNN, and then reconstruct the structure and properties
+Knowledge Tracing (DKT) [2] uses recurrent neural              of the original graph through the learned representations.
+                                                           3
+The representations of the nodes are adjusted by reducing                   rt equals 0. To trace the mastery of a specific concept
+the size of the loss between the generated graph and the                    c ∈ C, we normally observe a sequence of a student’s
+original graph step by step. The learned representations                    interactions et ∈ E and predict the result rt+1 of the next
+are then used to reconstruct the original diagram. These                    exercise et+1 . Finally, the probability of a student getting
+representations encode the structural and attribute fea-                    any next exercise correct for a specific concept is taken
+tures of the original graph. Contrastive learning, on the                   as the student’s mastery of that concept. The specific
+other hand, uses augmentation methods to structurally                       definitions are as follows:
+disrupt the input data, separating out the predicted ob-                    Problem 1 (Performance Prediction in KT). Give a se-
+jects and corresponding labels from their own structure                     quence of interaction observations taken by a students
+before learning the representations, and finally compar-                    s ∈ S, s = {X0 ...XT } = {(e0 , a0 ), (e1 , a1 ), ..., (eT , aT )} on
+ing the loss functions to minimize the distance between                     a specific concept c ∈ Vc , where Xt = {et , at } for the
+positive pairs and maximize the distance between neg-                       exercise e ∈ Ve being answered at the time step t ∈ T
+ative pairs to achieve a structural grasp of the complete                   with whether or not the exercise was answered correctly
+graph. Pioneer methods along the direction of learning                      at ∈ {0, 1}. The objective of Knowledge Tracing task is
+graph representations of GCNs include Hu et al. [30]                        to predict the next interaction Xt+1 .
+and Kaveh et al. [31].
+                                                                               To solve this problem, we dig deeper into the
+2.3. Contrastive Learning on Graphs                                         “exercise-to-exercise”(E2E) graph structure relationships
+                                                                            from the original “exercise-to-concept” sequence data.
+   Contrastive learning is a type of self-supervised learn-
+                                                                            The secondary “exercise-to-exercise”(E2E) relationships
+ing where the target label to be learned is generated from
+                                                                            extracted are used to construct an exercise influence
+source data itself. It brings similar representations closer
+                                                                            graph based on each of the different concepts. Then,
+together and dissimilar ones further apart by comparison.
+                                                                            we obtained separate pre-representations of the exer-
+For graph data, traditional learning methods [32, 33, 34]
+                                                                            cises and concepts by applying graph-level and node-
+often overemphasise detailed information at the expense
+                                                                            level GCNs on these exercise influence graphs. Finally,
+of structural information. On the other hand, contrastive
+                                                                            we fuse them into a contrast learning-based Knowledge
+learning compensates for this by nicely finding a balance
+                                                                            Tracing graph to train these representations to achieve
+between local and global representation learning. Al-
+                                                                            optimal results under the Knowledge Tracing task.
+though contrastive learning on graph data is still in its
+                                                                               The exercise-level influence graph is derived from stu-
+infancy, it has been demonstrated by numerous models to
+                                                                            dents’ transitions between exercises. It assumes that the
+be powerful in its control of graph structural information.
+                                                                            majority of students who get two different exercises cor-
+                                                                            rect at the same time will have a high degree of similarity
+                                                                            or correlation between the two exercises, and therefore
+3. Preliminary and Problem Statement                                        will have relatively high weights between them, and vice
+                                                                            versa. The creation of the exercise-level influence graph
+   In this section, we define the task of Knowledge Trac-                   not only ameliorates the existing models’ shortcoming
+ing in our setting. We first formally define the student                    of not being able to distinguish between exercises under
+performance prediction problem, which represents the                        the same concept, but also provides rich information on
+level of student mastery of each concept by the accuracy                    the structure of the “exercise-to-exercise” graph.
+with which students interact with the exercises under
+each concept. Next, we present the important definitions
+used in our study.
+
+3.1. Problem Definition
+   In the Knowledge Tracing task, we record the a partic-
+ular student’s practice process as s ∈ S, s = {X0 ...XT } =
+{(e0 , a0 ), (e1 , a1 ), ..., (eT , aT )} , where |S | represents the
+student, and |E| represents the specific exercise, et ∈ E
+represents the exercise that student s does in its exercise
+step t, and rt represents the correctness or otherwise of
+the corresponding exercise. In general, rt equals 1 if the                  Figure 1: An example of creating an exercise influence sub-
+student s answered the exercise et correctly, otherwise                     graph from an exercise-to-concept relationship graph.
+
+                                                                        4
+Definition 1. (Exercise-level influence graph) Given an               The deviations of the latent and readout cells are given
+exercise set Ve and an “exercise-to-exercise” interaction             by bh and by .
+set Ee , an exercise influence sub-graph is a graph Ge =                 Another classical approach is DKVMN, which out-
+(Ve , Ee ) that takes the exercises in Ve as the vertices             puts the probability of a response p (rt | qt ) through a
+and the interactions in Ee as the edges. The weighted                 discrete exercise label qt . The motion and response
+influence Qiej (i, j ∈ N, i, j ⩽ m) of the edges of co-               tuples (qt , rt ) are then updated. Here, qt is a set with
+ocurred exercises Vei and Vej is measured by                          Q distinct exercise labels and rt is the binary value of
+                                                                      whether the student got it right or not. DKVMN assumes
+                             f c (Vei , Vej )                         that
+                                                                      n the exercise       o is based on the set of potential concepts
+                  Qiej = P                                 (1)
+                             m f (Ve , Ve )
+                                  o     i    m                         c1 , c2 , . . . , cN with N. The key matrix Mk (size N × dk )
+                                                                      is usedn to store these       o concepts of size N × dk . Concept
+where Qiej is the co-correctness rate of exercises Vej and            states s1t , s2t , . . . , stN are stored as students’ mastery of
+Vei among all the answered co-occurred exercises involv-              each concept in the time-varying value matrix Mvt (size
+ing Vei . f c and f o denote the count of co-correctness              N × dv ). Ultimately, DKVMN tracks student knowledge
+and co-occurrence respectively. Edge Ee (Vej , Vei ) only             by reading and writing to the value matrix using the rele-
+exists when Qiej is larger than a certain threshold τ.                vant weights computed from the input exercises and the
+                                                                      key matrix.
+ Example 1. As shown in Figure 1, we constructed an                      In the KT process, existing models often do not link
+ example of an exercise influence subgraph by assuming                the different concepts well, which leads to the inability
+ a high degree of similarity in the questions that a student          of these models to make correct or complete predictions
+ can answer correctly at the same time, in which the                  when students encounter exercises on concepts that have
+ properties of different exercises are reflected from node            not been covered before or when an exercise involves
+ to node. In turn, the properties of different concepts are           multiple concepts. We, therefore, fill this gap by using
+ reflected between different subgraphs. They represent                the construction of exercise influence subgraphs, with
+“exercise-to-exercise” (E2E) and “concept-to-concept”                 nodes connecting different exercises to each other and
+ (C2C) relational information, respectively.                          subgraphs connecting different concepts to each other.
+                                                                         By building an exercise influence subgraph, we can
+                                                                      transform the original sequence data into graph struc-
+                                                                      tured data containing “exercise-to-exercise” (E2E) and
+ 3.2. Representative Solutions Study                                  “concept-to-concept” (C2C) relational information. We
+   The vector sequence of x1 , . . . , xT as input to conven-         then learn these data into the corresponding embed-
+tional deep knowledge tracking is mapped to the output                ded representations by using node-level and graph-level
+vector sequence y1 , . . . , yT by computing a sequence of            GCNs respectively, while learning the best architecture
+’hidden’ states h1 , . . . , hT . This can be seen as a contin-       by contrast to maximise the differentiation of these rep-
+uous encoding of information about historical learning                resentations so that the final representations contain both
+performance to make predictions about the future, and                 information about the exercises and concepts, and their
+DKT makes the connection between input and output                     differentiation from other concepts and exercises.
+via a simple recurrent neural network. The input (xt )                4. The Bi-Graph Contrastive Knowledge Tracing
+to the dynamic network is a representation of the stu-
+                                                                         Inspired by recent developments of contrastive learn-
+dent’s historical behaviour, while the prediction (yt ) is a
+                                                                      ing in visual representation, an increasing scale of re-
+vector representing the probability of being correct for
+                                                                      search has shown that contrastive learning frameworks
+each sample exercise. More details are defined by the
+                                                                      perform well on graph-structured data as well. There-
+equations:
+                                                                      fore, after various comparisons and studies, we propose a
+                                                                      Bi-graph Contrastive Knowledge Tracing representation
+            ht = tanh (Whx xt + Whh ht−1 + bh )
+                                                         (2)        learning (Bi-CLKT) based on graph-level (global) and
+            yt = σ Wyh ht + by                                        node-level (local) GCNs. In the next section, we describe
+                                                                      Bi-CLKT in detail, first by briefly discuss a traditional
+   where the sigmoid and tanh functions σ(·) are used as              contrastive learning framework, and then more specifi-
+activation functions, Whh denotes the input weight ma-                cally by presenting our proposed Bi-graph contrastive
+trix, h0 denotes the initial state, Wyh denotes the readout           learning framework. Finally, we provide the theoretical
+weight matrix and Whh denotes the cyclic weight matrix.               rationale behind our approach.
+                                                                  5
+                                                                    local graph CL at the node level, which seek to learn
+                                                                    representations by maximising the consistency between
+4.1. The Graph CL Paradigm                                          views from different perspectives. Normally, these ap-
+   As shown in Figure 2, our proposed Bi-CLKT frame-                proaches often have only one feature, global or local.
+work extends the common graph CL paradigm. Com-                     In the Bi-CLKT model, due to the specificity of the
+mon graph CL paradigms typically employ either global               KT task, we need to acquire both “exercise-to-exercise”
+features or local features to seek to maximise the con-             (E2E) and “concept-to-concept” (C2C) relational infor-
+sistency of representations between the graph-level or              mation. These two relational features respectively have
+node-level of different views. Specifically, graph CL               the corresponding properties of being local and global.
+paradigms first generate two graph views by performing              Therefore, we propose to design a Bi-graph contrastive
+random graph augmentations on the original graph, such              learning framework with both local and globe features.
+as eliminating or adding edges, eliminating nodes, mask-               To match this two-layer framework, we use node-
+ing attributes, etc. For the global graphCL, these two              level GCN to learn “exercise-to-exercise” (E2E) embed-
+views are treated as a positive pair, while the other graphs        ding and graph-level GCN to learn “concept-to-concept”
+are treated as negative pairs. While for the local graphCL,         (C2C) embedding, respectively. In the process of graph
+the nodes in these two views are found as a positive pair           data augmentation, we design separate graph augmen-
+and negative pairs. we then employ a contrastive loss               tation processes for each of these two layers of the con-
+that forces the positive pair’s embeddings in the view are          trastive learning framework. We mainly augment the
+consistent with each other, while trying to distance all            input graph by randomly removing edges and masking
+negative pairs from each other. Specifically, the graph             node features in the graph. In addition, inspired by [35],
+CL paradigm consists of four main components:                       we introduce differences in the importance of different
+   • Graph data augmentation. The given graph G is                  nodes and edges by calculating the centrality of differ-
+      augmented by eliminating or adding edges, elimi-              ent nodes through methods such as random walk and
+      nating nodes, masking attributes, etc. to obtain two          PageRank, and those nodes and edges with lower im-
+      related views Ĝi , Ĝ j (i.e. augmented graphs), which       portance are prioritized for elimination during the graph
+      are treated as a positive pair in the global graph CL.        augmentation process.
+      Whereas in the local graph CL, all positive pairs
+      and negative pairs exist in the both two views.               4.2.1. Graph Data Augmentation
+                                                                       For the exercise level augmentation, we took two dif-
+  • GCN-based encoder. GCN-based encoders node-
+                                                                    ferent approaches to augmenting the input graph, i.e.
+    level f φ and graph-level gθ for augmented graphs
+                                                                    randomly picking edges or points to be removed. For-
+    Ĝi , Ĝ j to extract representation vectors h j .              mally, we form a modified subset E  e and V e e by randomly
+  • Projection head. A non-linear transformation h(·)               selecting some nodes and edges from the original E and
+    named projection head maps augmented repre-                     Ve in proportion to the probability of random selection
+    sentations to another latent space where the con-               of
+                                                                                    PE {(u, v) ∈ E}e = 1 − peuv
+    trastive loss is calculated. In graph contrastive learn-                                                                (3)
+    ing, zi , z j is obtained by a Multi-Layer perceptron                           PVe {v ∈ Ve e } = 1 − pev
+    (MLP).                                                          where peuv and pev are the probabilities of eliminating
+  • Joint contrastive loss function. The joint contrastive          edges (u, v) and nodes v, and then E         e e } are the set
+                                                                                                           e and V
+    loss function L(·) is defined as forcing the max-               of edges and the set of shop points after graph augmenta-
+    imisation of the distance between the positive pair             tion. The peuv and pev reflect the importance of edges (u, v)
+    zi , z j and the negative pair in the two subgraphs re-         and nodes v, respectively. By doing so, this function en-
+    spectively. The final normalized temperature-scaled             sures that the unimportant edges or points are eliminated
+    cross entropy loss is used to calculate the loss of             preferentially while ensuring that the important structure
+    the two contrastive learning modules.                           of the graph is not compromised.
+                                                                       In concept-level graph augmentation, similar to the
+                                                                    increments at the exercise level, we need to compute
+                                                                    probabilities peuv and pev to reflect the importance of the
+4.2. The Bi-CLKT Framework                                          corresponding edges (u, v) and nodes v. The difference
+   In general, common graph CL approaches usually                   is that in concept-level graph augmentation, to better fit
+choose either global graph CL at the graph level or                 the graph-level GCN, we use the PageRank algorithm to
+                                                                6
+                        Figure 2: An overview of Bi-Graph Contrastive Knowledge Tracing framework.
+
+
+combine peuv and pev to work out a composite probability              .
+pif for the concept level. The specific calculation is                The key operation for computing the node-level rep-
+defined below as defined below                                     resentation of a graph hgraph is the READOUT function,
+                                                                   of which summation and averaging are the most com-
+                         smax − sif
+                         f                          
+               f
+             pi = min  f            · p f , pτ 
+                                                     
+                                                        (4)        monly used READOUT functions. For reasons of node
+                                     f
+                            smax − µ s                             envelope invariance. We use a summation over all node
+                                                                   representations, i.e.
+where we compute the maximum and average values
+of sif and denote them by sif = log wif , smaxf
+                                                and mu sf
+                                                                                                           |V| 
+                                                                                                          X 
+respectively, and p f is the probability of combining peuv                  hgraph = READOUT(H) = σ  hv  ,    (6)
+and pev .                                                                                                  v=1
+
+   Finally, we generate two corrupted graph views Ge1 , G
+                                                        e2         where σ is the sigmoid function and |V| denotes the total
+by augmentation for the exercise and conceptual levels,            number of nodes in a given graph.
+respectively. In Bi-CLKT, the probabilities of generat-              Due to the nature of Bi-CLKT’s two-layer structure,
+ing the two views are different, and to better target the          we have used node-level and graph-level GCNs as en-
+description of these two probabilities we denote them by           coders for the exercises and concepts respectively. The
+p f,1 and p f,2 respectively.                                      specific structural form is as follows
+                                                                                                1         1     
+4.2.2. Node-Level and Graph-Level Encoder                                       GCi (X, A) = σ D̂− 2 ÂD̂− 2 XWi
+                                                                                                                         (7)
+   Direct use of the node features of the last layer of the                        f (X, A) = GC2 (GC1 (X, A), A)
+encoder K is the most direct way to obtain a node-level
+representation hv of node v, i.e. hv = xv(K) . Where the use         where the adjacency matrix is Â = A + I and the de-
+                                                                   gree matrix is D̂ = i Âi and is the non-linear activation
+                                                                                      P
+of skip connections or skip knowledge to generate node-
+level representations is do commonly used. However,                function we use σ(·).
+the method of connecting the node features of all layers
+produces a node-level representation with a different              4.2.3. Projection Head
+dimensionality than the node features. To avoid this                  Furthermore, in Bi-CLKT we map the enhanced rep-
+problem, we perform a linear transformation of the node            resentations to a uniform latent space via a non-linear
+features of all layers before joining them together.               transformation called projection head g(·), where the
+                               h iK                              contrast loss is computed. In graphical contrast learning,
+               hv = CONCAT xv(k)           W,            (5)       a multilayer perceptron (MLP) is applied to obtain these
+                                     k=1
+                                                                   mappings zi , z̄ j .
+where the weight matrix   that reduces the size of the hv             In terms of projection head, the case of considering
+dimension is W ∈ R( k dk )×d .
+                   P
+                                                                   view generation in terms of mutual information is that a
+                                                               7
+good view generation should minimise the MI between                   where the temperature parameter is denoted by τ. These
+two views I (v1 , v2 ), provided that I (v1 , y) = I (v2 , y) =       last two correspond to the exercise and concept losses
+I(x, y). Intuitively, the fact that the generated viewpoints          being computed in all positive pairs, respectively.
+vi do not affect the information that determines the pre-
+diction of the downstream task can guarantee the effec-
+tiveness of contrast learning. Thus under this restriction,           5. Experimental Settings and Results
+divergence between viewpoints as it increases leads to
+                                                                         We performe extensive experiments on four real-world
+better learning results. From a flowform perspective, we
+                                                                      datasets to evaluate the performance of our Bi-CLKT
+adopt the extension hypothesis and find that an increase
+                                                                      model. We also compare it to several state-of-the-art
+in data can induce continuity in the neighbourhood of
+                                                                      machine learning and deep learning Knowledge Tracing
+each instance.
+                                                                      models. To fully evaluate the performance of Bi-CLKT,
+4.3. Joint Contrastive Loss Function
+                                                                      we conducted a large number of in-depth ablation ex-
+   To better learn the representations of exercises and               periments, which validated the role of each module in
+concepts, we used a joint contrastive loss function L(·).             Bi-CLKT and enhanced the interpretability of the model.
+This loss function forces the maximisation of the dis-                   To implement the baseline and Bi-CLKT models, we
+tance between positive pairs of previously learned map-               used PyTorch and the Geometric Deep Learning ex-
+pings zi , z j and other negative pairs. With extensive com-          tension library. Experiments were conducted on four
+parisons, we found that normalised temperature scaled                 NVIDIA TITAN V GPUs. Bi-CLKT was used to learn
+cross-entropy loss (NT-Xent) was the most appropriate                 node representations in a self-supervised contrastive
+loss model. In the node-level GCN training process, we                learning fashion, and these representations were then
+randomly draw N small batches of nodes on the prac-                   used to evaluate node-level and graph-level classifica-
+tice influence graph under the same concept, and learn                tions. This was done by directly using these representa-
+these nodes by local contrast learning, where all 1-hop               tions to train and test a simple linear (logistic regression)
+neighbour points under its same view are used as his neg-             classifier. In pre-processing, we perform line normali-
+ative pairs, along with all 1- hop neighbours of the other            sation of and apply processing strategies. We normalise
+view, and the only positive pairs are the corresponding               the learned embeddings before feeding them into the lo-
+points under both views. In the training process of the               gistic regression classifier. In training, we use the Adam
+graph-level GCN, we randomly draw N small batches of                  optimiser with an initial learning rate of 0.001 and the
+exercise influence graphs, so that 2N augmented graphs                subgraph size does not exceed 20. the dimensionality of
+are generated as positive pairs, while all other graphs               the node representation is 1024. the marginal value of
+are used as their negative pairs.The cosine similarity                the loss function is 0.75.
+function is denoted as
+                                                                    5.1. Datasets
+              sim zn,i , zn, j = z>n,i zn, j / zn,i zn, j (8)
+                                                                         To evaluate our model, the experiments are conducted
+   As for the objective function, the prevailing practice             on the following four widely-used datasets in KT and
+is to use a standard binary cross-entropy loss between                the detailed statistics are shown in Table 1.
+positive and negative examples i.e. a noisy contrast type
+                                                                         • ASSISTment 20091 is provided by the online tu-
+objective. However, we have found by research that it
+                                                                           torial website ASSISTment, which is widely used
+is detrimental to representation learning if positive and
+                                                                           to validate KT problems. Among other things, this
+negative examples are absolutely distinguished. This is
+                                                                           dataset comes with accurate labels, practice and con-
+mainly due to the fact that these contextual subgraphs are
+                                                                           ceptual clarity. We have not modified this dataset
+extracted from the same original graph and overlap each
+                                                                           much except for filtering out corrupt samples.
+other. Therefore, we used normalised temperature scaled
+cross-entropy loss (NT-Xent) for model optimisation so                   • ASSISTment 20152 is similarly from the online
+that positive and negative samples are well differentiated                 tutoring site ASSISTment, which further clarifies
+to some extent, resulting in a high quality representation.
+The NT-Xent of the n-th graph is defined as
+                                                                          1 https://sites.google.com/site/assistmentsdata/home/assistment-
+                                             
+                          exp sim zn,i , zn, j /τ                     2009-2010-data
+       .`n = − log P                                   (9)            2 https://sites.google.com/site/assistmentsdata/home/2015-
+
+                     n0 =1,n0 ,n exp sim zn,i , zn0 , j /τ
+                     N
+                                                                      assistments-concept-builder-data
+
+                                                                  8
+     the data set ASSISTment collected in 2009 by col-                   • Dynamic Key-Value Memory Networks [4], in-
+     lapsing the number of concepts to exactly 100 and                     spired by memory-enhanced neural networks,
+     introducing a larger number of students, but with a                   builds a static and dynamic matrix to store and
+     slightly reduced average student interaction record.                  update all concepts and students’ learning states
+                                                                           respectively.
+  • ASSISTment Challenge3 (ASSISTment chall) is
+    collected for a data mining competition run by AS-                   • SAKT [5] is the first self-attentive based Knowl-
+    SISTments in 2017. It has a relatively rich average                    edge Tracing model. It abandons the traditional
+    number of records per student, and because it is                       approach of using RNNs to model a student’s his-
+    used for competition, the dataset as a whole has the                   torical interaction and instead makes predictions by
+    highest degree of completeness and normality of                        taking into account relevant exercises from his past
+    the three datasets from ASSISTment.                                    interactions. SAKT has been shown to be far more
+                                                                           efficient than the RNN-based KT model.
+  • STATICS 20114 differs from the previous three
+                                                                         • EKT [36] is an extension to the Exercise-Enhanced
+    datasets in that it is course-specific i.e. there is high
+                                                                           Recurrent Neural Network (EERNN) framework.
+    relevance in the data. This dataset contains 189,297
+                                                                           Compared to EERNN, EKT further introduces in-
+    interactions between 333 students on 1223 concepts
+                                                                           formation about the knowledge concepts present in
+    making it the most intensive of all four datasets.
+                                                                           each exercise.
+  Table 1 presents all the statistical data for the dataset,             • SAINT+ [37] , the first Transformer-based Knowl-
+where NS , Nc and NE represent the number of students,                     edge Tracing model, is unique in that it introduces
+concepts and interactions respectively.                                    exercise information as well as student response
+                                                                           information separately, while at the same time it
+                               Table 1                                     embeds two temporal features, elapsed time and
+                    Statistics for the datasets.
+                                                                           lag time, into the embedding of student response
+                                                                           information.
+                                         Statistics
+          Datasets
+                                #NS        #Nc        #NE
+                                                                       5.3. Experiment discussion
+   ASSISTment 2009             4,151       110      325,637
+   ASSISTment 2015            19,917       100      708,631               Table 2 compares the predictive performance of Bi-
+   ASSISTment chall             686        102      942,816            CLKT and its variants with other mainstream baseline
+    STATICS 2011                333       1,223 189,297                methods for ML and DL. The Area Under the curve
+                                                                       (AUC) and Accuracy (ACC) are used as evaluation met-
+                                                                       rics.
+                                                                          The empirical performance is summarised in Table
+5.2. Evaluation Methods                                                2. Overall, we can find that our proposed model shows
+                                                                       competitive performance on all datasets. Bi-CLKT con-
+  We compare our proposed Bi-CLKT with the follow-                     sistently outperforms all other baseline KT models by
+ing baseline methods.                                                  a wide margin. The competitive performance validates
+                                                                       the superior performance of our proposed contrastive
+  • Bayesian Knowledge Tracing [1] is a classical ma-                  learning model for the knowledge tracing task. While
+    chine learning Knowledge Tracing model based on                    existing baselines have achieved sufficiently high perfor-
+    the Hidden Markov Model, which uses Bayesian                       mance, our approach Bi-CLKT still pushes this bound
+    rules to update the state of each concept, considered              forward. Furthermore, we note that Bi-CLKT competes
+    to be a binary variable.                                           with models based on the latest deep learning methods
+                                                                       on all four datasets.
+  • Deep Knowledge Tracing [2] uses recurrent neu-
+    ral networks (RNNs) to track students’ knowledge                   5.4. Overall Performance
+    states and became the first deep KT method to
+                                                                          Table 2 summarises the results of the AUC and ACC
+    achieve excellent results.
+                                                                       comparisons for all baseline methods on the four datasets.
+                                                                       From the results, we observe that our Bi-CLKT model
+   3 https://sites.google.com/view/assistmentsdatamining/dataset       achieves the best performance on all four datasets, AS-
+   4 https://pslcdatashop.web.cmu.edu/DatasetInfo?datasetId=507        SISTment 2009, ASSISTment 2015, ASSISTment Chall
+                                                                   9
+Table 2
+Area Under the curve (AUC) and Accuracy (ACC) on four datasets. The best performing runs per metric per dataset are marked in boldface.
+
+
+                            ASSISTment 2009           ASSISTment 2015            ASSISTment Chall           STATICS 2011
+                            AUC     ACC               AUC     ACC                AUC     ACC                AUC    ACC
+        BKT [1]             0.648   0.594             0.616   0.592              0.562   0.555              0.719 0.698
+        DKT [2]              0.74   0.708             0.701   0.68               0.691   0.712              0.815 0.723
+        DKVMN [4]           0.739   0.618             0.705   0.68               0.689   0.614              0.814 0.722
+        SAKT [5]            0.735   0.679             0.721   0.647              0.701   0.657              0.803 0.797
+        EKT [36]            0.754   0.702             0.737   0.754               0.72   0.727              0.842 0.819
+        SAINT+ [37]         0.782   0.718             0.754   0.741              0.734   0.718              0.853 0.808
+        Bi-CLKT             0.857   0.802             0.765   0.757              0.775   0.764              0.865 0.835
+
+
+and STATICS 2011, which validates the validity and                     the augmented variant with PageRank centrality works
+superiority of our model. Specifically, our proposed Bi-               best on the ASSISTment 2009, ASSISTment Chall and
+CLKT model achieves at least 5% improvement than                       STATICS 2011 datasets, while only on ASSISTment
+the other baseline models. In the baseline models, deep                2015 does the augmented variant with Degree centrality
+learning models consistently perform better than tradi-                outperform PageRank. This shows that our final model
+tional machine learning models like BKT. This justifies                has good generalization and is not limited to a specific
+the current research trend towards deep learning methods.              choice of augmentation method for different datasets.
+We can also see that DKVMN performs slightly worse
+than DKT on average, as building states for each concept
+                                                                       5.7. Effects of Different Embedding Methods
+may lose information about the relationships between
+concepts. Furthermore, SAKT performs worse than our                       Since the two implicit relations ”exercise-to-exercise”
+model, suggesting that there is a difference between ex-               (E2E) and ”concept-to-concept” (C2C) are constructed
+ploiting higher-order concept-exercise relationships by                separately in our Bi-CLKT model for the subgraphs. To
+selecting the most relevant exercises and performing in-               better verify the role of these two embeddings in the
+teractions. Finally we can see that SAINT+, the best                   model, we adopted the “exercise-to-exercise” (E2E) and
+performing of the baseline models, is the first model to               “concept-to-exercise” (C2C) subgraphs separately as the
+apply the transform modelling framework to the Knowl-                  attribute of each exercise and compared with their con-
+edge Tracing task, which reflects the good adaptation                  catenation. From Table 4, we can see that the results
+of transform learning to this task. To further dissect                 obtained by concatenation are significantly better than
+our model, we provide sufficient ablation studies on the               those obtained by using either embedding alone. More-
+internal constructs of the model in the following sections.            over, due to the difference in the prediction layer mech-
+                                                                       anism, C2C embedding is overall better than E2E em-
+5.5. Ablation Studies                                                  bedding in this variant of Bi-CLKT-M, especially on the
+   To get insights into the effect of each module in Bi-               ASSISTment 2009 and ASSISTment 2015 datasets. In
+CLKT, we design several ablation studies. Specifically,                contrast, in the DKT variant, the use of E2E embedding
+we further investigate the effectiveness of three important            alone gives better results, specifically on the ASSIST-
+components of our proposed model: (1) augmentation                     ment 2009 and STATICS 2011 datasets. In general, both
+methods; (2) dmbedding methods; (3) the predictive                     embeddings work well separately, and the best results
+layer. We set a total of nine comparative settings and                 are obtained when they are combined.
+report the performances in Table 3 and Table 4.
+                                                                       5.8. Effects of Different Predictive Layers
+5.6. Effects of Augmentation methods
+   We observed that all three variants of Bi-CLKT with                    To improve the performance of the models, we used
+different node centrality measures outperformed the ex-                two distinct prediction mechanisms, Bi-CLKT-R and Bi-
+isting KT baseline model on all datasets. We also note                 CLKT-M, which apply Recurrent Neural Network and
+that the augmentation with degree and PageRank cen-                    Memory-augmented Neural Networks, respectively, in
+trality are two powerful variants that achieve the best                the prediction layer. In particular, on the ASSIST09 and
+or competitive performance on all datasets. Specifically,              STATICS 2011 datasets, our Bi-CLKT-R model achieves
+                                                                  10
+                                                               Table 3
+                    Predictive performance. The best performing runs per metric per dataset are marked in boldface
+
+                             ASSISTment 2009           ASSISTment 2015            ASSISTment Chall            STATICS 2011
+         Augmentation
+                             AUC     ACC               AUC     ACC                AUC     ACC                 AUC    ACC
+            Uniform          0.864   0.786             0.748   0.749              0.77    0.753               0.852 0.815
+            Degree           0.869   0.795             0.765   0.757              0.773   0.764               0.858 0.821
+           PageRank          0.875   0.802             0.757   0.752              0.775   0.764               0.865 0.835
+
+                                                               Table 4
+           The Effect of Embedding Propagation Layer. The best performing runs per metric per dataset are marked in boldface
+
+                                     ASSISTment 2009           ASSISTment 2015            ASSISTment Chall            STATICS 2011
+    Variants       Embedding
+                                     AUC     ACC               AUC     ACC                AUC     ACC                 AUC    ACC
+                      C2C            0.838   0.768             0.762   0.746              0.733   0.752               0.802 0.777
+  Bi-CLKT-M           E2E             0.83   0.762             0.748   0.748              0.744   0.747               0.857 0.788
+                     Concate         0.862   0.795             0.764   0.752              0.769   0.751               0.859 0.833
+                      C2C            0.847   0.784             0.764   0.754              0.761    0.76               0.849 0.817
+  Bi-CLKT-R           E2E            0.859   0.795             0.765   0.755              0.761   0.761               0.864 0.828
+                     Concate         0.875   0.802             0.765   0.757              0.775   0.764               0.865 0.835
+
+
+an AUC of over 0.85 and an ACC of over 0.8. Com-                       References
+pared with Bi-CLKT-M, there are some slight differ-
+ences with this variant of Bi-CLKT-R, despite the fact
+that this variant improves overall performance by at least              [1] A. T. Corbett, J. R. Anderson, Knowledge tracing: Modeling
+                                                                            the acquisition of procedural knowledge, User modeling and
+3% over all other baseline KT models. We can find that                      user-adapted interaction 4 (4) (1994) 253–278.
+in the ASSISTment 2015 dataset the two variants per-                    [2] C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami, L. J.
+form fairly close to each other, however, in the other                      Guibas, J. Sohl-Dickstein, Deep knowledge tracing, Advances in
+three datasets there is a gap of at least 2% between the                    neural information processing systems 28 (2015) 505–513.
+                                                                        [3] A. Graves, G. Wayne, I. Danihelka, Neural turing machines,
+two variants. Therefore, in the final model selection we                    arXiv preprint arXiv:1410.5401.
+chose Bi-CLKT-R as the predictive layer of the model                    [4] J. Zhang, X. Shi, I. King, D.-Y. Yeung, Dynamic key-value
+for best results.                                                           memory networks for knowledge tracing, in: Proceedings of the
+                                                                            26th international conference on World Wide Web, 2017, pp.
+                                                                            765–774.
+                                                                        [5] S. Pandey, G. Karypis, A self-attentive model for knowledge
+6. Conclusion
+                                                                            tracing, arXiv preprint arXiv:1907.06837.
+                                                                        [6] Y. Su, Q. Liu, Q. Liu, Z. Huang, Y. Yin, E. Chen, C. Ding, S. Wei,
+   We transformed the traditional Knowledge Tracing                         G. Hu, Exercise-enhanced sequential modeling for student per-
+problem into a graph form and proposed Bi-CLKT model                        formance prediction, in: Proceedings of the AAAI Conference
+that exploits contrastive learning to learn from large                      on Artificial Intelligence, Vol. 32, 2018.
+                                                                        [7] R. S. d Baker, A. T. Corbett, V. Aleven, More accurate stu-
+amounts of unlabelled data. Bi-CLKT consists of three                       dent modeling through contextual estimation of slip and guess
+main parts: subgraph establishing, contrastive learning                     probabilities in bayesian knowledge tracing, in: International
+and performance prediction. In the contrastive learning                     conference on intelligent tutoring systems, Springer, 2008, pp.
+part, we adopt two different contrastive learning frame-                    406–415.
+                                                                        [8] S. Minn, M. C. Desmarais, F. Zhu, J. Xiao, J. Wang, Dynamic
+works, local-local and global-global, for the “exercise-                    student classiffication on memory networks for knowledge trac-
+to-exercise” (E2E) and “concept-to-concept” (C2C) im-                       ing, in: Pacific-Asia Conference on Knowledge Discovery and
+plicit relationships respectively. The final “exercise-to-                  Data Mining, Springer, 2019, pp. 163–174.
+exercise” (E2E) and “concept-to-concept” (C2C) embed-                   [9] L. Dos Santos, B. Piwowarski, P. Gallinari, Multilabel classifi-
+                                                                            cation on heterogeneous graphs with gaussian embeddings, in:
+dings were obtained by node-level and graph-level GCN,                      Joint European Conference on Machine Learning and Knowledge
+and are concatenated together as attributes for each ex-                    Discovery in Databases, Springer, 2016, pp. 606–622.
+ercise into the prediction layer. Our proposed approach                [10] Y. Yang, J. Shen, Y. Qu, Y. Liu, K. Wang, Y. Zhu, W. Zhang,
+                                                                            Y. Yu, Gikt: A graph-based interaction model for knowledge
+achieved significantly better performance compared to                       tracing, in: ECML/PKDD, 2020.
+previous state-of-the-art methods for Knowledge Tracing                [11] G. Abdelrahman, Q. Wang, Knowledge tracing with sequential
+tasks on multiple challenging datasets.                                     key-value memory networks, in: Proceedings of the 42nd Inter-
+
+                                                                  11
+     national ACM SIGIR Conference on Research and Development                     Proceedings of the 2017 ACM on Conference on Information
+     in Information Retrieval, 2019, pp. 175–184.                                  and Knowledge Management, 2017, pp. 387–396.
+[12] G. Xue, M. Zhong, J. Li, J. Chen, C. Zhai, R. Kong, Dynamic              [32] S. Becker, G. E. Hinton, Self-organizing neural network that
+     network embedding survey, arXiv preprint arXiv:2103.15447.                    discovers surfaces in random-dot stereograms, Nature 355 (6356)
+[13] X. Song, J. Li, S. Sun, H. Yin, P. Dawson, R. R. M. Doss, Sepn:               (1992) 161–163.
+     a sequential engagement based academic performance prediction            [33] Z. Wu, Y. Xiong, S. X. Yu, D. Lin, Unsupervised feature learning
+     model, IEEE Intelligent Systems 36 (1) (2020) 46–53.                          via non-parametric instance discrimination, in: Proceedings of
+[14] H. Nakagawa, Y. Iwasawa, Y. Matsuo, Graph-based knowledge                     the IEEE conference on computer vision and pattern recognition,
+     tracing: modeling student proficiency using graph neural net-                 2018, pp. 3733–3742.
+     work, in: 2019 IEEE/WIC/ACM International Conference on                  [34] M. Ye, X. Zhang, P. C. Yuen, S.-F. Chang, Unsupervised em-
+     Web Intelligence (WI), IEEE, 2019, pp. 156–163.                               bedding learning via invariant and spreading instance feature, in:
+[15] Y. Liu, Y. Yang, X. Chen, J. Shen, H. Zhang, Y. Yu, Improving                 Proceedings of the IEEE/CVF Conference on Computer Vision
+     knowledge tracing via pre-training question embeddings, arXiv                 and Pattern Recognition, 2019, pp. 6210–6219.
+     preprint arXiv:2012.05031.                                               [35] Y. Zhu, Y. Xu, F. Yu, Q. Liu, S. Wu, L. Wang, Graph contrastive
+[16] Z. Li, X. Wang, J. Li, Q. Zhang, Deep attributed network                      learning with adaptive augmentation, in: Proceedings of the Web
+     representation learning of complex coupling and interaction,                  Conference 2021, 2021, pp. 2069–2080.
+     Knowledge-Based Systems 212 (2021) 106618.                               [36] Q. Liu, Z. Huang, Y. Yin, E. Chen, H. Xiong, Y. Su, G. Hu, Ekt:
+[17] H. Yin, S. Yang, X. Song, W. Liu, J. Li, Deep fusion of multi-                Exercise-aware knowledge tracing for student performance pre-
+     modal features for social media retweet time prediction, World                diction, IEEE Transactions on Knowledge and Data Engineering
+     Wide Web 24 (4) (2021) 1027–1044.                                             33 (1) (2019) 100–115.
+[18] X. Song, J. Li, Y. Tang, T. Zhao, Y. Chen, Z. Guan, Jkt: A               [37] D. Shin, Y. Shim, H. Yu, S. Lee, B. Kim, Y. Choi, Saint+: In-
+     joint graph convolutional network based deep knowledge tracing,               tegrating temporal features for ednet correctness prediction, in:
+     Information Sciences.                                                         LAK21: 11th International Learning Analytics and Knowledge
+[19] P. Bachman, R. D. Hjelm, W. Buchwalter, Learning represen-                    Conference, 2021, pp. 490–496.
+     tations by maximizing mutual information across views, arXiv
+     preprint arXiv:1906.00910.
+[20] K. He, H. Fan, Y. Wu, S. Xie, R. Girshick, Momentum contrast
+     for unsupervised visual representation learning, in: Proceedings
+     of the IEEE/CVF Conference on Computer Vision and Pattern
+     Recognition, 2020, pp. 9729–9738.
+[21] Y. Tian, D. Krishnan, P. Isola, Contrastive multiview coding,
+     in: Computer Vision–ECCV 2020: 16th European Conference,
+     Glasgow, UK, August 23–28, 2020, Proceedings, Part XI 16,
+     Springer, 2020, pp. 776–794.
+[22] R. Collobert, J. Weston, A unified architecture for natural lan-
+     guage processing: Deep neural networks with multitask learning,
+     in: Proceedings of the 25th international conference on Machine
+     learning, 2008, pp. 160–167.
+[23] A. Mnih, K. Kavukcuoglu, Learning word embeddings efficiently
+     with noise-contrastive estimation, in: Advances in neural infor-
+     mation processing systems, 2013, pp. 2265–2273.
+[24] Z. A. Pardos, N. T. Heffernan, Kt-idem: Introducing item diffi-
+     culty to the knowledge tracing model, in: International confer-
+     ence on user modeling, adaptation, and personalization, Springer,
+     2011, pp. 243–254.
+[25] Z. A. Pardos, N. T. Heffernan, Modeling individualization in
+     a bayesian networks implementation of knowledge tracing, in:
+     International conference on user modeling, adaptation, and per-
+     sonalization, Springer, 2010, pp. 255–266.
+[26] M. V. Yudelson, K. R. Koedinger, G. J. Gordon, Individualized
+     bayesian knowledge tracing models, in: International conference
+     on artificial intelligence in education, Springer, 2013, pp. 171–
+     180.
+[27] H. Ebbinghaus, Memory: A contribution to experimental psy-
+     chology, Annals of neurosciences 20 (4) (2013) 155.
+[28] P. I. Pavlik Jr, H. Cen, K. R. Koedinger, Performance factors
+     analysis–a new alternative to knowledge tracing., Online Submis-
+     sion.
+[29] C. Xu, Z. Guan, W. Zhao, Y. Niu, Q. Wang, Z. Wang, Deep
+     multi-view concept learning., in: IJCAI, Stockholm, 2018, pp.
+     2898–2904.
+[30] D. P. Kingma, J. Ba, Adam: A method for stochastic optimization,
+     arXiv preprint arXiv:1412.6980.
+[31] J. Li, H. Dani, X. Hu, J. Tang, Y. Chang, H. Liu, Attributed
+     network embedding for learning in a dynamic environment, in:
+
+                                                                         12
+

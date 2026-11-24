@@ -1,0 +1,11 @@
+ 
+differences between problems, making it a simple yet useful baseline model.
+• DTransformer: Based on the Diagnostic Transformer, DTransformer (Yin et al., 2023) builds a hierarchical framework from the 
+question level to the knowledge level, explicitly diagnosing learners’ knowledge proficiency for each question and incorporates 
+contrastive learning to enhance performance.
+• StableKT: Based on a linear-biased attention mechanism, StableKT (Li, Bai, Guo, Liu et al., 2024) addresses the sequence 
+length generalization problem through distance-proportional attention penalties, effectively maintaining stable predictions 
+across interaction sequences of varying lengths while enhancing performance.
+• ReKT: Based on human teachers’ decision-making processes and multi-level cognitive development theory, ReKT (Shen et al., 
+2024) comprehensively captures students’ dynamic knowledge states through multi-perspective knowledge state modeling and 
+enhances KT performance by d

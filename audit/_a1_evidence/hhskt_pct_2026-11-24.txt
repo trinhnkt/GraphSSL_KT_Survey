@@ -1,0 +1,11 @@
+p.1: l- world benchmark datasets (with an average AUC improvement of up to 3%), demonstrating the superiority of the proposed model. 1. Introduction In recent years, online schooling on a massive scale has exploded, e
+p.4:  under curve (AUC) values from the IRT model declined gradually until 50% of the data were utilized (Lee, 2019). Therefore, the TrueSkill system is incorporated into the depth model to correctly analyze input data
+p.8: the model, 5-fold cross-validation was used in the experiments, where 20% within each fold was used for testing, 20% for validation, and 60% for training. Experiments were set to stop early to prevent overfitting 
+p.9: sist2009 dataset, the HHSKT model got the best average test AUC of 81.60%. We found that the model’s prediction results were more accurate when the number of exercises per seg- ment was lower. Experimental results
+p.9: the attention mechanism accurately captured sequence dependencies. 78.30% and 81.5% were achieved for AKT and PEBG-DKT, respectively, indicating that the graph structure was more effective for multi-skill problems
+p.9: . The AUC of DAS3H is 3% higher than that of PFA, indicating that the forgetting effect of learners is a vital retrospective component of learners’ ability. In Assi
+p.9: he AUCs of DKT and GIKT are slightly lower than the HHSKT model at 83.30% and 83.80%, respectively. The results suggest that graph convolution is more suitable for this scenario. This may be due to a greater numbe
+p.9: echanism. In addition, we found that the performance of PFA was about 3% worse than IRT. The results suggest that sometimes when the learner interaction data is enormous (many learner interactions in Assistment20
+p.9: chieved the best performance on the junyi15 dataset with an AUC of 82.60%. However, the difference with AKT was not significant, probably due to the relatively small number of knowledge points in the Junyi15 datas
+p.9: s outperformed regression-based models, such as GIKT and PEBG-DKT, by 10% on average in terms of AUC performance. 5.3. Ablation results and comparison 5.3.1. Ablation study In this section, a thorough ablation stu
+p.10: el delivers state-of-the-art performance, with an average AUC gain of 1% to 3% over the baseline.

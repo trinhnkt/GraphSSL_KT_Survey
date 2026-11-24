@@ -1,0 +1,59 @@
+{
+  "title": [
+    "Deep Graph Memory Networks for Forgetting-Robust Knowledge Tracing"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0002-7470-0494",
+      "authenticated-orcid": false,
+      "given": "Ghodai",
+      "family": "Abdelrahman",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "School of Computing, Australian National University, Canberra, ACT, Australia"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-9504-4273",
+      "authenticated-orcid": false,
+      "given": "Qing",
+      "family": "Wang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Computing, Australian National University, Canberra, ACT, Australia"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2022
+      ]
+    ]
+  },
+  "container-title": [
+    "IEEE Transactions on Knowledge and Data Engineering"
+  ],
+  "volume": null,
+  "issue": null,
+  "page": "1-13",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "DOI": "10.1109/tkde.2022.3206447",
+  "type": "journal-article"
+}

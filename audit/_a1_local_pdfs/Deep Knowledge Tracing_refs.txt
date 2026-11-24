@@ -1,0 +1,285 @@
+1
+8
+38
+58
+60
+2
+14
+3
+51
+4
+23
+30
+49
+54
+5
+13
+31
+46
+57
+68
+69
+6
+7
+26
+43
+22
+50
+9
+11
+44
+10
+25
+35
+15
+12
+64
+33
+41
+16
+20
+17
+19
+56
+42
+24
+27
+59
+28
+29
+36
+32
+34
+39
+37
+48
+55
+65
+52
+63
+53
+62
+66
+67
+1 Linear function intercepts
+24 Interpreting function graphs
+47 Constructing inconsistent system
+2 Recognizing irrational numbers
+25 Systems of equations w. Elim. 0
+48 Pythagorean theorem proofs
+3 Linear equations 3
+26 Solutions to systems of equations
+49 Scientiﬁc notation intuition
+4 Multiplication in scientiﬁc notation
+27 Views of a function
+50 Line graph intuition
+5 Parallel lines 2
+28 Recog func 2
+51 Multistep equations w. distribution
+6 Systems of equations
+29 Graphing proportional relationships
+52 Fractions as repeating decimals
+7 Equations word problems
+30 Exponent rules
+53 Cube roots
+8 Slope of a line
+31 Angles 2
+54 Scientiﬁc notation
+9 Linear models of bivariate data
+32 Understand equations word problems 55 Pythagorean theorem 2
+10 Systems of equations with elimination
+33 Exponents 2
+56 Functions 1
+11 Plotting the line of best ﬁt
+34 Segment addition
+57 Vertical angles 2
+12 Integer sums
+35 Systems of equations w. substitution
+58 Solving for the x intercept
+13 Congruent angles
+36 Comparing proportional relationships 59 Recognizing functions
+14 Exponents 1
+37 Solutions to linear equations
+60 Square roots
+15 Interpreting scatter plots
+38 Finding intercepts of linear functions 61 Slope and triangle similarity
+16 Repeating decimals to fractions 2
+39 Midpoint of a segment
+62 Distance formula
+17 Graphical solutions to systems
+40 Volume word problems
+63 Converting decimals to fractions 2
+18 Linear non linear functions
+41 Constructing scatter plots
+64 Age word problems
+19 Interpreting features of linear functions 42 Solving for the y intercept
+65 Pythagorean theorem 1
+20 Repeating decimals to fractions 1
+43 Graphing systems of equations
+66 Comparing features of functions 0
+21 Constructing linear functions
+44 Frequencies of bivariate data
+67 Orders of magnitude
+22 Graphing linear equations
+45 Comparing features of functions 1
+68 Angle addition postulate
+23 Computing in scientiﬁc notation
+46 Angles 1
+69 Parallel lines 1
+Scatter plots
+Pythagorean
+theorem
+Line graphs
+Systems of 
+Equations
+Lines
+Functions
+Exponents
+Fractions
+Angles
+12
+24
+19
+40
+46
+47
+15
+5 22
+30 31
+36
+41
+42
+6
+7
+8
+3
+18
+11
+20
+25
+27
+29
+33
+43
+45
+1
+2
+8
+9
+10
+14
+16
+23
+28
+34
+35
+38
+21
+4
+26 32
+37
+39
+44
+48
+49
+13 17
+Simulated Data
+Khan Data
+Hidden concept 1
+Hidden concept 2
+Hidden concept 3
+Hidden concept 4
+Hidden concept 5
+Figure 4: Graphs of conditional inﬂuence between exercises in DKT models. Above: We observe a perfect
+clustering of latent concepts in the synthetic data. Below: A convincing depiction of how 8th grade math
+Common Core exercises inﬂuence one another. Arrow size indicates connection strength. Note that nodes may
+be connected in both directions. Edges with a magnitude smaller than 0.1 have been thresholded. Cluster
+labels are added by hand, but are fully consistent with the exercises in each cluster.
+The application of RNNs to knowledge tracing provides many directions for future research. Fur-
+ther investigations could incorporate other features as inputs (such as time taken), explore other
+educational impacts (such as hint generation, dropout prediction), and validate hypotheses posed in
+education literature (such as spaced repetition, modeling how students forget). Because DKTs take
+vector input it should be possible to track knowledge over more complex learning activities. An es-
+pecially interesting extension is to trace student knowledge as they solve open-ended programming
+tasks [26, 27]. Using a recently developed method for vectorization of programs [25] we hope to be
+able to intelligently model student knowledge over time as they learn to program.
+In an ongoing collaboration with Khan Academy, we plan to test the efﬁcacy of DKT for curriculum
+planning in a controlled experiment, by using it to propose exercises on the site.
+Acknowledgments
+Many thanks to John Mitchell for his guidance and Khan Academy for its support. Chris Piech is
+supported by NSF-GRFP grant number DGE-114747.
+References
+[1] Khan academy privacy notice https://www.khanacademy.org/about/privacy-policy, 2015.
+[2] BARANIUK, R. Compressive sensing. IEEE signal processing magazine 24, 4 (2007).
+[3] CEN, H., KOEDINGER, K., AND JUNKER, B. Learning factors analysis–a general method for cognitive
+model evaluation and improvement. In Intelligent tutoring systems (2006), Springer, pp. 164–175.
+[4] COHEN, G. L., AND GARCIA, J. Identity, belonging, and achievement a model, interventions, implica-
+tions. Current Directions in Psychological Science 17, 6 (2008), 365–369.
+[5] CORBETT, A. Cognitive computer tutors: Solving the two-sigma problem. In User Modeling 2001.
+Springer, 2001, pp. 137–147.
+[6] CORBETT, A. T., AND ANDERSON, J. R. Knowledge tracing: Modeling the acquisition of procedural
+knowledge. User modeling and user-adapted interaction 4, 4 (1994), 253–278.
+[7] D BAKER, R. S. J., CORBETT, A. T., AND ALEVEN, V.
+More accurate student modeling through
+contextual estimation of slip and guess probabilities in bayesian knowledge tracing. In Intelligent Tutoring
+Systems (2008), Springer, pp. 406–415.
+8
+
+[8] D BAKER, R. S. J., PARDOS, Z. A., GOWDA, S. M., NOORAEI, B. B., AND HEFFERNAN, N. T.
+Ensembling predictions of student knowledge within intelligent tutoring systems. In User Modeling,
+Adaption and Personalization. Springer, 2011, pp. 13–24.
+[9] DRASGOW, F., AND HULIN, C. L. Item response theory. Handbook of industrial and organizational
+psychology 1 (1990), 577–636.
+[10] ELLIOT, A. J., AND DWECK, C. S. Handbook of competence and motivation. Guilford Publications,
+2013.
+[11] FENG, M., HEFFERNAN, N., AND KOEDINGER, K. Addressing the assessment challenge with an online
+system that tutors as it assesses. User Modeling and User-Adapted Interaction 19, 3 (2009), 243–266.
+[12] FITCH, W. T., HAUSER, M. D., AND CHOMSKY, N. The evolution of the language faculty: clariﬁcations
+and implications. Cognition 97, 2 (2005), 179–210.
+[13] GENTNER, D. Structure-mapping: A theoretical framework for analogy. Cognitive science 7, 2.
+[14] GONG, Y., BECK, J. E., AND HEFFERNAN, N. T. In Intelligent Tutoring Systems, Springer.
+[15] GRAVES, A., MOHAMED, A.-R., AND HINTON, G. Speech recognition with deep recurrent neural
+networks. In Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE International Conference
+on (2013), IEEE, pp. 6645–6649.
+[16] HOCHREITER, S., AND SCHMIDHUBER, J. Long short-term memory. Neural computation 9, 8.
+[17] KARPATHY, A., AND FEI-FEI, L. Deep visual-semantic alignments for generating image descriptions.
+arXiv preprint arXiv:1412.2306 (2014).
+[18] KHAJAH, M., WING, R. M., LINDSEY, R. V., AND MOZER, M. C. Incorporating latent factors into
+knowledge tracing to predict individual differences in learning. Proceedings of the 7th International
+Conference on Educational Data Mining (2014).
+[19] KHAJAH, M. M., HUANG, Y., GONZ ´ALEZ-BRENES, J. P., MOZER, M. C., AND BRUSILOVSKY, P.
+Integrating knowledge tracing and item response theory: A tale of two frameworks. Proceedings of the
+4th International Workshop on Personalization Approaches in Learning Environments (2014).
+[20] LAN, A. S., STUDER, C., AND BARANIUK, R. G. Time-varying learning and content analytics via
+sparse factor analysis. In Proceedings of the 20th ACM SIGKDD international conference on Knowledge
+discovery and data mining (2014), ACM, pp. 452–461.
+[21] LINNENBRINK, E. A., AND PINTRICH, P. R. Role of affect in cognitive processing in academic contexts.
+Motivation, emotion, and cognition: Integrative perspectives on intellectual functioning and development
+(2004), 57–87.
+[22] MIKOLOV, T., KARAFI ´AT, M., BURGET, L., CERNOCK `Y, J., AND KHUDANPUR, S. Recurrent neural
+network based language model. In INTERSPEECH 2010, 11th Annual Conference of the International
+Speech Communication Association, Makuhari, Chiba, Japan, 2010 (2010), pp. 1045–1048.
+[23] PARDOS, Z. A., AND HEFFERNAN, N. T. Kt-idem: Introducing item difﬁculty to the knowledge tracing
+model. In User Modeling, Adaption and Personalization. Springer, 2011, pp. 243–254.
+[24] PAVLIK JR, P. I., CEN, H., AND KOEDINGER, K. R. Performance Factors Analysis–A New Alternative
+to Knowledge Tracing. Online Submission (2009).
+[25] PIECH, C., HUANG, J., NGUYEN, A., PHULSUKSOMBATI, M., SAHAMI, M., AND GUIBAS, L. J.
+Learning program embeddings to propagate feedback on student code. CoRR abs/1505.05969 (2015).
+[26] PIECH, C., SAHAMI, M., HUANG, J., AND GUIBAS, L. Autonomously generating hints by inferring
+problem solving policies. In Proceedings of the Second (2015) ACM Conference on Learning @ Scale
+(New York, NY, USA, 2015), L@S ’15, ACM, pp. 195–204.
+[27] PIECH, C., SAHAMI, M., KOLLER, D., COOPER, S., AND BLIKSTEIN, P. Modeling how students learn
+to program. In Proceedings of the 43rd ACM symposium on Computer Science Education.
+[28] POLSON, M. C., AND RICHARDSON, J. J. Foundations of intelligent tutoring systems. Psychology
+Press, 2013.
+[29] RAFFERTY, A. N., BRUNSKILL, E., GRIFFITHS, T. L., AND SHAFTO, P. Faster teaching by POMDP
+planning. In Artiﬁcial intelligence in education (2011), Springer, pp. 280–287.
+[30] ROHRER, D. The effects of spacing and mixing practice problems. Journal for Research in Mathematics
+Education (2009), 4–17.
+[31] SCHRAAGEN, J. M., CHIPMAN, S. F., AND SHALIN, V. L. Cognitive task analysis. Psychology Press,
+2000.
+[32] WILLIAMS, R. J., AND ZIPSER, D. A learning algorithm for continually running fully recurrent neural
+networks. Neural computation 1, 2 (1989), 270–280.
+[33] YUDELSON, M. V., KOEDINGER, K. R., AND GORDON, G. J. Individualized bayesian knowledge
+tracing models. In Artiﬁcial Intelligence in Education (2013), Springer, pp. 171–180.
+9

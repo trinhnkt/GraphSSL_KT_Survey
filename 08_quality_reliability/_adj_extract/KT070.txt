@@ -1,0 +1,934 @@
+                                                                     Denoising Programming Knowledge Tracing
+                                                                      with a Code Graph-based Tuning Adaptor
+                                                               Weibo Gao                                                           Qi Liu∗                                        Rui Li
+                                              State Key Laboratory of Cognitive                               State Key Laboratory of Cognitive                  State Key Laboratory of Cognitive
+                                            Intelligence, University of Science and                         Intelligence, University of Science and            Intelligence, University of Science and
+                                                     Technology of China                                             Technology of China                                Technology of China
+                                                          Hefei, China                                        Institute of Artificial Intelligence,                          Hefei, China
+                                                 weibogao@mail.ustc.edu.cn                                      Hefei Comprehensive National                         ruili2000@mail.ustc.edu.cn
+                                                                                                                         Science Center
+                                                                                                                          Hefei, China
+arXiv:2506.11107v1 [cs.SE] 7 Jun 2025
+
+
+
+
+                                                                                                                      qiliuql@ustc.edu.cn
+
+                                                                Yuze Zhao                                                      Hao Wang                                        Linan Yue
+                                              State Key Laboratory of Cognitive                               State Key Laboratory of Cognitive                  State Key Laboratory of Cognitive
+                                            Intelligence, University of Science and                         Intelligence, University of Science and            Intelligence, University of Science and
+                                                     Technology of China                                             Technology of China                                 Technology of China
+                                                          Hefei, China                                                    Hefei, China                                       Hefei, China
+                                                  yuzezhao@mail.ustc.edu.cn                                         wanghao3@ustc.edu.cn                               lnyue@mail.ustc.edu.cn
+
+                                                                                            Fangzhou Yao                                            Zheng Zhang
+                                                                              State Key Laboratory of Cognitive                           State Key Laboratory of Cognitive
+                                                                            Intelligence, University of Science and                     Intelligence, University of Science and
+                                                                                     Technology of China                                         Technology of China
+                                                                                          Hefei, China                                                Hefei, China
+                                                                               fangzhouyao@mail.ustc.edu.cn                                 zhangzheng@mail.ustc.edu.cn
+
+                                        Abstract                                                                                         unwanted signals can be identified from a semantic similarity per-
+                                        Programming Knowledge Tracking (PKT) aims to dynamically diag-                                   spective. We then apply a cluster-aware GCN to the code graph,
+                                        nose learners’ mastery levels of programming knowledge based on                                  which improves the discrimination of weak signals and enables
+                                        their coding activities, facilitating more effective and personalized                            their clustering for identification. Finally, a lightweight yet effec-
+                                        programming education. However, current PKT studies primar-                                      tive adaptor is incorporated into the PKT task through optimization
+                                        ily focus on the implicit relationship between code content and                                  with two noise feature-based constraints and a navigational reg-
+                                        knowledge assessment, often overlooking two types of noise sig-                                  ularization term, to correct knowledge states affected by noise. It
+                                        nals in long-term programming activities: unwanted signals from                                  is worth mentioning that the Coda framework is model-agnostic
+                                        unrelated submissions and weak signals from minor modifications.                                 and can be adapted to most existing PKT solutions. Extensive ex-
+                                        This practical challenge significantly limits model performance                                  perimental results on four real-world datasets demonstrate that
+                                        and application. To address this issue, we propose Coda, a Code                                  Coda effectively performs the PKT task in the presence of noisy
+                                        graph-based tuning adaptor designed to enhance existing PKT mod-                                 programming records, outperforming typical baselines.
+                                        els by identifying and mitigating the impact of noise. Specifically,
+                                        Coda first transforms the loose code sequences submitted by each                                 CCS Concepts
+                                        learner into a compact code graph. By leveraging this code graph,                                • Applied computing → E-learning.
+
+                                        ∗ Corresponding Author.
+                                                                                                                                         Keywords
+                                                                                                                                         User Modeling, Programming Knowledge Tracing, Learning Per-
+                                        Permission to make digital or hard copies of all or part of this work for personal or            formance Prediction, Intelligent Education, Data Denoising
+                                        classroom use is granted without fee provided that copies are not made or distributed
+                                        for profit or commercial advantage and that copies bear this notice and the full citation
+                                        on the first page. Copyrights for components of this work owned by others than the               ACM Reference Format:
+                                        author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or           Weibo Gao, Qi Liu, Rui Li, Yuze Zhao, Hao Wang, Linan Yue, Fangzhou
+                                        republish, to post on servers or to redistribute to lists, requires prior specific permission    Yao, and Zheng Zhang. 2025. Denoising Programming Knowledge Tracing
+                                        and/or a fee. Request permissions from permissions@acm.org.
+                                                                                                                                         with a Code Graph-based Tuning Adaptor. In Proceedings of the 31st ACM
+                                        KDD ’25, Toronto, ON, Canada
+                                        © 2025 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+                                                                                                                                         SIGKDD Conference on Knowledge Discovery and Data Mining V.1 (KDD ’25),
+                                        ACM ISBN 979-8-4007-1245-6/25/08                                                                 August 3–7, 2025, Toronto, ON, Canada. ACM, New York, NY, USA, 12 pages.
+                                        https://doi.org/10.1145/3690624.3709172                                                          https://doi.org/10.1145/3690624.3709172
+KDD ’25, August 3–7, 2025, Toronto, ON, Canada                                                                                       Weibo Gao et al.
+
+
+1    Introduction                                                             Initial
+                                                                              state
+With the advent of online programming platforms like 𝐿𝑒𝑒𝑡𝐶𝑜𝑑𝑒.𝑐𝑜𝑚,          knowledge      knowledge      knowledge     knowledge            knowledge
+                                                                              Array          Array          Array        Function             Function
+it has become increasingly popular for students and other learners
+to use these websites for coding training [10, 27, 47]. As data on
+online programming activities accumulate, understanding the pro-                  𝑞1                            𝑞1
+                                                                                                 𝑞1                           𝑞2    PKT           𝑞2
+gramming training process is crucial for enhancing online learning           question      question        question      question   infer    question
+services, such as question recommendation [43, 51].                          feedback      feedback       feedback       feedback           Unpracticed
+                                                                                Compile       Wrong                        Wrong
+    Human programming practice generally involves an iterative                  Error         Answer        Accepted       Answer               ?
+process of code submission and modification to solve tasks. Learn-
+ers submit code and receive feedback, such as error messages like          Figure 1: The example of the programming practice process,
+Compile Error, or positive feedback like Accepted. Based on the            where a PKT model is used to infer future performance.
+specific feedback, they revise their previous submissions. Figure 1
+                                                                           • Weak signals from minor modifications. Solving a program-
+illustrates this process, where a learner attempts to solve each ques-
+                                                                             ming problem typically involves multiple submissions, where
+tion (e.g., 𝑞 1 ) through multiple submissions. During this process,
+                                                                             many submissions are minor modifications of previous ones
+learners develop an internal understanding of the question, or tech-
+                                                                             based on feedback. After several failed attempts, learners may
+nically speaking, a hidden computational knowledge state, repre-
+                                                                             submit an entirely new code. We argue that learners’ knowledge
+senting their learning progress. As learners refine their code based
+                                                                             states are likely to remain unchanged for minor modification
+on feedback, their knowledge states evolve, reflecting their learning
+                                                                             submissions, as the modifications are not significant improve-
+journey. To better understand programming learning, it is essential
+                                                                             ments. While these minor changes may be correct or meaningful
+to model and trace the evolution of these invisible knowledge states,
+                                                                             for humans, they are redundant to PKT models. These weak
+which is the focus of Programming Knowledge Tracing[54].
+                                                                             signals can mislead the PKT model if used directly in training,
+    Programming Knowledge Tracing (PKT) involves dynamically
+                                                                             leading to overestimation or underestimation of the learner’s
+evaluating learners’ programming knowledge states based on their
+                                                                             knowledge state.
+coding activities. These knowledge states refer to learners’ profi-
+ciency in various programming knowledge concepts such as Array                Note: The noisy signals described above provide two typical
+and Function. PKT extends traditional knowledge tracing (KT) tech-         insights for our preliminary exploration. Many other types of noise
+niques [35, 38], which are designed for non-programming general-           exist in programming data, which we plan to explore in future re-
+purpose learning environments [21], by incorporating code-related          search. Additionally, although these so-called noisy code contents
+features specific to programming environments. Its tracing results         may be meaningful from a human perspective, they could still rep-
+offer significant insights into students’ coding abilities [18, 25, 54].   resent irrelevant or redundant signals for current PKT technology,
+Since knowledge states cannot be directly observed, most attempts          so we classify them as noise.
+model PKT as a next-performance prediction problem, usually us-               In this paper, our goal is to mitigate the impact of these noisy sig-
+ing recurrent neural networks (RNNs) to summarize programming              nals to enhance existing PKT models, which presents two primary
+sequences [47]. These models mine code features to infer learner           challenges: (1) Accurately identifying noise signals is challenging
+knowledge states from their codes[21, 23, 36], establishing implicit       due to the absence of noise labels or noise annotation criteria. The
+relationships between code and knowledge [54], and achieving               available clues are the submitted codes, feedback, and question in-
+high predictive performance. However, these models are limited by          formation. (2) Designing an effective and lightweight method to use
+the numerous noisy submissions in real-world programming data,             noise identification to denoise existing PKT solutions is significant,
+which stem from the open-ended nature of programming platforms.            due to the computational complexity of PKT tasks.
+    Through examining online programming environments [29, 55],               To address these challenges, we propose Coda, a code graph-
+we identify two primary categories of prevalent noisy signals during       based tuning adaptor designed to enhance existing PKT models
+programming:                                                               through denoising. While mature denoising methods exist in other
+                                                                           fields [12], this is the first attempt to address denoising within PKT.
+• Unwanted signals from unrelated submissions. In the ma-                  Our model comprises two key stages: the noisy signal identification
+  jority of learners’ programming practice records, there are com-         stage and the adaptive PKT stage. In the noisy signal identification
+  monly codes that are unrelated to the solved questions. Typical          stage, we construct a code graph based on programming sequences
+  examples include: (1) Novice programmers are unfamiliar with             to explore semantic relations between codes. Using this code graph,
+  the web-based coding environment and use simple but irrelevant           we assess unwanted signals from unrelated codes by examining
+  code snippets (e.g., “print (‘Welcome to KDD 2025’)”) to test the        semantic similarities between codes and their correlations with
+  use of the online coding environment. (2) Learners may care-             questions. To distinguish weak signals from submissions, we em-
+  lessly submit codes to inappropriate questions. For instance, a          ploy a cluster-aware Graph Convolution Network (GCN) over the
+  learner might mistakenly submit the solution for the question            code graph, which improves the discrimination of weak signals and
+  “Add Two Numbers” to a similar question “Add Binary” when                enables their clustering for identification. In the adaptive PKT stage,
+  both submission pages are open simultaneously in their web               a tuning adaptor facilitates the adaptation of the PKT task to the
+  browser. These records do not reflect the learner’s knowledge            noisy signals by tuning a trained PKT backbone model, ensuring
+  and introduce unwanted signals in their programming history,             computational efficiency. Two noise code feature-based constraints
+  complicating the accurate modeling of true knowledge states.             and a navigational regularization term with theoretical derivation
+Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor                                             KDD ’25, August 3–7, 2025, Toronto, ON, Canada
+
+
+guide the tuning process, ensuring effective adaptation of PKT. It is                                                                           Ƹ
+                                                                                                                                               𝑟𝑢,𝑡+1
+worth mentioning that the Coda framework is model-agnostic and
+                                                                                                                                              predictor
+can be adapted to most existing PKT models. Extensive experiments
+on four real-world datasets demonstrate that Coda effectively per-
+forms the PKT task in the presence of noisy programming records,                                     …                         KE                         …
+surpassing typical baselines.
+                                                                                                            ℎ𝑢,𝑡−1        CE
+                                                                                                                                                ℎ𝑢,𝑡
+2 Preliminaries
+2.1 Problem Definition
+In a programming scenario, let U, Q, and C denote the sets of                                                           𝑥𝑢,𝑡    𝑞𝑢,𝑡 , 𝑐𝑢,𝑡
+𝑁 learners, 𝑀 questions, and 𝐾 knowledge concepts, respectively.                                                                    step 𝑡
+Each question typically tests one primary knowledge concept such
+                                                                                              Figure 2: The basic architecture of the PKT model.
+as Array. Each learner’s practice activities consist of a sequence
+of submitted codes and corresponding feedback. For learner 𝑢 at                         the end of the programming sequence: the code encoder (CE), the
+submission step 𝑡, he/she attempts to solve a question 𝑞𝑢,𝑡 ∈ Q,                        knowledge estimation (KE) and the predictor, as illustrated in
+drawn from a knowledge concept 𝑐𝑢,𝑡 ∈ C, by writing and submit-                         Figure 2. At each attempt of the programming practice sequence
+ting code 𝑥𝑢,𝑡 , and receives feedback 𝑟𝑢,𝑡 , such as Wrong Answer                      (index by t), (1) CE first extracts and represents the code feature 𝑥®𝑢,𝑡
+or Compile Error. Feedback messages also reflect the learner’s pro-                     from a learner 𝑢’s submission 𝑥𝑢,𝑡 at attempt 𝑡, i.e., 𝑥®𝑢,𝑡 = CE(𝑥𝑢,𝑡 ).
+gramming performance. Existing PKT models typically represent                           Existing CE modules either extract semantic features regarding
+𝑟𝑢,𝑡 as a binary value: 𝑟𝑢,𝑡 = 1 indicates that learner 𝑢 received an                   codes as a special language using NLP techniques [5, 54] or first
+correct result (i.e., solved the question 𝑞𝑢,𝑡 with Accepted feedback),                 transform the code to a graph (e.g., abstract syntax tree [2, 21]) and
+while 𝑟𝑢,𝑡 = 0 otherwise. Thus, each learner 𝑢 has a sequence of                        then encode structural dependencies using graph modeling meth-
+programming records:                                                                    ods. (2) The KE component then estimates the knowledge state ℎ®𝑢,𝑡
+      𝑙𝑢 = (𝑞𝑢,1, 𝑐𝑢,1, 𝑥𝑢,1, 𝑟𝑢,1 ), . . . , (𝑞𝑢,𝑇𝑢 , 𝑐𝑢,𝑇𝑢 , 𝑥𝑢,𝑇𝑢 , 𝑟𝑢,𝑇𝑢 ),   (1)   for learner 𝑢 via the state ℎ®𝑢,𝑡 −1 from the last attempt and the cur-
+where 𝑇𝑢 denotes the length of learner 𝑢’s programming sequence.                        rent submission record, i.e., ℎ®𝑢,𝑡 +1 = KE(ℎ®𝑢,𝑡 −1, 𝑞®𝑢,𝑡 , 𝑐®𝑢,𝑡 , 𝑥®𝑢,𝑡 , 𝑟𝑢,𝑡 ).
+    The evolution of the learner’s knowledge proficiency during                         The embeddings 𝑞®𝑢,𝑡 and 𝑐®𝑢,𝑡 are usually obtained from their textual
+the programming process is hard to record and quantify explicitly.                      contents or learned through joint training [54]. (3) The predictor
+Therefore, most previous approaches model PKT as a next-attempt                         finally predicts the learner’s performance 𝑟ˆ𝑢,𝑡 +1 to the next question
+performance prediction problem. The optimization objective is to                        𝑞𝑢,𝑡 +1 based on the current knowledge state ℎ®𝑢,𝑡 .
+minimize the cross-entropy loss between the predicted performance                          In our paper, we will not focus on the details of the pkt backbone
+𝑟ˆ𝑢,𝑡 +1 (i.e., whether the learner will answer correctly on the next                   model. The training and test details of a PKT backbone model are
+attempt) and the actual performance 𝑟𝑢,𝑡 +1 at attempt 𝑡 [47]:                          given in Appendix C. Given a well-trained PKT backbone model,
+           𝑝𝑘𝑡                                                                        our Coda and bindings with it through its three key components
+        L𝑢,𝑡 = −𝑟𝑢,𝑡 +1 log 𝑟ˆ𝑢,𝑡 +1 − 1 − 𝑟𝑢,𝑡 +1 log 1 − 𝑟ˆ𝑢,𝑡 +1 . (2)
+                                                                                        described above.
+By jointly training on performance predictions using all program-
+ming data, the knowledge state of learners with respect to each                         3     The Coda Framework
+question-related knowledge concept can be optimized.                                    Coda is a general and model-agnostic framework designed to help
+  In summary, we formally define the problem of Programming                             existing PKT models recognize noisy programming submissions
+Knowledge Tracing (PKT) as follows:                                                     and correct compromised knowledge states. It can be integrated
+   Definition 1 (Programming Knowledge Tracing). Given the                              with PKT models in various ways, such as tuning or end-to-end
+prior programming records of a learner 𝑢 up to and including sub-                       joint training. For the sake of computational efficiency (as elabo-
+mission step 𝑡, represented as a sequence {(𝑞𝑢,1, 𝑐𝑢,1, 𝑥𝑢,1, 𝑟𝑢,1 ), . . . ,           rated in § 1), we adopt the tuning approach. Specifically, we first
+(𝑞𝑢,𝑡 , 𝑐𝑢,𝑡 , 𝑥𝑢,𝑡 , 𝑟𝑢,𝑡 )}, the goal is to: (1) estimate the internal pro-           train a conventional PKT model (e.g., DKT+ [39]) as the backbone.
+gramming knowledge state ℎ𝑢,𝑡 at attempt 𝑡 of this learner; (2)                         Then, we incorporate Coda into the backbone model and only train
+predict the performance 𝑟ˆ𝑡 +1 on the next question 𝑞𝑢,𝑡 +1 .                           Coda’s parameters while keeping the PKT backbone fixed. Figure 3
+                                                                                        illustrates our proposed Coda framework comprising two stages:
+2.2     PKT Backbone Model                                                              the noisy signal identification stage (§ 3.1) and the adaptive PKT
+Our Coda framework needs to tune a trained PKT model (as the                            stage (§ 3.2). Assuming we have obtained a trained PKT backbone
+backbone model), such as DKT+ [39], so this part introduces the                         model, we will elaborate on each stage of Coda in detail.
+general structure of the existing PKT model to serve as the basis
+for the § 3 framework introduction.                                                     3.1     Noisy Signal Identification Stage
+   Almost all of previous PKT models employ a sequential way, e.g.,                     Identifying unwanted and weak noise signals accurately is ex-
+RNN, to recurrently model each coding submission of the learner.                        tremely difficult from programming sequences because we lack
+Each recurrent unit typically consists of three basic components                        a clear judging criterion or available labels regarding noisy sub-
+that work conjointly processing each coding submission once, until                      missions. Through the discussion of noisy submissions in § 1, we
+KDD ’25, August 3–7, 2025, Toronto, ON, Canada                                                                                                     Weibo Gao et al.
+
+
+
+                                                                                         Tuning adaptor
+
+                                    Metric                                                                            ℎ𝑢,𝑡
+                                   learning                                     …         CE        KE                        ℎ′𝑢,𝑡
+
+                    Coding                                                                                                             predictor
+                    sequence                       Code graph
+                                                                             𝑝Ԧ𝑢,𝑡          Adaptor
+                            (a) Code Graph Construction                                                               ℎ′𝑢,𝑡
+                                                                               prompt                                                    Frozen
+      unwanted
+      signal                                                                                             (f) Tuning adaptor              Tuning
+
+                                                                                                                  𝑤𝑒𝑎𝑘
+                                                                                                                 ℒ𝑢,𝑡
+
+                                                                                                ℎ′𝑢,𝑡−1              ℎ′𝑢,𝑡            ℎ′𝑢,𝑡+1
+
+                    (b) Unwanted Signals         (c) Cluster-aware                                        𝑢𝑤
+                                                                                                         ℒ𝑢,𝑡
+                         Identification                 GCN
+
+                                                                                 …        Tuning                Tuning        Tuning            …
+                                                                                          adaptor               adaptor       adaptor
+
+
+     core signal
+     in a cluster
+                                                 (e) Identification                        Core              Unrelated          Weak
+                        (d) K-means                    result
+                                                                                      (g) Constraints for guiding knowledge correction
+
+
+                         Noisy Signal Identification Stage                                            Adaptive PKT Stage
+
+Figure 3: The overall architecture of Coda. Left shows the stage for noisy signal identification, where (b) aims to find unwanted
+signals, and (c) and (d) perform weak signal fusion. Right shows the adaptive PKT stage with the tuning of Coda.
+
+argue that noisy submissions and regular submissions from a spe-                the CE (defined in § 2.2) in a refined PKT backbone model. Various
+cific learner exhibit distinct semantic characteristics: unwanted               graph construction techniques have been proposed to learn graph
+submissions differ significantly from normal submissions in terms of            structure [15, 22, 44]. Since the focus of this paper is not to devise
+code contents, while weak submissions tend to resemble a certain core           more sophisticated techniques for graph learning, we use a simple
+submission. This stage conducts noise identification by exploiting              yet effective similarity metric learning method [3, 40, 52] to trans-
+semantic relations between codes submitted by a specific learner.               form the graph learning problem into node similarity evaluations.
+                                                                                Specifically, we first calculate a metric matrix M𝑢 ∈ R𝑇𝑢 ×𝑇𝑢 . Each
+3.1.1 Code Graph Construction. To fully exploit the semantic                    of its element 𝑀𝑢,<𝑖,𝑗 > is calculated as:
+relations between codes submitted by a specific learner, we convert                            𝑀𝑢,<𝑖,𝑗 > = sim(W ⊙ 𝑥®𝑢,𝑖 , W ⊙ 𝑥®𝑢,𝑗 ),                        (3)
+the loose submitted code sequence of each learner into a tight
+code graph. The nodes on the graph represent the submitted code                where sim(·, ·) is a metric function to calculate the similarity metric
+at each attempt, and the edges indicate the existence of semantic              between code node 𝑣𝑢,𝑖 and 𝑣𝑢,𝑗 corresponding to the 𝑖-th and 𝑗-th
+similarities between a pair of nodes. Intuitively, for a specific learner,     submissions, respectively, in 𝑢’s programming sequence. It is flexi-
+unwanted code nodes may have very few edges even within a                      ble and can be implemented by various forms. W ∈ R𝑑 is a trainable
+multi-hop range, and they might even be isolated. Meanwhile, a                 vector to adaptively highlight different dimensions of the code em-
+group of weak submission nodes may cluster around a central core               beddings 𝑥®𝑢,𝑖 and 𝑥®𝑢,𝑗 . ⊙ denotes the Hadamard product [16]. We
+node. Therefore, if we can construct an effective code graph for the           implement sim(·, ·) using a weighted cosine similarity with the
+learner’s submitted code sequence, it becomes easier to identify               consideration of balancing expressiveness and complexity [4, 24].
+and model noisy signals.                                                          After obtaining the metric matrix M𝑢 , it is necessary to normal-
+   Inspired by previous works [3, 19], we propose an adaptive way              ize it to ensure non-negativity, considering that the cosine values
+based on metric learning to automatically construct code graph                 𝑀𝑢,<𝑖,𝑗 > fall within the range of [−1, 1]. Simply normalizing it
+structures for each programming practice sequence to explore the               without additional constraints may not regulate the graph sparsity,
+distribution of different coding signals. Technically speaking, this           potentially resulting in a fully connected adjacency matrix [3, 49].
+module aims to construct an undirected code graph 𝐺𝑢 = {𝑉𝑢 , 𝐴𝑢 }              This may reduce the discrimination of relations between differ-
+where 𝐴𝑢 ∈ R𝑇𝑢 ×𝑇𝑢 is the learnable adjacency matrix, and 𝑉𝑢 is the            ent code pairs, which is harmful to the observation of core and
+submitted code set of a learner. Each node 𝑣𝑢,𝑖 ∈ 𝑉𝑢 corresponds               weak submissions, as well as limit the occurrence of isolated nodes,
+to the code 𝑥𝑢,𝑖 at the attempting step 𝑖 within the programming               which is harmful to the observation of unwanted submissions. To
+sequence. The node embedding vector 𝑥®𝑢,𝑖 ∈ R𝑑 is obtained from                better focus on the vital connections and disconnect the unwanted
+Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor                                     KDD ’25, August 3–7, 2025, Toronto, ON, Canada
+
+
+submissions, we adopt a ranking strategy [3] to control the spar-                     After identifying the unwanted nodes, we remove them from the
+sity of the graph. Specifically, we mask off those elements in M𝑢                  node set 𝑉𝑢 . Each of the remaining isolated but question-related
+that are smaller than a hyper-parameter by setting them to zero,                   nodes needs to be added to the graph by linking the most similar
+which is obtained by ranking the metric value in M𝑢, to generate                   node with it via cosine similarity score for further calculation. This
+an informative adjacency matrix 𝐴𝑢 , as follows:                                   process may result in multiple disjoint subgraphs (each containing
+                        (                                                          at least two nodes) rather than necessarily forming a connected
+                          1, 𝑀𝑢,<𝑖,𝑗 > ≥ Rank𝜖 (M𝑢 )                               graph. In both cases, we uniformly denote them as 𝐺𝑢 for simplicity,
+            𝐴𝑢,<𝑖,𝑗 > =                                        (4)
+                          0, otherwise                                             as it will not affect subsequent calculations.
+
+where Rank𝜖 (M𝑢 ) returns the value of the 𝜖-th largest value in                   3.1.3 Cluster-aware Weak Signal Fusion. This section aims to
+the metric matrix M𝑢 to control the sparsity of the code graph.                    distinguish strong signals from core code submissions and weak
+Note that the structure of the code graph is learnable and changes                 signals from minor modifications. In the context of programming,
+continuously with the update of W. The construction method is                      weak signals primarily stem from previous submissions with minor
+general, easy to implement, and able to perfectly cope with induc-                 adjustments based on feedback information. These weak signals
+tive learning (with new codes during test). Based on the code graph,               and their corresponding core submissions are more likely to be
+we then conduct noise signal identification by exploiting similarity               grouped into a cluster via their representations. Motivated by this
+relations between nodes.                                                           idea, we first apply an alternative cluster-aware Graph Convolution
+                                                                                   Network (GCN) on the code graph to improve the discrimination
+3.1.2 Unwanted Signals Identification. This part aims to iden-                     among code nodes by gathering weak signals to strong ones.
+tify noisy signals originating from unrelated submissions. Intu-                      The input of the cluster-aware GCN is a node embedding matrix
+itively, unrelated codes correlate weakly with other nodes within
+                                                                                   {𝑥®𝑢,1, 𝑥®𝑢,2, · · · , 𝑥®𝑢,𝑛 }, where each 𝑥®𝑢,𝑡 ∈ R𝑑 is the code 𝑥𝑢,𝑡 ’s repre-
+the code graph 𝐺𝑢 of a specific learner 𝑢. Therefore, they are most
+                                                                                   sentation and 𝑛 < 𝑇𝑢 is the number of nodes on the graph 𝐺𝑢 after
+likely to be disconnected from other nodes within 𝐺𝑢 and become
+                                                                                   removing unwanted nodes (i.e., the length of the learner program-
+isolated nodes during the construction process.
+                                                                                   ming sequence on a certain question besides unrelated submissions).
+   However, it is difficult to determine unwanted submissions solely
+                                                                                   The output is a new node embedding matrix {𝑥®′𝑢,1, 𝑥®′𝑢,2, · · · , 𝑥®′𝑢,𝑛 },
+by relying on isolated nodes, as these may also represent novel or                                          ′
+unique problem-solving approaches. To enhance the confidence                       where 𝑥®′𝑢,𝑖 ∈ R𝑑 with potentially different dimension 𝑑 ′ . We iter-
+in identifying unwanted nodes, we introduce an auxiliary view                      atively conduct GCN Aggregate(·) with 𝐿 > 0 times as:
+to exploit correlations between isolated code nodes and question-
+                                                                                                (𝐿)
+related solutions. The solutions refer to the correct submissions                    𝑥®′𝑢,𝑖 = 𝑥®𝑢,𝑖 + 𝑥®𝑢,𝑖 ,
+corresponding to the specific question. We argue that the correct                       (𝑙 )
+                                                                                                             
+                                                                                                                        (𝑙 −1)
+                                                                                                                                                (6)
+solution must correspond to the practiced questions; otherwise,                       𝑥®𝑢,𝑖 = 𝜎 Wa · Aggregate 𝛼𝑖,𝑗 · 𝑥®𝑢,𝑗 ; 𝑗 ∈ N𝑖 , 𝑙 = 1 ∼ 𝐿.
+it will not pass the online judge. If a code node is similar to a
+certain solution, it is likely to be a useful and related submission               The above Eq. (6) shows how a code node 𝑣𝑢,𝑖 gathers the semantic
+signal for the current question. Notably, codes with consistently low              signals from its neighboring set N𝑢,𝑖 as well its original embedding
+                                                                                             (0)                 (0)
+similarity to each solution related to the practiced question are not              𝑥®𝑢,𝑖 . 𝑥®𝑢,𝑖 is defined as 𝑥®𝑢,𝑖 = W ⊙ 𝑥®𝑢,𝑖 , where W is the same
+necessarily irrelevant to the question. These submissions may be                                                               ′
+                                                                                   parameter as in Eq. (3). Wa ∈ R𝑑 ×𝑑 is the corresponding linear
+relatively short and simple code snapshots that are question-related
+                                                                                   transformation’s weight matrix and 𝜎 is the sigmoid activation
+but require multiple modifications to solve the question correctly.
+                                                                                   function. Note that Aggregate(·) can be a function such as Mean,
+At a glance, this idea cannot directly determine irrelevant signals.
+                                                                                   Sum, Max, etc. We use the simple mean function here and leave
+However, we can determine noisy signals by identifying those that
+                                                                                   other functions for future exploration.
+are both isolated and question-uncorrelated simultaneously. Our
+                                                                                       To better identify whether the selected core node 𝑣𝑢,𝑖 is the
+basic assumption is that a submission that is both isolated and
+                                                                                   center of the cluster, we introduce a cluster-aware attention 𝛼𝑖,𝑗 .
+irrelevant to each solution is less relevant to the rest of the learner’s
+                                                                                   However, the cluster information of 𝑣𝑢,𝑖 is not explicitly provided.
+programming sequence and the current question, as empirically
+                                                                                   To this end, we intuitively define the receptive field of cluster 𝑐 as
+verified by previous studies [23].
+                                                                                   𝑣𝑢,𝑖 ’s 𝑘-hop neighborhoods, with the assumption that each node
+   Based on the above analysis, for each practiced question 𝑞𝑢,𝑖 by
+                                                                                   𝑣𝑢,𝑖 in the graph is likely to be a core node forming a cluster 𝑐. Then,
+𝑢, we collect all the correct submissions (codes with the feedback
+                                                                                   we calculate a cluster-aware attention score using the embedding
+Accepted) from the entire training data corresponding to it as its                                                                                      (𝑐 )
+solution set S𝑞𝑢,𝑖 . We then calculate the similarity between the                  of each node in the assumed cluster and the cluster embedding 𝑥®𝑢,𝑖
+embeddings of isolated code 𝑥𝑢,𝑖 and each solution code 𝑥𝑢,𝑗 ′ as:                 (i.e., the average value of all nodes’ embeddings in the cluster) as:
+
+   𝑆𝑖 = {{𝑠𝑖,𝑗 ′ }| 𝑗 ′ ∈ S𝑞𝑢,𝑖 }, 𝑠𝑖,𝑗 ′ = sim(W ⊙ 𝑥®𝑢,𝑖 , W ⊙ 𝑥®𝑢,𝑗 ′ ).
+                                                                                                                                                      
+                                                                             (5)                                             (𝑐 )                 (𝑐 )
+                                                                                    𝛼𝑖,𝑗 = Attentionc Wc ⊙ 𝑥®𝑢,𝑖 ∥Wc ⊙ 𝑥®𝑢,𝑖 ∥Wc ⊙ 𝑥®𝑢,𝑗 ; 𝑗 ∈ N𝑢,𝑖 ,
+The similarity evaluation function sim(·, ·) is implemented using                                                                                       (7)
+cosine similarity as Eq. (3). If the mean w.r.t. the distribution of 𝑆𝑖 is         where Attentionc (·) is implemented by a feed-forward neural net-
+less than its median, we empirically consider the 𝑥𝑖 as an irrelevant              work with a sigmoid activation function. ∥ is the concatenation
+                                                                                               (𝑐 )
+submission.                                                                        operator. N𝑢,𝑖 is the node set in the assumed cluster 𝑐, and Wc ∈ R𝑑
+KDD ’25, August 3–7, 2025, Toronto, ON, Canada                                                                                                      Weibo Gao et al.
+
+
+is a learnable transformation vector. Particularly, if 𝐺𝑢 contains sev-        from these unrelated signals in the refined PKT model, we design a
+eral sub-graphs, the GCN operation should be separately conducted              constraint that requires the knowledge state updated with irrele-
+over each sub-graph to update node representations.                            vant signal data to be similar to the knowledge state after the most
+    After obtaining cluster-aware code embeddings {𝑥®′𝑢,𝑖 }𝑛𝑖=1 , we           recent question-related attempt (denoted as 𝑡 + ). Related attempts
+divide them into several true clusters. Numerous clustering methods            include any core/weak submissions. This constraint is modeled
+have already been proposed [45]. In our implementation, a popular              with the following loss function:
+K-means algorithm [11] is performed over {𝑥®′𝑢,1, 𝑥®′𝑢,2, · · · , 𝑥®′𝑢,𝑛 },                                                     
+                                                                                                      𝑢𝑤
+                                                                                                    L𝑢,𝑡 = 𝐷 KL ℎ®′𝑢,𝑡 , ℎ®′𝑢,𝑡 + ,             (9)
+and generates 𝐶𝑘 clusters. The corresponding clustering index list
+is {𝑖𝑑𝑥𝑢,1, 𝑖𝑑𝑥𝑢,2, · · · , 𝑖𝑑𝑥𝑢,𝑛 }. In particular, the earliest submission   where 𝐷 KL (·) denotes Kullback Leibler (KL) divergence [1] to close
+in each cluster is considered the core signal and the remaining                the gap between two knowledge states. Note that L𝑢,𝑡 is omitted if
+codes in the same cluster are identified as weak signals.                      there are no question-related attempts before the attempt step 𝑡.
+                                                                                  For each weak submission 𝑡, the learner’s knowledge state should
+3.2     Adaptive PKT Stage                                                     not undergo significant changes and should be close to the state
+After performing the identification process, we can obtain the iden-           corresponding to a core submission. This can be formalized as:
+tifications of unwanted codes corresponding to unrelated submis-                                                                
+                                                                                                   𝑤𝑒𝑎𝑘
+                                                                                                 L𝑢,𝑡   = 𝐷 KL ℎ®′𝑢,𝑡 , ℎ®′𝑢,𝑐𝑜𝑟𝑒 ,            (10)
+sions and the cluster indexes for each core signal from the signifi-
+cant submission and the weak signals from minor modifications.
+                                                                               where ℎ®′𝑢,𝑐𝑜𝑟𝑒 is the corrected knowledge state at core submission
+Leveraging these noise indicators, this stage aims to improve the
+                                                                               corresponding to the weak submission at the same cluster.
+backbone PKT model under the noisy scenario as much as possible.
+                                                                                  In summary, the tuning adaptor requires the following noise
+    To facilitate the subsequent calculation, we transform each type
+                                                                      ′        feature-based loss function:
+of submission signal into the corresponding prompt 𝑝®𝑢 ∈ R2𝑑 .                                   (
+                                                                                                    𝑢𝑤 ,
+                                                                                                   L𝑢,𝑡    submission 𝑥𝑢,𝑡 is unrelated,
+Concretely, for the core submission with the code representation                      𝑎𝑑𝑝𝑡𝑜𝑟
+                                                                                    L𝑢,𝑡      =                                                (11)
+𝑥®′𝑢,𝑖 and each weak submission with the code representation 𝑥®′𝑢,𝑗                                 𝑤𝑒𝑎𝑘 , submission 𝑥
+                                                                                                   L𝑢,𝑡                 𝑢,𝑡 is weak.
+                                     (𝑐 )                        (𝑐 )
+                            h               ′
+                                              i    h ′                i
+in the same cluster 𝑐, let Wp ⊙ 𝑥®′𝑢,𝑖 ∥ 0®𝑑 and 0®𝑑 ∥Wp ⊙ 𝑥®′𝑢,𝑗              3.2.2 Navigational Regularization. To ensure that the adaptor
+                                                 ′
+be their prompts, respectively, where 0®𝑑 denotes a 𝑑 ′ -dimensional           accurately guides the backbone PKT model without adverse effects,
+zero vector. For each unrelated submission with embedding 𝑥®′𝑢,𝑟 ,             we introduce an additional navigational regularization term to
+                                   (𝑐 )        (𝑐 )                            constrain the optimization. Specifically, using a Stochastic Gradient
+                         h                          i          ′
+its prompt is defined as Wp ⊙ 𝑥®′𝑢,𝑟 ∥Wp ⊙ 𝑥®′𝑢,𝑟 . Wp ∈ R𝑑 is a               Descent (SGD) optimization strategy [33], the model parameters
+learnable transform vector.                                                    are updated at each training batch. We propose that the model
+3.2.1 Tuning Adaptor for PKT. Based on the prompt indicators,                  prediction accuracy after tuning at training batch 𝑏 should not be
+we employ a light and efficient tuning strategy to combine Coda                worse than the last batch (𝑏−1). Let 𝜃𝑏 denote the model parameters
+with a refined original PKT model whose parameters are frozen,                 after the 𝑏-th batch; this regularization term can be formalized as:
+with the consideration of efficiency.                                                                   𝑇𝑢
+                                                                                                     𝑁 ∑︁
+                                                                                                     ∑︁                    𝑇𝑢
+                                                                                                                        𝑁 ∑︁
+                                                                                                                        ∑︁
+                                                                                                            𝑝𝑘𝑡                𝑝𝑘𝑡
+   Inspired by LoRA [14], we implement a tuning adaptor using                             L𝑏𝑛𝑎𝑣 =          L𝑢,𝑡 (𝜃𝑏 ) −       L𝑢,𝑡 (𝜃𝑏 −1 ) ,                   (12)
+                                                               ′
+two trainable rank decomposition matrices, W𝐴 ∈ R𝑏 ×2𝑑 and                                           𝑢=1 𝑡 =1                 𝑢=1 𝑡 =1
+         𝑏 ×2𝑑 ′
+W𝐵 ∈ R           , which are integrated with the CE and KE modules                        𝑝𝑘𝑡
+                                                                               where L𝑢,𝑡 (𝜃𝑏 ) denote the prediction loss on one training data
+in the backbone PKT model, as shown in Figure 3 (f). The backbone              (𝑞𝑢,𝑡 , 𝑐𝑢,𝑡 , 𝑥𝑢,𝑡 , 𝑟𝑢,𝑡 ) based on the updated model parameter 𝜃𝑏 . | · |
+PKT model’s parameters are kept frozen. Specifically, the adaptor              is the absolute value operator. The Eq. (12) is intuitive, but com-
+receives the identification prompt 𝑝®𝑢,𝑡 at each step 𝑡 to sense dif-          putationally complex, and it requires a prediction based on all the
+ferent types of coding signals (including noisy signals and core               training data at each batch. Therefore, we give the upper bound of
+submissions) and generates correction signals tailored to various              Eq. (12) with the consideration of the computational complexity
+contexts (i.e., the knowledge state and submission at step 𝑡). The             and storage space in actual implementation based on Property 1:
+correction signal is added to the original knowledge state ℎ®𝑢,𝑡 out-             Property 1. L𝑏𝑛𝑎𝑣 is bounded as follows:
+put from the refined KE component of the backbone PKT model to                                                    𝑇
+generate the corrected knowledge state as follows:                             L𝑏𝑛𝑎𝑣 ≤ ∇𝜃𝑏 −1 L 𝑝𝑘𝑡 (𝜃𝑏 −1 )           · |𝛿𝜃𝑏 −1 | + |𝛿𝜃𝑏 −1 |𝑇 · |𝐽 𝑇 𝐽 | · |𝛿𝜃𝑏 −1 | ,
+          ℎ®′𝑢,𝑡 = ℎ®𝑢,𝑡 + ℎ®′𝑢,𝑡𝑎 , ℎ®′ 𝑡𝑢,𝑎 = (W𝑇𝐴 · W𝐵 ) ⊙ 𝑝®𝑢,𝑡 ,   (8)                                                                                     (13)
+where ℎ®′𝑢,𝑡𝑎 is the correction signal. It adjusts the noisy state ℎ®𝑢,𝑡       where ∇𝜃𝑏 −1     L 𝑝𝑘𝑡 (𝜃
+                                                                                                    𝑏 −1 ) is the training gradient after the (𝑏 − 1)-th
+at each dimension and generates a denoised knowledge state ℎ®′𝑢,𝑡 .            batch tuning, 𝛿𝜃𝑏 −1 denote the parameter change between the 𝑏-th
+   To optimize the adaptor effectively, we summarize the char-                 batch and (𝑏 − 1)-th batch,i.e., 𝛿𝜃𝑏 −1 = 𝜃𝑏 − 𝜃𝑏 −1 . 𝐽 is the Jacobian
+acteristics of unwanted and weak signals as two mathematical                   matrix [41]. In implement, the Jacobian matrix 𝐽 is denoted using
+constraints to control the knowledge state correction, as shown                the training gradient ∇𝜃𝑏 −1 L 𝑝𝑘𝑡 (𝜃𝑏 −1 ). Compared to Eq. (12), the
+in Figure 3 (g). The first consideration is that unwanted signals              Eq. (13) is calculated once per training batch, requiring additional
+are unrelated to programming practice and cannot reflect learners’             storage space for storing model parameters and gradients, which is
+actual knowledge states. To correct the biased knowledge states                acceptable in practice. See the Appendix A for the full proof.
+Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor                                   KDD ’25, August 3–7, 2025, Toronto, ON, Canada
+
+
+3.3     Optimization                                                             4.2     Experimental Setups
+Overall, at each training batch 𝑏 with programming records of a                  4.2.1 Baselines. For baselines, we first select some traditional
+batch of learners U𝑏 ∼ U, putting the prediction objective (Eq. (2)),            knowledge tracing models that are classic but not specifically tai-
+the tuning objective (Eq. (11)) and the navigation regularization                lored for programming scenarios, i.e., DKT [31], AKT [8], and
+(Eq. (13)) together, we have the following training loss function:               LPKT [34]. Then, we select several well-adopted PKT models, i.e.,
+                             𝑇𝑢 
+                                                                                 DKT+ [39], PDKT [54], Code-DKT [36], Help-DKT [23], PST [21]
+                ∑︁ © ∑︁ ∑︁                        
+    L𝐶𝑜𝑑𝑎 =
+                                   𝑝𝑘𝑡    𝑎𝑑𝑎𝑝𝑡𝑜𝑟
+                                  L𝑢,𝑡 + L𝑢,𝑡       + L𝑏𝑛𝑎𝑣 ® .
+                                                            ª
+                                                                        (14)     and ECKT [48]. Notably, PST requires running in a single pro-
+                     ­
+               U𝑏 ∼U «𝑢 ∈ U𝑏 𝑡 =1
+                                                                                 gramming language scenario (i.e., the BePKT_C++ and AtCoder_C
+                                                            ¬                    datasets). The descriptions of baselines are listed as follows:
+3.4     Computational Complexity                                                  • DKT leverages RNN to assess knowledge mastery by iteratively
+During the training phase, the code graph is constructed only once                  predicting learner next performance.
+for each learner 𝑢’s sequence 𝑙𝑢 . The primary computational com-                 • AKT is the context-aware attentive KT model. It uses the two
+plexity arises from calculating the adjacency matrix (see Eq. (3) and               self-attentive encoders to learn context-aware representations
+Eq. (4)), which has a complexity of 𝑂 (𝑇𝑢 ×𝑇𝑢 ), where 𝑇𝑢 is the length             of the exercises and answers.
+of the programming sequence. When identifying irrelevant noise,                   • LPKT monitors learners’ knowledge state through directly mod-
+we introduce an auxiliary task with a complexity of 𝑂 (𝑤), where 𝑤                  eling their learning process with a basic chain: exercise—answer
+represents the average number of correct submissions per question.                  time—answer.
+Identifying weak submissions mainly involves the GCN, with a                      • DKT+ uses abstract syntax trees (AST) [2, 21] to represent pro-
+complexity of approximately 𝑂 (𝑇𝑢 × 𝐿), where 𝐿 is the number of                    grams and uses recurrent neural networks to track learners’
+layers in the GCN, and the clustering complexity is 𝑂 (𝑇𝑢 × 𝐶𝑘 ),                   knowledge levels.
+where 𝐶𝑘 is the number of clusters. When tuning the backbone PKT                  • PDKT uses a double-sequence model with exponential decay
+model, the primary complexity arises from predicting the learner’s                  attention to model problem and code sequences.
+performance for each submission step, with a complexity of 𝑂 (𝑇𝑢 ).               • Code-DKT constructs the AST and adopts both node embedding
+Therefore, the overall complexity of modeling each learner during                   and path embedding to effectively model the problem text.
+the entire training phase is 𝑂 (𝑇𝑢 ×𝑇𝑢 ) +𝑂 (𝑤) +𝑂 (𝑇𝑢 × 𝐿) +𝑂 (𝑇𝑢 ×              • Help-DKT introduces an interpretable cognitive model that
+𝐶𝑘 ) + 𝑂 (𝑇𝑢 ). During the test phase, for a learner 𝑢, the code graph              integrates programming error classification as a conceptual in-
+needs to be constructed at each step, resulting in a complexity of                  dicator into a personalized feedback-based matrix, aiming to
+𝑂 ( 𝑇𝑖=1
+   Í𝑢 2
+          𝑖 ) +𝑂 (𝑇𝑢 ×𝑤) +𝑂 ( 𝑇𝑖=1
+                              Í𝑢
+                                   𝑖 ×𝐿) +𝑂 ( 𝑇𝑖=1
+                                               Í𝑢
+                                                   𝑖 ×𝐶𝑘 ) +𝑂 ( 𝑇𝑖=1
+                                                                Í𝑢
+                                                                     𝑖).            estimate student ability at the conceptual level.
+                                                                                  • PST builds a code information graph and a code tracing graph
+4     Experiments                                                                   containing rich structural and semantic information from code
+                                                                                    contents. Additionally, it takes into account code modification
+We conduct comprehensive experiments to address the following                       content between consecutive submissions to capture knowledge
+research questions (RQs): RQ1 Can Coda enhance the accuracy                         state changes.
+of knowledge state estimation for backbone PKT models, thereby                    • ECKT integrates code features with questions’ knowledge con-
+improving the prediction of student performance? RQ2 How do the                     cepts and descriptions generated by an LLM from codes. In this
+various components designed in Coda influence its performance?                      paper, we generate knowledge concept embeddings based on
+RQ3 What is the effectiveness of code graph modeling? RQ4 How                       the original datasets and generate each question description
+powerful is Coda in tracing the evolution of knowledge states?                      embedding by mean-pooling all codes related to the question.
+4.1     Datasets                                                                 4.2.2 Evaluation Metrics. As knowledge states cannot be di-
+We evaluate the effectiveness of Coda using four real-world public               rectly observed in practice, it is common to indirectly assess PKT
+datasets: BePKT1 , AtCoder2 , BePKT_C++ and AtCoder_C. These                     tasks through predicting learner response performance on test
+datasets contain learner programming records, including submitted                datasets [7, 20, 21]. To evaluate model performance, we adopt ACC,
+code and feedback on judgments, as well as question-knowledge                    AUC and RMSE as metrics from the perspectives of classification
+correlations where each question is linked to a specific knowl-                  and regression following the [6, 46].
+edge concept. Specifically, BePKT and AtCoder include multiple                   4.2.3 Implementation Details. We implement our Coda frame-
+programming languages (e.g., C and C++), while BePKT_C++ and                     work with five well-adopted PKT backbone models, i.e., DKT+ [39],
+AtCoder_C are subsets of BePKT and AtCoder, respectively, that                   PDKT [54], Code-DKT [36], Help-DKT [23] and PST [21]. We call
+focus exclusively on C++ and C submissions. The reason why we                    them Coda-X, e.g., Coda-PDKT and Coda-Help-DKT. We split 70%,
+construct the two subsets is the baseline (i.e., PST [21] introduced             10% and 20% programming sequences of each dataset as the train-
+in § 4.2.1) only supports the single language programming scenario.              ing set, the valid set, and the test set, respectively. We utilize a
+The complete statistics of these datasets are summarized in Table 2.             pre-trained Code-Bert3 to encode input codes for each baseline
+Detailed dataset information and preprocessing steps are provided                with the setting of dimension 𝑑 is 768. The setups for training PKT
+in Appendix B.                                                                   backbone models refer to the original papers and each backbone
+1 https://drive.google.com/drive/folders/1Jt6f0MV1paGLlctJqxHtdF1Vh2mUnsoV?
+                                                                                 is trained on training data. We implement our Coda-X models by
+usp=sharing
+2 https://github.com/IBM/Project_CodeNet                                         3 https://github.com/microsoft/CodeBERT
+KDD ’25, August 3–7, 2025, Toronto, ON, Canada                                                                                          Weibo Gao et al.
+
+
+Table 1: Performance comparison. The best performance is highlighted in bold, and ↑ (↓) means the higher (lower) score the
+better (worse) performance, the same as below.
+                             KT Models                   PKT Models                                   Coda
+   Datasets      Metrics
+                          DKT AKT LPKT DKT+ PDKT Code-DKT Help-DKT PST ECKT Coda-DKT+ Coda-PDKT Coda-Code-DKT Coda-Help-DKT Coda-PST
+            AUC (%) ↑ 52.77 54.12 53.69 53.96 55.32    56.14    60.10   -   59.63 56.34  59.74       59.42        62.31         -
+   BePKT   F1-score (%) ↑ 9.30 12.51 10.07 10.13 14.68 21.03    31.65   -   34.32 26.96  31.39       34.22        36.03         -
+            RMSE (%) ↓ 44.67 30.59 31.78 42.93 40.01   34.56    31.96   -   35.44 41.24  39.03       34.25        31.33         -
+            AUC (%) ↑ 52.37 53.34 54.62 52.46 53.57    57.23    58.32   -   59.32 54.02  59.03      62.96          59.63        -
+  AtCoder F1-score (%) ↑ 7.00 15.96 22.74 7.02 16.39   27.42    31.44   -   32.40 16.31  34.69      35.37          33.21        -
+            RMSE (%) ↓ 45.17 41.88 38.82 44.37 39.66   31.63    39.42   -   37.54 43.20  38.27      30.32          38.36        -
+            AUC (%) ↑ 52.96 54.17 53.29 54.17 55.29    55.63    60.58 60.21 60.02 57.89  59.30       58.83         62.97     63.75
+ BePKT_C++ F1-score (%) ↑ 8.37 10.24 10.01 10.32 14.29 18.21    33.75 28.57 27.92 27.16  30.65       33.49         37.19     37.40
+            RMSE (%) ↓ 44.28 43.77 43.82 42.09 40.66   34.08    31.30 31.07 32.03 40.89  39.57       33.65         30.97     30.20
+            AUC (%) ↑ 52.51 53.07 53.27 53.12 54.14    56.54    59.83 64.17 64.43 54.64  57.36       62.14         60.62     65.94
+ AtCoder_C    F1 (%) ↑    7.84 10.67 12.42 8.49 12.33  24.99    33.89 51.74 52.04 18.31  32.33       40.67         36.08     61.28
+            RMSE (%) ↓ 43.20 42.96 41.77 42.20 41.30   38.41    38.03 40.80 40.01 41.11  40.93       38.28        37.90       39.26
+
+    Table 2: The statistics of four programming datasets.
+                                                                                         Table 3: Ablation study on BePKT_C++.
+      Dataset                  BePKT AtCoder BePKT_C++ AtCoder_C
+                                                                                             Methods    AUC (%) ↑ F1 (%) ↑ RMSE (%) ↓
+      #learners                   479   5,523        447      5,416
+      #questions                  423     832        146        832                          Coda-PST    63.75     37.40     30.20
+      #knowledge concepts          83     832         83        832                          w/o iso     62.57     36.92     30.60
+      #submissions             27,679 197,419      4,278     27,297                          w/o sim     63.32     37.23     30.63
+                                                                                             w/o uw      62.21     37.02     31.43
+      #submissions per learner 57.78    35.74       9.57       5.04                          w/o gcn     63.00     36.92     30.74
+                                                                                             w/o weak    61.58     34.75     32.30
+                                                                                             w/o nav     63.60     37.34     30.34
+tuning these refined baselines. The parameter 𝜖 in Eq. (4) is sampled
+from the “0.2/0.4/0.5/0.6/0.8 of the square of the sequence length" to
+regulate the sparsity of the code graph. The GCN layers 𝐿 for Eq. (6)        similarity calculation between codes and solutions (i.e., Eq. (5)),
+and cluster-aware hop 𝑘 in Eq. (7) are both 2, following the related         “w/o uw” by discarding the identification of unwanted signals (i.e.,
+works [3]. The number of clusters of k-means 𝐶𝑘 is searched in [1, 3,        Eq. (9)), “w/o gcn” by skipping the clustering-aware GCN (i.e.,
+5]. The dimension 𝑑 ′ is equal to the dimension 𝑑 of original code em-       Eq. (6)), “w/o weak” by discarding the identification of weak signals
+bedding and 𝑏 in Eq. (8) is 𝑑 ′ /2. Furthermore, we set the mini-batch       (i.e., Eq. (10)), and “w/o nav” by discarding the navigational regular-
+size as 32 and the learning rate is searched in [1𝑒 −3, 1𝑒 −2, 1𝑒 −1 ] for   ization (i.e., Eq. (13)). Table 3 lists the prediction performance. From
+each model. For training, all network parameters are initialized with        the table, we can see that each component of Coda significantly
+Xavier initialization [9]. Each model is implemented by PyTorch [30]         enhances the predictive performance of the PKT task.
+and optimized by Adam optimizer [17]. All experiments are run on
+a cluster of Linux servers with NVIDIA TITAN V100 GPUs. Code                 4.5    Analysis of the Code Graph (RQ3)
+is available at https://github.com/bigdata-ustc/Coda-PKT.                    The parameter 𝜖 in Eq.(4) determines both the sparsity of the con-
+                                                                             structed code graph and the subsequent prediction accuracy. To
+4.3     Next Attempt Performance Prediction (RQ1)                            explore the impact of varying graph sparsity, we train the Coda-
+To evaluate model effectiveness, we compare all methods based on             Help-DKT on several sparse code graphs where 𝜖 is set to “𝑝 of
+learners’ subsequent attempt prediction accuracy, as depicted in             the square of the sequence length", with 𝑝 ∈ {0.2, 0.4, 0.5, 0.6, 0.8}.
+Table 1. We can see that: (1) Compared to traditional KT models,             Figure 5 illustrates the prediction scores for different sparse setups
+the PKT models and Coda-Xs show superior performance across all              on the BePKT_C++ dataset, clearly demonstrating that the model’s
+metrics. Traditional KT models are designed for a single submission          performance improves with increasing 𝜖 when 𝜖 is small. However,
+per problem and ignore code information, leading to biases in sce-           once 𝜖 exceeds a certain threshold (e.g., 0.5 of the square of the
+narios with multiple submissions. (2) In comparison to PKT models,           sequence length for Coda-PDKT), the performance gains become
+our Coda-Xs demonstrate better prediction accuracy. For example,             less pronounced.
+on the BePKT_C++ dataset, Coda improves Help-DKT and PST
+by 3.44% and 8.83% in terms of F1 score accuracy, respectively. It           4.6    Visualization of Knowledge Tracing (RQ4)
+reveals that our Coda to denoising programming sequences is both             One of the most practical aspects of PKT is its ability to diagnose
+justified and effective. (3) Most models perform better on two single        proficiency of specific knowledge concepts for learners at each
+language datasets, suggesting that longer programming sequences              attempt during programming. To gain deeper insights into how
+have more noise, thus limiting model performance.                            Coda tracks the evolution of programming knowledge states, this
+                                                                             section illustrates the tracing process using various models across a
+4.4     Investigation of Key Components (RQ2)                                learning sequence. Specifically, for a trained PKT model, we extract
+To validate the effectiveness of each Coda design, we conduct an             the knowledge proficiency on question-related concept 𝑐 from the 𝑐-
+ablation study on Coda-PST using the BePKT_C++ dataset. Specifi-             th dimensional element in the knowledge state ℎ®𝑢,𝑡 inspired by [26,
+cally, we implement various Coda variants including “w/o iso” by             47]. We randomly sample a real programming sub-sequence of a
+ignoring the isolated nodes (§ 3.1.2), “w/o sim” by removing the             learner (𝑖𝑑 = 320) response to the question (𝑖𝑑 = 1304) that tests
+Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor                                                                                                           KDD ’25, August 3–7, 2025, Toronto, ON, Canada
+
+
+                                                                                                                                                                          #include <bits/stdc++.h>           #include <bits/stdc++.h>
+                       DKT+                                                                                                                           1.0                 using namespace std;               using namespace std;
+                                                                                                                                                                          int main(void)                     int main(void)
+                  Coda-DKT+                                                                                                                                               {                                  {
+                       PDKT
+                                                                                                                                                      0.8                    cout << “?”;                       cout << “print”;
+                                                                                                                                                                              return 0;                          return 0;
+
+
+
+
+                                                                                                                                                            Proficiency
+                 Coda-PDKT                                                                                                                                                                     t=2
+                                                                                                                                                      0.6                 }                                  }                 t=3
+                   Code-DKT
+              Coda-Code-DKT                                                                                                                                                                   Unrelated submissions
+                                                                                                                                                      0.4
+                   Help-DKT
+                                                                                                                                                                          #include <bits/stdc++.h>           #include <string>
+              Coda-Help-DKT
+                                                                                                                                                      0.2                 #define ll long long               #include <iostream>
+                        PST                                                                                                                                               using namespace std;               #define ll long long
+                   Coda-PST                                                                                                                                               int main(void) {                   using namespace std;
+                                                                                                                                                      0.0                 ...                                int main(void) {
+                                t=0 1     2     3      4      5   6      7    8    9       10    11   12     13   14   15   16   17   18    19   20                                          t = 10          ...               t = 11
+                                    Compile Error                 Wrong Answer                  Memory Limit Exceeded                 Accepted                                                 Minor modification
+
+        Figure 4: Visualization of Code-X and original PKT models tracing knowledge of a learner along the practice sequence.
+                          Coda-DKT+                   Coda-PDKT                    Coda-Code-DKT
+                          Coda-Help-DKT               Coda-PST
+                                                                                                                                           model the student’s programming ability status. PDKT [54] incor-
+      0.65                                                 0.43
+                                                                                                                                           porates representations of questions and knowledge points on this
+                                                                                                                                           basis to enhance the capabilities of the knowledge modeler. Code-
+                                                           0.38
+                                                                                                                                           DKT [36] utilizes attention mechanisms to automatically extract
+                                                    RMSE
+AUC
+
+
+
+
+      0.60
+                                                           0.33                                                                            and select domain-specific code features to extend DKT. HELP-
+                                                                                                                                           DKT [23] combines students’ original code encoding with error
+      0.55                                                 0.28
+              0.2   0.4   0.5     0.6     0.8                      0.2       0.4    0.5         0.6    0.8                                 category information to enhance the capabilities of the knowledge
+                           𝑝                                                           𝑝                                                   modeler. PST [21] models differences between students’ submitted
+Figure 5: Performance under different sparse levels of the                                                                                 codes in order to model their programming skills and knowledge,
+code graph on BePKT_C++.                                                                                                                   achieving state-of-the-art performance. ECKT [48] integrates code
+                                                                                                                                           features with questions’ knowledge concepts and descriptions gen-
+“Addition of Large Numbers” from BePKT_C++, and visualize the                                                                              erated by a large language model (LLM) from the code. GPKT [42]
+evolution of proficiency on the concept tested by the question.                                                                            learns informative code and question representations from a code-
+Figure 4 shows the tracing process learned by several models.                                                                              question-knowledge network for better prediction. However, all
+   From the visualization, it is obvious that all Coda-X models                                                                            these methods are limited by noise in students’ answer sequences,
+demonstrate more stable knowledge tracing after the initial state                                                                          which affects their applicability in real-world environments.
+(𝑡 = 0) compared to original PKT models. The baselines may be
+susceptible to noise stemming from noisy submissions. Upon ob-                                                                             6      Conclusion and Future Research
+serving the learner’s submitted codes (presented in the right part                                                                         In this study, we aim to address the prevalent challenges in pro-
+of Figure 4), it is evident that baselines are misled by noisy signals.                                                                    gramming knowledge tracing (PKT), with a particular focus on the
+For instance, at 𝑡 = 2 and 𝑡 = 3, the learner’s codes are unrelated to                                                                     impact of noisy signals encountered during long-term program-
+the question. Coda-Xs effectively identifies noise submissions, thus                                                                       ming activities. We identify two prominent types of noisy signals:
+preventing an underestimation of student knowledge due to these                                                                            unwanted signals from unrelated submissions and weak signals
+buggy examples. In contrast, PKT baselines are misled by irrelevant                                                                        from minor modifications. Both types significantly hinder the ac-
+data. Similarly, at 𝑡 = 10 and 𝑡 = 11, the learner makes minor code                                                                        curate representation of a learner’s knowledge state. To mitigate
+modifications, indicating that his/her knowledge state should be                                                                           the impact of noise on PKT models, we propose the Coda frame-
+relatively stable. While these submissions have no explicit bugs,                                                                          work. This framework enhances existing PKT solutions by enabling
+they are redundant to PKT models. Coda-Xs remain unaffected                                                                                them to identify noisy signals and adaptively reduce their negative
+by these minor changes due to its ability to identify and correct                                                                          effects. Our approach involves transforming code sequence mod-
+noisy signals, while the original PKT models continue to be misled,                                                                        eling issues into code graph modeling problems by leveraging the
+consistently underestimating learner knowledge proficiency.                                                                                semantic relationships in the code. Additionally, we introduce a
+                                                                                                                                           lightweight tuning adapter to seamlessly integrate with the PKT
+5            Related Work                                                                                                                  task. Extensive experiments on four real-world datasets validate
+In the field of educational data mining, Programming Knowledge                                                                             the effectiveness of our Coda model. Future research will identify
+Tracking (PKT) has taken on a significant role, focusing on the as-                                                                        additional types of noise and incorporate specific buggy feedback
+sessment. PKT aims to dynamically diagnose learners’ proficiency                                                                           to achieve more comprehensive denoising for the programming
+on specific programming knowledge. It extends traditional knowl-                                                                           knowledge tracing task.
+edge tracking (KT) techniques [8, 28, 31, 34, 37, 50] and provides
+important technology for diagnosing students’ coding abilities by                                                                          Acknowledgments
+integrating code features related to open programming environ-                                                                             This research was partially supported by grants from the National
+ments. Existing PKT methods mainly consist of three key modules:                                                                           Natural Science Foundation of China (Grants No. 62337001), the Key
+code encoder (CE), knowledge estimation (KE), and predictor. For                                                                           Technologies R & D Program of Anhui Province (No. 202423k09020039),
+example, DKT+ [39] first uses Code2Vec technology to encode                                                                                and the Fundamental Research Funds for the Central Universities.
+the code submitted by students, then models the student’s answer
+sequence using LSTM [13], and uses the final representation to
+KDD ’25, August 3–7, 2025, Toronto, ON, Canada                                                                                                                    Weibo Gao et al.
+
+
+References                                                                                      Knowledge Discovery and Data Mining. 1477–1488.
+ [1] Alexander A Alemi, Ian Fischer, Joshua V Dillon, and Kevin Murphy. 2016. Deep         [25] Naiming Liu, Zichao Wang, Richard G Baraniuk, and Andrew Lan. 2022. GPT-
+     variational information bottleneck. arXiv preprint arXiv:1612.00410 (2016).                based Open-Ended Knowledge Tracing. arXiv preprint arXiv:2203.03716 (2022).
+ [2] Uri Alon, Meital Zilberstein, Omer Levy, and Eran Yahav. 2018. code2vec: Learn-       [26] Qi Liu, Zhenya Huang, Yu Yin, Enhong Chen, Hui Xiong, Yu Su, and Guoping Hu.
+     ing Distributed Representations of Code. arXiv:1803.09473 [cs.LG]                          2019. Ekt: Exercise-aware knowledge tracing for student performance prediction.
+ [3] Jianxin Chang, Chen Gao, Yu Zheng, Yiqun Hui, Yanan Niu, Yang Song, Depeng                 IEEE Transactions on Knowledge and Data Engineering 33, 1 (2019), 100–115.
+     Jin, and Yong Li. 2021. Sequential recommendation with graph neural networks.         [27] Shuo Liu, Junhao Shen, Hong Qian, and Aimin Zhou. 2024. Inductive Cognitive
+     In Proceedings of the 44th international ACM SIGIR conference on research and              Diagnosis for Fast Student Learning in Web-Based Intelligent Education Systems.
+     development in information retrieval. 378–387.                                             In Proceedings of the ACM on Web Conference 2024. Singapore, 4260–4271.
+ [4] Yu Chen, Lingfei Wu, and Mohammed Zaki. 2020. Iterative deep graph learning           [28] Haiping Ma, Yong Yang, Chuan Qin, Xiaoshan Yu, Shangshang Yang, Xingyi
+     for graph neural networks: Better and robust node embeddings. Advances in                  Zhang, and Hengshu Zhu. 2024. HD-KT: Advancing Robust Knowledge Tracing
+     neural information processing systems 33 (2020), 19314–19326.                              via Anomalous Learning Interaction Detection. In Proceedings of the ACM on Web
+ [5] Zhangyin Feng, Daya Guo, Duyu Tang, Nan Duan, Xiaocheng Feng, Ming                         Conference 2024. 4479–4488.
+     Gong, Linjun Shou, Bing Qin, Ting Liu, Daxin Jiang, and Ming Zhou. 2020.              [29] Andy Nguyen, Christopher Piech, Jonathan Huang, and Leonidas Guibas. 2014.
+     CodeBERT: A Pre-Trained Model for Programming and Natural Languages.                       Codewebs: scalable homework search for massive open online programming
+     arXiv:2002.08155 [cs.CL]                                                                   courses. In Proceedings of the 23rd international conference on World wide web.
+ [6] Weibo Gao, Qi Liu, Zhenya Huang, Yu Yin, Haoyang Bi, Mu-Chun Wang, Jianhui                 491–502.
+     Ma, Shijin Wang, and Yu Su. 2021. Rcd: Relation map driven cognitive diagnosis        [30] Adam Paszke, Sam Gross, Francisco Massa, Adam Lerer, James Bradbury, Gregory
+     for intelligent education systems. In Proceedings of the 44th International ACM            Chanan, Trevor Killeen, Zeming Lin, Natalia Gimelshein, Luca Antiga, et al. 2019.
+     SIGIR Conference on Research and Development in Information Retrieval. 501–510.            Pytorch: An imperative style, high-performance deep learning library. Advances
+ [7] Weibo Gao, Qi Liu, Hao Wang, Linan Yue, Haoyang Bi, Yin Gu, Fangzhou Yao,                  in neural information processing systems 32 (2019).
+     Zheng Zhang, Xin Li, and Yuanjing He. 2024. Zero-1-to-3: Domain-Level Zero-           [31] Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran Sahami,
+     Shot Cognitive Diagnosis via One Batch of Early-Bird Students towards Three                Leonidas J Guibas, and Jascha Sohl-Dickstein. 2015. Deep knowledge tracing.
+     Diagnostic Objectives. In Proceedings of the AAAI Conference on Artificial Intelli-        Advances in neural information processing systems 28 (2015).
+     gence, Vol. 38. 8417–8426.                                                            [32] Ruchir Puri, David S. Kung, Geert Janssen, Wei Zhang, Giacomo Domeniconi,
+ [8] Aritra Ghosh, Neil Heffernan, and Andrew S Lan. 2020. Context-aware atten-                 Vladimir Zolotov, Julian Dolby, Jie Chen, Mihir Choudhury, Lindsey Decker,
+     tive knowledge tracing. In Proceedings of the 26th ACM SIGKDD international                Veronika Thost, Luca Buratti, Saurabh Pujar, Shyam Ramji, Ulrich Finkler, Susan
+     conference on knowledge discovery & data mining. 2330–2339.                                Malaika, and Frederick Reiss. 2021. CodeNet: A Large-Scale AI for Code Dataset
+ [9] Xavier Glorot and Yoshua Bengio. 2010. Understanding the difficulty of training            for Learning a Diversity of Coding Tasks. arXiv:2105.12655 [cs.SE]
+     deep feedforward neural networks. In Proceedings of the thirteenth international      [33] Sebastian Ruder. 2016. An overview of gradient descent optimization algorithms.
+     conference on artificial intelligence and statistics. JMLR Workshop and Conference         arXiv preprint arXiv:1609.04747 (2016).
+     Proceedings, 249–256.                                                                 [34] Shuanghong Shen, Qi Liu, Enhong Chen, Zhenya Huang, Wei Huang, Yu Yin, Yu
+[10] Siqi Han, Yu Wang, and Xuesong Lu. 2023. ErrorCLR: Semantic Error Classi-                  Su, and Shijin Wang. 2021. Learning Process-consistent Knowledge Tracing. In
+     fication, Localization and Repair for Introductory Programming Assignments.                KDD ’21: The 27th ACM SIGKDD Conference on Knowledge Discovery and Data
+     In Proceedings of the 46th International ACM SIGIR Conference on Research and              Mining, Virtual Event, Singapore, August 14-18, 2021, Feida Zhu, Beng Chin Ooi,
+     Development in Information Retrieval. 1345–1354.                                           and Chunyan Miao (Eds.). ACM, 1452–1460. doi:10.1145/3447548.3467237
+[11] John A Hartigan and Manchek A Wong. 1979. Algorithm AS 136: A k-means                 [35] Shuanghong Shen, Qi Liu, Zhenya Huang, Yonghe Zheng, Minghao Yin, Minjuan
+     clustering algorithm. Journal of the royal statistical society. series c (applied          Wang, and Enhong Chen. 2024. A survey of knowledge tracing: Models, variants,
+     statistics) 28, 1 (1979), 100–108.                                                         and applications. IEEE Transactions on Learning Technologies (2024).
+[12] Jonathan Ho, Ajay Jain, and Pieter Abbeel. 2020. Denoising diffusion probabilistic    [36] Yang Shi, Min Chi, Tiffany Barnes, and Thomas Price. 2022. Code-DKT: A
+     models. Advances in neural information processing systems 33 (2020), 6840–6851.            Code-based Knowledge Tracing Model for Programming Tasks. arXiv preprint
+[13] Sepp Hochreiter and Jürgen Schmidhuber. 1997. Long short-term memory. Neural               arXiv:2206.03545 (2022).
+     computation 9, 8 (1997), 1735–1780.                                                   [37] Fei Wang, Weibo Gao, Qi Liu, Jiatong Li, Guanhao Zhao, Zheng Zhang, Zhenya
+[14] Edward J Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean              Huang, Mengxiao Zhu, Shijin Wang, Wei Tong, et al. 2024. A survey of models
+     Wang, Lu Wang, and Weizhu Chen. 2021. Lora: Low-rank adaptation of large                   for cognitive diagnosis: New developments and future directions. arXiv preprint
+     language models. arXiv preprint arXiv:2106.09685 (2021).                                   arXiv:2407.05458 (2024).
+[15] Yilun Jin, Kai Chen, and Qiang Yang. 2023. Transferable graph structure learning      [38] Fei Wang, Qi Liu, Enhong Chen, Zhenya Huang, Yu Yin, Shijin Wang, and Yu Su.
+     for graph-based traffic forecasting across cities. In Proceedings of the 29th ACM          2022. NeuralCD: a general framework for cognitive diagnosis. IEEE Transactions
+     SIGKDD Conference on Knowledge Discovery and Data Mining. 1032–1043.                       on Knowledge and Data Engineering 35, 8 (2022), 8312–8327.
+[16] Jin-Hwa Kim, Kyoung-Woon On, Woosang Lim, Jeonghee Kim, Jung-Woo Ha,                  [39] Lisa Wang, Angela Sy, Larry Liu, and Chris Piech. 2017. Deep knowledge tracing
+     and Byoung-Tak Zhang. 2016. Hadamard product for low-rank bilinear pooling.                on programming exercises. In Proceedings of the fourth (2017) ACM conference on
+     arXiv preprint arXiv:1610.04325 (2016).                                                    learning@ scale. 201–204.
+[17] Diederik P Kingma and Jimmy Ba. 2014. Adam: A method for stochastic opti-             [40] Xiao Wang, Meiqi Zhu, Deyu Bo, Peng Cui, Chuan Shi, and Jian Pei. 2020. Am-
+     mization. arXiv preprint arXiv:1412.6980 (2014).                                           gcn: Adaptive multi-channel graph convolutional networks. In Proceedings of
+[18] Philip IS Lei and António José Mendes. 2021. A systematic literature review on             the 26th ACM SIGKDD International conference on knowledge discovery & data
+     knowledge tracing in learning programming. In 2021 IEEE Frontiers in Education             mining. 1243–1253.
+     Conference (FIE). IEEE, 1–7.                                                          [41] Bogdan M Wilamowski and Hao Yu. 2010. Improved computation for Levenberg–
+[19] Haoyang Li, Xin Wang, Ziwei Zhang, Jianxin Ma, Peng Cui, and Wenwu Zhu. 2021.              Marquardt training. IEEE transactions on neural networks 21, 6 (2010), 930–937.
+     Intention-aware sequential recommendation with structured intent transition.          [42] Yaqiang Wu, Hui Zhu, Chenyang Wang, Fujian Song, Haiping Zhu, Yan Chen,
+     IEEE Transactions on Knowledge and Data Engineering 34, 11 (2021), 5403–5414.              Qinghua Zheng, and Feng Tian. 2024. Programming Knowledge Tracing Based on
+[20] Mingjia Li, Hong Qian, Jinglan Lv, Mengliang He, Wei Zhang, and Aimin Zhou.                Heterogeneous Graph Representation. Knowledge-Based Systems (2024), 112161.
+     2025. Foundation model enhanced derivative-free cognitive diagnosis. Frontiers        [43] Zhengyang Wu, Ming Li, Yong Tang, and Qingyu Liang. 2020. Exercise recom-
+     of Computer Science 19, 1 (2025), 191318.                                                  mendation based on knowledge concept prediction. Knowledge-Based Systems
+[21] Ruixin Li, Yu Yin, Le Dai, Shuanghong Shen, Xin Lin, Yu Su, and Enhong Chen.               210 (2020), 106481.
+     2022. PST: Measuring Skill Proficiency in Programming Exercise Process via            [44] Feng Xia, Ke Sun, Shuo Yu, Abdul Aziz, Liangtian Wan, Shirui Pan, and Huan
+     Programming Skill Tracing. In Proceedings of the 45th International ACM SIGIR              Liu. 2021. Graph learning: A survey. IEEE Transactions on Artificial Intelligence 2,
+     Conference on Research and Development in Information Retrieval. 2601–2606.                2 (2021), 109–127.
+[22] Rongfan Li, Ting Zhong, Xinke Jiang, Goce Trajcevski, Jin Wu, and Fan Zhou.           [45] Rui Xu and Donald Wunsch. 2005. Survey of clustering algorithms. IEEE Trans-
+     2022. Mining spatio-temporal relations via self-paced graph contrastive learning.          actions on neural networks 16, 3 (2005), 645–678.
+     In Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and           [46] Fangzhou Yao, Qi Liu, Linan Yue, Weibo Gao, Jiatong Li, Xin Li, and Yuanjing
+     Data Mining. 936–944.                                                                      He. 2024. Adard: An adaptive response denoising framework for robust learner
+[23] Yu Liang, Tianhao Peng, Yanjun Pu, and Wenjun Wu. 2022. HELP-DKT: an                       modeling. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge
+     interpretable cognitive model of how students learn programming based on deep              Discovery and Data Mining. 3886–3895.
+     knowledge tracing. Scientific Reports 12, 1 (2022), 1–11.                             [47] Yu Yin, Le Dai, Zhenya Huang, Shuanghong Shen, Fei Wang, Qi Liu, Enhong
+[24] Jiayu Liu, Zhenya Huang, Zhiyuan Ma, Qi Liu, Enhong Chen, Tianhuang Su, and                Chen, and Xin Li. 2023. Tracing Knowledge Instead of Patterns: Stable Knowledge
+     Haifeng Liu. 2023. Guiding Mathematical Reasoning via Mastering Commonsense                Tracing with Diagnostic Transformer. In Proceedings of the ACM Web Conference
+     Formula Knowledge. In Proceedings of the 29th ACM SIGKDD Conference on                     2023. 855–864.
+Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor                                               KDD ’25, August 3–7, 2025, Toronto, ON, Canada
+
+
+[48] Yang Yu, Yingbo Zhou, Yaokang Zhu, Yutong Ye, Liangyu Chen, and Mingsong              It is evident that Eq.(19) significantly reduces the computational
+     Chen. 2024. ECKT: Enhancing Code Knowledge Tracing via Large Language                 demands on each training datum compared to Eq.(17), thereby ac-
+     Models. In Proceedings of the Annual Meeting of the Cognitive Science Society,
+     Vol. 46.                                                                              celerating the calculation of the total loss. However, the storage
+[49] Linan Yue, Qi Liu, Ye Liu, Weibo Gao, Fangzhou Yao, and Wenfeng Li. 2024. Coop-       requirements associated with Hessian matrices remain substan-
+     erative classification and rationalization for graph generalization. In Proceedings
+     of the ACM on Web Conference 2024. 344–352.
+                                                                                           tial [53]. Therefore, drawing inspiration from the Gauss-Newton
+[50] Zheng Zhang, Le Wu, Qi Liu, Jiayu Liu, Zhenya Huang, Yu Yin, Yan Zhuang,              method [41], we approximate 𝐻 as 2 · 𝐽 𝑇 𝐽 for the Hessian matrix,
+     Weibo Gao, and Enhong Chen. 2024. Understanding and improving fairness in             where 𝐽 represents the Jacobian matrix. Consequently, we arrive at
+     cognitive diagnosis. Science China Information Sciences 67, 5 (2024), 152106.
+[51] Chuang Zhao, Hongke Zhao, Xiaomeng Li, Ming He, Jiahui Wang, and Jianping             the final formulation of L𝑏𝑛𝑎𝑣 as follows:
+     Fan. 2023. Cross-domain recommendation via progressive structural alignment.                                       𝑇
+     IEEE Transactions on Knowledge and Data Engineering (2023).
+[52] Hao Zhao, Ming Lu, Anbang Yao, Yiwen Guo, Yurong Chen, and Li Zhang.
+                                                                                           L𝑏𝑛𝑎𝑣 ≈ ∇𝜃𝑏 −1 L 𝑝𝑘𝑡 (𝜃𝑏 −1 ) · 𝛿𝜃𝑏 −1 + (𝛿𝜃𝑏 −1 )𝑇 · 𝐽 𝑇 𝐽 · 𝛿𝜃𝑏 −1
+     2017. Physics inspired optimization on semantic transfer features: An alternative                                          𝑇
+     method for room layout estimation. In Proceedings of the IEEE conference on
+     computer vision and pattern recognition. 10–18.                                             ≤       ∇𝜃𝑏 −1 L 𝑝𝑘𝑡 (𝜃𝑏 −1 )        · |𝛿𝜃𝑏 −1 | + |𝛿𝜃𝑏 −1 |𝑇 · |𝐽 𝑇 𝐽 | · |𝛿𝜃𝑏 −1 |
+[53] Man Zhou, Jie Xiao, Yifan Chang, Xueyang Fu, Aiping Liu, Jinshan Pan, and
+     Zheng-Jun Zha. 2021. Image de-raining via continual learning. In Proceedings of
+     the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 4907–4916.                                                                                           (20)
+[54] Renyu Zhu, Dongxiang Zhang, Chengcheng Han, Ming Gaol, Xuesong Lu, Wein-
+     ing Qian, and Aoying Zhou. 2022. Programming knowledge tracing: A compre-             where | · | in the Eq. (20) denotes element-wise absolute value in
+     hensive dataset and a new model. In 2022 IEEE International Conference on Data
+     Mining Workshops (ICDMW). IEEE, 298–307.                                              our implementation. The proof is completed.                      □
+[55] IS Zinovieva, VO Artemchuk, Anna V Iatsyshyn, OO Popov, VO Kovach, Andrii V
+     Iatsyshyn, YO Romanenko, and OV Radchenko. 2021. The use of online coding             Algorithm 1 The training and test of PKT backbone models
+     platforms as additional distance tools in programming education. In Journal of
+     physics: Conference series, Vol. 1840. IOP Publishing, 012029.
+                                                                                           Require: Training dataset 𝐷𝑡𝑟𝑎𝑖𝑛 , test dataset 𝐷𝑡𝑒𝑠𝑡 , learning rate
+                                                                                               𝛼, number of epochs 𝑁
+                                                                                           Ensure: Trained PKT backbone model 𝑀
+A     Proof
+                                                                                            1: Initialize model parameters 𝑊 randomly
+Property 1. L𝑏𝑛𝑎𝑣 is bounded as follows:                                                    2: Training started
+                             𝑇                                                            3: for 𝑒𝑝𝑜𝑐ℎ = 1 to 𝑁 do
+L𝑏𝑛𝑎𝑣 ≤ ∇𝜃𝑏 −1 L 𝑝𝑘𝑡 (𝜃𝑏 −1 )    · |𝛿𝜃𝑏 −1 | + |𝛿𝜃𝑏 −1 |𝑇 · |𝐽 𝑇 𝐽 | · |𝛿𝜃𝑏 −1 | ,          4:    for all 𝑙𝑢 ∈ 𝐷𝑡𝑟𝑎𝑖𝑛 do
+                                                                                  (15)      5:       // 𝑙𝑢 denotes a programming sequence of learner 𝑢 and its
+                                                                                                     length is 𝑇𝑢
+where 𝐽 is the Jacobian matrix [41]. The proof is as follows:
+                                                                                            6:       for 𝑡 = 1 to 𝑇𝑢 − 1 do
+    Proof. Given the following equations,                                                   7:           Compute programming performance at the next step
+              𝑇𝑢
+           𝑁 ∑︁                  𝑇𝑢
+                              𝑁 ∑︁                                                                       𝑟ˆ𝑢,𝑡 +1 = 𝑀 (𝑙𝑢,1:𝑡 ;𝑊 )
+           ∑︁     𝑝𝑘𝑡
+                              ∑︁     𝑝𝑘𝑡
+L𝑏𝑛𝑎𝑣 =          L𝑢,𝑡 (𝜃𝑏 ) −       L𝑢,𝑡 (𝜃𝑏 −1 ) , 𝛿𝜃𝑏 −1 = 𝜃𝑏 − 𝜃𝑏 −1,                    8:           // 𝑙𝑢,1:𝑡 is programming records of 𝑢 from step 1 to 𝑡
+                                                                                                                                       𝑝𝑘𝑡                       
+           𝑢=1 𝑡 =1                  𝑢=1 𝑡 =1                                               9:           Compute cross-entropy loss L𝑢,𝑡 = 𝐵𝐶𝐸 𝑟𝑢,𝑡 +1, 𝑟ˆ𝑢,𝑡 +1
+                                                                                  (16)
+                                                                                                                                                         𝑝𝑘𝑡
+                                                      Í𝑁 Í𝑇𝑢           𝑝𝑘𝑡                 10:       Update parameters 𝑊 = 𝑊 − 𝛼∇L𝑢,𝑡
+and let L 𝑝𝑘𝑡 (𝜃𝑏 ) and L 𝑝𝑘𝑡 (𝜃𝑏 −1 ) denote 𝑢=1 𝑡 =1 L𝑢,𝑡 (𝜃𝑏 ) and
+Í𝑁 Í𝑇𝑢 𝑝𝑘𝑡                                                                                 11:     end for
+  𝑢=1 𝑡 =1 L𝑢,𝑡 (𝜃𝑏 −1 ) respectively, we take the Taylor expansion                        12:   end for
+of L 𝑝𝑘𝑡 (𝜃𝑏 −1 ) at point 𝜃𝑏 −1 , which is an infinite sum of terms that                  13: end for
+are expressed in the form of loss function’s derivatives at a single                       14: Training completed
+point:                                                                                     15:
+                                                               𝑇                         16: Testing started
+L 𝑝𝑘𝑡 (𝜃𝑏 −1 + 𝛿𝜃𝑏 −1 ) = L 𝑝𝑘𝑡 (𝜃𝑏 −1 ) + ∇𝜃𝑏 −1 L 𝑝𝑘𝑡 (𝜃𝑏 −1 ) · 𝛿𝜃𝑏 −1                  17: for all 𝑙𝑢 ∈ 𝐷𝑡𝑒𝑠𝑡 do
+                           1                                                             18:   for 𝑡 = 1 to 𝑇𝑢 − 1 do
+                        + (𝛿𝜃𝑏 −1 )𝑇 · 𝐻 · 𝛿𝜃𝑏 −1 + 𝑂 ∥𝛿𝜃𝑏 −1 ∥ 3 ,                        19:     Compute programming performance at the next step
+                           2
+                                                                      (17)                         𝑟ˆ𝑢,𝑡 +1 = 𝑀 (𝑙𝑢 ;𝑊 )
+where 𝐻 denotes Hessian matrix:                                                            20:     Compute performance metric using 𝑟𝑢,𝑡 +1 and 𝑟ˆ𝑢,𝑡 +1
+                                                                                           21:   end for
+                            𝐻 = ∇𝜃𝑏 −1 L 𝑝𝑘𝑡 (𝜃𝑏 −1 ).                            (18)     22: end for
+                                                                                           23: Testing completed
+Then L𝑏𝑛𝑎𝑣 can be derived as:
+
+L𝑏𝑛𝑎𝑣 = L 𝑝𝑘𝑡 (𝜃𝑏 ) − L 𝑝𝑘𝑡 (𝜃𝑏 −1 )                                                       B     Datasets and Preprocessing
+                                                                                           BePKT[54] comprises extensive programming submission records
+        = L 𝑝𝑘𝑡 (𝜃𝑏 −1 + 𝛿𝜃𝑏 −1 ) − L 𝑝𝑘𝑡 (𝜃𝑏 −1 )
+                                                                                           in several languages authored by college students. We retain sub-
+                              𝑇             1                                            mission records written in C, C++, Python, and Java. AtCoder is
+        ≈ ∇𝜃𝑏 −1 L 𝑝𝑘𝑡 (𝜃𝑏 −1 ) · 𝛿𝜃𝑏 −1 + (𝛿𝜃𝑏 −1 )𝑇 · 𝐻 · 𝛿𝜃𝑏 −1 .
+                                              2                                            collected from the online programming competition website At-
+                                                                 (19)                      coder.org, consisting of codes in multiple languages, as published by
+KDD ’25, August 3–7, 2025, Toronto, ON, Canada                                                                                                          Weibo Gao et al.
+
+
+Algorithm 3 The Algorithm of Coda (Part 2)                                         the CodeNet project[32]. We retain submission records in C, C++,
+ 1: BEGIN MAIN FUNCTION:                                                           and Python as the coding languages. Furthermore, since PST [21]
+ 2: Initialize: learning rate 𝑙𝑟 , 𝑒𝑝𝑜𝑐ℎ ← 0, 𝐵𝑎𝑡𝑐ℎ𝑆𝑖𝑧𝑒, 𝑇𝑜𝑡𝑎𝑙𝐸𝑝𝑜𝑐ℎ,               only supports single-language programming scenarios, we addition-
+      the number of clusters 𝐶𝑘 , the number of GCN layers 𝐿.                      ally sample submissions written in C++ from BePKT to generate the
+ 3: // Training process:                                                           BePKT_C++ dataset and submissions written in C from AtCoder to
+ 4: repeat                                                                         generate the AtCoder_C dataset, enabling us to evaluate PST. For
+ 5:   For 𝑏 from 1 to |D𝑡𝑟𝑎𝑖𝑛 |/𝐵𝑎𝑡𝑐ℎ𝑆𝑖𝑧𝑒:                                         each dataset, we exclude learners with fewer than five submissions
+ 6:       Initialize prediction loss L 𝑝 ← 0                                       to ensure that every learner has a sufficient number of records for
+ 7:       For each 𝑢 ∈ D𝑡𝑟𝑎𝑖𝑛𝑏 :                                                   tracing.
+ 8:          {𝐺𝑢,𝑖 }𝑛𝑖=1 , I𝑢 ← CodeGraphConstruction(𝑙𝑢 ).
+ 9:          I𝑢∗ , {𝐺𝑢,𝑖 }𝑛𝑖=1 ← UnwantedSignalsIdentification(I𝑢 ,                Algorithm 2 The Algorithm of Coda (Part 1)
+           𝑀
+    {S𝑞 𝑗 } 𝑗=1 , {𝐺𝑢,𝑖 }𝑛𝑖=1 ).                                                    1: Input: 𝑁 learners’ programming sequences {𝑙 1 , 𝑙 2 , · · · , 𝑙 𝑁 }, the
+10:          {(𝐶𝑢,𝑐𝑙 , W𝑢,𝑐𝑙 )}𝐶 𝑘
+                                                                           ←             optimized backbone PKT model M𝑃𝐾𝑇 , correct solution feature
+                               𝑐𝑙=1
+                                                                                         set {S𝑞 𝑗 }𝑀
+                                                                                                    𝑗=1 of 𝑀 questions, training set D𝑡𝑟𝑎𝑖𝑛 , test set D𝑡𝑒𝑠𝑡 .
+      ClusterAwareWeakSignalFusion({𝐺𝑢,𝑖 }𝑛𝑖=1 ,                  {𝑥®𝑢,𝑖 }𝑇𝑖=1
+                                                                            𝑢
+                                                                               ,
+      𝐶𝑘 , 𝐿).
+                                                                                    2: Parameters (𝜃 ): W, W𝑎 , W𝑐 , W𝐴 , W𝐵 .
+11:          // Tuning Adaptor for PKT
+                                                                                    3: Function CodeGraphConstruction(𝑙𝑢 ):
+12:          For 𝑡 from 1 to 𝑇𝑢 − 1:
+                                                                                    4:    // Construct code graph based on code semantic similarity.
+13:              Construct prompt 𝑝®𝑢 , 𝑡 via I𝑢 , {(𝐶𝑢,𝑐𝑙 , W𝑢,𝑐𝑙 )}𝐶 𝑘
+                                                                          .
+                                                                     𝑐𝑙=1           5:    // 𝑙𝑢 = {(𝑞𝑢,1, 𝑐𝑢,1, 𝑥𝑢,1, 𝑟𝑢,1 ), . . . , (𝑞𝑢,𝑇𝑢 , 𝑐𝑢,𝑇𝑢 , 𝑥𝑢,𝑇𝑢 , 𝑟𝑢,𝑇𝑢 )}
+14:              // Calculate correction signal.                                    6:    For each pair of codes < 𝑥𝑢,𝑖 , 𝑥𝑢,𝑗 > in 𝑙𝑢 :
+15:              ℎ®′ 𝑡𝑢,𝑎 ← (W𝑇𝐴 · W𝐵 ) ⊙ 𝑝®𝑢,𝑡 .                                   7:        Calculate indicator matrix 𝑀𝑢,<𝑖,𝑗 > .
+16:              // Update knowledge state ℎ®𝑢,𝑡 learned by the PKT                 8:    End for
+    backbone M𝑃𝐾𝑇 .                                                                 9:    Generate binary adjacency matrix 𝐴𝑢 via Rank𝜖 .
+17:              ℎ®′𝑢,𝑡 ← ℎ®𝑢,𝑡 + ℎ®′𝑢,𝑡𝑎 .                                        10:    // Note that 𝐴𝑢 may not guarantee a connected graph, and it
+18:              // Compute programming performance at the step 𝑡 + 1                  may contain 𝑛 subgraphs.
+    via programming records of 𝑢 from step 1 to 𝑡.                                 11:    Return code graph set: {𝐺𝑢,𝑖 }𝑛𝑖=1 , isolated code set: I𝑢 .
+19:              𝑟ˆ𝑢,𝑡 +1 = M𝑃𝐾𝑇 (𝑙𝑢,1:𝑡 ; ℎ®′𝑢,𝑡 )                                12: Function UnwantedSignalsIdentification(I𝑢 , {S𝑞 𝑗 }𝑀                          𝑗=1 ,
+20:
+                                            𝑝𝑘𝑡
+                 Compute loss L𝑝 = L𝑢,𝑡 + L𝑢,𝑡
+                                                    𝑎𝑑𝑎𝑝𝑡𝑜𝑟
+                                                            .                          {𝐺𝑢,𝑖 }𝑛𝑖=1 ):
+21:          End for                                                               13:    // Identify unwanted submissions from isolated nodes.
+22:       End for                                                                  14:    Initialize an unwanted set I𝑢∗ ← ∅
+23:       Calculate 𝜃𝑏 ← 𝜃𝑏 −1 − 𝑙𝑟 · ∇𝜃 L 𝑝 , without gradient back-              15:    For each isolated node 𝑖 ∈ I𝑢 :
+    propagating.                                                                   16:        Obtain question ID 𝑞𝑢,𝑖 corresponding to code 𝑖
+24:       Calculate L𝑏𝑛𝑎𝑣 via 𝜃𝑏 , 𝜃𝑏 −1 .                                         17:        For each 𝑥𝑢,𝑗 ′ in S𝑞𝑢,𝑖 :
+25:       L𝐶𝑜𝑑𝑎 ← L𝑝 + L𝑏𝑛𝑎𝑣                                                       18:           𝑠𝑖,𝑗 ′ ← sim(W ⊙ 𝑥®𝑢,𝑖 , W ⊙ 𝑥®𝑢,𝑗 ′ ).
+                                                                                   19:        End for
+26:       Update parameters 𝜃𝑏 ← 𝜃𝑏 −1 −𝑙𝑟 ·∇𝜃 L𝑏𝑛𝑎𝑣 , with gradient
+                                                                                   20:        𝑆𝑖 ← {𝑠𝑖,𝑗 ′ ; 𝑗 ′ ∈ S𝑞𝑢,𝑖 }
+    backpropagating.
+                                                                                   21:        If mean(𝑆𝑖 ) < median(𝑆𝑖 ):
+27:    End for
+                                                                                   22:           Mark node 𝑖 as unwanted and I𝑢∗ ∪ {𝑖}.
+28: until 𝑒𝑝𝑜𝑐ℎ equals 𝑇𝑜𝑡𝑎𝑙𝐸𝑝𝑜𝑐ℎ
+                                                                                   23:        Else:
+29: // Test process:
+                                                                                   24:           Link code node 𝑖 with {𝐺𝑢,𝑖 }𝑛𝑖=1 .
+30: For each 𝑢 ∈ D𝑡𝑒𝑠𝑡 :
+                                                                                   25:    End for
+31:    For 𝑡 from 1 to 𝑇𝑢 − 1:
+                                                                                   26:    Return unwanted set: I𝑢∗ , updated code graphs: {𝐺𝑢,𝑖 }𝑛𝑖=1 .
+32:       {𝐺𝑢,𝑖 }𝑛𝑖=1 , I𝑢 ← CodeGraphConstruction(𝑙𝑢,1:𝑡 ).
+                                                                                   27: Function               ClusterAwareWeakSignalFusion({𝐺𝑢,𝑖 }𝑛𝑖=1 ,
+33:       I𝑢∗ , {𝐺𝑢,𝑖 }𝑛𝑖=1 ← UnwantedSignalsIdentification(I𝑢 ,                               𝑇𝑢
+    {S𝑞 𝑗 }𝑀              𝑛                                                            {𝑥®𝑢,𝑖 }𝑖=1 , 𝐶𝑘 , 𝐿):
+           𝑗=1 , {𝐺𝑢,𝑖 }𝑖=1 ).
+                                                                                   28:    // Apply 𝐿-layer cluster-aware GCN to update node features.
+34:       {(𝐶𝑢,𝑐𝑙 , W𝑢,𝑐𝑙 )}𝐶 𝑘
+                            𝑐𝑙=1
+                                                                           ←       29:    {𝑥®′𝑢,𝑖 }𝑇𝑖=1
+                                                                                                     𝑢
+                                                                                                        ← GCN({𝑥®𝑢,𝑖 }𝑇𝑖=1 𝑢
+                                                                                                                              , {𝐺𝑢,𝑖 }𝑛𝑖=1, W, Wa, Wc )
+    ClusterAwareWeakSignalFusion({𝐺𝑢,𝑖 }𝑛𝑖=1 ,                 {𝑥®𝑢,𝑖 }𝑇𝑖=1
+                                                                         𝑢
+                                                                            ,      30:    𝐶𝑘 clusters ← KMeans({𝑥®′𝑢,𝑖 }, 𝐶𝑘 ).
+    𝐶𝑘 , 𝐿).                                                                       31:    Mark core submissions and weak signals for each cluster.
+35:       Construct prompt 𝑝®𝑢 , 𝑡 via I𝑢 , {(𝐶𝑢,𝑐𝑙 , W𝑢,𝑐𝑙 )}𝐶 𝑘
+                                                              𝑐𝑙=1
+                                                                   .               32:    Return a core submission and its related weak signal set for
+36:       ®′
+          ℎ 𝑡 ← (W · W𝐵 ) ⊙ 𝑝®𝑢,𝑡 .
+                      𝑇                                                                each cluster 𝑐𝑙: {(𝐶𝑢,𝑐𝑙 , W𝑢,𝑐𝑙 )}𝐶      𝑘
+                                                                                                                                      .
+              𝑢,𝑎        𝐴                                                                                                     𝑐𝑙=1
+37:     ℎ®′𝑢,𝑡 ← ℎ®𝑢,𝑡 + ℎ®′𝑢,𝑡𝑎 .
+38:     𝑟ˆ𝑢,𝑡 +1 = M𝑃𝐾𝑇 (𝑙𝑢,1:𝑡 ; ℎ®′𝑢,𝑡 )                                         C      Algorithms
+39:     Compute performance metric using 𝑟𝑢,𝑡 +1 and 𝑟ˆ𝑢,𝑡 +1 .                    Algorithm 1 shows the pseudo-code of training and testing a PKT
+40:   End for                                                                      backbone model. Algorithms 2 and 3 show the workflow of Coda.
+41: End for
+

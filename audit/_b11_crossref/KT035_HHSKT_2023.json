@@ -1,0 +1,88 @@
+{
+  "title": [
+    "HHSKT: A learner–question interactions based heterogeneous graph neural network model for knowledge tracing"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0002-7352-5700",
+      "authenticated-orcid": false,
+      "given": "Qin",
+      "family": "Ni",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-7809-6901",
+      "authenticated-orcid": false,
+      "given": "Tingjiang",
+      "family": "Wei",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Jiabao",
+      "family": "Zhao",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Liang",
+      "family": "He",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Chanjin",
+      "family": "Zheng",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2023,
+        4
+      ]
+    ]
+  },
+  "container-title": [
+    "Expert Systems with Applications"
+  ],
+  "volume": "215",
+  "issue": null,
+  "page": "119334",
+  "publisher": "Elsevier BV",
+  "DOI": "10.1016/j.eswa.2022.119334",
+  "type": "journal-article"
+}

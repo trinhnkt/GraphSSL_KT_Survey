@@ -1,0 +1,249 @@
+arXiv:2506.11107v1  [cs.SE]  7 Jun 2025
+Denoising Programming Knowledge Tracing
+with a Code Graph-based Tuning Adaptor
+Weibo Gao
+State Key Laboratory of Cognitive
+Intelligence, University of Science and
+Technology of China
+Hefei, China
+weibogao@mail.ustc.edu.cn
+Qi Liu∗
+State Key Laboratory of Cognitive
+Intelligence, University of Science and
+Technology of China
+Institute of Artificial Intelligence,
+Hefei Comprehensive National
+Science Center
+Hefei, China
+qiliuql@ustc.edu.cn
+Rui Li
+State Key Laboratory of Cognitive
+Intelligence, University of Science and
+Technology of China
+Hefei, China
+ruili2000@mail.ustc.edu.cn
+Yuze Zhao
+State Key Laboratory of Cognitive
+Intelligence, University of Science and
+Technology of China
+Hefei, China
+yuzezhao@mail.ustc.edu.cn
+Hao Wang
+State Key Laboratory of Cognitive
+Intelligence, University of Science and
+Technology of China
+Hefei, China
+wanghao3@ustc.edu.cn
+Linan Yue
+State Key Laboratory of Cognitive
+Intelligence, University of Science and
+Technology of China
+Hefei, China
+lnyue@mail.ustc.edu.cn
+Fangzhou Yao
+State Key Laboratory of Cognitive
+Intelligence, University of Science and
+Technology of China
+Hefei, China
+fangzhouyao@mail.ustc.edu.cn
+Zheng Zhang
+State Key Laboratory of Cognitive
+Intelligence, University of Science and
+Technology of China
+Hefei, China
+zhangzheng@mail.ustc.edu.cn
+Abstract
+Programming Knowledge Tracking (PKT) aims to dynamically diag-
+nose learners’ mastery levels of programming knowledge based on
+their coding activities, facilitating more effective and personalized
+programming education. However, current PKT studies primar-
+ily focus on the implicit relationship between code content and
+knowledge assessment, often overlooking two types of noise sig-
+nals in long-term programming activities: unwanted signals from
+unrelated submissions and weak signals from minor modifications.
+This practical challenge significantly limits model performance
+and application. To address this issue, we propose Coda, a Code
+graph-based tuning adaptor designed to enhance existing PKT mod-
+els by identifying and mitigating the impact of noise. Specifically,
+Coda first transforms the loose code sequences submitted by each
+learner into a compact code graph. By leveraging this code graph,
+∗Corresponding Author.
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than the
+author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or
+republish, to post on servers or to redistribute to lists, requires prior specific permission
+and/or a fee. Request permissions from permissions@acm.org.
+KDD ’25, Toronto, ON, Canada
+© 2025 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+ACM ISBN 979-8-4007-1245-6/25/08
+https://doi.org/10.1145/3690624.3709172
+unwanted signals can be identified from a semantic similarity per-
+spective. We then apply a cluster-aware GCN to the code graph,
+which improves the discrimination of weak signals and enables
+their clustering for identification. Finally, a lightweight yet effec-
+tive adaptor is incorporated into the PKT task through optimization
+with two noise feature-based constraints and a navigational reg-
+ularization term, to correct knowledge states affected by noise. It
+is worth mentioning that the Coda framework is model-agnostic
+and can be adapted to most existing PKT solutions. Extensive ex-
+perimental results on four real-world datasets demonstrate that
+Coda effectively performs the PKT task in the presence of noisy
+programming records, outperforming typical baselines.
+CCS Concepts
+• Applied computing →E-learning.
+Keywords
+User Modeling, Programming Knowledge Tracing, Learning Per-
+formance Prediction, Intelligent Education, Data Denoising
+ACM Reference Format:
+Weibo Gao, Qi Liu, Rui Li, Yuze Zhao, Hao Wang, Linan Yue, Fangzhou
+Yao, and Zheng Zhang. 2025. Denoising Programming Knowledge Tracing
+with a Code Graph-based Tuning Adaptor. In Proceedings of the 31st ACM
+SIGKDD Conference on Knowledge Discovery and Data Mining V.1 (KDD ’25),
+August 3–7, 2025, Toronto, ON, Canada. ACM, New York, NY, USA, 12 pages.
+https://doi.org/10.1145/3690624.3709172
+
+KDD ’25, August 3–7, 2025, Toronto, ON, Canada
+Weibo Gao et al.
+1
+Introduction
+With the advent of online programming platforms like 𝐿𝑒𝑒𝑡𝐶𝑜𝑑𝑒.𝑐𝑜𝑚,
+it has become increasingly popular for students and other learners
+to use these websites for coding training [10, 27, 47]. As data on
+online programming activities accumulate, understanding the pro-
+gramming training process is crucial for enhancing online learning
+services, such as question recommendation [43, 51].
+Human programming practice generally involves an iterative
+process of code submission and modification to solve tasks. Learn-
+ers submit code and receive feedback, such as error messages like
+Compile Error, or positive feedback like Accepted. Based on the
+specific feedback, they revise their previous submissions. Figure 1
+illustrates this process, where a learner attempts to solve each ques-
+tion (e.g., 𝑞1) through multiple submissions. During this process,
+learners develop an internal understanding of the question, or tech-
+nically speaking, a hidden computational knowledge state, repre-
+senting their learning progress. As learners refine their code based
+on feedback, their knowledge states evolve, reflecting their learning
+journey. To better understand programming learning, it is essential
+to model and trace the evolution of these invisible knowledge states,
+which is the focus of Programming Knowledge Tracing[54].
+Programming Knowledge Tracing (PKT) involves dynamically
+evaluating learners’ programming knowledge states based on their
+coding activities. These knowledge states refer to learners’ profi-
+ciency in various programming knowledge concepts such as Array
+and Function. PKT extends traditional knowledge tracing (KT) tech-
+niques [35, 38], which are designed for non-programming general-
+purpose learning environments [21], by incorporating code-related
+features specific to programming environments. Its tracing results
+offer significant insights into students’ coding abilities [18, 25, 54].
+Since knowledge states cannot be directly observed, most attempts
+model PKT as a next-performance prediction problem, usually us-
+ing recurrent neural networks (RNNs) to summarize programming
+sequences [47]. These models mine code features to infer learner
+knowledge states from their codes[21, 23, 36], establishing implicit
+relationships between code and knowledge [54], and achieving
+high predictive performance. However, these models are limited by
+the numerous noisy submissions in real-world programming data,
+which stem from the open-ended nature of programming platforms.
+Through examining online programming environments [29, 55],
+we identify two primary categories of prevalent noisy signals during
+programming:
+• Unwanted signals from unrelated submissions. In the ma-
+jority of learners’ programming practice records, there are com-
+monly codes that are unrelated to the solved questions. Typical
+examples include: (1) Novice programmers are unfamiliar with
+the web-based coding environment and use simple but irrelevant
+code snippets (e.g., “print (‘Welcome to KDD 2025’)”) to test the
+use of the online coding environment. (2) Learners may care-
+lessly submit codes to inappropriate questions. For instance, a
+learner might mistakenly submit the solution for the question
+“Add Two Numbers” to a similar question “Add Binary” when
+both submission pages are open simultaneously in their web
+browser. These records do not reflect the learner’s knowledge
+and introduce unwanted signals in their programming history,
+complicating the accurate modeling of true knowledge states.
+question
+feedback
+Compile
+Error
+question
+feedback
+Wrong
+Answer
+question
+feedback
+Accepted
+question
+feedback
+knowledge
+Array
+knowledge
+Array
+knowledge
+Array
+knowledge
+Function
+question
+knowledge
+Function
+Wrong
+Answer
+?
+PKT
+infer
+𝑞1
+𝑞1
+𝑞1
+𝑞2
+𝑞2
+Initial
+state
+Unpracticed
+Figure 1: The example of the programming practice process,
+where a PKT model is used to infer future performance.
+• Weak signals from minor modifications. Solving a program-
+ming problem typically involves multiple submissions, where
+many submissions are minor modifications of previous ones
+based on feedback. After several failed attempts, learners may
+submit an entirely new code. We argue that learners’ knowledge
+states are likely to remain unchanged for minor modification
+submissions, as the modifications are not significant improve-
+ments. While these minor changes may be correct or meaningful
+for humans, they are redundant to PKT models. These weak
+signals can mislead the PKT model if used directly in training,
+leading to overestimation or underestimation of the learner’s
+knowledge state.
+Note: The noisy signals described above provide two typical
+insights for our preliminary exploration. Many other types of noise
+exist in programming data, which we plan to explore in future re-
+search. Additionally, although these so-called noisy code contents
+may be meaningful from a human perspective, they could still rep-
+resent irrelevant or redundant signals for current PKT technology,
+so we classify them as noise.
+In this paper, our goal is to mitigate the impact of these noisy sig-
+nals to enhance existing PKT models, which presents two primary
+challenges: (1) Accurately identifying noise signals is challenging
+due to the absence of noise labels or noise annotation criteria. The
+available clues are the submitted codes, feedback, and question in-
+formation. (2) Designing an effective and lightweight method to use
+noise identification to denoise existing PKT solutions is significant,
+due to the computational complexity of PKT tasks.
+To address these challenges, we propose Coda, a code graph-
+based tuning adaptor designed to enhance existing PKT models
+through denoising. While mature denoising methods exist in other
+fields [12], this is the first attempt to address denoising within PKT.
+Our model comprises two key stages: the noisy signal identification
+stage and the adaptive PKT stage. In the noisy signal identification
+stage, we construct a code graph based on programming sequences
+to explore semantic relations between codes. Using this code graph,
+we assess unwanted signals from unrelated codes by examining
+semantic similarities between codes and their correlations with
+questions. To distinguish weak signals from submissions, we em-
+ploy a cluster-aware Graph Convolution Network (GCN) over the
+code graph, which improves the discrimination of weak signals and
+enables their clustering for identification. In the adaptive PKT stage,
+a tuning adaptor facilitates the adaptation of the PKT task to the
+noisy signals by tuning a trained PKT backbone model, ensuring
+computational efficiency. Two noise code feature-based constraints
+and a navigational regularization term with theoretical derivation

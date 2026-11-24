@@ -1,0 +1,169 @@
+{
+  "title": [
+    "DGEKT: A Dual Graph Ensemble Learning Method for Knowledge Tracing"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0003-3332-1348",
+      "authenticated-orcid": false,
+      "given": "Chaoran",
+      "family": "Cui",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "Shandong University of Finance and Economics, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-6289-8918",
+      "authenticated-orcid": false,
+      "given": "Yumo",
+      "family": "Yao",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shandong University of Finance and Economics, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-3156-754X",
+      "authenticated-orcid": false,
+      "given": "Chunyun",
+      "family": "Zhang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shandong University of Finance and Economics, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-5859-1152",
+      "authenticated-orcid": false,
+      "given": "Hebo",
+      "family": "Ma",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shandong University of Finance and Economics, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-3306-9317",
+      "authenticated-orcid": false,
+      "given": "Yuling",
+      "family": "Ma",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shandong Jianzhu University, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-9076-6565",
+      "authenticated-orcid": false,
+      "given": "Zhaochun",
+      "family": "Ren",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Leiden University, The Netherlands"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-3942-4671",
+      "authenticated-orcid": false,
+      "given": "Chen",
+      "family": "Zhang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Hong Kong Polytechnic University, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-7576-2286",
+      "authenticated-orcid": false,
+      "given": "James",
+      "family": "Ko",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Education University of Hong Kong, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2024,
+        1,
+        22
+      ]
+    ]
+  },
+  "container-title": [
+    "ACM Transactions on Information Systems"
+  ],
+  "volume": "42",
+  "issue": "3",
+  "page": "1-24",
+  "publisher": "Association for Computing Machinery (ACM)",
+  "DOI": "10.1145/3638350",
+  "type": "journal-article"
+}

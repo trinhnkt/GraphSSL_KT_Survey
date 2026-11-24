@@ -1,0 +1,1398 @@
+
+
+===== PAGE 1 =====
+Contents lists available at ScienceDirect
+Expert Systems With Applications
+journal homepage: www.elsevier.com/locate/eswa
+Heterogeneous graph knowledge tracing with novel contrastive view and 
+meta-path contexts
+Jie Liu
+ a, Zheng Guan
+ a,∗, Xue Wang
+ a, Zhijun Yang
+ b
+a School of Information Science and Engineering, Yunnan University, Kunming, 650500, China
+b Department of Education Teaching Instruments and Equipment Center, Department of Education Teaching, Yunnan Provincial, Kunming, 6500106, China
+a r t i c l e  i n f o
+Keywords:
+Knowledge tracing
+Intelligent tutoring systems
+Educational data mining
+Contrastive learning
+ a b s t r a c t
+Knowledge tracing aims to track the evolution of knowledge state based on student’s historical learning records 
+to predict future performance, which has become a key part of intelligent tutoring systems. Existing methods 
+typically model the learning process based on structural relationships between questions or skills, but the extrac-
+tion of multi-granularity heterogeneous features from sparse learning records has not been suﬃciently explored. 
+In this paper, we propose a heterogeneous graph knowledge tracing method (HCMKT) with novel contrastive 
+view and meta-path contexts to solve the above problem. Speciﬁcally, we employ meta-paths to construct coarse 
+and ﬁne-grained views, capturing higher-order interaction features among questions. Then, to learn high-quality 
+question representations, we construct contrastive view between the coarse and ﬁne-grained views with an elab-
+orate negative sample selection mechanism. Additionally, diverse question-answer interaction representations 
+are input into the LSTM network for state modeling. Finally, we integrate coarse and ﬁne-grained modeling 
+processes using online knowledge distillation to enhance model robustness. Extensive experiments conducted on 
+four datasets demonstrate the rationality and eﬀectiveness of HCMKT.
+1.  Introduction
+With the vigorous development of Artiﬁcial Intelligence (AI) technol-
+ogy, exploring how to fully empower AI in various ﬁelds has received 
+unprecedented attention. Computer-aided learning is an important em-
+bodiment of AI in education, playing a pivotal role in tailored educa-
+tion. However, how to mine meaningful student learning characteristics 
+from massive educational data to provide personalized education has 
+become a pressing issue. As a result, knowledge tracing (KT) (Abdelrah-
+man et al., 2023; Corbett & Anderson, 1994; Liu et al., 2019), which aims 
+to assess student’s future performance based on their historical learning 
+data, has therefore received considerable attention by researchers in re-
+cent years. Speciﬁcally, the KT modeling mechanism of this paper is 
+shown in Fig. 1.
+KT, a prominent ﬁeld within educational data mining, has produced 
+numerous high-performing models, encompassing traditional theories 
+(Corbett, 2000; Kasurinen & Nikula, 2009) and deep learning (DL) 
+paradigms (Ke et al., 2024; Luo et al., 2022; Ni et al., 2023; Song 
+et al., 2022; Tong et al., 2020; Yang et al., 2024). Currently, main-
+stream KT models typically embed input factors as dense numerical vec-
+tor representations before network prediction (Zhang et al., 2023). The
+∗ Corresponding author.
+ E-mail addresses: liujie_j16u@stu.ynu.edu.cn (J. Liu), guanzheng@ynu.edu.cn (Z. Guan), wangxue2022@mail.ynu.edu.cn (X. Wang), yangzhijun@ynnu.edu.cn 
+(Z. Yang).
+completeness of the embedding signiﬁcantly inﬂuences model perfor-
+mance, making it a crucial factor to consider. Therefore, exploring how 
+to adequately construct question representations is a popular research 
+direction in the ﬁeld of KT. Early studies used skill representation vec-
+tors to model students’ knowledge state and predict future performance, 
+but overlooked question-speciﬁc features, hindering diﬀerentiation of 
+questions containing same skills. Later research incorporated question 
+information more into models to enrich the question representations 
+(Lindsey et al., 2014; Liu et al., 2019; Zhang et al., 2017b). However, 
+the number of questions in learning records often exceeds that of skills, 
+with each skill typically linked to multiple questions. Speciﬁcally, some 
+questions have fewer interactions than their corresponding skills. Con-
+sequently, modeling question representations directly from sparse learn-
+ing records results in inadequate representations, limiting the ability to 
+track knowledge state and predict performance.
+Several previous studies (Cen et al., 2008; Gan et al., 2020; Vie 
+& Kashima, 2019) have introduced extensive student assistance infor-
+mation in a ﬂexible manner. However, this information focuses only 
+on skills while ignoring complicated question attributes. Later, due 
+to the high eﬃciency of graph structures in describing complex fea-
+ture relationships, the application of graph neural networks (GNN)
+https://doi.org/10.1016/j.eswa.2025.128840
+Received 7 March 2025; Received in revised form 4 June 2025; Accepted 28 June 2025
+Expert Systems With Applications 295 (2026) 128840 
+Available online 29 June 2025 
+0957-4174/© 2025 Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and similar technologies. 
+
+===== PAGE 2 =====
+J. Liu et al.
+Fig. 1. KT modeling mechanism diagram. First, a heterogeneous information network (HIN) is constructed based on learning records. Then, feature information is 
+modeled from coarse and ﬁne-grained views. Finally, the fused features are used to predict student’s future performance.
+(Liu et al., 2024; Zhang et al., 2024; Zhao et al., 2025) in large-scale 
+graph data mining scenarios such as knowledge graphs, recommenda-
+tion systems, and social networks was accelerated. Therefore, graph 
+structure-based KT analysis methods (Nakagawa et al., 2019; Tong et al., 
+2020; Yang et al., 2021) have emerged, which alleviate the data spar-
+sity problem by mining the correspondences between interaction enti-
+ties (such as question, skill and templated) in graphs. In these methods, 
+the correspondences between entities are usually skill-to-skill, question-
+to-question, and skill-to-question. Through capturing similar feature in-
+formation between skills or questions on the graph to enrich the in-
+put representation, the robustness of modeling and prediction is en-
+hanced. However, considering only the homogeneous structural rela-
+tionships between skills or questions, while ignoring the heterogeneous 
+information between questions, may limit information gain. There-
+fore, a question-centered heterogeneous information network (HIN) is 
+constructed in HCMKT, and the meta-path view with question-entity-
+question as path instances is established. Unlike KT studies introducing 
+meta-paths, which only considered connectivity, we incorporated their 
+semantic context and treated the meta-path set formed by question at-
+tributes as meta-path contexts. Speciﬁcally, by introducing a relay en-
+tity to connect questions, HCMKT capture higher-order heterogeneous 
+relationships among questions at a deeper level, while integrating more 
+feature nodes at a broader scale.
+Self-supervised learning (SSL) (Yu et al., 2024) enables models 
+to learn high-quality representations by deriving supervisory signals 
+from data. Among various SSL methods, contrastive learning (CL) has 
+emerged as a representative approach and has garnered signiﬁcant at-
+tention in KT. In KT, sequential data augmentation strategies (such 
+as response ﬂipping and data replacement) are primarily employed 
+to generate contrastive view for improving representation learning 
+(Dai et al., 2022; Lee et al., 2022; Yin et al., 2023). Although these 
+approaches improve model performance, they often overlook hetero-
+geneous attribute information. Furthermore, they struggle to capture 
+higher-order semantic relationships among entities such as questions, 
+skills, and assignments. Introducing CL in KT enhances the model’s capa-
+bility to discern feature similarities in high-dimensional representation 
+spaces, eﬀectively capturing deep semantic relationships among enti-
+ties. This improves the tracking of knowledge state evolution. There-
+fore, we construct contrastive view based on question representations 
+from coarse and ﬁne-grained modeling, enabling CL to capture macro-
+level structural information and micro-level semantic features. More-
+over, as knowledge distillation (KD) enables real-time learning and con-
+tinuous reﬁnement, HCMKT leverages KD to integrate modeling net-
+works across diﬀerent views, improving its robustness and predictive
+accuracy.
+In this paper, to adequately extract multi-granularity heterogeneous 
+features from sparse learning records, we propose a heterogeneous 
+graph knowledge tracing method (HCMKT) with novel contrastive view 
+and meta-path contexts. A coarse view and a ﬁne-grained view are con-
+structed leveraging meta-paths to characterize heterogeneous relation-
+ships among questions. The coarse view indicates that two question 
+objects are connected via meta-paths, while the ﬁne-grained view de-
+scribes the semantic details of their connections based on the meta-path 
+contexts. By constructing these two views, HCMKT not only integrates 
+node features on a broader scale, but also captures the heterogeneous re-
+lationships between questions on a deeper level. To learn high-quality 
+question representations, we not only simply aggregate by meta-path 
+induced graphs to generate node embeddings, but also introduce noise 
+into the ﬁne-grained view for graph augmentation to generate node 
+embeddings again. We further apply special negative sample selection 
+mechanisms and prototype contrastive learning approach to augment 
+the learning ability. By constructing contrastive view between coarse 
+and ﬁne-grained views, HCMKT is able to capture macro-level struc-
+tural information and micro-level semantic features, eﬀectively model-
+ing higher-order heterogeneous semantic relationships between ques-
+tions. Moreover, to accurately predict student’s future performance, the 
+question-answer interaction representations are fed into Long Short-
+Term Memory (LSTM) for knowledge state modeling. Finally. we com-
+bine the learning process in coarse and ﬁne-grained views by online 
+knowledge distillation to improve the model’s modeling, prediction, and 
+generalization performance. The key contributions are summarized as:
+∙ We propose a novel heterogeneous graph knowledge tracing method, 
+HCMKT, which extracts multi-granularity heterogeneous features by 
+constructing a coarse view and a ﬁne-grained view from sparse learn-
+ing records.
+∙ We utilize contrastive learning and an elaborated negative sample se-
+lection mechanism to eﬀectively capture macro-level structural in-
+formation and micro-level semantic features, enhancing HCMKT’s 
+capability to learn high-quality question representations.
+∙ We employ an online knowledge distillation mechanism to jointly 
+co-optimize the modeling of coarse and ﬁne-grained views, which 
+improves the model’s representation and generalization capabilities.
+∙ We demonstrate the robust predictive performance of HCMKT 
+through experiments on four benchmark datasets. Moreover, the ef-
+fectiveness of each module is validated via ablation studies.
+2.  Related works
+2.1.  Knowledge tracing
+Recently, deep learning-based KT methods have prevailed in KT tasks 
+due to their powerful learning and expressive abilities. Early deep learn-
+ing methods such as DKT (Piech et al., 2015) ﬁrst applied DL in KT, 
+using Recurrent Neural Network (RNN) to capture student’s dynami-
+cally changing knowledge state. DKVMN (Zhang et al., 2017a) used 
+data-driven memory matrices to model the evolutionary state of mas-
+tering speciﬁc skills. Although early deep learning methods facilitated 
+the progress of KT, they were limited to modeling shallow features in 
+sequential data. Later, to eﬀectively model exercise sequences and cap-
+ture long-term dependencies, researchers explored further KT models 
+(Choi et al., 2020; Ghosh et al., 2020; Pandey & Karypis, 2019) based 
+on attentional mechanisms. SAKT (Pandey & Karypis, 2019) introduced 
+the Transformer ﬁrstly to learn attention matrices containing the rel-
+Expert Systems With Applications 295 (2026) 128840 
+2 
+
+===== PAGE 3 =====
+J. Liu et al.
+Table 1 
+The summary of the relevant existing works in KT.
+Type Reference Advantages Disadvantages
+RNN-based DKT (Piech et al., 2015) The pioneer of deep learning-based knowl-
+edge tracing methods.
+Insuﬃcient mining of sequence and graph 
+structure information.
+Memory-augmented DKVMN (Zhang et al., 2017a) DKVMN-LA 
+(Sun et al., 2022)
+The memory structure enhances model in-
+terpretability by direct knowledge state 
+modeling.
+Lacks the ability to eﬀectively capture 
+complex relationships in learning records.
+Attention-based SAKT (Pandey & Karypis, 2019) AKT 
+(Ghosh et al., 2020) FGKT (Mao et al., 
+2023) CL4KT (Lee et al., 2022) DTrans-
+former (Yin et al., 2023) HiTSKT (Ke et al., 
+2024) DisKT (Zhou et al., 2025)
+The attention mechanism eﬀectively cap-
+tures both the contextual information of 
+the target exercise and the long-term de-
+pendencies in learning records.
+Limiting feature modeling to sequence 
+structures hinders exploration of graph 
+structure information in learning records, 
+causing bias in the model.
+Graph-based GKT (Nakagawa et al., 2019) GIKT (Chen 
+et al., 2020) HHSKT Ni et al. (2023) 
+TCL4KT Sun et al. (2024) TSKT (Yang 
+et al., 2024) DGEKT (Cui et al., 2024) 
+STHKT (Li et al., 2025)
+Using graph neural networks to ex-
+tract higher-order features from learning 
+records enhances the accuracy of knowl-
+edge state evaluation.
+The lack of in-depth exploration of macro-
+level structural information and micro-
+level semantic features in graph structures 
+limits eﬀective feature modeling.
+ative weights of questions. AKT (Ghosh et al., 2020) further explored 
+the attentional mechanisms to propose monotonic attention, and com-
+bined it with psychological methods. Mining dependencies in learning 
+records enhances the model’s ability to perceive sequence structure, 
+yet it struggles to eﬀectively model non-Euclidean features. As a re-
+sult, graph structures representing student’s exercise sequences were 
+constructed to mine deep structural information, such as GKT (Nak-
+agawa et al., 2019), GIKT (Yang et al., 2021), and SKT (Tong et al., 
+2020). Furthermore, to capture more complex heterogeneous informa-
+tion from multiple sources, heterogeneous graph structure was intro-
+duced into KT (Jiang et al., 2021; Luo et al., 2022; Ni et al., 2023; Sun 
+et al., 2024; Wu & Ling, 2023; Yang et al., 2024; Zhu et al., 2024). In Luo 
+et al. (2022), the heterogeneous graph with skills and questions as nodes 
+was constructed to learn input representations. Although these meth-
+ods explore the correlation between interaction entities from diﬀerent 
+views, it is diﬃcult to learn high-quality feature information from multi-
+source heterogeneous entities. To address this issue, we construct coarse 
+and ﬁne-grained views using meta-paths, capturing deep high-order het-
+erogeneous relationships among questions and integrating more feature 
+nodes. The advantages and disadvantages of current relevant KT meth-
+ods are shown in Table 1.
+2.2.  Contrastive learning
+Contrastive learning (Su et al., 2024) constructs positive and neg-
+ative instances from the data itself, by diﬀerentiating the distance be-
+tween positive and negative instances in the feature space to learn high 
+quality representations. Its powerful ability to extract potential features 
+from unlabeled data has led to signiﬁcant results in various ﬁelds such 
+as recommender systems (Yu et al., 2024). Recently, CL has gained high 
+attention in the KT ﬁeld. CL4KT (Lee et al., 2022) imposed semantic re-
+lations on student interaction history through contrastive learning. DT-
+transformer (Yin et al., 2023) improved the stability of tracking results 
+by mitigating information bias in the knowledge state modeling process. 
+Bi-CLKT (Song et al., 2022) leveraged graph-level contrastive learning 
+of question-level subgraphs and skill-level subgraphs to improve model 
+performance. Although prior methods employ CL to extract semantic 
+and structural information from learning records, they remain limited 
+in capturing multi-granularity features in HIN. Therefore, the HCMKT 
+constructs a novel contrastive view based on coarse and ﬁne-grained 
+views, extracting macro-structural information and micro-semantic fea-
+tures, improving model performance.
+2.3.  Knowledge distillation
+Knowledge distillation (Hinton et al., 2015; Ma et al., 2025) is a DL 
+technique that eﬀectively improves the performance and robustness of 
+models through teacher-student network. It typically pre-trains a pow-
+erful cumbersome network (teacher), which then transfers its learned 
+knowledge to another compact network (student) with simple struc-
+ture. The training quality of cumbersome network greatly aﬀects the 
+model performance, and its two-stage training strategy often incurs sig-
+niﬁcant computational overhead and time cost. To alleviate this draw-
+back, online knowledge distillation (Chen et al., 2020; Cui et al., 2024; 
+Wu & Gong, 2021; Zhang et al., 2018) directly trains models by extract-
+ing knowledge from multi-branch networks. In this paper, we integrate 
+coarse and ﬁne-grained modeling into the teacher network for collabo-
+rative feature modeling, enhancing its representational power and gen-
+eralization.
+3.  Preliminary
+Deﬁnition 1. Knowledge Tracing. Given a set of historical learning records 
+of a student 𝑅 = (𝑞1, 𝑎1, 𝑞𝑓 1), (𝑞2, 𝑎2, 𝑞𝑓 2), … , (𝑞𝑡, 𝑎𝑡, 𝑞𝑓 𝑡), (𝑞𝑡, 𝑎𝑡, 𝑞𝑓 𝑡) rep-
+resents the interaction record at time 𝑡. The 𝑞𝑡 denotes the question that the 
+student exercises, 𝑎𝑡 means whether the answer was correct or not, and 𝑞𝑓 𝑡
+stands for the question (𝑄𝑢) attribute factors such as skill (𝑆𝑘), bundle (𝐵𝑢) 
+and template (𝑇𝑒). We aim to model student’s dynamically changing knowl-
+edge state, and to predict their correctness in answering target questions in the 
+next time 𝑡 + 1, by learning high-quality qf-based question representations.
+Deﬁnition 2. Heterogeneous Information Network. The heterogeneous 
+information network can be deﬁned as  = (, ), where  and  respectively 
+represent the node set and the edge set representing the connection relation-
+ship (Yu et al., 2024). Moreover, mapping functions on the node type set 
+and edge type set  are deﬁned in  and need to satisfy | + | > 2, where 
+node type mapping function and edge type mapping function are 𝜙 ∶  → 
+and 𝜑 ∶  → , respectively.
+Deﬁnition 3. Meta-path and Meta-path Context. A meta-path () is a 
+path that describes the composite relationship between diﬀerent types of nodes 
+in HIN. For two diﬀerent types of node objects 𝑁1 and 𝑁𝑙+1, the composite 
+relation 𝑅 = 𝑅1◦𝑅2◦ ⋅ ⋅ ⋅ ◦𝑅𝑙 between them can be represented by a meta-
+path 𝑁1
+𝑅1
+→ 𝑁2
+𝑅2
+→ ⋯
+𝑅𝑙
+→ 𝑁𝑙+1, where ◦ denotes the composite operator on the 
+relations. In this paper, given two question nodes 𝑛𝑖 and 𝑛𝑗 connected via a 
+meta-path, it can be deﬁned as 𝑚𝑝𝑛𝑖→𝑛𝑗 in . Moreover, 𝑚𝑝𝑛𝑖→𝑛𝑗 is regarded 
+as a path instance of , deﬁned as 𝑚𝑝𝑛𝑖→𝑛𝑗 ⊢ . In addition, we regard 
+the set of all path instances between 𝑛𝑖 and 𝑛𝑗 as the meta-path context. In 
+this paper, a meta-path can be instantiated as 𝑄𝑢 − 𝑆𝑘 − 𝑄𝑢, indicating that 
+two diﬀerent questions are related by skill describing the connection details.
+4.  Method
+In this section, we describe the HCMKT architecture, illustrated 
+in Fig. 2. HCMKT comprises three main modules. First, the view
+Expert Systems With Applications 295 (2026) 128840 
+3 
+
+===== PAGE 4 =====
+J. Liu et al.
+Fig. 2. The HCMKT architecture comprises three modules: the view construction module, the state modeling module, and the performance prediction module. The 
+view construction module captures higher-order heterogeneous relations in questions to generate high-quality representations. The state modeling module tracks the 
+evolution of knowledge state. The performance prediction module predicts student responses to target questions, optimized using a joint loss function.
+construction module creates a HIN from learning records using meta-
+paths. It then divides the HIN into coarse and ﬁne-grained views to cap-
+ture high-order relationships among questions, generating high-quality 
+question representations. Second, the state modeling module tracks 
+knowledge state evolution by modeling variable combinations of ques-
+tion and answer representations. Finally, the performance prediction 
+module predicts students’ responses to target questions and optimizes 
+the model using a joint loss function. The ﬂowchart of HCMKT is shown 
+in Fig. 3, while the key symbols are listed in Table 2.
+Fig. 3. The algorithm ﬂowchart of HCMKT.
+4.1.  View constructing module
+Since diﬀerent types of nodes in HIN have correspondingly dif-
+ferent feature spaces, nodes need to be preprocessed. The feature
+transformation process for each node 𝑛𝑖 in type 𝐴 is as follows: 
+𝑓𝑖 = 𝜎(𝑊𝐴 ⋅ 𝑛𝑖 + 𝑏𝐴), (1)
+where 𝑓𝑖 ∈ ℝ𝑑 denotes the new feature of node 𝑛𝑖 in a speciﬁc vector 
+space, 𝜎(⋅) is the activation function sigma, 𝑊𝐴 and 𝑏𝐴 represent the 
+mapping matrix and bias of the type 𝐴 respectively.
+For a speciﬁc node, a meta-path can traverse multi-hop neighbors 
+to capture structural relationships and semantic information. However, 
+longer meta-path may reduce the quality of extracted information. Di-
+rectly aggregating neighbors of the target node for embedding genera-
+tion can be time-consuming when the meta-path is lengthy. Addition-
+ally, irrelevant neighbors may introduce noise. Therefore, we select the 
+most relevant neighbors while ﬁltering out irrelevant ones. Speciﬁcally, 
+the similarity between two nodes, 𝑛𝑖 and 𝑛𝑗 , of the same type in a meta-
+path  is calculated using PathSim (Sun et al., 2011). The calculation 
+formula is as follows:
+ (𝑛𝑖, 𝑛𝑗
+) = |{}| × 2
+|{}| + |{ }| ,
+ = 𝑚𝑝𝑛𝑖→𝑛𝑗
+||| 𝑚𝑝𝑛𝑖→𝑛𝑗 ⊢ ,
+ = 𝑚𝑝𝑛𝑖→𝑛𝑖
+||| 𝑚𝑝𝑛𝑖→𝑛𝑖 ⊢ ,
+ = 𝑚𝑝𝑛𝑗 →𝑛𝑗
+||| 𝑚𝑝𝑛𝑗 →𝑛𝑗 ⊢ .
+(2)
+The  (𝑛𝑖, 𝑛𝑗
+) and 𝑚𝑝𝑛𝑖→𝑛𝑗 denote the similarity value and path in-
+stance between nodes 𝑛𝑖 and 𝑛𝑗 , respectively. For each target node, we 
+deﬁne a threshold 𝐾 for the number of neighbors. This threshold is de-
+termined by the average number of object connections under the meta-
+path. We then select the top 𝐾 neighbors with the largest similarity. In 
+addition, when the selection of neighbor nodes is completed, the adja-
+cency matrix 𝐴 will be derived from the meta-path .
+On the one hand, to construct the coarse view, the 𝐴 corre-
+sponding to each meta-path  is derived. Furthermore, all adjacency 
+matrices derived from meta-paths are fused with a speciﬁc strategy. 
+As a result, the fusion adjacency matrix of coarse view, denoted by 
+𝐴𝑐, is characterized as the average of normalized adjacency matrices
+Expert Systems With Applications 295 (2026) 128840 
+4 
+
+===== PAGE 5 =====
+J. Liu et al.
+Table 2 
+Key notations and descriptions of HCMKT.
+ Notations  Descriptions  Equations
+𝑞𝑡, 𝑎𝑡, 𝑞𝑓𝑡  The question, the answer, the attribute factor in learning records  –
+  The meta-path in HIN describes the relationship between question nodes  –
+ (𝑛𝑖, 𝑛𝑗
+)  The similarity value between nodes 𝑛𝑖 and 𝑛𝑗 Eq. (2)
+𝑚𝑝𝑛𝑖 →𝑛𝑗
+ The path instance between nodes 𝑛𝑖 and 𝑛𝑗 Eq. (2)
+𝑚𝑝𝑛𝑖 →𝑛𝑗
+⊢   Description of path instance 𝑚𝑝𝑛𝑖 →𝑛𝑗
+ in meta-path  between nodes 𝑛𝑖 and 𝑛𝑗 Eq. (2)
+𝑓𝑖  The new feature of node 𝑛𝑖 in speciﬁc vector space Eq. (1)
+𝐴 𝑞  The adjacency matrix induced by a meta-path  Eq. (3)
+̃𝐴 𝑞  The symmetrically normalized 𝐴 𝑞 Eq. (3)
+𝐴𝑐  The fusion adjacency matrix characterizes the connection relationships between questions under coarse view Eq. (3)
+𝑓 𝑐
+𝑖  The coarse representation of node 𝑛𝑖 after processing by Encoder Eq. (4)
+𝑓
+ 𝑞
+𝑖 , ̃𝑓
+ 𝑞
+𝑖  Initial ﬁne-grained representation and ﬁne-grained representation after Encoder processing Eqs. (5), (6)
+𝑓 𝑓
+𝑖  The ﬁne-grained representation of node 𝑛𝑖 after processing by Attention Eq. (7)
+𝑞𝑐
+𝑖 , 𝑞𝑓
+𝑖  The ﬁnal coarse and ﬁne-grained question representation after feature transformation Eq. (8)
+̃ 𝑞𝑐
+𝑡 , ̃ 𝑞𝑓
+𝑡  The complete coarse and ﬁne-grained interaction representations at 𝑡 Eq. (9)
+ℎ𝑐
+𝑡 , ℎ𝑓
+𝑡  The knowledge state in coarse and ﬁne-grained views at 𝑡 Eq. (10)
+𝑟𝑐
+𝑡+1, 𝑟𝑓
+𝑡+1  The prediction probabilities in coarse and ﬁne-grained views for 𝑡 + 1 Eq. (11)
+ℎ𝑡𝑒
+𝑡  The knowledge state generated by the teacher model at 𝑡. Eq. (12)
+𝑟𝑡𝑒
+𝑡+1  The prediction probability generated by the teacher model for 𝑡 + 1. Eq. (13)
+𝑟𝑘𝑡
+𝑡+1  The ﬁnal prediction probability of HCMKT Eq. (14)
+𝑐𝑜𝑛  The total loss for contrastive learning Eq. (17)
+𝑡𝑠  The total loss for online knowledge distillation Eq. (21)
+  The ﬁnal loss of HCMKT Eq. (22)
+constructed from meta-paths, as follows:
+𝐴𝑐 = 1
+𝑚 ( ̃𝐴 1 + ̃𝐴 2 + ⋅ ⋅ ⋅ + ̃𝐴 𝑚 ),
+̃𝐴 𝑞 = 𝐷− 1
+2 𝐴 𝑞 𝐷− 1
+2 ,
+(3)
+where 𝑚, 𝐷, and ̃𝐴 𝑞 represent number of meta-paths, diagonal ma-
+trix, and symmetric regularized 𝐴 𝑞 , respectively. In particular, 𝐷𝑖𝑖 =
+∑|𝑉 |
+𝑗=1𝐴
+ 𝑞
+𝑖𝑗  and |𝑉 | is the number of target nodes. Speciﬁcally, to obtain 
+the characterization of node 𝑛𝑖 in the coarse view, we input 𝑓𝑖 and 𝐴𝑐
+together into an encoder containing two layers of Graph Convolutional 
+Network (GCN). Therefore, the coarse representation of node 𝑛𝑖 is: 
+𝑓 𝑐
+𝑖 = 𝐸𝑛𝑐𝑜𝑑𝑒𝑟 (𝐴𝑐, 𝑓𝑖). (4)
+On the other hand, unlike the coarse view, the ﬁne-grained view fo-
+cuses on the connection details of two question objects. Given a set of 
+meta-paths  = { 1, … ,  𝑚}, each meta-path  𝑞 ∈  is 
+deﬁned as  𝑞 = 𝑁1
+𝑅1
+→ 𝑁2
+𝑅2
+→ …
+𝑅𝑙
+→ 𝑁𝑙+1. Objects of type 𝑁1 are con-
+nected to objects of type 𝑁𝑙+1 through a composite relation involving 
+intermediate object types. Since the meta-path context captures all path 
+instances between two objects, detailing their connections. Therefore, 
+we derive ﬁne-grained object representations from meta-path context. 
+To avoid learning ineﬃciencies due to an overly large 𝑙, we leverage 
+intermediate type objects in meta-paths to utilize context information 
+eﬀectively. Speciﬁcally, the initial ﬁne-grained representation 𝑓
+ 𝑞
+𝑖  of 
+node 𝑛𝑖 is generated: 
+𝑓
+ 𝑞
+𝑖 = 𝜎
+⎛
+⎜
+⎜
+⎜⎝
+𝑓𝑖 +
+𝑙+1∑
+𝑗=2
+∑
+𝑥𝑣∈
+𝑁𝑗
+𝑖
+𝑊𝑞𝑗 ⋅ 𝑓𝑣
+⎞
+⎟
+⎟
+⎟⎠
+. (5)
+The 𝑊𝑞𝑗 is a learnable parameter matrix. In a speciﬁc meta-path  𝑞, 
+
+𝑁𝑗
+𝑖  denotes the set of 𝑗-hop neighbors of node 𝑛𝑖 and 𝑛𝑖 is of type 𝑁1. 
+Speciﬁcally, to obtain the characterization of node 𝑛𝑖 in the ﬁne-grained 
+view, we feed ̃𝐴 𝑞 and 𝑓
+ 𝑞
+𝑖  together into an encoder containing two 
+layers of GCN. As a result, the ﬁne-grained representation of node 𝑛𝑖 is:
+̃𝑓
+ 𝑞
+𝑖 = 𝐸𝑛𝑐𝑜𝑑𝑒𝑟 ( ̃𝐴 𝑞 , 𝑓
+ 𝑞
+𝑖 ). (6)
+In addition, to further improve the quality of the node representa-
+tions, we introduce noise into the ﬁne-grained view for graph augmen-
+tation. Speciﬁcally, feature masking and edge masking are performed 
+for generating a perturbed graph, which is then fed into Eq. (6) to ob-
+tain a new node representation 𝑓
+ 𝑞
+𝑖 . Therefore, we utilize the meta-
+paths related to 𝑛𝑖 to generate the representation set 𝑖 = { ̃𝑓
+ 𝑞
+𝑖 , 𝑓
+ 𝑞
+𝑖
+|||
+ 𝑞 ∈  }, and fuse all representations of 𝑛𝑖 using the attention 
+mechanism. The ﬁne-grained representation of 𝑛𝑖 can be deﬁned as fol-
+lows:
+𝑓 𝑓
+𝑖 =
+|𝑖|∑
+𝑠=1
+𝛽𝑠 ⋅ 𝑓 𝑠
+𝑖 ,
+𝛽𝑠 = exp(𝑤𝑠)
+∑| |𝑖
+𝑗=1 exp(𝑤𝑗 )
+,
+𝑤𝑠 = 1
+|𝑉 |
+∑
+𝑛𝑖∈𝑉
+𝐚T ⋅ tanh(𝑊𝑎𝑡 ⋅ 𝑓 𝑠
+𝑖 + 𝑏𝑎𝑡).
+(7)
+Here, 𝛽𝑠 is the attention weight, while 𝑊𝑎𝑡, 𝑏𝑎𝑡 and 𝑉  denote the weight 
+matrix, bias vector and set of target nodes, respectively.
+Finally, the node representations in coarse view and ﬁne-grained 
+view are mapped to the new feature space for state modeling. For the 
+question node 𝑛𝑖, we obtain the ﬁnal coarse representation 𝑞𝑐
+𝑖 ∈ ℝ𝑑 :
+𝑞𝑐
+𝑖 = 𝑛𝑜𝑟𝑚(tanh(𝑊𝑚𝑐 ⋅ 𝑓 𝑐
+𝑖 + 𝑏𝑚𝑐 )), (8)
+where 𝑛𝑜𝑟𝑚(⋅) represents the regularization process, while 𝑊𝑚𝑐 and 𝑏𝑚𝑐
+are learnable parameters. Similarly, the ﬁnal ﬁne-grained representation 
+𝑞𝑓
+𝑖 ∈ ℝ𝑑 can be obtained.
+4.2.  State modeling module
+The module aims to model student’s knowledge state using their his-
+torical learning records. At each time step 𝑡, we obtain coarse and ﬁne-
+grained question node representations, then project the original answer 
+𝑎𝑡 into the feature space to create the answer representation 𝑎𝑞
+𝑡 . Instead 
+of directly concatenating the question and answer representations, we 
+use an answer-aware strategy to generate the complete interaction rep-
+resentation, emphasizing the distinct impact of correct and incorrect 
+answers on knowledge state evolution. Speciﬁcally, the complete inter-
+action representation in the coarse view is:
+̃ 𝑞𝑐
+𝑡 =
+{ 𝑞𝑐
+𝑡 ⊕ 𝑎𝑞
+𝑡 if 𝑎𝑡 = 1,
+𝑎𝑞
+𝑡 ⊕ 𝑞𝑐
+𝑡 if 𝑎𝑡 = 0; (9)
+where ⊕ is the concatenation operation. Similarly, the complete inter-
+action representation ̃ 𝑞𝑓
+𝑡  from ﬁne-grained view can be obtained.
+Expert Systems With Applications 295 (2026) 128840 
+5 
+
+===== PAGE 6 =====
+J. Liu et al.
+Like mainstream KT methods, we input the interaction representa-
+tion into LSTM network for knowledge state modeling. Speciﬁcally, the 
+state modeling process under the coarse view and the ﬁne-grained view 
+is:
+ℎ𝑐
+𝑡 ⟵ 𝐿𝑆𝑇 𝑀 ( ̃ 𝑞𝑐
+𝑡 , ℎ𝑐
+𝑡−1; 𝜃),
+ℎ𝑓
+𝑡 ⟵ 𝐿𝑆𝑇 𝑀 ( ̃ 𝑞𝑓
+𝑡 , ℎ𝑓
+𝑡−1; 𝜗).
+(10)
+The ℎ𝑐
+𝑡 and ℎ𝑓
+𝑡  represent knowledge state in coarse and ﬁne-grained 
+views, respectively, while 𝜃 and 𝜗 are learnable parameters.
+4.3.  Performance prediction module
+We introduce the idea of online knowledge distillation to jointly op-
+timize dual-view modeling. In this module, the coarse and ﬁne-grained 
+modeling processes serve as student models, while a state-aware gating 
+mechanism combine them to construct a more robust teacher model. Let 
+𝑟𝑐
+𝑡+1 ∈ (0, 1) and 𝑟𝑓
+𝑡+1 ∈ (0, 1) denote the prediction probabilities from the 
+coarse and ﬁne-grained views, respectively. The calculation process is 
+as follows:
+𝑟𝑐
+𝑡+1 = 𝑚𝑙𝑝1(ℎ𝑐
+𝑡 , 𝑞𝑡+1),
+𝑟𝑓
+𝑡+1 = 𝑚𝑙𝑝2(ℎ𝑓
+𝑡 , 𝑞𝑡+1),
+(11)
+where 𝑚𝑙𝑝∗ is a multi-layer perceptron.
+For the construction of the teacher model, we use a state-aware gat-
+ing mechanism to adaptively fuse the knowledge states ℎ𝑐
+𝑡 and ℎ𝑓
+𝑡  gen-
+erated by the student model:
+ℎ𝑡𝑒
+𝑡 = 𝑊𝑡𝑒 ⋅ (Γ ⋅ ℎ𝑓
+𝑡 ⊕ (1 − Γ) ⋅ ℎ𝑐
+𝑡 ) + 𝑏𝑡𝑒,
+Γ = 𝜎(ℎ𝑓
+𝑡 + ℎ𝑐
+𝑡 ).
+(12)
+Therefore, we can obtain the prediction probability 𝑟𝑡𝑒
+𝑡+1 ∈ (0, 1) based 
+on the teacher model:
+𝑟𝑡𝑒
+𝑡+1 = 𝑚𝑙𝑝3(ℎ𝑡𝑒
+𝑡 , 𝑞𝑡+1). (13)
+Finally, we fuse the prediction probabilities generated by the stu-
+dent model and the teacher model to improve the predictive ability of 
+HCMKT. The ﬁnal prediction probability 𝑟𝑘𝑡
+𝑡+1 ∈ (0, 1) is as follows:
+𝑟𝑘𝑡
+𝑡+1 = (𝑟𝑐
+𝑡+1 + 𝑟𝑓
+𝑡+1 + 𝑟𝑡𝑒
+𝑡+1)∕3. (14)
+4.4.  Model training
+In this section, we present the detailed part of model training. For 
+each question node 𝑛𝑖, a coarse representation 𝑞𝑐
+𝑖  and a ﬁne-grained 
+representation 𝑞𝑓
+𝑖  are obtained. To learn higher-quality node represen-
+tations, we adopt an elaborate negative sample selection mechanism and 
+prototype contrastive learning to assist the model for training. We re-
+gard 𝑞𝑐
+𝑖  as an anchor, and take 𝑞𝑓
+𝑖  in the ﬁne-grained view as a positive 
+instance while the other node representations as negative instances. To 
+distinguish the diﬀerential impact of negative instances, we perform 𝑀
+times of node clustering based on the ﬁne-grained representations to as-
+sign diﬀerent weights for negative instances, and the number of clusters 
+are set as 𝑂 = {𝑜1, 𝑜2, ⋅ ⋅ ⋅, 𝑜𝑀 }. Further, the weight of node 𝑛𝑗 as a nega-
+tive instance for node 𝑛𝑖 can be deﬁned as 𝜌𝑖𝑗 = (𝑥1, 𝑥2, ⋅ ⋅ ⋅, 𝑥𝑀 ), where 
+𝑥𝑘 denotes the 𝑘 − 𝑡ℎ clustering result and  is a function of cluster-
+ing results. Speciﬁcally, 𝜌𝑖𝑗 is used to drive the feature distance of the 
+negative instance with respect to the anchor. If the negative instance is 
+more similar to the anchor, 𝜌𝑖𝑗 is smaller; and vice versa. Eventually, 
+the contrastive loss function based on 𝜌𝑖𝑗 is denoted as:
+𝑖𝑛𝑓
+𝑖 = − log
+exp(𝑞𝑐
+𝑖 ⋅ 𝑞𝑓
+𝑖 ∕𝛾)
+∑|𝑉 |
+𝑗=1 𝜌𝑖𝑗 exp(𝑞𝑐
+𝑖 ⋅ 𝑞𝑓
+𝑗 ∕𝛾)
+, (15)
+where |𝑉 | and 𝛾 ∈ (0.1, 1) denote the number of target nodes and tem-
+perature parameters, respectively.
+In addition, we adopt prototype contrastive loss function to optimize 
+the distribution of node representations in the cluster space. For each 
+clustering 𝑜𝑘, we set the positive instance as the cluster center 𝑝𝑘
+𝑖 , which 
+is the prototype vector corresponding to node 𝑛𝑖, and take the prototype 
+vectors outside the cluster center as negative instances. The prototype 
+contrastive loss function is deﬁned as follows:
+𝑝𝑟𝑜
+𝑖 = − 1
+𝑀
+𝑀∑
+𝑘=1
+log
+exp(𝑞𝑐
+𝑖 ⋅ 𝑝𝑘
+𝑖 ∕𝛼𝑘
+𝑖 )
+∑𝑜𝑘
+𝑗=1 exp(𝑞𝑐
+𝑖 ⋅ 𝑝𝑘
+𝑗 ∕𝛼𝑘
+𝑗 )
+,
+𝛼𝑘
+𝑖 =
+∑𝑈
+𝑢=1 ∥ 𝑞𝑐
+𝑖 − 𝑝𝑘
+𝑖 ∥2
+𝑈 log(𝑈 + 𝜂) ,
+(16)
+where 𝑈 and 𝜂 denote the number of nodes in the cluster and the 
+smoothing parameter, respectively. Finally, the loss in the coarse view 
+and ﬁne-grained view is:
+𝑐𝑜𝑛 = 1
+|𝑉 |
+∑
+𝑛𝑖∈𝑉
+(𝑖𝑛𝑓
+𝑖 + 𝑝𝑟𝑜
+𝑖 ). (17)
+To eﬃciently optimize the model parameters, we calculate the loss 
+between the answer prediction probability and the true answer 𝑎𝑡 with 
+the binary cross entropy loss. Speciﬁcally, the answer prediction loss 
+from the coarse view is computed as follows:
+𝑐 = −
+𝑇∑
+𝑡=1
+(𝑎𝑡 log 𝑟𝑐
+𝑡 + (1 − 𝑎𝑡) log(1 − 𝑟𝑐
+𝑡 )), (18)
+where 𝑇 is the total time step of learning records. Similarly, the answer 
+prediction losses for the ﬁne-grained and teacher model components, 
+𝑓 and 𝑡𝑒, are obtained.
+To further improve the optimization ability of the teacher model for 
+the student model, we generate soft labels about the knowledge state 
+based on ℎ𝑡𝑒
+𝑡 , ℎ𝑐
+𝑡 and ℎ𝑓
+𝑡 :
+̃ 𝑟𝑡𝑒
+𝑡 = 𝜎(ℎ𝑡𝑒
+𝑡 ∕𝜇),
+̃ 𝑟𝑐
+𝑡 = 𝜎((𝑊 ̃ 𝑐⋅ ℎ𝑐
+𝑡 + 𝑏 ̃ 𝑐)∕𝜇),
+̃ 𝑟𝑓
+𝑡 = 𝜎((𝑊 ̃𝑓 ⋅ ℎ𝑓
+𝑡 + 𝑏 ̃𝑓 )∕𝜇),
+(19)
+where 𝜇 is a temperature, while 𝑊̃ 𝑐, 𝑊 ̃𝑓 , 𝑏̃ 𝑐 and 𝑏 ̃𝑓 are learnable param-
+eters. Then, we design an online distillation loss based on 𝐿1-paradigm 
+distance to improve the generalization of HCMKT:
+𝑜𝑘𝑑 = 1
+𝑇
+𝑇∑
+𝑡=1
+||||̃ 𝑟𝑡𝑒
+𝑡 − ̃ 𝑟𝑐
+𝑡 ||||1 + |||
+|||̃ 𝑟𝑡𝑒
+𝑡 − ̃𝑡𝑓
+𝑡
+|||
+|||1
+. (20)
+We combine the losses generated by students model and teacher 
+model as:
+𝑡𝑠 = 𝑐 + 𝑓 + 𝑡𝑒 + 𝑜𝑘𝑑 . (21)
+The ﬁnal objective loss function of HCMKT is deﬁned as:
+ = 𝜆𝑐𝑜𝑛 + 𝑡𝑠, (22)
+where 𝜆 is a trade-oﬀ parameter that controls the relative importance 
+of the loss.
+Algorithm 1 describes the training procedure of HCMKT.
+5.  Experiments
+5.1.  Datasets
+We conduct comprehensive experiments on HCMKT on four real 
+datasets to verify the superiority of model performance and the rational-
+ity of design. ASSISTments091 and ASSISTments172 are collected and 
+released by the ASSISTments education platform, providing a solid foun-
+dation for KT research and becoming the most commonly used public 
+1 https://sites.google.com/site/assistmentsdata/home/
+2009-2010-assistment-data.
+2 https://sites.google.com/view/assistmentsdatamining/dataset.
+Expert Systems With Applications 295 (2026) 128840 
+6 
+
+===== PAGE 7 =====
+J. Liu et al.
+Table 3 
+Statistical information after processing of four benchmark datasets.
+ Datasset  Questions  Attribute factors  Edges  Meta-paths  Students  Records
+ ASSISTments2009  17737  Skill(𝑆𝑘):123 𝑄𝑢 − 𝑆𝑘:21232 𝑄𝑢 − 𝑆𝑘 − 𝑄𝑢  3884  458766
+ Templated(𝑇𝑒):656 𝑄𝑢 − 𝑇𝑒:17737 𝑄𝑢 − 𝑇𝑒 − 𝑄𝑢
+ ASSISTments2017  2210  Skill(𝑆𝑘):101 𝑄𝑢 − 𝑆𝑘:2803 𝑄𝑢 − 𝑆𝑘 − 𝑄𝑢  1709  864713
+ Assign(𝐴𝑠):236 𝑄𝑢 − 𝐴𝑠:16820 𝑄𝑢 − 𝐴𝑠 − 𝑄𝑢
+ Junyi  617  Topic(𝑇𝑜):39 𝑄𝑢 − 𝑇𝑜:617 𝑄𝑢 − 𝑇𝑜 − 𝑄𝑢  5000  349789
+ Area(𝐴𝑟):8 𝑄𝑢 − 𝐴𝑟:617 𝑄𝑢 − 𝐴𝑟 − 𝑄𝑢
+ YMath  57  Content(𝐶𝑜):23 𝑄𝑢 − 𝐶𝑜:69 𝑄𝑢 − 𝐶𝑜 − 𝑄𝑢  5000  285000
+ Ability(𝐴𝑏):6 𝑄𝑢 − 𝐴𝑏:131 𝑄𝑢 − 𝐴𝑏 − 𝑄𝑢
+Algorithm 1 The proposed training procedure for HCMKT.
+1: Input: The historical records 𝑅, the HIN  = (, )
+2: Output: The prediction probability 𝑟𝑘𝑡
+𝑡+1
+3: Initialize HCMKT parameters
+4: while not converged do
+5: % Feature transformation 
+6: 𝑓𝑖 ← 𝜎(𝑊𝐴 𝑛𝑖 + 𝑏𝐴
+)
+7: % Coarse-view construction 
+8: Compute PathSim  (𝑛𝑖, 𝑛𝑗 ) and select top-𝐾 neighbors 
+9: For each  𝑞: build 𝐴 𝑞 , normalize ̃𝐴 𝑞 = 𝐷− 1
+2 𝐴 𝑞 𝐷− 1
+2
+10: 𝐴𝑐 ← 1
+𝑚
+∑
+𝑞
+̃𝐴 𝑞
+11: 𝑓 𝑐
+𝑖 ← Encoder(𝐴𝑐, 𝑓𝑖)
+12: % Fine-grained view construction 
+13: For each  𝑞: 𝑓
+ 𝑞
+𝑖 ← 𝜎(𝑓𝑖 + ∑𝑙+1
+𝑗=2
+∑
+𝑥𝑣∈
+𝑁𝑗
+𝑖
+𝑊𝑞𝑗 𝑓𝑣
+)
+14: Compute ̃𝑓
+ 𝑞
+𝑖 ← Encoder( ̃𝐴 𝑞 , 𝑓
+ 𝑞
+𝑖 ) and 𝑓
+ 𝑞
+𝑖  via masking 
+15: 𝑓 𝑓
+𝑖 ← ∑|𝑖|
+𝑠=1 𝛽𝑠 𝑓 𝑠
+𝑖 , with 𝛽𝑠 from Eq. (7)
+16: % View projection 
+17: 𝑞𝑐
+𝑖 ← 𝑛𝑜𝑟𝑚(tanh(𝑊𝑚𝑐 𝑓 𝑐
+𝑖 + 𝑏𝑚𝑐 )), 𝑞𝑓
+𝑖 ← 𝑛𝑜𝑟𝑚(tanh(𝑊𝑚𝑓 𝑓 𝑓
+𝑖 + 𝑏𝑚𝑓 ))
+18: for 𝑡 = 1, … , 𝑇 do
+19: % Interaction encoding 
+20: Build the complete interaction representations ̃ 𝑞𝑐
+𝑡  and ̃ 𝑞𝑓
+𝑡
+21: % State modeling 
+22: ℎ𝑐
+𝑡 ← 𝐿𝑆𝑇 𝑀 ( ̃ 𝑞𝑐
+𝑡 , ℎ𝑐
+𝑡−1; 𝜃), ℎ𝑓
+𝑡 ← 𝐿𝑆𝑇 𝑀 ( ̃ 𝑞𝑓
+𝑡 , ℎ𝑓
+𝑡−1; 𝜗)
+23: % Prediction & features fusion
+24: 𝑟𝑐
+𝑡+1 ← 𝑚𝑙𝑝1(ℎ𝑐
+𝑡 , 𝑞𝑡+1), 𝑟𝑓
+𝑡+1 ← 𝑚𝑙𝑝2(ℎ𝑓
+𝑡 , 𝑞𝑡+1)
+25: Γ ← 𝜎(ℎ𝑓
+𝑡 + ℎ𝑐
+𝑡 )
+26: ℎ𝑡𝑒
+𝑡 ← 𝑊𝑡𝑒
+(Γ ⊙ ℎ𝑓
+𝑡 ⊕ (1 − Γ) ⊙ ℎ𝑐
+𝑡
+) + 𝑏𝑡𝑒
+27: 𝑟𝑡𝑒
+𝑡+1 ← 𝑚𝑙𝑝3(ℎ𝑡𝑒
+𝑡 , 𝑞𝑡+1)
+28: % Final prediction 
+29: 𝑟𝑘𝑡
+𝑡+1 ← (𝑟𝑐
+𝑡+1 + 𝑟𝑓
+𝑡+1 + 𝑟𝑡𝑒
+𝑡+1
+)∕3
+30: end for
+31: % Losses computation & parameters update 
+32: Compute 𝑐𝑜𝑛 , 𝑡𝑠
+33:  ← 𝜆𝑐𝑜𝑛 + 𝑡𝑠 ⊳ Joint optimization
+34: end while
+35: return 𝑟𝑘𝑡
+𝑡+1
+datasets by KT researchers. The Junyi3 dataset contains relevant ex-
+ercise information of students in Junyi Academy, and the interaction 
+and collection of information is realized based on the e-learning system
+established by Khan Academy. To explore the eﬀectiveness of HCMKT in 
+processing real teaching data, we selected 5000 student exercise records 
+from YMath as the base data for the experiment. YMath is collected from 
+real scenarios, and the content is related to mathematics. The statistical 
+information of each dataset is shown in Table 3.
+3 http://www.junyiacademy.org/.
+∙ Skill (𝑆𝑘): The skill attribute factor corresponding to the question, 
+and a question may have one or more skills.
+∙ Templated (𝑇𝑒): Question-relative template attribute factor, where 
+questions with the same template attributes have similarities be-
+tween them.
+∙ Assign (𝐴𝑠): The unique factor used to represent the assignment at-
+tribute of questions.
+∙ Topic (𝑇𝑜): The topic attribute factors for each question, multiple 
+questions are usually covered under one topic attribute.
+∙ Area (𝐴𝑟): The knowledge area covered by the question, each of 
+which may cover one or more topics.
+∙ Content (𝐶𝑜): The content attribute used to identify the test content 
+for each question.
+∙ Ability (𝐴𝑏): The ability attribute used to identify the ability being 
+tested for each question. Multiple ability attributes may be involved 
+in a single question.
+5.2.  Baselines
+We evaluate model performance by comparing HCMKT to the fol-
+lowing state-of-the-art methods:
+∙ DKT (Piech et al., 2015) spearheaded the introduction of deep learn-
+ing techniques in KT tasks, which are based on RNN and LSTM to 
+model learning records for prediction of future student performance.
+∙ DKVMN (Zhang et al., 2017a) used a static key memory matrix and 
+a dynamic value memory matrix to track the evolution of student’s 
+knowledge state.
+∙ DKT+ (Yeung & Yeung, 2018) improved and optimized the DKT by 
+introducing regularization terms in the loss fuction.
+∙ SAKT (Pandey & Karypis, 2019) introduced the transformer ﬁrstly to 
+learn attention matrices containing the relative weights of questions.
+∙ AKT (Ghosh et al., 2020) further explored attentional mechanisms to 
+develop monotonic attention, integrating it with psychological meth-
+ods aligned with student’s learning processes.
+∙ GKT (Nakagawa et al., 2019) introduced graph into KT for the ﬁrst 
+time to mine information about structural relationships between 
+skills.
+∙ FGKT (Mao et al., 2023) modeled knowledge state from a ﬁne-
+grained perspective by considering the relationship between skills 
+and questions as well as questions and historical interactions.
+∙ CL4KT (Lee et al., 2022) captured complex knowledge states by stim-
+ulating semantic relationships in historical learning records through 
+contrastive learning.
+∙ DisKT (Zhou et al., 2025) eliminated the inﬂuence of confounder on 
+the modeling of knowledge state by modeling student’s familiar and 
+unfamiliar abilities.
+∙ FCKT is a variant of our method that adds the question represen-
+tations from the coarse and the ﬁne-grained views, and then feeds 
+directly into the network for prediction.
+The baseline methods are categorized into classical deep learning 
+models such as DKT and DKT+, memory-based models like DKVMN, 
+Expert Systems With Applications 295 (2026) 128840 
+7 
+
+===== PAGE 8 =====
+J. Liu et al.
+Table 4 
+Performance comparison of diﬀerent methods based on AUC, ACC, and RMSE across four datasets. Experiments for CL4KT and DisKT were not 
+conducted on the Junyi and YMath datasets due to unmet experimental requirements.
+ Dataset  Metrics  DKT  DKVMN  DKT+  SAKT  AKT  GKT  FGKT  CL4KT  DisKT  FCKT  HCMKT
+ ASSISTments2009  AUC  0.7859  0.8459  0.8453  0.8400  0.8327  0.5584  0.8478  0.7825  0.8155 0.8484  0.8492
+ ACC  0.7492  0.7961  0.7994  0.7859  0.7916  0.6415  0.7958  0.7369  0.7497 0.7987  0.7997
+ RMSE  0.4358  0.3715  0.3705  0.3801  0.3788  0.4698  0.4371  0.4208  0.4134 0.3698  0.3687
+ ASSISTments2017  AUC  0.6341  0.6908  0.7220  0.6496  0.7509  0.6227  0.7184  0.6723  0.7647  0.7434 0.7519
+ ACC  0.6154  0.6861  0.7006  0.6580 0.7124  0.6124  0.6961  0.6566  0.7028  0.7082  0.7146
+ RMSE  0.5354  0.4514  0.4431  0.4700  0.5363  0.4743  0.4445  0.4690  0.4440 0.4363  0.4329
+ Junyi  AUC  0.8289  0.8575  0.8702  0.7806  0.8261  0.8468  0.8739  –  – 0.8796  0.8803
+ ACC  0.8095  0.8094  0.8479  0.7631  0.7574  0.8162 0.8425  –  –  0.8363  0.8360
+ RMSE  0.4054  0.3728  0.3430  0.4284  0.4068  0.3705 0.3449  –  –  0.3504  0.3501
+ YMath  AUC  0.8591  0.9062  0.9063  0.9036  0.9001  0.8889  0.9068  –  – 0.9069  0.9072
+ ACC  0.7870  0.8233  0.8193  0.8223  0.8158  0.8011 0.8235  –  –  0.8231  0.8239
+ RMSE  0.4054  0.3520  0.3543  0.3541  0.3585  0.3703  0.3517  –  – 0.3515  0.3512
+attention-based models including SAKT, AKT, FGKT and DisKT, and 
+graph-based models such as GKT and FCKT.
+5.3.  Experimental settings
+In order to ensure the conﬁdence level of the experiment, we use 
+Area Under the Curve (AUC), Accuracy (ACC) and Root Mean Square 
+Error (RMSE) as the performance evaluation metrics of all experiments. 
+We split all the datasets in the ratio of 6:2:2, where 60 % is used for 
+training and the rest for validation and testing respectively. We set the 
+input sequence length of YMath to 57 while the rest of the datasets 
+are ﬁxed to 200, and set the embedding dimensions (𝑑) of the question 
+and the associated attribute factors to 256. Regarding feature masking 
+and edge masking, the masking rate of ASSISTments2009 is set to {0.5, 
+0.6} while the remaining datasets are set to {0.3, 0.2}. In addition, we 
+set the number of clusters 𝑂 for ASSISTments2009, ASSISTments2017, 
+Junyi and YMath to {100, 500}, {100, 300}, {8, 39} and {5, 10}. 𝜌𝑖𝑗
+is determined by the number of times the anchor 𝑛𝑖 and the sample 𝑛𝑗
+are located in the diﬀerent clusters, and the temperature parameter 𝜇
+is ﬁxed to 0.5. We set the learning rate to 0.001, dropout to 0.2 and 
+trained the model using the Adam optimizer.
+5.4.  Performance analysis
+We compared HCMKT with nine public methods and a variant of 
+HCMKT to evaluate their performance. The results from the compari-
+son experiments are presented in Table 4, with bold results indicating 
+the best and underlined results indicating suboptimal. Table 4 shows 
+that HCMKT outperformed other models across multiple evaluation met-
+rics, demonstrating its eﬀectiveness in modeling student’s knowledge 
+state and predicting future performance. HCMKT achieved the high-
+est AUC score on the Junyi but ranked second to DisKT on the AS-
+SISTments2017. This indicates that HCMKT enhances performance by 
+leveraging multi-granularity features from learning records, though fur-
+ther improvements in feature extraction are needed for data with vary-
+ing distribution characteristics. HCMKT outperforms SAKT and AKT, 
+which eﬀectively validates the importance of the question and its as-
+sociated attribute factors for state modeling. The method based on 
+the attention mechanism outperforms DKT, which only considers sin-
+gle interaction information, in most of the results. GKT by construct-
+ing skill or question relationship graphs is lower than HCMKT in per-
+formance prediction, indicating that the coarse and ﬁne-grained views 
+based on meta-path constructs eﬀectively capture the rich feature in-
+formation contained in the heterogeneous relationships of the ques-
+tions. This result is further validated by the variant FCKT, which out-
+performs the rest of the comparison methods on ASSISTments2019 
+and demonstrates strong competitiveness on other datasets. CL4KT is 
+also weaker than HCMKT in capturing the state of student’s knowl-
+edge using contrastive learning, suggesting that the negative sample
+selection mechanism and contrastive learning employed in our method 
+eﬀectively assist the network to learn high-quality question representa-
+tions for tracking state evolution. Meanwhile, the online knowledge dis-
+tillation adopted in HCMKT eﬀectively enhances the model’s modeling, 
+prediction, and generalization abilities compared to the variant FCKT. 
+To evaluate the reliability of experimental results, we assessed 5 meth-
+ods on the ASSISTments2017 dataset, computing 95 % conﬁdence in-
+tervals for AUC and ACC, along with p-values for statistical signiﬁcance 
+relative to HCMKT. As shown in Fig. 4, DisKT, FCKT, and CL4KT demon-
+strated signiﬁcant diﬀerences in AUC and ACC compared to HCMKT, 
+whereas AKT exhibited no statistically signiﬁcant diﬀerence. These re-
+sults consistent with Table 4, supporting the reliability of the observed 
+performance diﬀerences and providing a solid foundation for method 
+evaluation.
+5.5.  Ablation study
+The relevant settings for the ablation experiments we conducted are 
+as follows:
+∙ w/o CV removes the question representation from the coarse view.
+∙ w/o FV removes the question representation from the ﬁne-grained 
+view.
+∙ w/o CON remove the contrastive learning loss function deﬁned by 
+Eq. (17).
+∙ w/o CVC removes the question representation in the coarse view 
+and the loss function deﬁned by Eq. (17).
+∙ w/o FVC removes the question representation in the ﬁne-grained 
+view and the loss function deﬁned by Eq. (17).
+∙ w/o OKD removes online knowledge distillation.
+Table 5 presents the ablation results for the HCMKT model across 
+four datasets. These results demonstrate that all variants exhibit vary-
+ing degrees of performance degradation, therefore validating the impor-
+tance of each component. For diﬀerent datasets, the impact of remov-
+ing speciﬁc modules varies, conﬁrming the eﬀectiveness of the model’s 
+design. By removing representations of the coarse view (w/o CV), the 
+coarse view’s eﬀectiveness in capturing macro-level structural infor-
+mation via meta-path number relationships to extract breadth features 
+is veriﬁed. Similarly, by removing representations of the ﬁne-grained 
+view (w/o FV), the ﬁne-grained view’s eﬀectiveness in capturing micro-
+level semantic features via meta-path contexts to mine deep features is 
+validated. Removing either view leads to the loss of macro or micro
+information in the HIN, weakening question representation and ulti-
+mately degrading model performance. Removing the contrastive loss 
+(w/o CON, Eq. (17)) degrades model performance due to the loss of the 
+negative sample selection mechanism, preventing the model from dis-
+tinguishing similar questions via dynamic weighting of negative sam-
+Expert Systems With Applications 295 (2026) 128840 
+8 
+
+===== PAGE 9 =====
+J. Liu et al.
+Fig. 4. Experimental results with 95 % conﬁdence intervals obtained from 5-fold cross-validation on ASSISTments2017. Statistical signiﬁcance is based on paired 
+t-tests against HCMKT: * 𝑝 < . 1, ** 𝑝 < . 01, *** 𝑝 < . 001.
+Table 5 
+Ablation results of HCMKT in the four datasets, with bolded results being optimal.
+ Dataset  Metrics  w/o CV  w/o FV  w/o CON  w/o CVC  w/o FVC  w/o OKD  HCMKT
+ ASSISTments2009  AUC  0.8480  0.8452  0.8459  0.8455  0.8482  0.8482  0.8492
+ ACC  0.7979  0.7967  0.7972  0.7973  0.7992  0.7990  0.7997
+ RMSE  0.3699  0.3715  0.3705  0.3706  0.3695  0.3697  0.3687
+ ASSISTments2017  AUC  0.7334  0.7419  0.7484  0.7287  0.7384  0.7499  0.7519
+ ACC  0.7064  0.7095  0.7108  0.7010  0.7057  0.7138  0.7146
+ RMSE  0.4392  0.4364  0.4337  0.4410  0.4385  0.4334  0.4329
+ Junyi  AUC  0.8767  0.8754  0.8765  0.8758  0.8686  0.8774  0.8803
+ ACC  0.8315  0.8320  0.8306  0.8304  0.8210  0.8345  0.8360
+ RMSE  0.3545  0.3542  0.3550  0.3554  0.3631  0.3524  0.3501
+ YMath  AUC  0.9068  0.9067  0.9069  0.9068  0.9069  0.9069  0.9072
+ ACC  0.8235  0.8234  0.8238  0.8221  0.8227  0.8226  0.8239
+ RMSE  0.3517  0.3517  0.3515  0.3516  0.3517  0.3515  0.3512
+ples. This suggests that the synergy between the negative sample selec-
+tion mechanism and contrastive learning enhances the discriminability 
+and robustness of question representations in HIN. In addition, we re-
+moved contrastive learning and question representations under diﬀerent 
+views (w/o CVC and w/o FVC). The experimental results show that the 
+lack of macro-level structural information and micro-level semantic fea-
+tures modeling reduces the model’s predictive performance. Similarly, 
+removing online knowledge distillation (w/o OKD) in the HCMKT dis-
+rupts coarse and ﬁne-grained synergistic modeling, leading to the loss of 
+complementary information between these representations. Therefore, 
+online knowledge distillation signiﬁcantly enhances the HCMKT model’s 
+modeling, prediction, and generalization abilities.
+5.6.  Data sensing and parameter analysis
+In order to explore the performance of HCMKT with diﬀerent ratios 
+of training data, we take 20 %, 40 % and 60 % of the dataset to train the 
+model, respectively. As shown in Fig. 5, HCMKT outperforms most of the 
+baseline methods in the performance prediction for all four datasets. In 
+addition, the variant FCKT also shows great competitiveness. This result 
+eﬀectively demonstrates the model’s strong ability to capture higher-
+order structural relationships in question heterogeneous graphs, as well 
+as modeling implicit features of sequences. We found that DKVMN out-
+performs our method when 20 % and 40 % training ratios are used in 
+YMath. We attribute this to the fact that the memory structure employed 
+by DKVMN eﬀectively models knowledge state changes when the data 
+structure is simpler. However, when dealing with data having complex 
+structural relationships, our model still outperforms DKVMN.
+The embedding dimension 𝑑 aﬀects the models expressiveness. 
+We investigated the impact of 𝑑 on the ASSISTments2017 and Junyi 
+datasets. As shown in Fig. 6, model performance is optimal at the 𝑑 is 
+set to 256. A smaller 𝑑 leads to insuﬃcient feature representation, while 
+a larger 𝑑 may cause overﬁtting. We also explored the eﬀect of the tem-
+perature parameter 𝜇 in Eq. (19), with results shown in Fig. 7. 𝜇 scales 
+the input to adjust the activation function’s nonlinearity. Smaller 𝜇 val-
+ues enhance nonlinearity, while larger values reduce it. In the HCMKT 
+experiment, we set 𝜇 is to 0.5 to balance nonlinearity and model sta-
+bility. Furthermore, we set 𝜆 to diﬀerent values for training to ﬁnd the 
+optimal solution, and the results are shown in Fig. 8. After extensive 
+experiments, we ﬁxed the values of 𝜆 under ASSISTments2009, ASSIST-
+ments2017, Junyi and YMath to be 0.4, 0.001, 0.01 and 0.01. We found 
+that when the number of questions is suﬃciently large, a relatively large 
+value of 𝜆 better assists the network learning the question representa-
+tions.
+5.7.  Component analysis
+In the state modeling module, HCMKT uses LSTM for knowledge 
+state modeling. To explore the performance of RNN, GRU, and LSTM 
+in encoding state information, we conducted component analysis ex-
+periments, as shown in Table 6. The results show that LSTM outper-
+forms RNN and GRU. Firstly, LSTM mitigates the gradient vanishing 
+problem of traditional RNN through its sophisticated gating mechanism. 
+Secondly, it exhibits stronger representation ability than GRU, despite 
+requiring more parameters. Therefore, LSTM’s advanced gating struc-
+ture makes it better suited for HCMKT modeling.
+5.8.  Visual analysis
+Diﬀerent question representations are obtained through coarse and 
+ﬁne-grained views. To verify the eﬀectiveness of the question features 
+learned based on meta-paths, ﬁve consecutive questions from ASSIST-
+ments2017 were extracted for visualization. The results are shown in 
+Fig. 9, where ﬁve consecutive questions are relabeled from 1 to 5. In 
+Expert Systems With Applications 295 (2026) 128840 
+9 
+
+===== PAGE 10 =====
+J. Liu et al.
+Fig. 5. The results of AUC, ACC and RMSE at diﬀerent training rates. We take 20 %, 40 % and 60 % of the data in ASSISTments2009, ASSISTments2017, Junyi and 
+YMath to train the model, with the ﬁnal test results.
+Fig. 6. Experimental results at diﬀerent values of 𝑑. Larger AUC and ACC are better, smaller RMSE is better.
+Fig. 7. Experimental results at diﬀerent values of 𝜇.
+Expert Systems With Applications 295 (2026) 128840 
+10 
+
+===== PAGE 11 =====
+J. Liu et al.
+Fig. 8. Experimental results at diﬀerent values of 𝜆.
+Table 6 
+Experimental results of replacing the LSTM in the state mod-
+eling module with RNN and GRU.
+ Dataset  Metrics  RNN  GRU  LSTM
+ ASSISTments2017  AUC  0.7237  0.7343  0.7519
+ ACC  0.6981  0.7051  0.7146
+ RMSE  0.4425  0.4385  0.4329
+ Junyi  AUC  0.8695  0.8779  0.8803
+ ACC  0.8315  0.8344  0.8360
+ RMSE  0.3582  0.3526  0.3501
+Fig. 9(a) and (b), the correlation between question indexes of 3 and 4 is 
+the largest, while the correlation between question indexes of 3 and 1 is 
+the smallest. The former has more same meta-path connections than the 
+latter. This demonstrates the powerful ability of coarse and ﬁne-grained 
+views to depict the number of meta-paths and capture the details of 
+connections. We also found that the importance of diﬀerent meta-paths 
+connecting objects varies, so research on the contribution of meta-path 
+connections is also planned in the future.
+To further prove the eﬀectiveness of the ﬁne-grained view in HCMKT 
+to model the connection details between question objects through
+meta-path contexts. We select two thousand and ﬁfteen hundred
+diﬀerent questions from ASSISTments2009 and ASSISTments2017 re-
+spectively, and use t-SNE (Maaten & Hinton, 2008) to perform dimen-
+sionality reduction processing on the question representation from ﬁne-
+grained view. As shown in Fig. 10, diﬀerent questions are represented by 
+dots of diﬀerent colors, and clusters of diﬀerent sizes represent questions 
+in this area with similar feature information. In Fig. 10(a), the distribu-
+tion of question clusters is relatively even. We analyze this because the 
+ﬁne-grained view describes the connection details between question ob-
+jects based on the meta-path context, resulting in the common feature 
+information between diﬀerent question objects being further captured. 
+In Fig. 10(b), the visualization results of question representations in AS-
+SISTments2017 show a diﬀerent distribution compared to Fig. 10(a). 
+We analyze this as feature uniqueness due to the variability of data in 
+diﬀerent datasets and the varying meta-path contexts among question 
+objects. The eﬀectiveness of HCMKT in learning high-quality question 
+features is demonstrated by the visual analysis of question representa-
+tions.
+5.9.  KT application discussion
+KT has a wide range of practical application value in education. First, 
+KT can eﬃciently process massive education data, providing educated 
+with accurate assessments of knowledge state. Secondly, online educa-
+tion platforms can leverage KT to recommend personalized learning re-
+sources based on students’ knowledge state, addressing the personal-
+ization limitations of traditional statistical methods. Finally, in actual 
+education scenarios, educators can continuously monitor the changes in 
+student’s knowledge state through KT, dynamically optimize curriculum 
+design, and foster eﬀective alignment between teaching and learning.
+5.10.  Weakness discussion
+Extensive experiments have conﬁrmed that HCMKT eﬀectively eval-
+uates students’ knowledge state by mining high-order feature informa-
+tion from HIN. However, our method still has some limitations. On the 
+Fig. 9. Question representation correlation obtained by pearson correlation coeﬃcient. (a) Correlation from coarse view, (b) Correlation from ﬁne-grained view.
+Expert Systems With Applications 295 (2026) 128840 
+11 
+
+===== PAGE 12 =====
+J. Liu et al.
+Fig. 10. The results of question representation under ﬁne-grained view are visualized using t-SNE. (a) Question representation under ﬁne-grained view in ASSIST-
+ments2009. (b) Question representation under ﬁne-grained view in ASSISTments2017.
+one hand, meta-paths must be predeﬁned based on learning records 
+and adjusted to suit data characteristics. While this strengthens rela-
+tionships among attributes, manually selecting meta-paths restricts the 
+model’s applicability in complex large-scale settings. On the other hand, 
+we treat the HIN as static, overlooking dynamic changes in the learn-
+ing environment. When new students or questions are introduced, the 
+model’s evaluation of new students’ knowledge state may be biased.
+6.  Conclusion
+In this paper, we propose a novel knowledge tracing method HCMKT. 
+It constructs a coarse view to represent meta-path connection relation-
+ships between questions and a ﬁne-grained view to describe the seman-
+tic details of connections. To capture macro-level structural information 
+and micro-level semantic features between questions, we construct con-
+trastive learning views by introducing noise and an elaborated negative 
+sample selection mechanism. We then integrate question and answer 
+representations to model student’s knowledge state for predicting fu-
+ture performance. To enhance the model’s ability to model, predict, and 
+generalize, we combine contrastive learning with online knowledge dis-
+tillation. Extensive experiments demonstrate HCMKT’s eﬀectiveness and 
+superior performance in handling complex data. In the future, we plan 
+to further explore higher-order feature information in students’ learning 
+records to accurately track the evolution of their knowledge state.
+CRediT authorship contribution statement
+Jie Liu: Conceptualization, Methodology, Investigation, Writing 
+– original draft; Zheng Guan: Conceptualization, Methodology; Xue 
+Wang: Conceptualization, Methodology, Writing – review & editing;
+Zhijun Yang: Validation, Writing – review & editing.
+Data availability
+Data will be made available on request.
+Declaration of competing interest
+The authors declare that they have no known competing ﬁnancial 
+interests or personal relationships that could have appeared to inﬂuence 
+the work reported in this paper. 
+Acknowledgment
+This work was supported by Yunnan Expert Workstation 
+202305AF150045; National Natural Science Foundation of China under 
+Grants 61761045; Yunnan University graduate research innovation 
+fund project No.ZC-23236338.
+References
+Abdelrahman, G., Wang, Q., & Nunes, B. (2023). Knowledge tracing: A survey. ACM Com-
+puting Surveys, 55(11), 1–37. 
+Cen, H., Koedinger, K., & Junker, B. (2008). Comparing two IRT models for conjunctive 
+skills. In Intelligent tutoring systems: 9th international conference, ITS 2008, Montreal, 
+Canada, June 23–27, 2008 proceedings 9 (pp. 796–798). Springer. 
+Chen, D., Mei, J.-P., Wang, C., Feng, Y., & Chen, C. (2020). Online knowledge distilla-
+tion with diverse peers. In Proceedings of the AAAI conference on artiﬁcial intelligence
+(pp. 3430–3437). (vol. 34). 
+Choi, Y., Lee, Y., Cho, J., Baek, J., Kim, B., Cha, Y., Shin, D., Bae, C., & Heo, J. (2020). 
+Towards an appropriate query, key, and value computation for knowledge tracing. In 
+Proceedings of the seventh ACM conference on learning@ scale (pp. 341–344). 
+Corbett, A. (2000). Cognitive mastery learning in the act programming tutor. In Adaptive 
+user interfaces. AAAI SS-00-01. retrieved from https://aaai.org/library/symposia/spring/
+ss00-01. php (p. 1). (vol. 7). 
+Corbett, A. T., & Anderson, J. R. (1994). Knowledge tracing: Modeling the acquisi-
+tion of procedural knowledge. User Modeling and User-Adapted Interaction, 4, 253–
+278. 
+Cui, C., Yao, Y., Zhang, C., Ma, H., Ma, Y., Ren, Z., Zhang, C., & Ko, J. (2024). DGEKT: 
+A dual graph ensemble learning method for knowledge tracing. ACM Transactions on 
+Information Systems, 42(3), 1–24. 
+Dai, H., Yun, Y., Zhang, Y., Zhang, W., & Shang, X. (2022). Contrastive deep knowledge 
+tracing. In International conference on artiﬁcial intelligence in education (pp. 289–292). 
+Springer. 
+Gan, W., Sun, Y., Peng, X., & Sun, Y. (2020). Modeling learner’s dynamic knowledge con-
+struction procedure and cognitive item diﬃculty for knowledge tracing. Applied Intel-
+ligence, 50, 3894–3912. 
+Ghosh, A., Heﬀernan, N., & Lan, A. S. (2020). Context-aware attentive knowledge tracing. 
+In Proceedings of the 26th ACM SIGKDD international conference on knowledge discovery 
+& data mining (pp. 2330–2339).
+Hinton, G., Vinyals, O., & Dean, J. (2015). Distilling the knowledge in a neural network. 
+arXiv preprint arXiv:1503.02531.
+Jiang, C., GANb, W., SUa, G., SUNb, Y., & SUNa, Y. (2021). Improving knowledge tracing 
+through embedding based on metapath. In Proceedings of the 29th international confer-
+ence on computers in education. 
+Kasurinen, J., & Nikula, U. (2009). Estimating programming knowledge with Bayesian 
+knowledge tracing. ACM SIGCSE Bulletin, 41(3), 313–317. 
+Ke, F., Wang, W., Tan, W., Du, L., Jin, Y., Huang, Y., & Yin, H. (2024). HiTSKT: A hi-
+erarchical transformer model for session-aware knowledge tracing. Knowledge-Based 
+Systems, 284, 111300. 
+Lee, W., Chun, J., Lee, Y., Park, K., & Park, S. (2022). Contrastive learning for knowledge 
+tracing. In Proceedings of the ACM web conference 2022 (pp. 2330–2338). 
+Expert Systems With Applications 295 (2026) 128840 
+12 
+
+===== PAGE 13 =====
+J. Liu et al.
+Li, S., Shen, S., Su, Y., Sun, X., Lu, J., Mo, Q., Wu, Z., & Liu, Q. (2025). STHKT: Spa-
+tiotemporal knowledge tracing with topological hawkes process. Expert Systems with 
+Applications, 259, 125248. 
+Lindsey, R. V., Shroyer, J. D., Pashler, H., & Mozer, M. C. (2014). Improving students’ long-
+term knowledge retention through personalized review. Psychological Science, 25(3), 
+639–647. 
+Liu, Q., Tong, S., Liu, C., Zhao, H., Chen, E., Ma, H., & Wang, S. (2019). Exploiting cogni-
+tive structure for adaptive learning. In Proceedings of the 25th ACM SIGKDD international 
+conference on knowledge discovery & data mining (pp. 627–635). 
+Liu, R., Xing, P., Deng, Z., Li, A., Guan, C., & Yu, H. (2025). Federated graph neural 
+networks: Overview, techniques, and challenges. IEEE Transactions on Neural Networks 
+and Learning Systems, 36(3), 4279–4295. 
+Luo, Y., Xiao, B., Jiang, H., & Ma, J. (2022). Heterogeneous graph based knowledge trac-
+ing. In 2022 11th International conference on educational and information technology 
+(ICEIT) (pp. 226–231). IEEE. 
+Ma, J., Yang, J., Fu, F., & Zhang, J. (2025). Consistency knowledge distillation based on 
+similarity attribute graph guidance. Expert Systems with Applications, 269, 126395. 
+Maaten, L.v.d., & Hinton, G. (2008). Visualizing data using t-SNE, Journal of machine learn-
+ing research, 9, 2579–2605. 
+Mao, S., Zhan, J., Wang, Y., & Jiang, Y. (2023). Improving knowledge tracing via consid-
+ering two types of actual diﬀerences from exercises and prior knowledge. IEEE Trans-
+actions on Learning Technologies, 16(3), 324–338. 
+Nakagawa, H., Iwasawa, Y., & Matsuo, Y. (2019). Graph-based knowledge tracing: Mod-
+eling student proﬁciency using graph neural network. In IEEE/WIC/ACM International 
+conference on web intelligence (pp. 156–163). 
+Ni, Q., Wei, T., Zhao, J., He, L., & Zheng, C. (2023). HHSKT: A learner–question interac-
+tions based heterogeneous graph neural network model for knowledge tracing. Expert 
+Systems with Applications, 215, 119334.
+Pandey, S., & Karypis, G. (2019). A self-attentive model for knowledge tracing. arXiv 
+preprint arXiv:1907.06837.
+Piech, C., Bassen, J., Huang, J., Ganguli, S., Sahami, M., Guibas, L. J., & Sohl-Dickstein, 
+J. (2015). Deep knowledge tracing. Advances in Neural Information Processing Systems, 
+28, 505–513. 
+Song, X., Li, J., Lei, Q., Zhao, W., Chen, Y., & Mian, A. (2022). Bi-CLKT: Bi-graph con-
+trastive learning based knowledge tracing. Knowledge-Based Systems, 241, 108274. 
+Su, J., Chen, Y., Lin, X., Zhong, J., & Dong, C. (2024). Multi-view multi-behavior in-
+terest learning network and contrastive learning for multi-behavior recommendation. 
+Knowledge-Based Systems, 305, 112604. 
+Sun, J., Du, S., Liu, Z., Yu, F., Liu, S., Li, Q., & Shen, X. (2024). Weighted heterogeneous 
+graph-based three-view contrastive learning for knowledge tracing in personalized e-
+learning systems. IEEE Transactions on Consumer Electronics, 70(1), 2838–2847. 
+Sun, X., Zhao, X., Li, B., Ma, Y., Sutcliﬀe, R., & Feng, J. (2022). Dynamic key-value memory 
+networks with rich features for knowledge tracing. IEEE Transactions on Cybernetics, 
+52(8), 8239–8245. https://doi.org/10.1109/TCYB.2021.3051028
+Sun, Y., Han, J., Yan, X., Yu, P. S., & Wu, T. (2011). PathSim: Meta path-based top-k 
+similarity search in heterogeneous information networks. Proceedings of the VLDB en-
+dowment, 4(11), 992–1003. 
+Tong, S., Liu, Q., Huang, W., Hunag, Z., Chen, E., Liu, C., Ma, H., & Wang, S. (2020a). 
+Structure-based knowledge tracing: An inﬂuence propagation view. In 2020 IEEE In-
+ternational conference on data mining (ICDM) (pp. 541–550). IEEE. 
+Vie, J.-J., & Kashima, H. (2019). Knowledge tracing machines: Factorization machines 
+for knowledge tracing. In Proceedings of the AAAI conference on artiﬁcial intelligence
+(pp. 750–757). (vol. 33). 
+Wu, G., & Gong, S. (2021). Peer collaborative learning for online knowledge distilla-
+tion. In Proceedings of the AAAI conference on artiﬁcial intelligence (pp. 10302–10310).
+(vol. 35). 
+Wu, T., & Ling, Q. (2023). Fusing hybrid attentive network with self-supervised dual-
+channel heterogeneous graph for knowledge tracing. Expert Systems with Applications, 
+225, 120212. 
+Yang, H., Hu, S., Geng, J., Huang, T., Hu, J., Zhang, H., & Zhu, Q. (2024). Heteroge-
+neous graph-based knowledge tracing with spatiotemporal evolution. Expert Systems 
+with Applications, 238, 122249. 
+Yang, Y., Shen, J., Qu, Y., Liu, Y., Wang, K., Zhu, Y., Zhang, W., & Yu, Y. (2021). GIKT: A 
+graph-based interaction model for knowledge tracing. In Machine learning and knowl-
+edge discovery in databases: European conference, ECML PKDD 2020, Ghent, Belgium, 
+September 14–18, 2020, proceedings, Part I (pp. 299–315). Springer. 
+Yeung, C.-K., & Yeung, D.-Y. (2018). Addressing two problems in deep knowledge tracing 
+via prediction-consistent regularization. In Proceedings of the ﬁfth annual ACM confer-
+ence on learning at scale (pp. 1–10). 
+Yin, Y., Dai, L., Huang, Z., Shen, S., Wang, F., Liu, Q., Chen, E., & Li, X. (2023). Tracing 
+knowledge instead of patterns: Stable knowledge tracing with diagnostic transformer. 
+In Proceedings of the ACM web conference 2023 (pp. 855–864). 
+Yu, J., Ge, Q., Li, X., & Zhou, A. (2024). Heterogeneous graph contrastive learning with 
+meta-path contexts and adaptively weighted negative samples. IEEE Transactions on 
+Knowledge and Data Engineering, 36(10), 5181–5193. 
+Yu, J., Yin, H., Xia, X., Chen, T., Li, J., & Huang, Z. (2024). Self-supervised learning for 
+recommender systems: A survey. IEEE Transactions on Knowledge and Data Engineering, 
+36(1), 335–355. 
+Zhang, H., Wu, B., Yuan, X., Pan, S., Tong, H., & Pei, J. (2024). Trustworthy graph neural 
+networks: Aspects, methods, and trends. Proceedings of the IEEE. 
+Zhang, J., Shi, X., King, I., & Yeung, D.-Y. (2017a). Dynamic key-value memory networks 
+for knowledge tracing. In Proceedings of the 26th international conference on world wide 
+web (pp. 765–774). 
+Zhang, L., Xiong, X., Zhao, S., Botelho, A., & Heﬀernan, N. T. (2017b). Incorporating 
+rich features into deep knowledge tracing. In Proceedings of the fourth (2017) ACM 
+conference on learning @ scale (p. 169-172). 
+Zhang, M., Zhu, X., Zhang, C.-X., Pan, F., Qian, W., & Zhao, H. (2023). Cognition-mode 
+aware variational representation learning framework for knowledge tracing. 2023 IEEE 
+International conference on data mining (ICDM), (pp. 788–797). 
+Zhang, Y., Xiang, T., Hospedales, T. M., & Lu, H. (2018). Deep mutual learning. In Proceed-
+ings of the IEEE conference on computer vision and pattern recognition (pp. 4320–4328).
+Zhao, M., Yu, J., Zhang, S., & Jia, A. L. (2025). Relation-aware multiplex heterogeneous 
+graph neural network. Knowledge-Based Systems, 309, 112806. 
+Zhou, Y., Lv, Z., Zhang, S., & Chen, J. (2025). Disentangled knowledge tracing for alleviat-
+ing cognitive bias. In Proceedings of the ACM on web conference 2025 (pp. 2633–2645).
+Zhu, M., Qiu, L., & Zhou, J. (2024). Meta-path structured graph pre-training for improv-
+ing knowledge tracing in intelligent tutoring. Expert Systems with Applications, 254, 
+124451. 
+Expert Systems With Applications 295 (2026) 128840 
+13 

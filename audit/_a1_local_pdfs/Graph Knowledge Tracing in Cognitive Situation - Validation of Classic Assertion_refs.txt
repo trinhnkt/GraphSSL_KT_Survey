@@ -1,0 +1,207 @@
+Knowledge-Based Systems 315 (2025) 113281
+21
+Q. Wu et al.
+Declaration of competing interest
+The authors declare the following financial interests/personal rela-
+tionships which may be considered as potential competing interests: Ji 
+Weidong reports was provided by Harbin Normal University.
+Data availability
+Data will be made available on request.
+References
+[1] S.A. Triantafyllou, Work in progress: Educational technology and knowledge trac-
+ing models, in: 2022 IEEE World Engineering Education Conference, EDUNINE, 
+IEEE, 2022, pp. 1–4.
+[2] B.F. Skinner, Teaching machines, Sci. Am. 205 (5) (1961) 90–106.
+[3] S. Shen, Q. Liu, E. Chen, H. Wu, Z. Huang, W. Zhao, Y. Su, H. Ma, S. Wang, 
+Convolutional knowledge tracing: Modeling individualization in student learning 
+process, in: Proceedings of the 43rd International ACM SIGIR Conference on 
+Research and Development in Information Retrieval, 2020, pp. 1857–1860.
+[4] S. Franklin, T. Madl, S. D’mello, J. Snaider, LIDA: A systems-level architecture 
+for cognition, emotion, and learning, IEEE Trans. Auton. Ment. Dev. 6 (1) (2013) 
+19–41.
+[5] J.S. Beck, Cognitive-behavioral therapy, Clin. Textb. Addict. Disord. 491 (2011) 
+474–501.
+[6] S. Liu, S. Liu, Z. Liu, X. Peng, Z. Yang, Automated detection of emotional and 
+cognitive engagement in MOOC discussions to predict learning achievement, 
+Comput. Educ. 181 (2022) 104461.
+[7] Z. Liu, X. Kong, H. Chen, S. Liu, Z. Yang, MOOC-BERT: Automatically identifying 
+learner cognitive presence from MOOC discussion data, IEEE Trans. Learn. 
+Technol. 16 (4) (2023) 528–542.
+[8] Z. Liu, R. Mu, Z. Yang, X. Peng, S. Liu, J. Chen, Modeling temporal cogni-
+tive topic to uncover learners’ concerns under different cognitive engagement 
+patterns, Interact. Learn. Environ. 31 (10) (2023) 7196–7213.
+[9] Z. Liu, W. Kong, X. Peng, Z. Yang, S. Liu, S. Liu, C. Wen, Dual-
+feature-embeddings-based semi-supervised learning for cognitive engagement 
+classification in online course discussions, Knowl.-Based Syst. 259 (2023) 
+110053.
+[10] A.T. Corbett, J.R. Anderson, Knowledge tracing: Modeling the acquisition of 
+procedural knowledge, User Model. User-Adapt. Interact. 4 (1994) 253–278.
+[11] M. Khajah, R.V. Lindsey, M.C. Mozer, How deep is knowledge tracing?, 2016, 
+arXiv preprint arXiv:1604.02416. https://eric.ed.gov/?id=ED578482.
+[12] C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami, L.J. Guibas, J. 
+Sohl-Dickstein, Deep knowledge tracing, Adv. Neural Inf. Process. Syst. 28 
+(2015).
+[13] Y. Xiao, R. Xiao, N. Huang, Y. Hu, H. Li, B. Sun, Knowledge tracing based on 
+multi-feature fusion, Neural Comput. Appl. 35 (2) (2023) 1819–1833.
+[14] X. Sun, X. Zhao, B. Li, Y. Ma, R. Sutcliffe, J. Feng, Dynamic key-value memory 
+networks with rich features for knowledge tracing, IEEE Trans. Cybern. 52 (8) 
+(2021) 8239–8245.
+[15] Y. Zhou, X. Li, Y. Cao, X. Zhao, Q. Ye, J. Lv, LANA: towards personalized deep 
+knowledge tracing through distinguishable interactive sequences, 2021, arXiv 
+preprint arXiv:2105.06266.
+[16] X. Li, S. Wei, X. Zhang, Y. Du, G. Yu, LFKT: deep knowledge tracing model with 
+learning and forgetting behavior merging, J. Softw. 32 (3) (2021) 818–830.
+[17] J. Zhang, X. Shi, I. King, D.-Y. Yeung, Dynamic key-value memory networks 
+for knowledge tracing, in: Proceedings of the 26th International Conference 
+on World Wide Web, 2017, pp. 765–774, https://dl.acm.org/doi/abs/10.1145/
+3038912.3052577.
+[18] S. Sukhbaatar, J. Weston, R. Fergus, et al., End-to-end memory networks, Adv. 
+Neural Inf. Process. Syst. 28 (2015).
+[19] G. Liu, H. Zhan, J.-j. Kim, Question difficulty consistent knowledge tracing, in: 
+Proceedings of the ACM on Web Conference 2024, 2024, pp. 4239–4248.
+[20] S. Hochreiter, J. Schmidhuber, Long short-term memory, Neural Comput. 9 (8) 
+(1997) 1735–1780.
+[21] G.M. Shipurkar, R.R. Sheth, T.A. Surana, K.N. Shah, R. Garg, P. Natu, End to 
+end system for handwritten text recognition and plagiarism detection using CNN 
+& BLSTM, in: 2022 4th International Conference on Artificial Intelligence and 
+Speech Technology, AIST, IEEE, 2022, pp. 1–6.
+[22] C.-K. Yeung, D.-Y. Yeung, Addressing two problems in deep knowledge tracing 
+via prediction-consistent regularization, in: Proceedings of the Fifth Annual ACM 
+Conference on Learning at Scale, 2018, pp. 1–10.
+[23] Y. Su, R. Zhang, S. M. Erfani, J. Gan, Neural graph matching based collaborative 
+filtering, in: Proceedings of the 44th International ACM SIGIR Conference on 
+Research and Development in Information Retrieval, 2021, pp. 849–858.
+[24] K. Han, A. Xiao, E. Wu, J. Guo, C. Xu, Y. Wang, Transformer in transformer, 
+Adv. Neural Inf. Process. Syst. 34 (2021) 15908–15919.
+[25] A. Ghosh, N. Heffernan, A.S. Lan, Context-aware attentive knowledge tracing, in: 
+Proceedings of the 26th ACM SIGKDD International Conference on Knowledge 
+Discovery & Data Mining, 2020, pp. 2330–2339, https://dl.acm.org/doi/abs/10.
+1145/3394486.3403334.
+[26] S. Pandey, J. Srivastava, RKT: relation-aware self-attention for knowledge tracing, 
+in: Proceedings of the 29th ACM International Conference on Information & 
+Knowledge Management, 2020, pp. 1205–1214, https://dl.acm.org/doi/abs/10.
+1145/3340531.3411954.
+[27] H. Jiang, B. Xiao, Y. Luo, J. Ma, A self-attentive model for tracing knowledge 
+and engagement in parallel, Pattern Recognit. Lett. 165 (2023) 25–32.
+[28] S. Pu, M. Yudelson, L. Ou, Y. Huang, Deep knowledge tracing with trans-
+formers, in: Artificial Intelligence in Education: 21st International Conference, 
+AIED 2020, Ifrane, Morocco, July 6–10, 2020, Proceedings, Part II 21, 
+Springer, 2020, pp. 252–256, https://patentimages.storage.googleapis.com/2e/
+95/06/0078440c163480/US20210390873A1.pdf.
+[29] Y. Choi, Y. Lee, J. Cho, J. Baek, B. Kim, Y. Cha, D. Shin, C. Bae, J. Heo, Towards 
+an appropriate query, key, and value computation for knowledge tracing, in: 
+Proceedings of the Seventh ACM Conference on Learning@ Scale, 2020, pp. 
+341–344, https://dl.acm.org/doi/abs/10.1145/3386527.3405945.
+[30] D. Shin, Y. Shim, H. Yu, S. Lee, B. Kim, Y. Choi, Saint+: Integrating temporal 
+features for ednet correctness prediction, in: LAK21: 11th International Learning 
+Analytics and Knowledge Conference, 2021, pp. 490–496, https://arxiv.org/pdf/
+2010.12042.pdf.
+[31] F. Ke, W. Wang, W. Tan, L. Du, Y. Jin, Y. Huang, H. Yin, HiTSKT: A hierarchical 
+transformer model for session-aware knowledge tracing, Knowl.-Based Syst. 284 
+(2024) 111300.
+[32] H. Nakagawa, Y. Iwasawa, Y. Matsuo, Graph-based knowledge tracing: modeling 
+student proficiency using graph neural network, in: IEEE/WIC/ACM International 
+Conference on Web Intelligence, 2019, pp. 156–163.
+[33] J. Zhang, Y. Mo, C. Chen, X. He, GKT-CD: Make cognitive diagnosis model 
+enhanced by graph-based knowledge tracing, in: 2021 International Joint 
+Conference on Neural Networks, IJCNN, IEEE, 2021, pp. 1–8.
+[34] Z. Wu, L. Huang, Q. Huang, C. Huang, Y. Tang, SGKT: Session graph-based 
+knowledge tracing for student performance prediction, Expert Syst. Appl. 206 
+(2022) 117681.
+[35] G. Abdelrahman, Q. Wang, Deep graph memory networks for forgetting-robust 
+knowledge tracing, IEEE Trans. Knowl. Data Eng. (2022) https://ieeexplore.ieee.
+org/document/9914428.
+[36] H. Zhang, C. Bu, F. Liu, S. Liu, Y. Zhang, X. Hu, APGKT: Exploiting associative 
+path on skills graph for knowledge tracing, in: PRICAI 2022: Trends in Artificial 
+Intelligence: 19th Pacific Rim International Conference on Artificial Intelligence, 
+PRICAI 2022, Shanghai, China, November 10–13, 2022, Proceedings, Part I, 
+Springer, 2022, pp. 353–365, https://link.springer.com/chapter/10.1007/978-3-
+031-06065-9_25.
+[37] H. Tong, Z. Wang, Y. Zhou, S. Tong, W. Han, Q. Liu, Introducing problem 
+schema with hierarchical exercise graph for knowledge tracing, in: Proceedings of 
+the 45th International ACM SIGIR Conference on Research and Development in 
+Information Retrieval, 2022, pp. 405–415, https://dl.acm.org/doi/abs/10.1145/
+3477495.3531755.
+[38] Y. Yang, J. Shen, Y. Qu, Y. Liu, K. Wang, Y. Zhu, W. Zhang, Y. Yu, GIKT: a 
+graph-based interaction model for knowledge tracing, in: Machine Learning and 
+Knowledge Discovery in Databases: European Conference, ECML PKDD 2020, 
+Ghent, Belgium, September 14–18, 2020, Proceedings, Part I, Springer, 2021, 
+pp. 299–315, https://link.springer.com/chapter/10.1007/978-3-030-67661-2_18.
+[39] G. Abdelrahman, Q. Wang, Deep graph memory networks for forgetting-robust 
+knowledge tracing, IEEE Trans. Knowl. Data Eng. (2022) https://ieeexplore.ieee.
+org/document/9914428.
+[40] Q. Ni, T. Wei, J. Zhao, L. He, C. Zheng, HHSKT: A learner–question interactions 
+based heterogeneous graph neural network model for knowledge tracing, Expert 
+Syst. Appl. 215 (2023) 119334.
+[41] J. Sun, J. Zhou, K. Zhang, Q. Li, Z. Lu, Collaborative embedding for knowledge 
+tracing, in: Knowledge Science, Engineering and Management: 14th International 
+Conference, KSEM 2021, Tokyo, Japan, August 14–16, 2021, Proceedings, Part 
+II 14, Springer, 2021, pp. 333–342, https://link.springer.com/chapter/10.1007/
+978-3-030-89022-3_28.
+[42] X. Song, J. Li, Y. Tang, T. Zhao, Y. Chen, Z. Guan, Jkt: A joint graph 
+convolutional network based deep knowledge tracing, Inform. Sci. 580 (2021) 
+510–523.
+[43] H. Tong, Z. Wang, Y. Zhou, S. Tong, W. Han, Q. Liu, Introducing problem 
+schema with hierarchical exercise graph for knowledge tracing, in: Proceedings of 
+the 45th International ACM SIGIR Conference on Research and Development in 
+Information Retrieval, 2022, pp. 405–415, https://dl.acm.org/doi/abs/10.1145/
+3477495.3531755.
+[44] W. Gan, Y. Sun, Y. Sun, Knowledge structure enhanced graph representation 
+learning model for attentive knowledge tracing, Int. J. Intell. Syst. 37 (3) (2022) 
+2012–2045.
+[45] C. Cui, Y. Yao, C. Zhang, H. Ma, Y. Ma, Z. Ren, C. Zhang, J. Ko, DGEKT: A dual 
+graph ensemble learning method for knowledge tracing, 2022, arXiv preprint 
+arXiv:2211.12881. https://arxiv.org/abs/2211.12881.
+
+Knowledge-Based Systems 315 (2025) 113281
+22
+Q. Wu et al.
+[46] W. Lee, J. Chun, Y. Lee, K. Park, S. Park, Contrastive learning for knowledge 
+tracing, in: Proceedings of the ACM Web Conference 2022, 2022, pp. 2330–2338.
+[47] C. Wang, W. Ma, M. Zhang, C. Lv, F. Wan, H. Lin, T. Tang, Y. Liu, S. Ma, 
+Temporal cross-effects in knowledge tracing, in: Proceedings of the 14th ACM 
+International Conference on Web Search and Data Mining, 2021, pp. 517–525.
+[48] L.S. Vygotsky, M. Cole, Mind in Society: Development of Higher Psychological 
+Processes, Harvard University Press, 1978.
+[49] J. Piaget, Piaget’s Theory, vol. 1, Wiley New York, 1970.
+[50] J.D. Bransford, A.L. Brown, R.R. Cocking, et al., How People Learn vol. 11, 
+National academy Press, Washington, DC, 2000.
+[51] J. Lave, E. Wenger, Situated Learning: Legitimate Peripheral Participation, 
+Cambridge University Press, 1991.
+[52] A. Bandura, et al., Social foundations of thought and action, Englewood Cliffs, 
+NJ 1986 (23–28) (1986) 2.
+[53] C.S. Dweck, Mindset: The New Psychology of Success, Random house, 2006.
+[54] A.L. Duckworth, C. Peterson, M.D. Matthews, D.R. Kelly, Grit: perseverance and 
+passion for long-term goals, J. Pers. Soc. Psychol. 92 (6) (2007) 1087.
+[55] Y. Feng, H. You, Z. Zhang, R. Ji, Y. Gao, Hypergraph neural networks, in: 
+Proceedings of the AAAI Conference on Artificial Intelligence, vol. 33, 2019, 
+pp. 3558–3565.
+[56] A.L. Maas, A.Y. Hannun, A.Y. Ng, et al., Rectifier nonlinearities improve neural 
+network acoustic models, in: Proc. Icml, vol. 30, Atlanta, Georgia, USA, 2013, 
+p. 3.
+[57] M. Kenning, J. Deng, M. Edwards, X. Xie, A directed graph convolutional neural 
+network for edge-structured signals in link-fault detection, Pattern Recognit. Lett. 
+153 (2022) 100–106.
+[58] S. Hochreiter, J. Schmidhuber, Long short-term memory, Neural Comput. 9 (8) 
+(1997) 1735–1780.
+[59] I. Sutskever, O. Vinyals, Q.V. Le, Sequence to sequence learning with neural 
+networks, Adv. Neural Inf. Process. Syst. 27 (2014).
+[60] S. Pandey, G. Karypis, A self-attentive model for knowledge tracing, 2019, arXiv 
+preprint arXiv:1907.06837. https://www.solaresearch.org/wp-content/uploads/
+2019/06/pandey2019.pdf.
+[61] J.D. Karpicke, H.L. Roediger III, The critical importance of retrieval for learning, 
+Science 319 (5865) (2008) 966–968.
+[62] J. Dunlosky, K.A. Rawson, Overconfidence produces underachievement: Inaccu-
+rate self evaluations undermine students’ learning and retention, Learn. Instr. 22 
+(4) (2012) 271–280.
+[63] P.A. Kirschner, J. Sweller, R.E. Clark, Why minimal guidance during instruction 
+does not work: An analysis of the failure of constructivist, discovery, problem-
+based, experiential, and inquiry-based teaching, Educ. Psychol. 41 (2) (2006) 
+75–86.
+[64] B. Neumann, The literary representation of memory, in: Cultural Memory Studies: 
+An International and Interdisciplinary Handbook, Walter de Gruyter Berlin, 2008, 
+pp. 333–343.
+[65] K. Tanaka, Neuronal mechanisms of object recognition, Science 262 (5134) 
+(1993) 685–688.
+[66] L.M. Carrier, L.D. Rosen, N.A. Cheever, A.F. Lim, Causes, effects, and 
+practicalities of everyday multitasking, Dev. Rev. 35 (2015) 64–78.

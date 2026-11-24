@@ -1,0 +1,87 @@
+Declaration of Competing Interest
+The authors declare that they have no known competing ﬁnancial interests or personal relationships that could have
+appeared to inﬂuence the work reported in this paper.
+Acknowledgements
+This work was supported in part by the Key Science and Technology Program of Anhui under Grants 202203f07020002
+and 202203a05020012, and in part by the Applied Science and Technology Achievement Cultivation Project of Institute of
+Advanced Technology, University of Science and Technology of China.
+References
+[1] A.C. Graesser, M.W. Conley, A. Olney, Intelligent tutoring systems., APA Educational Psychology Handbook, Vol 3: Application to Learning and Teaching.
+(2012) 451–473.
+[2] Y. Huo, D.F. Wong, L.M. Ni, L.S. Chao, J. Zhang, Knowledge modeling via contextualized representations for LSTM-based personalized exercise
+recommendation, Information Sciences 523 (2020) 266–278.
+[3] A.T. Corbett, J.R. Anderson, Knowledge tracing: Modeling the acquisition of procedural knowledge, User Modeling and User-Adapted Interaction 4 (4)
+(1994) 253–278.
+[4] J. Kasurinen, U. Nikula, Estimating programming knowledge with B ayesian knowledge tracing, ACM SIGCSE Bulletin 41 (3) (2009) 313–317.
+[5] W.J. van der Linden, R.K. Hambleton, Handbook of modern item response theory, Springer Science & Business Media, 2013.
+[6] R.V. Lindsey, J.D. Shroyer, H. Pashler, M.C. Mozer, Improving students’ long-term knowledge retention through personalized review, Psychological
+Science 25 (3) (2014) 639–647.
+[7] C. Piech, J. Spencer, J. Huang, S. Ganguli, M. Sahami, L. Guibas, J. Sohl-Dickstein, Deep knowledge tracing, arXiv preprint arXiv:1506.05908.
+[8] T. Mikolov, M. Karaﬁát, L. Burget, J. Cˇernocky´, S. Khudanpur, Recurrent neural network based language model, in: Eleventh Annual Conference of the
+International Speech Communication Association, 2010.
+[9] J. Zhang, X. Shi, I. King, D.-Y. Yeung, Dynamic key-value memory networks for knowledge tracing, in: Proceedings of the 26th International Conference
+on World Wide Web, 765–774, 2017.
+[10] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A.N. Gomez, Ł. Kaiser, I. Polosukhin, Attention is all you need, in: Advances in Neural
+Information Processing Systems, 5998–6008, 2017.
+[11] S. Pandey, G. Karypis, A self-attentive model for knowledge tracing, arXiv preprint arXiv:1907.06837.
+[12] A. Ghosh, N. Heffernan, A.S. Lan, Context-aware attentive knowledge tracing, in: Proceedings of the 26th ACM SIGKDD International Conference on
+Knowledge Discovery & Data Mining, 2330–2339, 2020.
+[13] Y. Yang, J. Shen, Y. Qu, Y. Liu, K. Wang, Y. Zhu, W. Zhang, Y. Yu, GIKT: a graph-based interaction model for knowledge tracing, in: Joint European
+Conference on Machine Learning and Knowledge Discovery in Databases, Springer, 299–315, 2020.
+Fig. 5. Visualization embedding. Each point represents one question and its color means the skill covered in this question.
+T. Wu and Q. Ling
+Information Sciences 624 (2023) 200–216
+215
+
+[14] X. Song, J. Li, Y. Tang, T. Zhao, Y. Chen, Z. Guan, Jkt: A joint graph convolutional network based deep knowledge tracing, Information Sciences 580
+(2021) 510–523.
+[15] W. Wang, H. Ma, Y. Zhao, F. Yang, L. Chang, PERM: Pre-training Question Embeddings via Relation Map for Improving Knowledge Tracing, in:
+International Conference on Database Systems for Advanced Applications, Springer, 2022, pp. 281–288.
+[16] W. Wang, H. Ma, Y. Zhao, Z. Li, X. He, Tracking knowledge proﬁciency of students with calibrated Q-matrix, Expert Systems with Applications 192
+(2022) 116454.
+[17] Y. Sun, J. Han, Mining heterogeneous information networks: a structural analysis approach, ACM SIGKDD Explorations Newsletter 14 (2) (2013) 20–28.
+[18] A. Bretto, Hypergraph theory, An introduction: Mathematical Engineering. Cham: Springer.
+[19] Y. Feng, H. You, Z. Zhang, R. Ji, Y. Gao, Hypergraph neural networks, in: Proceedings of the AAAI Conference on Artiﬁcial Intelligence, vol. 33, 3558–
+3565, 2019.
+[20] P. Velickovic, W. Fedus, W.L. Hamilton, P. Liò, Y. Bengio, R.D. Hjelm, Deep Graph Infomax., ICLR 2 (3) (2019) 4.
+[21] W. Falcon, K. Cho, A framework for contrastive self-supervised learning and designing a new approach, arXiv preprint arXiv:2009.00104.
+[22] Y. Zhou, Q. Liu, J. Wu, F. Wang, Z. Huang, W. Tong, H. Xiong, E. Chen, J. Ma, Modeling context-aware features for cognitive diagnosis in student learning,
+in: Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery & Data Mining, 2420–2428, 2021.
+[23] S. Liu, J. Yu, Q. Li, R. Liang, Y. Zhang, X. Shen, J. Sun, Ability boosted knowledge tracing, Information Sciences 596 (2022) 567–587.
+[24] C. Wang, W. Ma, M. Zhang, C. Lv, F. Wan, H. Lin, T. Tang, Y. Liu, S. Ma, Temporal cross-effects in knowledge tracing, in: Proceedings of the 14th ACM
+International Conference on Web Search and Data Mining, 517–525, 2021a.
+[25] W. Wang, H. Ma, Y. Zhao, F. Yang, L. Chang, SEEP: Semantic-enhanced question embeddings pre-training for improving knowledge tracing, Information
+Sciences 614 (2022) 153–169.
+[26] X. Wang, H. Ji, C. Shi, B. Wang, Y. Ye, P. Cui, P.S. Yu, Heterogeneous graph attention network, in: The World Wide Web Conference, 2022–2032, 2019.
+[27] Y. Wang, S. Tang, Y. Lei, W. Song, S. Wang, M. Zhang, DisenHAN: Disentangled Heterogeneous Graph Attention Network for Recommendation, in:
+Proceedings of the 29th ACM International Conference on Information & Knowledge Management, 1605–1614, 2020a.
+[28] C. Zhang, D. Song, C. Huang, A. Swami, N.V. Chawla, Heterogeneous graph neural network, in: Proceedings of the 25th ACM SIGKDD International
+Conference on Knowledge Discovery & Data Mining, 793–803, 2019.
+[29] J. Jiang, Y. Wei, Y. Feng, J. Cao, Y. Gao, Dynamic Hypergraph Neural Networks., in: IJCAI, 2635–2641, 2019.
+[30] S. Ji, Y. Feng, R. Ji, X. Zhao, W. Tang, Y. Gao, Dual channel hypergraph collaborative ﬁltering, in: Proceedings of the 26th ACM SIGKDD International
+Conference on Knowledge Discovery & Data Mining, 2020–2029, 2020.
+[31] J. Wang, K. Ding, L. Hong, H. Liu, J. Caverlee, Next-item recommendation with sequential hypergraphs, in: Proceedings of the 43rd international ACM
+SIGIR Conference on Research and Development in Information Retrieval, 1101–1110, 2020b.
+[32] X. Xia, H. Yin, J. Yu, Q. Wang, L. Cui, X. Zhang, Self-supervised hypergraph convolutional networks for session-based recommendation, in: Proceedings
+of the AAAI Conference on Artiﬁcial Intelligence, vol. 35, 4503–4511, 2021.
+[33] Z. Peng, W. Huang, M. Luo, Q. Zheng, Y. Rong, T. Xu, J. Huang, Graph representation learning via graphical mutual information maximization, in:
+Proceedings of the Web Conference 2020, 259–270, 2020.
+[34] K. Hassani, A.H. Khasahmadi, Contrastive multi-view representation learning on graphs, in: International Conference on Machine Learning, PMLR,
+4116–4126, 2020.
+[35] Y. Zhu, Y. Xu, F. Yu, Q. Liu, S. Wu, L. Wang, Graph contrastive learning with adaptive augmentation, in: Proceedings of the Web Conference 2021, 2069–
+2080, 2021.
+[36] X. Wang, N. Liu, H. Han, C. Shi, Self-supervised heterogeneous graph neural network with co-contrastive learning, in: Proceedings of the 27th ACM
+SIGKDD Conference on Knowledge Discovery & Data Mining, 1726–1736, 2021b.
+[37] W. Lee, J. Chun, Y. Lee, K. Park, S. Park, Contrastive Learning for Knowledge Tracing, in: Proceedings of the ACM Web Conference 2022, 2330–2338,
+2022.
+[38] J. Chung, C. Gulcehre, K. Cho, Y. Bengio, Empirical evaluation of gated recurrent neural networks on sequence modeling, arXiv preprint
+arXiv:1412.3555.
+[39] Y. Ren, B. Liu, C. Huang, P. Dai, L. Bo, J. Zhang, Heterogeneous deep graph infomax, arXiv preprint arXiv:1911.08538.
+[40] K. Nagatani, Q. Zhang, M. Sato, Y.-Y. Chen, F. Chen, T. Ohkuma, Augmenting knowledge tracing by considering forgetting behavior, in: The world Wide
+Web Conference, 3101–3107, 2019.
+[41] T.N. Kipf, M. Welling, Semi-supervised classiﬁcation with graph convolutional networks, arXiv preprint arXiv:1609.02907.
+[42] P. Velicˇkovic´, G. Cucurull, A. Casanova, A. Romero, P. Lio, Y. Bengio, Graph attention networks, arXiv preprint arXiv:1710.10903.
+[43] L. Van der Maaten, G. Hinton, Visualizing data using t-SNE, Journal of Machine Learning Research 9 (11).
+T. Wu and Q. Ling
+Information Sciences 624 (2023) 200–216
+216

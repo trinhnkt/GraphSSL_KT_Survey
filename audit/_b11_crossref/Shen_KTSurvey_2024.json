@@ -1,0 +1,147 @@
+{
+  "title": [
+    "A Survey of Knowledge Tracing: Models, Variants, and Applications"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0003-3905-9352",
+      "authenticated-orcid": false,
+      "given": "Shuanghong",
+      "family": "Shen",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "School of Data Science, University of Science and Technology of China, Hefei, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-6956-5550",
+      "authenticated-orcid": false,
+      "given": "Qi",
+      "family": "Liu",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Computer Science and Technology, University of Science and Technology of China, Hefei, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-1661-0420",
+      "authenticated-orcid": false,
+      "given": "Zhenya",
+      "family": "Huang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Computer Science and Technology, University of Science and Technology of China, Hefei, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yonghe",
+      "family": "Zheng",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Research Institute of Science Education, Faculty of Education, Beijing Normal University, Haidian, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-6226-2394",
+      "authenticated-orcid": false,
+      "given": "Minghao",
+      "family": "Yin",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Information Science and Technology, Northeast Normal University, Changchun, Jilin, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-2561-3420",
+      "authenticated-orcid": false,
+      "given": "Minjuan",
+      "family": "Wang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "The Education University of Hong Kong, SAR, Hong Kong, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-4835-4102",
+      "authenticated-orcid": false,
+      "given": "Enhong",
+      "family": "Chen",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Data Science, University of Science and Technology of China, Hefei, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2024
+      ]
+    ]
+  },
+  "container-title": [
+    "IEEE Transactions on Learning Technologies"
+  ],
+  "volume": "17",
+  "issue": null,
+  "page": "1858-1879",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "DOI": "10.1109/tlt.2024.3383325",
+  "type": "journal-article"
+}

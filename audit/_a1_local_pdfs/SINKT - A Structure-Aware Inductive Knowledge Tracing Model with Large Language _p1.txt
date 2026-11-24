@@ -1,0 +1,223 @@
+SINKT: A Structure-Aware Inductive Knowledge Tracing Model
+with Large Language Model
+Lingyue Fu
+Shanghai Jiao Tong University
+Shanghai, China
+fulingyue@sjtu.edu.cn
+Hao Guan
+Shanghai Jiao Tong University
+Shanghai, China
+Guanhao2022@sjtu.edu.cn
+Kounianhua Du
+Shanghai Jiao Tong University
+Shanghai, China
+kounianhuadu@sjtu.edu.cn
+Jianghao Lin
+Shanghai Jiao Tong University
+Shanghai, China
+chiangel@sjtu.edu.cn
+Wei Xia
+Huawei Noah’s Ark Lab
+Shenzhen, China
+xiawei24@huawei.com
+Weinan Zhang
+Shanghai Jiao Tong University
+Shanghai, China
+wnzhang@sjtu.edu.cn
+Ruiming Tang
+Huawei Noah’s Ark Lab
+Shenzhen, China
+tangruiming@huawei.com
+Yasheng Wang
+Huawei Noah’s Ark Lab
+Shenzhen, China
+wangyasheng@huawei.com
+Yong Yu∗
+Shanghai Jiao Tong University
+Shanghai, China
+yyu@apex.sjtu.edu.cn
+ABSTRACT
+Knowledge Tracing (KT) aims to determine whether students will
+respond correctly to the next question, which is a crucial task in
+intelligent tutoring systems (ITS). In educational KT scenarios,
+transductive ID-based methods often face severe data sparsity and
+cold start problems, where interactions between individual students
+and questions are sparse, and new questions and concepts consis-
+tently arrive in the database. In addition, existing KT models only
+implicitly consider the correlation between concepts and questions,
+lacking direct modeling of the more complex relationships in the
+heterogeneous graph of concepts and questions. In this paper, we
+propose a Structure-aware INductive Knowledge Tracing model
+with large language model (dubbed SINKT), which, for the first
+time, introduces large language models (LLMs) and realizes induc-
+tive knowledge tracing. Firstly, SINKT utilizes LLMs to introduce
+structural relationships between concepts and constructs a hetero-
+geneous graph for concepts and questions. Secondly, by encoding
+concepts and questions with LLMs, SINKT incorporates semantic
+information to aid prediction. Finally, SINKT predicts the student’s
+response to the target question by interacting with the student’s
+knowledge state and the question representation. Experiments on
+four real-world datasets demonstrate that SINKT achieves state-
+of-the-art performance among 12 existing transductive KT models.
+Additionally, we explore the performance of SINKT on the inductive
+KT task and provide insights into various modules.
+∗The corresponding author.
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than the
+author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or
+republish, to post on servers or to redistribute to lists, requires prior specific permission
+and/or a fee. Request permissions from permissions@acm.org.
+CIKM ’24, October 21–25, 2024, Boise, ID, USA.
+© 2024 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+ACM ISBN 979-8-4007-0436-9/24/10
+https://doi.org/10.1145/3627673.3679760
+CCS CONCEPTS
+• Social and professional topics →Student assessment; • Ap-
+plied computing →E-learning.
+KEYWORDS
+Knowledge Tracing, Inductive Learning, Online Education
+ACM Reference Format:
+Lingyue Fu, Hao Guan, Kounianhua Du, Jianghao Lin, Wei Xia, Weinan
+Zhang, Ruiming Tang, Yasheng Wang, and Yong Yu. 2024. SINKT: A Structure-
+Aware Inductive Knowledge Tracing Model with Large Language Model.
+In Proceedings of the 33rd ACM International Conference on Information and
+Knowledge Management (CIKM ’24), October 21–25, 2024, Boise, ID, USA. ACM,
+New York, NY, USA, 11 pages. https://doi.org/10.1145/3627673.3679760
+1
+INTRODUCTION
+Intelligent tutoring systems (ITS), such as Massive Open Online
+Courses (MOOCs)1 and Khan Academy2, are garnering increasing
+attention from learners due to the extensive learning resources and
+real-time feedback mechanisms. Knowledge Tracing (KT) stands
+out as a vital area of research within ITS, which aims to assess the
+current knowledge states of students by analyzing their learning
+histories and to predict their responses to upcoming questions.
+KT not only helps to identify deficiencies in student’s learning
+content but also provides a foundational basis for the subsequent
+instructional strategies in ITS.
+Existing KT models originate from traditional methods repre-
+sented by BKT [7] and have evolved significantly with the advent
+of models based on deep neural networks. Deep learning-based KT
+models learn ID embeddings for questions and concepts through
+learning history of students. DKT [34] and DHKT [42] utilize Re-
+current Neural Networks (RNNs) [35] to capture the sequential
+information of learning history. EERNNA [37], SAKT [32], and
+AKT [12] employ attention mechanisms to gauge the importance
+of a student’s learning history in addressing the current question.
+1https://www.mooc.org/
+2https://www.khanacademy.org/
+arXiv:2407.01245v2  [cs.AI]  23 Jul 2024
+
+CIKM ’24, October 21–25, 2024, Boise, ID, USA.
+Fu et al.
+Addition
+Multiplication
+Substraction
+Give each child 2 apples. 5 children
+need a total of how many apples?
+Bob bought two $3 colas and paid
+$10. How much should clerk change
+her?
+Division
+Student A
+ITS Database
+Figure 1: A demonstration of duplicated relations between
+concepts and questions in ITS. Concept 𝑐4 and question 𝑞5
+are newly added to ITS, which do not appear in any learning
+history.
+SKVMN [3] and DKVMN [50] apply memory networks [43] to
+exploit the relationships between concepts and questions. Some
+models [2, 28, 30, 45, 48] introduce additional information from the
+learning process to assist response prediction. IEKT [28] selects
+learning histories of similar students to enhance the understanding
+of the current student’s knowledge state. GKT [30] and GIKT [48]
+incorporate the transition graph originated from learning history
+and use Graph Neural Networks (GNNs) [17] to extract represen-
+tations from graph data. CL4KT [2] designs positive and negative
+sample pairs and employs contrastive learning [13] to generate
+more accurate representations of questions. LBKT [45] introduces
+various learning behaviors, including speed, attempts, and hints, to
+identify the learning patterns of students. Despite the success of
+existing KT models, some important limitations still exist.
+Firstly, current ID-based transductive KT models cannot give
+accurate predictions to newly arrived questions and questions with
+sparse interactions. Transductive KT models learn ID embeddings of
+questions and concepts from learning history and predict responses
+to those questions that have appeared in the dataset. Existing KT
+models are all ID-based and are therefore considered transductive
+KT models. However, as illustrated in Figure 1, when a new concept
+𝑐4 and a new question 𝑞5 are added to the database of ITS, transduc-
+tive KT models lack interaction data to learn their representations,
+thus unable to predict the response of the student A. Models that
+could predict those questions that haven’t appear in the dataset are
+called inductive KT models. Meanwhile, interactions with individual
+students are limited, and thus question-level information is very
+sparse, which is difficult for ID-based transductive KT models to
+train. For example, the commonly used MovieLens dataset 3 in
+recommendation systems contains 25,000,095 ratings and 1,093,360
+tag applications across 62,423 movies. However, in educational
+datasets, such as ASSIST094, there are only 2,661 students with
+165,455 interactions, while the total number of questions is 14,083.
+Secondly, current methods fail to capture the semantic depen-
+dencies and the sufficient topological relations among questions
+3https://grouplens.org/datasets/movielens/
+4https://sites.google.com/site/assistmentsdata/home/2009-2010-assistment-data
+and concepts. For example, as shown in Figure 1, 𝑞1 and 𝑞2 are
+computational questions, while 𝑞3 and 𝑞4 are application ques-
+tions. Compared to computational questions, application questions
+require students to possess additional analytical skills and have
+higher cognitive demands. Additionally, structural information ex-
+ists among concepts. For instance, addition 𝑐1 should serve as the
+foundation for subtraction 𝑐2 and multiplication 𝑐3 during the learn-
+ing process. If a student struggles with the concept “addition”, he
+will likely have poor demand for concepts “subtraction” and “mul-
+tiplication”. Directly learning from learning sequences using ID
+embeddings makes it difficult to capture such type of information.
+In ITS, structural and semantic information are indispensable, as
+they can provide additional clues for knowledge tracing.
+Based on these considerations, in this paper, we propose a novel
+Structure-Aware INductive Knowledge Tracing Model with Large
+Language Model, named SINKT. To the best of our knowledge,
+SINKT is the first work that can achieve predictions for newly
+ingested questions, i.e., realize inductive knowledge tracing. Our
+framework also integrates open-world semantic and structural in-
+formation by LLMs for the first time, enabling it to dynamically
+update and expand its knowledge base with minimal manual in-
+tervention. Specifically, SINKT first employs LLMs to generate a
+concept-question heterogeneous graph that contains useful struc-
+tural information in ITS. Then, we use a Pretrained Language Model
+(PLM) to encode semantic information of questions and concepts
+instead of training ID embeddings. Subsequently, we encode the
+concept-question graph by applying a carefully designed structural
+information encoder. Finally, we design a student state encoder
+to capture sequential information and an interaction predictor to
+predict the student’s response with his knowledge state and the
+target question description.
+To sum up, our contributions are summarized as follows:
+• We propose a novel Structure-Aware Inductive Knowledge Trac-
+ing model with LLM (i.e., SINKT), and a full-automated pipeline
+for ITS to inductively trace mastery of new concepts and predict
+response to new questions, which is the first model to realize
+inductive knowledge tracing.
+• We utilize LLMs for the first time to carefully inject open-world
+knowledge, including semantic and structural information of
+questions and concepts, into the KT task.
+• Extensive experiments on four real-world datasets demonstrate
+that SINKT achieves state-of-the-art performance against 12
+baselines, as well as superior capabilities to predict responses
+for unseen questions.
+2
+RELATED WORK
+2.1
+Knowledge Tracing
+To investigate the learning patterns of students in ITS, numerous
+KT models have been proposed to encode knowledge and model in-
+teraction histories. Traditional KT models such as Bayesian Knowl-
+edge Tracing [8] focus on tracing students’ knowledge states by
+estimating general parameters. With the advent of deep learning,
+DKT [34] is the first to utilize RNN [35] and LSTM [15] to model
+the sequential dynamics of student interactions. DKT+ [49] and
+DHKT [42] extend the implementation of DKT, taking into account
+the relationships between questions and concepts. Inspired by the

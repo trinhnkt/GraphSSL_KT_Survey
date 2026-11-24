@@ -1,0 +1,223 @@
+Dynamic Key-Value Memory Networks for
+Knowledge Tracing
+Jiani Zhang1,2, Xingjian Shi3, Irwin King1,2, Dit-Yan Yeung3
+1Shenzhen Key Laboratory of Rich Media Big Data Analytics and Application,
+Shenzhen Research Institute, The Chinese University of Hong Kong, Shenzhen, China
+2Department of Computer Science and Engineering,
+The Chinese University of Hong Kong, Shatin, N.T., Hong Kong
+{jnzhang, king}@cse.cuhk.edu.hk
+3Department of Computer Science and Engineering,
+Hong Kong University of Science and Technology, Kowloon, Hong Kong
+{xshiab, dyyeung}@cse.ust.hk
+ABSTRACT
+Knowledge Tracing (KT) is a task of tracing evolving knowl-
+edge state of students with respect to one or more con-
+cepts as they engage in a sequence of learning activities.
+One important purpose of KT is to personalize the prac-
+tice sequence to help students learn knowledge concepts eﬃ-
+ciently. However, existing methods such as Bayesian Knowl-
+edge Tracing and Deep Knowledge Tracing either model
+knowledge state for each predeﬁned concept separately or
+fail to pinpoint exactly which concepts a student is good at
+or unfamiliar with. To solve these problems, this work intro-
+duces a new model called Dynamic Key-Value Memory Net-
+works (DKVMN) that can exploit the relationships between
+underlying concepts and directly output a student’s mastery
+level of each concept. Unlike standard memory-augmented
+neural networks that facilitate a single memory matrix or
+two static memory matrices, our model has one static ma-
+trix called key, which stores the knowledge concepts and the
+other dynamic matrix called value, which stores and updates
+the mastery levels of corresponding concepts. Experiments
+show that our model consistently outperforms the state-of-
+the-art model in a range of KT datasets.
+Moreover, the
+DKVMN model can automatically discover underlying con-
+cepts of exercises typically performed by human annotations
+and depict the changing knowledge state of a student.
+Keywords
+Massive Open Online Courses; Knowledge Tracing; Con-
+cept Discovery; Deep Learning; Dynamic Key-Value Mem-
+ory Networks
+c⃝2017 International World Wide Web Conference Committee
+(IW3C2), published under Creative Commons CC BY 4.0 License.
+WWW 2017, April 3–7, 2017, Perth, Australia.
+ACM 978-1-4503-4913-0/17/04.
+http://dx.doi.org/10.1145/3038912.3052580.
+.
+1.
+INTRODUCTION
+With the advent of massive open online courses and intel-
+ligent tutoring systems in the web, students can get appro-
+priate guidance and acquire relevant knowledge in the pro-
+cess of solving exercises. When an exercise is posted, a stu-
+dent must apply one or more concepts to solve the exercise.
+For example, when a student attempts to solve the exercise
+“1+2”, then he or she should apply the concept of “inte-
+ger addition”; when a student attempts to solve “1+2+3.4”,
+then he or she should apply the concepts of “integer addi-
+tion”and“decimal addition”. The probability that a student
+can answer the exercise correctly is based on the student’s
+knowledge state, which stands for the depth and robustness
+of the underlying concepts the student has mastered.
+The goal of knowledge tracing (KT) is to trace the knowl-
+edge state of students based on their past exercise perfor-
+mance.
+KT is an essential task in online learning plat-
+forms. Tutors can give proper hints and tailor the sequence
+of practice exercises based on the personal strengths and
+weaknesses of students.
+Students can be made aware of
+their learning progress and may devote more energy to less-
+familiar concepts to learn more eﬃciently.
+Although eﬀectively modeling the knowledge of students
+has high educational impact, using numerical simulations
+to represent the human learning process is inherently dif-
+ﬁcult [22].
+Usually, KT is formulated as a supervised se-
+quence learning problem: given a student’s past exercise
+interactions X = {x1,x2,...,xt−1}, predict the probability
+that the student will answer a new exercise correctly, i.e.,
+p(rt = 1|qt, X).
+Input xt = (qt, rt) is a tuple containing
+the exercise qt, which student attempts at the timestamp t,
+and the correctness of the student’s answer rt. We model X
+as observed variables and a student’s knowledge state S =
+{s1,s2,...,st−1} of N underlying concepts C = {c1, c2, ..., cN}
+as a hidden process.
+Existing methods such as Bayesian Knowledge Tracing
+(BKT) [3] and Deep Knowledge Tracing (DKT) [22] model
+the knowledge state of students either in a concept speciﬁc
+manner or in one summarized hidden vector, as shown in
+Figure 1. In BKT, a student’s knowledge state st is analyzed
+into diﬀerent concept states {si
+t} and BKT models each con-
+765
+
+BKT
+Our model
+DKT
+Figure 1: Model diﬀerences among BKT, DKT, and our
+model. BKT is concept speciﬁc. DKT uses a summarized
+hidden vector to model the knowledge state.
+Our model
+maintains the concept state for each concept simultaneously
+and all concept states constitute the knowledge state of a
+student.
+cept state separately.
+BKT assumes the concept state as
+a binary latent variable, known and unknown, and uses a
+Hidden Markov model to update the posterior distribution
+of the binary concept state. Therefore, BKT cannot cap-
+ture the relationship between diﬀerent concepts. Moreover,
+to keep the Bayesian inference tractable, BKT uses discrete
+random variables and simple transition models to describe
+the evolvement of each concept state. As a result, although
+BKT can output the student’s mastery level of some pre-
+deﬁned concepts, it lacks the ability to extract undeﬁned
+concepts and model complex concept state transitions.
+Besides solving the problem from the Bayesian perspec-
+tive, a deep learning method named DKT [22] exploits a
+variant of recurrent neural networks (RNNs) called long
+short-term memory (LSTM) [9].
+LSTM assumes a high-
+dimensional and continuous representation of the underlying
+knowledge state S. The nonlinear input-to-state and state-
+to-state transitions of DKT have stronger representational
+power than those of BKT. No human-labeled annotation is
+required. However, DKT summarizes a student’s knowledge
+state of all concepts in one hidden state, which makes it dif-
+ﬁcult to trace how much a student has mastered a certain
+concept and pinpoint which concepts a student is good at
+or unfamiliar with [11, 31].
+The present work introduces a new model called Dynamic
+Key-Value Memory Networks (DKVMN) that combines the
+best of two worlds: the ability to exploit the relationship be-
+tween concepts and the ability to trace each concept state.
+Our DKVMN model can automatically learn the correlation
+between input exercises and underlying concepts and main-
+tain a concept state for each concept. At each timestamp,
+only related concept states will be updated. For instance, in
+Figure 1, when a new exercise qt comes, the model ﬁnds that
+qt requires the application of concept cj and ck. Then we
+read the corresponding concept states sj
+t−1 and sk
+t−1 to pre-
+dict whether the student will answer the exercise correctly.
+After the student completes the exercise, our model will up-
+date these two concept states. All concept states constitute
+the knowledge state S of a student.
+In addition, unlike standard memory-augmented neural
+networks (MANNs) that facilitate a single memory matrix [6,
+24, 30] or a variation with two static memory matrices [17,
+27], our model has one static matrix called key, which stores
+the concept representations and the other dynamic matrix
+called value, which stores and updates the student’s un-
+derstanding (concept state) of each concept.
+The terms
+static and dynamic matrices are respectively analogous to
+immutable and mutable objects as keys and values in the
+dictionary data structure (e.g., Python’s dictionary). Mean-
+while, our training process is analogous to object creation.
+After the keys are created, they will be ﬁxed (i.e., immutable)
+during testing.
+The network with two static memory matrices is not suit-
+able for solving the KT task because learning is not a static
+process. Learning builds upon and is shaped by previous
+knowledge in human memory [8].
+The model with a sin-
+gle dynamic matrix maps the exercise with the correct an-
+swer and the exercise with the incorrect answer to diﬀerent
+concept states, which does not match our cognition.
+Ex-
+periments show that our DKVMN model outperforms the
+MANN model with a single memory matrix and the state-
+of-the-art model.
+Our main contributions are summarized as follows:
+1. The utility of MANNs is exploited to better simulate
+the learning process of students.
+2. A novel DKVMN model with one static key matrix
+and one dynamic value matrix is proposed.
+3. Our model can automatically discover concepts, a task
+that is typically performed by human experts, and de-
+pict the evolving knowledge state of students.
+4. Our end-to-end trainable model consistently outper-
+forms BKT and DKT on one synthetic and three real-
+world datasets respectively.
+2.
+RELATED WORKS
+2.1
+Knowledge Tracing
+The KT task evaluates the knowledge state of a student
+based simply on the correctness or incorrectness rt of a stu-
+dent’s answers in the process of solving exercises qt. In this
+study qt is an exercise tag and rt ∈{0, 1} is a binary re-
+sponse (1 is correct and 0 is incorrect). No secondary data
+are incorporated [11].
+BKT [3] is a highly constrained and structured model [11]
+because it models concept-speciﬁc performance, i.e., an in-
+dividual instantiation of BKT is made for each concept, and
+BKT assumes knowledge state as a binary variable. Many
+following variations were raised by integrating personaliza-
+tion study [19, 33], exercise diversity [20], and other infor-
+mation [4, 23] into the Bayesian framework.
+DKT [22] exploits the utility of LSTM [9] to break the
+restriction of skill separation and binary state assumption.
+LSTM uses hidden states as a kind of summary of the past
+sequence of inputs, and the same parameters are shared over
+diﬀerent time steps. Experiments in [22] showed that DKT
+outperforms previous Bayesian models by a large margin
+in terms of prediction accuracy.
+This study was the ﬁrst
+attempt to integrate deep learning models [14, 25], which
+have achieved signiﬁcant success in other areas, including
+computer vision [13] and natural language processing [16]
+into KT.
+2.2
+Memory-Augmented Neural Networks
+Inspired by computer architecture, a particular neural net-
+work module called external memory was proposed to en-
+hance the ability of a network to capture long-term depen-
+dencies and solve algorithmic problems [7]. MANN have led
+the progress in various areas, such as question answering [30,
+766

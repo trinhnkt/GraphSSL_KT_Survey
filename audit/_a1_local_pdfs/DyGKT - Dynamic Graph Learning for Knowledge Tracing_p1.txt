@@ -1,0 +1,259 @@
+DyGKT: Dynamic Graph Learning for Knowledge Tracing
+Ke Cheng∗
+ckpassenger@buaa.edu.cn
+SKLSDE Lab, Beihang University
+Beijing, China
+Linzhi Peng∗
+lzpeng626@buaa.edu.cn
+SKLSDE Lab, Beihang University
+Beijing, China
+Pengyang Wang
+pywang@um.edu.mo
+SKL-IOTSC, Department of Computer
+and Information Science, University
+of Macau
+Macau, China
+Junchen Ye†
+junchenye@buaa.edu.cn
+School of Transportation Science and
+Engineering, Beihang University
+Beijing, China
+Leilei Sun
+leileisun@buaa.edu.cn
+SKLSDE Lab, Beihang University
+Beijing, China
+Bowen Du
+dubowen@buaa.edu.cn
+Zhongguancun Laboratory
+School of Transportation Science and
+Engineering, Beihang University
+Beijing, China
+Abstract
+Knowledge Tracing aims to assess student learning states by pre-
+dicting their performance in answering questions. Different from
+the existing research which utilizes fixed-length learning sequence
+to obtain the student states and regards KT as a static problem,
+this work is motivated by three dynamical characteristics: 1) The
+scales of students answering records are constantly growing; 2)
+The semantics of time intervals between the records vary; 3) The
+relationships between students, questions and concepts are evolv-
+ing. The three dynamical characteristics above contain the great
+potential to revolutionize the existing knowledge tracing methods.
+Along this line, we propose a Dynamic Graph-based Knowledge
+Tracing model, namely DyGKT. In particular, a continuous-time
+dynamic question-answering graph for knowledge tracing is con-
+structed to deal with the infinitely growing answering behaviors,
+and it is worth mentioning that it is the first time dynamic graph
+learning technology is used in this field. Then, a dual time encoder
+is proposed to capture long-term and short-term semantics among
+the different time intervals. Finally, a multiset indicator is utilized
+to model the evolving relationships between students, questions,
+and concepts via the graph structural feature. Numerous experi-
+ments are conducted on five real-world datasets, and the results
+demonstrate the superiority of our model. All the used resources
+are publicly available at https://github.com/PengLinzhi/DyGKT.
+CCS Concepts
+• Computing methodologies →Artificial intelligence; • In-
+formation systems →Data mining.
+∗These authors contributed equally to this work.
+†Corresponding Author.
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than the
+author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or
+republish, to post on servers or to redistribute to lists, requires prior specific permission
+and/or a fee. Request permissions from permissions@acm.org.
+KDD ’24, August 25–29, 2024, Barcelona, Spain.
+© 2024 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+ACM ISBN 979-8-4007-0490-1/24/08
+https://doi.org/10.1145/3637528.3671773
+Keywords
+Educational Data Mining, Knowledge Tracing, Graph Neural Net-
+works, Dynamic Graph
+ACM Reference Format:
+Ke Cheng, Linzhi Peng, Pengyang Wang, Junchen Ye, Leilei Sun, and Bowen
+Du. 2024. DyGKT: Dynamic Graph Learning for Knowledge Tracing. In
+Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery
+and Data Mining (KDD ’24), August 25–29, 2024, Barcelona, Spain. ACM, New
+York, NY, USA, 12 pages. https://doi.org/10.1145/3637528.3671773
+1
+Introduction
+Nowadays, online education platforms are rapidly developing and
+have accumulated a large amount of educational records. Among
+intelligent tutoring systems, knowledge tracing (KT) models lever-
+age students’ responses to a set of questions to track their evolving
+knowledge states over time. The results obtained from knowledge
+tracing can be widely applied in downstream tasks such as pre-
+dicting students’ future performance and recommending learning
+materials. Traditional knowledge tracing models initially relied on
+Bayesian and Factor Analysis. Recently, deep learning Knowledge
+Tracing (DLKT) has been proposed by applying deep learning tech-
+niques to the KT task, which can better capture a student’s temporal
+dynamic knowledge state. DLKT models first gather a fix-lengthed
+question-answer record sequence for each student and then predict
+the student’s performance on the next question based on those
+static sequences. DKT [22] utilizes RNN [12] or LSTM [7] to trace
+the student learning process. AKT[6] uses self-attention networks
+for capturing temporal dependencies in knowledge tracing. Based
+on the performance sequence, some works augment student perfor-
+mance modeling by enhancing the model with additional features.
+For example, time interval is considered in forgetting behavior in
+current KT methods. DKT-Forgetting [18] and RKT [21] provide
+a linear or static exponential decay forgetting model for time in-
+tervals in the question-answering process. CT-NCM[16] utilized
+the Hawkes Process to model the temporal effect of different time
+intervals in the sequence and use LSMT to predict student perfor-
+mance. Other models extract the relationship between concepts or
+questions for the structure information in the KT graph[19, 35].
+arXiv:2407.20824v1  [cs.LG]  30 Jul 2024
+
+KDD ’24, August 25–29, 2024, Barcelona, Spain.
+Ke Cheng et al.
+Time
+   ��
+   ��
+   ��
+   ��
+   ��
+Student
+  �1
+ �1
+ �2
+ �2
+  �1
+Question
+  �1
+ �2
+ �1
+ �2
+  �1
+Response
+Question
+Concept 
+    �1
+��������
+    �2
+����������
+②Varying Time Intervals
+   �1
+   �2
+   �3
+   �4
+   �5
+… …
+… …
+… …
+… …
+①Growing Scale
+time
+∆��ℎ���
+∆�����
+mastery estimation for  �� 
+mastery estimation for  �� 
+③Evolving Structure
+… …
+… …
+Rest
+mastery degree
+During a test
+During a class
+Figure 1: Knowledge tracing with dynamic graph to trace
+students’ learning states. This task has three dynamics: 1)
+constantly growing scale; 2) varying semantics of time in-
+tervals between long and short time intervals; 3) evolving
+relationships between students, questions, and concepts.
+However, we argue that current works ignore three dynamic
+patterns in the KT task:
+Firstly, the scale pattern acknowledges that the number of
+students answering records is constantly growing. Existing
+KT models only evaluate by single-step predicting for each stu-
+dent on static sequences, and utilize ID-embedding to represent the
+knowledge state of the student or the difficulty of the question. but
+in real-world scenarios, the length of learning records is continu-
+ously increasing, the prediction should be multi-step and robust
+on unseen questions. Sequence-based problem formalization on
+KT can not fit the real-world application, and the ID-embedding-
+based representation does not provide information for questions
+not contained in the training data.
+Secondly, the temporal pattern refers to the fact that the mean-
+ing of long and short time intervals varies. A student’s learning
+record is an irregular time series that changes dynamically, con-
+taining both long and short time intervals. For instance, a student
+might answer many questions in one test and then take long breaks
+before engaging in the next class or test. Short intervals reflect a
+student’s familiarity with the question, while long intervals indicate
+forgetting behavior. Existing static and decay time modules that
+model forgetting behavior cannot extract the temporal dynamics
+in diverse scenarios.
+Thirdly, the structural pattern involves the complex relation-
+ship between students, questions, and concepts. A question
+can be solved by multiple students before a certain moment, or be
+repeatedly practiced by one student. Therefore, there are numerous
+links between a student and a question, forming link multisets. For
+example, if a student repeats guessing a question and finally comes
+up with the correct answer through traversal, it is obvious that
+the student does not learn by the question, models that cannot
+distinguish between repetitive behaviors may be confused by these
+abnormal student performances.
+In this paper, we observe that the continuous-time dynamic
+graph (CTDG) is a suitable framework for depicting the three dy-
+namic patterns by representing entities as nodes and capturing their
+dynamic interaction links with continuous timestamps. We provide
+a visualization case of knowledge tracing using CTDG in Figure 1.
+The CTDG framework is particularly useful for representing evolv-
+ing nodes as the interaction happens. However, existing CTDG
+methods utilize Fourier Time encoding to capture the temporal
+effect which can hardly model the temporal pattern in the learning
+process. Also, CTDG methods are mostly designed for bipartite
+graphs, treating the student answering a question as a single link,
+which can not capture the complex structural pattern in KT either.
+To address the issue above, we propose a novel method named
+called Dynamic Graph-based Knowledge Tracing (DyGKT). This
+method aims to trace students’ dynamic learning process through
+a continuous time dynamic graph. In this graph, students and ques-
+tions are represented as nodes, while their continuous interactions
+are represented as temporal links. Our goal is to classify the label
+of the link between two nodes at a specific time, which represents
+the student’s performance on the given problem at that time. This
+newly designed task can adapt to infinitely growing data dynami-
+cally. To address temporal dynamics, we design a dual time encod-
+ing strategy to differentiate between long-term rest and short-term
+thinking patterns. For structural dynamics, we propose a multi-
+set indicator to label elements that belong to the link multiset of
+the student, the question, and the concept related to the question-
+answer performance that is about to be predicted. We conducted
+extensive experiments on five datasets, and the results demonstrate
+the effectiveness of the proposed method.
+Our contributions can be summarized as follows:
+• A continuous dynamic graph-based model for knowledge
+tracing problems is proposed. Different from the existing
+work which extracts fixed-length question-answering se-
+quences, we extend it to the infinite-length scale, making it
+more suitable for real-world scenarios.
+• A dual-time encoding strategy is proposed to distinguish
+between the long-term and short-term semantics by a thresh-
+old. Compared with the existing work which utilizes a single
+decay or static function, the simple yet effective method
+we proposed could better describe the student behaviors
+between different time intervals.
+• We bring out a multiset indicator to deal with the complex
+evolving relationship. We extend existing CTDG methods
+that treat question-answer as a single link and utilize this
+module to construct the evolving structural features based
+on the repeat behavior by picking out the multiple links
+between students, questions, and corresponding concepts.
+2
+Related work
+2.1
+Knowledge Tracing
+With the development of deep learning, deep learning techniques
+are introduced into the KT task, forming Deep Learning Knowledge
+Tracing(DLKT) which has achieved promising performance. DLKT
+methods aim to capture the temporal dynamics in a sequence of
+interactions [7, 12, 29]. DKT [22] and other extended DKT models
+take a student’s previous question answers as input and use RNNs or
+LSTMs to represent the student’s state by incorporating additional
+features such as answering rates and time spent on practicing [33],
+adding a question’s ID[28] or known difficulty[25] as the question’s
+extensive feature, or augmenting loss function[13, 36]. Some KT

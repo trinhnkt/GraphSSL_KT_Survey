@@ -1,0 +1,606 @@
+{
+ "rows": [
+  {
+   "pdf": "A Cross-Domain Knowledge Tracing Model Based on Graph Optimal Transport.pdf",
+   "pages": 25,
+   "chars": 68871,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "A Self-Attentive Model for Knowledge Tracing.pdf",
+   "pages": 6,
+   "chars": 28349,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 1
+  },
+  {
+   "pdf": "A Survey of Graph-Based Knowledge Tracing from Structural and Propagation Perspectives - Models, Applications, and Future Directions.pdf",
+   "pages": 47,
+   "chars": 144411,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "A Survey of Knowledge Tracing - Models, Variants, and Applications.pdf",
+   "pages": 22,
+   "chars": 145431,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Bi-CLKT - Bi-Graph Contrastive Learning Based Knowledge Tracing.pdf",
+   "pages": 12,
+   "chars": 54455,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "CMKT - Concept Map Driven Knowledge Tracing.pdf",
+   "pages": 14,
+   "chars": 73298,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Context-Aware Attentive Knowledge Tracing.pdf",
+   "pages": 11,
+   "chars": 58620,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Contrastive Learning for Knowledge Tracing.pdf",
+   "pages": 10,
+   "chars": 54974,
+   "ECE": 0,
+   "calibration": 7,
+   "reliability_diagram": 1,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Convolutional Neural Network for Trajectory Prediction.pdf",
+   "pages": 11,
+   "chars": 23821,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "DGEKT - A Dual Graph Ensemble Learning Method for Knowledge Tracing.pdf",
+   "pages": 24,
+   "chars": 79958,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Deep Graph Memory Networks for Forgetting-Robust Knowledge Tracing.pdf",
+   "pages": 11,
+   "chars": 55823,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Deep Knowledge Tracing.pdf",
+   "pages": 9,
+   "chars": 36425,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 1
+  },
+  {
+   "pdf": "Deep Learning Based Knowledge Tracing A Review, a Tool and Empirical Studies.pdf",
+   "pages": 25,
+   "chars": 145544,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 2
+  },
+  {
+   "pdf": "Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor.pdf",
+   "pages": 12,
+   "chars": 72269,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Dual-Channel Adaptive Scale Hypergraph Encoders With Cross-View Contrastive Learning for Knowledge Tracing.pdf",
+   "pages": 15,
+   "chars": 77945,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 1
+  },
+  {
+   "pdf": "DyGKT - Dynamic Graph Learning for Knowledge Tracing.pdf",
+   "pages": 12,
+   "chars": 66045,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Dynamic Key-Value Memory Networks for Knowledge Tracing.pdf",
+   "pages": 10,
+   "chars": 49944,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Exploring Long- and Short-Term Knowledge State Graph Representations with Adaptive Fusion for Knowledge Tracing.pdf",
+   "pages": 18,
+   "chars": 88372,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Fusing Hybrid Attentive Network with Self-Supervised Dual-Channel Heterogeneous Graph for Knowledge Tracing.pdf",
+   "pages": 13,
+   "chars": 74366,
+   "ECE": 0,
+   "calibration": 2,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "GASKT - A Graph-Based Attentive Knowledge-Search Model for Knowledge Tracing.pdf",
+   "pages": 12,
+   "chars": 30417,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "GIKT - A Graph-Based Interaction Model for Knowledge Tracing.pdf",
+   "pages": 17,
+   "chars": 42478,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Graph Knowledge Tracing in Cognitive Situation - Validation of Classic Assertions in Cognitive Psychology.pdf",
+   "pages": 22,
+   "chars": 135446,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Graph-Based Effective Knowledge Tracing via Subject Knowledge Mapping.pdf",
+   "pages": 28,
+   "chars": 72004,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 2
+  },
+  {
+   "pdf": "Graph-based Knowledge Tracing - Modeling Student Proficiency Using Graph Neural Network.pdf",
+   "pages": 9,
+   "chars": 45611,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 3
+  },
+  {
+   "pdf": "GraphCA - Learning From Graph Counterfactual Augmentation for Knowledge Tracing.pdf",
+   "pages": 16,
+   "chars": 88800,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "HHSKT - A Learner-Question Interactions Based Heterogeneous Graph Neural Network Model for Knowledge Tracing.pdf",
+   "pages": 13,
+   "chars": 80164,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 1
+  },
+  {
+   "pdf": "HKT - Hierarchical Structure-Based Knowledge Tracing.pdf",
+   "pages": 18,
+   "chars": 73547,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Heterogeneous Graph-Based Knowledge Tracing with Spatiotemporal Evolution.pdf",
+   "pages": 13,
+   "chars": 75232,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Improving Knowledge Tracing via Pre-training Question Embeddings.pdf",
+   "pages": 7,
+   "chars": 34440,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "JKT - A Joint Graph Convolutional Network Based Deep Knowledge Tracing.pdf",
+   "pages": 14,
+   "chars": 56671,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 1
+  },
+  {
+   "pdf": "KGNN-KT - Enhancing Knowledge Tracing in Programming Education Through LLM-Extracted Knowledge Graphs.pdf",
+   "pages": 11,
+   "chars": 1,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Knowledge Structure Enhanced Graph Representation Learning Model for Attentive Knowledge Tracing.pdf",
+   "pages": 34,
+   "chars": 101358,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Knowledge Tracing - A Survey.pdf",
+   "pages": 36,
+   "chars": 131229,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "LGS-KT - Integrating Logical and Grammatical Skills for Effective Programming Knowledge Tracing.pdf",
+   "pages": 13,
+   "chars": 82319,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "MAHKT - Knowledge Tracing with Multi-Association Heterogeneous Graph Embedding Based on Knowledge Transfer.pdf",
+   "pages": 13,
+   "chars": 79905,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Model Generalization - A Sharpness Aware Optimization Perspective.pdf",
+   "pages": 4,
+   "chars": 16276,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Modeling Knowledge Proficiency Using Multi-Hierarchical Capsule Graph Neural Network.pdf",
+   "pages": 18,
+   "chars": 69315,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 1
+  },
+  {
+   "pdf": "Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing.pdf",
+   "pages": 13,
+   "chars": 74467,
+   "ECE": 0,
+   "calibration": 1,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Prerequisite-Driven Deep Knowledge Tracing.pdf",
+   "pages": 10,
+   "chars": 43528,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "R2GCurL - Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning.pdf",
+   "pages": 32,
+   "chars": 111338,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "SGKT - Session Graph-Based Knowledge Tracing for Student Performance Prediction.pdf",
+   "pages": 12,
+   "chars": 54238,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "SINKT - A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model.pdf",
+   "pages": 11,
+   "chars": 56413,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 1
+  },
+  {
+   "pdf": "STHKT - Spatiotemporal Knowledge Tracing with Topological Hawkes Process.pdf",
+   "pages": 13,
+   "chars": 70863,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Self-Supervised Heterogeneous Hypergraph Network for Knowledge Tracing.pdf",
+   "pages": 17,
+   "chars": 71590,
+   "ECE": 0,
+   "calibration": 4,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Spatio-Temporal Fusion in Graph Neural Network for Streaming Knowledge Tracing.pdf",
+   "pages": 16,
+   "chars": 47210,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Structure-Based Knowledge Tracing - An Influence Propagation View.pdf",
+   "pages": 10,
+   "chars": 55975,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "Weighted Heterogeneous Graph-Based Three-View Contrastive Learning for Knowledge Tracing in Personalized e-Learning Systems.pdf",
+   "pages": 10,
+   "chars": 52643,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  },
+  {
+   "pdf": "pyKT - A Python Library to Benchmark Deep Learning based Knowledge Tracing Models.pdf",
+   "pages": 14,
+   "chars": 58062,
+   "ECE": 0,
+   "calibration": 0,
+   "reliability_diagram": 0,
+   "Brier": 0,
+   "NLL_logloss": 0
+  }
+ ],
+ "ctx": [
+  [
+   "A Self-Attentive Model for Knowledge Tra",
+   "NLL_logloss",
+   " = 1/(1 + e\u2212z) Network Training: The objective of training is to min- imize the negative log likelihood of the observed sequence of student responses under the model. The parameters a"
+  ],
+  [
+   "Contrastive Learning for Knowledge Traci",
+   "calibration",
+   "0 Predicted probability 0.0 0.2 0.4 0.6 0.8 1.0 Fraction of positives Perfectly calibrated AKT CL4KT w/ Mask Only CL4KT w/ Crop Only CL4KT w/ Perm Only CL4KT w/ Repl On"
+  ],
+  [
+   "Contrastive Learning for Knowledge Traci",
+   "calibration",
+   "k Only CL4KT w/ Crop Only CL4KT w/ Perm Only CL4KT w/ Repl Only CL4KT Figure 7: Calibration binned by predictions on assist09. 4.5 Ablation Study (RQ4) To verify the ef"
+  ],
+  [
+   "Contrastive Learning for Knowledge Traci",
+   "calibration",
+   "Interaction AKT -3.143 -3.444 -1.977 CL4KT -3.185 -3.468 -2.097 results: 1) the calibration of KT models, which is crucial for down- stream applications such as learnin"
+  ],
+  [
+   "Contrastive Learning for Knowledge Traci",
+   "reliability_diagram",
+   " is proposed to measure the quality of representations. First, we visualize the calibration plots to detect systematic biases of KT models by measuring the difference between p"
+  ],
+  [
+   "Deep Knowledge Tracing.pdf",
+   "NLL_logloss",
+   "try in yt corresponding to qt+1. 3.3 Optimization The training objective is the negative log likelihood of the observed sequence of student responses under the model. Let \u03b4(qt+1) be t"
+  ],
+  [
+   "Deep Learning Based Knowledge Tracing A ",
+   "NLL_logloss",
+   " decision-making. This section \ufb01rst introduces the basic KT loss schemas of the negative log-likelihood loss function and the cross-entropy loss function, commonly employed in machine"
+  ],
+  [
+   "Deep Learning Based Knowledge Tracing A ",
+   "NLL_logloss",
+   "ure learning dif\ufb01culties, and help educators design targeted interventions. The Negative Log-Likelihood and Cross-Entropy Loss Func- tions are two commonly employed loss functions in "
+  ],
+  [
+   "Dual-Channel Adaptive Scale Hypergraph E",
+   "NLL_logloss",
+   "= \u03c3 \u0000W 6 \u0002 \u00af\u03b8 \u2295xt+1 \u0003 + b5 \u0001 . (16) The objective function of predicting is the negative log-likelihood of the observed sequence of learners\u2019 exercising process from step 1 to T + 1. "
+  ],
+  [
+   "Fusing Hybrid Attentive Network with Sel",
+   "calibration",
+   "ween questions and skills. Along this line, CQKT (Wang et al., 2022) proposes a calibrated Q- matrix-based framework to track knowledge proficiency of students dynamica"
+  ],
+  [
+   "Fusing Hybrid Attentive Network with Sel",
+   "calibration",
+   "o, Y., Li, Z., & He, X. (2022). Tracking knowledge proficiency of students with calibrated Q-matrix. Expert Systems with Applications, 192, Article 116454. Wang, Y., Ta"
+  ],
+  [
+   "Graph-Based Effective Knowledge Tracing ",
+   "NLL_logloss",
+   "ed by all nodes. The aim of the model\u2019s training is to reduce the observations\u2019 negative log-likelihood (NLL). The knowledge state from the nearby ideas can be gathered by using the e"
+  ],
+  [
+   "Graph-Based Effective Knowledge Tracing ",
+   "NLL_logloss",
+   "of the model\u2019s training is to reduce the observations\u2019 negative log-likelihood (NLL). The knowledge state from the nearby ideas can be gathered by using the edge i"
+  ],
+  [
+   "Graph-based Knowledge Tracing - Modeling",
+   "NLL_logloss",
+   " correctly. The training objective is to minimize the negative log- likelihood (NLL) of the observed sequence of student responses under the model. 2.2 GNN The GNN"
+  ],
+  [
+   "Graph-based Knowledge Tracing - Modeling",
+   "NLL_logloss",
+   "m for node k, and \u03c3 is a sigmoid function. The model is trained to minimize the NLL of the observations. We can utilize the edge information to collect the knowled"
+  ],
+  [
+   "Graph-based Knowledge Tracing - Modeling",
+   "NLL_logloss",
+   "tion [16], and fk is a neural network for the k-th edge type. VAE minimizes the NLL and the Kullback\u2013Leibler divergence between the encoded distribution q(z|x) and"
+  ],
+  [
+   "HHSKT - A Learner-Question Interactions ",
+   "NLL_logloss",
+   "ifference between the final prediction of the model and the dataset labels, the negative log likelihood of the observed series was used as the loss function. \ue238= \u2212 \u2211 \ud835\udc56\u2208\ud835\udc3c (\ud835\udc5f\ud835\udc56log (\ud835\udc5d\ud835\udc56 ) +"
+  ],
+  [
+   "JKT - A Joint Graph Convolutional Networ",
+   "NLL_logloss",
+   "og 1 \u0003 ^rc ij \u0004 \u0005 \u0004 \u0005 \u00f014\u00de The loss function of JKT is degined according to the negative log likelihood. We sequentially input the sequence of stu- dents\u2019 exercise embedding from step"
+  ],
+  [
+   "Modeling Knowledge Proficiency Using Mul",
+   "NLL_logloss",
+   ".5 Optimizations The training optimization goal of the model is to minimize the negative log likelihood between the observed performance of real students and the model prediction resu"
+  ],
+  [
+   "Multi-Granularity Ensemble Interaction G",
+   "calibration",
+   ", H. Ma, Y. Zhao, Z. Li, X. He, Tracking knowledge proficiency of students with calibrated Q-matrix, Expert Syst. Appl. 192 (2022) 116454. [24] W. Wang, H. Ma, Y. Zhao,"
+  ],
+  [
+   "SINKT - A Structure-Aware Inductive Know",
+   "NLL_logloss",
+   "nable parameters. To train all parameters in SINKT, we choose the cross-entropy log loss between the predicted response \ud835\udc66\ud835\udc61+1 and the ground-truth response \ud835\udc5f\ud835\udc61+1 as the o"
+  ],
+  [
+   "Self-Supervised Heterogeneous Hypergraph",
+   "calibration",
+   "Q-matrix. To resolve this issue, tracking knowledge pro\ufb01ciency of students with calibrated Q-matrix (CQKT) [16] devises a novel Calibrated Q-matrix-based framework and "
+  ],
+  [
+   "Self-Supervised Heterogeneous Hypergraph",
+   "calibration",
+   "dge pro\ufb01ciency of students with calibrated Q-matrix (CQKT) [16] devises a novel Calibrated Q-matrix-based framework and achieves the state-of-the-art performance. In su"
+  ],
+  [
+   "Self-Supervised Heterogeneous Hypergraph",
+   "calibration",
+   "om two perspectives of co-occurrence and answer-agreement. CQKT [16] proposes a calibrated Q-matrix-based framework to dynamically track knowledge pro\ufb01ciency of student"
+  ]
+ ]
+}

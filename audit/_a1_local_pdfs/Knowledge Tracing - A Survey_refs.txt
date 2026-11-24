@@ -1,0 +1,348 @@
+Knowledge Tracing: A Survey
+31
+References
+[1] Ghodai Abdelrahman and Qing Wang. 2019. Knowledge Tracing with Sequential Key-Value Memory Networks. In Pro-
+ceedings of the 42nd International Conference on Research and Development in Information Retrieval, SIGIR,Paris,France.
+ACM, 175–184.
+[2] Ghodai Abdelrahman and Qing Wang. 2021. Deep Graph Memory Networks for Forgetting-Robust Knowledge
+Tracing. arXiv preprint arXiv:2108.08105 (2021).
+[3] Ghodai Abdelrahman and Qing Wang. 2021. Learning Data Teaching Strategies Via Knowledge Tracing. arXiv
+preprint arXiv:2111.07083 (2021).
+[4] Mohammad Ahmad Al Khateeb. 2019. Effect of Mobile Gaming on Mathematical Achievement among 4th Graders.
+International Journal of Emerging Technologies in Learning 14, 7 (2019).
+[5] John R Anderson et al. 1986. Cognitive Modelling and Intelligent Tutoring. (1986).
+[6] John R Anderson, C Franklin Boyle, Albert T Corbett, and Matthew W Lewis. 1990. Cognitive modeling and intelligent
+tutoring. Artificial Intelligence 42, 1 (1990), 7–49.
+[7] David Andrich. 1981. Book Review : Probabilistic Models for Some Intelligence and Attainment Tests (expanded
+edition: Georg Rasch Chicago: The University of Chicago Press, 1980, 199 pp., $15 hardcover, $7 paperback. Applied
+Psychological Measurement 5, 4 (1981), 545–550.
+[8] Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. 2015. Neural Machine Translation by Jointly Learning to
+Align and Translate. In 3rd International Conference on Learning Representations, ICLR,San Diego, CA, USA, Conference
+Track Proceedings, Yoshua Bengio and Yann LeCun (Eds.).
+[9] Tadas Baltrusaitis, Chaitanya Ahuja, and Louis-Philippe Morency. 2019. Multimodal Machine Learning: A Survey
+and Taxonomy. IEEE Trans. Pattern Anal. Mach. Intell. 41, 2 (2019), 423–443.
+[10] Mark A Barton and Frederic M Lord. 1981. An upper asymptote for the three-parameter logistic item-response model.
+ETS Research Report Series 1981, 1 (1981), i–8.
+[11] Yoshua Bengio, Aaron Courville, and Pascal Vincent. 2013. Representation Learning: A Review and New Perspectives.
+IEEE Trans. Pattern Anal. Mach. Intell. 35, 8 (2013), 1798–1828.
+[12] Yoshua Bengio, Jérôme Louradour, Ronan Collobert, and Jason Weston. 2009. Curriculum Learning. In Proceedings of
+the 26th Annual International Conference on Machine Learning (ICML). Association for Computing Machinery, 41–48.
+[13] Allan Birnbaum. 1969. Statistical theory for logistic mental test models with a prior distribution of ability. Journal of
+Mathematical Psychology 6, 2 (1969), 258–276.
+[14] J. Bobadilla, F. Ortega, A. Hernando, and A. Gutiérrez. 2013. Recommender systems survey. Knowledge-Based Systems
+46 (2013), 109–132.
+[15] Dejun Cai, Yuan Zhang, and Bintao Dai. 2019. Learning Path Recommendation Based on Knowledge Tracing Model
+and Reinforcement Learning. In 2019 IEEE 5th International Conference on Computer and Communications (ICCC).
+1881–1885.
+[16] Hao Cen, Kenneth R. Koedinger, and Brian Junker. 2006. Learning Factors Analysis - A General Method for Cognitive
+Model Evaluation and Improvement. In Intelligent Tutoring Systems, 8th International Conference, ITS, Jhongli, Taiwan,
+Proceedings (Lecture Notes in Computer Science), Vol. 4053. Springer, 164–175.
+[17] Hao Cen, Kenneth R. Koedinger, and Brian Junker. 2008. Comparing Two IRT Models for Conjunctive Skills. In
+Intelligent Tutoring Systems, 9th International Conference, ITS, Montreal, Canada, Proceedings (Lecture Notes in Computer
+Science), Vol. 5091. Springer, 796–798.
+[18] Abdessamad Chanaa and Nour-Eddine El Faddouli. 2020. Predicting Learners Need for Recommendation Using
+Dynamic Graph-Based Knowledge Tracing. In Artificial Intelligence in Education, Ig Ibert Bittencourt, Mutlu Cukurova,
+Kasia Muldner, Rose Luckin, and Eva Millán (Eds.). Springer International Publishing, Cham, 49–53.
+[19] Haw-Shiuan Chang, Hwai-Jung Hsu, and Kuan-Ta Chen. 2015. Modeling Exercise Relationships in E-Learning: A
+Unified Approach.. In Proceedings of the 8th International Conference on Educational Data Mining, EDM , Madrid, Spain.
+International Educational Data Mining Society (IEDMS), 532–535.
+[20] Yuying Chen, Qi Liu, Zhenya Huang, Le Wu, Enhong Chen, Run-ze Wu, Yu Su, and Guoping Hu. 2017. Tracking
+Knowledge Proficiency of Students with Educational Priors. In Proceedings of the 2017 ACM on Conference on
+Information and Knowledge Management, CIKM, Singapore. ACM, 989–998.
+[21] Youngduck Choi, Youngnam Lee, Junghyun Cho, Jineon Baek, Byungsoo Kim, Yeongmin Cha, Dongmin Shin, Chan
+Bae, and Jaewe Heo. 2020. Towards an Appropriate Query, Key, and Value Computation for Knowledge Tracing. In
+L@S’20: Seventh ACM Conference on Learning @ Scale, Virtual Event, USA, David Joyner, René F. Kizilcec, and Susan
+Singer (Eds.). 341–344.
+[22] Youngduck Choi, Youngnam Lee, Dongmin Shin, Junghyun Cho, Seoyon Park, Seewoo Lee, Jineon Baek, Chan Bae,
+Byungsoo Kim, and Jaewe Heo. 2020. Ednet: A large-scale hierarchical dataset in education. In Artificial Intelligence
+in Education - 21st International Conference, AIED, Ifrane, Morocco, Proceedings, Part II (Lecture Notes in Computer
+Science), Vol. 12164. Springer, 69–73.
+, Vol. 1, No. 1, Article . Publication date: January 2022.
+
+32
+Ghodai Abdelrahman, Qing Wang, and Bernardo Pereira Nunes
+[23] Albert Corbett. 2000. Cognitive mastery learning in the act programming tutor. In Adaptive User Interfaces. AAAI
+SS-00-01. Retrieved from https://aaai. org/Library/Symposia/Spring/ss00-01. php.
+[24] Albert T Corbett and John R Anderson. 1994. Knowledge tracing: Modeling the acquisition of procedural knowledge.
+User modeling and user-adapted interaction 4 (1994).
+[25] Albert T Corbett and John R Anderson. 1994. Knowledge tracing: Modeling the acquisition of procedural knowledge.
+User modeling and user-adapted interaction 4, 4 (1994), 253–278.
+[26] Yang Cui, Man-Wai Chu, and Fu Chen. 2019. Analyzing Student Process Data in Game-Based Assessments with
+Bayesian Knowledge Tracing and Dynamic Bayesian Networks. Journal of Educational Data Mining 11, 1 (2019),
+80–100.
+[27] Ryan Shaun Joazeiro de Baker, Albert T. Corbett, and Vincent Aleven. 2008. More Accurate Student Modeling
+through Contextual Estimation of Slip and Guess Probabilities in Bayesian Knowledge Tracing. In Intelligent Tutoring
+Systems, 9th International Conference, ITS , Montreal, Canada, Proceedings (Lecture Notes in Computer Science), Vol. 5091.
+Springer, 406–415.
+[28] Ryan Shaun Joazeiro de Baker, Albert T. Corbett, and Vincent Aleven. 2008. More Accurate Student Modeling through
+Contextual Estimation of Slip and Guess Probabilities in Bayesian Knowledge Tracing. In Intelligent Tutoring Systems,
+9th International Conference, ITS, Montreal, Canada, Proceedings. 406–415.
+[29] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. BERT: Pre-training of Deep Bidirectional
+Transformers for Language Understanding. In Proceedings of the 2019 Conference of the North American Chapter of the
+Association for Computational Linguistics: Human Language Technologies, NAACL-HLT , Minneapolis, MN, USA, Volume
+1 (Long and Short Papers), Jill Burstein, Christy Doran, and Thamar Solorio (Eds.). Association for Computational
+Linguistics, 4171–4186.
+[30] Hermann Ebbinghaus. 2013. Memory: A contribution to experimental psychology. Annals of neurosciences 20, 4
+(2013), 155.
+[31] Susan E Embretson and Steven P Reise. 2013. Item response theory. Psychology Press.
+[32] Yang Fan, Fei Tian, Tao Qin, Xiang-Yang Li, and Tie-Yan Liu. 2018. Learning to Teach. In 6th International Conference
+on Learning Representations, ICLR, Vancouver, BC, Canada, Conference Track Proceedings. OpenReview.net.
+[33] Mingyu Feng, Neil Heffernan, and Kenneth Koedinger. 2009. Addressing the assessment challenge with an online
+system that tutors as it assesses. User modeling and user-adapted interaction 19, 3 (2009), 243–266.
+[34] Garett C Foster, Hanyi Min, and Michael J Zickar. 2017. Review of item response theory practices in organizational
+research: Lessons learned and paths forward. Organizational Research Methods 20, 3 (2017), 465–486.
+[35] Wenbin Gan, Yuan Sun, Xian Peng, and Yi Sun. 2020. Modeling learner’s dynamic knowledge construction procedure
+and cognitive item difficulty for knowledge tracing. Applied Intelligence 50, 11 (2020), 3894–3912.
+[36] Aritra Ghosh, Neil Heffernan, and Andrew S. Lan. 2020. Context-Aware Attentive Knowledge Tracing. In KDD ’20:
+The 26th ACM SIGKDD Conference on Knowledge Discovery and Data Mining, Virtual Event, CA, USA. 2330–2339.
+[37] Priya Goyal, Mathilde Caron, Benjamin Lefaudeux, Min Xu, Pengchao Wang, Vivek Pai, Mannat Singh, Vitaliy
+Liptchinsky, Ishan Misra, Armand Joulin, and Piotr Bojanowski. 2021. Self-supervised Pretraining of Visual Features
+in the Wild. CoRR abs/2103.01988 (2021). arXiv:2103.01988 https://arxiv.org/abs/2103.01988
+[38] Alex Graves. 2013. Generating Sequences With Recurrent Neural Networks. arXiv e-prints, Article arXiv:1308.0850
+(Aug 2013), arXiv:1308.0850 pages. arXiv:1308.0850
+[39] A. Graves, A. Mohamed, and G. Hinton. 2013. Speech recognition with deep recurrent neural networks. In International
+Conference on Acoustics, Speech and Signal Processing,ICASSP, Vancouver, BC, Canada. IEEE, 6645–6649.
+[40] Alex Graves, Greg Wayne, and Ivo Danihelka. 2014.
+Neural turing machines.
+CoRR abs/1410.5401 (2014).
+arXiv:1410.5401 http://arxiv.org/abs/1410.5401
+[41] Bert F Green. 1951. A general solution for the latent class model of latent structure analysis. Psychometrika 16, 2
+(1951), 151–166.
+[42] Ivo Grondman, Lucian Busoniu, Gabriel A. D. Lopes, and Robert Babuska. 2012. A Survey of Actor-Critic Reinforcement
+Learning: Standard and Natural Policy Gradients. IEEE Transactions on Systems, Man, and Cybernetics, Part C
+(Applications and Reviews) 42, 6 (2012), 1291–1307.
+[43] Anselm Haselhoff, Jan Kronenberger, Fabian Kuppers, and Jonas Schneider. 2021. Towards Black-Box Explainability
+With Gaussian Discriminant Knowledge Distillation. In Proceedings of the IEEE/CVF Conference on Computer Vision
+and Pattern Recognition (CVPR) Workshops. 21–28.
+[44] Alan G Hawkes. 1971. Spectra of some self-exciting and mutually exciting point processes. Biometrika 58, 1 (1971),
+83–90.
+[45] Anja Hawlitschek and Sven Joeckel. 2017. Increasing the effectiveness of digital educational games: The effects of a
+learning instruction on students’ learning, motivation and cognitive load. Computers in Human Behavior 72 (2017),
+79–86.
+[46] Sepp Hochreiter and Jürgen Schmidhuber. 1997. Long Short-Term Memory. Neural Computation 9, 8 (1997), 1735–1780.
+, Vol. 1, No. 1, Article . Publication date: January 2022.
+
+Knowledge Tracing: A Survey
+33
+[47] Yun Huang, José P. González-Brenes, and Peter Brusilovsky. 2014. General features in knowledge tracing to model
+multiple subskills, temporal item response theory, and expert knowledge. In Proceedings of the 7th International
+Conference on Educational Data Mining, EDM , London, UK. International Educational Data Mining Society (IEDMS),
+84–91.
+[48] Zhenya Huang, Qi Liu, Yuying Chen, Le Wu, Keli Xiao, Enhong Chen, Haiping Ma, and Guoping Hu. 2020. Learning
+or Forgetting? A Dynamic Approach for Tracking the Knowledge Proficiency of Students. ACM Trans. Inf. Syst.
+(2020).
+[49] Zhenya Huang, Qi Liu, Chengxiang Zhai, Yu Yin, Enhong Chen, Weibo Gao, and Guoping Hu. 2019. Exploring
+Multi-Objective Exercise Recommendations in Online Education Systems. In Proceedings of the 28th ACM International
+Conference on Information and Knowledge Management (CIKM). Association for Computing Machinery, New York,
+NY, USA, 1261–1270.
+[50] Alexey Ignatiev. 2020. Towards Trustable Explainable AI. In Proceedings of the Twenty-Ninth International Joint
+Conference on Artificial Intelligence, IJCAI, Christian Bessiere (Ed.). ijcai.org, 5154–5158.
+[51] Sheikh Rabiul Islam, William Eberle, and Sheikh K. Ghafoor. 2020. Towards Quantification of Explainability in
+Explainable Artificial Intelligence Methods. In Proceedings of the Thirty-Third International Florida Artificial Intelligence
+Research Society Conference, Originally to be held in North Miami Beach, Florida, USA, May 17-20, 2020, Roman Barták
+and Eric Bell (Eds.). AAAI Press, 75–81.
+[52] Philip I. Pavlik Jr. and John R. Anderson. 2005. Practice and Forgetting Effects on Vocabulary Memory: An Activation-
+Based Model of the Spacing Effect. Cognitive Science 29, 4 (2005), 559–586.
+[53] Pavan Kantharaju, Katelyn Bright Alderfer, Jichen Zhu, Bruce Char, Brian K. Smith, and Santiago Ontañón. 2018.
+Tracing Player Knowledge in a Parallel Programming Educational Game. In Proceedings of the Fourteenth AAAI
+Conference on Artificial Intelligence and Interactive Digital Entertainment, AIIDE , Edmonton, Canada. 173–179.
+[54] Tanja Käser, Severin Klingler, Alexander G. Schwing, and Markus H. Gross. 2017. Dynamic Bayesian Networks for
+Student Modeling. IEEE Trans. Learn. Technol. 10, 4 (2017), 450–462.
+[55] Mohammad Khajah, Robert V. Lindsey, and Michael Mozer. 2016. How Deep is Knowledge Tracing?. In Proceedings
+of the 9th International Conference on Educational Data Mining, EDM, Raleigh, North Carolina, USA. International
+Educational Data Mining Society (IEDMS).
+[56] Mohammad Khajah, Rowan Wing, Robert Lindsey, and Michael Mozer. 2014. Integrating latent-factor and knowledge-
+tracing models to predict individual differences in learning. In Educational Data Mining. Citeseer.
+[57] Mohammad Khajah, Rowan Wing, Robert Lindsey, and Michael Mozer. 2014. Integrating latent-factor and knowledge-
+tracing models to predict individual differences in learning. In Proceedings of the 7th International Conference on
+Educational Data Mining, EDM, London, UK. International Educational Data Mining Society (IEDMS), 99–106.
+[58] Mohammad M Khajah, Yun Huang, José P González-Brenes, Michael C Mozer, and Peter Brusilovsky. 2014. Integrating
+knowledge tracing and item response theory: A tale of two frameworks. In Posters, Demos, Late-breaking Results and
+Workshop Proceedings of the 22nd Conference on User Modeling, Adaptation, and Personalization co-located with the
+22nd Conference on User Modeling, Adaptation, and Personalization (UMAP2014), Aalborg, Denmark (CEUR Workshop
+Proceedings), Vol. 1181. CEUR-WS.org.
+[59] Thomas N. Kipf and Max Welling. 2017. Semi-Supervised Classification with Graph Convolutional Networks.
+In 5th International Conference on Learning Representations, ICLR, Toulon, France, Conference Track Proceedings.
+OpenReview.net.
+[60] Kenneth R Koedinger, Ryan SJd Baker, Kyle Cunningham, Alida Skogsholm, Brett Leber, and John Stamper. 2010. A
+data repository for the EDM community: The PSLC DataShop. Handbook of educational data mining 43 (2010), 43–56.
+[61] Yann LeCun, Yoshua Bengio, and Geoffrey Hinton. 2015. Deep learning. nature 521, 7553 (2015), 436.
+[62] Jung In Lee and Emma Brunskill. 2012. The Impact on Individualizing Student Models on Necessary Practice
+Opportunities. (2012), 118–125.
+[63] Zachary C Lipton, John Berkowitz, and Charles Elkan. 2015. A critical review of recurrent neural networks for
+sequence learning. CoRR abs/1506.00019 (2015). arXiv:1506.00019 http://arxiv.org/abs/1506.00019
+[64] Qi Liu, Zhenya Huang, Yu Yin, Enhong Chen, Hui Xiong, Yu Su, and Guoping Hu. 2021. EKT: Exercise-Aware
+Knowledge Tracing for Student Performance Prediction. IEEE Trans. Knowl. Data Eng. 33, 1 (2021), 100–115.
+[65] Qi Liu, Shuanghong Shen, Zhenya Huang, Enhong Chen, and Yonghe Zheng. 2021. A Survey of Knowledge Tracing.
+arXiv preprint arXiv:2105.15106 (2021).
+[66] Qi Liu, Shiwei Tong, Chuanren Liu, Hongke Zhao, Enhong Chen, Haiping Ma, and Shijin Wang. 2019. Exploiting
+Cognitive Structure for Adaptive Learning. In Proceedings of the 25th ACM SIGKDD International Conference on
+Knowledge Discovery & Data Mining (KDD). Association for Computing Machinery, New York, NY, USA, 627–635.
+[67] Yanjin Long and Vincent Aleven. 2017. Educational game and intelligent tutoring system: A classroom study and
+comparative design analysis. ACM Transactions on Computer-Human Interaction (TOCHI) 24, 3 (2017), 1–27.
+, Vol. 1, No. 1, Article . Publication date: January 2022.
+
+34
+Ghodai Abdelrahman, Qing Wang, and Bernardo Pereira Nunes
+[68] Yanjin Long and Vincent Aleven. 2017. Educational Game and Intelligent Tutoring System: A Classroom Study and
+Comparative Design Analysis. ACM Trans. Comput.-Hum. Interact. 24, 3 (2017), 27.
+[69] FM Lord, MR Novick, and Allan Birnbaum. 1968. Statistical theories of mental test scores. (1968).
+[70] Frederic M. Lord. 1951. A THEORY OF TEST SCORES AND THEIR RELATION TO THE TRAIT MEASURED. ETS
+Research Bulletin Series 1951, 1 (1951), i–126.
+[71] Tomás Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. Efficient Estimation of Word Representations in
+Vector Space. In 1st International Conference on Learning Representations, ICLR,Scottsdale, Arizona, USA, Workshop
+Track Proceedings, Yoshua Bengio and Yann LeCun (Eds.).
+[72] Alexander H. Miller, Adam Fisch, Jesse Dodge, Amir-Hossein Karimi, Antoine Bordes, and Jason Weston. 2016.
+Key-Value Memory Networks for Directly Reading Documents. In Proceedings of the 2016 Conference on Empirical
+Methods in Natural Language Processing, EMNLP, Austin, Texas, USA. 1400–1409.
+[73] Sein Minn, Yi Yu, Michel C. Desmarais, Feida Zhu, and Jill-Jênn Vie. 2018. Deep Knowledge Tracing and Dynamic
+Student Classification for Knowledge Tracing. In International Conference on Data Mining, ICDM , Singapore. IEEE
+Computer Society, 1182–1187.
+[74] Ishan Misra and Laurens van der Maaten. 2020. Self-Supervised Learning of Pretext-Invariant Representations. In
+Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR).
+[75] R. Charles Murray, Steven Ritter, Tristan Nixon, Ryan Schwiebert, Robert G. M. Hausmann, Brendon Towle, Stephen E.
+Fancsali, and Annalies Vuong. 2013. Revealing the Learning in Learning Curves. In Artificial Intelligence in Education,
+H. Chad Lane, Kalina Yacef, Jack Mostow, and Philip Pavlik (Eds.). Springer Berlin Heidelberg, Berlin, Heidelberg,
+473–482.
+[76] Jaap M. J. Murre and Joeri Dros. 2015. Replication and Analysis of Ebbinghaus’ Forgetting Curve. PLOS ONE 10, 7 (07
+2015), 1–23.
+[77] Koki Nagatani, Qian Zhang, Masahiro Sato, Yan-Ying Chen, Francine Chen, and Tomoko Ohkuma. 2019. Augmenting
+Knowledge Tracing by Considering Forgetting Behavior. In The World Wide Web Conference, WWW, San Francisco,
+CA, USA. ACM, 3101–3107.
+[78] Hiromi Nakagawa, Yusuke Iwasawa, and Yutaka Matsuo. 2019. Graph-Based Knowledge Tracing: Modeling Student
+Proficiency Using Graph Neural Network. In IEEE/WIC/ACM International Conference on Web Intelligence (WI).
+Association for Computing Machinery, New York, NY, USA, 156–163.
+[79] Shalini Pandey and George Karypis. 2019. A Self Attentive model for Knowledge Tracing. In Proceedings of the 12th
+International Conference on Educational Data Mining, EDM , Montréal, Canada, Michel C. Desmarais, Collin F. Lynch,
+Agathe Merceron, and Roger Nkambou (Eds.). International Educational Data Mining Society (IEDMS).
+[80] Shalini Pandey and Jaideep Srivastava. 2020. Rkt: Relation-aware self-attention for knowledge tracing. In Proceedings
+of the 29th ACM International Conference on Information & Knowledge Management. 1205–1214.
+[81] Zachary A. Pardos, Yoav Bergner, Daniel T. Seaton, and David E. Pritchard. 2013. Adapting Bayesian knowledge
+tracing to a massive open online course in edX. In Proceedings of the 6th International Conference on Educational Data
+Mining, EDM. International Educational Data Mining Society.
+[82] Zachary A Pardos, Ryan SJD Baker, Maria OCZ San Pedro, Sujith M Gowda, and Supreeth M Gowda. 2014. Affective
+States and State Tests: Investigating How Affect and Engagement during the School Year Predict End-of-Year Learning
+Outcomes. Journal of Learning Analytics 1, 1 (2014), 107–128.
+[83] Zachary A. Pardos and Neil T. Heffernan. 2010. Modeling Individualization in a Bayesian Networks Implementa-
+tion of Knowledge Tracing. In Proceedings of the 18th International Conference on User Modeling, Adaptation, and
+Personalization (UMAP). Berlin, Heidelberg, 255–266.
+[84] Zachary A. Pardos and Neil T. Heffernan. 2010. Modeling Individualization in a Bayesian Networks Implementation
+of Knowledge Tracing. In User Modeling, Adaptation, and Personalization, 18th International Conference, UMAP, Big
+Island, HI, USA. 255–266.
+[85] Zachary A. Pardos and Neil T. Heffernan. 2011. KT-IDEM: Introducing Item Difficulty to the Knowledge Tracing
+Model. In User Modeling, Adaption and Personalization - 19th International Conference,UMAP, Girona, Spain. 243–254.
+[86] Philip I. Pavlik, Hao Cen, and Kenneth R. Koedinger. 2009. Performance Factors Analysis - A New Alternative to
+Knowledge Tracing. In Artificial Intelligence in Education: Building Learning Systems that Care: From Knowledge
+Representation to Affective Modelling, Proceedings of the 14th International Conference on Artificial Intelligence in
+Education, AIED , Brighton, UK (Frontiers in Artificial Intelligence and Applications), Vol. 200. IOS Press, 531–538.
+[87] Radek Pelánek. 2015. Modeling Students’ Memory for Application in Adaptive Educational Systems. In Proceedings of
+the 8th International Conference on Educational Data Mining, EDM, Madrid, Spain. International Educational Data
+Mining Society (IEDMS), 480–483.
+[88] Radek Pelánek. 2015. Modeling Students’ Memory for Application in Adaptive Educational Systems. (2015), 480–483.
+[89] Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran Sahami, Leonidas J. Guibas, and Jascha
+Sohl-Dickstein. 2015. Deep Knowledge Tracing. In Advances in Neural Information Processing Systems 28: Annual
+, Vol. 1, No. 1, Article . Publication date: January 2022.
+
+Knowledge Tracing: A Survey
+35
+Conference on Neural Information Processing Systems, NIPS,Montreal, Quebec, Canada. 505–513.
+[90] Joseph Psotka, Leonard Daniel Massey, and Sharon A Mutter. 1988. Intelligent tutoring systems: Lessons learned.
+Psychology Press.
+[91] Yumeng Qiu, Yingmei Qi, Hanyuan Lu, Zachary A. Pardos, and Neil T. Heffernan. 2011. Does Time Matter? Modeling
+the Effect of Time with Bayesian Knowledge Tracing.. In Proceedings of the 4th International Conference on Educational
+Data Mining, Eindhoven, The Netherlands. www.educationaldatamining.org, 139–148.
+[92] Georg Rasch. 1993. Probabilistic models for some intelligence and attainment tests. ERIC.
+[93] Franco Scarselli, Marco Gori, Ah Chung Tsoi, Markus Hagenbuchner, and Gabriele Monfardini. 2009. The Graph
+Neural Network Model. IEEE Transactions on Neural Networks 20, 1 (2009), 61–80.
+[94] Franco Scarselli, Marco Gori, Ah Chung Tsoi, Markus Hagenbuchner, and Gabriele Monfardini. 2009. The Graph
+Neural Network Model. IEEE Transactions on Neural Networks 20, 1 (2009), 61–80.
+[95] Jürgen Schmidhuber. 2015. Deep learning in neural networks: An overview. Neural Networks 61 (2015), 85–117.
+[96] Thorsten Schodde, Kirsten Bergmann, and Stefan Kopp. 2017. Adaptive Robot Language Tutoring Based on Bayesian
+Knowledge Tracing and Predictive Decision-Making. In Proceedings of the 2017 ACM/IEEE International Conference on
+Human-Robot Interaction (HRI). Association for Computing Machinery, 128–136.
+[97] Florian Sense, Friederike Behrens, Rob R. Meijer, and Hedderik van Rijn. 2016. An Individual’s Rate of Forgetting Is
+Stable Over Time but Differs Across Materials. Topics in cognitive science 8, 1 (2016), 305–321.
+[98] Burr Settles and Brendan Meeder. 2016. A trainable spaced repetition model for language learning. In Proceedings of
+the 54th Annual Meeting of the Association for Computational Linguistics, ACL ,Berlin, Germany, Volume 1: Long Papers.
+The Association for Computer Linguistics, 1848–1858.
+[99] Dongmin Shin, Yugeun Shim, Hangyeol Yu, Seewoo Lee, Byungsoo Kim, and Youngduck Choi. 2021. SAINT+:
+Integrating Temporal Features for EdNet Correctness Prediction. In LAK’21: 11th International Learning Analytics and
+Knowledge Conference, Irvine, CA, USA, Maren Scheffel, Nia Dowell, Srecko Joksimovic, and George Siemens (Eds.).
+ACM, 490–496.
+[100] J Stamper, A Niculescu-Mizil, S Ritter, GJ Gordon, and KR Koedinger. 2010. Algebra i 2008–2009. challenge data set
+from kdd cup 2010 educational data mining challenge. Retrieved April 25 (2010), 2015.
+[101] Yu Su, Qingwen Liu, Qi Liu, Zhenya Huang, Yu Yin, Enhong Chen, Chris H. Q. Ding, Si Wei, and Guoping Hu. 2018.
+Exercise-Enhanced Sequential Modeling for Student Performance Prediction. In Proceedings of the Thirty-Second
+Conference on Artificial Intelligence, the 30th innovative Applications of Artificial Intelligence, New Orleans, Louisiana,
+USA, Sheila A. McIlraith and Kilian Q. Weinberger (Eds.). AAAI Press, 2435–2443.
+[102] Ilya Sutskever, Oriol Vinyals, and Quoc V Le. 2014. Sequence to Sequence Learning with Neural Networks. In Advances
+in Neural Information Processing Systems 27: Annual Conference on Neural Information Processing Systems,NIPS ,
+Montreal, Quebec, Canada. 3104–3112.
+[103] Richard S Sutton and Andrew G Barto. 2018. Reinforcement learning: An introduction. MIT press.
+[104] Mack Sweeney, Jaime Lester, Huzefa Rangwala, and Aditya Johri. 2016. Next-Term Student Performance Prediction:
+A Recommender Systems Approach. In Proceedings of the 9th International Conference on Educational Data Mining,
+EDM, Raleigh, North Carolina, USA. International Educational Data Mining Society (IEDMS), 7.
+[105] Tamás Szabados. 2010. An elementary introduction to the Wiener process and stochastic integrals. arXiv preprint
+arXiv:1008.1510 (2010).
+[106] Nguyen Thai-Nghe, Lucas Drumond, Tomás Horváth, and Lars Schmidt-Thieme. 2012. Using factorization machines
+for student modeling. In Workshop and Poster Proceedings of the 20th Conference on User Modeling, Adaptation, and
+Personalization, Montreal, Canada (CEUR Workshop Proceedings), Vol. 872. CEUR-WS.org.
+[107] Hanshuang Tong, Yun Zhou, and Zhen Wang. 2020. HGKT : Introducing Problem Schema with Hierarchical Exercise
+Graph for Knowledge Tracing. CoRR abs/2006.16915 (2020).
+[108] Shiwei Tong, Qi Liu, Wei Huang, Zhenya Huang, Enhong Chen, Chuanren Liu, Haiping Ma, and Shijin Wang. 2020.
+Structure-based Knowledge Tracing: An Influence Propagation View. In 20th IEEE International Conference on Data
+Mining, ICDM,Sorrento, Italy, Claudia Plant, Haixun Wang, Alfredo Cuzzocrea, Carlo Zaniolo, and Xindong Wu (Eds.).
+541–550.
+[109] Moshe Y Vardi. 2012. Will MOOCs destroy academia? Commun. ACM 55, 11 (2012), 5–5.
+[110] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, and
+Illia Polosukhin. 2017. Attention is All you Need. In Advances in Neural Information Processing Systems 30: Annual
+Conference on Neural Information Processing Systems,NIPS, Long Beach, CA, USA. 6000–6010.
+[111] Jill-Jênn Vie and Hisashi Kashima. 2019. Knowledge Tracing Machines: Factorization Machines for Knowledge
+Tracing. In The Thirty-Third Conference on Artificial Intelligence, The Thirty-First Innovative Applications of Artificial
+Intelligence Conference, The Ninth Symposium on Educational Advances in Artificial Intelligence, Honolulu, Hawaii,USA.
+AAAI Press, 750–757.
+, Vol. 1, No. 1, Article . Publication date: January 2022.
+
+36
+Ghodai Abdelrahman, Qing Wang, and Bernardo Pereira Nunes
+[112] Michael Villano. 1992. Probabilistic Student Models: Bayesian Belief Networks and Knowledge Space Theory. In
+Intelligent Tutoring Systems, Second International Conference, ITS, Montréal, Canada, Proceedings (Lecture Notes in
+Computer Science), Vol. 608. Springer, 491–498.
+[113] Michael Villano. 1992. Probabilistic Student Models: Bayesian Belief Networks and Knowledge Space Theory. In
+Intelligent Tutoring Systems, Second International Conference, ITS, Montréal, Canada, Proceedings. 491–498.
+[114] Chenyang Wang, Weizhi Ma, Min Zhang, Chuancheng Lv, Fengyuan Wan, Huijie Lin, Taoran Tang, Yiqun Liu, and
+Shaoping Ma. 2021. Temporal Cross-Effects in Knowledge Tracing. In Proceedings of the 14th ACM International
+Conference on Web Search and Data Mining (WSDM). 517–525.
+[115] Feng Wang and Huaping Liu. 2021. Understanding the Behaviour of Contrastive Loss. In Proceedings of the IEEE/CVF
+Conference on Computer Vision and Pattern Recognition (CVPR). 2495–2504.
+[116] Kevin H. Wilson, Yan Karklin, Bojian Han, and Chaitanya Ekanadham. 2016. Back to the basics: Bayesian extensions
+of IRT outperform neural networks for proficiency estimation. In Proceedings of the 9th International Conference on
+Educational Data Mining, EDM , Raleigh, North Carolina, USA. International Educational Data Mining Society (IEDMS),
+539–544.
+[117] Raymond E. Wright. 1995. Logistic Regression. In Reading and understanding multivariate statistics. American
+Psychological Association, Washington, DC, US, 217–244.
+[118] Lijun Wu, Fei Tian, Yingce Xia, Yang Fan, Tao Qin, Jian-Huang Lai, and Tie-Yan Liu. 2018. Learning to Teach with
+Dynamic Loss Functions. In Advances in Neural Information Processing Systems 31: Annual Conference on Neural
+Information Processing Systems 2018, NIPS , Montréal, Canada. 6467–6478.
+[119] Xiaolu Xiong, Siyuan Zhao, Eric Van Inwegen, and Joseph Beck. 2016. Going Deeper with Deep Knowledge Tracing.
+In Proceedings of the 9th International Conference on Educational Data Mining, EDM, Raleigh, North Carolina, USA,
+Tiffany Barnes, Min Chi, and Mingyu Feng (Eds.). International Educational Data Mining Society (IEDMS),Raleigh,
+North Carolina, USA, 545–550.
+[120] Yang Yang, Jian Shen, Yanru Qu, Yunfei Liu, Kerong Wang, Yaoming Zhu, Weinan Zhang, and Yong Yu. 2020. GIKT:
+A Graph-based Interaction Model for Knowledge Tracing. 12457 (2020), 299–315.
+[121] Chun-Kit Yeung and Dit-Yan Yeung. 2018. Addressing two problems in deep knowledge tracing via prediction-
+consistent regularization. In Proceedings of the Fifth Annual Conference on Learning at Scale, London, UK, Rose Luckin,
+Scott Klemmer, and Kenneth R. Koedinger (Eds.). ACM, 5:1–5:10.
+[122] Yu Yin, Qi Liu, Zhenya Huang, Enhong Chen, Wei Tong, Shijin Wang, and Yu Su. 2019. QuesNet: A Unified
+Representation for Heterogeneous Test Questions. In Proceedings of the 25th ACM SIGKDD International Conference
+on Knowledge Discovery & Data Mining, KDD , Anchorage, AK,USA. 1328–1336.
+[123] Michael V Yudelson, Kenneth R Koedinger, and Geoffrey J Gordon. 2013. Individualized bayesian knowledge tracing
+models. In Artificial Intelligence in Education - 16th International Conference,(AIED), Memphis, TN, USA, Proceedings.
+171–180.
+[124] Xiaohua Zhai, Avital Oliver, Alexander Kolesnikov, and Lucas Beyer. 2019. S4L: Self-Supervised Semi-Supervised
+Learning. In Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV).
+[125] Jiani Zhang, Xingjian Shi, Irwin King, and Dit-Yan Yeung. 2017. Dynamic Key-Value Memory Networks for Knowledge
+Tracing. In Proceedings of the 26th International Conference on World Wide Web, WWW, Perth, Australia. 765–774.
+[126] Xiaojin Zhu. 2015. Machine Teaching: An Inverse Problem to Machine Learning and an Approach Toward Optimal
+Education. Proceedings of the AAAI Conference on Artificial Intelligence 29, 1 (2015).
+, Vol. 1, No. 1, Article . Publication date: January 2022.

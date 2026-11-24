@@ -4,57 +4,63 @@
 \usepackage{hyperref}
 
 \address{
-\textbf{Dr. Van-Hau Nguyen (Corresponding Author)}\\
-Department of Computer Science and Engineering\\
-Hung Yen University of Technology and Education\\
+\textbf{Dr.\ Van-Hau Nguyen (Corresponding Author)}\\
+Faculty of Information Technology\\
+Hung Yen University of Technology and Engineering\\
 Hung Yen, Vietnam\\
 Email: \href{mailto:haunv@utehy.edu.vn}{haunv@utehy.edu.vn}
 }
 
-\date{August 26, 2026}
+\date{November 10, 2026}
 
 \begin{document}
 
 \begin{letter}{
-\textbf{Editor-in-Chief}\\
-IEEE Transactions on Knowledge and Data Engineering (TKDE)\\
-IEEE Computer Society
+\textbf{Editor-in-Chief and Associate Editors}\\
+IEEE Transactions on Learning Technologies (TLT)\\
+IEEE Education Society
 }
 
 \opening{Dear Editor-in-Chief and Associate Editors,}
 
-We are pleased to submit our original systematic survey manuscript titled:
+We submit the critical survey
 
 \begin{center}
-\textbf{''Graph-Based and Self-Supervised Knowledge Tracing in Sparse-Concept Settings: A Systematic Survey and Research Agenda''}
+\textbf{Graph-Based and Self-Supervised Knowledge Tracing in Sparse-Concept Settings: A Critical Survey}
 \end{center}
 
-for consideration for publication as a Survey Paper in \textit{IEEE Transactions on Knowledge and Data Engineering (TKDE)}.
+for consideration as a \textbf{Survey and Tutorial} article in \textit{IEEE Transactions on Learning Technologies}. The compiled anonymous manuscript is 17 double-column pages; the author-identified version is 17 pages (TLT Survey and Tutorial cap: 18 pages, effective 1 January 2025). We submit through the IEEE TLT Author Portal (IEEE account), not ScholarOne.
 
-\textbf{Background and Motivation:}
-Knowledge Tracing (KT) is a fundamental problem in educational data mining and artificial intelligence in education (AIED). While deep learning sequence models have improved accuracy, they suffer from representation collapse under interaction data sparsity and fail to model zero-exposure concept cold-start. In response, Graph Neural Networks (GNNs) and Self-Supervised Learning (SSL) have expanded rapidly over recent years.
+\textbf{Fit to TLT (dual bar).} Knowledge tracing is the mastery-estimation engine of intelligent tutoring and adaptive platforms. This critical survey of 37 locked primary-core PDFs meets TLT's dual requirement: (i)~a computer-science coding audit of Graph-Based and Self-Supervised KT under sparse-concept conditions, and (ii)~an explicit learning-technology use case---a three-job go/not-enough-evidence checklist (new-KC onboarding, treating a graph as a skill map, acting on $P(r{=}1)$) that a learning engineer can apply without reading the survey as a classroom result.
 
-\textbf{Key Contributions of Our Manuscript:}
-\begin{enumerate}
-    \item \textbf{Transparent PRISMA 2020 Protocol}: We present a systematic review across 7 electronic databases (Scopus, Web of Science, ACM DL, IEEE Xplore, ScienceDirect, SpringerLink, arXiv), auditing 2,017 candidate records to establish an integrated core corpus of 42 primary core studies published between 2015 and 2026.
-    \item \textbf{Unified 2D Taxonomy}: We establish a comprehensive two-dimensional taxonomy framework classifying Graph-KT architectures (GNN encoders, provenance, dynamic fusion) and SSL-KT objectives (multi-view contrast, graph structural contrast, generative masked graph auto-encoders).
-    \item \textbf{Critical Evaluation Protocol Audit}: We uncover a critical methodological flaw in the literature: while 95.2\% of studies cite data sparsity, only 4.8\% evaluate strict zero-exposure concept cold-start protocols.
-    \item \textbf{Probability Calibration Audit}: We conduct the first quality audit revealing that 0 out of 42 core studies evaluate Expected Calibration Error (ECE).
-    \item \textbf{Evidence-Derived Research Agenda}: We outline 6 concrete future research pillars, highlighting LLM-GNN multimodal fusion, non-Euclidean hyperbolic state manifolds, and calibrated trustworthy KT.
-\end{enumerate}
+\textbf{Why this paper after Shen et al.\ (TLT 2024).} Shen et al.\ remain the broad TLT map of KT models, variants, and applications. This submission does not replace that survey and does not claim primacy. A TLT reader who already knows Shen still needs answers Shen does not code: when may Graph/SSL-KT support sparse or newly introduced KCs? We answer with (i)~graph provenance $\times$ encoder coding ($N_G=36$), (ii)~locked SSL pretext coding ($N_S=9$; not a saturated taxonomy), (iii)~interaction sparsity versus item / learner / strict KC cold-start, (iv)~manuscript ECE reporting $0/37$, and (v)~Table~VI plus the T1--T3 checklist. Those five deliverables are the incremental contribution relative to Shen.
 
-\textbf{Publication \& Ethical Statements:}
-We confirm that this manuscript is original, has not been published previously, and is not under consideration for publication elsewhere. All authors have read and approved the submitted version of the manuscript.
+\textbf{Reliability (honest).} The 20-paper coding sample was double-coded twice. After excluding three invariant all-NO fields for which Cohen's $\kappa$ is undefined ($p_e=1$), the locator-assisted pass (\texttt{NguyenKT}) yields mean $\kappa=0.97$ over five defined fields ($158/160$ cells). The independent pass (\texttt{DaoMT}, no locator) yields mean $\kappa=0.96$ over the same five defined fields ($157/160$). The two coefficients are not pooled. Screening and full-text second-screener pair files remain absent. Identification $N_{\mathrm{rec}}=2{,}017$ is from the locked search log; stage counts 750/140/103 are from the search-expansion report and are not backed by a deposited record-level ledger. The 37 primary-core PDFs were identity-checked by the authors. Screening and primary coding were performed by an AI research assistant; human coding exists only for the 20-paper sample, so the coefficients measure agreement between human coders and an AI-generated, partly adjudicated reference. A post hoc venue probe (EDM, AIED, LAK, L@S, JEDM, IJAIED) found ten candidate Graph/SSL-KT papers outside the locked core; they are reported, not coded. Count-based findings are protocol-coded audit results.
 
-Thank you for considering our work for publication in IEEE TKDE. We look forward to receiving feedback from you and the reviewers.
+\textbf{Locked corpus facts (not a new count in this letter):}
+\begin{itemize}
+    \item Search-log identification $N_{\mathrm{rec}}=2{,}017$ from six core databases plus arXiv preprint monitoring; 37 locked primary-core PDFs. Stage counts in the PRISMA-style figure are report arithmetic; a record-level screening ledger is not deposited.
+    \item $N_G=36$, $N_S=9$, $N_{G\cap S}=8$.
+    \item Strict zero-exposure KC cold-start: $0/37$. Item cold-start: $1/37$ (SINKT question hold-out). Learner cold-start: $0/37$.
+    \item ECE reported in the published manuscripts: $0/37$. Twelve PDFs report RMSE beside AUC or accuracy; that overall error is not an ECE or Brier report.
+    \item A full-text check through 23 November 2026 of seven further in-window papers found no ECE and no zero-exposure KC split. Those papers, including the bipartite-graph chapter CLBG, are not rows in the itemized tables.
+\end{itemize}
+
+\textbf{What this paper does not claim.} We do not report a locked leakage percentage, a cross-paper AUC/ECE league table, a reproduced representation-collapse statistic, a classroom deployment study, or an executed \emph{pyKT-ColdStart} benchmark. The last item is an agenda specification only. Classroom outcomes are out of Survey and Tutorial scope for this manuscript.
+
+\textbf{Format check.} The manuscript uses IEEEtran V1.8b (\texttt{[lettersize,journal]}), the class delivered by the IEEE Template Selector for Transactions. We compared the compiled PDF with \texttt{New\_IEEEtran\_how-to.pdf} from that package. \texttt{TLT-instructions-only.pdf} is named on the TLT author-resources page but is not included in the Selector Word or generic LaTeX downloads we obtained.
+
+\textbf{Publication statements.} The manuscript is original, has not been published, and is not under review elsewhere. All authors have approved this version. All authors have ORCIDs as required by IEEE.
+
+Thank you for considering the manuscript.
 
 \closing{Sincerely yours,}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 \noindent\textbf{Khanh-Trinh Nguyen} (First Author)\\
-\textbf{Van-Hau Nguyen}, Ph.D. (Corresponding Author)\\
-On behalf of all co-authors:\\
-Khanh-Trinh Nguyen, Tuan Dao Minh, Duong Nguyen Tien, Chi Thanh Nguyen, and Van-Hau Nguyen.
+\textbf{Van-Hau Nguyen}, Ph.D.\ (Corresponding Author)\\
+On behalf of: Khanh-Trinh Nguyen, Tuan Dao Minh, Duong Nguyen Tien, Chi Thanh Nguyen, and Van-Hau Nguyen.
 
 \end{letter}
+
 \end{document}

@@ -1,0 +1,150 @@
+ 25 p1chars= 2829 refpage=23 doi=10.1007/s11280-024-01311-1
+  FILE A Cross-Domain Knowledge Tracing Model Based on Graph Optimal Transport.pdf
+  HEAD World Wide Web (2025) 28:10 | https://doi.org/10.1007/s11280-024-01311-1 | A cross-domain knowledge tracing model based on graph
+  HITS ['DynHet:dynamic heterogeneous graph contrastive']
+  6 p1chars= 4405 refpage=6 doi=-
+  FILE A Self-Attentive Model for Knowledge Tracing.pdf
+  HEAD A Self-Attentive model for Knowledge Tracing | Shalini Pandey | University of Minnesota
+ 47 p1chars= 2300 refpage=36 doi=-
+  FILE A Survey of Graph-Based Knowledge Tracing from Structural and Propagation Perspectives - Models, Applications, and Future Directions.pdf
+  HEAD A Survey of Graph-Based Knowledge Trac- | ing from Structural and Propagation Per- | spectives: Models, Applications, and Fu-
+ 22 p1chars= 6105 refpage=18 doi=-
+  FILE A Survey of Knowledge Tracing - Models, Variants, and Applications.pdf
+  HEAD JOURNAL OF LATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 | A Survey of Knowledge Tracing: Models, Variants, | and Applications
+  HITS ['DTransformer:diagnostic transformer']
+ 12 p1chars= 4160 refpage=11 doi=-
+  FILE Bi-CLKT - Bi-Graph Contrastive Learning Based Knowledge Tracing.pdf
+  HEAD Bi-CLKT: Bi-Graph Contrastive Learning based Knowledge Tracing | Xiangyu Songa, Jianxin Lia,∗, Qi Leib, Wei Zhaoc, Yunliang Chend,∗, Ajmal Miane | aSchool of IT
+ 14 p1chars= 6543 refpage=13 doi=10.1109/TLT.2022.3196355
+  FILE CMKT - Concept Map Driven Knowledge Tracing.pdf
+  HEAD CMKT: Concept Map Driven Knowledge Tracing | , Penghe Chen | , Yang Pian
+ 11 p1chars=  970 refpage=10 doi=10.1145/3394486.3403282
+  FILE Context-Aware Attentive Knowledge Tracing.pdf
+  HEAD Latest updates: hps://dl.acm.org/doi/10.1145/3394486.3403282 | RESEARCH-ARTICLE | Context-Aware Aentive Knowledge Tracing
+ 10 p1chars=  766 refpage=10 doi=10.1145/3485447.3512105
+  FILE Contrastive Learning for Knowledge Tracing.pdf
+  HEAD Latest updates: hps://dl.acm.org/doi/10.1145/3485447.3512105 | RESEARCH-ARTICLE | Contrastive Learning for Knowledge Tracing
+ 11 p1chars= 2424 refpage=10 doi=-
+  FILE Convolutional Neural Network for Trajectory Prediction.pdf
+  HEAD Convolutional Neural Network | for Trajectory Prediction | Nishant Nikhil1,2 and Brendan Tran Morris2[0000−0002−8592−8806]
+ 11 p1chars= 5198 refpage=10 doi=-
+  FILE Deep Graph Memory Networks for Forgetting-Robust Knowledge Tracing.pdf
+  HEAD JOURNAL SUBMISSION | Deep Graph Memory Networks for | Forgetting-Robust Knowledge Tracing
+  9 p1chars= 3410 refpage=8 doi=-
+  FILE Deep Knowledge Tracing.pdf
+  HEAD Deep Knowledge Tracing | Chris Piech∗, Jonathan Bassen∗, Jonathan Huang∗‡, Surya Ganguli∗, | Mehran Sahami∗, Leonidas Guibas∗, Jascha Sohl-Dickstein∗†
+ 25 p1chars= 6309 refpage=22 doi=10.1109/TKDE.2025.3552759
+  FILE Deep Learning Based Knowledge Tracing A Review, a Tool and Empirical Studies.pdf
+  HEAD IEEE TRANSACTIONS ON KNOWLEDGE AND DATA ENGINEERING, VOL. 37, NO. 8, AUGUST 2025 | Deep Learning Based Knowledge Tracing: A Review, | a Tool and Empirical Studi
+  HITS ['DTransformer:diagnostic transformer']
+ 12 p1chars= 4405 refpage=10 doi=10.1145/3690624.3709172
+  FILE Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor.pdf
+  HEAD arXiv:2506.11107v1 [cs.SE] 7 Jun 2025 | Denoising Programming Knowledge Tracing | with a Code Graph-based Tuning Adaptor
+  HITS ['DTransformer:diagnostic transformer']
+ 24 p1chars= 3930 refpage=21 doi=10.1145/3638350
+  FILE DGEKT - A Dual Graph Ensemble Learning Method for Knowledge Tracing.pdf
+  HEAD DGEKT: A Dual Graph Ensemble Learning Method for | Knowledge Tracing | CHAORAN CUI, YUMO YAO, CHUNYUN ZHANG, and HEBO MA, Shandong University of
+ 15 p1chars= 5538 refpage=14 doi=10.1109/TNNLS.2024.3386810
+  FILE Dual-Channel Adaptive Scale Hypergraph Encoders With Cross-View Contrastive Learning for Knowledge Tracing.pdf
+  HEAD IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 36, NO. 4, APRIL 2025 | Dual-Channel Adaptive Scale Hypergraph Encoders | With Cross-View Contra
+ 12 p1chars= 5414 refpage=10 doi=10.1145/3637528.3671773
+  FILE DyGKT - Dynamic Graph Learning for Knowledge Tracing.pdf
+  HEAD DyGKT: Dynamic Graph Learning for Knowledge Tracing | Ke Cheng∗ | ckpassenger@buaa.edu.cn
+ 10 p1chars= 4626 refpage=10 doi=10.1145/3038912.3052580
+  FILE Dynamic Key-Value Memory Networks for Knowledge Tracing.pdf
+  HEAD Dynamic Key-Value Memory Networks for | Knowledge Tracing | Jiani Zhang1,2, Xingjian Shi3, Irwin King1,2, Dit-Yan Yeung3
+ 18 p1chars= 3768 refpage=16 doi=10.1016/j.ipm.2025.104074
+  FILE Exploring Long- and Short-Term Knowledge State Graph Representations with Adaptive Fusion for Knowledge Tracing.pdf
+  HEAD Contents lists available at ScienceDirect | Information Processing and Management | journal homepage: www.elsevier.com/locate/ipm
+ 13 p1chars= 4831 refpage=12 doi=10.1016/j.eswa.2023.120212
+  FILE Fusing Hybrid Attentive Network with Self-Supervised Dual-Channel Heterogeneous Graph for Knowledge Tracing.pdf
+  HEAD Expert Systems With Applications 225 (2023) 120212 | Available online 21 April 2023 | 0957-4174/© 2023 Elsevier Ltd. All rights reserved.
+ 12 p1chars= 2420 refpage=11 doi=10.1007/978-3-030-82136-4_22
+  FILE GASKT - A Graph-Based Attentive Knowledge-Search Model for Knowledge Tracing.pdf
+  HEAD GASKT: A Graph-Based Attentive | Knowledge-Search Model for Knowledge | Mengdan Wang1, Chao Peng1(B), Rui Yang1, Chenchao Wang1, Yao Chen1,
+ 17 p1chars= 2325 refpage=15 doi=-
+  FILE GIKT - A Graph-Based Interaction Model for Knowledge Tracing.pdf
+  HEAD GIKT: A Graph-based Interaction Model for | Knowledge Tracing | Yang Yang1, Jian Shen1, Yanru Qu2, Yunfei Liu1, Kerong Wang1, Yaoming
+ 22 p1chars= 5115 refpage=21 doi=10.1016/j.knosys.2025.113281
+  FILE Graph Knowledge Tracing in Cognitive Situation - Validation of Classic Assertions in Cognitive Psychology.pdf
+  HEAD Knowledge-Based Systems 315 (2025) 113281 | Available online 8 March 2025 | 0950-7051/© 2025 Elsevier B.V. All rights are reserved, including those for text and
+ 28 p1chars= 2464 refpage=25 doi=10.1007/s10639-024-13069-0
+  FILE Graph-Based Effective Knowledge Tracing via Subject Knowledge Mapping.pdf
+  HEAD Vol.:(0123456789) | Education and Information Technologies (2025) 30:9813–9840 | https://doi.org/10.1007/s10639-024-13069-0
+  9 p1chars=  820 refpage=9 doi=10.1145/3350546.3352513
+  FILE Graph-based Knowledge Tracing - Modeling Student Proficiency Using Graph Neural Network.pdf
+  HEAD Latest updates: hps://dl.acm.org/doi/10.1145/3350546.3352513 | RESEARCH-ARTICLE | Graph-based Knowledge Tracing: Modeling Student Proficiency Using
+ 16 p1chars= 6726 refpage=14 doi=10.1109/JAS.2023.123678
+  FILE GraphCA - Learning From Graph Counterfactual Augmentation for Knowledge Tracing.pdf
+  HEAD GraphCA: Learning From Graph Counterfactual | Augmentation for Knowledge Tracing | Xinhua Wang, Shasha Zhao, Lei Guo, Lei Zhu, Chaoran Cui, and Liancheng Xu
+ 13 p1chars= 4883 refpage=12 doi=10.1016/j.eswa.2023.122249
+  FILE Heterogeneous Graph-Based Knowledge Tracing with Spatiotemporal Evolution.pdf
+  HEAD Expert Systems With Applications 238 (2024) 122249 | Available online 30 October 2023 | 0957-4174/© 2023 Elsevier Ltd. All rights reserved.
+ 13 p1chars= 4887 refpage=11 doi=10.1016/j.eswa.2022.119334
+  FILE HHSKT - A Learner-Question Interactions Based Heterogeneous Graph Neural Network Model for Knowledge Tracing.pdf
+  HEAD Expert Systems With Applications 215 (2023) 119334 | Available online 23 November 2022 | 0957-4174/© 2022 Elsevier Ltd. All rights reserved.
+ 18 p1chars= 4205 refpage=17 doi=10.1016/j.ipm.2025.104206
+  FILE HKT - Hierarchical Structure-Based Knowledge Tracing.pdf
+  HEAD Contents lists available at ScienceDirect | Information Processing and Management | journal homepage: www.elsevier.com/locate/ipm
+  HITS ['DTransformer:diagnostic transformer']
+  7 p1chars= 4320 refpage=7 doi=-
+  FILE Improving Knowledge Tracing via Pre-training Question Embeddings.pdf
+  HEAD Proceedings of the Twenty-Ninth International Joint Conference on Artiﬁcial Intelligence (IJCAI-20) | Improving Knowledge Tracing via Pre-training Question Embe
+ 14 p1chars= 3679 refpage=13 doi=10.1016/j.ins.2021.08.100
+  FILE JKT - A Joint Graph Convolutional Network Based Deep Knowledge Tracing.pdf
+  HEAD JKT: A joint graph convolutional network based Deep | Knowledge Tracing | Xiangyu Song a, Jianxin Li a,⇑, Yifu Tang a, Taige Zhao a, Yunliang Chen b, Ziyu Guan 
+ 11 p1chars=    0 refpage=None doi=-
+  FILE KGNN-KT - Enhancing Knowledge Tracing in Programming Education Through LLM-Extracted Knowledge Graphs.pdf
+  HEAD 
+ 34 p1chars= 2520 refpage=32 doi=10.1002/int.22763
+  FILE Knowledge Structure Enhanced Graph Representation Learning Model for Attentive Knowledge Tracing.pdf
+  HEAD Received: 15 April 2021 | | Accepted: 11 November 2021 | DOI: 10.1002/int.22763
+ 36 p1chars= 4269 refpage=31 doi=10.1145/nnnnnnn.nnnnnnn
+  FILE Knowledge Tracing - A Survey.pdf
+  HEAD Knowledge Tracing: A Survey | GHODAI ABDELRAHMAN, QING WANG, and BERNARDO PEREIRA NUNES, School of | Computing, Australian National University
+ 13 p1chars= 5077 refpage=12 doi=10.1016/j.neunet.2025.107164
+  FILE LGS-KT - Integrating Logical and Grammatical Skills for Effective Programming Knowledge Tracing.pdf
+  HEAD Neural Networks 185 (2025) 107164 | Available online 18 January 2025 | 0893-6080/© 2025 Elsevier Ltd. All rights are reserved, including those for text and data
+ 13 p1chars= 5004 refpage=12 doi=10.1016/j.knosys.2025.112958
+  FILE MAHKT - Knowledge Tracing with Multi-Association Heterogeneous Graph Embedding Based on Knowledge Transfer.pdf
+  HEAD Knowledge-Based Systems 310 (2025) 112958 | Available online 7 January 2025 | 0950-7051/© 2025 Elsevier B.V. All rights are reserved, including those for text a
+  4 p1chars= 5137 refpage=4 doi=-
+  FILE Model Generalization - A Sharpness Aware Optimization Perspective.pdf
+  HEAD Model Generalization: A Sharpness Aware Optimization | Perspective | Jozef Marus Coldenhoff∗
+ 18 p1chars= 3884 refpage=17 doi=10.1007/s10489-021-02765-w
+  FILE Modeling Knowledge Proficiency Using Multi-Hierarchical Capsule Graph Neural Network.pdf
+  HEAD https://doi.org/10.1007/s10489-021-02765-w | Modeling knowledge proﬁciency using multi-hierarchical capsule | graph neural network
+ 13 p1chars= 5101 refpage=12 doi=10.1016/j.knosys.2024.112834
+  FILE Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing.pdf
+  HEAD Contents lists available at ScienceDirect | Knowledge-Based Systems | journal homepage: www.elsevier.com/locate/knosys
+  HITS ['DTransformer:diagnostic transformer']
+ 10 p1chars= 5782 refpage=10 doi=10.1109/ICDM.2018.00019
+  FILE Prerequisite-Driven Deep Knowledge Tracing.pdf
+  HEAD Prerequisite-Driven Deep Knowledge Tracing | Penghe Chen1, Yu Lu1,2, *, Vincent W. Zheng3, Yang Pian1 | 1Advanced Innovation Center for Future Education, Beijin
+ 14 p1chars= 2579 refpage=11 doi=-
+  FILE pyKT - A Python Library to Benchmark Deep Learning based Knowledge Tracing Models.pdf
+  HEAD PYKT: A Python Library to Benchmark Deep | Learning based Knowledge Tracing Models | Zitao Liu
+ 32 p1chars= 3900 refpage=29 doi=10.1145/3818614
+  FILE R2GCurL - Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning.pdf
+  HEAD R2GCurL: Reinforced Robust Knowledge Tracing via | Dynamic Graph Curriculum Learning | TIANHAO PENG, Beihang University, Beijing, China and Nanyang Technologica
+ 17 p1chars= 3529 refpage=16 doi=10.1016/j.ins.2022.12.075
+  FILE Self-Supervised Heterogeneous Hypergraph Network for Knowledge Tracing.pdf
+  HEAD Self-supervised heterogeneous hypergraph network for | knowledge tracing | Tangjie Wu, Qiang Ling ⇑
+ 12 p1chars= 5123 refpage=11 doi=10.1016/j.eswa.2022.117681
+  FILE SGKT - Session Graph-Based Knowledge Tracing for Student Performance Prediction.pdf
+  HEAD Expert Systems With Applications 206 (2022) 117681 | Available online 15 June 2022 | 0957-4174/© 2022 Elsevier Ltd. All rights reserved.
+ 11 p1chars= 5064 refpage=10 doi=10.1145/3627673.3679760
+  FILE SINKT - A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model.pdf
+  HEAD SINKT: A Structure-Aware Inductive Knowledge Tracing Model | with Large Language Model | Lingyue Fu
+ 16 p1chars= 2900 refpage=14 doi=-
+  FILE Spatio-Temporal Fusion in Graph Neural Network for Streaming Knowledge Tracing.pdf
+  HEAD Spatio-Temporal Fusion in Graph Neural Network for | Streaming Knowledge Tracing | Yi-Fei Wen1, Hang Liang1, Carl Yang2, Wen-Bo Xie3, Yajun Du1, Xianyong Li1, a
+ 13 p1chars= 4959 refpage=12 doi=10.1016/j.eswa.2024.125248
+  FILE STHKT - Spatiotemporal Knowledge Tracing with Topological Hawkes Process.pdf
+  HEAD Contents lists available at ScienceDirect | Expert Systems With Applications | journal homepage: www.elsevier.com/locate/eswa
+ 10 p1chars= 5582 refpage=9 doi=10.1109/ICDM50108.2020.00063
+  FILE Structure-Based Knowledge Tracing - An Influence Propagation View.pdf
+  HEAD Structure-based Knowledge Tracing: | An Inﬂuence Propagation View | Shiwei Tong1, Qi Liu1,∗, Wei Huang1, Zhenya Huang1, Enhong Chen1, Chuanren Liu2, Haiping Ma3
+ 10 p1chars= 5702 refpage=9 doi=10.1109/TCE.2023.3293953
+  FILE Weighted Heterogeneous Graph-Based Three-View Contrastive Learning for Knowledge Tracing in Personalized e-Learning Systems.pdf
+  HEAD IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 70, NO. 1, FEBRUARY 2024 | Weighted Heterogeneous Graph-Based Three-View | Contrastive Learning for Knowledge Tr

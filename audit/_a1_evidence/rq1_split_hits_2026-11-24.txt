@@ -1,0 +1,268 @@
+
+
+######## KT004 Graph-based Knowledge Tracing - Modeling Student Proficiency Using Graph Neural Network.pdf ########
+NO_SPLIT_PHRASE
+
+
+######## KT010 GIKT - A Graph-Based Interaction Model for Knowledge Tracing.pdf ########
+p.10:  the same data processing as ASSIST09, it has 2,709,436 exercises with 27,485 students, 265 skills and 53,065 questions. – EdNet 7 was collected by [5]. As the whole dataset is too large, we randomly select 5000 students with 189 skills, 12,161 questions and 676,974 exercises. Note that for each dataset we only use the sequences of which the length is
+p.10:  longer than 3 in the experiments as the too short sequences are meaningless. For each dataset, we split 80% of all the sequences as the training set, 20% as the test set. To evaluate the results on these datasets, we use the area under the curve (AUC) as the evaluation metric. 5.2 Baselines In order to evaluate the eﬀeciveness
+
+
+######## KT011 Bi-CLKT - Bi-Graph Contrastive Learning Based Knowledge Tracing.pdf ########
+p.9:  used as evaluation met- rics. The empirical performance is summarised in Table 2. Overall, we can ﬁnd that our proposed model shows competitive performance on all datasets. Bi-CLKT con- sistently outperforms all other baseline KT models by a wide margin. The competitive performance validates the superior performance of our proposed contrastive l
+p.10:  of Augmentation methods We observed that all three variants of Bi-CLKT with diﬀerent node centrality measures outperformed the ex- isting KT baseline model on all datasets. We also note that the augmentation with degree and PageRank cen- trality are two powerful variants that achieve the best or competitive performance on all datasets. Speciﬁcal
+
+
+######## KT012 JKT - A Joint Graph Convolutional Network Based Deep Knowledge Tracing.pdf ########
+p.9: ich contains 189,297 interactions on 1,223 concepts by 333 stu- dents. This dataset is the most dense of all the four datasets. Table 2 shows the statistics of all datasets, # NS,# Nc and #NE represent the number of students, concepts, and ‘‘student- exercise” interactions, respectively. 4.2. Evaluation methods We compare our proposed JKT with th
+
+
+######## KT014 Prerequisite-Driven Deep Knowledge Tracing.pdf ########
+p.7: . This low coverage percentage reﬂects the data sparseness issue on knowledge tracing. Setting. In each experiment, we randomly select X% of sequences from the entire dataset as training data. We then randomly select 10% of sequences from the rest data as validation data. The remaining (100-10-X)% of sequences is used as testing data. Each experiment i
+p.7: elines. we ﬁrst compare the overall performance of PDKT-C with baseline models. In this exper- iment, for each dataset, 70% of the data is randomly selected as training data, 10% is randomly selected as validation data, and the remaining 20% is used as testing data. Results of the ﬁve datasets on the four performance metrics are presented in Figure 3.
+p.8: (a) ASSIST (b) AICFE-CM (c) AICFE-GE (d) AICFE-MA (e) AICFE-PH Fig. 5: Impact of training data size. 46
+p.9: mance whenλ is 0.001 or 0.01 or 0.1. By checking the exact value, we ﬁnd that PDKT- C performs slightly better whenλ equals 0.01, soλ is set as 0.01. Impact of training data size . The size of training data usually has a great inﬂuence on model performance. In this subsection, we elaborate how performance changes w.r.t. dif- ferent numbers of training
+p.9:  samples. Experiments are conducted with different size of training data, namely 50%, 60%, 70%, 80%. Experimental results of the ﬁve datasets on the four performance metrics are shown in Figure 5. From the results, we can get two main observations. Firstly, for all datasets, we 
+p.9: can see that PDKT-C outperforms baseline models on all sizes of training data. Secondly, the performance difference between different training sizes are relatively small. Even only 50% of the data is used for training, PDKT-C can obtain good performance. Im
+p.9: pact of prerequisite number . Besides the the size of training data, the number of prerequisites is another inﬂuential factor. In this subsection, we further check the performance change w.r.t. different number of prerequisites in each dataset. Mo
+p.9: re speciﬁcally, we conduct experiments with 20%, 40%, 60%, 80%, 100% of all prerequisites. Figure 6 shows how the performance of different metrics vary with the number of prerequisites used. With all the four metrics, we can ﬁnd that the perf
+
+
+######## KT016 Structure-Based Knowledge Tracing - An Influence Propagation View.pdf ########
+p.7: rage value of ˜O 0.02. B. Experimental Setup 1) Data Partition: For each dataset, we divide the learners into training: test = 8:2. We use 90% of the learners’ training data to train SKT and use the automl tool nni 7 to apply TPE algorithm [2] to adjust the hyperparameters on the remaining 10% of the data. 2) Framework Setting: We set the size de and 
+p.8: o performance metrics are presented in Table III. we can ﬁnd that our proposed SKT achieves a better performance than any other baselines both in AUC and F1 in all datasets. Among baselines, we notice that DKVMN and GKT are the best two models, which either model the relations of concepts or explicitly utilize the exist- ing knowledge structures.
+
+
+######## KT023 SGKT - Session Graph-Based Knowledge Tracing for Student Performance Prediction.pdf ########
+p.6: ills. EdNet was collected by Choi et al. (2020) from which we randomly chose 5000 students, 189 skills, and 12,161 exercises. We used 80 percent of the data as training sets and 20 percent as test sets for each dataset. We used AUC as the evaluation metric to evaluate the performance of these datasets. 5.2. Baselines To evaluate the performance of SG
+p.7: ent. The horizontal dimension shows a sequence of knowledge concepts and answers (0 indicates incorrectly answered and 1 indicates correctly answered) from the test set, where the labels refer to the knowledge concepts input into the model at each time step. The heat-map color indicates the predicted probability that the student will demonstrate 
+p.9: tems With Applications 206 (2022) 117681 9 Z. Wu et al. Fig. 10. Comparison of the waviness of the knowledge state prediction using DKT, SGKT, and DKT + in the test set. that the knowledge state prediction curve of SGKT is smoother than that of DKT and DKT +. Prediction waviness is defined as follows: for an individual student, prediction wavines
+p.9: owledge state prediction of 𝑖th skill at time-step 𝑡 and 𝑡 − 1. Fig. 10 describes the knowledge state prediction waviness distri- bution of all students in the test set on DKT, SGKT, and DKT + using boxplots. A boxplot is a graph with a good indication of how the data are spread. It is a standardized way of displaying a dataset based on a five-nu
+p.9: acing model. In scenario 1 Training with data of few students , we conducted exper- iments with different student numbers ranging from 0.1 to 15 percent of the training dataset to compare the prediction performance of SGKT, DKT, and DKT +. As shown in Fig. 11 , SGKT achieves better perfor- mance than DKT on the ASSIST12 and Ednet datasets and performs
+p.9: er of repeated exercises in the exercise session is small in this dataset. In scenario 2 New students with short exercise sequences , we first cat- egorize the training data into eight groups, each with a different range of exercise sequence lengths, i.e., (0, 5], (0, 10], (0, 15], (0, 20], (0, 25], (0, 50], (0, 75], and (0, 100]. Each exercise sequen
+p.9: ce in the training data is constructed by intercepting the corresponding lengths of exercises from the original exercise sequence. It is easy to see that the case for the first group is the most difficul
+p.10: Expert Systems With Applications 206 (2022) 117681 10 Z. Wu et al. Fig. 11. Comparison of the performance of DKT, SGKT and DKT + with the cold start problem of training data on a few students (scenario 1). Fig. 12. Comparison of the performance of DKT, SGKT, and DKT + with the cold start problem of new students (scenario 2). Table 4 Comparison of the 
+
+
+######## KT026 Improving Knowledge Tracing via Pre-training Question Embeddings.pdf ########
+p.3: Proceedings of the Twenty-Ninth International Joint Conference on Artiﬁcial Intelligence (IJCAI-20) 1558 answered computed from the training dataset. All the ques- tion difﬁculties form a vectorddd = [di]2 RjQj. 4 Method In this section, we will give a detailed introduction of our PEBG framework, of which the overview archi
+p.5: r three datasets is set to 256, the learning rate is 0.001. We also use dropout with a probability of 0.5 to alleviate overﬁt- ting. We divide each dataset into80% for training and valida- tion, and 20% for testing. For each dataset, the training pro- cess is repeated ﬁve times, we report the average test AUC. For ASSIST09 and ASSIST12 datas
+
+
+######## KT029 DGEKT - A Dual Graph Ensemble Learning Method for Knowledge Tracing.pdf ########
+p.10: le, the difference in the importance of various edges can be well distinguished by their weights. For ex- ample,ontheASSIST17dataset,ourstatisticsshowthatnearly80%ofexistingedgesinDTGhave weights smaller than 0.02, while only less than 1% of them have weights larger than 0.8. We also conductedexperimentstopruneDTGbyfilteringoutedgeswithlowwe
+p.13:  method on three benchmark datasets for knowledge tracing, i.e., ASSIST09, AS- SIST17, and EdNet. The statistics of the three datasets are listed in Table2. On all datasets, the maximumlengthofstudents’learningsequencesissetto50.Ifastudenthasmorethan50exercise- answering records, then we partition his/her learning sequence into multiple subsequen
+p.13: ces. We randomly select 80% of students for training and validation and the remaining 20% for testing. ASSIST09.2 ThedatasetiscollectedfromtheASSISTmentsonlinetutoringplatform 3 duringthe 2009–2010 school ye
+p.15: mance of the proposed DGEKT compared to baseline methods. We can observe that DGEKT outperforms all of the eight baselines and achieves the best performance on all datasets. More precisely, it is better than the best baseline by 0.95%, 6.84%, and 0.28% in terms of AUC on ASSIST09, ASSIST17, and EdNet, respectively. It deserves to mention that DGE
+p.17: we introduce the idea of online knowl- edge distillation to combine the dual graph models. As demonstrated in Table5, DGEKT consis- tently outperforms RmOKD on all datasets. Also, we believe that online knowledge distillation canemergeasahighlyeffectivesolutionformodelensembleinknowledgetracing.Toclarifythis point, we separately adopt the concate
+
+
+######## KT031 Knowledge Structure Enhanced Graph Representation Learning Model for Attentive Knowledge Tracing.pdf ########
+p.19: 5.2 | Data sets Experiments were performed on three well ‐established data sets, namely, Assist0910, * As- sist1213,† and EdNet ‡. All data sets are public real ‐world data sets containing the temporal interaction records between learners and real computer ‐aided tutoring systems. These data sets incorporate rich info
+p.20: he distinctive question information. 5.4 | Setup and implementation Before conducting the experiments, we extracted 20% of the sequences in the data set as the test set and retained the remaining 80% as the training set. To embed the nodes in the graph using Metapath2Vec, we set the length of all meta ‐paths as ℘ = 7 and the number of paths as ℵ 
+
+
+######## KT033 Deep Graph Memory Networks for Forgetting-Robust Knowledge Tracing.pdf ########
+p.2: sed KT approaches have been suggested [15], [16]. However, these approaches assume that graphs for latent concepts are pre- deﬁned based on the ground truth in training data, thereby failing to capture the dynamics of a student’s knowledge states in terms of how well they master latent concepts and their connections over time. In this work, our DGMN m
+p.7: set. We visualize their differences using a heatmap (will be depicted in Figure 4). 4.3 Implementation Details For each dataset, we divide it into training and testing sets using a split ratio of (70%, 30%) for training and testing, respectively. We use a 5-fold cross validation strategy in our experiments. The attention memory matrices ( Mk and Mv 
+p.7: ers of the neural layers, we use Glorot uniform random initialization [24] for a faster convergence. An em- pirical evaluation on validation data (i.e., 20% of training data) is conducted to determine the hyper-parameters of our model, including: the memory slot dimensions dk = 50 and dv = 100, and the relevancy thresholdτ = 0.8 for forgetting feature
+p.10: ed our proposed model with the state-of-the-art KT models on four well- established datasets. The results showed that our model outperforms all other models on all datasets. For the fu- ture work, we plan to investigate the potential of latent concept graphs for curriculum learning and recommending exercises to students. REFERENCES [1] A. T. Corb
+
+
+######## KT035 HHSKT - A Learner-Question Interactions Based Heterogeneous Graph Neural Network Model for Knowledge Tracing.pdf ########
+p.8:  longer than the specified length will be truncated to rearrange into a new set of data. The learning rate of our model is set to 0.001, and the batch size for training datasets is set to 128. We use AdamW to optimize our training process. The limitation of the early stopping module is ten epochs. All tests are carried out on the NVIDIA Tesla V100S, w
+p.8:  with 101 skills in our experiment. Records of learners with less than 5 interactions were excluded from the data preprocessing. The statistical information of all datasets used in this paper is shown in the Table 3. 5.1.2. Baselines The model is compared with several models to demonstrate the advancedness of the model proposed in this paper. • I
+p.9: lity. In Assistment2017, DKT and HHSKT achieved similar results. By contrast, the AUCs of DKT and GIKT are slightly lower than the HHSKT model at 83.30% and 83.80%, respectively. The results suggest that graph convolution is more suitable for this scenario. This may be due to a greater number of scaffolding issues in the Assistment2017 datas
+
+
+######## KT036 Heterogeneous Graph-Based Knowledge Tracing with Spatiotemporal Evolution.pdf ########
+p.8: e applied dropout with keep prob = 0 . 1. We set the learning rate as 1e- 3 and batch size as eight. In terms of the datasets, the training, valida - tion, and test sets were split at a ratio of 7:2:1. 2) Comparison baselines. We compared our TSKT with several previ - ous outstanding methods as our baselines: DKT ( Piech et al., 2015 ): DKT appli
+p.8: n in Table 3 . We note some interesting observations. First, our TSKT method and its variants achieved the best performance both in terms of the AUC and ACC on all datasets. The variant SKT was 0.83% higher than the second- best model in terms of the AUC on the Assistment2009 dataset, and the other variant FSKT achieved the best performance in te
+p.9: hod are effective in improving KT task performance and exhibit good versatility. Finally, we compared the learning curves of two variant models (FSKT and TSKT) on the training and validation datasets. Fig. 5 shows that in two distinct embeddings, TSKT ’ s fit is more stable, gradually reduces the loss, and eventually obtains a higher AUC result, indicat
+p.9: ors as exercise texts. As shown in Table 6 , the baseline with heterogeneous graph embedding (KT + H) outperforms their own original versions on AUC metrics on all datasets ( “ GKT + H ” > “ GKT, ” “ DKVMN + F + H ” > “ DKVMN + F, ” “ DKT + H ” > “ DKT, ” and so on). This result demonstrates the effectiveness of our heterogeneous graph embedding 
+
+
+######## KT037 CMKT - Concept Map Driven Knowledge Tracing.pdf ########
+p.8:  root- mean-square error (RMSE) can be used as two metrics for the model evaluation. In the experiment, for each dataset, 90% data are randomly selected as the training data, and the remain- ing 10% is used as the testing data. We repeat the experiment 10 times and report the average results of all four metrics. For both the CMKT and CMKT-C models, we
+p.8: ance on all ﬁve datasets, which implies that the deep-learning-based models might have a more robust property. Fourth, comparing AUC and ACC to MAE and RMSE on all datasets, the results are consistent with both the classiﬁcation and the regression metrics. To further observe how the models behave at a different level of the learner exercise data,
+p.8:  we conduct experiments with 50%, 60%, 70%, and 80% of training data and the rest for testing. Fig. 8 shows how the performance changes w.r.t. different percentages of the training samples, where the four metrics on the ﬁve datasets are adopted for
+p.9: ﬁve datasets. After that, its performance continu- ously declines and receives the worst results at 256 on all the Fig. 8. Experimental results using different training data sizes. Fig. 7. Experimental results compared to the baselines, where ASS, CM, GE, MA, and PH represent the datasets of ASSIST, AICFE-CM, AICFE-GE, AICFE- MA, and AICFE-PH, respect
+p.10: umber: We also investigate the impact of the prerequisite number by changing the per- centage of the prerequisite pairs used in the models, from 20%, 40%, 60%, 80% to 100%, on the four metrics. To facili- tate an easier comparison in the ﬁgure, we only demonstrate the performance of the three datasets, including ASSIST, AICFE-CM, and AICFE-G
+
+
+######## KT038 DyGKT - Dynamic Graph Learning for Knowledge Tracing.pdf ########
+p.2: zation on KT can not fit the real-world application, and the ID-embedding- based representation does not provide information for questions not contained in the training data. Secondly, the temporal pattern refers to the fact thatthe mean- ing of long and short time intervals varies. A student’s learning record is an irregular time series that changes 
+p.5:  state, we will also incorporate a dynamic assessment of question difficulty, rather than ID-embedding in existing methods to deal with unseen questions in the training data. We try to address the challenge of not having prior knowledge of the average accuracy or diffi- culty of the questions from the beginning. Besides, we seek to uncover the relatio
+p.6: m and add weight decay on factor matrices. 5 Experiments 5.1 Datasets Our experiments utilize five publicly available datasets, Table 1 shows the statistics of all datasets. ASSISTment121 was collected from the ASSISTments online tutoring system. It contains data from skill-builder problem sets where students need to work on similar exercises to 
+p.6: icts the distribution of statistical time intervals for five datasets. Detailed descriptions of the datasets are listed in Appendix A.1. Table 1: Statistics of all datasets. Dataset Student Question Concept Interaction ASSISTment12 25.3k 50.9k 245 2, 621.3k ASSISTment17 1.7k 3.2k 102 942.8k Slepemapy.cz 81.7k 2.9k 1, 458 9, 786.5k Junyi 175.4k 0.
+p.6: xplore various methods in the Knowledge Tracing (KT) field and translate the sequence model into a continuous time dynamic graph framework to predict unlimited training data. Baselines include classic models based on recurrent neural net- works with the help of additional information or encoder, DKT[22], IEKT[15], LPKT[26], DIMKT[25], CT-NCM[16], and 
+p.6:  and then providing those test question nodes dur- ing the testing phase. The ratio of our inductive and transductive experiments for training, validation, and test sets is 0.8, 0.1, and 0.1. 5.2.3 Model Configurations. For existing KT model baselines de- signed based on fixed-length sequences, we propose a method that utilizes a dynamic graph. F
+p.8:  significant variations in the time distribution and the structure differences among different datasets, DyGKT exhibited stable and reliable performance across all datasets. We found that the Question Difficulty Assessment had an unexpected effect when comparing qidE, kidE, and DyGKT. Dynamically assessing the ques- tions not only helps predict p
+
+
+######## KT042 Self-Supervised Heterogeneous Hypergraph Network for Knowledge Tracing.pdf ########
+p.10: ; 2; 5fg . The temperature parameters g and r are tuned within the range of 0 :1; 0:2; 0:5; 1:0; 2:0fg . Each dataset is divided based on students, among which 80% of students’ records are used for training and validating, and the rest 20% for testing. The learnable parameters in the network are set with Xavier parameter initialization and a
+p.10: a Under Curve (AUC) and Accuracy (ACC) for classiﬁcation and Root Mean Square Error (RMSE) for regression. We compare our model with different baselines across all datasets. The experimental results of overall performance are reported in Table 2 , where we highlight the best results Table 1 Dataset statistics. Dataset Question Attribute Student R
+p.11:  6.17%, 6.36%, 3.67%, 3.55% over DKT, 4.76%, 4.61%, 2.08%, 1.86% over GIKT, 2.49%, 1.58%, 0.98%, 1.28% over AKT, 2.34%, 1.94%, 0.44%, 0.61% over HawkesKT and 1.80%, 1.66%, 0.75%, 0.40% over CL4KT (60% training). Even without self-supervised learning, our proposed HHN still achieves competitive performance with other baselines. In particular,
+p.11: ring high-order and heterogeneous relations, we can still learn an expressive representation for questions from extremely sparse data. As the proportion of the training set decreases, the improvement of our model becomes more signiﬁcant, which also conﬁrms the efﬁciency of our model in dealing with the sparse data problem. In Ednet, which has the mos
+p.11: t records among all datasets, the standard DKT almost achieves performance comparable to other more complex models. This could convince us that the downstream prediction network may not be the primary rea
+p.11: son to lead to such suboptimal results. In ASSISTments2009, whose records are the most sparse among all datasets, the self-supervised methods, like CL4KT and S2-HHN, outperform other baselines, which is in line with our analysis that the sparsity of historical data might hinder the stude
+p.11: ment in all the cases. Particularly, when dealing with those sparse records, self-supervised learning achieves signiﬁcant gains. If we reduce the percentage of training set to 20%, the improvement of S2-HHN in these datasets increases from 1.77%, 1.04%, 0.29%, 1.10% to 2.45%, 3.29%, 1.18%, 1.28% compared with HHN in term of the AUC score, which also 
+
+
+######## KT043 Weighted Heterogeneous Graph-Based Three-View Contrastive Learning for Knowledge Tracing in Personalized e-Learning Systems.pdf ########
+p.4: Heterogeneous Graph: Since there are different types of nodes and interactions in the KT ﬁeld, a weighted heterogeneous graph is constructed accord- ing to our training data, including three entity types: student (u), question (q), skill (k) and two weighted edges: question- student (q− u) and question-skill (q− k). In conjunction with the KT scenario
+p.4: hese two weight values as distinct relationships in subsequent calculations. The weight w2 ∈ (0, 1) on q − k is the difﬁculty of the question calculated in the training data. 2) Node Feature Transformation: Considering the various node types on the weighted heterogeneous graph have different feature spaces, we ﬁrst need to map them onto a common laten
+p.6: level models, we combine multiple skills into a new joint skill [49]. For large-scale datasets like EdNet, we randomly sample data from 5000 students [23]. For all datasets, we randomly split the data into 80% training data and 20% test data. When loading data, we remove the answer sequences with a length shorter than 3, because too short sequenc
+p.7: iew encoder to judge which one is more suitable for our KT task. We can observe that it is obvious that among the three view encoders, MP view performs best on all datasets. Specially, TCL4KT with single MP view encoder respectively lead encoder with NS view and KT view by 1.04% and 1.32% on AUC on average, which explicitly aggregates neighbors a
+
+
+######## KT044 SINKT - A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model.pdf ########
+p.6: tps://sites.google.com/site/ASSISTdata/home/2012-13-school-data-with-affect 7https://pslcdatashop.web.cmu.edu/DatasetInfo?datasetId=1198 Table 1: Statistics of all datasets. Q. and C. denote questions and concepts. Edge density is the density of the concept cor- relation graph generated by GPT-4. Statistics ASSIST09 ASSIST12 Junyi Programming Sub
+p.7:  0.7718 0.8095* 0.7980* 0.8267* In Table 2, several observations can be obtained as follows: (1) SINKT significantly outperforms all comparative methods across all datasets and evaluation metrics. This superior performance indicates that SINKT provides more precise representations of concepts and questions, as well as a more accurate estimation o
+p.7: ntence-level text typical of question descriptions. (3) Introducing additional specific information into the model does not guarantee beneficial results across all datasets. For example, GKT, which extracts a transition graph from training data to train concept embeddings, shows significant performance im- provement on the ASSIST09 and ASSIST12 d
+p.7: tiveness. 5.5 Inductive Learning of SINKT (RQ2) To investigate the performance of SINKT after introducing new questions, we remove 1/4 of the question from the training set and evaluate the model’s prediction accuracy on these questions on the validation and test sets. Since the other three datasets do not provide textual information for the question
+p.8: CIKM ’24, October 21–25, 2024, Boise, ID, USA. Fu et al. Table 4: Ablation study of SINKT on all datasets. Models ASSIST09 ASSIST12 Junyi Programming ACC AUC ACC AUC ACC AUC ACC AUC SINKT 0.7416 0.7726 0.7264 0.7028 0.7721* 0.8095 0.7980 0.8267 SINKT-Linear 0.7381 0.7556 0.7130 0.
+p.8:  Figure 7: Sensitivity analysis of representation dimension 𝑑 on four datasets. learning history to train DHKT, EERNNA, and SINKT and evaluate them on the full test set. As shown in Figure 5a, as the number of students decreases, performance decline of SINKT is more gradual compared to baselines, which indicates that SINKT can still learn accurat
+p.8: e concept/question representations using textual and struc- tural information even with limited training data. Additionally, we present the training curves of DHKT, EERNNA, and SINKT on the ASSIST09 dataset in Figure 5b. We argue that SINKT converges faster and exhibits minimal overfittin
+p.9: ur concept relation. Transition graph denotes the transition probability of concept answering, which is derived from dataset and could not be generated without training data. We demonstrates the transition graph of ASSIST09 in Figure 8a. The weight in the 𝑖-th row and the 𝑗-th column of the transition graph means the probability of concept 𝑐𝑖 appears 
+
+
+######## KT047 Fusing Hybrid Attentive Network with Self-Supervised Dual-Channel Heterogeneous Graph for Knowledge Tracing.pdf ########
+p.8: 0.1, 0.2, 0.5, 1.0, 2.0} and the hyperparameter 𝜆 is searched from the range of {0.01, 0.1, 0.5, 1, 10}. Each dataset is divided based on students, among which 80% of students are used for training and validating, and the rest 20% for testing. The Adam optimizer (Kingma & Ba, 2014) is applied to optimize the learnable parameters in the netwo
+p.8: . Results To follow the previous methods, we also evaluate the performance by the Area Under Curve (AUC). We compare our method with different baselines across all datasets. As shown in Table 2, HAN +𝑆2-DHGN consistently outperforms other baselines and achieves state-of-the-art performance, which improves about 2.40%, 2.22%, 1.33%, 3.01% AUC scor
+p.8:  best in most cases. The performance advantages confirm the superiority of the proposed DHGN in dealing with graph structure infor- mation. As the ratio of the training set decreases, the superiority of our model becomes more prominent, which also confirms the rationality and effectiveness of DHGN in handling the sparse data problem. ∙ Compared with 
+p.8: ur- ther improve DHGN. Compared with the vanilla version, the self- supervised version shows decent improvements in all cases. When we reduce the percentage of training set to 20%, the improvement of 𝑆2- DHGN increases from 1.69%, 1.04%, 0.34%, 0.92% to 2.60%, 2.18%, 0.76%, 1.07% compared with DHGN, which is in line with our analysis that the sparsit
+
+
+######## KT050 GraphCA - Learning From Graph Counterfactual Augmentation for Knowledge Tracing.pdf ########
+p.9: e the following three real-world datasets. We report statis- tics for the ASSIST2009, ASSIST2012, and Algebra2006 datasets in Table I. For each dataset, we use 80% of the data as the training set and 20% of the data as the test set [3], [5]. ASSIST2009: This dataset is collected from the ASSIST- ments online education platform [65], which is
+p.12: ciency and Scalability (RQ4) To investigate the training efficiency and scalability of our GraphCA, we measure the time required for different propor- tions of training data on three real-world datasets. Specifi- cally, we vary the ratio of training data in {0.2, 0.4, 0.6, 0.8, 1.0}, and the detailed training time is shown in Fig. 6. Further- more, we
+p.12: our method should increase linearly with the increase of the dataset ratio. From the experi- mental results in Fig. 6, we can observe that as the proportion of training data increases gradually from 0.2 to 1.0, the train- 20% 40% 60% 80% 100% Sparsity degrees (a) ASSIST2009 0.68 0.70 0.72 0.74 0.76 0.78 0.80 0.82Performance GraphCA (AUC) GIKT (AUC) Gr
+p.12: aphCA (ACC) GIKT (ACC) 20% 40% 60% 80% 100% Sparsity degrees (b) ASSIST2012 0.70 0.72 0.74 0.76 0.78 0.80 0.82 0.84Performance GraphCA (AUC) GIKT (AUC) GraphCA (ACC) GIKT (ACC) 20% 40% 60% 80% 100% Sparsity degrees (c)
+p.13: on the basis of our previous scalability experiments. From the experimental results, we can find that though our method can scale well with the increase of the training data ratio, it has no advan- tage over the baseline method, due to its additional counter- factual learning cost. D. Case Study To make the counterfactual data modeling process of our 
+p.13: e contrastive learn- ing process. We also notice that some theories (e.g., learning ability) may affect the results of the KT. 0.0 0.2 0.4 0.6 0.8 1.0 Ratio of training data (a) ASSIST2009 0.0 0.2 0.4 0.6 0.8 1.0Time (1×103) 0.0 0.2 0.4 0.6 0.8 1.0 Ratio of training data (b) ASSIST2012 0 2 4 6 8 10Time (1×103) 0.0 0.2 0.4 0.6 0.8 1.0 Ratio of training
+
+
+######## KT052 Modeling Knowledge Proficiency Using Multi-Hierarchical Capsule Graph Neural Network.pdf ########
+p.10: atasets, and 1 private business dataset. The complete statistical information of all the data sets is presented in Table 1. Synthetic-53 consists of two parts: training set and test set. It simulates 4000 virtual students and a total of 200,000 historical learning interaction records (i.e. tuple( qt , rt )) on 50 problem instances. These problems ste
+p.11: - tion records, involving answers of 333 real-world students to 1,223 questions. According to statistics, the data density is 0.31, which is relatively sparse. All datasets are preprocessed as follows: (1) Clean invalid data, such as discarding meaningless historical learning behaviors with a length less than 2. (2) All data is divided into 3 par
+p.11: g 5 different initialization parameters, each initialized parameter is allowed to perform 500 epochs training process. The model having best performance on the test set is saved, and the average value of the test set evaluating index is returned. 5.2.2Parametersetting During the training process, the external memory matrix that saves the knowledg
+p.12: oncept. It makes those models to perform well, which are good at capturing the relationships between prob- lems, such as GKT and DKVMN. From the AUC results of all datasets, the new model has depicted a consistent improvement in the accuracy of tracking knowledge. In short, the above experimental results prove that Caps-HAGKT can model complex st
+p.15: ce of multi-hierarchical high-level cap- sules. Increasing number of high-level capsule layers can achieve consistent improvement in predicting accuracy on the all data. It is worth noting that, in order to obtain inter- pretable predicted results, the high-level capsules need to be set according to the dataset and requirements. Predefined graph:
+
+
+######## KT053 GASKT - A Graph-Based Attentive Knowledge-Search Model for Knowledge Tracing.pdf ########
+p.10:  GIKT perform random assignments to the nodes of this dataset. In this setting, our GASKT has a slight performance improvement over GIKT, which shows that in small datasets, the eﬀect of the modiﬁed attention mechanism is not signiﬁcan compared with large data sets. 5.5 Ablation Studies Eﬀect of R-GCN Layer.Table3 lists the performance of GASKT w
+
+
+######## KT056 Exploring Long- and Short-Term Knowledge State Graph Representations with Adaptive Fusion for Knowledge Tracing.pdf ########
+p.10: G. Yu et al. Table 3 Statistics of all datasets. Statistics Datasets ASSIST2009 ASSIST2012 Junyi Slepemapy Students 3006 22,397 1000 77,507 Exercise 26,688 53,091 5174 2913 Concepts 107 254 39 1458 Assistment 17,724 46,809 
+p.11: rom {0.0005, 0.001, 0.002}, the weight decay coefficient from {1e-2, 1e-3, 1e-4}, and the dropout rate from {0.1, 0.2, 0.3}. For each dataset, we divide into a training set and a test set in the ratio of 7:3. Finally, the learning rate is set to 0.001, the weight decay is 1𝑒 − 3, the dropout rate is 0.1, the size of short-term window 𝑚 is 10, the siz
+p.13: 1 directly by concatenating 𝐡𝑡+1 Shor t and 𝐡𝑡+1 Long. From Table 6, we can see that the performance of all variants of the model decreases to some extent. For all datasets, L-SKSKT outperforms all variants on the evaluation metrics, which fuses long and short-term knowledge states and captures multiple complex relationships of exercise concepts 
+p.13: . From the results in Fig. 3, we have the following conclusions: (1) Increasing the short-term window𝑚 leads to a significant decline in model performance. For all datasets, when𝑀 is fixed, as𝑚 increases, the model’s performance gradually decreases. When𝑚 =𝑀, the model performance decreases significantly. The reason may be that setting the short-
+
+
+######## KT060 STHKT - Spatiotemporal Knowledge Tracing with Topological Hawkes Process.pdf ########
+NO_SPLIT_PHRASE
+
+
+######## KT062 LGS-KT - Integrating Logical and Grammatical Skills for Effective Programming Knowledge Tracing.pdf ########
+p.7: Neural Networks 185 (2025) 107164 7 X. Sun et al. Table 2 Statistics of all datasets. Statistics Datasets AIZU_C AIZU_Java AIZU_Python AIZU_JavaScript # of exercise records 159,188 85,908 81,492 9,219 # of students 855 367 369 102 # of programming problems 1,7
+p.7: setup During our experimental process, we excluded entries lacking ‘‘prob- lem_id’’ or ‘‘submission_id’’ and organized the filtered data set accord- ingly. For all datasets, we segmented the length of the exercises based on the specific length of the data, sequentially splitting entries that exceeded this average length and padding those that fel
+p.7:  𝐴𝐼 𝑍 𝑈_𝐽 𝑎𝑣𝑎𝑆 𝑐 𝑟𝑖𝑝𝑡 was set to 90. We initialized all model parameters randomly at the beginning of the training phase. The datasets were partitioned into an 80% training set and a 20% testing set. In terms of hyperparameter tuning, we split a validation set from the training data to optimize model performance and ensure fair comparison. F
+
+
+######## KT063 MAHKT - Knowledge Tracing with Multi-Association Heterogeneous Graph Embedding Based on Knowledge Transfer.pdf ########
+NO_SPLIT_PHRASE
+
+
+######## KT064 Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing.pdf ########
+p.6: ary cross-entropy loss as a loss function between the predicted performance ̂ 𝑦𝑡+1 and actual performance𝑦𝑡+1. The following objective function is defined over training data: 𝐿𝑝 = − ∑ 𝑡+1 (𝑦𝑡+1𝑙 𝑜𝑔 ̂ 𝑦𝑡+1 + (1 − 𝑦𝑡+1 )𝑙 𝑜𝑔(1 − ̂ 𝑦𝑡+1 )). (19) To enhance the effectiveness of learning student knowledge state representations from two distinct graph struc
+p.7: section introduces the four real-world public datasets used to evaluate the effectiveness of our designed MGIGKT. Table 2 shows the statistical information for all datasets. Below is a brief description of each dataset: • ASSIST2009 is collected from the ASSISTments online tutoring platform in the academic year of 2009–2010. We use the updated sk
+p.8:  knowledge states based on the two types of graphs. 4.3. Experimental settings To evaluate our model, we compare its performance with all base- line methods on all datasets mentioned earlier. For each dataset, we allocate 80% of students to the training set, 10% to the validation set, and 10% to the test set. The dimension of knowledge states is 
+
+
+######## KT065 Graph Knowledge Tracing in Cognitive Situation - Validation of Classic Assertions in Cognitive Psychology.pdf ########
+p.10: our innovations and contributions, while validating the model’s effectiveness and novelty in KT tasks. 4.3. Setup and implementation Before the experiment, the training datasets and test datasets are split by extracting 80% of the sequences from the datasets as the former and reserving the remaining 20% as the latter. We embedded the problem concept r
+p.11: E, and F1-score is conducted to explore CSGKT’s advantages and potential areas for improvement. In terms of AUC, CSGKT demonstrates superior performance across all datasets, showing improvements of 2.02%, 0.42%, 3.35%, and 0.07% respectively compared to the best baseline models. This consis- tency reflects CSGKT’s robust ability to distinguish be
+p.12: elf-discipline (bottom_hint) on their knowledge state evolution, revealing a moderate positive correlation (0.43) with performance improvement over time across all datasets. CSGKT achieves multi-dimensional, dynamic modeling of the learn- ing process by integrating HGNN, DGCNN, LSTM, and Erase-Add Gating units. This complex structure gives CSGKT 
+
+
+######## KT066 Dual-Channel Adaptive Scale Hypergraph Encoders With Cross-View Contrastive Learning for Knowledge Tracing.pdf ########
+p.9: es. B. Implementation Details Following [16], to ensure fairness and the model’s univer- sality, we fix the length of each learner’s response sequence to 50 in all datasets. For sequences shorter than the fixed length, we use zero vectors to pad them. For all datasets, we split 80% data for training and validation, and 20% for testing. For all co
+p.10: han DKT, which proves that temporal features can effectively improve model performance. The attention-based baseline AKT achieves sig- nificant improvements on all datasets compared to DKT, which confirms that the attention mechanism introduced into the KT task is working. Modeling various learning behaviors during the learning process (such as f
+p.11: ETWORKS AND LEARNING SYSTEMS, VOL. 36, NO. 4, APRIL 2025 Fig. 4. Comparison of learner performance prediction results with different train–test split ratios on all datasets. (a) Assist2009. (b) EdNet1. (c) EdNet2. illustrating the superior capability of dual-channel hyper- graph encoders in capturing multigranularity knowledge states. AdaS, const
+p.11: The prediction results on the three datasets are shown in Fig. 4, and it is clear that HyperKT outperforms the baselines in almost all cases. Even with a small training set ratio, HyperKT still shows excellent performance, which verifies the generalization ability of the HyperKT model. E. Ablation Study To evaluate the effectiveness of several key mo
+p.12: ure the general- ization ability of HyperKT on the Assist2009 dataset. Besides, with the number of layers increasing, the performance on four metrics drops for all datasets. The possible cause could be the increasingly over-smoothed for learned representations of questions and knowledge states. We introduce a hyperparameter λ to HyperKT to contro
+p.12:  3 × 10−3, 4 × 10−3}. According to the results presented in Fig. 6, the KT task achieves decent gains when jointly optimized with the self-supervised task. For all datasets, learning with λ = 2 × 10−3 can boost all metrics, and with the increase of λ, the performance declines. This phenomenon may be caused by gradient conflicts between KT tasks a
+p.13: ct of the constraint λ of self-supervised learning. The value of the horizontal axis is λ × 103. Fig. 7. Comparison of runtime consumption (minutes) and AUC on all datasets. (a) Assist2009. (b) EdNet1. (c) EdNet2. Fig. 8. Comparison of memory consumption (GB) and AUC on all datasets. (a) Assist2009. (b) EdNet1. (c) EdNet2. G. Efficiency Evaluatio
+p.13: - ative analysis of the runtime consumption between HyperKT and several SOTA methods. Fig. 7 shows the runtime for models achieving the best performance on the test set (for clarity, AUC values are utilized to illustrate the model’s per- formance). As observed, graph-based models GIKT, GFLDKT, and HyperKT display the longest runtimes while showin
+
+
+######## KT067 Graph-Based Effective Knowledge Tracing via Subject Knowledge Mapping.pdf ########
+p.6: llinearity of independent variables DKT RNN None Better performance, Solve expert dependencies, Multiple knowledge concepts Cold start problem, Large amount of training data, Complex model, lack of explainability, Failure to consider learning features, Failure to explore exercises’ characteristics, Unable to capture long sequence of dependencies, Igno
+
+
+######## KT068 HKT - Hierarchical Structure-Based Knowledge Tracing.pdf ########
+p.11: perature coefficient 𝜏 is chosen from {0.1, 0.5, 1, 2}, and the scaling factor 𝛾 is selected from {1, 2, 4, 8}. For each dataset, it is split into training and testing sets in the ratio of 8:2. Ultimately, the learning rate is set to 0.001, weight decay is set to 1e–4, the dropout rate is set to 0.1, and the embedding dimension is set to 128. The nu
+p.11: in comparison with other baseline models are presented in Table 3, which can be summarized as follows: 1. HKT consistently outperformed baseline methods across all datasets, with AUC increasing by 0.31% to 0.41%, ACC by 0.18% to 0.24%, and RMSE decreasing by 0.11% to 0.48%, Which shows the effectiveness of hierarchical knowledge-level modeling. I
+p.12:  dataset, showing that intra-layer relations are more crucial in datasets with simpler hierarchical structures. 3. Removing the HCL led to performance drops in all datasets, confirming its effectiveness in improving overall model performance. The performance drop on the Junyi dataset is smaller compared to the other two datasets. It is due to the
+p.13: ’s performance in prediction tasks, thereby improving overall model effectiveness. 3. The scaling factor 𝛾 in contrastive learning exhibits low sensitivity. In all datasets, the change in AUC values is relatively small, and the performance differences across different 𝛾 values are stable. Typically, when 𝛾 is set to 2 or 4, the model achieves its
+p.14: sing knowledge concepts from different hierarchical levels, as shown in Fig. 4: 1. Employing a single level for prediction leads to performance declines across all datasets, showing that relying on one level is insufficient for accurately predicting learners’ final responses. 2. While the overall trend is consistent, AUC performance varies across
+p.14: pts and more enriched hierarchical structures. Combining information from all levels, rather than a single level, produces the most accurate predictions across all datasets. This confirms the effectiveness of our multi-level approach, showing that hierarchical knowledge structures better support complex reasoning and problem-solving. It aligns wi
+
+
+######## KT069 A Cross-Domain Knowledge Tracing Model Based on Graph Optimal Transport.pdf ########
+NO_SPLIT_PHRASE
+
+
+######## KT070 Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor.pdf ########
+p.5: ]. Based on the above analysis, for each practiced question𝑞𝑢,𝑖 by 𝑢, we collect all the correct submissions (codes with the feedback Accepted) from the entire training data corresponding to it as its solution setS𝑞𝑢,𝑖 . We then calculate the similarity between the embeddings of isolated code𝑥𝑢,𝑖 and each solution code𝑥𝑢,𝑗′ as: 𝑆𝑖 ={{𝑠𝑖,𝑗′}|𝑗′∈S𝑞𝑢,𝑖},
+p.6: term can be formalized as: L𝑛𝑎𝑣 𝑏 = 𝑁∑︁ 𝑢=1 𝑇𝑢∑︁ 𝑡 =1 L𝑝𝑘𝑡 𝑢,𝑡(𝜃𝑏)− 𝑁∑︁ 𝑢=1 𝑇𝑢∑︁ 𝑡 =1 L𝑝𝑘𝑡 𝑢,𝑡(𝜃𝑏−1) , (12) whereL𝑝𝑘𝑡 𝑢,𝑡(𝜃𝑏) denote the prediction loss on one training data (𝑞𝑢,𝑡,𝑐𝑢,𝑡,𝑥𝑢,𝑡,𝑟𝑢,𝑡) based on the updated model parameter𝜃𝑏.|·| is the absolute value operator. The Eq. (12) is intuitive, but com- putationally complex, and it requires a predic
+p.6: tion based on all the training data at each batch. Therefore, we give the upper bound of Eq. (12) with the consideration of the computational complexity and storage space in actual implementation based on Property 1
+p.7: l them Coda-X, e.g., Coda-PDKT and Coda-Help-DKT. We split 70%, 10% and 20% programming sequences of each dataset as the train- ing set, the valid set, and the test set, respectively. We utilize a pre-trained Code-Bert3 to encode input codes for each baseline with the setting of dimension𝑑 is 768. The setups for training PKT backbone models refer
+p.7:  to the original papers and each backbone is trained on training data. We implement our Coda-X models by 3https://github.com/microsoft/CodeBERT
+p.11: Eq. (20) denotes element-wise absolute value in our implementation. The proof is completed. □ Algorithm 1 The training and test of PKT backbone models Require: Training dataset𝐷𝑡𝑟𝑎𝑖𝑛 , test dataset𝐷𝑡𝑒𝑠𝑡 , learning rate 𝛼, number of epochs𝑁 Ensure: Trained PKT backbone model𝑀 1: Initialize model parameters𝑊 randomly 2: Training started 3: for𝑒𝑝𝑜𝑐ℎ = 1 
+p.12: rt 1) 1: Input:𝑁 learners’ programming sequences{𝑙1,𝑙 2,··· ,𝑙𝑁}, the optimized backbone PKT modelM𝑃𝐾𝑇 , correct solution feature set{S𝑞 𝑗}𝑀 𝑗=1 of𝑀 questions, training setD𝑡𝑟𝑎𝑖𝑛 , test setD𝑡𝑒𝑠𝑡 . 2: Parameters (𝜃 ): W, W𝑎, W𝑐, W𝐴, W𝐵. 3: Function CodeGraphConstruction(𝑙𝑢): 4: // Construct code graph based on code semantic similarity. 5: //𝑙𝑢 ={(𝑞𝑢,1
+
+
+######## KT076 KGNN-KT - Enhancing Knowledge Tracing in Programming Education Through LLM-Extracted Knowledge Graphs.pdf ########
+NO_SPLIT_PHRASE
+
+
+######## KT077 R2GCurL - Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning.pdf ########
+p.3: s causes inefficient data utilization, with valuable samples underused and noisy ones overused, hin- dering convergence and generalization. How to schedule the training data while considering the above factors still remains a fundamental challenge. An ideal solution should balance exploration, which samples diverse or uncertain data, and exploitation,
+p.5: ce to irregular historical responses caused by behaviors such as guessing or forgetting, but they do not explicitly address sequence-level heterogeneity or how training data should be adaptively scheduled under heterogeneous noise conditions. We therefore introduce CL [ 5] as a complementary data-centric mechanism for KT under noisy and heterogeneous 
+p.15: odel and the RL-based training scheduler are trained together in an end-to-end manner (lines 8–15). At each step C, the RL agent selects a subset Rsub from the training dataset for training the KT model. The KT model is then evaluated on the validation set to compute the loss, which is utilized to calculate the reward. This feedback is used to update 
+p.20: ed KT models, effectively leveraging structural information. The other three R 2GCurL variants, when paired with DKVMN, SAKT, and AKT, show improvements across all datasets and noise levels. Specifically, the R 2GCurL framework enhances DKVMN performance by an average of 6.85%, SAKT by 9.99%, and AKT by 2.79%. These enhancements underscore the ro
+p.21: ↓. “N/A” indicates experiments that were unable to complete within the experimental time limit. “Avg. Rank” represents the average ranking of the models across all datasets. Table 6. Performance Comparison of RMSE and Precision on Two Datasets (50% Noise) Dataset ASSISTments2017 Junyi-Sub Metric RMSE ↓ Precision ↑ RMSE ↓ Precision ↑ DKT 0.4736 0.
+p.23: y reason is that curriculum updates are inherently stage-wise, where selecting among a small set of difficulty adjustments leads to smoother transitions in the training data distribution. In contrast, a continuous action space allows much larger variation in the curriculum parameters (Δ` ∈ [ 0, 1] and Δf 2 ∈ [ 0.01, 0.1]), which makes the scheduler mo
+p.26: ns without introducing impractical deployment overhead. 8.7.2 Scalability Analysis. Figure 9 illustrates the scalability of different models as the size of the training dataset is adjusted to represent 25%, 50%, 75%, and 100% of the total data on both ASSISTments2012 and ASSISTments2017 datasets. The results indicate that as the training dataset grows
+
+
+######## KT079 Spatio-Temporal Fusion in Graph Neural Network for Streaming Knowledge Tracing.pdf ########
+p.1:  information for prediction. Experiments on four real-world datasets show that STSKT out- performs ten baselines, achieving improvements of 8.52% in AUC and 12.80% in ACC. Further analysis demonstrates that our key designs in graph construc- tion, temporal modeling, and fusion mechanism effectively enhance prediction performance. Keywords:Kn
+p.9:  multiple plat- forms and serves to evaluate the model’s generalization and robustness in real-world online learning environments. Table 1: Basic statistics of all datasets. Dataset # Students # Questions # Concepts # Interactions Assist12 25.3k 50.9k 245 2621.3k Assist17 1.7k 3.2k 102 942.8k Junyi 175.4k 0.7k 40 25670.2k EdNet 685.4k 12.3k 141 3
+p.9: d (iv) dynamic or temporal-aware models (HawkesKT [16], DyGFormer [18], DyGKT [12]). Implementation DetailsWe split each dataset into training, validation, and test sets using an 8:1:1 ratio. All models are trained using the ADAM optimizer[25] with a learning rate of 0.0001 and a batch size of 1024. The hidden dimension is set to 64. 4 https://si
+
+
+######## KT084 A Dual-Encoder Contrastive Learning Model for Knowledge Tracing (DECKT).pdf ########
+p.3:  a momentum encoder updated through the exponential moving average (EMA) that maintains a stable representation space. The primary encoder actively learns from training data, while the momentum encoder provides consistent representations that serve as re- liable contrastive targets. This design generates differentiated contrastive views without explic
+p.11:  ˜Zϕ kj ) (19) This adversarial mechanism encourages robust representations that are particularly beneficial for low-frequency knowledge concepts where limited training data make the model susceptible to overfitting, thereby achieving enhanced generalization capability in sparse educational data environments. 3.7. Multi-Stage T raining Strategy To eff
+p.15: idation set, achieving a good balance between model performance and training stability. Training uses mini-batch gradient descent with a batch size of 64, with training data randomly shuffled in each epoch to increase sample diversity. This paper employs an early stopping strategy to prevent overfitting, terminating training when the AUC on the valida
+p.15: d 0.7893 on the ASSIST09, ASSIST12, Slepemapy.cz, EdNet, and Statics2011 datasets, respectively, showing significant improvements over existing methods. Across all datasets, our model outperforms the best baseline by up to 1.68 percentage points in AUC, demonstrating consistent superiority across diverse educational contexts. The experimental res
+p.16: ional space overhead, where perturbation generation requires extra gradient computation and backpropaga- tion, increasing the training time by approximately 60–80%. While the storage over- head for perturbation vectors is relatively small, it still requires careful management on large-scale graphs and can be further optimized through gradien
+
+
+######## KT085 Dynamic heterogeneous graph contrastive networks for knowledge tracing.pdf ########
+NO_SPLIT_PHRASE
+
+
+######## KT086 Heterogeneous graph knowledge tracing with novel contrastive view and meta-path contexts.pdf ########
+p.9: deling, prediction, and generalization abilities. 5.6. Data sensing and parameter analysis In order to explore the performance of HCMKT with diﬀerent ratios of training data, we take 20 %, 40 % and 60 % of the dataset to train the model, respectively. As shown in Fig. 5, HCMKT outperforms most of the baseline methods in the performance prediction for 
+
+
+######## KT089 Contrastive Learning Based on Bipartite Graphs for Interpretable Knowledge Tracing.pdf ########
+p.12: e KT 217 The results, detailed in the provided Table 2, show that our proposed model (CLBG) consistently outperforms the baseline models on both metrics across all datasets (except ACC metric QIKT in the Spanish dataset). CL4KT intro- duces contrastive learning to improve the robustness of the model, but similar to DKT, DKVMN, SAKT and other mode

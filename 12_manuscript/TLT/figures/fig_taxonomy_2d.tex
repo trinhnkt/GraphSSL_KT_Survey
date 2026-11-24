@@ -1,55 +1,98 @@
-\documentclass[tikz,border=5pt]{standalone}
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows}
+\usetikzlibrary{positioning}
+
+\definecolor{ink}{HTML}{1F2937}
+\definecolor{muted}{HTML}{6B7280}
+\definecolor{head}{HTML}{1E3A5F}
+\definecolor{prov}{HTML}{1D4ED8}
+\definecolor{provbg}{HTML}{EFF6FF}
+\definecolor{enc}{HTML}{047857}
+\definecolor{encbg}{HTML}{ECFDF5}
+\definecolor{ssl}{HTML}{C2410C}
+\definecolor{sslbg}{HTML}{FFF7ED}
+\definecolor{chip}{HTML}{F8FAFC}
 
 \begin{document}
-\begin{tikzpicture}[
-    node distance=1.2cm and 1.5cm,
-    font=\sffamily\small,
-    box/.style={rectangle, draw=blue!80!black, fill=blue!10, thick, rounded corners=3pt, align=center, minimum width=2.5cm, minimum height=0.8cm, drop shadow},
-    gnnbox/.style={rectangle, draw=green!60!black, fill=green!10, thick, rounded corners=3pt, align=center, minimum width=2.5cm, minimum height=0.8cm, drop shadow},
-    sslbox/.style={rectangle, draw=orange!80!black, fill=orange!10, thick, rounded corners=3pt, align=center, minimum width=2.5cm, minimum height=0.8cm, drop shadow},
-    arrow/.style={-{Stealth[length=6pt]}, thick, draw=gray!80}
-]
+\begin{tikzpicture}[font=\sffamily]
 
-% Center Root
-\node[rectangle, draw=purple!80!black, fill=purple!15, ultra thick, rounded corners=5pt, align=center, minimum width=3.5cm, minimum height=1.2cm, drop shadow] (root) {\textbf{Graph-SSL Knowledge Tracing}\\\textbf{Unified Taxonomy}};
+\tikzset{
+  pcard/.style={rectangle, rounded corners=3pt, align=center,
+    minimum width=4.85cm, minimum height=1.05cm, inner sep=3pt,
+    draw=prov, fill=provbg, line width=0.6pt, text=ink},
+  pnote/.style={rectangle, rounded corners=3pt, align=center,
+    minimum width=4.85cm, minimum height=1.05cm, inner sep=3pt,
+    draw=prov!40, fill=chip, line width=0.55pt, text=ink},
+  echip/.style={rectangle, rounded corners=2.5pt, align=center,
+    minimum width=2.32cm, minimum height=0.92cm, inner sep=2pt,
+    draw=enc, fill=encbg, line width=0.55pt, text=ink},
+  ecard/.style={rectangle, rounded corners=3pt, align=center,
+    minimum width=4.85cm, minimum height=1.05cm, inner sep=3pt,
+    draw=enc, fill=encbg, line width=0.6pt, text=ink},
+  schip/.style={rectangle, rounded corners=2.5pt, align=center,
+    minimum width=2.32cm, minimum height=0.92cm, inner sep=2pt,
+    draw=ssl, fill=sslbg, line width=0.55pt, text=ink},
+  scard/.style={rectangle, rounded corners=3pt, align=center,
+    minimum width=4.85cm, inner sep=3pt,
+    draw=ssl, fill=sslbg, line width=0.6pt, text=ink},
+  colh/.style={rectangle, rounded corners=3pt, align=center,
+    minimum width=4.85cm, minimum height=0.72cm, text=white,
+    font=\sffamily\bfseries\small}
+}
 
-% Branch 1: Graph Sources (Top Left)
-\node[box, above left=1.8cm and 2.2cm of root] (g_curric) {Curriculum Maps\\(Fixed Expert)};
-\node[box, left=0.4cm of g_curric] (g_qmatrix) {Q-Matrix / Co-occur\\(Precomputed Log)};
-\node[box, above=0.4cm of g_curric] (g_dynamic) {Dynamic Graphs\\(Jointly Learned)};
-\node[box, above=0.4cm of g_qmatrix] (g_llm) {LLM AST Graphs\\(Semantic Extraction)};
+\fill[head, rounded corners=4pt] (0,0) rectangle (16.2,1.15);
+\node[anchor=west, text=white, font=\sffamily\bfseries\large] at (0.35,0.72)
+  {Graph-Based~and~Self-Supervised~Knowledge~Tracing};
+\node[anchor=west, text=white!88, font=\sffamily\small] at (0.35,0.32)
+  {Counts coded under the survey protocol};
+\node[anchor=east, text=white, font=\sffamily\bfseries] at (15.85,0.58) {$N=44$};
 
-% Branch 2: GNN Encoders (Right)
-\node[gnnbox, right=2.5cm of root] (gnn_gcn) {GCN (40.5\%)};
-\node[gnnbox, above=0.3cm of gnn_gcn] (gnn_hetero) {Heterogeneous GNN (23.8\%)};
-\node[gnnbox, below=0.3cm of gnn_gcn] (gnn_gat) {GAT (11.9\%)};
-\node[gnnbox, above=0.3cm of gnn_hetero] (gnn_hyper) {Hypergraph GNN (4.8\%)};
-\node[gnnbox, below=0.3cm of gnn_gat] (gnn_hyperbolic) {Hyperbolic Poincaré (2.4\%)};
+\node[colh, fill=prov] (h1) at (2.55,-0.55) {Graph provenance  $N_G=40$};
+\node[colh, fill=enc]  (h2) at (8.10,-0.55) {GNN encoder  $N_G=40$};
+\node[colh, fill=ssl]  (h3) at (13.65,-0.55) {Self-supervised KT  $N_S=16$};
 
-% Branch 3: SSL Pretext Objectives (Bottom Left)
-\node[sslbox, below left=1.8cm and 2.2cm of root] (ssl_multiview) {Multi-View Contrast\\(37.5\%)};
-\node[sslbox, left=0.4cm of ssl_multiview] (ssl_struct) {Structural Contrast\\(31.3\%)};
-\node[sslbox, below=0.4cm of ssl_multiview] (ssl_hyper) {Hypergraph Contrast\\(12.5\%)};
-\node[sslbox, below=0.4cm of ssl_struct] (ssl_gae) {Masked GAE Recon\\(12.5\%)};
+\node[pcard, below=0.28cm of h1] (p1) {%
+  {\fontsize{13}{15}\selectfont\bfseries 24}\\[-1pt]
+  {\small Model-defined fixed}\\[-1pt]
+  {\scriptsize\color{muted}model-defined fixed graph  60.0\%}};
+\node[pcard, below=0.22cm of p1] (p2) {%
+  {\fontsize{13}{15}\selectfont\bfseries 7}\\[-1pt]
+  {\small External fixed}\\[-1pt]
+  {\scriptsize\color{muted}external fixed graph  17.5\%}};
+\node[pcard, below=0.22cm of p2] (p3) {%
+  {\fontsize{13}{15}\selectfont\bfseries 9}\\[-1pt]
+  {\small Dynamically learned}\\[-1pt]
+  {\scriptsize\color{muted}dynamically learned graph  22.5\%}};
+\node[pnote, below=0.22cm of p3] (p4) {%
+  {\small Three codes, mutually exclusive}\\[-1pt]
+  {\scriptsize\color{muted}One paper $\rightarrow$ one provenance}};
 
-% Connections
-\draw[arrow, blue!80!black] (root) -- (g_curric);
-\draw[arrow, blue!80!black] (root) -- (g_qmatrix);
-\draw[arrow, blue!80!black] (root) -- (g_dynamic);
-\draw[arrow, blue!80!black] (root) -- (g_llm);
+\node[echip, below left=0.28cm and -2.42cm of h2] (e1) {{\bfseries 14}\\[-2pt]{\scriptsize GCN / generic}};
+\node[echip, right=0.21cm of e1] (e2) {{\bfseries 7}\\[-2pt]{\scriptsize Heterogeneous}};
+\node[echip, below=0.20cm of e1] (e3) {{\bfseries 6}\\[-2pt]{\scriptsize Other}};
+\node[echip, right=0.21cm of e3] (e4) {{\bfseries 6}\\[-2pt]{\scriptsize GAT}};
+\node[echip, below=0.20cm of e3] (e5) {{\bfseries 2}\\[-2pt]{\scriptsize Hypergraph}};
+\node[echip, right=0.21cm of e5] (e6) {{\bfseries 2}\\[-2pt]{\scriptsize Dynamic}};
+\node[ecard, below=0.20cm of e5, xshift=1.265cm] (e7) {%
+  {\bfseries 3}\quad{\small NONE}\\[-1pt]
+  {\scriptsize\color{muted}PDKT-C, CMKT, PEBG; no GNN encoder}};
 
-\draw[arrow, green!60!black] (root) -- (gnn_gcn);
-\draw[arrow, green!60!black] (root) -- (gnn_hetero);
-\draw[arrow, green!60!black] (root) -- (gnn_gat);
-\draw[arrow, green!60!black] (root) -- (gnn_hyper);
-\draw[arrow, green!60!black] (root) -- (gnn_hyperbolic);
+\node[schip, below left=0.28cm and -2.42cm of h3] (s1) {{\bfseries 16}\\[-2pt]{\scriptsize SSL papers}};
+\node[schip, right=0.21cm of s1] (s2) {{\bfseries 12}\\[-2pt]{\scriptsize Graph $\cap$ SSL}};
+\node[scard, minimum height=1.05cm, below=0.20cm of s1, xshift=1.265cm] (s3) {%
+  {\small Sequence-only SSL: 4 papers}\\[-1pt]
+  {\scriptsize\color{muted}CL4KT, DTransformer, CoSKT, SP-CLKT}};
+\node[scard, minimum height=2.15cm, below=0.20cm of s3] (s4) {%
+  {\scriptsize\bfseries Expanded SSL note}\\[2pt]
+  {\scriptsize 15 contrastive / consistency; 1 reconstruction}\\[1pt]
+  {\scriptsize Body lists pre-expansion exclusive families}\\[1pt]
+  {\scriptsize\color{muted}Expanded axes: paradigm $\times$ view source}};
 
-\draw[arrow, orange!80!black] (root) -- (ssl_multiview);
-\draw[arrow, orange!80!black] (root) -- (ssl_struct);
-\draw[arrow, orange!80!black] (root) -- (ssl_hyper);
-\draw[arrow, orange!80!black] (root) -- (ssl_gae);
+\node[anchor=west, text=muted, font=\sffamily\scriptsize] at (0.05,-7.15)
+  {One row per paper. Locked provenance $24/7/9$ and encoder tallies on $N_G=40$. SSL $N_S=16$, $N_{G\cap S}=12$.};
 
 \end{tikzpicture}
 \end{document}

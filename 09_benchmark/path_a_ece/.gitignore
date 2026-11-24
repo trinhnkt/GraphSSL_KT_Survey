@@ -1,0 +1,9 @@
+# Ignore upstream clone + heavy run artifacts (Path A ECE)
+
+upstream_DyGKT/
+results/*.npz
+results/*.json
+results/*.pkl
+results/*.log
+!results/.gitkeep
+!results/RUN_LOG_DyGKT_assist17.md

@@ -1,0 +1,568 @@
+{
+  "candidates": [
+    {
+      "id": "VX01",
+      "query_title": "Automatical Graph-based Knowledge Tracing",
+      "doi": null,
+      "openalex_search": [
+        {
+          "id": "https://openalex.org/W4285778630",
+          "display_name": "Automatical Graph-based Knowledge Tracing",
+          "publication_date": "2022-07-18",
+          "doi": "https://doi.org/10.5281/zenodo.6853056",
+          "type": "conference-paper",
+          "abstract": "Knowledge tracing (KT) is an essential task in online education, which dynamically assesses students' mastery of concepts by predicting the probability that they correctly answer questions. One of the most effective solutions for knowledge tracing is graph-based methods. They maintain multiple vectors to represent students' mastery of concepts, and use these vectors to predict the probability of students correctly answering questions. To give more accurate predictions, the graph-based methods require concept relations to update these vectors once students answer questions. However, the concept relations usually require manual annotation in a real-world scenario, limiting the application of the graph-based method. In this paper, we proposed a method called Automatical Graph-based Knowledge Tracing (AGKT), which is a graph-based method that updates these vectors without requiring manually annotated concept relations. We evaluate our method on four public datasets and compare it with ten advanced methods. The experiment results demonstrate that AGKT yields superior performance."
+        },
+        {
+          "id": "https://openalex.org/W3134371412",
+          "display_name": "GIKT: A Graph-Based Interaction Model for Knowledge Tracing",
+          "publication_date": "2021-02-25",
+          "doi": "https://doi.org/10.1007/978-3-030-67658-2_18",
+          "type": "conference-paper",
+          "abstract": null
+        },
+        {
+          "id": "https://openalex.org/W4210707990",
+          "display_name": "Bi-CLKT: Bi-Graph Contrastive Learning based Knowledge Tracing",
+          "publication_date": "2022-01-31",
+          "doi": "https://doi.org/10.1016/j.knosys.2022.108274",
+          "type": "article",
+          "abstract": null
+        }
+      ]
+    },
+    {
+      "id": "VX02",
+      "query_title": "Enhancing Knowledge Tracing Efficacy with Expert-defined Graphs",
+      "doi": "10.1145/3657604.3664683",
+      "crossref": {
+        "title": "Enhancing Knowledge Tracing Efficacy with Expert-defined Graphs: A Case Study in Introductory Physics Classes",
+        "container": "Proceedings of the Eleventh ACM Conference on Learning @ Scale",
+        "author": [
+          "Zhenting Yan",
+          "Rui Zhang"
+        ],
+        "issued": [
+          2024,
+          7,
+          9
+        ],
+        "published_print": [
+          2024,
+          7,
+          9
+        ],
+        "published_online": [
+          2024,
+          7,
+          15
+        ],
+        "created": [
+          2024,
+          7,
+          15
+        ],
+        "page": "433-437",
+        "volume": null,
+        "issue": null,
+        "publisher": "ACM",
+        "type": "proceedings-article",
+        "abstract": null
+      },
+      "openalex": {
+        "id": "https://openalex.org/W4400642898",
+        "display_name": "Enhancing Knowledge Tracing Efficacy with Expert-defined Graphs: A Case Study in Introductory Physics Classes",
+        "publication_date": "2024-07-09",
+        "type": "conference-paper",
+        "abstract": "Knowledge Tracing (KT) is essential in online education for tracking student progress and forecasting future performance. Despite the effectiveness of existing KT models, enhancing their educational interpretability and reliability remains crucial for both academic and practical applications. This study introduces an improved Graph-based Knowledge Tracing (GKT) model, enriched with domain expertise, instructional insights, and contextual features, to overcome current limitations. Our enhanced GKT model employs an expert-defined graph structure for more accurate domain knowledge representation. It integrates critical contextual features, like question difficulty and prompt usage, into the response matrix for a comprehensive context. Additionally, the model leverages second-order neighborhood features to more effectively capture complex interrelations between knowledge concepts. Validation using an Introductory Physics assignment dataset demonstrated that our updated GKT model surpasses its predecessor in both Area Under the Curve (AUC) and accuracy (ACC) metrics. These improvements are instrumental in refining knowledge graphs and developing personalized teaching strategies, thereby facilitating more effective and personalized educational experiences."
+      }
+    },
+    {
+      "id": "VX03",
+      "query_title": "Graph-based Reasonable Knowledge Tracing",
+      "doi": "10.1145/3637528.3671853",
+      "crossref": {
+        "title": "Leveraging Pedagogical Theories to Understand Student Learning Process with Graph-based Reasonable Knowledge Tracing",
+        "container": "Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
+        "author": [
+          "Jiajun Cui",
+          "Hong Qian",
+          "Bo Jiang",
+          "Wei Zhang"
+        ],
+        "issued": [
+          2024,
+          8,
+          24
+        ],
+        "published_print": [
+          2024,
+          8,
+          25
+        ],
+        "published_online": [
+          2024,
+          8,
+          24
+        ],
+        "created": [
+          2024,
+          8,
+          25
+        ],
+        "page": "502-513",
+        "volume": null,
+        "issue": null,
+        "publisher": "ACM",
+        "type": "proceedings-article",
+        "abstract": null
+      },
+      "openalex": {
+        "id": "https://openalex.org/W4401864243",
+        "display_name": "Leveraging Pedagogical Theories to Understand Student Learning Process with Graph-based Reasonable Knowledge Tracing",
+        "publication_date": "2024-08-24",
+        "type": "conference-paper",
+        "abstract": "Knowledge tracing (KT) is a crucial task in intelligent education, focusing on predicting students' performance on given questions to trace their evolving knowledge. The advancement of deep learning in this field has led to deep-learning knowledge tracing (DLKT) models that prioritize high predictive accuracy. However, many existing DLKT methods overlook the fundamental goal of tracking students' dynamical knowledge mastery. These models do not explicitly model knowledge mastery tracing processes or yield unreasonable results that educators find difficulty to comprehend and apply in real teaching scenarios. In response, our research conducts a preliminary analysis of mainstream KT approaches to highlight and explain such unreasonableness. We introduce GRKT, a graph-based reasonable knowledge tracing method to address these issues. By leveraging graph neural networks, our approach delves into the mutual influences of knowledge concepts, offering a more accurate representation of how the knowledge mastery evolves throughout the learning process. Additionally, we propose a fine-grained and psychological three-stage modeling process as knowledge retrieval, memory strengthening, and knowledge learning/forgetting, to conduct a more reasonable knowledge tracing process. Comprehensive experiments demonstrate that GRKT outperforms eleven baselines across three datasets, not only enhancing predictive accuracy but also generating more reasonable knowledge tracing results. This makes our model a promising advancement for practical implementation in educational settings. The source code is available at https://github.com/JJCui96/GRKT."
+      }
+    },
+    {
+      "id": "VX04",
+      "query_title": "Pre-training Question Embeddings for Improving Knowledge Tracing with Self-supervised Bi-graph Co-contrastive Learning",
+      "doi": "10.1145/3638055",
+      "crossref": {
+        "title": "Pre-training Question Embeddings for Improving Knowledge Tracing with Self-supervised Bi-graph Co-contrastive Learning",
+        "container": "ACM Transactions on Knowledge Discovery from Data",
+        "author": [
+          "Wentao Wang",
+          "Huifang Ma",
+          "Yan Zhao",
+          "Zhixin Li"
+        ],
+        "issued": [
+          2024,
+          2,
+          12
+        ],
+        "published_print": [
+          2024,
+          5,
+          31
+        ],
+        "published_online": [
+          2024,
+          2,
+          12
+        ],
+        "created": [
+          2023,
+          12,
+          19
+        ],
+        "page": "1-20",
+        "volume": "18",
+        "issue": "4",
+        "publisher": "Association for Computing Machinery (ACM)",
+        "type": "journal-article",
+        "abstract": "<jats:p>\n                    Learning high-quality vector representations (aka. embeddings) of educational questions lies at the core of knowledge tracing (KT), which defines a task of estimating students’ knowledge states by predicting the probability that they correctly answer questions. Although existing KT efforts have leveraged question information to achieve remarkable improvements, most of them learn question embeddings by following the supervised learning paradigm. In this article, we propose a novel question embedding pre-training method for improving knowledge tracing with self-supervised\n                    <jats:italic>Bi</jats:italic>\n                    -graph\n                    <jats:italic>Co</jats:italic>\n                    -contrastive learning (\n                    <jats:italic>BiCo</jats:italic>\n                    ). Technically, on the basis of self-supervised learning paradigm, we first select two similar but distinct views (i.e., representing objective and subjective semantic perspectives) as the semantic source of question embeddings. Then, we design a primary task (structure recovery) together with two auxiliary tasks (question difficulty recovery and contrastive learning) to further enhance the representativeness of questions. Finally, extensive experiments conducted on two real-world datasets show BiCo has a higher expressive power that enables KT methods to effectively predict students’ performances.\n                  </jats:p>"
+      },
+      "openalex": {
+        "id": "https://openalex.org/W4389950236",
+        "display_name": "Pre-training Question Embeddings for Improving Knowledge Tracing with Self-supervised Bi-graph Co-contrastive Learning",
+        "publication_date": "2024-02-12",
+        "type": "article",
+        "abstract": "Learning high-quality vector representations (aka. embeddings) of educational questions lies at the core of knowledge tracing (KT), which defines a task of estimating students’ knowledge states by predicting the probability that they correctly answer questions. Although existing KT efforts have leveraged question information to achieve remarkable improvements, most of them learn question embeddings by following the supervised learning paradigm. In this article, we propose a novel question embedding pre-training method for improving knowledge tracing with self-supervised Bi -graph Co -contrastive learning ( BiCo ). Technically, on the basis of self-supervised learning paradigm, we first select two similar but distinct views (i.e., representing objective and subjective semantic perspectives) as the semantic source of question embeddings. Then, we design a primary task (structure recovery) together with two auxiliary tasks (question difficulty recovery and contrastive learning) to further enhance the representativeness of questions. Finally, extensive experiments conducted on two real-world datasets show BiCo has a higher expressive power that enables KT methods to effectively predict students’ performances."
+      }
+    },
+    {
+      "id": "VX05",
+      "query_title": "Heterogeneous graph knowledge tracing with novel contrastive view and meta-path contexts",
+      "doi": "10.1016/j.eswa.2025.128840",
+      "crossref": {
+        "title": "Heterogeneous graph knowledge tracing with novel contrastive view and meta-path contexts",
+        "container": "Expert Systems with Applications",
+        "author": [
+          "Jie Liu",
+          "Zheng Guan",
+          "Xue Wang",
+          "Zhijun Yang"
+        ],
+        "issued": [
+          2026,
+          1
+        ],
+        "published_print": [
+          2026,
+          1
+        ],
+        "published_online": null,
+        "created": [
+          2025,
+          7,
+          2
+        ],
+        "page": "128840",
+        "volume": "295",
+        "issue": null,
+        "publisher": "Elsevier BV",
+        "type": "journal-article",
+        "abstract": null
+      },
+      "openalex": {
+        "id": "https://openalex.org/W4411920992",
+        "display_name": "Heterogeneous graph knowledge tracing with novel contrastive view and meta-path contexts",
+        "publication_date": "2025-07-02",
+        "type": "article",
+        "abstract": null
+      }
+    },
+    {
+      "id": "VX06",
+      "query_title": "Graph Contrast Learning Fused Question Features Based Knowledge Tracing",
+      "doi": "10.1109/iceit64364.2025.10976145",
+      "crossref": {
+        "title": "Graph Contrast Learning Fused Question Features Based Knowledge Tracing",
+        "container": "2025 14th International Conference on Educational and Information Technology (ICEIT)",
+        "author": [
+          "Junyi Guo",
+          "Ruixin Chen",
+          "Zhun Zhang",
+          "Qiongxiong Ma"
+        ],
+        "issued": [
+          2025,
+          3,
+          14
+        ],
+        "published_print": [
+          2025,
+          3,
+          14
+        ],
+        "published_online": null,
+        "created": [
+          2025,
+          5,
+          1
+        ],
+        "page": "265-272",
+        "volume": null,
+        "issue": null,
+        "publisher": "IEEE",
+        "type": "proceedings-article",
+        "abstract": null
+      },
+      "openalex": {
+        "id": "https://openalex.org/W4409991966",
+        "display_name": "Graph Contrast Learning Fused Question Features Based Knowledge Tracing",
+        "publication_date": "2025-03-14",
+        "type": "conference-paper",
+        "abstract": "The exponential growth of online education has amplified the need for personalized learning, with Intelligent Tutoring Systems (ITS) providing rich behavioral interaction data for adaptive instruction. However, accurately assessing learners' knowledge states remains a significant challenge. Knowledge Tracing (KT), which predicts student performance based on historical interactions, has emerged as a promising solution. The complexity of KT lies in the multidimensional and dynamic nature of knowledge acquisition. In Graph-based Knowledge Tracing (GKT), current models face limitations in node importance representation, question embedding sparsity, and underutilization of learning features. To this end, this paper proposes the Graph Contrast Learning Fused Question Features Based Knowledge Tracing (GCLFKT) model. Firstly, GCLFKT employs Graph Attention Networks (GAT) to generate aggregated question embeddings, mitigating data sparsity problems associated with question-level embeddings. Furthermore, it incorporates Graph Contrastive Learning (GCL) to enhance embedding representations and integrates rich question features through a feature fusion layer. Experiments on the ASSISTments datasets demonstrate that GCLFKT outperforms several baseline models by over 4% in AUC metrics, with superior predictive performance validated through visualization analysis."
+      }
+    },
+    {
+      "id": "VX07",
+      "query_title": "Contrastive cross-course knowledge tracing via concept graph guided knowledge transfer",
+      "doi": "10.24963/ijcai.2025/823",
+      "crossref": {
+        "title": "Contrastive Cross-Course Knowledge Tracing via  Concept Graph Guided Knowledge Transfer",
+        "container": "Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence",
+        "author": [
+          "Wenkang Han",
+          "Wang Lin",
+          "Liya Hu",
+          "Zhenlong Dai",
+          "Yiyun Zhou",
+          "Mengze Li",
+          "Zemin Liu",
+          "Chang Yao",
+          "Jingyuan Chen"
+        ],
+        "issued": [
+          2025,
+          9
+        ],
+        "published_print": [
+          2025,
+          9
+        ],
+        "published_online": null,
+        "created": [
+          2025,
+          9,
+          19
+        ],
+        "page": "7401-7409",
+        "volume": null,
+        "issue": null,
+        "publisher": "International Joint Conferences on Artificial Intelligence Organization",
+        "type": "proceedings-article",
+        "abstract": "<jats:p>Knowledge tracing (KT) aims to predict learners' future performance based on historical learning interactions. However, existing KT models predominantly focus on data from a single course, limiting their ability to capture a comprehensive understanding of learners' knowledge states. In this paper, we propose TransKT, a contrastive cross-course knowledge tracing method that leverages concept graph guided knowledge transfer to model the relationships between learning behaviors across different courses, thereby enhancing knowledge state estimation. Specifically, TransKT constructs a cross-course concept graph by leveraging zero-shot Large Language Model (LLM) prompts to establish implicit links between related concepts across different courses. This graph serves as the foundation for knowledge transfer, enabling the model to integrate and enhance the semantic features of learners' interactions across courses. Furthermore, TransKT includes an LLM-to-LM pipeline for incorporating summarized semantic features, which significantly improves the performance of Graph Convolutional Networks (GCNs) used for knowledge transfer. Additionally, TransKT employs a contrastive objective that aligns single-course and cross-course knowledge states, thereby refining the model's ability to provide a more robust and accurate representation of learners' overall knowledge states. Our code and datasets are available at https://github.com/DQYZHWK/TransKT/.</jats:p>"
+      },
+      "openalex": {
+        "id": "https://openalex.org/W4414359489",
+        "display_name": "Contrastive Cross-Course Knowledge Tracing via Concept Graph Guided Knowledge Transfer",
+        "publication_date": "2025-09-01",
+        "type": "conference-paper",
+        "abstract": "Knowledge tracing (KT) aims to predict learners' future performance based on historical learning interactions. However, existing KT models predominantly focus on data from a single course, limiting their ability to capture a comprehensive understanding of learners' knowledge states. In this paper, we propose TransKT, a contrastive cross-course knowledge tracing method that leverages concept graph guided knowledge transfer to model the relationships between learning behaviors across different courses, thereby enhancing knowledge state estimation. Specifically, TransKT constructs a cross-course concept graph by leveraging zero-shot Large Language Model (LLM) prompts to establish implicit links between related concepts across different courses. This graph serves as the foundation for knowledge transfer, enabling the model to integrate and enhance the semantic features of learners' interactions across courses. Furthermore, TransKT includes an LLM-to-LM pipeline for incorporating summarized semantic features, which significantly improves the performance of Graph Convolutional Networks (GCNs) used for knowledge transfer. Additionally, TransKT employs a contrastive objective that aligns single-course and cross-course knowledge states, thereby refining the model's ability to provide a more robust and accurate representation of learners' overall knowledge states. Our code and datasets are available at https://github.com/DQYZHWK/TransKT/."
+      }
+    },
+    {
+      "id": "VX08",
+      "query_title": "Dual-Channel Knowledge Tracing With Self-Supervised Contrastive and Directed Interaction Learning",
+      "doi": "10.1109/access.2025.3542870",
+      "crossref": {
+        "title": "Dual-Channel Knowledge Tracing With Self-Supervised Contrastive and Directed Interaction Learning",
+        "container": "IEEE Access",
+        "author": [
+          "Zuowei Zhang"
+        ],
+        "issued": [
+          2025
+        ],
+        "published_print": [
+          2025
+        ],
+        "published_online": null,
+        "created": [
+          2025,
+          2,
+          17
+        ],
+        "page": "32276-32288",
+        "volume": "13",
+        "issue": null,
+        "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+        "type": "journal-article",
+        "abstract": null
+      },
+      "openalex": {
+        "id": "https://openalex.org/W4407638836",
+        "display_name": "Dual-Channel Knowledge Tracing With Self-Supervised Contrastive and Directed Interaction Learning",
+        "publication_date": "2025-01-01",
+        "type": "article",
+        "abstract": "With the widespread adoption of the internet, intelligent tutoring systems have experienced rapid advancements in education. Knowledge tracing (KT) aims to predict students’ future performance by modeling their behavioral sequences. While existing models have made notable progress in some areas, challenges remain in fully uncovering the higher-order relationships among exercises, concepts, and students. To address these limitations and effectively capture the intricate dependencies between learning behaviors and exercises, this paper introduces a novel approach: Dual-Channel Knowledge Tracing with Self-Supervised Contrastive and Directed Interaction Learning (SCDI). This method enhances predictive accuracy by leveraging graph-structured embeddings of interaction data, offering a more comprehensive analysis of the learning process. SCDI consists of two distinct channels. The first channel constructs a heterogeneous graph with student, exercise, and concept nodes, using a Meta-path Aggregated Graph Neural Network (MAGNN) to extract high-order information from exercise and concept nodes. It also incorporates a self-supervised graph contrastive learning mechanism to improve the quality of node embeddings. The second channel builds a directed graph from interaction sequences, using Graph Attention Convolution (GATC) to capture dynamic relationships and model how interactions evolve over time. Features from both channels are integrated and passed to a downstream KT model to predict students’ future performance. Experimental evaluations on four datasets demonstrate that SCDI significantly enhances the accuracy of downstream KT models, establishing its effectiveness and robustness."
+      }
+    },
+    {
+      "id": "VX09",
+      "query_title": "Self-supervised contrastive learning with multi-dimensional graph structures for knowledge tracing",
+      "doi": "10.1016/j.neucom.2026.133837",
+      "crossref": {
+        "title": "Self-supervised contrastive learning with multi-dimensional graph structures for knowledge tracing",
+        "container": "Neurocomputing",
+        "author": [
+          "Liqing Qiu",
+          "Qingyun Zhu"
+        ],
+        "issued": [
+          2026,
+          9
+        ],
+        "published_print": [
+          2026,
+          9
+        ],
+        "published_online": null,
+        "created": [
+          2026,
+          5,
+          4
+        ],
+        "page": "133837",
+        "volume": "692",
+        "issue": null,
+        "publisher": "Elsevier BV",
+        "type": "journal-article",
+        "abstract": null
+      },
+      "openalex": {
+        "id": "https://openalex.org/W7160080445",
+        "display_name": "Self-supervised contrastive learning with multi-dimensional graph structures for knowledge tracing",
+        "publication_date": "2026-05-04",
+        "type": "article",
+        "abstract": null
+      }
+    },
+    {
+      "id": "VX10",
+      "query_title": "Knowledge Tracing Enhanced by Graph Convolutional Networks with Self-Supervised Learning",
+      "doi": null,
+      "openalex_search": [
+        {
+          "id": "https://openalex.org/W4412412118",
+          "display_name": "Knowledge Tracing Enhanced by Graph Convolutional Networks With Self-Supervised Learning",
+          "publication_date": "2025-07-14",
+          "doi": "https://doi.org/10.4018/ijicte.385130",
+          "type": "article",
+          "abstract": "Knowledge tracing (KT) plays a key role in adaptive learning, yet traditional recurrent neural network–based methods often struggle with sparse data and overlook relationships between knowledge points. To address these limitations, this paper proposes a novel knowledge tracing model (KGS-KT) that integrates knowledge graphs, graph convolutional networks (GCNs), and self-supervised learning (SSL). Our approach constructs a knowledge graph from learners' performance data to capture inherent relationships among knowledge points and employs GCNs to generate comprehensive knowledge point embeddings. In addition, two SSL tasks—node attribute prediction and edge relation prediction—are introduced. These tasks enhance feature representation by reconstructing masked node attributes and inferring missing connections, while also providing deeper insight into the role of structured dependencies. This strengthens the model's robustness against data sparsity. Experimental results show that our approach outperforms existing methods, demonstrating the effectiveness of combining structured knowledge and SSL in KT."
+        },
+        {
+          "id": "https://openalex.org/W7160080445",
+          "display_name": "Self-supervised contrastive learning with multi-dimensional graph structures for knowledge tracing",
+          "publication_date": "2026-05-04",
+          "doi": "https://doi.org/10.1016/j.neucom.2026.133837",
+          "type": "article",
+          "abstract": null
+        },
+        {
+          "id": "https://openalex.org/W4210707990",
+          "display_name": "Bi-CLKT: Bi-Graph Contrastive Learning based Knowledge Tracing",
+          "publication_date": "2022-01-31",
+          "doi": "https://doi.org/10.1016/j.knosys.2022.108274",
+          "type": "article",
+          "abstract": null
+        }
+      ]
+    }
+  ],
+  "november_export_hits": {
+    "VX01": [
+      {
+        "file": "scopus_qg_20261114.csv",
+        "needle": "automatical graph-based knowledge tracing"
+      }
+    ],
+    "VX02": [
+      {
+        "file": "scopus_qg_20261114.csv",
+        "needle": "expert-defined graphs"
+      }
+    ],
+    "VX03": [
+      {
+        "file": "arxiv_qg_20261114.xml",
+        "needle": "reasonable knowledge tracing"
+      },
+      {
+        "file": "arxiv_qs_20261114.xml",
+        "needle": "reasonable knowledge tracing"
+      },
+      {
+        "file": "ieee_qg_20261114.csv",
+        "needle": "grkt"
+      },
+      {
+        "file": "scopus_qg_20261114.csv",
+        "needle": "reasonable knowledge tracing"
+      },
+      {
+        "file": "scopus_qs_20261114.csv",
+        "needle": "reasonable knowledge tracing"
+      }
+    ],
+    "VX04": [
+      {
+        "file": "scopus_qg_20261114.csv",
+        "needle": "bi-graph co-contrastive"
+      },
+      {
+        "file": "scopus_qs_20261114.csv",
+        "needle": "bi-graph co-contrastive"
+      }
+    ],
+    "VX05": [
+      {
+        "file": "sciencedirect_qg_20261114.bib",
+        "needle": "10.1016/j.eswa.2025.128840"
+      },
+      {
+        "file": "sciencedirect_qs_20261114.bib",
+        "needle": "10.1016/j.eswa.2025.128840"
+      },
+      {
+        "file": "scopus_qg_20261114.csv",
+        "needle": "10.1016/j.eswa.2025.128840"
+      },
+      {
+        "file": "scopus_qp_20261114.csv",
+        "needle": "10.1016/j.eswa.2025.128840"
+      },
+      {
+        "file": "scopus_qs_20261114.csv",
+        "needle": "10.1016/j.eswa.2025.128840"
+      }
+    ],
+    "VX06": [
+      {
+        "file": "ieee_qg_20261114.csv",
+        "needle": "10.1109/iceit64364.2025.10976145"
+      },
+      {
+        "file": "ieee_qs_20261114.csv",
+        "needle": "10.1109/iceit64364.2025.10976145"
+      },
+      {
+        "file": "scopus_qg_20261114.csv",
+        "needle": "10.1109/iceit64364.2025.10976145"
+      },
+      {
+        "file": "scopus_qs_20261114.csv",
+        "needle": "10.1109/iceit64364.2025.10976145"
+      }
+    ],
+    "VX07": [
+      {
+        "file": "arxiv_qg_20261114.xml",
+        "needle": "cross-course knowledge tracing"
+      },
+      {
+        "file": "arxiv_qs_20261114.xml",
+        "needle": "cross-course knowledge tracing"
+      },
+      {
+        "file": "scopus_qg_20261114.csv",
+        "needle": "10.24963/ijcai.2025/823"
+      },
+      {
+        "file": "scopus_qs_20261114.csv",
+        "needle": "10.24963/ijcai.2025/823"
+      }
+    ],
+    "VX08": [
+      {
+        "file": "ieee_qg_20261114.csv",
+        "needle": "10.1109/access.2025.3542870"
+      },
+      {
+        "file": "ieee_qs_20261114.csv",
+        "needle": "10.1109/access.2025.3542870"
+      },
+      {
+        "file": "scopus_qg_20261114.csv",
+        "needle": "10.1109/access.2025.3542870"
+      },
+      {
+        "file": "scopus_qs_20261114.csv",
+        "needle": "10.1109/access.2025.3542870"
+      }
+    ],
+    "VX09": [
+      {
+        "file": "sciencedirect_qg_20261114.bib",
+        "needle": "10.1016/j.neucom.2026.133837"
+      },
+      {
+        "file": "sciencedirect_qs_20261114.bib",
+        "needle": "10.1016/j.neucom.2026.133837"
+      },
+      {
+        "file": "scopus_qg_20261114.csv",
+        "needle": "10.1016/j.neucom.2026.133837"
+      },
+      {
+        "file": "scopus_qs_20261114.csv",
+        "needle": "10.1016/j.neucom.2026.133837"
+      }
+    ],
+    "VX10": [
+      {
+        "file": "scopus_qg_20261114.csv",
+        "needle": "enhanced by graph convolutional networks with self-supervised"
+      },
+      {
+        "file": "scopus_qs_20261114.csv",
+        "needle": "enhanced by graph convolutional networks with self-supervised"
+      }
+    ]
+  }
+}

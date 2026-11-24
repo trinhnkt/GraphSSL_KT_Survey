@@ -1,0 +1,781 @@
+pages=20
+===== PAGE 1 =====
+Trang 1 
+Nhận xét b ản th ảo: “Graph -Based and Self -
+Supervised Knowledge Tracing in Sparse -Concept 
+Settings: A Critical Survey” 
+Bản th ảo bài survey có h ệ thống (PRISMA 2020), d ự kiến n ộp IEEE Transactions on 
+Learning Technologies (TLT) · Vòng 1 — rà soát toàn văn trước khi n ộp: độ phủ corpus, 
+độ tin cậy quy trình, chiều sâu tổng hợp, độ chính xác kỹ thuật 
+Tác giả bản thảo NCS Nguyễn Khánh Trình (tác gi ả thứ nhất) cùng các đ ồng tác giả: 
+Đào Minh Tuấn, Nguyễn Tiến Dương, Nguyễn Chí Thanh 
+Người nhận xét PGS.TS. Nguyễn Văn Hậu (tác giả liên hệ) 
+Ngày 13/11/2026 
+Phạm vi đã đọc Đã đọc: toàn văn 14 trang (g ồm Bảng I–VII, Hình 1 –4 qua văn b ản 
+trích từ PDF, công thức (1)–(9), 46 tài liệu tham khảo). CHƯA xem: 
+gói supplementary (Table_S -PRISMA-5.csv, 
+H2_qa7_two_variables.csv, file cặp κ, protocol khoá), mã ngu ồn, và 
+chưa ch ạy l ại DyGKT. Đã tra web đ ể xác minh s ự tồn t ại c ủa 
+DECKT (Entropy 2025), DTransformer (WWW 2023), survey c ủa 
+Shukurlu (arXiv 2025) và Yan et al. (arXiv:2606.14123); chưa xác 
+minh từng DOI trong danh m ục tài liệu tham kh ảo. Đã đ ối chiếu số 
+học: 531+344+257+255+232+200+198 = 2.017; 2.017−1.267 = 750; 
+750−610 = 140; 140−103 = 37; 18+9+9 = 36; 12+7+4+2+2+3+6 = 
+36; 5+2+1+1 = 9; 20×8 = 160 ô — tất cả khớp. 
+ 
+1. BẢNG ĐIỀU HƯỚNG 
+Mức Số điểm Nghĩa là gì 
+A — BUỘC PHẢI 
+SỬA 
+4 Không sửa thì một kết luận của bản thảo không còn được 
+chống đỡ, hoặc bản thảo không tái l ập / không qua đư ợc 
+vòng phản biện. 
+B — NÊN SỬA 11 Bản th ảo v ẫn đ ứng đư ợc, nhưng y ếu đi và ngư ời đ ọc 
+phải tự đoán thay tác giả. 
+C — TUỲ CHỌN 3 Tuỳ chọn — đây là g ợi ý đ ể bản th ảo đ ẹp hơn, không 
+sửa cũng không sao. 
+ 
+▸ Bản thảo có một điểm mạnh hiếm thấy: kỷ luật về mức độ khẳng định rất tốt, các 
+con số khớp nhau, và việc tách bốn khái niệm về độ thưa (thưa tương tác / cold -start 
+theo item / theo người học / theo KC chưa từng xuất hiện) là một đóng góp khái 
+niệm thật. Những phần này cần được giữ nguyên khi sửa. 
+===== PAGE 2 =====
+Trang 2 
+▸ Việc phải làm TRƯỚC TIÊN là kiểm tra độ phủ của corpus (A1) và đồng thời 
+cho người thứ hai rà lại các quyết định loại bài (A3). Đã xác minh được ít  nhất một 
+bài rõ ràng thuộc phạm vi mà corpus không có — DECKT (Entropy 2025), cũng là 
+baseline quan trọng nhất của luận án. Mọi con số 0/37, 1/37, N_G, N_S đều có thể 
+thay đổi sau bước này, nên mọi việc viết lại khác phải đợi. 
+▸ Sau khi corpus đã chốt: sử a cấu trúc mã hoá hiệu chỉnh xác suất (A2) và viết lại 
+phần tổng hợp để trả lời đúng RQ1 –RQ3 (A4). Các điểm B (công thức, taxonomy 
+SSL, văn phong, định vị so với survey trước, quan hệ với P0) làm sau, theo thứ tự 
+trong bảng việc cần làm. 
+▸ Ước lượng: 3–4 tuần cho bốn điểm mức A (phần lớn thời gian ở A1 và A3), thêm 
+khoảng 2 tuần cho các điểm mức B. Mức C để vòng cuối. 
+2. THỨ TỰ VIỆC CẦN LÀM 
+Làm hết mức A trước, rồi mới sang mức B. Mức C để cuối cùng, và b ỏ qua được nếu hết thời 
+gian. 
+# Mã Việc Công sức 
+1 A1 Corpus thi ếu ít nh ất m ột bài ch ắc ch ắn thu ộc ph ạm vi 
+(DECKT) và có thể thiếu nhiều bài SSL-KT khác 
+lớn 
+2 A2 Kết luận 'trạng thái hiệu chỉnh xác suất chưa được kiểm chứng' 
+rút ra từ một trường mã hoá chỉ ghi ECE 
+vừa 
+3 A3 Sàng l ọc tiêu đ ề/tóm t ắt và toàn văn ch ỉ do m ột ngư ời th ực 
+hiện, chưa đạt mức chính protocol của bài đặt ra 
+lớn 
+4 A4 Phần tổng hợp chủ yếu là đếm, chưa trả lời đầy đủ RQ1–RQ3 
+mà chính bài đặt ra 
+lớn 
+5 B1 Lớp ECE tái l ập trên DyGKT dùng c ạnh ki ểm tra d ạng 
+transductive và thiếu mốc so sánh tỷ lệ cơ sở 
+vừa 
+6 B2 Taxonomy SSL tr ộn 'mô hình SSL' v ới 'loại view', và không 
+mã hoá việc augmentation có b ảo toàn cấu trúc tiên quy ết hay 
+không 
+vừa 
+7 B3 Mục IV -C có m ột câu sai v ề kỹ thuật, và M ục IV -B li ệt kê 
+augmentation không gắn với bài nào 
+vừa 
+8 B4 Công th ức (6) đ ể lọt KC l ạnh qua các item nhi ều KC; công 
+thức (7) sai chiều ma trận 
+nhỏ 
+9 B5 Chiến lược tìm ki ếm không đư ợc trình bày đ ủ để tái l ập, và 
+một số con số trong quy trình không có giải thích 
+vừa 
+10 B6 Biệt ngữ nội bộ của protocol, đường dẫn file và mã token tràn 
+vào thân bài và hình 
+vừa 
+11 B7 Câu t ừ chối trách nhi ệm l ặp l ại quá nhi ều, làm loãng thông vừa 
+===== PAGE 3 =====
+Trang 3 
+điệp chính 
+12 B8 Định vị so với survey trước chưa đầy đủ, và khoảng trống hiệu 
+chỉnh chưa được đặt trong bối cảnh tài liệu KT ngoài corpus 
+vừa 
+13 B9 Agenda Group B g ồm các hư ớng chung chung, không xu ất 
+phát từ khoảng trống đã mã hoá 
+nhỏ 
+14 B10 Agenda về hiệu chỉnh và cold-start trùng với đóng góp của P0 
+nhưng bài không nêu quan hệ giữa hai bài 
+nhỏ 
+15 B11 Một số tài liệu tham khảo 2025–2026 cần xác minh trư ớc khi 
+nộp 
+vừa 
+16 C1 Hình 2 và Hình 3 trùng nội dung nhỏ 
+17 C2 Ký hi ệu N đư ợc dùng cho ba đ ại lư ợng khác nhau; B ảng I 
+chứa những mục không phải ký hiệu 
+nhỏ 
+18 C3 Một số trường mã hoá và phân t ầng chất lượng không có giá 
+trị phân biệt 
+nhỏ 
+3. MỨC A — BUỘC PHẢI SỬA (4 điểm) 
+Không sửa thì một kết luận của bản thảo không còn được chống đỡ, hoặc bản thảo không tái lập / 
+không qua được vòng phản biện. 
+A1. Corpus thiếu ít nhất một bài chắc chắn thuộc phạm vi (DECKT) và 
+có thể thiếu nhiều bài SSL-KT khác 
+Vị trí: Mục II-A, II-B, Hình 1; B ảng V (N_S = 9); M ục IV · Lo ại: thieu-baseline-gan-nhat · Công 
+sức: lớn 
+Bản thảo viết: “The legacy seed list of 34 core records was used only for recall checking 
+and is not a second inclusion total.” 
+Lỗi là gì: Bản thảo nói danh sách seed được dùng để kiểm tra recall nhưng không báo 
+cáo kết quả recall (bao nhiêu bài seed được tìm lại). Đã xác minh được ít nhất một bài 
+thoả cả hai điều kiện của công thức (1) mà không có trong corpus: DECKT (Bai et al., 
+Entropy 27(7):685, 2025) — KT + đồ thị câu hỏi –khái niệm + GAT + InfoNCE, nhắm 
+trực tiếp vào khái niệm tần suất thấp. Ngoài ra, nhánh SSL dạng chuỗi chỉ có duy nhất 
+CL4KT, trong khi DTransformer (Yin et al., WWW 2023) cũng dùng mục tiêu 
+contrastive cho KT. 
+Vì sao là l ỗi [Suy lu ận của tôi]: Ba đóng góp chính của bài (taxonomy N_S = 9; 0/37 
+bài có chia tách strict KC cold-start; 0/37 bài báo cáo ECE) đều là kết luận dạng 'không 
+bài nào trong corpus'. Loại kết luận này đổ vỡ ngay khi phản biện đưa ra MỘT bài 
+thuộc phạm vi mà corpus bỏ sót. DECKT lại là bài gần nhất với hướng luận án của 
+nhóm (mục tiêu: KC tần suất thấp), nên phản biện của bài C2 sau này cũng sẽ nhận ra 
+chính survey của nhóm đã bỏ qua nó. Thêm nữa, N_G = 36 so với N_S = 9 (chỉ 1 bài 
+===== PAGE 4 =====
+Trang 4 
+SSL dạng chuỗi) là dấu hiệu chuỗi truy vấn Q -S đang thiên về đồ thị, nên rủi ro thiếu 
+bài nằm có hệ thống ở nhánh SSL chứ không ngẫu nhiên. 
+Cách khắc phục [Đề xuất mới] 
+1. Tra trực tiếp từng bài sau trong bản ghi sàng lọc (750 bản ghi sau khử trùng): 
+DECKT (doi:1 0.3390/e27070685); DTransformer (doi:10.1145/3543507.3583255); 
+'Self-paced contrastive learning for knowledge tracing' (Neurocomputing 2024); 
+'Dynamic heterogeneous graph contrastive networks for knowledge tracing' (Applied 
+Soft Computing 2024); 'Heterogen eous graph knowledge tracing with novel 
+contrastive view and meta -path contexts' (ESWA 2025); 'Contrastive Learning 
+Based on Bipartite Graphs for Interpretable Knowledge Tracing' (Springer 2024); 
+CoSKT và SP -CLKT (được nhắc trong survey của Shukurlu, arXiv :2504.15163). 
+Ghi vào một bảng: bài · có trong 2.017 bản ghi không · nếu có thì bị loại ở giai đoạn 
+nào, theo mã EC nào. 
+2. Với bài nào KHÔNG có trong 2.017 bản ghi: so tiêu đề/tóm tắt của bài đó với 
+chuỗi truy vấn Q-S để tìm từ khoá bị thiếu (ví dụ 'contr astive', 'momentum encoder', 
+'self-paced', 'dual-encoder'), bổ sung từ khoá, chạy lại Q -S trên sáu cơ sở dữ liệu và 
+ghi số bản ghi mới vào Hình 1 như một vòng tìm kiếm bổ sung (có ngày chạy). 
+3. Với bài nào CÓ trong bản ghi nhưng bị loại: đọc lại toàn văn,  áp lại tiêu chí; nếu 
+thuộc phạm vi thì đưa vào corpus; nếu vẫn loại thì ghi lý do cụ thể vào Table S -
+PRISMA-5. 
+4. Làm thêm một vòng snowballing: duyệt danh mục tài liệu tham khảo (backward) 
+của 9 bài SSL-KT hiện có và của survey Xu et al. [9], cùng các bà i trích dẫn chúng 
+(forward, qua Google Scholar/Semantic Scholar); ghi số bài phát hiện thêm. 
+5. Báo cáo recall so với danh sách seed trong Mục II -B: 'x/34 seed records were 
+retrieved by the database search'. Nếu x < 34, nêu tên các bài bị lọt và nguyên nhân. 
+6. Sau khi corpus mới chốt, chạy lại toàn bộ bảng đếm (Hình 2 –4, Bảng III–VII) từ 
+file CSV, không sửa tay từng con số. 
+Tự kiểm: Có một bảng (trong supplementary) liệt kê mọi bài trong danh sách kiểm tra ở 
+bước 1 cùng số phận của nó; Mục II -B có một câu báo cáo recall x/34 và số bài thêm từ 
+snowballing; nếu DECKT được đưa vào thì nó xuất hiện trong Bảng IV/V và các con số 
+N_G, N_S, N_G∩S đã được cập nhật đồng bộ ở Tóm tắt, Mục I-D, Hình 2–4 và Mục X. 
+A2. Kết luận 'trạng thái hiệu chỉnh xác suất chưa được kiểm chứng' rút 
+ra từ một trường mã hoá chỉ ghi ECE 
+Vị trí: Mục VI-B; Mục VII-E (T3); B ảng VII dòng 4 và 6; trư ờng ece_reported trong M ục II-E · 
+Loại: ket-luan-vuot-du-lieu · Công sức: vừa 
+Bản thảo viết: “Coded evidence: manuscript-reported ECE is 0/37; no  corpus rate such 
+as P(r = 1) > 0.90. The calibration status of raw P(r = 1) is therefore unverified in this 
+corpus.” 
+===== PAGE 5 =====
+Trang 5 
+Lỗi là gì: Trường mã hoá chỉ ghi nhận việc báo cáo ECE, nhưng kết luận T3 nói về 
+TRẠNG THÁI HIỆU CHỈNH nói chung. Hiệu chỉnh xác suất còn được báo cáo bằng 
+nhiều đại lượng khác: Brier score, log -loss/negative log-likelihood, biểu đồ độ tin cậy 
+(reliability diagram), RMSE trên xác suất. Bản thảo không cho biết các đại lượng này 
+có được mã hoá hay không. 
+Vì sao là l ỗi [Suy luận của tôi]: Nếu chỉ một bài trong corpus có báo cáo log -loss hoặc 
+reliability diagram, câu 'calibration status ... is unverified in this corpus' sai về mặt nội 
+dung, dù câu '0/37 report ECE' vẫn đúng. Đây là đóng góp số 4 trong Tóm tắt và là cơ 
+sở cho phán quyết NO-GO của T3, nên một phản biện chỉ cần tìm một bài có Brier hoặc 
+reliability diagram là làm sụp cả khối T3. Ngoài ra, RMSE trên xác suất dự đoán — chỉ 
+số từng phổ biến trong tài liệu KT — chính là căn bậc hai của Brier score khi nhãn nhị 
+phân, nên một bài báo cáo R MSE đã báo cáo một đại lượng sai số xác suất; đây là chỗ 
+dễ bị bắt nhất. 
+Cách khắc phục [Đề xuất mới] 
+1. Thêm vào codebook một trường mới calibration_evidence với các giá trị không 
+loại trừ nhau: ECE · Brier/MSE · RMSE trên xác suất · log -loss/NLL · reliab ility 
+diagram · không có. 
+2. Mã hoá lại trường này cho cả 37 bài (hoặc corpus mới sau A1) bằng cách tìm 
+trong toàn văn VÀ phụ lục/supplementary của từng bài các từ: 'calibrat', 'ECE', 
+'Brier', 'reliability', 'log-loss', 'NLL', 'RMSE'. Ghi evidence_locator cho từng kết quả 
+dương tính, và ghi 'searched: main text + appendix' cho kết quả âm tính. 
+3. Viết lại Mục VI-B, VII-E (T3) và Bảng VII theo kết quả mới: nếu có bài báo cáo 
+RMSE/Brier mà không có ECE hay reliability diagram, phát biểu chính xác là 
+'reported only aggregate probability -error metrics (RMSE/Brier), which do not 
+reveal how calibration varies across sparsity bands' — đây vẫn là một khoảng trống 
+thật, nhưng hẹp và đúng hơn. 
+4. Đổi tên đóng góp 4 trong Tóm tắt và Mục I -D cho khớp với trường mã hoá m ới 
+(ví dụ 'calibration-reporting audit' thay vì chỉ 'ECE audit'). 
+Viết l ại m ẫu: T3 — Coded evidence: 0/37 manuscripts report ECE or a reliability 
+diagram; k/37 report an aggregate probability -error metric (RMSE or Brier) without 
+stratification by KC freque ncy. Calibration of raw P(r = 1) for sparse KCs is therefore 
+not established in this corpus. 
+Tự kiểm: Codebook có trường calibration_evidence; mỗi giá trị dương tính có 
+evidence_locator; câu kết luận T3 nói đúng phạm vi của trường đã mã hoá (không còn câu 
+nào suy từ 'không có ECE' ra 'không biết hiệu chỉnh'). 
+===== PAGE 6 =====
+Trang 6 
+A3. Sàng l ọc tiêu đ ề/tóm tắt và toàn văn ch ỉ do một ngư ời th ực hiện, 
+chưa đạt mức chính protocol của bài đặt ra 
+Vị trí: Mục II-E đoạn 1; M ục IX 'Selection and coding reliability'; Hình 1 · Lo ại: khong-tai-lap-
+duoc · Công sức: lớn 
+Bản th ảo vi ết: “Title/abstract and full -text pair files named in the protocol are not 
+present; those stages were completed by a primary screener with team consensus on 
+borderline cases.” 
+Lỗi là gì: 713 quyết định loại bài (610 ở tiêu đề/tóm tắt, 103 ở toàn văn) không có 
+người sàng lọc thứ hai, trong khi protocol khoá của chính bài yêu cầu sàng lọc lại 25% 
+bản ghi và toàn bộ các quyết định loại ở toàn văn. Mẫu κ 20 bài lại không chọn ngẫu 
+nhiên (lấy cả 9 bài SSL), và hai người mã hoá thứ hai đều là đồng tác giả. 
+Vì sao là l ỗi [Chuẩn mực ngành]: Trong một survey có hệ thống, sai sót ở bước sàng 
+lọc là nguồn chính gây thiếu bài, và A1 cho thấy rủi ro này đã thành hiện thực ít nhất 
+một lần. κ = 0,96 –0,97 chỉ chứng minh hai người đồng  ý về cách MÃ HOÁ những bài 
+đã vào corpus, không nói gì về những bài bị loại oan. Phản biện TLT đọc câu trích ở 
+trên sẽ thấy bài tự nhận chưa làm đúng protocol của mình — đây là lý do bác bỏ rất phổ 
+biến đối với bài tự gọi là 'PRISMA 2020-informed'. 
+Nguồn: Page, M. J., et al. (2021). The PRISMA 2020 statement: an updated guideline for reporting 
+systematic reviews. BMJ, 372, n71 (m ục 8: quy trình ch ọn bài, s ố người sàng l ọc, có làm đ ộc lập 
+hay không). https://doi.org/10.1136/bmj.n71 
+Cách khắc phục [Đề xuất mới] 
+1. Chọn ngẫu nhiên 25% trong 610 bản ghi bị loại ở tiêu đề/tóm tắt (khoảng 153 bản 
+ghi; dùng seed cố định và lưu danh sách) cộng TOÀN BỘ 103 quyết định loại ở toàn 
+văn. 
+2. Giao cho một người KHÔNG phải tác giả của bài (ví dụ một NCS khác trong 
+nhóm không có tên trên bài) sàng lọc lại độc lập, không xem quyết định của người 
+thứ nhất; dùng đúng tiêu chí EC1–EC7. 
+3. Tính κ cho từng giai đoạn sàng lọc; với mỗi bất đồng, hai người thảo luận và ghi 
+kết quả phân xử. Lưu file cặp vào supplementary dưới đúng tên mà protocol đã đặt. 
+4. Bài nào được 'cứu' qua bước này thì đưa vào corpus (gộp với kết quả A1 rồi mới 
+đếm lại một lần). 
+5. Sửa Mục II-E và IX: báo cáo κ của sàng lọc, nêu rõ người sàng lọc thứ hai không 
+phải tác giả. Với mẫu κ mã hoá 20 bài, ghi rõ đây là  mẫu chọn có chủ đích 
+(purposive) và vì sao; nếu còn thời gian, mã hoá thêm 10 bài chọn ngẫu nhiên. 
+6. Thêm câu nêu rõ vai trò: ai là người sàng lọc chính, ai là Coder A, ai là Coder B 
+(hiện bản thảo chỉ ghi 'primary coder' và 'NguyenKT'). 
+Tự kiểm: Supplementary có file cặp sàng lọc cho cả hai giai đoạn; Mục II -E báo cáo κ của 
+sàng lọc tiêu đề/tóm tắt và toàn văn; câu trích ở trên đã được xoá vì không còn đúng. 
+===== PAGE 7 =====
+Trang 7 
+A4. Phần tổng hợp chủ yếu là đ ếm, chưa tr ả lời đầy đủ RQ1–RQ3 mà 
+chính bài đặt ra 
+Vị trí: RQ1–RQ3 ở Mục II; M ục III (A –D), Mục IV (A –D), Mục VII-A, VII-B · Lo ại: tong-quan-
+liet-ke · Công sức: lớn 
+Bản thảo viết: “The locked survey protocol does not code a single leakage percentage, 
+so we do not report one.” 
+Lỗi là gì: RQ1 hỏi rủi ro rò rỉ dữ liệ u của đồ thị nhưng protocol không mã hoá trường 
+nào về rò rỉ; RQ2 hỏi về cơ chế kết hợp (fusion) nhưng chỉ có cột trong Bảng III –IV, 
+không có đoạn phân tích nào; RQ3 hỏi về cơ chế bảo toàn cấu trúc nhưng Mục IV -C 
+chỉ có hai câu. Mục VII-A và VII-B mỗi mục chỉ có 2–3 câu. 
+Vì sao là l ỗi [Chuẩn mực ngành]: Một bài tự gọi là 'critical survey' mà khi đọc xong, 
+người đọc chỉ biết có bao nhiêu bài ở mỗi ô, chứ không biết nhánh nào giả định gì, 
+hỏng ở đâu, khi nào nên dùng. Phản biện sẽ đối chiếu từng RQ với câu tr ả lời và thấy 
+RQ1 bị trả lời bằng câu 'không mã hoá nên không báo cáo' — tức là RQ không có lời 
+đáp. Đây là chỗ khác biệt giữa survey được nhận và survey bị coi là danh mục có chú 
+thích. 
+Nguồn: Webster, J., & Watson, R. T. (2002). Analyzing the past to pre pare for the future: Writing a 
+literature review. MIS Quarterly, 26(2), xiii –xxiii (survey c ần lấy khái ni ệm làm trung tâm, không 
+lấy từng bài làm trung tâm). https://www.jstor.org/stable/4132319 
+Cách khắc phục [Đề xuất mới] 
+1. Lập một bảng đối chiếu RQ → mục trả lời → câu kết luận một dòng. Với mỗi RQ 
+chưa có câu kết luận, hoặc thêm phân tích (bước 2–4) hoặc thu hẹp RQ cho khớp với 
+cái đã mã hoá. 
+2. RQ1 (rò rỉ): thêm trường graph_split_statement với ba giá trị — 'train-only nêu rõ' 
+· 'toàn bộ log' · 'không  nêu' — cho các bài có đồ thị dựng từ log 
+(COOCCURRENCE_SIMILARITY, SEQUENTIAL_TRANSITION, 
+DYNAMIC_COOCCURRENCE). Báo cáo số đếm. Khi đó RQ1 có câu trả lời bằng 
+số mà không cần 'leakage percentage'. 
+3. RQ2: viết một đoạn phân tích bảng chéo provenance × en coder × fusion (ví dụ: 
+các bài EXTERNAL_FIXED có xu hướng dùng encoder nào, fusion nào; các bài 
+DYNAMIC_LEARNED có chia sẻ giả định gì). Mỗi nhận định dẫn đích danh bài. 
+4. RQ3: viết lại Mục IV -C (xem B3) và thêm một bảng nhỏ: với 8 bài Graph∩SSL, 
+phép augmentation có thể xoá cạnh nào, có bảo toàn cạnh tiên quyết hay không, theo 
+đúng mô tả trong bài gốc. 
+5. Viết lại VII-A và VII-B thành 2–3 đoạn mỗi mục, mỗi đoạn theo khuôn: nhóm bài 
+· giả định chung · điều kiện giả định đó không đứng · bằng chứng trong corpus. 
+Tự kiểm: Mỗi RQ1–RQ6 có một câu kết luận đánh số trong Mục VII hoặc X mà người đọc 
+trích được; không còn RQ nào được trả lời bằng câu 'protocol không mã hoá'; Mục VII -A, 
+VII-B mỗi mục có ít nhất hai nhận định so sánh giữa các nhóm bài. 
+===== PAGE 8 =====
+Trang 8 
+4. MỨC B — NÊN SỬA (11 điểm) 
+Bản thảo vẫn đứng được, nhưng yếu đi và người đọc phải tự đoán thay tác giả. 
+B1. Lớp ECE tái l ập trên DyGKT dùng c ạnh ki ểm tra d ạng 
+transductive và thiếu mốc so sánh tỷ lệ cơ sở 
+Vị trí: Mục VI-B, đoạn cuối; nhắc lại ở Tóm tắt, I-D(4), VII-E, VIII-A2, IX, X · Loại: ro-ri-du-lieu · 
+Công sức: vừa 
+Bản thảo viết: “we ran the author DyGKT implementation [24] on ASSIST17 (seed 0, 
+author train/val/test ratios, transductive test edges, n = 94,156) and obtained equal -
+width ECE = 0.0361 and Brier = 0.1770” 
+Lỗi là gì: Lớp tái lập này dùng cạnh kiểm tra theo kiểu transductive — đúng loại rủi ro 
+mà Mục III-D và A3 khuyến cáo; Brier = 0,1770 được báo cáo mà không có Brier của 
+dự đoán hằng số theo tỷ lệ cơ sở p̄ (1−p̄ ); và chỉ có một mô hình × một bộ dữ liệu × một 
+seed. 
+Vì sao là l ỗi [Suy luận của tôi]: Phản biện sẽ chỉ ra ngay mâu thuẫn: bài khuyên người 
+khác dựng đồ thị chỉ từ tập huấn luyện nhưng chính lớp tái lập của bài lại dùng cạnh 
+kiểm tra. Không có mốc p̄ (1−p̄ ) thì không ai biết Brier 0,177 là tốt hay chỉ ngang dự 
+đoán hằng số. Một lần chạy cũng không thêm bằng chứng gì cho corpus mà lại mời câu 
+hỏi 'sao chỉ có một?', đồng thời buộc bài phải lặp câu từ chối trách nhiệm ở 6 –7 chỗ 
+(xem B7). 
+Cách khắc phục [Đề xuất mới] 
+1. Quyết định một trong hai ph ương án cùng thầy: (a) BỎ HẲN lớp tái lập khỏi bài 
+— khuyến nghị, vì phần thực nghiệm hiệu chỉnh đã là nội dung của P0; hoặc (b) MỞ 
+RỘNG thành một thực nghiệm nhỏ có kiểm soát. 
+2. Nếu chọn (a): xoá đoạn cuối Mục VI -B và mọi câu nhắc tới 'REPRODUCED 
+overlay' ở Tóm tắt, I -D, VII-E, VIII-A2, IX, X; xoá dòng ECE trong Bảng I nếu 
+không còn dùng. 
+3. Nếu chọn (b): chạy tối thiểu 3 mô hình (ví dụ DKT, một Graph-KT, một SSL-KT) 
+× 2 bộ dữ liệu × 3 seed; dùng phân hoạch không cho cạnh kiểm tra vào đồ thị huấn 
+luyện; báo cáo ECE, Brier, Brier tham chiếu p̄ (1−p̄ ) và phân rã Brier, tách theo dải 
+tần suất KC (<20, 20–100, 100–500, >500). 
+4. Trong cả hai trường hợp, viết rõ 'transductive test edges' nghĩa là gì trong mã 
+DyGKT (xem câu hỏi số 4). 
+Tự kiểm: Hoặc trong bài khôn g còn chữ 'REPRODUCED'; hoặc mọi số ECE/Brier của 
+thực nghiệm tái lập đi kèm mốc tỷ lệ cơ sở, số seed, và một câu nêu rõ cạnh kiểm tra không 
+được dùng khi dựng đồ thị. 
+===== PAGE 9 =====
+Trang 9 
+B2. Taxonomy SSL trộn 'mô hình SSL' với 'loại view', và không mã hoá 
+việc augmentation có bảo toàn cấu trúc tiên quyết hay không 
+Vị trí: Mục IV-A, Hình 4, B ảng V (c ột 'SSL family' và 'Structure') · Lo ại: dong-gop-khong-phan-
+biet · Công sức: vừa 
+Bản th ảo vi ết: “The locked S -criterion codes 9 papers into four exclusive codebook 
+families” 
+Lỗi là gì: Ba trong bốn họ (multiview contrast, graph contrast, sequence contrast) đều là 
+biến thể của cùng một mô hình contrastive, khác nhau ở nguồn view; họ thứ tư (graph 
+reconstruction) là mô hình generative. Hai chiều khác nhau bị gộp vào một mã loại trừ. 
+Cột 'Structure' chỉ ghi 'Graph retained' / 'No graph constraint', không phân biệt việc 
+augmentation có thể xoá cạnh tiên quyết hay không. 
+Vì sao là l ỗi [Suy lu ận của tôi]: Gộp hai chiều làm mất đúng câu hỏi quan trọng nhất 
+của nhánh SSL: mô hình contr astive và generative khác nhau thế nào khi dữ liệu thưa. 
+Với 9 bài chia thành 5/2/1/1, người đọc thấy một phân loại thưa chứ không thấy một 
+taxonomy. Đối với luận án, đây cũng là chỗ survey lẽ ra phải làm lộ ra ô trống 
+'generative × đồ thị tiên quyết × đánh giá theo dải thưa' — nền tảng lập luận về tính mới 
+cho P1 (MCP) và C3 (so sánh mô hình SSL). Bỏ lỡ nó thì survey không phục vụ được 
+các bài sau của chính nhóm. 
+Cách khắc phục [Đề xuất mới] 
+1. Tách mã ssl_family thành hai trường: ssl_paradigm (contrastive  / generative / 
+predictive) và view_source (sequence / graph / multi -view / momentum -encoder 
+không augmentation, như DECKT nếu được đưa vào). 
+2. Thêm trường augmentation_structure_constraint với ba giá trị: 'không ràng buộc' 
+(có thể xoá cạnh bất kỳ) · 'giữ đồ thị nói chung' · 'giữ riêng cạnh tiên quyết'. Mã hoá 
+theo mô tả augmentation trong bài gốc, có evidence_locator. 
+3. Vẽ lại Hình 4 thành lưới ssl_paradigm × view_source, mỗi ô ghi tên bài; ô trống 
+để trống, có chú thích. 
+4. Viết một đoạn ngắn đọc lưới đ ó: ô nào đông, ô nào trống, vì sao ô trống quan 
+trọng khi KC thưa. Chỉ nêu quan sát khoảng trống, KHÔNG mô tả giải pháp chưa 
+công bố của nhóm (MCP của Trình, augmentation bảo toàn tiên quyết của Tuấn). 
+Tự kiểm: Bảng V có hai cột ssl_paradigm và view_source  thay cho một cột 'SSL family'; 
+có cột augmentation_structure_constraint; Hình 4 là một lưới hai chiều; đoạn văn đi kèm 
+không nhắc tới MCP hay phương pháp nội bộ nào chưa công bố. 
+===== PAGE 10 =====
+Trang 10 
+B3. Mục IV -C có m ột câu sai v ề kỹ thuật, và M ục IV -B li ệt kê 
+augmentation không gắn với bài nào 
+Vị trí: Mục IV-C (câu về CL4KT, trang 6–7) và Mục IV-B · Loại: trich-dan-khong-doc · Công sức: 
+vừa 
+Bản thảo viết: “augmentations must satisfy NO_EXPLICIT_CONSTRAINT on structural 
+validity, as random item masking creates hard negative views that force the model to 
+learn invariant skill representations.” 
+Lỗi là gì: Câu này có ba vấn đề: dùng một token mã hoá như thể đó là ràng buộc mà 
+augmentation 'must satisfy'; đưa ra lập luận nhân quả không có trích dẫn; và theo hiểu 
+biết của tôi, tro ng CL4KT việc che câu hỏi tạo ra view DƯƠNG (positive), còn hard 
+negative được tạo bằng cách khác (đảo đáp án). Mục IV -B liệt kê các phép biến đổi 
+chung chung (cắt chuỗi, xáo trộn, xoá cạnh, counterfactual rewiring) mà không nói bài 
+nào dùng phép nào. 
+Vì sao là l ỗi [Suy lu ận của tôi]: Đây là câu duy nhất trả lời RQ3 về bảo toàn cấu trúc. 
+Nếu mô tả sai cơ chế của CL4KT — một bài rất quen thuộc với phản biện mảng KT — 
+thì độ tin cậy của toàn bộ phần mã hoá SSL bị nghi ngờ. Phần IV -B không gắn với bài 
+nào thì không kiểm chứng được và không dùng được. 
+Cách khắc phục [Đề xuất mới] 
+1. Mở lại bản gốc CL4KT [46], đọc mục augmentation và mục hard negative; ghi lại 
+đúng: những phép augmentation nào được dùng, view dương được tạo thế nào, hard 
+negative được tạo thế nào (kèm số mục/trang của bài gốc). 
+2. Viết lại Mục IV-C bằng văn xuôi, không dùng token mã hoá, theo dạng: bài nào · 
+phép augmentation gì · có thể làm mất quan hệ cấu trúc nào · bài có kiểm tra điều đó 
+hay không. 
+3. Viết lại Mục IV -B thành một bảng: phép aug mentation · bài dùng · tác động lên 
+cấu trúc. Chỉ đưa vào những phép thực sự có trong 9 (hoặc số mới sau A1) bài SSL -
+KT. 
+Viết lại mẫu: In CL4KT [46], positive views are produced by sequence -level operations 
+(question masking, interaction cropping, permutat ion, and replacement), while hard 
+negatives are constructed separately [verify the exact mechanism against Sec. X of 
+[46]]. Because CL4KT uses no concept graph, none of its operators is constrained to 
+preserve prerequisite relations. Among the eight graph -based SSL-KT papers, k apply 
+edge- or node -level perturbations that can remove any edge, and none states a 
+constraint that preserves prerequisite edges. 
+Tự kiểm: Mục IV -C không còn token viết hoa nào; mỗi phát biểu về một bài có số 
+mục/trang của bài gốc trong ghi chú làm việc; Mục IV-B là bảng có cột 'bài dùng'. 
+===== PAGE 11 =====
+Trang 11 
+B4. Công thức (6) để lọt KC lạnh qua các item nhi ều KC; công thức (7) 
+sai chiều ma trận 
+Vị trí: Mục VIII-A1, công thức (6); Mục VIII-B1, công thức (7) · Loại: cong-thuc-thieu-dinh-nghia 
+· Công sức: nhỏ 
+Bản thảo viết: “where KC(xt) maps exercise xt to its constituent KCs.” 
+Lỗi là gì: Theo định nghĩa, KC(x_t) là một TẬP KC, nhưng công thức (6) viết KC(x_t) 
+∈ K∖K_cold (một phần tử thuộc tập), nên không xác định được item nhiều KC có chứa 
+KC lạnh sẽ bị xử lý thế nào. Ở công thức (7), W_K ∈ ℝ^{d_text×d} nhưng lại nhân với 
+H_GNN có chiều d_graph. 
+Vì sao là l ỗi [Suy lu ận c ủa tôi]: Công thức (6) là định nghĩa của benchmark pyKT -
+ColdStart — mục ưu tiên số một của agenda. Nếu đọc theo kiểu 'chỉ cần một KC của 
+item là ấm', các item chứa cả KC ấm lẫn KC lạnh sẽ đi vào tập huấn luyện, và KC lạnh 
+không còn zero-exposure. Đó chính là kiểu rò rỉ mà bài phê phán ở các công trình khác. 
+Lỗi chiều ở (7) thì phản biện đọc kỹ sẽ thấy ngay. 
+Cách khắc phục [Đề xuất mới] 
+1. Sửa (6) thành D_train^cold = {(x_t, r_t) ∈ D_train | KC(x_t) ⊆ K∖K_cold}, tức là 
+loại mọi tương tác có item chứa ít nhất một KC lạnh. 
+2. Thêm một câu nói rõ hệ quả: các item có cả KC ấm và KC lạnh bị loại hoàn toàn 
+khỏi huấn luyện, nên phần dữ liệu ấm cũng giảm; báo cáo tỷ lệ tương tác bị loại như 
+một đại lượng bắt buộc của benchmark. 
+3. Thêm một câu: mọi đồ thị dựng từ log (co -occurrence, transition) cũng phải dựng 
+từ D_train^cold, nếu không KC lạnh vẫn lộ qua cạnh. 
+4. Sửa (7): W_Q ∈ ℝ^{d_text×d}, W_K, W_V ∈ ℝ^{d_graph×d}. 
+5. Rà các công thức còn lại (3), (4), (5), (8), (9) và phương trình causal ở mục VIII -
+B4: mọi ký hiệu (Y, Z) phải được định nghĩa trong câu ngay sau công thức. 
+Tự kiểm: Công thức (6) dùng ⊆; có câu về item nhiều KC và về đồ thị dựng từ 
+D_train^cold; trong (7), số chiều của mỗi ma trận khớp với ma trận nó nhân. 
+B5. Chiến lược tìm kiếm không được trình bày đ ủ để tái lập, và một số 
+con số trong quy trình không có giải thích 
+Vị trí: Mục II-A; Mục II-B bước 4; Mục VI đoạn 1 · Loại: khong-tai-lap-duoc · Công sức: vừa 
+Bản th ảo vi ết: “We executed four search query families (Q -G Graph -KT, Q -S Self -
+Supervised KT, Q -P Sparse -Concept Lens, Q -R Reliability Lens) across the six core 
+bibliographic databases” 
+Lỗi là gì: Bản thảo không đưa chuỗi truy vấn cụ thể của Q -G, Q-S, Q-P, Q-R cho từng 
+cơ sở dữ liệu (trường tìm kiếm, toán tử Boolean, bộ lọc, ngày chạy). 5 bài bị loại 
+'during corpus verification' không có lý do trong thân bài. Mã nhận diện đi tới KT083 
+===== PAGE 12 =====
+Trang 12 
+và có câu 'Extra inventory IDs KT078 a nd KT080–KT083 are excluded' mà không giải 
+thích danh mục KT001–KT083 từ đâu ra, trong khi có 140 bài vào bước toàn văn. 
+Vì sao là l ỗi [Chuẩn mực ngành]: Không có chuỗi truy vấn thì không ai chạy lại được 
+tìm kiếm, và phản biện không đánh giá được nguyên n hân thiếu bài ở A1. Các con số 
+không giải thích (5 bài, KT078 –KT083) khiến người đọc tự hỏi corpus có bị chỉnh tay 
+sau khi khoá hay không — câu hỏi khó trả lời trong vòng phản biện. 
+Nguồn: Rethlefsen, M. L., et al. (2021). PRISMA -S: an extension to the PRI SMA Statement for 
+Reporting Literature Searches in Systematic Reviews. Systematic Reviews, 10, 39. 
+https://doi.org/10.1186/s13643-020-01542-z 
+Cách khắc phục [Đề xuất mới] 
+1. Thêm Bảng S -Search vào supplementary: cơ sở dữ liệu · chuỗi truy vấn nguyên 
+văn · trường tìm (title/abstract/keywords) · bộ lọc (năm, loại tài liệu, ngôn ngữ) · 
+ngày chạy · số bản ghi. Trong thân bài, đưa chuỗi truy vấn Q -S của Scopus làm ví 
+dụ. 
+2. Thêm vào Mục II-B một câu nêu 5 bài bị loại khi kiểm tra corpus là bài nào và vì 
+sao (ví dụ: trùng lặp phát hiện muộn, không phải KT, bản rút). 
+3. Giải thích ngắn hệ thống mã KT### (được gán ở bước nào, vì sao có khoảng 
+trống), hoặc đánh lại mã KT01 –KT37 cho corpus cuối và để ánh xạ mã cũ trong 
+supplementary. 
+Tự kiểm: Một người ngoài nhóm cầm Bảng S-Search chạy lại được truy vấn trên Scopus 
+và ra số bản ghi gần với 531 (chênh lệch do chỉ mục cập nhật được ghi chú); thân bài 
+không còn câu nào nhắc mã KT### mà không có giải thích. 
+B6. Biệt ngữ nội bộ của protocol, đư ờng dẫn file và mã token tràn vào 
+thân bài và hình 
+Vị trí: Mục II-D, II-E, III-A/B, IV; Hình 2 và Hình 4; B ảng III–VI · Lo ại: thuat-ngu-khong-nhat-
+quan · Công sức: vừa 
+Bản th ảo vi ết: “The locked protocol (Sec. 22.1) permits QA7 to be coded NA when a 
+paper makes no sparse or cold-start claim” 
+Lỗi là gì: Thân bài tham chiếu tới mục của một tài liệu người đọc không có ('Sec. 22.1', 
+'locked codebook Sec. 14 tokens'), đưa đường dẫn file 
+('tables/H2_qa7_two_variables.csv'), dùng token kỹ thuật 
+(MODEL_DEFINED_FIXED, SPARSE_INTERACTION_ONLY, GN N_GENERIC) 
+như từ vựng thông thường, và Hình 2, 4 chứa ghi chú biên tập ('Mechanism notes are 
+not families', 'Locked codebook Sec. 14 tokens only'). 
+Vì sao là l ỗi [Suy lu ận của tôi]: Độc giả TLT là người làm công nghệ giáo dục, không 
+phải người đã đọc protocol của nhóm. Mỗi token hay tham chiếu tới mục không tồn tại 
+là một chỗ người đọc phải dừng lại đoán, và phản biện thường coi đây là dấu hiệu bản 
+===== PAGE 13 =====
+Trang 13 
+thảo chưa được biên tập cho người ngoài đọc. Ghi chú biên tập nằm trong hình còn cho 
+thấy hình chưa được làm lại cho bản nộp. 
+Cách khắc phục [Đề xuất mới] 
+1. Tạo một bảng ánh xạ token → tên đọc được (ví dụ MODEL_DEFINED_FIXED 
+→ 'author-specified fixed graph') và đặt bảng này trong supplementary. 
+2. Tìm trong file nguồn LaTeX mọi chuỗi viết hoa có dấu gạch dướ i, mọi 'Sec. 14', 
+'Sec. 22.1', 'locked', '.csv'; thay bằng tên đọc được hoặc 'see Supplementary Table S -
+x'. 
+3. Vẽ lại Hình 2 và 4: chỉ giữ tên nhóm, số đếm, tên bài; xoá mọi hộp ghi chú về quy 
+tắc mã hoá. 
+4. Giữ token dạng mono-space chỉ ở bảng mã hoá trong supplementary. 
+Tự kiểm: Tìm '_' trong thân bài (ngoài công thức) không ra token nào; không còn chữ 
+'locked', 'Sec. 14', 'Sec. 22.1', '.csv' trong thân bài; Hình 2 và 4 không còn hộp ghi chú quy 
+tắc. 
+B7. Câu t ừ chối trách nhi ệm l ặp l ại quá nhi ều, làm loãng thông đi ệp 
+chính 
+Vị trí: Tóm tắt; I-D; IV-D; V; VI-B; VII-A–F; VIII; IX; X · Loại: cau-toi-nghia · Công sức: vừa 
+Bản thảo viết: “it does not establish corpus-wide calibration” 
+Lỗi là gì: Cùng một nhóm ý — 'not a league table', 'not reproduced', 'not a classroom 
+result', 'one model, one dataset, one seed', 'does not establish corpus -wide calibration' 
+— được nhắc lại ở khoảng 15 –20 chỗ, có những đoạn (VI -B, VII-E-T3, VIII-A2) dành 
+phần lớn số chữ cho việc nói điều bài không làm. 
+Vì sao là l ỗi [Suy lu ận của tôi]: Kỷ luật khẳng định của bài là điểm mạnh, nhưng khi 
+lặp lại ở mọi đoạn thì người đọc khó tìm thấy phát hiện chính, và văn bản có giọng như 
+thư trả lời phản biện hơn là một survey. Phản biện có thể đọc đây là dấu hiệu văn bản 
+được sinh hoặc vá nhiều lần mà chưa biên tập lại tổng thể. 
+Cách khắc phục [Đề xuất mới] 
+1. Viết một đoạn 'Scope of claims' duy nhất ở cuối Mục I (xem bản mẫu), gom mọi 
+giới hạn về loại khẳng định của bài vào đó. 
+2. Đi qua từng mục từ II đến X, xoá các câu chỉ nhắc lại nội dung của đoạn 'Scope of 
+claims'. Chỉ giữ giới hạn nào RIÊNG cho kết quả tại chỗ đó. 
+3. Giữ Mục IX (Threats to validity) như hiện tại vì đó là chỗ đúng của các giới hạn 
+phương pháp; xoá trùng lặp giữa IX và VII-G (gộp VII-G vào IX). 
+Viết l ại m ẫu: Scope of claims. All counts in this survey are coded properties of the 
+published protocols in the corpus; they are not re -estimated effects. We do not rank 
+models across papers, because splits, seeds, and preprocessing differ. We report no 
+===== PAGE 14 =====
+Trang 14 
+classroom or deployment o utcome; the GO/NO -GO checklist in Sec. VII -E states what 
+evidence a deployment decision would require, not whether any model meets it. 
+Tự kiểm: Các cụm 'league table', 'not reproduced', 'one model, one dataset, one seed' mỗi 
+cụm xuất hiện tối đa một lần ng oài đoạn 'Scope of claims' và Mục IX; Mục VII -G không 
+còn (đã gộp vào IX). 
+B8. Định v ị so v ới survey trư ớc chưa đ ầy đ ủ, và kho ảng tr ống hi ệu 
+chỉnh chưa được đặt trong bối cảnh tài liệu KT ngoài corpus 
+Vị trí: Mục I-C, Bảng II (dòng SSL -KT và ECE/trust) · Loại: thieu-baseline-gan-nhat · Công s ức: 
+vừa 
+Bản thảo viết: “This paper does not claim to be the first KT or Graph-KT review.” 
+Lỗi là gì: Bảng II khẳng định các survey trước không có taxonomy SSL -KT, nhưng 
+không nhắc survey của Shukurlu (arXiv:2504.15163, 2025), vốn tập trung vào KT dùng 
+hàm mất mát bổ sung, gồm Bi -CLKT, CL4KT, SP-CLKT và CoSKT. Các ô về survey 
+Xu et al. [9] ('Not an SSL -KT survey', 'Not a leakage/provenance audit') là khẳng định 
+về nội dung một bài khác mà bản thảo không dẫn số mục cụ thể . Bài cũng không nhắc 
+tới các công trình KT về hiệu chỉnh/thiên lệch xác suất nằm ngoài corpus Graph/SSL 
+(ví dụ Yan et al., arXiv:2606.14123 — đã được trích trong P0 của nhóm). 
+Vì sao là l ỗi [Suy lu ận của tôi]: Mục I-C là chỗ phản biện kiểm tra đầu tiên kh i đánh 
+giá tính mới của một survey. Một survey trước có đúng chủ đề contrastive KT mà 
+không được nhắc sẽ làm ô 'SSL -KT' của Bảng II bị coi là sai. Còn nếu không nhắc tới 
+các nghiên cứu hiệu chỉnh KT ngoài corpus, người đọc có thể hiểu nhầm rằng hiệu 
+chỉnh trong KT hoàn toàn chưa được nghiên cứu, trong khi kết luận đúng của bài hẹp 
+hơn: corpus Graph/SSL-KT không báo cáo nó. 
+Cách khắc phục [Đề xuất mới] 
+1. Đọc survey của Shukurlu (arXiv:2504.15163); thêm một cột vào Bảng II và một 
+câu trong I -C nêu điểm khác biệt (survey đó lấy hàm mất mát làm trục, không mã 
+hoá nguồn gốc đồ thị, không kiểm toán cold-start hay hiệu chỉnh — kiểm tra lại từng 
+ý khi đọc). 
+2. Với từng ô của cột Xu et al. [9] trong Bảng II, ghi vào ghi chú làm việc số 
+mục/trang của [9] làm căn cứ; ô nào không tìm được căn cứ thì đổi thành mô tả 
+trung tính ('focus: structure × propagation'). 
+3. Thêm vào VI-B hoặc VIII-A2 hai đến ba câu về các công trình KT có bàn về hiệu 
+chỉnh hoặc thiên lệch xác suất ngoài corpus (lấy từ danh mục tài liệu tham khảo của 
+P0), nói rõ chúng nằm ngoài tiêu chí (1) nên không được tính vào 0/37. 
+4. Tìm thêm survey KT 2025 –2026 (Google Scholar: 'knowledge tracing survey 
+2025', 'contrastive knowledge tracing review') để chắc không còn survey trùng phạm 
+vi nào bị sót. 
+===== PAGE 15 =====
+Trang 15 
+Tự kiểm: Bảng II có cột cho survey của Shukurlu; mỗi ô về [9] có căn cứ trong ghi chú 
+làm việc; VI-B hoặc VIII-A2 có ít nhất một câu nhắc tới nghiên cứu hiệu chỉnh KT ngoài 
+corpus, có trích dẫn. 
+B9. Agenda Group B g ồm các hướng chung chung, không xu ất phát từ 
+khoảng trống đã mã hoá 
+Vị trí: Mục VIII-B2, VIII-B3, VIII-B4; công thức (8), (9) và phương trình causal · Lo ại: dong-co-
+roi-ket-qua · Công sức: nhỏ 
+Bản thảo viết: “The learning-technology motivation is compact representation of deep 
+skill trees, not a claim that hyperbolic KT was observed in this corpus.” 
+Lỗi là gì: Mục VIII -B2 (hyperbolic), VIII -B3 (Neural ODE) và VIII -B4 (causal 
+debiasing) không liên kết với trường mã hoá nào trong 37 bài; bản thảo tự thừa nhận 
+điều đó ở cả ba mục, nhưng vẫn dành gần một trang và hai công thức cho chúng. 
+Vì sao là l ỗi [Suy luận của tôi]: Ở mục hướng nghiên cứu, phản biện đánh giá xem các 
+hướng có rút ra từ phân tích của bài hay không. Hướng chung chung làm loãng Group 
+A — phần thực sự mạnh của agenda — và chiếm chỗ mà A1–A4 cần để viết kỹ hơn. 
+Cách khắc phục [Đề xuất mới] 
+1. Giữ mục VIII-B1 (LLM–GNN cho KC mới) vì nó nối trực tiếp với T1 và với hai 
+bài SINKT, KGNN-KT trong corpus; viết lại B1 để nói rõ liên kết đó. 
+2. Rút VIII -B2, VIII -B3, VIII -B4 thành một đoạn ngắn 3 –4 câu ('Other open 
+directions'), bỏ công thức (8), (9) và phương trình causal. 
+3. Dùng chỗ trống tiết kiệm được cho phần mở rộng ở A4 (tổng hợp theo RQ). 
+Tự kiểm: Mục VIII-B dài không quá nửa cột; mỗi hướng còn lại nêu đích danh trường mã 
+hoá hoặc bài trong corpus mà nó xuất phát. 
+B10. Agenda v ề hiệu ch ỉnh và cold -start trùng v ới đóng góp c ủa P0 
+nhưng bài không nêu quan hệ giữa hai bài 
+Vị trí: Mục VI-B, VII-E (T1, T3), VIII -A1–A2; M ục X · Lo ại: dong-gop-khong-phan-biet · Công 
+sức: nhỏ 
+Không tìm th ấy trong b ản th ảo: Bản thảo không nhắc tới bài P0 của nhóm ('When 
+Overall AUC Hides Miscalibration: Evaluating Knowledge Tracing on Rarely Practiced 
+Knowledge Components', đang chuẩn bị nộp IJIET theo hình thức phản biện kín hai 
+chiều), dù agenda A1–A2 và phán quyết T3 trùng với luận điểm trung tâm của P0. 
+Lỗi là gì: Quan hệ giữa survey và P0 chưa được quyết định: survey hiện đề xuất như 
+hướng mở chính những việc P0 đã làm (đo hiệu chỉnh theo dải tần suất KC). 
+Vì sao là lỗi [Suy luận của tôi]: Có ba rủi ro: (i) nếu survey xuất bản hoặc đưa lên arXiv 
+trước mà trích P0, tính ẩn danh của P0 ở IJIET bị lộ; (ii) nếu không trích, sau này phản 
+biện có thể thấy hai bài cùng nhóm cùng thông điệp mà không dẫn nhau, và đặt câu hỏi 
+về xuất bản trùng lặp; (ii i) survey đang bỏ phí cơ hội nói rằng khoảng trống A2 đã bắt 
+===== PAGE 16 =====
+Trang 16 
+đầu được lấp. Đây là quyết định của người hướng dẫn, không phải của riêng tác giả thứ 
+nhất. 
+Cách khắc phục [Đề xuất mới] 
+1. Chuẩn bị cho buổi gặp một trang so sánh: đóng góp của P0 · đóng góp của survey 
+· chỗ trùng · thời điểm nộp dự kiến của mỗi bài. 
+2. Thống nhất với thầy một trong ba phương án: (a) nộp survey sau khi P0 có quyết 
+định, rồi trích P0; (b) nộp song song, survey không trích P0 và agenda A2 viết ở 
+mức tổng quát; (c) trích P0 dưới dạng ẩn danh theo hướng dẫn của TLT nếu cho 
+phép. 
+3. Viết lại VIII -A2 theo phương án đã chọn, và ghi phương án vào hồ sơ dự án để 
+thống nhất khi viết thư gửi biên tập. 
+Tự kiểm: Có một quyết định bằng văn bản (email hoặc biên bản họp) về quan hệ P0 –
+survey; VIII-A2 được viết theo đúng phương án đó. 
+B11. Một số tài liệu tham khảo 2025–2026 cần xác minh trước khi nộp 
+Vị trí: Danh mục tài liệu tham khảo: [8], [9], [44], [45]; cùng các tài liệu [32]–[43] · Loại: trich-
+dan-sai-chuan · Công sức: vừa 
+Bản thảo viết: “[Online]. Available: https://doi.org/10.1007/978-981-92-0375-8_9” 
+Lỗi là gì: Tôi chưa xác minh được các DOI của [44] (R²GCurL, TOIS 2026) và [45] 
+(STSKT, DASFAA 2026; tiền tố 978 -981-92 khác với dải tiền tố thường gặp của kỷ 
+yếu Springer gần đây), cũng như thông tin số tập/trang của [8] và [9]. 
+Vì sao là l ỗi [Suy lu ận của tôi]: Với một survey, danh mục tài liệu tham khảo chính là 
+dữ liệu đầu vào. Một DOI sai hay một bài không truy được sẽ làm phản biện nghi ngờ 
+toàn bộ quá trình xác minh corpus, và trong b ối cảnh bài có dùng công cụ AI hỗ trợ 
+(theo phần Acknowledgment) thì một trích dẫn không tồn tại là lỗi liêm chính nghiêm 
+trọng. 
+Cách khắc phục [Đề xuất mới] 
+1. Mở từng DOI trong 46 tài liệu tham khảo bằng trình duyệt (doi.org), ghi vào một 
+bảng: số TLTK · DOI mở được không · tiêu đề/tác giả/năm/tập/trang có khớp trang 
+nhà xuất bản không. 
+2. Ưu tiên kiểm tra [44], [45], [8], [9] và [32]–[43] (các bài 2025–2026). 
+3. Sửa mọi chỗ sai lệch; bài nào chưa có DOI chính thức thì ghi 'to appear' kèm 
+arXiv ID hoặc URL trang hội nghị. 
+Tự kiểm: Bảng xác minh có đủ 46 dòng, cột 'khớp' đều là 'có' (hoặc có ghi chú xử lý). 
+===== PAGE 17 =====
+Trang 17 
+5. MỨC C — TUỲ CHỌN (3 điểm) 
+Tuỳ chọn — đây là gợi ý để bản thảo đẹp hơn, không sửa cũng không sao. 
+C1. Hình 2 và Hình 3 trùng nội dung 
+Vị trí: Hình 2 (trang 5) và Hình 3a–3b (trang 6) · Loại: hinh-thieu-nhan · Công sức: nhỏ 
+Không tìm thấy trong b ản thảo: Hình 3a lặp lại các số 18/9/9 và danh sách encoder đã 
+có trong Hình 2; Hình 3b lặp lại số đếm encoder dưới dạng biểu đồ cột. 
+Lỗi là gì: Hai hình liên tiếp trình bày cùng một bộ số đếm. 
+Vì sao là l ỗi [Suy lu ận của tôi]: Hình trùng chiếm khoảng nửa trang mà không thêm 
+thông tin, trong khi bài cần chỗ cho phần tổng hợp ở A4. Không ai hiểu sai nội dung vì 
+lỗi này. 
+Cách khắc phục [Đề xuất mới] 
+1. Giữ Hình 2 làm hình tổng quan taxonomy; bỏ Hình 3a. 
+2. Nếu muốn giữ biểu đồ cột encoder (3b), chuyển nó vào supplementary hoặc thay 
+bằng bảng chéo provenance × encoder (vốn có thông tin mới). 
+Tự kiểm: Không có hai hình nào trong bài trình bày cùng một bộ số đếm. 
+Lưu ý: Tuỳ chọn — nên làm ở vòng cuối, sau khi corpus đã chốt (A1) vì các số đếm trong hình 
+sẽ thay đổi. 
+C2. Ký hi ệu N đư ợc dùng cho ba đ ại lư ợng khác nhau; B ảng I ch ứa 
+những mục không phải ký hiệu 
+Vị trí: Bảng I; công thức (5); Mục II-A, II-B · Loại: ky-hieu-khong-nhat-quan · Công sức: nhỏ 
+Bản th ảo vi ết: “ECE Expected Calibration Error (equal -width bins; manuscript -
+reporting audit 0/37; one REPRODUCED overlay in Sec. VI)” 
+Lỗi là gì: N lần lượt là số bản ghi (N = 2.017), số bài (N = 37) và số dự đoán trong công 
+thức ECE (5). Bảng I chứa một dòng ECE kèm số đếm kiểm toán và một dòng W cho 
+agenda causal — không phải ký hiệu dùng xuyên suốt bài. 
+Vì sao là l ỗi [Suy lu ận của tôi]: Người đọc phải dừng lại phân biệt N nào là N nào khi 
+đọc công thức (5). Bảng ký hiệu chứa kết quả kiểm toán làm lẫn vai trò của bảng. 
+Cách khắc phục [Đề xuất mới] 
+1. Dùng N_rec cho số bản ghi, N cho số bài trong corpus, n cho số dự đoán trong 
+(5). 
+2. Trong Bảng I, xoá phần '0/37; one REPRODUCED overlay' ở dòng ECE; xoá 
+dòng W nếu mục VIII-B4 bị rút gọn theo điểm B9. 
+Tự kiểm: Mỗi ký hiệu trong Bảng I có đúng một nghĩa trong toàn bài; Bảng I không còn số 
+đếm kiểm toán. 
+Lưu ý: Tuỳ chọn — làm cùng lúc với lần rà công thức ở B4 cho đỡ tốn công. 
+===== PAGE 18 =====
+Trang 18 
+C3. Một s ố trường mã hoá và phân t ầng ch ất lư ợng khôn g có giá tr ị 
+phân biệt 
+Vị trí: Mục V (câu 'Generic data sparsity is YES for all 37 papers'); M ục VI đo ạn 2 (phân t ầng 
+QA) · Loại: khong-giai-thich-vi-sao · Công sức: nhỏ 
+Bản thảo viết: “Generic data sparsity is YES for all 37 papers.” 
+Lỗi là gì: Trường generic data sparsity nhận YES cho cả 37 bài nên không phân biệt 
+được bài nào với bài nào; phân tầng QA cho 11 HIGH, 26 MODERATE, 0 LIMITED, 
+với trung bình nhóm MODERATE là 0,76 (sát ngưỡng HIGH 0,80), nên thang đánh giá 
+gần như không tách được các bài. 
+Vì sao là lỗi [Suy luận của tôi]: Trường có giá trị không đổi chỉ chiếm chỗ và có thể bị 
+phản biện hỏi 'trường này đo gì'. Thang QA không có nhóm LIMITED dễ bị đọc là 
+thang quá dễ dãi, làm giảm giá trị của các nhận định dựa trên QA. 
+Cách khắc phục [Đề xuất mới] 
+1. Bỏ trường generic data sparsity khỏi bảng tóm tắt, hoặc định nghĩa lại thành 'bài 
+có tách kết quả theo dải tần suất KC hay không' — trường này mới có tính phân biệt. 
+2. Báo cáo phân bố điểm QA theo từng mục QA1–QA8 (biểu đồ hoặc bảng nhỏ), để 
+người đọc thấy mục nào thực sự kéo điểm xuống (dự đoán: QA5 và QA7). 
+Tự kiểm: Không còn trường nào trong bảng tóm tắt có cùng một giá trị cho mọi bài; có 
+bảng phân bố điểm theo từng mục QA. 
+Lưu ý: Tuỳ chọn — làm nếu còn chỗ sau khi đã xử lý xong các điểm A và B. 
+6. CÂU HỎI CẦN HỌC VIÊN LÀM RÕ 
+Những chỗ tôi không kết luận được chỉ từ bản thảo. Trả lời được thì một số điểm ở trên có thể 
+không còn là vấn đề. 
+1. DECKT (Entropy 2025) có nằm trong 2.017 bản ghi không? Nếu có và bị loại với 
+một lý do hợp lệ (ví dụ một tiêu chí loại trừ cụ thể), thì A1 chỉ cần thêm một dòng 
+giải thích vào Table S-PRISMA-5 — nhưng vẫn phải làm bước kiểm tra các bài còn 
+lại trong danh sách. 
+2. Ai là người sàng lọc chính và ai là Coder A? Bản thảo ghi Coder B là 'NguyenKT' 
+— nếu đó chính là tác giả thứ nhất và cũng là người sàng lọc chính, thì mẫu κ không 
+độc lập như bản thảo đang ngụ ý, và A3 càng cần làm. 
+3. Khi mã hoá trường ece_reported, có tìm cả Brier, RMSE, log -loss và reliability 
+diagram trong phụ lục của từng bài không? Nếu đã tìm và đều âm tính, A2 chỉ còn là 
+việc ghi lại quy trình tìm và sửa tên trường — khoảng nửa ngày. 
+4. Trong mã DyGKT, 'transductive test edges' cụ thể là gì: các tương tác kiểm tra 
+trước thời điểm dự đoán được đưa vào đồ thị động (hợp lệ theo thời gian), hay cá c 
+nút/cạnh của tập kiểm tra đã có mặt khi huấn luyện? Nếu là trường hợp thứ nhất, 
+phần rủi ro rò rỉ ở B1 nhẹ đi, nhưng vẫn phải giải thích trong bài. 
+===== PAGE 19 =====
+Trang 19 
+5. Chuỗi truy vấn đầy đủ của Q-G, Q-S, Q-P, Q-R đã có trong supplementary chưa? 
+Nếu đã có, B5 chỉ cần thêm một câu dẫn tới đó và giải thích 5 bài cùng hệ thống mã 
+KT###. 
+6. Ngoài Cursor, quá trình viết survey có dùng công cụ AI nào khác không (bản thảo 
+P0 khai báo Cursor, Grok và Claude)? IEEE yêu cầu khai báo đầy đủ trong phần 
+Acknowledgment. 
+7. TLT có loại b ài 'Survey and Tutorial' như bản thảo tự xưng ở Mục I -D không? 
+Nếu có, phần 'tutorial' nằm ở đâu trong bài; nếu không, nên bỏ cụm này và kiểm tra 
+giới hạn số trang của loại bài tương ứng. 
+8. Bảng II mô tả survey Xu et al. [9] là 'Not a leakage/provenance a udit' và 'Not an 
+SSL-KT survey' — các ô này dựa trên việc đọc toàn văn [9] hay chỉ đọc tóm tắt? 
+7. NHỮNG PHẦN ĐANG LÀM TỐT — GIỮ NGUYÊN 
+Ghi ra đây để trong lúc sửa các mục trên, những phần này không bị viết lại rồi mất. 
+✓ Toàn bài, đ ặc biệt Mục I-C, V, VI -B, IX: Kỷ luật về mức độ khẳng định rất tốt: 
+mọi con số được giới hạn đúng phạm vi corpus ('none of the 37'), phân biệt rõ dữ 
+liệu do bài gốc báo cáo với dữ liệu tự tính, và tự tuyên bố không xếp hạng chéo giữa 
+các bài. Khi xử lý B7, chỉ gom chúng lại một chỗ — không bỏ tinh thần này. 
+✓ Mục V, B ảng VI, Recommendation 4: Việc tách bốn khái niệm thưa tương tác / 
+cold-start theo item / theo người học / theo KC chưa từng xuất hiện là đóng góp khái 
+niệm thật, có ích trực tiếp cho trục đánh giá theo độ thưa của l uận án. Giữ nguyên 
+định nghĩa và cách trình bày; chỉ sửa công thức (6) như B4. 
+✓ Mục II-B, II-E, Hình 1, Hình 2–4: Mọi phép cộng trừ trong quy trình PRISMA và 
+các bảng đếm đều khớp (2.017 → 750 → 140 → 37; 18+9+9; tổng encoder 36; 
+5+2+1+1; 160 ô κ). Khi đếm lại sau A1, giữ cách trình bày phép tính trong chú thích 
+hình (140 − 103 = 37) vì nó giúp phản biện kiểm tra nhanh. 
+✓ Mục II-E: Cách xử lý κ đúng kỹ thuật: tách ba trường bất biến (p_e = 1, κ không 
+xác định) ra khỏi trung bình và báo cáo phần trăm đồng t huận riêng; không gộp hai 
+hệ số κ của hai người mã hoá. Đây là chi tiết nhiều survey làm sai — giữ nguyên khi 
+bổ sung κ của sàng lọc (A3). 
+✓ Mục VII -E, VII -F, B ảng VII: Checklist GO/NO -GO T1 –T3 kèm năm khuyến 
+nghị báo cáo biến khoảng trống mã hoá thành quy ết định cụ thể cho người thiết kế 
+ITS — rất hợp với độc giả TLT. Đây là phần nên được làm nổi bật hơn khi rút gọn 
+các phần khác. 
+✓ Mục VIII, cách chia Group A / Group B: Việc tách agenda thành nhóm rút ra từ 
+corpus (Group A) và nhóm định hướng mở (Group B), với Group A được ưu tiên, là 
+đúng cách làm. Giữ cấu trúc này; chỉ rút gọn Group B như B9. 
+===== PAGE 20 =====
+Trang 20 
+8. NGUỒN ĐÃ VIỆN DẪN 
+Các chuẩn mực được nhắc ở phần trên đều tra được tại đây. 
+M. J. Page et al., “The PRISMA 2020 statement: An updated guideline for reporting 
+systematic reviews,” BMJ, vol. 372, n71, 2021.  https://doi.org/10.1136/bmj.n71 
+M. L. Rethlefsen et al., “PRISMA -S: An extension to the PRISMA Statement for 
+Reporting Literature Searches in Systematic Reviews,” Systematic Reviews, vol. 10, 39, 
+2021.  https://doi.org/10.1186/s13643-020-01542-z 
+J. Webster and R. T. Watson, “Analyzing the past to prepare for the future: Writing a 
+literature review,” MIS Quarterly, vol. 26, no. 2, pp. xiii –xxiii, 2002.   
+https://www.jstor.org/stable/4132319 
+Y. Bai, X. Wu, T. Wei , and L. He, “A Dual -Encoder Contrastive Learning Model for 
+Knowledge Tracing,” Entropy, vol. 27, no. 7, 685, 2025. (DECKT — đã xác minh tồn tại 
+và thuộc phạm vi qua trang nhà xuất bản.)  https://doi.org/10.3390/e27070685 
+Y. Yin et al., “Tracing Knowledge Instead of Patterns: Stable Knowledge Tracing with 
+Diagnostic Transformer,” in Proc. ACM Web Conf. (WWW), 2023. (DTransformer — đã 
+xác minh tồn tại; cần đọc toàn văn để xác định có thoả S -criterion hay không.)   
+https://doi.org/10.1145/3543507.3583255 
+A. Shukurlu, “Survey of Loss Augmented Knowledge Tracing,” arXiv:2504.15163, 2025.   
+https://arxiv.org/abs/2504.15163 
+Yan et al., “Recovering Stranded Discrimination in Knowledge Tracing: Per -Item Bias 
+Correction via Empirical -Bayes Shrinkage,” arXiv:2606.14123,  2026 (đã được trích trong 
+P0).  https://arxiv.org/abs/2606.14123 
+Ứng viên cần kiểm tra tiêu chí đưa vào (chưa đọc toàn văn): “Self -paced contrastive 
+learning for knowledge tracing,” Neurocomputing, 2024.   
+https://www.sciencedirect.com/science/article/abs/pii/S0925231224011378 
+Ứng viên cần kiểm tra tiêu chí đưa vào (chưa đọc toàn văn): “Dynamic heterogeneous 
+graph contrastive networks for knowledge tracing,” Applied Soft Computing, 2024.   
+https://www.sciencedirect.com/science/article/abs/pii/S1568494624009682 
+Ứng viên cần kiểm tra tiêu chí đưa vào (chưa đọc toàn văn): “Heterogeneous graph 
+knowledge tracing with novel contrastive view and meta -path contexts,” Expert Systems 
+with Applications, 2025.   
+https://www.sciencedirect.com/science/article/abs/pii/S0957417425024571 
+Ứng viên cần kiểm tra tiêu chí đưa vào (chưa đọc toàn văn): “Contrastive Learning Based 
+on Bipartite Graphs for Interpretable Knowledge Tracing,” Springer LNCS chapter, 2024.   
+https://link.springer.com/chapter/10.1007/978-981-96-0821-8_14 

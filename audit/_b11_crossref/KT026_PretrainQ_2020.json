@@ -1,0 +1,120 @@
+{
+  "title": [
+    "Improving Knowledge Tracing via Pre-training Question Embeddings"
+  ],
+  "author": [
+    {
+      "given": "Yunfei",
+      "family": "Liu",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "Shanghai Jiao Tong University"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yang",
+      "family": "Yang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shanghai Jiao Tong University"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Xianyu",
+      "family": "Chen",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shanghai Jiao Tong University"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Jian",
+      "family": "Shen",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shanghai Jiao Tong University"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Haifeng",
+      "family": "Zhang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "The Center on Frontiers of Computing Studies, Peking University"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yong",
+      "family": "Yu",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shanghai Jiao Tong University"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2020,
+        7
+      ]
+    ]
+  },
+  "container-title": [
+    "Proceedings of the Twenty-Ninth International Joint Conference on Artificial Intelligence"
+  ],
+  "volume": null,
+  "issue": null,
+  "page": "1577-1583",
+  "publisher": "International Joint Conferences on Artificial Intelligence Organization",
+  "DOI": "10.24963/ijcai.2020/219",
+  "type": "proceedings-article"
+}

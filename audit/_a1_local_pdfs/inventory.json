@@ -1,0 +1,952 @@
+{
+  "files": [
+    {
+      "file": "A Cross-Domain Knowledge Tracing Model Based on Graph Optimal Transport.pdf",
+      "pages": 25,
+      "chars_page1": 2829,
+      "dois_page1_2": [
+        "10.1007/s11280-024-01311-1"
+      ],
+      "title_lines": [
+        "World Wide Web (2025) 28:10",
+        "https://doi.org/10.1007/s11280-024-01311-1",
+        "A cross-domain knowledge tracing model based on graph",
+        "optimal transport",
+        "Zhengyang Wu1,2 \u00b7 Yuqi Liu2 \u00b7 Jianwei Cen2 \u00b7 Zetao Zheng3 \u00b7 Guandong Xu4",
+        "Received: 31 July 2024 / Revised: 10 October 2024 / Accepted: 15 October 2024 /",
+        "Published online: 26 December 2024",
+        "\u00a9 The Author(s), under exclusive licence to Springer Science+Business Media, LLC, part of Springer Nature 2024"
+      ],
+      "candidate_hits": [
+        "DynHet:dynamic heterogeneous graph contrastive"
+      ],
+      "ref_start_page_1indexed": 23
+    },
+    {
+      "file": "A Self-Attentive Model for Knowledge Tracing.pdf",
+      "pages": 6,
+      "chars_page1": 4405,
+      "dois_page1_2": [],
+      "title_lines": [
+        "A Self-Attentive model for Knowledge Tracing",
+        "Shalini Pandey",
+        "University of Minnesota",
+        "Twin Cities, MN 55455, USA",
+        "pande103@umn.edu",
+        "George Karypis",
+        "University of Minnesota",
+        "Twin Cities, MN 55455, USA"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 6
+    },
+    {
+      "file": "A Survey of Graph-Based Knowledge Tracing from Structural and Propagation Perspectives - Models, Applications, and Future Directions.pdf",
+      "pages": 47,
+      "chars_page1": 2300,
+      "dois_page1_2": [],
+      "title_lines": [
+        "A Survey of Graph-Based Knowledge Trac-",
+        "ing from Structural and Propagation Per-",
+        "spectives: Models, Applications, and Fu-",
+        "ture Directions",
+        "Meiling Xu",
+        "University of Turku",
+        "Turku, Finland",
+        "meilxu@utu.fi"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 36
+    },
+    {
+      "file": "A Survey of Knowledge Tracing - Models, Variants, and Applications.pdf",
+      "pages": 22,
+      "chars_page1": 6105,
+      "dois_page1_2": [],
+      "title_lines": [
+        "JOURNAL OF LATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021",
+        "A Survey of Knowledge Tracing: Models, Variants,",
+        "and Applications",
+        "Shuanghong Shen, Qi Liu, Member, IEEE, Zhenya Huang, Member, IEEE, Yonghe Zheng,",
+        "Minghao Yin, Member, IEEE, Minjuan Wang, Member, IEEE, and Enhong Chen, Fellow, IEEE",
+        "Abstract\u2014Modern online education has the capacity to provide",
+        "intelligent educational services by automatically analyzing sub-",
+        "stantial amounts of student behavioral data. Knowledge Tracing"
+      ],
+      "candidate_hits": [
+        "DTransformer:diagnostic transformer"
+      ],
+      "ref_start_page_1indexed": 18
+    },
+    {
+      "file": "Bi-CLKT - Bi-Graph Contrastive Learning Based Knowledge Tracing.pdf",
+      "pages": 12,
+      "chars_page1": 4160,
+      "dois_page1_2": [],
+      "title_lines": [
+        "Bi-CLKT: Bi-Graph Contrastive Learning based Knowledge Tracing",
+        "Xiangyu Songa, Jianxin Lia,\u2217, Qi Leib, Wei Zhaoc, Yunliang Chend,\u2217, Ajmal Miane",
+        "aSchool of IT, Faculty of Science, Engineering and Built Environment, Deakin University, Geelong, VIC 3220, Australia",
+        "bSchool of Information Engineering, Chang\u2019an University, Xi\u2019an, China",
+        "cSchool of Computer Science and Technology, Xidian University, Xi\u2019an, China",
+        "dSchool of Computer Science, China University of Geosciences, Wuhan, China",
+        "eDepartment of Computer Science and Software Engineering, The University of Western Australia, Perth, Australia"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 11
+    },
+    {
+      "file": "CMKT - Concept Map Driven Knowledge Tracing.pdf",
+      "pages": 14,
+      "chars_page1": 6543,
+      "dois_page1_2": [
+        "10.1109/TLT.2022.3196355"
+      ],
+      "title_lines": [
+        "CMKT: Concept Map Driven Knowledge Tracing",
+        ", Penghe Chen",
+        ", Yang Pian",
+        ", and Vincent W. Zheng",
+        "Abstract\u2014In this article, we advocate for and propose a novel",
+        "concept map driven knowledge tracing (CMKT) model, which",
+        "utilizes educational concept map for learner modeling. This article",
+        "particularly addresses the issue of learner data sparseness caused by"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 13
+    },
+    {
+      "file": "Context-Aware Attentive Knowledge Tracing.pdf",
+      "pages": 11,
+      "chars_page1": 970,
+      "dois_page1_2": [
+        "10.1145/3394486.3403282"
+      ],
+      "title_lines": [
+        "Latest updates: h\ue03cps://dl.acm.org/doi/10.1145/3394486.3403282",
+        "RESEARCH-ARTICLE",
+        "Context-Aware A\ue03centive Knowledge Tracing",
+        "ARITRA GHOSH, University of Massachuse\ue03cs Amherst, Amherst, MA, United States",
+        "NEIL HEFFERNAN, Worcester Polytechnic Institute, Worcester, MA, United States",
+        "ANDREW S. LAN, University of Massachuse\ue03cs Amherst, Amherst, MA, United States",
+        "Open Access Support provided by:",
+        "University of Massachuse\ue03cs Amherst"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 10
+    },
+    {
+      "file": "Contrastive Learning for Knowledge Tracing.pdf",
+      "pages": 10,
+      "chars_page1": 766,
+      "dois_page1_2": [
+        "10.1145/3485447.3512105"
+      ],
+      "title_lines": [
+        "Latest updates: h\ue03cps://dl.acm.org/doi/10.1145/3485447.3512105",
+        "RESEARCH-ARTICLE",
+        "Contrastive Learning for Knowledge Tracing",
+        "WONSUNG LEE",
+        "JAEYOON CHUN",
+        "YOUNGMIN LEE, Korea Advanced Institute of Science and Technology, Daejeon, South Korea",
+        "KYOUNGSOO PARK",
+        "SUNGRAE PARK"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 10
+    },
+    {
+      "file": "Convolutional Neural Network for Trajectory Prediction.pdf",
+      "pages": 11,
+      "chars_page1": 2424,
+      "dois_page1_2": [],
+      "title_lines": [
+        "Convolutional Neural Network",
+        "for Trajectory Prediction",
+        "Nishant Nikhil1,2 and Brendan Tran Morris2[0000\u22120002\u22128592\u22128806]",
+        "1 Indian Institute of Technology Kharagpur",
+        "nishantnikhil@iitkgp.ac.in",
+        "2 University of Nevada, Las Vegas",
+        "brendan.morris@unlv.edu",
+        "Abstract. Predicting trajectories of pedestrians is quintessential for au-"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 10
+    },
+    {
+      "file": "Deep Graph Memory Networks for Forgetting-Robust Knowledge Tracing.pdf",
+      "pages": 11,
+      "chars_page1": 5198,
+      "dois_page1_2": [],
+      "title_lines": [
+        "JOURNAL SUBMISSION",
+        "Deep Graph Memory Networks for",
+        "Forgetting-Robust Knowledge Tracing",
+        "Ghodai Abdelrahman, Qing Wang",
+        "Abstract\u2014Tracing a student\u2019s knowledge is vital for tailoring the learning experience. Recent knowledge tracing methods tend to",
+        "respond to these challenges by modelling knowledge state dynamics across learning concepts. However, they still suffer from several",
+        "inherent challenges including: modelling forgetting behaviours and identifying relationships among latent concepts. To address these",
+        "challenges, in this paper, we propose a novel knowledge tracing model, namely Deep Graph Memory Network (DGMN). In this model,"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 10
+    },
+    {
+      "file": "Deep Knowledge Tracing.pdf",
+      "pages": 9,
+      "chars_page1": 3410,
+      "dois_page1_2": [],
+      "title_lines": [
+        "Deep Knowledge Tracing",
+        "Chris Piech\u2217, Jonathan Bassen\u2217, Jonathan Huang\u2217\u2021, Surya Ganguli\u2217,",
+        "Mehran Sahami\u2217, Leonidas Guibas\u2217, Jascha Sohl-Dickstein\u2217\u2020",
+        "\u2217Stanford University, \u2020Khan Academy, \u2021Google",
+        "{piech,jbassen}@cs.stanford.edu, jascha@stanford.edu,"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 8
+    },
+    {
+      "file": "Deep Learning Based Knowledge Tracing A Review, a Tool and Empirical Studies.pdf",
+      "pages": 25,
+      "chars_page1": 6309,
+      "dois_page1_2": [
+        "10.1109/TKDE.2025.3552759"
+      ],
+      "title_lines": [
+        "IEEE TRANSACTIONS ON KNOWLEDGE AND DATA ENGINEERING, VOL. 37, NO. 8, AUGUST 2025",
+        "Deep Learning Based Knowledge Tracing: A Review,",
+        "a Tool and Empirical Studies",
+        "Zitao Liu",
+        ", Member, IEEE, Teng Guo",
+        ", Qianru Liang",
+        ", Mingliang Hou",
+        ", Bojun Zhan, Jiliang Tang"
+      ],
+      "candidate_hits": [
+        "DTransformer:diagnostic transformer"
+      ],
+      "ref_start_page_1indexed": 22
+    },
+    {
+      "file": "Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor.pdf",
+      "pages": 12,
+      "chars_page1": 4405,
+      "dois_page1_2": [
+        "10.1145/3690624.3709172"
+      ],
+      "title_lines": [
+        "arXiv:2506.11107v1 [cs.SE] 7 Jun 2025",
+        "Denoising Programming Knowledge Tracing",
+        "with a Code Graph-based Tuning Adaptor",
+        "Weibo Gao",
+        "State Key Laboratory of Cognitive",
+        "Intelligence, University of Science and",
+        "Technology of China",
+        "Hefei, China"
+      ],
+      "candidate_hits": [
+        "DTransformer:diagnostic transformer"
+      ],
+      "ref_start_page_1indexed": 10
+    },
+    {
+      "file": "DGEKT - A Dual Graph Ensemble Learning Method for Knowledge Tracing.pdf",
+      "pages": 24,
+      "chars_page1": 3930,
+      "dois_page1_2": [
+        "10.1145/3638350"
+      ],
+      "title_lines": [
+        "DGEKT: A Dual Graph Ensemble Learning Method for",
+        "Knowledge Tracing",
+        "CHAORAN CUI, YUMO YAO, CHUNYUN ZHANG, and HEBO MA, Shandong University of",
+        "Finance and Economics, China",
+        "YULING MA, Shandong Jianzhu University, China",
+        "ZHAOCHUN REN, Leiden University, The Netherlands",
+        "CHEN ZHANG, Hong Kong Polytechnic University, China",
+        "JAMES KO, Education University of Hong Kong, China"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 21
+    },
+    {
+      "file": "Dual-Channel Adaptive Scale Hypergraph Encoders With Cross-View Contrastive Learning for Knowledge Tracing.pdf",
+      "pages": 15,
+      "chars_page1": 5538,
+      "dois_page1_2": [
+        "10.1109/TNNLS.2024.3386810"
+      ],
+      "title_lines": [
+        "IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 36, NO. 4, APRIL 2025",
+        "Dual-Channel Adaptive Scale Hypergraph Encoders",
+        "With Cross-View Contrastive Learning",
+        "for Knowledge Tracing",
+        "Jiawei Li , Yuanfei Deng , Yixiu Qin , Shun Mao , and Yuncheng Jiang , Member, IEEE",
+        "Abstract\u2014 Knowledge tracing (KT) refers to predicting learn-",
+        "ers\u2019 performance in the future according to their historical",
+        "responses, which has become an essential task in intelligent"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 14
+    },
+    {
+      "file": "DyGKT - Dynamic Graph Learning for Knowledge Tracing.pdf",
+      "pages": 12,
+      "chars_page1": 5414,
+      "dois_page1_2": [
+        "10.1145/3637528.3671773"
+      ],
+      "title_lines": [
+        "DyGKT: Dynamic Graph Learning for Knowledge Tracing",
+        "Ke Cheng\u2217",
+        "ckpassenger@buaa.edu.cn",
+        "SKLSDE Lab, Beihang University",
+        "Beijing, China",
+        "Linzhi Peng\u2217",
+        "lzpeng626@buaa.edu.cn",
+        "SKLSDE Lab, Beihang University"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 10
+    },
+    {
+      "file": "Dynamic Key-Value Memory Networks for Knowledge Tracing.pdf",
+      "pages": 10,
+      "chars_page1": 4626,
+      "dois_page1_2": [
+        "10.1145/3038912.3052580"
+      ],
+      "title_lines": [
+        "Dynamic Key-Value Memory Networks for",
+        "Knowledge Tracing",
+        "Jiani Zhang1,2, Xingjian Shi3, Irwin King1,2, Dit-Yan Yeung3",
+        "1Shenzhen Key Laboratory of Rich Media Big Data Analytics and Application,",
+        "Shenzhen Research Institute, The Chinese University of Hong Kong, Shenzhen, China",
+        "2Department of Computer Science and Engineering,",
+        "The Chinese University of Hong Kong, Shatin, N.T., Hong Kong",
+        "{jnzhang, king}@cse.cuhk.edu.hk"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 10
+    },
+    {
+      "file": "Exploring Long- and Short-Term Knowledge State Graph Representations with Adaptive Fusion for Knowledge Tracing.pdf",
+      "pages": 18,
+      "chars_page1": 3768,
+      "dois_page1_2": [
+        "10.1016/j.ipm.2025.104074"
+      ],
+      "title_lines": [
+        "Contents lists available at ScienceDirect",
+        "Information Processing and Management",
+        "journal homepage: www.elsevier.com/locate/ipm",
+        "Exploring long- and short-term knowledge state graph",
+        "representations with adaptive fusion for knowledge tracing",
+        "Ganfeng Yu a, Zhiwen Xie b, Guangyou Zhou b",
+        ",\u2217, Zhuo Zhao a,",
+        "Jimmy Xiangji Huang c"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 16
+    },
+    {
+      "file": "Fusing Hybrid Attentive Network with Self-Supervised Dual-Channel Heterogeneous Graph for Knowledge Tracing.pdf",
+      "pages": 13,
+      "chars_page1": 4831,
+      "dois_page1_2": [
+        "10.1016/j.eswa.2023.120212"
+      ],
+      "title_lines": [
+        "Expert Systems With Applications 225 (2023) 120212",
+        "Available online 21 April 2023",
+        "0957-4174/\u00a9 2023 Elsevier Ltd. All rights reserved.",
+        "Contents lists available at ScienceDirect",
+        "Expert Systems With Applications",
+        "journal homepage: www.elsevier.com/locate/eswa",
+        "Fusing hybrid attentive network with self-supervised dual-channel",
+        "heterogeneous graph for knowledge tracing"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 12
+    },
+    {
+      "file": "GASKT - A Graph-Based Attentive Knowledge-Search Model for Knowledge Tracing.pdf",
+      "pages": 12,
+      "chars_page1": 2420,
+      "dois_page1_2": [
+        "10.1007/978-3-030-82136-4_22"
+      ],
+      "title_lines": [
+        "GASKT: A Graph-Based Attentive",
+        "Knowledge-Search Model for Knowledge",
+        "Mengdan Wang1, Chao Peng1(B), Rui Yang1, Chenchao Wang1, Yao Chen1,",
+        "and Xiaohua Yu2",
+        "1 Institute of Software Engineering, East China Normal University, Shanghai, China",
+        "51194501177@stu.ecnu.edu.cn, cpeng@sei.ecnu.edu.cn",
+        "2 Department of Education Information Technology, East China Normal University,",
+        "Shanghai, China"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 11
+    },
+    {
+      "file": "GIKT - A Graph-Based Interaction Model for Knowledge Tracing.pdf",
+      "pages": 17,
+      "chars_page1": 2325,
+      "dois_page1_2": [],
+      "title_lines": [
+        "GIKT: A Graph-based Interaction Model for",
+        "Knowledge Tracing",
+        "Yang Yang1, Jian Shen1, Yanru Qu2, Yunfei Liu1, Kerong Wang1, Yaoming",
+        "Zhu1, Weinan Zhang1(\u0000), and Yong Yu1(\u0000)",
+        "1 Shanghai Jiao Tong University",
+        "{yyang,rockyshen,ymzhu,yyu}@apex.sjtu.edu.cn,",
+        "{liuyunfei,wangkerong,wnzhang}@sjtu.edu.cn",
+        "2 University of Illinois, Urbana-Champaign"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 15
+    },
+    {
+      "file": "Graph Knowledge Tracing in Cognitive Situation - Validation of Classic Assertions in Cognitive Psychology.pdf",
+      "pages": 22,
+      "chars_page1": 5115,
+      "dois_page1_2": [
+        "10.1016/j.knosys.2025.113281"
+      ],
+      "title_lines": [
+        "Knowledge-Based Systems 315 (2025) 113281",
+        "Available online 8 March 2025",
+        "0950-7051/\u00a9 2025 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies.",
+        "Contents lists available at ScienceDirect",
+        "Knowledge-Based Systems",
+        "journal homepage: www.elsevier.com/locate/knosys",
+        "Graph knowledge tracing in cognitive situation: Validation of classic",
+        "assertions in cognitive psychology"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 21
+    },
+    {
+      "file": "Graph-Based Effective Knowledge Tracing via Subject Knowledge Mapping.pdf",
+      "pages": 28,
+      "chars_page1": 2464,
+      "dois_page1_2": [
+        "10.1007/s10639-024-13069-0"
+      ],
+      "title_lines": [
+        "Vol.:(0123456789)",
+        "Education and Information Technologies (2025) 30:9813\u20139840",
+        "https://doi.org/10.1007/s10639-024-13069-0",
+        "Graph\u2011based effective knowledge tracing via subject",
+        "knowledge mapping",
+        "Ziyan Yang1 \u00b7 Jia Hu2 \u00b7 Shaochun Zhong1 \u00b7 Lan Yang1 \u00b7 Geyong Min2",
+        "Received: 23 June 2024 / Accepted: 20 September 2024 / Published online: 10 December 2024",
+        "\u00a9 The Author(s), under exclusive licence to Springer Science+Business Media, LLC, part of Springer Nature"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 25
+    },
+    {
+      "file": "Graph-based Knowledge Tracing - Modeling Student Proficiency Using Graph Neural Network.pdf",
+      "pages": 9,
+      "chars_page1": 820,
+      "dois_page1_2": [
+        "10.1145/3350546.3352513"
+      ],
+      "title_lines": [
+        "Latest updates: h\ue03cps://dl.acm.org/doi/10.1145/3350546.3352513",
+        "RESEARCH-ARTICLE",
+        "Graph-based Knowledge Tracing: Modeling Student Proficiency Using",
+        "Graph Neural Network",
+        "HIROMI NAKAGAWA, The University of Tokyo, Tokyo, Japan",
+        "YUSUKE IWASAWA, The University of Tokyo, Tokyo, Japan",
+        "YUTAKA MATSUO, The University of Tokyo, Tokyo, Japan",
+        "Open Access Support provided by:"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 9
+    },
+    {
+      "file": "GraphCA - Learning From Graph Counterfactual Augmentation for Knowledge Tracing.pdf",
+      "pages": 16,
+      "chars_page1": 6726,
+      "dois_page1_2": [
+        "10.1109/JAS.2023.123678"
+      ],
+      "title_lines": [
+        "GraphCA: Learning From Graph Counterfactual",
+        "Augmentation for Knowledge Tracing",
+        "Xinhua Wang, Shasha Zhao, Lei Guo, Lei Zhu, Chaoran Cui, and Liancheng Xu",
+        "Abstract\u2014With the popularity of online learning in educa-",
+        "tional settings, knowledge tracing (KT) plays an increasingly sig-",
+        "nificant role. The task of KT is to help students learn more effec-",
+        "tively by predicting their next mastery of knowledge based on",
+        "their historical exercise sequences. Nowadays, many related"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 14
+    },
+    {
+      "file": "Heterogeneous Graph-Based Knowledge Tracing with Spatiotemporal Evolution.pdf",
+      "pages": 13,
+      "chars_page1": 4883,
+      "dois_page1_2": [
+        "10.1016/j.eswa.2023.122249"
+      ],
+      "title_lines": [
+        "Expert Systems With Applications 238 (2024) 122249",
+        "Available online 30 October 2023",
+        "0957-4174/\u00a9 2023 Elsevier Ltd. All rights reserved.",
+        "Heterogeneous graph-based knowledge tracing with",
+        "spatiotemporal evolution",
+        "Huali Yang a, Shengze Hu b,c, Jing Geng b,c, Tao Huang b,c,d,*, Junjie Hu b,c, Hao Zhang b,c,",
+        "Qiang Zhu a",
+        "a School of Computer Science and Artificial Intelligence, Wuhan Textile University, Wuhan 430200, China"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 12
+    },
+    {
+      "file": "HHSKT - A Learner-Question Interactions Based Heterogeneous Graph Neural Network Model for Knowledge Tracing.pdf",
+      "pages": 13,
+      "chars_page1": 4887,
+      "dois_page1_2": [
+        "10.1016/j.eswa.2022.119334"
+      ],
+      "title_lines": [
+        "Expert Systems With Applications 215 (2023) 119334",
+        "Available online 23 November 2022",
+        "0957-4174/\u00a9 2022 Elsevier Ltd. All rights reserved.",
+        "Contents lists available at ScienceDirect",
+        "Expert Systems With Applications",
+        "journal homepage: www.elsevier.com/locate/eswa",
+        "HHSKT: A learner\u2013question interactions based heterogeneous graph neural",
+        "network model for knowledge tracing\u2729"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 11
+    },
+    {
+      "file": "HKT - Hierarchical Structure-Based Knowledge Tracing.pdf",
+      "pages": 18,
+      "chars_page1": 4205,
+      "dois_page1_2": [
+        "10.1016/j.ipm.2025.104206"
+      ],
+      "title_lines": [
+        "Contents lists available at ScienceDirect",
+        "Information Processing and Management",
+        "journal homepage: www.elsevier.com/locate/ipm",
+        "HKT: Hierarchical structure-based knowledge tracing",
+        "Qing Li a,b",
+        ", Zhijun Huang a,b",
+        ", Jianwen Sun a,b",
+        ", Xin Yuan a,b"
+      ],
+      "candidate_hits": [
+        "DTransformer:diagnostic transformer"
+      ],
+      "ref_start_page_1indexed": 17
+    },
+    {
+      "file": "Improving Knowledge Tracing via Pre-training Question Embeddings.pdf",
+      "pages": 7,
+      "chars_page1": 4320,
+      "dois_page1_2": [],
+      "title_lines": [
+        "Proceedings of the Twenty-Ninth International Joint Conference on Arti\ufb01cial Intelligence (IJCAI-20)",
+        "Improving Knowledge Tracing via Pre-training Question Embeddings",
+        "Yunfei Liu1 , Yang Yang1 , Xianyu Chen1 , Jian Shen1 , Haifeng Zhang2 and Yong Yu1\u2217",
+        "1Shanghai Jiao Tong University",
+        "2The Center on Frontiers of Computing Studies, Peking University",
+        "{liuyunfei, yyang0324, xianyujun}@sjtu.edu.cn, rockyshen@apex.sjtu.edu.cn,",
+        "pkuzhf@pku.edu.cn, yyu@apex.sjtu.edu.cn"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 7
+    },
+    {
+      "file": "JKT - A Joint Graph Convolutional Network Based Deep Knowledge Tracing.pdf",
+      "pages": 14,
+      "chars_page1": 3679,
+      "dois_page1_2": [
+        "10.1016/j.ins.2021.08.100"
+      ],
+      "title_lines": [
+        "JKT: A joint graph convolutional network based Deep",
+        "Knowledge Tracing",
+        "Xiangyu Song a, Jianxin Li a,\u21d1, Yifu Tang a, Taige Zhao a, Yunliang Chen b, Ziyu Guan c",
+        "a School of IT, Faculty of Science, Engineering and Built Environment, Deakin University, Geelong, VIC 3220, Australia",
+        "b China University of Geosciences, China",
+        "c State Key Lab of ISN, School of Computer Science and Technology, Xidian University, Xi\u2019an, China",
+        "a r t i c l e",
+        "Article history:"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 13
+    },
+    {
+      "file": "KGNN-KT - Enhancing Knowledge Tracing in Programming Education Through LLM-Extracted Knowledge Graphs.pdf",
+      "pages": 11,
+      "chars_page1": 0,
+      "dois_page1_2": [],
+      "title_lines": [],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": null
+    },
+    {
+      "file": "Knowledge Structure Enhanced Graph Representation Learning Model for Attentive Knowledge Tracing.pdf",
+      "pages": 34,
+      "chars_page1": 2520,
+      "dois_page1_2": [
+        "10.1002/int.22763"
+      ],
+      "title_lines": [
+        "Received: 15 April 2021 |",
+        "Accepted: 11 November 2021",
+        "DOI: 10.1002/int.22763",
+        "R E S E A R C H A R T I C L E",
+        "Knowledge structure enhanced graph",
+        "representation learning model for attentive",
+        "knowledge tracing",
+        "Wenbin Gan1"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 32
+    },
+    {
+      "file": "Knowledge Tracing - A Survey.pdf",
+      "pages": 36,
+      "chars_page1": 4269,
+      "dois_page1_2": [
+        "10.1145/nnnnnnn.nnnnnnn"
+      ],
+      "title_lines": [
+        "Knowledge Tracing: A Survey",
+        "GHODAI ABDELRAHMAN, QING WANG, and BERNARDO PEREIRA NUNES, School of",
+        "Computing, Australian National University",
+        "Humans\u2019 ability to transfer knowledge through teaching is one of the essential aspects for human intelligence.",
+        "A human teacher can track the knowledge of students to customize the teaching on students\u2019 needs. With the",
+        "rise of online education platforms, there is a similar need for machines to track the knowledge of students",
+        "and tailor their learning experience. This is known as the Knowledge Tracing (KT) problem in the literature.",
+        "Effectively solving the KT problem would unlock the potential of computer-aided education applications such"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 31
+    },
+    {
+      "file": "LGS-KT - Integrating Logical and Grammatical Skills for Effective Programming Knowledge Tracing.pdf",
+      "pages": 13,
+      "chars_page1": 5077,
+      "dois_page1_2": [
+        "10.1016/j.neunet.2025.107164"
+      ],
+      "title_lines": [
+        "Neural Networks 185 (2025) 107164",
+        "Available online 18 January 2025",
+        "0893-6080/\u00a9 2025 Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and similar technologies.",
+        "Contents lists available at ScienceDirect",
+        "Neural Networks",
+        "journal homepage: www.elsevier.com/locate/neunet",
+        "Full Length Article",
+        "LGS-KT: Integrating logical and grammatical skills for effective programming"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 12
+    },
+    {
+      "file": "MAHKT - Knowledge Tracing with Multi-Association Heterogeneous Graph Embedding Based on Knowledge Transfer.pdf",
+      "pages": 13,
+      "chars_page1": 5004,
+      "dois_page1_2": [
+        "10.1016/j.knosys.2025.112958"
+      ],
+      "title_lines": [
+        "Knowledge-Based Systems 310 (2025) 112958",
+        "Available online 7 January 2025",
+        "0950-7051/\u00a9 2025 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies.",
+        "Contents lists available at ScienceDirect",
+        "Knowledge-Based Systems",
+        "journal homepage: www.elsevier.com/locate/knosys",
+        "MAHKT: Knowledge tracing with multi-association heterogeneous graph",
+        "embedding based on knowledge transfer"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 12
+    },
+    {
+      "file": "Model Generalization - A Sharpness Aware Optimization Perspective.pdf",
+      "pages": 4,
+      "chars_page1": 5137,
+      "dois_page1_2": [],
+      "title_lines": [
+        "Model Generalization: A Sharpness Aware Optimization",
+        "Perspective",
+        "Jozef Marus Coldenhoff\u2217",
+        "School of Computer and Communication Sciences",
+        "Chengkun Li\u2217",
+        "School of Engineering",
+        "Yurui Zhu\u2217",
+        "College of Humanities"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 4
+    },
+    {
+      "file": "Modeling Knowledge Proficiency Using Multi-Hierarchical Capsule Graph Neural Network.pdf",
+      "pages": 18,
+      "chars_page1": 3884,
+      "dois_page1_2": [
+        "10.1007/s10489-021-02765-w"
+      ],
+      "title_lines": [
+        "https://doi.org/10.1007/s10489-021-02765-w",
+        "Modeling knowledge pro\ufb01ciency using multi-hierarchical capsule",
+        "graph neural network",
+        "Zeyu He1,2,3 \u00b7 Wang Li1",
+        "\u00b7 Yonghong Yan1,4,5",
+        "Accepted: 11 August 2021",
+        "\u00a9 The Author(s), under exclusive licence to Springer Science+Business Media, LLC, part of Springer Nature 2021"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 17
+    },
+    {
+      "file": "Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing.pdf",
+      "pages": 13,
+      "chars_page1": 5101,
+      "dois_page1_2": [
+        "10.1016/j.knosys.2024.112834"
+      ],
+      "title_lines": [
+        "Contents lists available at ScienceDirect",
+        "Knowledge-Based Systems",
+        "journal homepage: www.elsevier.com/locate/knosys",
+        "Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge",
+        "Jing Wang a, Huifang Ma a",
+        ",\u2217, Mengyuan Zhang a, Lei Zhang b, Liang Chang c",
+        "a College of Computer Science and Engineering, Northwest Normal University, Lanzhou, Gansu 730070, China",
+        "b College of Information Technology and Communication, Hexi University, Zhangye, Gansu 730040, China"
+      ],
+      "candidate_hits": [
+        "DTransformer:diagnostic transformer"
+      ],
+      "ref_start_page_1indexed": 12
+    },
+    {
+      "file": "Prerequisite-Driven Deep Knowledge Tracing.pdf",
+      "pages": 10,
+      "chars_page1": 5782,
+      "dois_page1_2": [
+        "10.1109/ICDM.2018.00019"
+      ],
+      "title_lines": [
+        "Prerequisite-Driven Deep Knowledge Tracing",
+        "Penghe Chen1, Yu Lu1,2, *, Vincent W. Zheng3, Yang Pian1",
+        "1Advanced Innovation Center for Future Education, Beijing Normal University, Beijing, China",
+        "2School of Educational Technology, Faculty of Education, Beijing Normal University, Beijing, China",
+        "3Advanced Digital Sciences Center, Singapore",
+        "chenpenghe@bnu.edu.cn, vincent.zheng@adsc.com.sg, bianyang@bnu.edu.cn",
+        "*Corresponding Author: Yu Lu, luyu@bnu.edu.cn",
+        "Abstract\u2014Knowledge tracing serves as the key technique in"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 10
+    },
+    {
+      "file": "pyKT - A Python Library to Benchmark Deep Learning based Knowledge Tracing Models.pdf",
+      "pages": 14,
+      "chars_page1": 2579,
+      "dois_page1_2": [],
+      "title_lines": [
+        "PYKT: A Python Library to Benchmark Deep",
+        "Learning based Knowledge Tracing Models",
+        "Zitao Liu",
+        "Guangdong Institute of Smart Education",
+        "Jinan University",
+        "Guangzhou, Guangdong, China",
+        "liuzitao@jnu.edu.cn",
+        "Qiongqiong Liu"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 11
+    },
+    {
+      "file": "R2GCurL - Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning.pdf",
+      "pages": 32,
+      "chars_page1": 3900,
+      "dois_page1_2": [
+        "10.1145/3818614"
+      ],
+      "title_lines": [
+        "R2GCurL: Reinforced Robust Knowledge Tracing via",
+        "Dynamic Graph Curriculum Learning",
+        "TIANHAO PENG, Beihang University, Beijing, China and Nanyang Technological University,",
+        "Singapore, Singapore",
+        "YANJUN PU, Beihang University, Beijing, China",
+        "YONGQI ZHANG, Hong Kong University of Science and Technology (Guangzhou), Guangzhou, China",
+        "YUCHEN LI, Baidu Inc., Beijing, China",
+        "JIAN REN, JIE LUO, and KUI ZHANG, Beihang University, Beijing, China"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 29
+    },
+    {
+      "file": "Self-Supervised Heterogeneous Hypergraph Network for Knowledge Tracing.pdf",
+      "pages": 17,
+      "chars_page1": 3529,
+      "dois_page1_2": [
+        "10.1016/j.ins.2022.12.075"
+      ],
+      "title_lines": [
+        "Self-supervised heterogeneous hypergraph network for",
+        "knowledge tracing",
+        "Tangjie Wu, Qiang Ling \u21d1",
+        "University of Science and Technology of China, Hefei, Anhui 230027, China",
+        "a r t i c l e",
+        "Article history:",
+        "Received 3 May 2022",
+        "Received in revised form 24 December 2022"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 16
+    },
+    {
+      "file": "SGKT - Session Graph-Based Knowledge Tracing for Student Performance Prediction.pdf",
+      "pages": 12,
+      "chars_page1": 5123,
+      "dois_page1_2": [
+        "10.1016/j.eswa.2022.117681"
+      ],
+      "title_lines": [
+        "Expert Systems With Applications 206 (2022) 117681",
+        "Available online 15 June 2022",
+        "0957-4174/\u00a9 2022 Elsevier Ltd. All rights reserved.",
+        "Contents lists available at ScienceDirect",
+        "Expert Systems With Applications",
+        "journal homepage: www.elsevier.com/locate/eswa",
+        "SGKT: Session graph-based knowledge tracing for student performance",
+        "prediction"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 11
+    },
+    {
+      "file": "SINKT - A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model.pdf",
+      "pages": 11,
+      "chars_page1": 5064,
+      "dois_page1_2": [
+        "10.1145/3627673.3679760"
+      ],
+      "title_lines": [
+        "SINKT: A Structure-Aware Inductive Knowledge Tracing Model",
+        "with Large Language Model",
+        "Lingyue Fu",
+        "Shanghai Jiao Tong University",
+        "Shanghai, China",
+        "fulingyue@sjtu.edu.cn",
+        "Hao Guan",
+        "Shanghai Jiao Tong University"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 10
+    },
+    {
+      "file": "Spatio-Temporal Fusion in Graph Neural Network for Streaming Knowledge Tracing.pdf",
+      "pages": 16,
+      "chars_page1": 2900,
+      "dois_page1_2": [],
+      "title_lines": [
+        "Spatio-Temporal Fusion in Graph Neural Network for",
+        "Streaming Knowledge Tracing",
+        "Yi-Fei Wen1, Hang Liang1, Carl Yang2, Wen-Bo Xie3, Yajun Du1, Xianyong Li1, and",
+        "Yan-Li Lee1B",
+        "1 School of Computer and Software Engineering, Xihua University, Chengdu 610039, China",
+        "{wenyifei77, lianghang}@stu.xhu.edu.cn, {duyajun, lixy}@mail.xhu.edu.cn,",
+        "yanlicomplex@gmail.comB",
+        "2 Department of Computer Science, Emory University, Atlanta, Georgia, USA"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 14
+    },
+    {
+      "file": "STHKT - Spatiotemporal Knowledge Tracing with Topological Hawkes Process.pdf",
+      "pages": 13,
+      "chars_page1": 4959,
+      "dois_page1_2": [
+        "10.1016/j.eswa.2024.125248"
+      ],
+      "title_lines": [
+        "Contents lists available at ScienceDirect",
+        "Expert Systems With Applications",
+        "journal homepage: www.elsevier.com/locate/eswa",
+        "STHKT: Spatiotemporal Knowledge Tracing with Topological Hawkes",
+        "Shuting Li a,b, Shuanghong Shen c, Yu Su b,d,\u2217, Xinjie Sun c, Junyu Lu b,c, Qi Mo a,b, Zhenyi Wu a,b,",
+        "Qi Liu b,c",
+        "a AHU-IAI AI Joint Laboratory, Anhui University, Hefei, Anhui, China",
+        "b Institute of Artificial Intelligence, Hefei Comprehensive National Science Center, Hefei, Anhui, China"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 12
+    },
+    {
+      "file": "Structure-Based Knowledge Tracing - An Influence Propagation View.pdf",
+      "pages": 10,
+      "chars_page1": 5582,
+      "dois_page1_2": [
+        "10.1109/ICDM50108.2020.00063"
+      ],
+      "title_lines": [
+        "Structure-based Knowledge Tracing:",
+        "An In\ufb02uence Propagation View",
+        "Shiwei Tong1, Qi Liu1,\u2217, Wei Huang1, Zhenya Huang1, Enhong Chen1, Chuanren Liu2, Haiping Ma3, Shijin Wang4,5",
+        "1Anhui Province Key Laboratory of Big Data Analysis and Application, School of Data Science &",
+        "School of Computer Science and Technology, University of Science and Technology of China",
+        "2Business Analytics and Statistics, University of Tennessee, 3Anhui University,",
+        "4iFLYTEK Research, iFLYTEK CO., LTD., 5State Key Laboratory of Cognitive Intelligence,",
+        "{tongsw, ustc0411}@mail.ustc.edu.cn, {qiliuql, huangzhy, cheneh}@ustc.edu.cn"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 9
+    },
+    {
+      "file": "Weighted Heterogeneous Graph-Based Three-View Contrastive Learning for Knowledge Tracing in Personalized e-Learning Systems.pdf",
+      "pages": 10,
+      "chars_page1": 5702,
+      "dois_page1_2": [
+        "10.1109/TCE.2023.3293953"
+      ],
+      "title_lines": [
+        "IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 70, NO. 1, FEBRUARY 2024",
+        "Weighted Heterogeneous Graph-Based Three-View",
+        "Contrastive Learning for Knowledge Tracing",
+        "in Personalized e-Learning Systems",
+        "Jianwen Sun",
+        ", Shangheng Du",
+        ", Zhi Liu",
+        ", Fenghua Yu, Sannyuya Liu"
+      ],
+      "candidate_hits": [],
+      "ref_start_page_1indexed": 9
+    }
+  ],
+  "needle_files": {
+    "DECKT": [],
+    "DTransformer": [
+      "A Survey of Knowledge Tracing - Models, Variants, and Applications.pdf",
+      "Deep Learning Based Knowledge Tracing A Review, a Tool and Empirical Studies.pdf",
+      "Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor.pdf",
+      "HKT - Hierarchical Structure-Based Knowledge Tracing.pdf",
+      "Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing.pdf"
+    ],
+    "SelfPaced": [],
+    "CoSKT": [],
+    "HCMKT": [],
+    "BipartiteCL": [],
+    "DynHet": [
+      "A Cross-Domain Knowledge Tracing Model Based on Graph Optimal Transport.pdf"
+    ]
+  }
+}

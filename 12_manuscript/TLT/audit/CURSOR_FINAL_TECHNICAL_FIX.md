@@ -1,0 +1,18 @@
+# CURSOR_FINAL_TECHNICAL_FIX — 2026-09-15
+
+Canonical source: `manuscript_TLT_FORMATTED_v1.3.tex` (synced to `main_tlt_full.tex` / `main_tlt_anonymous.tex`).
+
+| # | Issue | Evidence checked | Current value (before) | Decision | Exact edit | Files changed |
+|---|---|---|---|---|---|---|
+| 1 | Cohen's κ for invariant fields | Pair tables + `KAPPA_A_vs_B_SUBMITTED_*` + `KAPPA_A_vs_DaoMT_FULL20_*` | Macro mean 0.98 / 0.97 with κ=1 when \(p_e=1\) | **FIX** | Report %agree=100% and κ=NA for 3 all-NO fields; macro over 5 defined κ → **0.97** (NguyenKT) / **0.96** (DaoMT); not pooled | `manuscript_TLT_FORMATTED_v1.3.tex` §II-E + Threats; `COVER_LETTER.tex`; `audit/KAPPA_RECOMPUTATION.md`; `tables/reliability_kappa_recomputed.csv`; `TLT_Supplementary_Evidence_Tables.md` §7 |
+| 2 | DyGKT/ASSIST17 REPRODUCED ECE | `results/dygkt_assist17_ece.json`, NPZ, RUN_LOG, upstream commit `88e36488…`, protocol | REPRODUCED numbers in main text | **CASE A KEEP** | Keep ECE/Brier/AUC; stress single model/dataset/seed; not a benchmark; does not establish corpus calibration | `supplementary/DYGKT_ASSIST17_REPRODUCTION_MANIFEST.md`; `supplementary/dygkt_assist17_ece_bins.csv`; `audit/DYGKT_REPRODUCTION_AUDIT.md`; reliability paragraph in manuscript |
+| 3 | Quality tier LIMITED | `supplementary_quality_scores.csv` (37-paper call: 11 HIGH / 26 MODERATE) | Only HIGH/MODERATE defined | **FIX** | Add LIMITED \(<0.55\); state no study in LIMITED | `manuscript_TLT_FORMATTED_v1.3.tex` §II-D + §VI QA paragraph |
+| 4 | Calibration wording | Locked ECE \(0/37\) | “uncalibrated score” / “Uncalibrated probabilities…” | **FIX** | Unverified / calibration-unknown wording; Rec. 3 + Table VII + T3 + Contribution 4 | `manuscript_TLT_FORMATTED_v1.3.tex` |
+| 5 | Figure 2 footer | `figures/fig_taxonomy_2d.tex` | “no four-family SSL split” while figure shows 4 locked families | **FIX** | “No hyperbolic encoder; SSL categories follow the four locked codebook families.” Rebuild PDF | `figures/fig_taxonomy_2d.tex` + `.pdf` |
+| 6 | Five PRISMA “unverified” | Expansion IDs KT078, KT080–KT083; Crossref 2026-09-15 | Opaque “5 unverified” | **FIX** | Supplementary Table S-PRISMA-5 with DOI 404 / identity mismatch reasons; cite table in §II | `supplementary/supplementary_prisma_five_unverified.csv`; `TLT_Supplementary_Evidence_Tables.md` §8; manuscript Stage 2 bullet |
+| 7 | Refs [6] / [45] | Crossref+CSL Shen `1858-1879`; KT079 `136-153` | Bib already 1858–1879 / 136–153 | **KEEP** | No page change; record verification | `audit/REFERENCE_LAST_MILE_VERIFICATION.csv` |
+| 8 | KT079 acronym | Author PDF/abstract: model “referred to as **STSKT**” | Mixed STG-SKT / STSKT | **FIX** | Unify display name to **STSKT** (cite key unchanged) | Manuscript Table IV; fig pipeline; `tables/*.csv`; `supplementary/*`; `H1_ssl_criterion_audit.csv` |
+| 9 | AI disclosure | Actual Cursor workflow (format + author-approved artifact edits); IEEE: name system in Acknowledgment; numbered cite not required for editing | Narrow “did not alter figures/tables/codes” + `\cite{Cursor_AI_2026}` | **FIX** | Broader author-approved disclosure; drop numbered Cursor cite | Acknowledgment in manuscript; Cursor no longer in `.bbl` |
+| 10 | Index Terms | IEEE TLT does not require 8 terms | 8 keywords | **FIX** | Five terms as specified | `IEEEkeywords` |
+| 11 | Locked counts | `LOCKED_COUNTS_v1.7.md` + CSVs | \(N=37\), \(N_G=36\), \(N_S=9\), ∩=8; provenance 18/9/9; SSL 5+2+1+1; cold-start 0/1/0; QA7 37/37 | **NO CHANGE** | Not reopened | — |
+| 12 | Consistency gate | Clean rebuild + `pdftotext` checks | — | **PASS set** | See `CURSOR_FINAL_SUBMISSION_GATE.md` | PDFs rebuilt 14 pp |

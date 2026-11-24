@@ -1,0 +1,223 @@
+{
+  "title": [
+    "R\n                    <sup>2</sup>\n                    GCurL: Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0002-9910-2298",
+      "authenticated-orcid": false,
+      "given": "Tianhao",
+      "family": "Peng",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "Beihang University, Beijing, China and Nanyang Technological University, Singapore, Singapore"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-6154-1247",
+      "authenticated-orcid": false,
+      "given": "Yanjun",
+      "family": "Pu",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Beihang University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-2085-7418",
+      "authenticated-orcid": false,
+      "given": "Yongqi",
+      "family": "Zhang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Hong Kong University of Science and Technology (Guangzhou), Guangzhou, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-3869-7881",
+      "authenticated-orcid": false,
+      "given": "Yuchen",
+      "family": "Li",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Baidu Inc., Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-7924-9586",
+      "authenticated-orcid": false,
+      "given": "Jian",
+      "family": "Ren",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Beihang University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-4157-9931",
+      "authenticated-orcid": false,
+      "given": "Jie",
+      "family": "Luo",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Beihang University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-8784-2184",
+      "authenticated-orcid": false,
+      "given": "Kui",
+      "family": "Zhang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Beihang University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-6721-065X",
+      "authenticated-orcid": false,
+      "given": "Haitao",
+      "family": "Yuan",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Tsinghua University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-9212-1947",
+      "authenticated-orcid": false,
+      "given": "Shuaiqiang",
+      "family": "Wang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Baidu Inc., Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-0684-6205",
+      "authenticated-orcid": false,
+      "given": "Dawei",
+      "family": "Yin",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Baidu Inc., Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-2998-8828",
+      "authenticated-orcid": false,
+      "given": "Wenjun",
+      "family": "Wu",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Beihang University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2026,
+        7,
+        23
+      ]
+    ]
+  },
+  "container-title": [
+    "ACM Transactions on Information Systems"
+  ],
+  "volume": "44",
+  "issue": "6",
+  "page": "1-32",
+  "publisher": "Association for Computing Machinery (ACM)",
+  "DOI": "10.1145/3818614",
+  "type": "journal-article"
+}

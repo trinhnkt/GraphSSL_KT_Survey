@@ -1,0 +1,21 @@
+paper_id,model,coderB_id,coderB_S_criterion,coderB_ssl_family,coderB_graph_provenance,coderB_gnn_encoder,coderB_strict_kc_cold_start,coderB_item_cold_start,coderB_learner_cold_start,coderB_ece_reported,coderB_locator,coderB_note
+KT004,GKT,NguyenKT,N,NONE,MODEL_DEFINED_FIXED,GNN_GENERIC,NO,NO,NO,NO,p.2; p.4,Casting the knowledge structure as a graph
+KT011,Bi-CLKT,NguyenKT,Y,GRAPH_CONTRASTIVE,MODEL_DEFINED_FIXED,GCN,NO,NO,NO,NO,p.1; p.3; p.5-6,Bi-Graph Contrastive Learning; GCN-based encoder
+KT014,PDKT-C,NguyenKT,N,NONE,EXTERNAL_FIXED,NONE,NO,NO,NO,NO,p.1; p.3-5,Prerequisite matrix manually labeled by experts; GRU not GNN
+KT026,PEBG,NguyenKT,Y,GRAPH_RECONSTRUCTION,EXTERNAL_FIXED,NONE,NO,NO,NO,NO,p.2-3,Bipartite question-skill graph; L1 reconstruction; next-item not hold-out
+KT031,KSG-AKT,NguyenKT,N,NONE,EXTERNAL_FIXED,OTHER,NO,NO,NO,NO,p.3; p.7; p.20,Q-matrix from experts; Metapath2Vec; GCN is GIKT baseline
+KT035,HHSKT,NguyenKT,N,NONE,MODEL_DEFINED_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,p.2; p.8,Heterogeneous GNN; 5-fold 60/20/20 not zero-exposure KC
+KT037,CMKT,NguyenKT,N,NONE,EXTERNAL_FIXED,NONE,NO,NO,NO,NO,p.1,Educational concept map; RNN constraints not GNN
+KT038,DyGKT,NguyenKT,N,NONE,DYNAMIC_LEARNED,DYNAMIC_GNN,NO,NO,NO,NO,p.1-2,Continuous-time dynamic QA graph; unseen-question prose not hold-out
+KT039,CL4KT,NguyenKT,Y,SEQUENCE_CONTRASTIVE,NA,NONE,NO,NO,NO,NO,p.3-4; p.7; p.9,Contrast similar vs dissimilar histories; Transformer; no ECE string
+KT042,S2-HHN,NguyenKT,Y,MULTIVIEW_CONTRASTIVE,MODEL_DEFINED_FIXED,HYPERGRAPH_GNN,NO,NO,NO,NO,p.1-3,Multi-view graph contrastive SSL; hypergraph; long-tail prose
+KT043,3V-CLKT,NguyenKT,Y,MULTIVIEW_CONTRASTIVE,MODEL_DEFINED_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,p.1-2,Three-view contrastive learning; weighted heterogeneous graph
+KT044,SINKT,NguyenKT,N,NONE,EXTERNAL_FIXED,GAT,NO,YES,NO,NO,p.2; p.4; p.7 Sec.5.5,LLM concept-question graph; three GAT layers; 1/4 question hold-out
+KT047,DC-SSL,NguyenKT,Y,MULTIVIEW_CONTRASTIVE,MODEL_DEFINED_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,p.1-2; p.4,Contrastive learning on two DHGN channels; pre-defined hetero graph
+KT050,GraphCA,NguyenKT,Y,GRAPH_CONTRASTIVE,MODEL_DEFINED_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,p.1; p.3,Contrast observational vs counterfactual; heterogeneous GCN
+KT066,HyperKT,NguyenKT,Y,MULTIVIEW_CONTRASTIVE,MODEL_DEFINED_FIXED,HYPERGRAPH_GNN,NO,NO,NO,NO,p.1-3,Cross-view contrastive; dual-channel hypergraph encoders
+KT068,HKT,NguyenKT,Y,GRAPH_CONTRASTIVE,EXTERNAL_FIXED,GNN_GENERIC,NO,NO,NO,NO,p.2; p.5; p.7,Expert Knowledge Hierarchy Tree; hierarchical contrastive
+KT070,Coda,NguyenKT,N,NONE,DYNAMIC_LEARNED,GCN,NO,NO,NO,NO,p.1; p.4; p.7,Cluster-aware GCN; learnable code-graph adjacency; 70/10/20 sequences
+KT076,KGNN-KT,NguyenKT,N,NONE,EXTERNAL_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,p.1; p.4; p.6-7,LLM-extracted KG; RGCN; BCE+L2; 7:2:1 not item hold-out
+KT077,R2GCurL,NguyenKT,N,NONE,DYNAMIC_LEARNED,DYNAMIC_GNN,NO,NO,NO,NO,p.1; p.8,Dynamic graphs from student responses; no method SSL pretext
+KT079,STG-SKT,NguyenKT,N,NONE,DYNAMIC_LEARNED,SPATIOTEMPORAL_GNN,NO,NO,NO,NO,p.2; p.4,Dynamic heterogeneous graph; sequential contrastive is a citation

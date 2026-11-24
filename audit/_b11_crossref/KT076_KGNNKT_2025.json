@@ -1,0 +1,122 @@
+{
+  "title": [
+    "KGNN-KT: Enhancing Knowledge Tracing in Programming Education Through LLM-Extracted Knowledge Graphs"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0001-8763-8303",
+      "authenticated-orcid": false,
+      "given": "Di",
+      "family": "Zhang",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-6880-6874",
+      "authenticated-orcid": false,
+      "given": "Qiang",
+      "family": "Niu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0009-0002-6290-9079",
+      "authenticated-orcid": false,
+      "given": "Tianshi",
+      "family": "Wang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0009-0005-4414-5273",
+      "authenticated-orcid": false,
+      "given": "Yuntian",
+      "family": "Hou",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0009-0009-8138-0335",
+      "authenticated-orcid": false,
+      "given": "Jinheng",
+      "family": "Wu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0009-0000-3097-6416",
+      "authenticated-orcid": false,
+      "given": "Chao",
+      "family": "Zhang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-4703-8765",
+      "authenticated-orcid": false,
+      "given": "Angelos",
+      "family": "Stefanidis",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2025
+      ]
+    ]
+  },
+  "container-title": [
+    "Communications in Computer and Information Science",
+    "Advanced Intelligent Computing Technology and Applications"
+  ],
+  "volume": null,
+  "issue": null,
+  "page": "137-147",
+  "publisher": "Springer Nature Singapore",
+  "DOI": "10.1007/978-981-96-9986-5_12",
+  "type": "book-chapter"
+}

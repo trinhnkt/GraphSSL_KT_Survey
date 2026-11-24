@@ -1,0 +1,340 @@
+Expert Systems With Applications 215 (2023) 119334
+11
+Q. Ni et al.
+Fig. 7. Question relations and skill relations on the ASSISTments2009 dataset. (a) Skill
+embedding from t-SNE; (b) Question embeddings from t-SNE.
+In the future, we intend to extract semantic and sentiment features
+from the question in order to improve the question representation. In
+addition, we intend to include information such as attempts and work-
+outs in the graphical feature representation. Lastly, learner cognition
+while learning is progressive, and we also propose to trace learners’
+competency on different questions by tracing their cognitive changes
+from the perspective of the learners.
+Fig. 8. The difficulty information uses a gaussian distribution to represent the beliefs
+about the learner. Each belief distribution can be uniquely represented using a mean 𝜇
+(kurtosis) and a standard deviation 𝜎(scatter). (a) Question difficulty parameters from
+Difficulty Estimation; (b) Skill difficulty parameters from Difficulty Estimation;.
+CRediT authorship contribution statement
+Qin Ni: Funding acquisition, Conception and design of study, Writ-
+ing – review & editing. Tingjiang Wei: Acquisition of data, Methodol-
+ogy, Software, Writing – original draft. Jiabao Zhao: Supervision, Writ-
+ing – review & editing. Liang He: Project administration, Resources.
+Chanjin Zheng: Writing – review & editing.
+Declaration of competing interest
+The authors declare the following financial interests/personal rela-
+tionships which may be considered as potential competing interests:
+Qin Ni reports financial support was provided by National Natural
+Science Foundation of China. Qin Ni reports financial support was
+provided by Shanghai Municipal Natural Science Foundation.
+Data availability
+Data will be made available on request.
+Acknowledgment
+This work was sponsored by the National Natural Science Founda-
+tion of China under Grant 6210020445. Shanghai Municipal Natural
+Science Foundation under Grant 21ZR1446900, 21511100102.
+References
+Ahale, P., Pattanshetti, T., & Nayak, S. (2021). Effectiveness of graph neural net-
+works for user-user-item recommendation systems. In Proceedings of the 3rd IEEE
+international conference on inventive research in computing applications (ICIRCA)
+(pp.
+1527–1532).
+Coimbatore,
+India:
+http://dx.doi.org/10.1109/ICIRCA51532.
+2021.9545053.
+Baumann, T. (2017). Large-scale speaker ranking from crowdsourced pairwise listener
+ratings. In Conference of the international speech communication association (pp.
+2262–2266). http://dx.doi.org/10.21437/Interspeech.2017-1697.
+Boltz, L. O., Yadav, A., Dillman, B., & Robertson, C. (2021). Transitioning to remote
+learning: Lessons from supporting K-12 teachers through a MOOC. British Journal
+of Educational Technology, 52, 1377–1393. http://dx.doi.org/10.1111/bjet.13075.
+
+Expert Systems With Applications 215 (2023) 119334
+12
+Q. Ni et al.
+Cen, H., Koedinger, K., & Junker, B. (2006). Learning factors analysis - a general
+method for cognitive model evaluation and improvement. In Proceeding of the 8th
+international conference on intelligent tutoring systems (pp. 164–175). Jhongli, Taiwan:
+http://dx.doi.org/10.1007/11774303_17.
+Chalmers, R. P. (2012). mirt: A multidimensional item response theory package for the
+R environment. Journal of Statistical Software, 48, 1–29.
+Chang, H. S., Hsu, H. J., & Chen, K. T. (2015). Modeling exercise relationships in
+E-learning: A unified approach. In Proceedings of the 8th international conference on
+educational data mining (pp. 532–535). Madrid, Spain.
+Choffin, B., Popineau, F., Bourda, Y., & Vie, J.-J. (2019). DAS3H: Modeling student
+learning and forgetting for optimally scheduling distributed practice of skills. In
+Proceedings of the 12th international conference oneducational data mining. Montréal,
+Canada.
+de Andrade, T. L., Rigo, S. J., & Barbosa, J. L. V. (2021). Active methodology,
+educational data mining and learning analytics: A systematic mapping study.
+Informatics in Education, 20, 171–204. http://dx.doi.org/10.15388/infedu.2021.09.
+Ding, X., & Larson, E. C. (2020). Automatic RNN cell design for knowledge tracing
+using reinforcement learning. In Proceedings of the 7th ACM conference on learning
+@ scale (pp. 285–288). New York, NY, USA: Association for Computing Machinery,
+http://dx.doi.org/10.1145/3386527.3406729.
+Feng, M., Heffernan, N., & Koedinger, K. (2009). Addressing the assessment challenge
+with an online system that tutors as it assesses. User Modeling and User-Adapted
+Interaction, 19(3), 243–266. http://dx.doi.org/10.1007/s11257-009-9063-7.
+Ghosh, A., Heffernan, N., & Lan, A. S. (2020). Context-aware attentive knowledge
+tracing. In The 26th ACM SIGKDD conference on knowledge discovery and data mining
+(pp. 2330–2339). New York, NY, USA: Association for Computing Machinery,
+http://dx.doi.org/10.1145/3394486.3403282.
+Graves, A., rahman Mohamed, A., & Hinton, G. E. (2013). Speech recognition with
+deep recurrent neural networks. In IEEE international conference on acoustics, speech,
+and signal processing (ICASSP) (pp. 6645–6649). Vancouver, BC, Canada: http:
+//dx.doi.org/10.1109/ICASSP.2013.6638947.
+Ha, H., Hong, Y., Hwang, U., & Yoon, S. (2018). Deep trustworthy knowledge tracing.
+http://dx.doi.org/10.48550/arXiv.1805.10768, arXiv:preprint.
+Hamilton, W. L., Ying, R., & Leskovec, J. (2017). Inductive representation learning on
+large graphs. In The thirty-first annual conference on neural information processing
+systems (NIPS) (pp. 1025–1035). Red Hook, NY, USA: Curran Associates Inc..
+Hanghang, Z., Xiaopeng, Y., & Yuntao, W. (2021). Research on knowledge tracing
+model based on ‘‘problem situation’’. In The 4th international conference on robotics,
+control and automation engineering (pp. 186–190). Wuhan, China: http://dx.doi.org/
+10.1109/RCAE53607.2021.9638945.
+Harvey, R. J., & Hammer, A. L. (1999). Item response theory. Counseling Psychologist,
+27(3), 353–383. http://dx.doi.org/10.1177/0011000099273004.
+Herbrich, R., Minka, T., & Graepel, T. (2007). TrueSkill(TM): A Bayesian skill rating sys-
+tem. In Advances in neural information processing systems, Advances in neural informa-
+tion processing systems (20th ed.). (pp. 569–576). MIT Press, https://www.microsoft.
+com/en-us/research/publication/trueskilltm-a-bayesian-skill-rating-system/.
+Holster, T. A., & Lake, J. (2016). Guessing and the rasch model. Language Assessment
+Quarterly, 13(2), 124–141. http://dx.doi.org/10.1080/15434303.2016.1160096.
+Howard, M. W., & Kahana, M. J. (2002). A distributed representation of temporal
+context. Journal of Mathematical Psychology, 46(3), 269–299. http://dx.doi.org/10.
+1006/jmps.2001.1388.
+Hu, Z., Dong, Y., Wang, K., & Sun, Y. (2020). Heterogeneous graph transformer. In The
+world wide web conference (pp. 2704–2710). New York, NY, USA: Association for
+Computing Machinery, http://dx.doi.org/10.1145/3366423.3380027.
+Injadat, M., Moubayed, A., Nassif, A. B., & Shami, A. (2020). Systematic ensemble
+model selection approach for educational data mining. Knowledge-Based Systems,
+200, Article 105992. http://dx.doi.org/10.1016/j.knosys.2020.105992.
+Jiang, F., Yu, X., Du, J., Gong, D., Zhang, Y., & Peng, Y. (2021). Ensemble learning
+based on approximate reducts and bootstrap sampling. Information Sciences, 547,
+797–813, https://www.sciencedirect.com/science/article/pii/S0020025520308367.
+Jiang, F., Yu, X., Gong, D., & Du, J. (2022). A random approximate reduct-based
+ensemble learning approach and its application in software defect prediction. Infor-
+mation Sciences, 609, 1147–1168, https://www.sciencedirect.com/science/article/
+pii/S0020025522008179.
+Kawatsu, C., Hubal, R., & Marinier, R. P. (2018). Predicting students’ decisions in a
+training simulation: A novel application of TrueSkill. IEEE Transactions on Games,
+10, 97–100. http://dx.doi.org/10.1109/TCIAIG.2017.2680843.
+Lan, A., & Baraniuk, R. (2016). A contextual bandits framework for personalized
+learning action selection. In Proceedings of the 9th international conference on
+educational data mining (pp. 424–429). Raleigh, NC, USA.
+Lee, Y. (2019). Estimating student ability and problem difficulty using item response
+theory (IRT) and TrueSkill. Information Discovery and Delivery, 47(2), 67–75. http:
+//dx.doi.org/10.1108/IDD-08-2018-0030.
+Liao, Wen-Wei, Ho, Rong-Guey, Yen, Yung-Chin, Cheng, & Hsu-Chen (2012). The four-
+parameter logistic item response theory model as a robust method of estimating
+ability despite aberrant responses. Social Behavior & Personality An International
+Journal, 1679–1694. http://dx.doi.org/10.2224/sbp.2012.40.10.1679.
+Lin, C., & Chi, M. (2017). A comparisons of BKT, RNN and LSTM for learning
+gain prediction. In International conference on artificial intelligence in education (pp.
+536–539). Wuhan, China: http://dx.doi.org/10.1007/978-3-319-61425-0_58.
+Lindsey, R. V., Shroyer, J. D., Pashler, H., & Mozer, M. C. (2014). Improving students’
+long-term knowledge retention through personalized review. Psychological Science,
+25(3), 639–647. http://dx.doi.org/10.1177/0956797613504302.
+Liu, F., Hu, X., Bu, C., & Yu, K. (2022). Fuzzy Bayesian knowledge tracing. IEEE Transac-
+tions on Fuzzy Systems, 30(7), 2412–2425. http://dx.doi.org/10.1109/TFUZZ.2021.
+3083177.
+Liu, Q., Huang, Z., Yin, Y., Chen, E., Xiong, H., Su, Y., & Hu, G. (2021). EKT: Exercise-
+aware knowledge tracing for student performance prediction. IEEE Transactions on
+Knowledge and Data Engineering, 33(1), 100–115. http://dx.doi.org/10.1109/TKDE.
+2019.2924374.
+Liu, Y., Yang, Y., Chen, X., Shen, J., Zhang, H., & Yu, Y. (2020). Improving knowledge
+tracing via pre-training question embeddings. In Proceedings of the twenty-ninth
+international joint conference on artificial intelligence (pp. 1577–1583). http://dx.doi.
+org/10.24963/ijcai.2020/219.
+Ma, T., & Chen, J. (2021). Unsupervised learning of graph hierarchical abstractions
+with differentiable coarsening and optimal transport. In Proceedings of the AAAI
+conference on artificial intelligence, Vol. 35 (pp. 8856–8864). https://ojs.aaai.org/
+index.php/AAAI/article/view/17072.
+Mei, H., & Eisner, J. (2017). The neural hawkes process: A neurally self-modulating
+multivariate point process. In The thirty-first annual conference on neural information
+processing systems (NIPS) (pp. 6757–6767). Red Hook, NY, USA: Curran Associates
+Inc..
+Minka, T., Cleven, R., & Zaykov, Y. (2018). TrueSkill 2: An improved Bayesian skill rating
+system: Tech. rep. no. MSR-TR-2018-8, Microsoft.
+Minn, S., Vie, J.-J., Takeuchi, K., Kashima, H., & Zhu, F. (2021). Interpretable
+knowledge tracing: Simple and efficient student modeling with causal relations.
+http://dx.doi.org/10.48550/arXiv.2112.11209, arXiv:preprint.
+Murre, J., & Chessa, A. G. (2011). Power laws from individual differences in learn-
+ing and forgetting: mathematical analyses. Psychonomic Bulletin & Review, 18(3),
+592–597. http://dx.doi.org/10.3758/s13423-011-0076-y.
+Nakagawa, H., Iwasawa, Y., & Matsuo, Y. (2019). Graph-based knowledge tracing:
+Modeling student proficiency using graph neural network. In IEEE/WIC/ACM
+international conference on web intelligence (pp. 156–163). Thessaloniki, Greece:
+http://dx.doi.org/10.1145/3350546.3352513.
+Oya, T., & Morishima, S. (2021). LSTM-SAKT: LSTM-encoded SAKT-like transformer
+for knowledge tracing. http://dx.doi.org/10.48550/arXiv.2102.00845, arXiv:2102.
+00845.
+Pandey, S., & Karypis, G. (2019). A self-attentive model for knowledge tracing. In
+Proceedings of the 12th international conference on educational data mining (pp.
+384–389). Montréal, Canada.
+Pandey, S., & Srivastava, J. (2020). RKT: Relation-aware self-attention for knowledge
+tracing. In The 29th ACM international conference on information and knowledge
+management (pp. 1205–1214). New York, NY, USA: Association for Computing
+Machinery, http://dx.doi.org/10.1145/3340531.3411994.
+Patikorn, T., Baker, R. S., & Heffernan, N. T. (2020). Assistments longitudinal data
+mining competition special issue: A preface. Journal of Educational Data Mining,
+12(2), 1–6. http://dx.doi.org/10.5281/zenodo.4008048.
+Pavlik, P. I., Cen, H., & Koedinger, K. R. (2009). Performance factors analysis –a
+new alternative to knowledge tracing. In 14th international conference on artificial
+intelligence in education (pp. 531–538). Brighton, UK: IOS Press.
+Piech, C., Bassen, J., Huang, J., Ganguli, S., Sahami, M., Guibas, L. J., & Sohl-
+Dickstein, J. (2015). Deep knowledge tracing. In Advances in neural information pro-
+cessing systems, Vol. 28 (pp. 505–513). Curran Associates, Inc., https://proceedings.
+neurips.cc/paper/2015/file/bac9162b47c56fc8a4d2a519803d51b3-Paper.pdf.
+Pu, S., Yudelson, M., Ou, L., & Huang, Y. (2020). Deep knowledge tracing with
+transformers. In International conference on artificial intelligence in education (pp.
+252–256). Ifrane, Morocco.
+Quispe, L. V. C., & Luna, J. E. O. (2015). A content-based recommendation system using
+TrueSkill. In Proceedings of the 14th Mexican international conference on artificial
+intelligence (pp. 203–207). Cuernavaca, Mexico.
+Schlichtkrull, M. S., Cao, N. D., & Titov, I. (2021). Interpreting graph neural networks
+for NLP with differentiable edge masking. In International conference on learning
+representations. Vienna, Austria.
+Schlichtkrull, M., Kipf, T. N., Bloem, P., vanden Berg, R., Titov, I., & Welling, M. (2018).
+Modeling relational data with graph convolutional networks. In 15th international
+semantic web conference (pp. 593–607). Heraklion, Crete, Greece.
+Shin, D., Shim, Y., Yu, H., Lee, S., Kim, B., & Choi, Y. (2021). Saint+: Integrating
+temporal features for EdNet correctness prediction. In 11th international learning
+analytics and knowledge conference (pp. 490–496). New York, NY, USA: Association
+for Computing Machinery, http://dx.doi.org/10.1145/3448139.3448188.
+Shuai, P., Li, L., Liu, S., & Shen, J. (2022). QDG: A unified model for automatic
+question-distractor pairs generation. Applied Intelligence, http://dx.doi.org/10.1007/
+s10489-022-03894-6.
+Song, X., Li, J., Tang, Y., Zhao, T., Chen, Y., & Guan, Z. (2021). JKT: A joint graph
+convolutional network based deep knowledge tracing. Information Sciences, 580,
+510–523.
+Su, Y., Cheng, Z., Luo, P., Wu, J., Zhang, L., Liu, Q., & Wang, S. (2021). Time-and-
+concept enhanced deep multidimensional item response theory for interpretable
+knowledge tracing. Knowledge-Based Systems, 218, Article 106819. http://dx.doi.
+org/10.1016/j.knosys.2021.106819.
+
+Expert Systems With Applications 215 (2023) 119334
+13
+Q. Ni et al.
+Tong, S., Liu, Q., Huang, W., Hunag, Z., Chen, E., Liu, C., Ma, H., & Wang, S. (2020).
+Structure-based knowledge tracing: An influence propagation view. In 2020 IEEE
+international conference on data mining (ICDM) (pp. 541–550).
+Tong, H., Wang, Z., Liu, Q., Zhou, Y., & Han, W. (2020). HGKT: Introducing
+Hierarchical Exercise Graph for Knowledge Tracing. http://dx.doi.org/10.48550/
+arXiv.2006.16915, arXiv:preprint.
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., &
+Polosukhin, I. (2017). Attention is all you need. In The thirty-first annual conference
+on neural information processing systems (NIPS), Vol. 30 (pp. 6000–6010). Long
+Beach, California, USA: Curran Associates, Inc., https://proceedings.neurips.cc/
+paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf.
+Veliković, P., Cucurull, G., Casanova, A., Romero, A., Liò, P., & Bengio, Y. (2017). Graph
+attention networks. In International conference on learning representations. Vancouver,
+BC, Canada.
+Vie, J.-J., & Kashima, H. (2019). Knowledge tracing machines: Factorization machines
+for knowledge tracing. In Proceedings of the AAAI conference on artificial intelligence,
+Vol. 33 (pp. 750–757). Hilton Hawaiian Village, Honolulu, Hawaii, USA: https:
+//ojs.aaai.org/index.php/AAAI/article/view/3853.
+Wang, F., Liu, Q., Chen, E., Huang, Z., Chen, Y., Yin, Y., Huang, Z., & Wang, S. (2020).
+Neural cognitive diagnosis for intelligent education systems. In Proceedings of the
+AAAI conference on artificial intelligence, Vol. 34 (pp. 6153–6161). New York, NY,
+USA: https://ojs.aaai.org/index.php/AAAI/article/view/6080.
+Wang, Q., Liu, J., Wang, B., & Guo, L. (2014). A regularized competition model
+for question difficulty estimation in community question answering services. In
+Proceedings of the 2014 conference on empirical methods in natural language processing
+(EMNLP) (pp. 1115–1126). Doha, Qatar: Association for Computational Linguistics,
+https://aclanthology.org/D14-1118.
+Wang, C., Ma, W., Zhang, M., Lv, C., Wan, F., Lin, H., Tang, T., Liu, Y., & Ma, S. (2021).
+Temporal cross-effects in knowledge tracing. In The 14th ACM international confer-
+ence on web search and data mining (pp. 517–525). New York, NY, USA: Association
+for Computing Machinery, http://dx.doi.org/10.1145/3437963.3441802.
+Yang, Y., Shen, J., Qu, Y., Liu, Y., Wang, K., Zhu, Y., Zhang, W., & Yu, Y. (2020).
+GIKT: A graph-based interaction model for knowledge tracing. In Proceedings of
+the European conference on machine learning and principles and practice of knowledge
+discovery in databases (pp. 299–315).
+Yang, Y., Shen, J., Qu, Y., Liu, Y., Wang, K., Zhu, Y., Zhang, W., & Yu, Y. (2021).
+GIKT: A graph-based interaction model for knowledge tracing. In Joint European
+conference on machine learning and knowledge discovery in databases (pp. 299–315).
+Ghent, Belgium.
+Yeung,
+C.-K.
+(2019).
+Deep-IRT:
+Make
+deep
+learning
+based
+knowledge
+tracing
+explainable using item response theory. arXiv:1904.11738.
+Yu, T. (2018). Examining construct validity of the student online learning readiness
+(SOLR) instrument using confirmatory factor analysis. Online Learning, 227–288.
+http://dx.doi.org/10.24059/olj.v22i4.1297.
+Zhang, J., Shi, X., King, I., & Yeung, D. Y. (2017). Dynamic key-value memory networks
+for knowledge tracing. In The world wide web conference (pp. 765–774). Perth,
+Australia.
+Zhang, C., Song, D., Huang, C., Swami, A., & Chawla, N. V. (2019). Heterogeneous
+graph neural network. In The 25th ACM SIGKDD conference on knowledge discovery
+and data mining (pp. 793–803). New York, NY, USA: Association for Computing
+Machinery, http://dx.doi.org/10.1145/3292500.3330961.
+Zhang, M., Zhu, X., Zhang, C., Ji, Y., Pan, F., & Yin, C. (2021). Multi-factors
+aware dual-attentional knowledge tracing. In The 30th ACM international confer-
+ence on information and knowledge management (pp. 2588–2597). New York, NY,
+USA: Association for Computing Machinery, http://dx.doi.org/10.1145/3459637.
+3482372.
+Zhao, J., Bhatt, S., Thille, C., Zimmaro, D., & Gattani, N. (2020). Interpretable
+personalized knowledge tracing and next learning activity recommendation. In
+Proceedings of the 7th ACM conference on learning @ scale (pp. 325–328). New York,
+NY, USA: http://dx.doi.org/10.1145/3386527.3406739.
+Zhao, L., Song, Y., Zhang, C., Liu, Y., Wang, P., Lin, T., Deng, M., & Li, H.
+(2020). T-GCN: A temporal graph convolutional network for traffic prediction. IEEE
+Transactions on Intelligent Transportation Systems, 21, 3848–3858. http://dx.doi.org/
+10.1109/TITS.2019.2935152.
+Zia, A., Nouri, J., Afzaal, M., Wu, Y., Li, X., & Weegar, R. (2021). An ensemble
+approach for question-level knowledge tracing. In Artificial intelligence in education
+(pp. 433–437). Cham: Springer International Publishing.
+Qin Ni is an associate professor in college of information,
+mechanical and electrical engineering of Shanghai Normal
+University, PR China. She received the PhD degree in system
+and information service from the Technical University of
+Madrid, Spain in 2016 with the scholarship from China
+Scholarship Council. She took the post of visiting scholar
+at the University of Ulster, U.K. in 2015. Her research
+interests include educational data mining, adaptive learning
+and smart environment. Contact her at niqin@shnu.edu.cn.
+Tingjiang Wei is currently pursuing the master’s degree
+in computer application with the College of Information,
+Mechanical and Electrical Engineering, Shanghai Normal
+University. His research interests include education data
+analysis, deep knowledge tracing, learning factors analysis
+in education and learning path planning.
+Jiabao Zhao received the Ph.D. degrees from the School
+of Computer Science and Technology, East China Nor-
+mal University (ECNU), Shanghai, China, in 2021. She
+is currently working in Institute of AI for Education in
+ECNU. Her research interests include few-shot learning,
+cross-modal knowledge transferring and explainable AI.
+Her research results have been published in AAAI, ICME,
+ICASSP, Neurocomputing, etc.
+Liang He received his bachelor’s degree and PhD degree
+from the Department of Computer Science and Technology,
+East China Normal University, Shanghai, China. He is now a
+professor and the associate dean of the School of Computer
+Science and Technology, East China Normal University. His
+current research interest includes knowledge processing,
+user behavior analysis, and context-aware computing. He
+has been awarded the Star of the Talent in Shanghai. He is
+also a council member of the Shanghai Computer Society,
+a member of the Academic Committee, the director of the
+technical committee of Shanghai Engineering Research Cen-
+ter of Intelligent Service Robot, and a technology foresight
+expert of the Shanghai Science and Technology in focus
+areas.
+Chanjin Zheng received the B.A. degree from the Beijing
+Foreign Studies University, Beijing, China, in 2001. He
+received M.S. degree in educational and developmental
+psychology from the Beijing Normal University, Beijing,
+China, in 2010. He received M.S. degree in applied statistics
+and Ph.D. degree in educational psychology from University
+of Illinois at Urbana-Champaign, 2013, 2015, respectively.
+His research interests include psychological and educational
+testing, applied statistics in psychology and education.

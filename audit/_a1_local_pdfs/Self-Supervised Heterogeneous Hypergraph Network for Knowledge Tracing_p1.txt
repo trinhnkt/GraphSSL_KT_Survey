@@ -1,0 +1,127 @@
+Self-supervised heterogeneous hypergraph network for
+knowledge tracing
+Tangjie Wu, Qiang Ling ⇑
+University of Science and Technology of China, Hefei, Anhui 230027, China
+a r t i c l e
+i n f o
+Article history:
+Received 3 May 2022
+Received in revised form 24 December 2022
+Accepted 27 December 2022
+Available online 30 December 2022
+Keyword:
+Heterogeneous graph neural network
+Hypergraph network
+Contrastive learning
+Self-supervised learning
+Knowledge tracing
+a b s t r a c t
+Recently online intelligent education has caught more and more attention, especially due
+to the global inﬂuence of Covid-19. A major task of intelligent education is Knowledge
+Tracing (KT) which aims to capture students’ dynamic status based on their historical inter-
+action records and predict their responses to new questions. However, most existing KT
+methods suffer from the record data sparsity problem. In reality, there are a huge number
+of questions in the online database and students can only interact with a very small set of
+these questions. The records of some questions could be extremely sparse, which may sig-
+niﬁcantly degrade the performance of traditional KT methods. Although recent graph neu-
+ral network (GNN) based KT methods can fuse graph-structured information and improve
+the representation of questions to some extent, the pairwise structure of GNN neglects the
+complex high-order and heterogeneous relations among questions. To resolve the above
+issues, we develop a novel KT model with the heterogeneous hypergraph network (HHN)
+and propose an attentive mechanism, including intra- and inter-graph attentions, to aggre-
+gate neighbors’ information upon HHN. To further enhance the question representation, we
+supplement the supervised prediction task of KT with an auxiliary self-supervised task, i.e.,
+we additionally generate an augmented view with adaptive data augmentation to imple-
+ment contrastive learning and exploit the unobserved relations among questions. We con-
+duct
+extensive
+experiments
+on
+several
+real-world
+datasets.
+Experimental
+results
+demonstrate that our proposed method achieves signiﬁcant performance improvement
+compared to some state-of-the-art KT methods.
+ 2022 Elsevier Inc. All rights reserved.
+1. Introduction
+With the rapid development of adaptive learning, intelligent tutoring systems (ITS) [1] have been widely implemented.
+Among research on ITS, more and more attention has been paid to modeling the knowledge state of each student intelli-
+gently [2]. As an emerging paradigm of ITS, knowledge tracing (KT) [3] aims to accurately infer the latent state of students
+based on their historical interactions and predict their responses to a new question. According to the predicted results, teach-
+ers can know the mastery of students’ knowledge levels in advance and personalize learning plans for each student.
+KT methods can date back to the late 1960s. In the early research, the hidden Markov chain was taken to extract the state
+of students. Bayesian Knowledge Tracing (BKT) [4] is one of typical KT methods. Later, some KT models were built upon Item
+Response Theory (IRT) [5], like the Difﬁculty, Ability, and Student History (DASH) model [6]. DASH innovatively takes into
+https://doi.org/10.1016/j.ins.2022.12.075
+0020-0255/ 2022 Elsevier Inc. All rights reserved.
+⇑Corresponding author.
+E-mail address: qling@ustc.edu.cn (Q. Ling).
+Information Sciences 624 (2023) 200–216
+Contents lists available at ScienceDirect
+Information Sciences
+journal homepage: www.elsevier.com/locate/ins
+
+account the impact of additional factors, such as question difﬁculty, error rate, response time, on students’ ﬁnal responses.
+However, the accuracy of these traditional KT methods strongly depends on the statistical estimation of parameters, and may
+be impracticable nowadays.
+Over the past decade, there has emerged a myriad of attempts that implement neural networks to KT. Due to the strong
+capability of modeling sequential data, neural network-based KT methods generally perform better than traditional ones. For
+example, Deep Knowledge Tracing (DKT) [7] ﬁrst introduces recurrent neural network (RNN) [8] to track the state evolution
+process of students. But this standard sequential architecture of DKT is incapbale of both capturing long-term dependencies
+and preserving semantic details. To resolve this issue, some KT methods based on memory neural networks, such as Dynamic
+Key-Value Memory Networks for Knowledge Tracing (DKVMN) [9], were proposed, which supplement an external memory
+matrix to store the dynamic change of the knowledge state of students.
+Later, attention mechanism [10] gradually achieves promising results in NLP ﬁeld and is implemente to KT. Those
+attention-based KT models eliminate irrelevant interactions and focus on relevant ones to predict a student’s next response.
+Among them, the Self-Attentive Knowledge Tracing (SAKT) [11] utilizes the attention mechanism to learn the weight of each
+historical interaction for the target question. Although SAKT shows its effectiveness in capturing early details, it completely
+ignores the forgetting effects of the memory. Due to the long record cycle in KT, directly applying the attention mechanism
+may result in signiﬁcant performance degeneration. In light of this issue, Context-Aware Attentive Knowledge Tracing (AKT)
+[12] introduces a monotonic attention mechanism that integrates the exponential decay and characterizes the importance of
+memory decay in modeling long interaction sequences.
+Recently, Graph Neural Network (GNN) has emerged as a powerful strategy for analyzing graph-structured data and
+found many applications in KT. GNN can sufﬁciently learn node embeddings by aggregating graph attributive and structural
+features. In the online tutoring systems, KT usually encounters the cold-start or long-tail problem, i.e., most questions are
+only interacted by a few students. How to tackle such problem and build better representation for questions has attracted
+much attention. A Graph-based Interaction Model for Knowledge Tracing (GIKT) [13] treats the question-skill data as pair-
+wise relations and builds the corresponding graph. A joint graph convolutional network based Deep Knowledge Tracing (JKT)
+[14] models the multi-dimensional relationships of ‘‘exercise-to-exercise” and ‘‘concept-to-concept” into graph. Pre-training
+Question Embeddings via Relation Map for Improving Knowledge Tracing (PERM) [15] innovatively exploits two relation
+maps between questions, including co-occurrence and answer-agreement, and leverages a two-level attention mechanism
+to fuse multi-faceted information. However, most GNN-based KT methods are susceptible to the subjective tendency of
+experts within the Q-matrix. To resolve this issue, tracking knowledge proﬁciency of students with calibrated Q-matrix
+(CQKT) [16] devises a novel Calibrated Q-matrix-based framework and achieves the state-of-the-art performance. In sum-
+mary, the graph structure can effectively capture the latent relations among questions and enrich the representation of ques-
+tions to some extent.
+Although GNN-based methods have achieved signiﬁcant progresses in KT, they still suffer from the following limitations:
+(1) The complex heterogeneity is neglected. Heterogeneous information network (HIN) [17] is ubiquitous in the real
+world. In KT, these recorded questions are usually connected with diverse attributes, like question type, difﬁculty coef-
+ﬁcient, involved skill, which are indispensable to build expressive representations for questions. Obviously, simple
+homogeneous graphs (question-skill pair) are incapable of characterizing heterogeneous relations.
+(2) The high-order relations are neglected. The features encoded just by pair-wise dependencies are not enough to capture
+higher-order correlations among questions. In reality, multiple questions may cover a common skill, whose relations
+are no longer dyadic, but higher-order. Traditional GNN can capture k-hop neighbor features by k layer propagation,
+but is unable to represent the beyond-pairwise semantic structures and patterns.
+To address the above limitations, we propose a novel knowledge tracing model and build question embeddings based on the
+hypergraph [18], which can effectively capture the high-order relations among questions. Those questions, which share a
+common skill, can be treated as the nodes connected by a hyperedge, and each skill is represented as a hyperedge. Further-
+more, we propose a novel intra-graph attention to aggregate neighbor information of the hypergraph. Different from tradi-
+tional convolution methods [19], which only perform a simple average-pooling over neighbor nodes, our proposed attention
+can perceive the discrepancy in the impact of nodes and hyperedges and focus on important semantic features. Besides, to
+quantify the importance of different nodes in the hypergraph, we design a novel projection function, which considers the
+dynamic deviation under the impact of neighbors.
+Although there have been much research on hypergraph learning, little of them has been done on the aforementioned
+heterogeneity of real scenarios. To resolve this issue, we introduce a heterogeneous information network (HIN) into the
+hypergraph and learn high-order and heterogeneous relations for question representations simultaneously. It is non-
+trivial to bridge hypergraph and HIN. The hyperedges of the heterogeneous hypergraph are no longer simplex, but multiple.
+Each hyperedge denotes a speciﬁc relation among questions. To learn the importance of different relations, we propose an
+inter-graph attention to fuse multiple semantics for representations.
+Currently, most KT methods are based on a supervised learning paradigm. However, the performance of those methods
+may usually be degraded by the data sparsity, i.e., with millions of questions in the database, the observed student-question
+interactions just provide feedback for a very small set of them, making it very difﬁcult to learn quality representations. To
+address this limitation, we introduce self-supervised learning (SSL) into our model, which can ﬁnd supervised signals from
+T. Wu and Q. Ling
+Information Sciences 624 (2023) 200–216
+201

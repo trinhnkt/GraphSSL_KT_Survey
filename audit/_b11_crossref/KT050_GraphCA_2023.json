@@ -1,0 +1,120 @@
+{
+  "title": [
+    "GraphCA: Learning from Graph Counterfactual Augmentation for Knowledge Tracing"
+  ],
+  "author": [
+    {
+      "given": "Xinhua",
+      "family": "Wang",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "School of Information Science and Engineering, Shandong Normal University,Jinan,China,250358"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Shasha",
+      "family": "Zhao",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Information Science and Engineering, Shandong Normal University,Jinan,China,250358"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Lei",
+      "family": "Guo",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Information Science and Engineering, Shandong Normal University,Jinan,China,250358"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Lei",
+      "family": "Zhu",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Information Science and Engineering, Shandong Normal University,Jinan,China,250358"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Chaoran",
+      "family": "Cui",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Computer Science and Technology, Shandong University of Finance and Economics,Jinan,China,250014"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Liancheng",
+      "family": "Xu",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Information Science and Engineering, Shandong Normal University,Jinan,China,250358"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2023,
+        11
+      ]
+    ]
+  },
+  "container-title": [
+    "IEEE/CAA Journal of Automatica Sinica"
+  ],
+  "volume": "10",
+  "issue": "11",
+  "page": "2108-2123",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "DOI": "10.1109/jas.2023.123678",
+  "type": "journal-article"
+}

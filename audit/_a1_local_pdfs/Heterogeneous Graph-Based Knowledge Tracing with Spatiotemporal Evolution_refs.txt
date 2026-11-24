@@ -1,0 +1,269 @@
+Expert Systems With Applications 238 (2024) 122249
+12
+decreasing tendency of knowledge mastery over time owing to long- 
+term inactivity, i.e., temporally updating the knowledge state. This 
+result indicated that spatiotemporal dimensions had an influence on 
+student knowledge states. 
+6. Conclusion 
+In this paper, we explore predicting future performance by tracing 
+knowledge state evolution, guided by knowledge construction theory. 
+Existing KT methods often overlook the influence of accommodation 
+and assimilation on student responses, resulting in inadequate modeling 
+of knowledge construction. To overcome this, we propose TSKT, a novel 
+KT method that improves interpretability and performance. TSKT 
+simultaneously traces knowledge state evolution in students’ learning 
+process along both temporal and spatial dimensions. It employs an ex­
+ercise heterogeneous graph to enhance exercise representations, 
+creating a new knowledge space with diverse exercise information and 
+relationships. We further propose a spatial updating module that utilizes 
+a graph neural network to update node state by current interactions and 
+then transfers each node’s influence to neighboring nodes, capturing the 
+accommodation influence within the knowledge space. Finally, we 
+construct a temporal updating module for updating the knowledge state 
+through short-term memory updating and long-term memory forgetting 
+to capture the assimilation influence of the knowledge mastery level. 
+The spatiotemporal updating mechanism can effectively simulate the 
+process of student knowledge state accommodation and assimilation 
+process based on knowledge constructive theory. Extensive experiments 
+on real-world datasets demonstrate that TSKT outperforms existing KT 
+methods in prediction accuracy. 
+Although our TSKT model obtains good performance, its practical 
+application still suffers from some limitations. The TSKT model can trace 
+the evolution of students’ knowledge status in the learning process along 
+the temporal and spatial dimensions. However, the construction of the 
+heterogeneous graph of exercises depends on the multi-dimensional 
+exercise features, and the spatiotemporal updating module also needs 
+spatiotemporal response information. Considering that we cannot cap­
+ture all these features in every scenario, this leads to the limitations in 
+the generality and applicability of the TSKT model in various scenarios 
+or datasets. Therefore, we will further improve the general applicability 
+and practical application of our model in future work, improving the 
+application prospects of our TSKT model. On the one hand, we intend to 
+leverage common features to reduce the demand for special features, 
+thereby expanding the model’s suitability across various datasets. This 
+endeavor will facilitate the widespread adoption of our model, extend­
+ing its application within a broader educational landscape. On the other 
+hand, we will employ advanced analytical technologies, such as causal 
+analysis (Yang et al., 2022), to identify pivotal features in the learning 
+process while eliminating redundant or trivial attributes. Moreover, 
+with the widespread application of smart education systems and 
+development of artificial intelligence technology, the accompanying 
+collection in learning process will be gradually realized (Liu et al., 
+2022). This development will not only promote the enrichment of 
+collected features but also provide more possibilities for our future 
+model research and verification. This trend contributes to the augmen­
+tation of our feature collection and offers expanded perspectives for our 
+forthcoming model research. 
+Of course, there are some important directions worth exploring in 
+the future. First, we recognize the existence of diverse relationships and 
+structure among exercises, knowledge concepts, and students, including 
+predecessor and sibling relations of concept-concept (Song et al., 2021), 
+exercise-concept associations (Song et al., 2022), and multi-level re­
+lationships of student-exercise-concept (Sun et al., 2022). Further 
+consideration of these entity relationships can enhance knowledge 
+representation and render the spatiotemporal update module more 
+reasonable and explicable. Second, we aim to explore the incorporation 
+of multimodal exercise features (e.g., drawings and formulas) (Yin et al., 
+2019) to capture more exercise information for comprehensive exercise 
+representations. It is a feasible approach to explore more reasonable 
+methods of constructing exercise heterogeneous graphs, incorporating 
+the domain knowledge of exercises, to aggregate multimodal informa­
+tion and obtain more accurate exercise representations. Third, we 
+acknowledge the significance of a spatiotemporal approach, which can 
+be influenced by multiple factors when capturing the temporal de­
+pendencies and spatial correlations within the data. For example, 
+depending on the interaction sequence, we can segment time series data 
+into short-term, mid-term, and long-term subsequences, and utilize 
+diverse techniques to extract crucial spatiotemporal features (Xu et al., 
+2023), such as principal component analysis or causal analysis. Lastly, 
+the applications of KT algorithms hold great promise in revolutionizing 
+online education systems by offering more accurate diagnostic services 
+for assessing student knowledge status. By dynamically tracing students’ 
+cognitive levels, we can construct a learning dashboard (Aguilar et al., 
+2021) or design scaffolding adaptive prompts (Ueno & Miyazawa, 
+2017), to help students achieve high-quality personalized learning and 
+facilitate differentiated teaching. We believe that these research di­
+rections hold significant potential for further exploration in the future. 
+CRediT authorship contribution statement 
+Huali Yang: Conceptualization, Methodology, Supervision, Writing 
+– original draft. Shengze Hu: Methodology, Validation, Formal analysis, 
+Writing – original draft. Jing Geng: Investigation, Resources, Writing – 
+original draft. Tao Huang: Supervision, Methodology, Writing – review 
+& editing. Junjie Hu: Validation, Data curation. Hao Zhang: Visuali­
+zation, Validation. Qiang Zhu: Data curation, Visualization. 
+Declaration of Competing Interest 
+The authors declare that they have no known competing financial 
+interests or personal relationships that could have appeared to influence 
+the work reported in this paper. 
+Data availability 
+Data will be made available on request. 
+Acknowledgment 
+This work was supported by the National Natural Science Foundation 
+of China (grant number 62307029, 61977033, U20A20229, 62077024). 
+References 
+Abdelrahman, G., & Wang, Q. (2019). Knowledge tracing with sequential key-value 
+memory networks. In SIGIR 2019, proceedings of the 42nd international ACM SIGIR 
+conference on research and development in information retrieval (pp. 175–184). https:// 
+doi.org/10.1145/3331184.3331195 
+Aguilar, S. J., Karabenick, S. A., Teasley, S. D., & Baek, C. (2021). Associations between 
+learning analytics dashboard exposure and motivation and self-regulated learning. 
+Computers & Education, 162, Article 104085. 
+Ahmed, N. K., Rossi, R. A., Zhou, R., Lee, J. B., Kong, X., Willke, T. L., & Eldardiry, H. 
+(2017). Inductive representation learning in large attributed graphs. In Proceedings of 
+the international conference on neural information processing systems (pp. 1–11). 
+Ai, F., Chen, Y., Guo, Y., Zhao, Y., Wang, Z., Fu, G., & Wang, G. (2019). Concept-aware 
+deep knowledge tracing and exercise recommendation in an online learning system. 
+In Edm. EDM 2019 - Proceedings of the 12th international conference on educational data 
+mining (pp. 240–245). 
+Chen, P., Lu, Y., Zheng, V. W., & Pian, Y. (2018). Prerequisite-driven deep knowledge 
+tracing. In proceedings of the IEEE international conference on data mining, ICDM. 
+https://doi.org/10.1109/ICDM.2018.00019 
+Chung, J., Gulcehre, C., Cho, K., & Bengio, Y. (2014). Empirical evaluation of gated 
+recurrent neural networks on sequence modeling. Retrieved from http://arxiv.org/ 
+abs/1412.3555, 1–9. 
+Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2019). BERT: Pretraining of deep 
+bidirectional transformers for language understanding. In NAACL HLT 2019–2019 
+conference of the North American chapter of the association for computational linguistics: 
+Human language technologies Proceedings of the conference, 1 (pp. 4171–4186). 
+H. Yang et al.                                                                                                                                                                                                                                    
+
+Expert Systems With Applications 238 (2024) 122249
+13
+Doignon, J. P., & Falmagne, J. C. (1985). Spaces for the assessment of knowledge. 
+International Journal of Man-Machine Studies, 23(2), 175–196. https://doi.org/ 
+10.1016/S0020-7373(85)80031-6 
+Fogliatto, F. S., & Anzanello, M. J. (2016). Learning curves: The state of the art and 
+research directions. In Learning curves, June, 3–21. 
+Gao, W., Liu, Q., Huang, Z., Yin, Y., Bi, H., Wang, M.-C., & Su, Y. (2021). RCD: Relation 
+map driven cognitive diagnosis for intelligent education systems. In Proceedings of the 
+44th international ACM SIGIR conference on research and development in information 
+retrieval (pp. 501–510). https://doi.org/10.1145/3404835.3462932 
+Ghosh, A., Heffernan, N., & Lan, A. S. (2020). Context-aware attentive knowledge 
+tracing. In Proceedings of the ACM SIGKDD international conference on knowledge 
+discovery and data mining (pp. 2330–2339). https://doi.org/10.1145/ 
+3394486.3403282 
+Hamilton, W., Ying, Z., & Leskovec, J. (2017). Inductive representation learning on large 
+graphs. Advances in Neural Information Processing Systems, 30. 
+Hong, H., Guo, H., Lin, Y., Yang, X., Li, Z., & Ye, J. (2020). An attention-based graph 
+neural network for heterogeneous structural learning. Proceedings of the AAAI 
+Conference on Artificial Intelligence, 34(4), 4132–4139. https://doi.org/10.1609/aaai. 
+v34i04.5833 
+Hooshyar, D., Huang, Y. M., & Yang, Y. (2022). GameDKT: Deep knowledge tracing in 
+educational games. Expert Systems with Applications, 196, Article 116670. https://doi. 
+org/10.1016/j.eswa.2022.116670 
+Huang, T., Liang, M., Yang, H., Li, Z., Yu, T., & Hu, S. (2021). Context-aware knowledge 
+tracing integrated with the exercise representation and association in mathematics. 
+International Educational Data Mining Society., 1(2). 
+Huang, T., Yang, H., Li, Z., Xie, H., Geng, J., & Zhang, H. (2021). A dynamic knowledge 
+diagnosis approach integrating cognitive features. IEEE Access, 9, 116814–116829. 
+https://doi.org/10.1109/ACCESS.2021.3105830 
+Huang, W., Chen, E., Liu, Q., Chen, Y., Huang, Z., Liu, Y., & Wang, S. (2020). Hierarchical 
+multi-label text classification: An attention-based recurrent hierarchical multi-label 
+text classification: An attention-based recurrent network approach. In Proceedings of 
+the 28th ACM international conference on information and knowledge management (pp. 
+1051–1060). https://doi.org/10.1145/3357384.3357885 
+Huang, Z., Liu, Q., Chen, Y., Wu, L., Xiao, K., Chen, E., & Hu, G. (2020). Learning or 
+forgetting? A dynamic approach for tracking the knowledge proficiency of students. 
+ACM Transactions on Information Systems, 38(2), 1–33. https://doi.org/10.1145/ 
+3379507 
+Kimmerle, J., Cress, U., & Held, C. (2010). The interplay between individual and 
+collective knowledge: Technologies for organizational learning and knowledge 
+building. Knowledge Management Research and Practice, 8(1), 33–44. https://doi.org/ 
+10.1057/kmrp.2009.36 
+Kimmerle, J., Moskaliuk, J., Oeberst, A., & Cress, U. (2015). Learning and collective 
+knowledge construction with social media: A process-oriented perspective. 
+Educational Psychologist, 50(2), 120–137. https://doi.org/10.1080/ 
+00461520.2015.1036273 
+Kipf, T. N., & Welling, M. (2017). Semi-supervised classification with graph 
+convolutional networks. In 5Th International conference on learning representations, 
+ICLR 2017 - Conference Track Proceedings (pp. 1–14). 
+Li, J., Wang, Z. L., Zhao, H., Gravina, R., Fortino, G., Jiang, Y., & Tang, K. (2017). 
+Networked human motion capture system based on quaternion navigation. In B O D 
+Y Nets international conference on body area networks, V 212 (pp. 1–21). https://doi. 
+org/10.4108/eai.15-12-2016.2267544 
+Liu, Q., Huang, Z., Yin, Y., Chen, E., Xiong, H., Su, Y., & Hu, G. (2019). Ekt: Exercise- 
+aware knowledge tracing for student performance prediction. IEEE Transactions on 
+Knowledge and Data Engineering, 33(1), 100–115. https://doi.org/10.1109/ 
+TKDE.2019.2924374 
+Liu, S., Zou, R., Sun, J., Zhang, K., Jiang, L., Zhou, D., & Yang, J. (2021). A hierarchical 
+memory network for knowledge tracing. Expert Systems with Applications, 177, Article 
+114935. https://doi.org/10.1016/j.eswa.2021.114935 
+Liu, S., Yu, J., Li, Q., Liang, R., Zhang, Y., Shen, X., & Sun, J. (2022). Ability boosted 
+knowledge tracing. Information Sciences, 596, 567–587. https://doi.org/10.1016/j. 
+ins.2022.02.044 
+Nagatani, K., Zhang, Q., Sato, M., Chen, Y.-Y., Chen, F., & Ohkuma, T. (2019). 
+Augmenting knowledge tracing by considering forgetting behavior. World Wide Web 
+Conference, 3101–3107. https://doi.org/10.1145/3308558.3313565 
+Nakagawa, H., Iwasawa, Y., & Matsuo, Y. (2019). Graph-based knowledge tracing: 
+Modeling student proficiency using graph neural network. Proceedings IEEE/WIC/ 
+ACM International Conference on Web Intelligence, WI, 2019(2019), 156–163. https:// 
+doi.org/10.1145/3350546.3352513 
+Pel´anek, R. (2015). Modeling students’ memory for application in adaptive educational 
+systems. In Proceedings of the 8th international conference on educational data mining 
+(pp. 480–483). 
+Piaget, J. (1970). Piaget’s theory. In P. H. Mussen (Ed.), Carmichael’s manual of child 
+psychology, 1. NY: Wiley.  
+Piaget, J. (1977). The development of thought: Equilibration of cognitive structures, A. Rosin 
+(Trans). Rosin (Trans): Viking Press.  
+Piech, C., Bassen, J., Huang, J., Ganguli, S., Sahami, M., Guibas, L. J., & Sohl-Dickstein, J. 
+(2015). Deep knowledge tracing. Advances in Neural Information Processing Systems, 
+28, 505–513. 
+Song, X., Li, J., Tang, Y., Zhao, T., Chen, Y., & Guan, Z. (2021). JKT: A joint graph 
+convolutional network based Deep Knowledge Tracing. Information Sciences, 580, 
+510–523. https://doi.org/10.1016/j.ins.2021.08.100 
+Song, X., Li, J., Lei, Q., Zhao, W., Chen, Y., & Mian, A. (2022). Bi-CLKT: Bi-graph 
+contrastive learning based knowledge tracing. Knowledge-Based Systems, 241, Article 
+108274. 
+Sun, J., Zou, R., Liang, R., Gao, L., Liu, S., Li, Q., & Jiang, L. (2022). Ensemble knowledge 
+tracing: Modeling interactions in learning process. Expert Systems with Applications, 
+207. https://doi.org/10.1016/j.eswa.2022.117680 
+Tong, H., Wang, Z., Liu, Q., Zhou, Y., & Han, W. (2020). HGKT: Introducing hierarchical 
+exercise graph for knowledge tracing. Retrieved from http://arxiv.org/abs/2 
+006.16915. 
+Tong, S., Liu, Q., Huang, W., Hunag, Z., Chen, E., Liu, C., Wang, S. (2020). Structure- 
+based knowledge tracing: An influence propagation view. In Proceedings of the - IEEE 
+international conference on data mining, ICDM, 541–550. doi:10.1109/ 
+ICDM50108.2020.00063. 
+Ueno, M., & Miyazawa, Y. (2017). IRT-based adaptive hints to scaffold learning in 
+programming. IEEE Transactions on Learning Technologies, 2017, 11(4): 415-428. 
+Van Der Maaten, L., & Hinton, G. (2008). Visualizing data using t-sne. Journal of Machine 
+Learning Research, 9, 2579–2625. 
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., & 
+Polosukhin, I. (2017). Attention is all you need. Advances in Neural Information 
+Processing Systems, 30. 
+Velickovic, P., Cucurull, G., Casanova, A., Romero, A., Lio, P., & Bengio, Y. (2018). 
+Graph attention networks. 6th international conference on learning representations, 
+ICLR 2018 - Conference Track Proceedings, 1–12. 
+Wang, F., Liu, Q., Chen, E., Huang, Z., Chen, Y., Yin, Y., Wang, S. (2020). Neural 
+cognitive diagnosis for intelligent education systems. Proceedings of the AAAI 
+conference on artificial intelligence, 34(4), 6153–6161. doi:10.1609/aaai.v34i04.6080. 
+Xu, Z., Lv, Z., Li, J., Sun, H., & Sheng, Z. (2023). A novel perspective on travel demand 
+prediction considering natural environmental and socioeconomic factors. IEEE 
+Intelligent Transportation Systems Magazine, 15, 136–159. 
+Yang, J., Xie, K., & An, N. (2022). Causal discovery on non-Euclidean data. In Proceedings 
+of the 28th ACM SIGKDD conference on knowledge discovery and data mining, 
+2202–2211. doi: 10.1145/3534678.3539485. 
+Yang, Y., Shen, J., Qu, Y., Liu, Y., Wang, K., Zhu, Y., & Yu, Y. (2021). GIKT: A graph- 
+based interaction model for knowledge tracing. In Machine learning and knowledge 
+discovery in databases: European Conference, ECML PKDD 2020, Ghent, Belgium, 
+September 14–18, 2020, Proceedings, Part I (pp. 299–315). 
+Yin, Y., Liu, Q., Huang, Z., Chen, E., Tong, W., Wang, S., & Su, Y. (2019). QuesNet: A 
+unified representation for heterogeneous test questions. In Proceedings of the ACM 
+SIGKDD international conference on knowledge discovery and data mining, 1328–1336. 
+doi:10.1145/3292500.3330900. 
+Zhang, C., Song, D., Huang, C., Swami, A., & Chawla, N. V. (2019). Heterogeneous graph 
+neural network. In Proceedings of the ACM SIGKDD international conference on 
+knowledge discovery and data mining, 793–803. doi:10.1145/3292500.3330961. 
+Zhang, H., Bu, C., Liu, F., Liu, S., Zhang, Y., & Hu, X. (2022). APGKT: Exploiting 
+associative path on skills graph for knowledge tracing. In PRICAI 2022: Trends in 
+artificial intelligence: 19th pacific rim international conference on artificial intelligence, 
+PRICAI 2022, Shanghai, China, November 10–13, 2022, Proceedings, Part I (pp. 
+353–365). 
+Zhang, J., Shi, X., King, I., & Yeung, D.-Y. (2017). Dynamic key-value memory networks 
+for knowledge tracing. In Proceedings of the 26th international conference on World 
+Wide Web, 765–774. doi:10.1145/3038912.3052580. 
+Zhuang, Y., Liu, Q., Huang, Z., Li, Z., Shen, S., & Ma, H. (2022). Fully adaptive 
+framework: Neural computerized adaptive testing for online education. Proceedings 
+of the AAAI conference on artificial intelligence, 36(4), 4734–4742. doi:10.1609/aaai. 
+v36i4.20399. 
+H. Yang et al.                                                                                                                                                                                                                                    

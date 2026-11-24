@@ -1,0 +1,118 @@
+{
+  "title": [
+    "MAHKT: Knowledge tracing with multi-association heterogeneous graph embedding based on knowledge transfer"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0003-3427-6884",
+      "authenticated-orcid": false,
+      "given": "Huali",
+      "family": "Yang",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-5039-3605",
+      "authenticated-orcid": false,
+      "given": "Junjie",
+      "family": "Hu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Jinjin",
+      "family": "Chen",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-7125-214X",
+      "authenticated-orcid": false,
+      "given": "Shengze",
+      "family": "Hu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-2273-9645",
+      "authenticated-orcid": false,
+      "given": "Jing",
+      "family": "Geng",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Qiang",
+      "family": "Zhu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-2339-2118",
+      "authenticated-orcid": false,
+      "given": "Tao",
+      "family": "Huang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2025,
+        2
+      ]
+    ]
+  },
+  "container-title": [
+    "Knowledge-Based Systems"
+  ],
+  "volume": "310",
+  "issue": null,
+  "page": "112958",
+  "publisher": "Elsevier BV",
+  "DOI": "10.1016/j.knosys.2025.112958",
+  "type": "journal-article"
+}

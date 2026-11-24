@@ -1,0 +1,96 @@
+Spatio-Temporal Fusion in Graph Neural Network for
+Streaming Knowledge Tracing
+Yi-Fei Wen1, Hang Liang1, Carl Yang2, Wen-Bo Xie3, Yajun Du1, Xianyong Li1, and
+Yan-Li Lee1B
+1 School of Computer and Software Engineering, Xihua University, Chengdu 610039, China
+{wenyifei77, lianghang}@stu.xhu.edu.cn, {duyajun, lixy}@mail.xhu.edu.cn,
+yanlicomplex@gmail.comB
+2 Department of Computer Science, Emory University, Atlanta, Georgia, USA
+j.carlyang@emory.edu
+3 School of Computer Science, Southwest Petroleum University, Chengdu 610500, China
+wenboxie@swpu.edu.cn
+Abstract. Knowledge tracing is an important research area in personalized
+education, aiming to predict students’ future performance based on their his-
+torical interaction data. Existing knowledge tracing models face limitations in
+spatio-temporal information modeling. In the spatial dimension, the dynamic
+interactions between students and questions, along with peer effects among stu-
+dents, remain underexplored; In the temporal dimension, many existing works
+often ignore the modeling of student’s learning rhythm and the spatial struc-
+ture hidden in temporal information. To address the above issues, this work
+focuses on the realistic scenario of streaming data, provides an incremental
+Spatio-Temporal Fusion Streaming Knowledge Tracing model, referred to as
+STSKT. Specifically, we first incrementally construct a dynamic heterogeneous
+graph to capture complex spatial relationships, including dynamical student-
+question interaction and peer effects. We then enhance temporal modeling from
+two aspects: proposing a rhythm-aware representation for learning rhythms,
+and capturing the hidden spatial structure by transforming recent interaction
+sequences into structured graphs. Finally, a three-channel fusion strategy is de-
+signed to capture the local relevance, global disparity, and holistic information
+for prediction. Experiments on four real-world datasets show that STSKT out-
+performs ten baselines, achieving improvements of 8.52% in AUC and 12.80%
+in ACC. Further analysis demonstrates that our key designs in graph construc-
+tion, temporal modeling, and fusion mechanism effectively enhance prediction
+performance.
+Keywords: Knowledge tracing · Educational data mining · Graph Neural Net-
+works · Dynamic graph
+1
+Introduction
+Knowledge Tracing (KT), as a core support tool in personalized education, plays an
+important role in cognitive diagnosis and instructional feedback [1], and has attracted
+growing attention from both academia and industry. The core task of KT is to ac-
+curately model the evolving knowledge states of students. The evolution of students’
+knowledge states often exhibits significant spatio-temporal dependencies: in the spatial
+dimension, the evolution of knowledge states is not only affected by knowledge struc-
+ture, but also driven by collaborative patterns shaped by peer effects among student
+
+2
+Yi-Fei Wen et al.
+groups; In the temporal dimension, both the learning rhythm and the continuity of
+learning process affect the student’s knowledge states. Meanwhile, students’ knowledge
+states are also affected by the temporal proximity effect: intensive practice within a
+short period enhances retention, while prolonged absence of exposure to related content
+leads to forgetting. These factors jointly determine the dynamic changes in students’
+knowledge states and give rise to complex spatio-temporal interactions. While temporal
+and spatial signals offer valuable insights into students’ learning processes, effectively
+fusing them remains a core challenge in accurately assessing knowledge states.
+In recent years, numerous models have been proposed to capture the temporal and
+spatial signals in students’ knowledge learning processes. Among them, the most repre-
+sentative approaches are sequential KT models and graph-based KT models. In sequen-
+tial KT models, existing models mainly utilize Recurrent Neural Networks (RNNs) [2]
+and Transformer-based architectures [3, 4] to model temporal information in response
+sequences. Some models also employ self-attention mechanisms [5] to highlight critical
+historical interactions or introduce the Ebbinghaus forgetting curve [6–8] to mitigate
+performance degradation in long sequences. In graph-based KT models, various graph
+structures have been constructed to enrich representations of cognitive learning be-
+havior and question structures, including skill dependency graphs [9], question-skill bi-
+partite graphs [10], hierarchical exercise graphs [11], and dynamic question-answering
+graphs [12]. However, the above models have three main limitations: (i) In temporal
+representation, existing models often overlook students’ learning rhythms and fail to
+capture the spatial structure embedded in temporal sequences; (ii) In modeling spa-
+tial structures, many models rely on static graphs, making it difficult to capture the
+dynamically evolving interactions between students and questions. Moreover, peer col-
+laboration driven by the “peer effect” is often neglected; and (iii) Most existing KT
+models are not well-suited for streaming data scenarios, as they typically rely on a
+student’s complete interaction history for modeling rather than dynamically updating
+with real-time data.
+To address the above challenges, this paper proposes a Spatio-Temporal Stream-
+ing Evolving Streaming Knowledge Tracing model (STSKT for short), designed for
+streaming data scenarios. In terms of spatial topology modeling, STSKT considers
+the co-occurrence relationships of questions on skills to alleviate the challenges of
+sparse question representations at the knowledge level. By leveraging the temporal
+co-occurrence of students on the same questions, collaborative edges are constructed
+between students to address the challenge of capturing peer effects under limited data.
+Additionally, by modeling student-question interactions within a limited time window,
+response sequences are transformed into structured spatio-temporal graphs, which not
+only reduce the sparsity of dynamic graphs but also improve the efficiency of subse-
+quent model training. In terms of temporal modeling, STSKT embeds the time inter-
+vals between student interactions in a periodic manner, enabling the model to capture
+the rhythm of student responses over time. Finally, a three-channel fusion strategy is
+proposed, incorporating local relevance, global disparity, and holistic information, to
+model the student’s answering performance on a given question.
+The main contributions of this paper are summarized as follows:
+– We propose a spatio-temporal streaming KT framework for streaming data, which
+can dynamically capture and fuse the spatio-temporal information of student-
+question interactions.
+– We propose a dynamic heterogeneous graph construction method to more accu-
+rately model the associations among questions, capture peer effects without rely-

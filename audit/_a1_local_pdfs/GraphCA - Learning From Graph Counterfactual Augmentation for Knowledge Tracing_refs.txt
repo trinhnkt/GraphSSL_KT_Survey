@@ -1,0 +1,449 @@
+References
+ X.  Wang,  W.  Ma,  L.  Guo,  H.  Jiang,  F.  Liu,  and  C.  Xu, “HGNN:
+Hyperedge-based graph neural network for MOOC course recommen-
+dation,” Information  Processing & Management,  vol. 59,  no. 3,  p.
+102938, 2022.
+[1]
+ C. Cui, J. Zong, Y. Ma, X. Wang, L. Guo, M. Chen, and Y. Yin, “Tri-
+branch  convolutional  neural  networks  for  top-k focused  academic
+performance prediction,” IEEE Trans. Neural Networks and Learning
+Systems, 2022. DOI: 10.1109/TNNLS.2022.3175068
+[2]
+ S.  Pandey  and  G.  Karypis, “A  self-attentive  model  for  knowledge
+tracing,” arXiv preprint arXiv: 1907.06837, 2019.
+[3]
+ T. Wang, F. Ma, and J. Gao, “Deep hierarchical knowledge tracing,” in
+Proc. 12th Int. Conf. Educational Data Mining, 2019, pp. 671–674.
+[4]
+ Y. Yang, J. Shen, Y. Qu, Y. Liu, K. Wang, Y. Zhu, W. Zhang, and Y.
+Yu, “GIKT: A graph-based interaction model for knowledge tracing,” in
+Proc.  Joint  European  Conf.  Machine  Learning  and  Knowledge
+Discovery in Databases, 2020, pp. 299–315.
+[5]
+ P. Chen, Y. Lu, V. W. Zheng, and Y. Pian, “Prerequisite-driven deep
+knowledge tracing,” in Proc. IEEE Int. Conf. Data Mining, 2018, pp.
+39–48.
+[6]
+ S. Zhang, D. Yao, Z. Zhao, T.-S. Chua, and F. Wu, “CauseRec: Counter-
+factual  user  sequence  synthesis  for  sequential  recommendation,” in
+Proc.  44th  Int.  ACM  SIGIR  Conf.  Research  and  Development  in
+Information Retrieval, 2021, pp. 367–377.
+[7]
+ L. V. DiBello, L. A. Roussos, and W. Stout, “31A review of cognitively
+diagnostic  assessment  and  a  summary  of  psychometric  models,”
+Handbook of Statistics, vol. 26, pp. 979–1030, 2006.
+[8]
+ R.  J.  Harvey  and  A.  L.  Hammer, “Item  response  theory,” The
+Counseling Psychologist, vol. 27, no. 3, pp. 353–383, 1999.
+[9]
+ B.  Deonovic,  M.  Yudelson,  M.  Bolsinova,  M.  Attali,  and  G.  Maris,
+“Learning meets assessment,” Behaviormetrika, vol. 45, no. 2, pp. 457–
+474, 2018.
+[10]
+ J. De La Torre, “Dina model and parameter estimation: A didactic,” J.
+Educational Behavioral Statistics, vol. 34, no. 1, pp. 115–130, 2009.
+[11]
+ A. T. Corbett and J. R. Anderson, “Knowledge tracing: Modeling the
+acquisition  of  procedural  knowledge,” User  Modeling  and  User-
+Adapted Interaction, vol. 4, no. 4, pp. 253–278, 1994.
+[12]
+ R. S. d Baker, A. T. Corbett, and V. Aleven, “More accurate student
+modeling through contextual estimation of slip and guess probabilities
+in bayesian knowledge tracing,” in Proc. Int. Conf. Intelligent Tutoring
+Systems, 2008, pp. 406–415.
+[13]
+ S.  Spaulding  and  C.  Breazeal, “Affect  and  inference  in  bayesian
+knowledge tracing with a robot tutor,” in Proc. 10th Annu. ACM/IEEE
+Int.  Conf.  Human-Robot  Interaction  Extended  Abstracts,  2015,  pp.
+219–220.
+[14]
+ Z.  A.  Pardos,  N.  Heffernan,  C.  Ruiz,  and  J.  Beck, “Effective  skill
+assessment using expectation maximization in a multi network temporal
+bayesian network,” in Proc. Young Researchers Track at 9th Int. Conf.
+Intelligent Tutoring Systems, 2008, pp. 1–14.
+[15]
+ L. Guo, H. Yin, Q. Wang, T. Chen, A. Zhou, and N. Quoc Viet Hung,
+“Streaming  session-based  recommendation,” in Proc.  25th  ACM
+SIGKDD  Int.  Conf.  Knowledge  Discovery  &  Data  Mining,  2019,  pp.
+1569–1577.
+[16]
+ L.  Guo,  J.  Zhang,  T.  Chen,  X.  Wang,  and  H.  Yin, “Reinforcement
+learning-enhanced  shared-account  cross-domain  sequential  recommen-
+dation,” IEEE Trans. Knowledge and Data Engineering, vol. 35, no. 7,
+pp. 7397–7411, Jul. 2023.
+[17]
+ C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami, L. J. Guibas, and
+J.  Sohl-Dickstein, “Deep  knowledge  tracing,” Advances  in  Neural
+Information Processing Syst., vol. 1, pp. 505–513, 2015.
+[18]
+ J.  Zhang,  X.  Shi,  I.  King,  and  D.-Y.  Yeung, “Dynamic  key-value
+memory  networks  for  knowledge  tracing,” in Proc.  26th  Int.  Conf.
+World Wide Web, 2017, pp. 765–774.
+[19]
+ K. Nagatani, Q. Zhang, M. Sato, Y.-Y. Chen, F. Chen, and T. Ohkuma,
+“Augmenting knowledge tracing by considering forgetting behavior,” in
+Proc. World Wide Web Conf., 2019, pp. 3101–3107.
+[20]
+ G.  Abdelrahman  and  Q.  Wang, “Knowledge  tracing  with  sequential
+key-value  memory  networks,” in Proc.  42nd  Int.  ACM  SIGIR  Conf.
+Research  and  Development  in  Information  Retrieval,  2019,  pp.
+175–184.
+[21]
+ Q. Liu, Z. Huang, Y. Yin, E. Chen, H. Xiong, Y. Su, and G. Hu, “EKT:
+Exercise-aware knowledge tracing for student performance prediction,”
+IEEE Trans. Knowledge and Data Engineering, vol. 33, no. 1, pp. 100–
+115, 2019.
+[22]
+ L.  Guo,  L.  Tang,  T.  Chen,  L.  Zhu,  Q.  V.  H.  Nguyen,  and  H.  Yin,
+[23]
+ 
+e1
+e2
+e3
+e4
+e5
+e6
+e7
+e8
+e9
+e12
+e16
+e10 e11
+e13 e14 e15
+e17 e18 e19
+Exercising process
+(a) Performance diagram
+Pythagorean theorem
+Median
+Mean
+Rounding
+Circle graph
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Mean
+Median
+Rounding
+Circle graph
+Pythagorean theorem
+(b) Radar digram
+0.2 0.4 0.6 
+0.8 1.0
+First
+Last
+ 
+Fig. 8.     An example of a student’s mastery of five knowledge concepts.
+ 
+ 
+Pythagorean theorem
+e1
+e2
+e3
+e4
+e5
+e6
+e7
+e8
+Exercising process
+(a) Performance diagram
+Pythagorean theorem
+Mean
+Median
+Rounding
+Circle graph
+0.50
+0.55
+0.60
+Mean
+Median
+Rounding
+Circle graph
+(b) Radar digram
+0.2 0.4 0.6 0.8 
+1.0
+First
+Last
+ 
+Fig. 9.     The limitation of GraphCA.
+ 
+WANG et al.: GRAPHCA: LEARNING FROM GRAPH COUNTERFACTUAL AUGMENTATION FOR KT
+2121 
+
+“DAGCN:  A  domain-aware  attentive  graph  convolution  network  for
+sharedaccount
+ cross-domain
+ sequential
+ recommendation,” 
+arXiv
+preprint arXiv: 2105.03300, 2021.
+ L.  Guo,  H.  Yin,  T.  Chen,  X.  Zhang,  and  K.  Zheng, “Hierarchical
+hyperedge  embedding-based  representation  learning  for  group  reco-
+mmendation,” ACM Trans. Information Systems, vol. 40, no. 1, pp. 1–27,
+2021.
+[24]
+ X.  Wang,  L.  Jia,  L.  Guo,  and  F.  Liu, “Multi-aspect  heterogeneous
+information network for MOOC knowledge concept recommendation,”
+Applied Intelligence, vol. 53, pp. 11951–11965, 2023.
+[25]
+ X.  Hong,  T.  Zhang,  Z.  Cui,  and  J.  Yang, “Variational  gridded  graph
+convolution  network  for  node  classification,” IEEE/CAA  J.  Autom.
+Sinica, vol. 8, no. 10, pp. 1697–1708, 2021.
+[26]
+ X. Wang, X. He, Y. Cao, M. Liu, and T.-S. Chua, “KGAT: Knowledge
+graph  attention  network  for  recommendation,” in Proc.  25th  ACM
+SIGKDD  Int.  Conf.  Knowledge  Discovery  &  Data  Mining,  2019,  pp.
+950–958.
+[27]
+ X.  Qi,  R.  Liao,  J.  Jia,  S.  Fidler,  and  R.  Urtasun, “3D  graph  neural
+networks for RGBD semantic segmentation,” in Proc. IEEE Int. Conf.
+Computer Vision, 2017, pp. 5199–5208.
+[28]
+ L. Yao, C. Mao, and Y. Luo, “Graph convolutional networks for text
+classification,” in Proc.  AAAI  Conf.  Artificial  Intelligence,  2019,  vol.
+33, no. 1, pp. 7370–7377.
+[29]
+ Y. Liu, Y. Yang, X. Chen, J. Shen, H. Zhang, and Y. Yu, “Improving
+knowledge  tracing  via  pre-training  question  embeddings,” arXiv
+preprint arXiv: 2012.05031, 2020.
+[30]
+ H.  Nakagawa,  Y.  Iwasawa,  and  Y.  Matsuo, “Graph-based  knowledge
+tracing: Modeling student proficiency using graph neural network,” in
+Proc. IEEE/WIC/ACM Int. Conf. Web Intelligence, 2019, pp. 156–163.
+[31]
+ S. Tong, Q. Liu, W. Huang, Z. Huang, E. Chen, C. Liu, H. Ma, and S.
+Wang, “Structure-based  knowledge  tracing:  An  influence  propagation
+view,” in Proc. IEEE Int. Conf. Data Mining, 2020, pp. 541–550.
+[32]
+ K.  Clark,  M.-T.  Luong,  Q.  V.  Le,  and  C.  D.  Manning, “ELECTRA:
+Pretraining  text  encoders  as  discriminators  rather  than  generators,”
+arXiv preprint arXiv: 2003.10555, 2020.
+[33]
+ T. Gao, X. Yao, and D. Chen, “SimCSE: Simple contrastive learning of
+sentence embeddings,” arXiv preprint arXiv: 2104.08821, 2021.
+[34]
+ K. He, H. Fan, Y. Wu, S. Xie, and R. Girshick, “Momentum contrast for
+unsupervised visual representation learning,” in Proc. IEEE/CVF Conf.
+Computer Vision and Pattern Recognition, 2020, pp. 9729–9738.
+[35]
+ H.  Hu,  H.  Wang,  Z.  Liu,  and  W.  Chen, “Domain-invariant  similarity
+activation map contrastive learning for retrieval-based long-term visual
+localization,” IEEE/CAA  J.  Autom.  Sinica,  vol. 9,  no. 2,  pp. 313–328,
+2021.
+[36]
+ X. Xie, F. Sun, Z. Liu, S. Wu, J. Gao, B. Ding, and B. Cui, “Contrastive
+learning  for  sequential  recommendation,” arXiv  preprint  arXiv:
+2010.14395, 2020.
+[37]
+ T. Yao, X. Yi, D. Z. Cheng, et al., “Self-supervised learning for large-
+scale item recommendations,” in Proc. 30th ACM Int. Conf. Information
+& Knowledge Management, 2021, pp. 4321–4330.
+[38]
+ K.  Hassani  and  A.  H.  Khasahmadi, “Contrastive  multi-view  repre-
+sentation  learning  on  graphs,” in Proc.  Int.  Conf.  Machine  Learning,
+2020, pp. 4116–4126.
+[39]
+ H. Hafidi, M. Ghogho, P. Ciblat, and A. Swami, “GraphCL: Contrastive
+self-supervised learning of graph representations,” arXiv preprint arXiv:
+2007.08025, 2020.
+[40]
+ X. Song, J. Li, Q. Lei, W. Zhao, Y. Chen, and A. Mian, “Bi-CLKT: Bi-
+graph  contrastive  learning  based  knowledge  tracing,” arXiv  preprint
+arXiv: 2201.09020, 2022.
+[41]
+ W. Lee, J. Chun, Y. Lee, K. Park, and S. Park, “Contrastive learning for
+knowledge tracing,” in Proc. ACM Web Conf., 2022, pp. 2330–2338.
+[42]
+ C.  Zhang,  D.  Song,  C.  Huang,  A.  Swami,  and  N.  V.  Chawla,
+“Heterogeneous  graph  neural  network,” in Proc.  25th  ACM  SIGKDD
+Int. Conf. Knowledge Discovery & Data Mining, 2019, pp. 793–803.
+[43]
+ X.  Wang,  H.  Ji,  C.  Shi,  B.  Wang,  Y.  Ye,  P.  Cui,  and  P.  S.  Yu,
+“Heterogeneous  graph  attention  network,” in Proc.  World  Wide  Web
+Conf., 2019, pp. 2022–2032.
+[44]
+ S. Xu, C. Yang, C. Shi, Y. Fang, Y. Guo, T. Yang, L. Zhang, and M.
+Hu, “Topic-aware  heterogeneous  graph  neural  network  for  link
+prediction,” in Proc.  30th  ACM  Int.  Conf.  Information  &  Knowledge
+Management, 2021, pp. 2261–2270.
+[45]
+ Y.  Sun,  J.  Han,  C.  C.  Aggarwal,  and  N.  V.  Chawla, “When  will  it
+happen?
+ Relationship
+ prediction
+ in
+ heterogeneous
+ information
+networks,” in Proc. 5th Conf. Web Search and Data Mining, 2012, pp.
+663–672.
+[46]
+ J. Shi, H. Ji, C. Shi, X. Wang, Z. Zhang, and J. Zhou, “Heterogeneous
+graph  neural  network  for  recommendation,” arXiv  preprint  arXiv:
+2009.00799, 2020.
+[47]
+ S. Liu, I. Ounis, C. Macdonald, and Z. Meng, “A heterogeneous graph
+neural model for cold-start recommendation,” in Proc. 43rd Int. ACM
+SIGIR Conf. Research and Development in Infor. Retrieval, 2020, pp.
+2029–2032.
+[48]
+ J. Zhao, X. Wang, C. Shi, B. Hu, G. Song, and Y. Ye, “Heterogeneous
+graph  structure  learning  for  graph  neural  networks,” in Proc.  AAAI
+Conf. Artificial Intelligence, 2021, vol. 35, no. 5, pp. 4697–4705.
+[49]
+ S.  Garg,  V.  Perot,  N.  Limtiaco,  A.  Taly,  E.  H.  Chi,  and  A.  Beutel,
+“Counterfactual  fairness  in  text  classification  through  robustness,” in
+Proc. AAAI/ACM Conf. AI, Ethics, and Society, 2019, pp. 219–226.
+[50]
+ M.  J.  Kusner,  J.  Loftus,  C.  Russell,  and  R.  Silva, “Counterfactual
+fairness,” Advances in Neural Information Processing Systems, vol. 30,
+pp. 4069–4079, 2017.
+[51]
+ Z. Wang, J. Zhang, H. Xu, X. Chen, Y. Zhang, W. X. Zhao, and J.-R.
+Wen, “Counterfactual data-augmented sequential recommendation,” in
+Proc.  44th  Int.  ACM  SIGIR  Conf.  Research  and  Development  in
+Information Retrieval, 2021, pp. 347–356.
+[52]
+ R. Zmigrod, S. J. Mielke, H. Wallach, and R. Cotterell, “Counterfactual
+data augmentation for mitigating gender stereotypes in languages with
+rich morphology,” arXiv preprint arXiv: 1906.04571, 2019.
+[53]
+ T.-J. Fu, X. E. Wang, M. F. Peterson, S. T. Grafton, M. P. Eckstein, and
+W.  Y.  Wang, “Counterfactual  vision-and-language  navigation  via
+adversarial path sampler,” in Proc. European Conf. Computer Vision,
+2020, pp. 71–86.
+[54]
+ E.  Abbasnejad,  D.  Teney,  A.  Parvaneh,  J.  Shi,  and  A.  v.  d.  Hengel,
+“Counterfactual  vision  and  language  learning,” in Proc.  IEEE/CVF
+Conf.  Computer  Vision  and  Pattern  Recognition,  2020,  pp.  10044–
+10054.
+[55]
+ L.  Chen,  X.  Yan,  J.  Xiao,  H.  Zhang,  S.  Pu,  and  Y.  Zhuang,
+“Counterfactual  samples  synthesizing  for  robust  visual  question
+answering,” in Proc.  IEEE/CVF  Conf.  Computer  Vision  and  Pattern
+Recognition, 2020, pp. 10800–10809.
+[56]
+ H.  Wang,  W.  Liang,  J.  Shen,  L.  Van  Gool,  and  W.  Wang,
+“Counterfactual cycle-consistent learning for instruction following and
+generation  in  vision-language  navigation,” in Proc.  IEEE/CVF  Conf.
+Computer Vision and Pattern Recognition, 2022, pp. 15471–15481.
+[57]
+ Y. Zhu, Y. Xu, F. Yu, Q. Liu, S. Wu, and L. Wang, “Graph contrastive
+learning  with  adaptive  augmentation,” in Proc.  Web  Conf.,  2021,  pp.
+2069–2080.
+[58]
+ Y. Jiao, Y. Xiong, J. Zhang, Y. Zhang, T. Zhang, and Y. Zhu, “Sub-
+graph  contrast  for  scalable  self-supervised  graph  representation
+learning,” in Proc. IEEE Int. Conf. Data Mining, 2020, pp. 222–231.
+[59]
+ Y.  You,  T.  Chen,  Y.  Sui,  T.  Chen,  Z.  Wang,  and  Y.  Shen, “Graph
+contrastive  learning  with  augmentations,” Advances  in  Neural
+Information Processing Systems, vol. 33, pp. 5812–5823, 2020.
+[60]
+ T.  Zhao,  G.  Liu,  D.  Wang,  W.  Yu,  and  M.  Jiang, “Learning  from
+counterfactual  links  for  link  prediction,” in Proc.  Int.  Conf.  Machine
+Learning, 2022, pp. 26911–26926.
+[61]
+ G. W. Imbens and D. B. Rubin, Causal Inference in Statistics, Social,
+and Biomedical Sciences. Cambrideg, UK: Cambridge University Press,
+2015.
+[62]
+ P. C. Austin, “An introduction to propensity score methods for reducing
+the  effects  of  confounding  in  observational  studies,” Multivariate
+Behavioral Research, vol. 46, no. 3, pp. 399–424, 2011.
+[63]
+ A. Van den Oord, Y. Li, and O. Vinyals, “Representation learning with
+contrastive predictive coding,” arXiv preprint arXiv: 1807.03748, 2018.
+[64]
+ 2122
+IEEE/CAA JOURNAL OF AUTOMATICA SINICA, VOL. 10, NO. 11, NOVEMBER 2023
+
+ M. Feng, N. Heffernan, and K. Koedinger, “Addressing the assessment
+challenge  with  an  online  system  that  tutors  as  it  assesses,” User
+Modeling  and  User-Adapted  Interaction,  vol. 19,  no. 3,  pp. 243–266,
+2009.
+[65]
+ J. Stamper, A. Niculescu-Mizil, S. Ritter, G. Gordon, and K. Koedinger,
+“Algebra I 2005–2006 and bridge to algebra 2006–2007 development
+data  sets  from  KDD  cup  2010  educational  data  mining  challenge,”
+2010. [Online], Available: https://pslcdatashop.web.cmu.edu/KDDCup/
+downloads.jsp.
+[66]
+ M. Zhang, X. Zhu, C. Zhang, Y. Ji, F. Pan, and C. Yin, “Multifactors
+aware  dual-attentional  knowledge  tracing,” in Proc.  30th  ACM  Int.
+Conf. Information & Knowledge Management, 2021, pp. 2588–2597.
+[67]
+ A.  Ghosh,  N.  Heffernan,  and  A.  S.  Lan, “Context-aware  attentive
+knowledge tracing,” in Proc. 26th ACM SIGKDD Int. Conf. Knowledge
+Discovery & Data Mining, 2020, pp. 2330–2339.
+[68]
+ D.  P.  Kingma  and  J.  Ba, “ADAM:  A  method  for  stochastic
+optimization,” arXiv preprint arXiv: 1412.6980, 2014.
+[69]
+ N.  Srivastava,  G.  Hinton,  A.  Krizhevsky,  I.  Sutskever,  and  R.
+Salakhutdinov, “Dropout:  A  simple  way  to  prevent  neural  networks
+from  overfitting,” The  J.  Machine  Learning  Research,  vol. 15,  no. 1,
+pp. 1929–1958, 2014.
+[70]
+Xinhua Wang received the Ph.D. degree in manage-
+ment  science  and  engineering  from  Shandong  Nor-
+mal  University  in  2008.  He  was  a  Senior  Visiting
+Scholar  with  Shandong  University,  from  2002  to
+2003. He was a Senior Visiting Scholar with Peking
+University, from 2008 to 2009. He is a Professor and
+Master’s  Supervisor  at  the  School  of  Information
+Science and Engineering, Shandong Normal Univer-
+sity.  His  research  interests  include  data  mining  and
+recommender systems.
+Shasha  Zhao is  a  master  student  in  computer  sci-
+ence  and  technology  at  the  School  of  Information
+Science and Engineering, Shandong Normal Univer-
+sity. Her research interests include sequence model-
+ing and education data mining.
+Lei Guo received the Ph.D. degree in computer sci-
+ence  from  Shandong  University  in  2015.  He  was  a
+Visiting  Scholar  at  The  University  of  Queensland,
+Australia,  from  2018  to  2019.  He  is  an  Associate
+Professor and a Master Supervisor at the School of
+Information  Science  and  Engineering,  Shandong
+Normal  University.  His  research  interests  include
+data mining, recommender systems, and social media
+mining.
+     He is a Member of the Social Media Processing
+Committee of the Chinese Information Society.
+Lei Zhu received the Ph.D. degree in computer sci-
+ence from Huazhong University Science in 2015. He
+is  a  Professor  and  Doctoral  Supervisor  with  the
+School  of  Information  Science  and  Engineering,
+Shandong Normal University. His research interests
+include multimedia computing, information retrieval
+and data mining.
+     He serves as an Editorial Board Member of jour-
+nals IEEE TBD, ACM TOMM, and Information Sci-
+ences, chairs the field of ACM MM, an authoritative
+international conference in multimedia, and is a Member of the senior pro-
+gram committee of CIKM, AAAI, and SIGIR.
+Chaoran Cui received the Ph.D. degree in computer
+science from Shandong University in 2015. He is a
+Professor  at  Shandong  University  of  Finance  and
+Economics.  His  research  interests  include  informa-
+tion retrieval, data mining, and machine learning.
+     He  is  the  Executive  Director  of  the  Shandong
+Artificial Intelligence Society, a Member of the Arti-
+ficial Intelligence and Pattern Recognition Commit-
+tee of the Chinese Computer Society, and a Member
+of  the  Computer  Vision  Committee  of  the  Chinese
+Computer Society.
+Liancheng  Xu received  the  Ph.D.  degree  from  the
+Dalian University of Technology in 2010. He is cur-
+rently  a  Senior  Experimentalist  and  Director  of  the
+Experimental  Teaching  Center,  School  of  Informa-
+tion  Science  and  Engineering,  Shandong  Normal
+University  and  a  Master  Supervisor.  His  research
+interests  include  web  information  processing  and
+education data mining.
+     He is a Member of the Chinese Computer Society
+and ACM.
+WANG et al.: GRAPHCA: LEARNING FROM GRAPH COUNTERFACTUAL AUGMENTATION FOR KT
+2123 

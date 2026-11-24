@@ -1,0 +1,180 @@
+Expert Systems With Applications 215 (2023) 119334
+Available online 23 November 2022
+0957-4174/© 2022 Elsevier Ltd. All rights reserved.
+Contents lists available at ScienceDirect
+Expert Systems With Applications
+journal homepage: www.elsevier.com/locate/eswa
+HHSKT: A learner–question interactions based heterogeneous graph neural
+network model for knowledge tracing✩
+Qin Ni a, Tingjiang Wei a,∗, Jiabao Zhao b, Liang He b, Chanjin Zheng c,∗
+a Institute of Artificial Intelligence on Education, Shanghai Normal University, Shanghai, 201418, China
+b National Intelligent Society Governance Experimental Base (Education), East China Normal University, Shanghai, 200062, China
+c Department of Educational Psychology and Shanghai Institute of AI in Education, East China Normal University, Shanghai, 200062, China
+A R T I C L E
+I N F O
+Keywords:
+Intelligent education
+Knowledge tracing
+Graph neural network
+Educational data mining
+A B S T R A C T
+Knowledge tracing (KT) has evolved into a crucial component of the online education system with the
+rapid development of online adaptive learning. A key component of the online education system, knowledge
+tracing (KT) assesses the state of knowledge by tracing each learner’s learning activities. The deep KT model,
+however, is unable to completely extract the features of the questions and skills due to the heterogeneity
+of the knowledge structure and the sparsity of the interaction records. The model’s capacity to handle
+diverse data is also restricted by over parameterization. Additionally, rather than focusing solely on a
+precise fit, Intelligent Tutoring System (ITS) should stress interpretable feedback to the learner. The deep
+KT approach’s item parameters are still unable to give students useful feedback. This paper proposes to
+trace learner’s short-term attentional knowledge based on heterogeneous hierarchical differentiation, named
+HHSKT. Hierarchical heterogeneous knowledge structures and short-term memory enhancement will be used to
+model the effects of different interaction sequences on learners. Specifically, knowledge structure features are
+extracted by constructing a heterogeneous graph-based graph information augmentation component. Question
+differentiation parameters are derived by transforming the TrueSkill system. Besides, learners’ history-related
+practices are emphasized by windowing attention. Comparing regression-based and deep-based knowledge
+tracing experiments shows that HHSKT significantly outperforms the state-of-the-art approach on three real-
+world benchmark datasets (with an average AUC improvement of up to 3%), demonstrating the superiority of
+the proposed model.
+1. Introduction
+In recent years, online schooling on a massive scale has exploded,
+especially following the pandemic. Simultaneously, homogeneous on-
+line learning content cannot satisfy the individualized learning needs
+of a growing number of users (Injadat, Moubayed, Nassif, & Shami,
+2020; Lan & Baraniuk, 2016). Current online learning platforms lack
+the adaptability to address these difficulties and provide learners with
+more specific, individualized feedback and help. The COVID-19-related
+school closures pushed schools to move instruction online and pro-
+vide remote support for students (Boltz, Yadav, Dillman, & Robertson,
+2021). Therefore, the traditional method of measuring the knowledge
+of learners’ based on test scores and written responses lacks the nec-
+essary tools and environments to promote high-quality and thoughtful
+remote learning.
+✩This work was sponsored by the National Natural Science Foundation of China under Grant 6210020445. Shanghai Municipal Natural Science Foundation,
+China under Grant 21ZR1446900, 21511100102.
+∗Corresponding authors.
+E-mail addresses: niqin@shnu.edu.cn (Q. Ni), mxdlzg@163.com (T. Wei), jiabao.zhao@ica.stc.sh.cn (J. Zhao), lhe@cs.ecnu.edu.cn (L. He),
+chjzheng@dep.ecnu.edu.cn (C. Zheng).
+Data analysis and intelligent tutoring systems rely heavily on edu-
+cational data mining (de Andrade, Rigo, & Barbosa, 2021). Knowledge
+Tracing (KT) is a learning situation analysis task based on computer-
+assisted large-scale data processing capabilities to trace learning activ-
+ities, which can deliver diagnostic results without sophisticated human
+engagement for learners and teachers (Minn, Vie, Takeuchi, Kashima, &
+Zhu, 2021). Knowledge components (KCs) constitute learning content,
+and a learner’s knowledge states (KS) are a collection of KCs. As
+demonstrated in Fig. 1, a learner’s performance on the eleventh exercise
+can be estimated by tracing their mastery of KCs on the first ten
+exercises.
+There are several approaches in the KT field that may be used to
+measure a learner’s mastery of KCs, including bayesian methods (Zhao,
+https://doi.org/10.1016/j.eswa.2022.119334
+Received 22 June 2022; Received in revised form 28 October 2022; Accepted 20 November 2022
+
+Expert Systems With Applications 215 (2023) 119334
+2
+Q. Ni et al.
+Fig. 1. An illustration of exercising process. The exercising process of a learner and the corresponding KS of each exercise.
+Bhatt, Thille, Zimmaro and Gattani, 2020), logistic regression meth-
+ods (Vie & Kashima, 2019), and deep learning methods (Piech et al.,
+2015). Psychometric approaches based on psychology (based on statis-
+tical regression, etc.) and Bayesian-based methods are typical examples
+of traditional methods (Ha, Hong, Hwang, & Yoon, 2018). Item re-
+sponse theory (IRT) is commonly employed in the KT framework (Su
+et al., 2021), where Rasch (1PL-IRT) is also employed to estimate
+item difficulty (Ghosh, Heffernan, & Lan, 2020). Some recurrent neural
+network (RNN) based methods have been proposed to model long
+dependencies between interactions (Ding & Larson, 2020; Lin & Chi,
+2017; Piech et al., 2015), and transformer-based methods have been
+proposed to emphasize the weights of different KCs (Oya & Morishima,
+2021; Pandey & Karypis, 2019; Pu, Yudelson, Ou, & Huang, 2020).
+These deep models have demonstrated impressive performance thanks
+to their robust fitting capabilities.
+Deep knowledge tracing (DKT) is an early RNN-based deep KT
+model (Piech et al., 2015), while self-attentive knowledge tracing
+(SAKT) is the first model to integrate the transformer structure into
+KT (Pandey & Karypis, 2019). The RNN structure may step-by-step
+process sequential input from left to right and from bottom to top,
+retaining specific information of memory units depending on gating
+information and retaining the information recorded during steps 𝑡0 to
+𝑡𝑛−1 to forecast 𝑡𝑛(Graves, rahman Mohamed, & Hinton, 2013). Online
+learning data consist mostly of sequential information, which is ideally
+suited for processing by RNN architectures. SAKT proposes an attention
+mechanism based on the sequential task in order to highlight the con-
+tribution of various KCs to the prediction of KC mastery at the present
+time. In addition to aforementioned models, graph neural networks
+(GNNs) have garnered significant attention (Veliković et al., 2017),
+and many graph construction methods have been proposed for models
+such as graph-based interaction knowledge tracing (GIKT) (Yang et al.,
+2021). Furthermore, the aggregation and representation capabilities
+of graph networks have been applied to significantly improve the
+prediction capability and interpretability of KT models substantially.
+Table 1 outlines the primary work and limits of the most prevalent KT
+techniques now in use, including some cutting-edge technologies.
+Despite the fact that, current deep KT models are superior to tradi-
+tional models for predicting learners’ mastery of KC, the existing models
+have three major flaws. First, the relationships between items, skills,
+and learners in knowledge tracing datasets are often quite complex. In-
+sufficient research exists on combining diverse features and large-scale
+learner interaction network architectures. Secondly, interpretable item
+parameters are frequently absent from deep model. It is more important
+for ITS to provide learners with practical and solvable feedback than
+model fitting capabilities. Lastly, DKT’s modeling of learners’ memory
+skills relies solely on gated information, which is insufficiently inter-
+pretable. The transformer-based approach can assign various weights to
+sequential characteristics. Attention has visual explanatory advantages,
+but nevertheless resists the memory process of the learner.
+This work proposes HHSKT, a heterogeneous GNN-based model for
+multi-level summarization of knowledge structures and learner atten-
+tion reinforcement. Higher-order relationships between items and skills
+are extracted by heterogeneous GNN, a rich representation of skill-level
+information is obtained by heterogeneous graph coarsening, and the
+final prediction is completed by item differentiation in conjunction with
+the attention mechanism of window sequence memory.
+The following is a summary of our key contributions in this pa-
+per: (1) The model implements a higher-order item skill embedding
+representation of heterogeneous learner interaction graphs based on
+massive amounts of data. (2) The model transforms the TrueSkill
+system to obtain interpretable parameters. Explainable item differences
+and item difficulty are generated by generating learners with explain-
+able feedback. (3) The model’s windowed attention is superior to the
+mechanism’s original implementation. Learners’ short-term learning
+status can be appropriately highlighted by implementing a sequential
+positional attention method with windowed memory constraints.
+The remainder of this paper is organized as follows. In Section 2,
+the work related to the model is briefly reviewed. In Section 3, the
+formulation of the model question is given and the overall structure
+of the model is described. In Section 4, the various modules in the
+model are explained in detail. In Section 5 the model is compared
+experimentally and discussed in detail and compared with the baseline
+model. The future research directions of this paper are expressed in
+Section 6.
+2. Related work
+This section provides a brief review of deep knowledge tracing, and
+related work consists of three main parts: the application of GNNs in
+the field of knowledge tracing, the TrueSkill system, and the study of
+learner memory mechanisms.
+2.1. Knowledge tracing
+Currently, the great majority of prevalent KT models are currently
+deep models, and this work focuses on deep knowledge tracing models
+as well. Knowledge tracing has traditionally focused on predicting
+the future performance of the learner and producing an evaluation
+of the learner’s knowledge state (KS). Earlier knowledge tracing tech-
+niques, such as Bayesian Knowledge Tracing (BKT), depended on Hid-
+den Markov Models (Zhao, Bhatt et al., 2020), Hidden Markov Models
+can forecast the probability distribution of hidden variables based on
+the present state of knowledge state (Hanghang, Xiaopeng, & Yuntao,
+2021). In addition, learning factor analysis approaches (LFA) are es-
+sential knowledge tracing techniques (Yu, 2018; Zhang et al., 2021).
+There are several models in cognitive and psychometric factor analysis
+methodologies, such as IRT, additive factor model (AFM), performance
+factors analysis (PFA), etc. (Cen et al., 2006; Liao et al., 2012; Pavlik
+et al., 2009). Modeling and tracking learning behaviors by investigating
+factors related to learning capacities is referred to as factor analysis.
+The suggested knowledge tracing machine (KTM) framework combines
+IRT, AFM, and PFA models (Vie & Kashima, 2019). To predict the
+likelihood of learners’ answers, KTMs utilize sparse sets of weights for
+each attribute. The classic LFA approach can may alter the investigated
+factors and so trace the knowledge states (KS) with a degree of flexibil-
+ity, but is largely ineffective for long-interval tracing. The DASH and
+DAS3H bridge the gap between factor analysis models and memory
+models (Choffin et al., 2019; Lindsey et al., 2014). Knowledge tracing

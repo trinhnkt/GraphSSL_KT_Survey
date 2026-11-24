@@ -1,0 +1,208 @@
+Proceedings of the Twenty-Ninth International Joint Conference on Artiﬁcial Intelligence (IJCAI-20)
+1556
+Improving Knowledge Tracing via Pre-training Question Embeddings
+Yunfei Liu1 , Yang Yang1 , Xianyu Chen1 , Jian Shen1 , Haifeng Zhang2 and Yong Yu1∗
+1Shanghai Jiao Tong University
+2The Center on Frontiers of Computing Studies, Peking University
+{liuyunfei, yyang0324, xianyujun}@sjtu.edu.cn, rockyshen@apex.sjtu.edu.cn,
+pkuzhf@pku.edu.cn, yyu@apex.sjtu.edu.cn
+Abstract
+Knowledge tracing (KT) deﬁnes the task of pre-
+dicting whether students can correctly answer ques-
+tions based on their historical response. Although
+much research has been devoted to exploiting the
+question information, plentiful advanced informa-
+tion among questions and skills hasn’t been well
+extracted, making it challenging for previous work
+to perform adequately. In this paper, we demon-
+strate that large gains on KT can be realized by
+pre-training embeddings for each question on abun-
+dant side information, followed by training deep
+KT models on the obtained embeddings.
+To be
+speciﬁc, the side information includes question dif-
+ﬁculty and three kinds of relations contained in a
+bipartite graph between questions and skills. To
+pre-train the question embeddings, we propose to
+use product-based neural networks to recover the
+side information.
+As a result, adopting the pre-
+trained embeddings in existing deep KT models
+signiﬁcantly outperforms state-of-the-art baselines
+on three common KT datasets.
+1
+Introduction
+The computer-aided education (CAE) systems are seek-
+ing to use advanced computer-based technology to improve
+students’ learning ability and teachers’ teaching efﬁciency
+[Cingi, 2013]. Knowledge tracing (KT) is an essential task
+in CAE systems, which aims at evaluating students’ knowl-
+edge state over time based on their learning history. To be
+speciﬁc, the objective of KT is to predict whether a student
+can answer the next question correctly according to all the
+previous response records.
+To solve KT problem, various approaches have been pro-
+posed including Bayesian Knowledge Tracing (BKT) [Cor-
+bett and Anderson, 1994; Zhu et al., 2018], the factor anal-
+ysis models [Wilson et al., 2016; Pavlik Jr et al., 2009] and
+deep models [Piech et al., 2015; Zhang et al., 2017]. In this
+paper, we mainly focus on the deep KT models, which lever-
+age recent advances in deep learning and have achieved great
+success in KT. In general, most deep KT models estimate a
+∗Corresponding author.
+Figure 1:
+Illustration of a question-skill bipartite graph.
+The
+question-skill relations are the explicit relations, and the skill sim-
+ilarity and question similarity are implicit relations. Questions q1
+and q2 share the same skill s1 but have different difﬁculties so that
+skill-level mastery modeling is insufﬁcient. But the implicit simi-
+larity between q1 and q2 can help prediction to tackle the sparsity
+issue.
+student’s mastery of skills instead of directly predicting her
+capability to answer speciﬁc questions correctly. Two repre-
+sentative methods are DKT [Piech et al., 2015] and DKVMN
+[Zhang et al., 2017].
+Although skill-level mastery can be well predicted by these
+deep KT models, there exists a major limitation that the in-
+formation of speciﬁc questions is not taken into considera-
+tion [Piech et al., 2015; Zhang et al., 2017; Abdelrahman and
+Wang, 2019]. As shown in Figure 1, the questions sharing
+the same skill may have different difﬁculties, and thus skill-
+level prediction can not accurately reﬂect the knowledge state
+of a student for speciﬁc questions. Although it is quite nec-
+essary to solve KT at a ﬁner-grained level by exploiting the
+information of speciﬁc questions, there comes a major issue
+that the interactions between students and questions are ex-
+tremely sparse, which leads to catastrophic failure if directly
+using questions as the network input [Wang et al., 2019]. To
+tackle the sparsity issue, several works are proposed to use
+the question information as a supplement [Minn et al., 2019;
+Wang et al., 2019]. However, these works only consider the
+question difﬁculties or question-skill relations.
+In this paper, we take a further step towards maximally
+extracting and exploiting plentiful underlying information
+among questions and skills to tackle the sparsity issue. Con-
+
+Proceedings of the Twenty-Ninth International Joint Conference on Artiﬁcial Intelligence (IJCAI-20)
+1557
+sidering that usually a skill includes many questions and a
+question is also associated with several skills, we can repre-
+sent them as a bipartite graph where vertices are skills and
+questions respectively.
+Generally, bipartite graphs include
+two kinds of relations [Gao et al., 2018]: the explicit rela-
+tions (i.e., observed links) and the implicit relations (i.e., un-
+observed but transitive links). In KT scenarios as shown in
+Figure 1, in addition to the explicit question-skill relations,
+we consider the implicit skill similarity and question similar-
+ity, which haven’t been well exploited in previous work.
+Taking everything into consideration, in this paper, we pro-
+pose a pre-training approach, called Pre-training Embeddings
+via Bipartite Graph (PEBG), to learn a low-dimensional em-
+bedding for each question with all the useful side information.
+To be speciﬁc, the side information includes question difﬁcul-
+ties together with three kinds of relations: explicit question-
+skill relations, implicit question similarity and skill similar-
+ity. To effectively extract the knowledge contained in the side
+information, we adopt a product layer to fuse question vertex
+features, skill vertex features and attribute features to produce
+our ﬁnal question embeddings. In this way, the learned ques-
+tion embeddings will preserve question difﬁculty information
+and the relations among questions and skills.
+The contributions of this paper are summarized as follows.
+• To the best of ours, we are the ﬁrst to use the bipartite
+graph of question-skill relations to obtain question em-
+beddings, which provides plentiful relation information.
+• We propose a pre-training approach called PEBG, which
+introduces a product layer to fuse all the input features,
+to obtain the ﬁnal question embeddings.
+• The obtained question embeddings by PEBG can be
+incorporated into existing deep KT models.
+Experi-
+ment results on three real-world datasets show that us-
+ing PEBG can outperform the state-of-the-art models,
+improving AUC by 8.6% on average.
+2
+Related Work
+Previous KT methods can be largely categorized into three
+types: Bayesian Knowledge Tracing (BKT), factor analy-
+sis KT models and deep KT models. [Corbett and Ander-
+son, 1994] proposes the Bayesian Knowledge Tracing (BKT)
+model, which is a hidden Markov model and assumes stu-
+dents’ knowledge state as a set of binary variables.
+BKT
+models each skill state separately, making it unable to cap-
+ture the relations among skills.
+Another line of KT methods is factor analysis, which con-
+siders the factors that affect student state, including the dif-
+ﬁculty of questions, students’ ability, the ratio of correct an-
+swers to a certain question. The factor analysis models in-
+clude Item Response Theory (IRT) [Wilson et al., 2016], Ad-
+ditive Factor Model (AFM) [Cen et al., 2006], Performance
+Factor Analysis (PFA) [Pavlik Jr et al., 2009], Knowledge
+Tracing Machine (KTM) [Vie and Kashima, 2019]. These
+models only consider the historical interactions of each ques-
+tion or skill, and also fail to capture the relations between
+questions and skills.
+With the rise of deep learning, lots of deep models have
+been proposed to solve KT, among which most preliminary
+work uses skills as network input. For example, [Piech et al.,
+2015] proposes the Deep Knowledge Tracing (DKT) model,
+which uses a recurrent neural network (RNN) to model the
+learning process of students. Dynamic Key-Value Memory
+Network (DKVMN), proposed by [Zhang et al., 2017], uses
+a key-value memory network to automatically discover the
+relations between exercises and their underlying concepts and
+traces each concept state. The PDKT-C model [Chen et al.,
+2018] manually labels the prerequisite relations among skills,
+which however is not suitable for large-scale data. The GKT
+model [Nakagawa et al., 2019] builds a similarity graph of
+skills randomly, and automatically learns the edge weights of
+the graph to help prediction.
+Since the skill-level prediction cannot fully reﬂect the
+knowledge state of speciﬁc questions, several works propose
+to use the question information as a supplement. For example,
+[Su et al., 2018; Huang et al., 2019] encode text descriptions
+of questions into question embeddings to capture the ques-
+tion characteristics, but the text descriptions are not easy to
+acquire in practice. [Minn et al., 2019] calculates the per-
+centage of incorrect answers as the question difﬁculty to dis-
+tinguish different questions. DHKT [Wang et al., 2019] uses
+relations between questions and skills as a constraint to train
+question embeddings, which are used as the input of DKT to-
+gether with skill embeddings. In this paper, we mainly focus
+on how to pre-train a low-dimensional embedding for each
+question, which can be directly used as the network input.
+3
+Problem Formulation
+In knowledge tracing, given a student’s past question interac-
+tions X = {(q1, c1), ..., (qt−1, ct−1)} where ci is the correct-
+ness of the student’s answer to the question qi at the time step
+i, the goal is to predict the probability that the student will
+correctly answer a new question, i.e., P(ct = 1|qt, X).
+Let Q = {qi}|Q|
+i=1 be the set of all distinct |Q| questions and
+S = {sj}|S|
+j=1 be the set of all distinct |S| skills. Usually, one
+skill includes many questions and one question is related to
+several skills. So the question-skill relations can be naturally
+represented as a bipartite graph G = (Q, S,R) where R =
+[rij] ∈{0, 1}|Q|×|S| is a binary adjacency matrix. If there is
+an edge between the question qi and the skill sj, then rij =
+1; otherwise rij = 0. Here we introduce the information
+we will use to train embeddings in our model, including the
+information in the graph and the difﬁculty information.
+Deﬁnition 1 (explicit question-skill relations). Given the
+question-skill bipartite graph, relations between skill vertices
+and question vertices are the explicit question-skill relations,
+that is, explicit relation between question vertex i and skill
+vertex j depends on whether rij =1.
+Deﬁnition 2 (implicit question similarity and skill similar-
+ity). Given the question-skill bipartite graph, relations be-
+tween two skill vertices that have the common neighbor ques-
+tion vertices are deﬁned as skill similarity. Similarly, question
+similarity refers to the relations between two question vertices
+that share the common neighbor skill vertices.
+Deﬁnition 3 (question difﬁculty). The question difﬁculty di
+for one question qi is deﬁned as the ratio of correctly being

@@ -1,0 +1,69 @@
+# FINAL GLOBAL GATE
+
+Sau A1+A3+A2+A4+B1–B11+C1–C3:
+
+Clean-build manuscript.
+
+Tạo:
+
+`audit/FINAL_TLT_PRE_SUBMISSION_GATE.md`
+
+Kiểm tra:
+
+## Corpus
+- supplementary search complete
+- seed recall reported
+- DECKT status resolved
+- DTransformer status resolved
+- snowballing logged
+- final corpus frozen
+
+## Selection reliability
+- TA second screen complete
+- FT second screen complete
+- human coder B only
+- κ mathematically valid
+- disagreements adjudicated
+
+## Calibration
+- ECE/Brier/RMSE/NLL/reliability diagram audited
+- claims no broader than coded field
+
+## RQ synthesis
+- RQ1 answered
+- RQ2 answered
+- RQ3 answered
+- no RQ answered by “not coded”
+
+## Technical
+- Eq. cold-start valid for multi-KC items
+- LLM–GNN dimensions valid
+- CL4KT mechanism verified
+
+## Reporting
+- exact search strings available
+- 5 verification removals explained
+- KT### system explained
+- internal tokens removed from main paper
+- references verified
+
+## Presentation
+- redundant figures removed
+- disclaimers consolidated
+- Group B shortened
+- notation cleaned
+
+Final status:
+
+`READY_FOR_SUBMISSION = YES`
+
+chỉ khi toàn bộ mức A = PASS
+và không còn bất kỳ B nào ảnh hưởng validity.
+
+Nếu bất kỳ mức A nào FAIL:
+
+`READY_FOR_SUBMISSION = NO`
+
+STOP.
+Không submit tự động.
+</user_query>

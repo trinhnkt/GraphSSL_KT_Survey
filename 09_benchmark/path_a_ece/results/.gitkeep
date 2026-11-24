@@ -1,0 +1,3 @@
+# Path A results directory
+
+Place `dygkt_assist17_test_probs.npz` and `dygkt_assist17_ece.json` here after the DyGKT run.

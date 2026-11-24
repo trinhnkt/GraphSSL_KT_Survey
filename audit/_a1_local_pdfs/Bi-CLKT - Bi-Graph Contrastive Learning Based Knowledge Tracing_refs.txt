@@ -1,0 +1,272 @@
+Table 3
+Predictive performance. The best performing runs per metric per dataset are marked in boldface
+Augmentation
+ASSISTment 2009
+ASSISTment 2015
+ASSISTment Chall
+STATICS 2011
+AUC
+ACC
+AUC
+ACC
+AUC
+ACC
+AUC
+ACC
+Uniform
+0.864
+0.786
+0.748
+0.749
+0.77
+0.753
+0.852
+0.815
+Degree
+0.869
+0.795
+0.765
+0.757
+0.773
+0.764
+0.858
+0.821
+PageRank
+0.875
+0.802
+0.757
+0.752
+0.775
+0.764
+0.865
+0.835
+Table 4
+The Effect of Embedding Propagation Layer. The best performing runs per metric per dataset are marked in boldface
+Variants
+Embedding
+ASSISTment 2009
+ASSISTment 2015
+ASSISTment Chall
+STATICS 2011
+AUC
+ACC
+AUC
+ACC
+AUC
+ACC
+AUC
+ACC
+Bi-CLKT-M
+C2C
+0.838
+0.768
+0.762
+0.746
+0.733
+0.752
+0.802
+0.777
+E2E
+0.83
+0.762
+0.748
+0.748
+0.744
+0.747
+0.857
+0.788
+Concate
+0.862
+0.795
+0.764
+0.752
+0.769
+0.751
+0.859
+0.833
+Bi-CLKT-R
+C2C
+0.847
+0.784
+0.764
+0.754
+0.761
+0.76
+0.849
+0.817
+E2E
+0.859
+0.795
+0.765
+0.755
+0.761
+0.761
+0.864
+0.828
+Concate
+0.875
+0.802
+0.765
+0.757
+0.775
+0.764
+0.865
+0.835
+an AUC of over 0.85 and an ACC of over 0.8. Com-
+pared with Bi-CLKT-M, there are some slight diﬀer-
+ences with this variant of Bi-CLKT-R, despite the fact
+that this variant improves overall performance by at least
+3% over all other baseline KT models. We can ﬁnd that
+in the ASSISTment 2015 dataset the two variants per-
+form fairly close to each other, however, in the other
+three datasets there is a gap of at least 2% between the
+two variants. Therefore, in the ﬁnal model selection we
+chose Bi-CLKT-R as the predictive layer of the model
+for best results.
+6. Conclusion
+We transformed the traditional Knowledge Tracing
+problem into a graph form and proposed Bi-CLKT model
+that exploits contrastive learning to learn from large
+amounts of unlabelled data. Bi-CLKT consists of three
+main parts: subgraph establishing, contrastive learning
+and performance prediction. In the contrastive learning
+part, we adopt two diﬀerent contrastive learning frame-
+works, local-local and global-global, for the “exercise-
+to-exercise” (E2E) and “concept-to-concept” (C2C) im-
+plicit relationships respectively. The ﬁnal “exercise-to-
+exercise” (E2E) and “concept-to-concept” (C2C) embed-
+dings were obtained by node-level and graph-level GCN,
+and are concatenated together as attributes for each ex-
+ercise into the prediction layer. Our proposed approach
+achieved signiﬁcantly better performance compared to
+previous state-of-the-art methods for Knowledge Tracing
+tasks on multiple challenging datasets.
+References
+[1] A. T. Corbett, J. R. Anderson, Knowledge tracing: Modeling
+the acquisition of procedural knowledge, User modeling and
+user-adapted interaction 4 (4) (1994) 253–278.
+[2] C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami, L. J.
+Guibas, J. Sohl-Dickstein, Deep knowledge tracing, Advances in
+neural information processing systems 28 (2015) 505–513.
+[3] A. Graves, G. Wayne, I. Danihelka, Neural turing machines,
+arXiv preprint arXiv:1410.5401.
+[4] J. Zhang, X. Shi, I. King, D.-Y. Yeung, Dynamic key-value
+memory networks for knowledge tracing, in: Proceedings of the
+26th international conference on World Wide Web, 2017, pp.
+765–774.
+[5] S. Pandey, G. Karypis, A self-attentive model for knowledge
+tracing, arXiv preprint arXiv:1907.06837.
+[6] Y. Su, Q. Liu, Q. Liu, Z. Huang, Y. Yin, E. Chen, C. Ding, S. Wei,
+G. Hu, Exercise-enhanced sequential modeling for student per-
+formance prediction, in: Proceedings of the AAAI Conference
+on Artiﬁcial Intelligence, Vol. 32, 2018.
+[7] R. S. d Baker, A. T. Corbett, V. Aleven, More accurate stu-
+dent modeling through contextual estimation of slip and guess
+probabilities in bayesian knowledge tracing, in: International
+conference on intelligent tutoring systems, Springer, 2008, pp.
+406–415.
+[8] S. Minn, M. C. Desmarais, F. Zhu, J. Xiao, J. Wang, Dynamic
+student classiﬃcation on memory networks for knowledge trac-
+ing, in: Paciﬁc-Asia Conference on Knowledge Discovery and
+Data Mining, Springer, 2019, pp. 163–174.
+[9] L. Dos Santos, B. Piwowarski, P. Gallinari, Multilabel classiﬁ-
+cation on heterogeneous graphs with gaussian embeddings, in:
+Joint European Conference on Machine Learning and Knowledge
+Discovery in Databases, Springer, 2016, pp. 606–622.
+[10] Y. Yang, J. Shen, Y. Qu, Y. Liu, K. Wang, Y. Zhu, W. Zhang,
+Y. Yu, Gikt: A graph-based interaction model for knowledge
+tracing, in: ECML/PKDD, 2020.
+[11] G. Abdelrahman, Q. Wang, Knowledge tracing with sequential
+key-value memory networks, in: Proceedings of the 42nd Inter-
+11
+
+national ACM SIGIR Conference on Research and Development
+in Information Retrieval, 2019, pp. 175–184.
+[12] G. Xue, M. Zhong, J. Li, J. Chen, C. Zhai, R. Kong, Dynamic
+network embedding survey, arXiv preprint arXiv:2103.15447.
+[13] X. Song, J. Li, S. Sun, H. Yin, P. Dawson, R. R. M. Doss, Sepn:
+a sequential engagement based academic performance prediction
+model, IEEE Intelligent Systems 36 (1) (2020) 46–53.
+[14] H. Nakagawa, Y. Iwasawa, Y. Matsuo, Graph-based knowledge
+tracing: modeling student proﬁciency using graph neural net-
+work, in: 2019 IEEE/WIC/ACM International Conference on
+Web Intelligence (WI), IEEE, 2019, pp. 156–163.
+[15] Y. Liu, Y. Yang, X. Chen, J. Shen, H. Zhang, Y. Yu, Improving
+knowledge tracing via pre-training question embeddings, arXiv
+preprint arXiv:2012.05031.
+[16] Z. Li, X. Wang, J. Li, Q. Zhang, Deep attributed network
+representation learning of complex coupling and interaction,
+Knowledge-Based Systems 212 (2021) 106618.
+[17] H. Yin, S. Yang, X. Song, W. Liu, J. Li, Deep fusion of multi-
+modal features for social media retweet time prediction, World
+Wide Web 24 (4) (2021) 1027–1044.
+[18] X. Song, J. Li, Y. Tang, T. Zhao, Y. Chen, Z. Guan, Jkt: A
+joint graph convolutional network based deep knowledge tracing,
+Information Sciences.
+[19] P. Bachman, R. D. Hjelm, W. Buchwalter, Learning represen-
+tations by maximizing mutual information across views, arXiv
+preprint arXiv:1906.00910.
+[20] K. He, H. Fan, Y. Wu, S. Xie, R. Girshick, Momentum contrast
+for unsupervised visual representation learning, in: Proceedings
+of the IEEE/CVF Conference on Computer Vision and Pattern
+Recognition, 2020, pp. 9729–9738.
+[21] Y. Tian, D. Krishnan, P. Isola, Contrastive multiview coding,
+in: Computer Vision–ECCV 2020: 16th European Conference,
+Glasgow, UK, August 23–28, 2020, Proceedings, Part XI 16,
+Springer, 2020, pp. 776–794.
+[22] R. Collobert, J. Weston, A uniﬁed architecture for natural lan-
+guage processing: Deep neural networks with multitask learning,
+in: Proceedings of the 25th international conference on Machine
+learning, 2008, pp. 160–167.
+[23] A. Mnih, K. Kavukcuoglu, Learning word embeddings eﬃciently
+with noise-contrastive estimation, in: Advances in neural infor-
+mation processing systems, 2013, pp. 2265–2273.
+[24] Z. A. Pardos, N. T. Heﬀernan, Kt-idem: Introducing item diﬃ-
+culty to the knowledge tracing model, in: International confer-
+ence on user modeling, adaptation, and personalization, Springer,
+2011, pp. 243–254.
+[25] Z. A. Pardos, N. T. Heﬀernan, Modeling individualization in
+a bayesian networks implementation of knowledge tracing, in:
+International conference on user modeling, adaptation, and per-
+sonalization, Springer, 2010, pp. 255–266.
+[26] M. V. Yudelson, K. R. Koedinger, G. J. Gordon, Individualized
+bayesian knowledge tracing models, in: International conference
+on artiﬁcial intelligence in education, Springer, 2013, pp. 171–
+180.
+[27] H. Ebbinghaus, Memory: A contribution to experimental psy-
+chology, Annals of neurosciences 20 (4) (2013) 155.
+[28] P. I. Pavlik Jr, H. Cen, K. R. Koedinger, Performance factors
+analysis–a new alternative to knowledge tracing., Online Submis-
+sion.
+[29] C. Xu, Z. Guan, W. Zhao, Y. Niu, Q. Wang, Z. Wang, Deep
+multi-view concept learning., in: IJCAI, Stockholm, 2018, pp.
+2898–2904.
+[30] D. P. Kingma, J. Ba, Adam: A method for stochastic optimization,
+arXiv preprint arXiv:1412.6980.
+[31] J. Li, H. Dani, X. Hu, J. Tang, Y. Chang, H. Liu, Attributed
+network embedding for learning in a dynamic environment, in:
+Proceedings of the 2017 ACM on Conference on Information
+and Knowledge Management, 2017, pp. 387–396.
+[32] S. Becker, G. E. Hinton, Self-organizing neural network that
+discovers surfaces in random-dot stereograms, Nature 355 (6356)
+(1992) 161–163.
+[33] Z. Wu, Y. Xiong, S. X. Yu, D. Lin, Unsupervised feature learning
+via non-parametric instance discrimination, in: Proceedings of
+the IEEE conference on computer vision and pattern recognition,
+2018, pp. 3733–3742.
+[34] M. Ye, X. Zhang, P. C. Yuen, S.-F. Chang, Unsupervised em-
+bedding learning via invariant and spreading instance feature, in:
+Proceedings of the IEEE/CVF Conference on Computer Vision
+and Pattern Recognition, 2019, pp. 6210–6219.
+[35] Y. Zhu, Y. Xu, F. Yu, Q. Liu, S. Wu, L. Wang, Graph contrastive
+learning with adaptive augmentation, in: Proceedings of the Web
+Conference 2021, 2021, pp. 2069–2080.
+[36] Q. Liu, Z. Huang, Y. Yin, E. Chen, H. Xiong, Y. Su, G. Hu, Ekt:
+Exercise-aware knowledge tracing for student performance pre-
+diction, IEEE Transactions on Knowledge and Data Engineering
+33 (1) (2019) 100–115.
+[37] D. Shin, Y. Shim, H. Yu, S. Lee, B. Kim, Y. Choi, Saint+: In-
+tegrating temporal features for ednet correctness prediction, in:
+LAK21: 11th International Learning Analytics and Knowledge
+Conference, 2021, pp. 490–496.
+12

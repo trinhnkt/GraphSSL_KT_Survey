@@ -1,0 +1,17 @@
+search_id,database,query_family,cutoff_start,cutoff_end,records_in_saved_file,saved_filename,status,note
+SRCH_001,ACM_DL,Q-G,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file. Probe: HTTPError HTTP Error 403: Forbidden
+SRCH_002,ACM_DL,Q-S,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file.
+SRCH_003,IEEE_Xplore,Q-G,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file. Probe: HTTPError HTTP Error 420: 
+SRCH_004,IEEE_Xplore,Q-S,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file.
+SRCH_005,ScienceDirect,Q-G,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file. Probe: HTTPError HTTP Error 401: Unauthorized
+SRCH_006,ScienceDirect,Q-S,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file.
+SRCH_007,SpringerLink,Q-G,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file. Probe: HTTPError HTTP Error 401: Unauthorized
+SRCH_008,SpringerLink,Q-S,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file.
+SRCH_009,Scopus,Q-G,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file. Probe: HTTPError HTTP Error 401: Unauthorized
+SRCH_010,Scopus,Q-S,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file.
+SRCH_011,WebOfScience,Q-G,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file. Probe: HTTPError HTTP Error 401: Unauthorized
+SRCH_012,WebOfScience,Q-S,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file.
+SRCH_013,arXiv,Q-G,2015-01-01,2026-11-23,224,arxiv_qg_20261123.xml,EXPORTED,Official export.arxiv.org API. API totalResults=224. Cutoff is submittedDate through 2026-11-23. This file does not replace arxiv_qg_20260826.csv.
+SRCH_014,arXiv,Q-S,2015-01-01,2026-11-23,223,arxiv_qs_20261123.xml,EXPORTED,Official export.arxiv.org API. API totalResults=223. Cutoff is submittedDate through 2026-11-23. This file does not replace arxiv_qs_20260826.csv.
+SRCH_015,Scopus,Q-P,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file.
+SRCH_016,Scopus,Q-R,2015-01-01,2026-11-23,,,NOT_EXPORTED,NOT_EXPORTED. No library API key in this session. An unauthenticated request does not return the record file.

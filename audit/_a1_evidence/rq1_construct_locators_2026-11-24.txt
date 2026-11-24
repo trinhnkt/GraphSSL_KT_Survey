@@ -1,0 +1,207 @@
+
+######## KT004 pages=9 ########
+p.2: assification problem in the GNN. As the knowledge graph structure is not explicitly provided in most cases, we propose various implementations of the graph structure. Empirical validations on two open datasets indicated that our method
+p.4: ased on the aggregated features and the knowledge graph structure: mt +1 k =  fself(h′t k) ( k = i) fneighbor(h′t i , h′t k) (k , i) (1) ˜mt +1 k = Gea(mt +1 k ) ht +1 k = Gдr u( ˜mt +1 k , ht k) where fself is a multilayer perceptron
+p.4: agation to neighboring nodes based on a knowledge graph structure. We propose various implementations of fneighbor in Section 3.3. 3.2.3 Predict. Finally, the model outputs the predicted probability of a student answering each concept 
+p.4: tistics-based approach im- plements the adjacency matrix A based on certain statistics and applies it to fneighbor as follows: fneighbor(h′t i , h′t j) = Ai, j fout([h′t i , h′t j]) + Aj,i fin([h′t i , h′t j]), (2) where fout and
+
+######## KT010 pages=17 ########
+p.4: dents [16], multi-skill information and prerequisite skill relation graph labeled by experts [4] or student individualization [15]. GKT [17] builds a skill relation graph and learns their relation explicitly. However, these methods 
+p.15: hen, P., Lu, Y., Zheng, V.W., Pian, Y.: Prerequisite-driven deep knowledge trac- ing. In: 2018 IEEE International Conference on Data Mining (ICDM). pp. 39–48. IEEE (2018) 5. Choi, Y., Lee, Y., Shin, D., Cho, J., Park, S., Lee, S., B
+p.16: X., Cao, Y., Liu, M., Chua, T.S.: Kgat: Knowledge graph attention network for recommendation. In: Proceedings of the 25th ACM SIGKDD Interna- tional Conference on Knowledge Discovery & Data Mining. pp. 950–958 (2019) 31. Williams, R.J.
+
+######## KT011 pages=12 ########
+p.5: esV j e and Vi e among all the answered co-occurred exercises involv- ingVi e. f c and f o denote the count of co-correctness and co-occurrence respectively. EdgeEe (V j e,Vi e) only exists when Qi j e is larger than a certain th
+p.7: , A) = GC2 (GC1(X, A), A) (7) where the adjacency matrix is ˆA = A + I and the de- gree matrix is ˆD = ∑ i ˆAi and is the non-linear activation function we useσ(·). 4.2.3. Projection Head Furthermore, in Bi-CLKT we map the enhanc
+
+######## KT012 pages=14 ########
+p.2: eractions as a sample and count all the co-occurred exercise pairs that he answers correctly. We then consider a student to have mastered a concept when he obtains an above-average accuracy rate for that concept. Similarly, we co
+p.2: unt all co-occurring pairs of con- cepts that he has mastered and then calculate the ratio of the number of these co-occurring concepts that he has mastered to the number of occurrences of these co
+p.2: ted co-correctness rate of each pair of co-occurred exercises and co-mastery rate of each pair of co-occurred concepts, respec- tively. Given the established sub-graphs, we can learn the embeddings of each exercise and its corres
+p.4: es Vj e and Vi e among all the answered co-occurred exercises involving Vi e. f c and f o denote the count of co-correctness and co-occurrence respectively. Edge Ee (Vj e; Vi e) only exists when Qij e is larger than a certain thr
+
+######## KT014 pages=10 ########
+p.1: Prerequisite-Driven Deep Knowledge Tracing Penghe Chen1,Y uL u1,2, *, Vincent W. Zheng3, Yang Pian1 1Advanced Innovation Center for Future Education, Beijing Normal University, Beijing, China 
+p.1: e structure information, especially the prerequisite relations between pedagogical concepts, into the knowledge tracing model. Speciﬁcally, by considering how students master pedagogical concepts and their prerequisites, we model pr
+p.1: models. Index Terms —Knowledge Tracing, Prerequisite Modeling, Deep Learning I. I NTRODUCTION Knowledge tracing aims to model the knowledge states of individual students through quantitatively diagnosing a stu- dent’s mastery level 
+p.1: exist alone: some concepts serve as the prerequisites of other concepts, thus if we know a student has mastered a target concept, then we are sure that she has also mastered its prerequisite concepts. Modeling prerequisites for know
+
+######## KT016 pages=10 ########
+p.1: oncepts. For directed relations such as prerequisite relations, the partial propagation method is applied, where the inﬂuence can only unidirectionally propagate from a predecessor to a successor . Meanwhile, we employ the gated fun
+p.1: ain knowledge. Chen et al. [4] used the prerequisite relations in knowledge structure to reformulate knowledge tracing as a constraint problem and Nakagawa et al. [23] utilized graph neural networks on a homogeneous graph knowledge 
+p.1: e 1, the black directed lines represent prerequisite relations 1 and blue undirected lines stand for similarity relations 2. At the most beginning, after the learner ﬁnishes the learning on concept B, her proﬁciency on concept B inc
+p.1:  concept points to another concept with prerequisite relation means the former one is considered as the foundation of the later one. 2Concepts linked by similarity relations is somehow similar in the content. 541 2020 IEEE Internati
+
+######## KT023 pages=12 ########
+p.1: age: www.elsevier.com/locate/eswa SGKT: Session graph-based knowledge tracing for student performance prediction Zhengyang Wu a, Li Huanga, Qionghao Huangb, Changqin Huangb,∗, Yong Tangc,∗ a School of Computer Science, South China No
+p.1: ing model which is based on an exercise session graph, named session graph based knowledge tracing (SGKT). The session graph is used to model the students’ answering process. In addition, a relationship graph is used to model the rel
+p.1:  the students’ knowledge state from the session graph and use graph convolutional networks to obtain the embedding representations of exercises and skills in the relationship graph. Next, through the interaction mechanism, multiple i
+p.2:  (Battaglia et al., 2018). Based on the session graph, the graph-based model can capture transitions of neighbor items and generate the latent vectors for all nodes involved in the graph. In this work, we propose a novel session grap
+
+######## KT026 pages=7 ########
+p.2: [Chen et al., 2018] manually labels the prerequisite relations among skills, which however is not suitable for large-scale data. The GKT model [Nakagawa et al., 2019 ] builds a similarity graph of skills randomly, and automatically 
+p.2: reRRR = [rij]2f0; 1gjQjjSj is a binary adjacency matrix. If there is an edge between the question qi and the skill sj, then rij = 1; otherwise rij = 0. Here we introduce the information we will use to train embeddings in our mod
+p.3: gence (IJCAI-20) 1558 answered computed from the training dataset. All the ques- tion difﬁculties form a vectorddd = [di]2 RjQj. 4 Method In this section, we will give a detailed introduction of our PEBG framework, of which the overview 
+p.7:  Yu Lu, Vincent W Zheng, and Yang Pian. Prerequisite-driven deep knowledge trac- ing. In 2018 IEEE International Conference on Data Min- ing (ICDM), pages 39–48. IEEE, 2018. [Choi et al., 2019] Youngduck Choi, Youngnam Lee, Dong- mi
+
+######## KT029 pages=24 ########
+p.3: oflearninginteractions,aswellasadirectedtransition graph (DTG) describing the directed transitions between interactions in students’ learning sequences. Inaddition,onlytheexerciseembeddingsaregeneratedthroughGCNsinexistingresearch,which
+p.5: difficulty level of exercises [34], and prerequisite hierarchies and relationships within knowledge concepts [16]. Anothertypicalkindoftraditionalmethodsislogisticmodels[ 32],whichdirectlyadoptedlogistic functions to predict the pro
+p.6:  tracing framework, which exploited the prerequisite and similarity relations in the knowledge structure of concepts and considered both the temporal effect on the learning sequence and the spatial effect on the knowledge structure.
+p.8: ng multiple nodes Gd = (V,Ed ) Directed transition graph (DTG) A(in) i,j ,A(out) i,j Transition probability fromvj tovi and vice versa in DTG sc i ,sd i Knowledge states regardingei of the student models from CAHG and DTG se i Knowledge
+
+######## KT031 pages=34 ########
+p.1: ed as a graph (with the edges being the prerequisite relations between pedagogical concepts). We refer to such a graph as a knowledge structure (KS). In- corporating a KS into the KT procedure can potentially resolve both the sparse
+p.4: iciali n t e l l i g e n c e .20,21 The prerequisites between pedagogical concepts can be re presented as a knowledge graph 22 (see Figure 1(right), for an ex- ample). Nevertheless, the KS (which specifies the relations among skills
+p.7: lready given by experts, and models the prerequisite as an ordering pair. In this way, the mastery of related skills is constrained by referring to the KS. Nakagawa et al. used the KS information and a graph neural network (GNN) to 
+p.7: an et al. 23 automatically inferred the prerequisite relation between knowledge concepts in MOOCs using natural language processing techniques. Mussack et al. 44 discovered the problem similarity by combing the problem features and 
+
+######## KT033 pages=11 ########
+p.2:  from their mutual relationships (e.g., prerequisites dependencies between topics in a course) as they lack methods for rep- resenting these relationships. The deep learning direction has an advantage over the Bayesian one in bypass
+p.10: in its memory structures to dynamically construct a graph representation that captures relationships among latent concepts. Thus, DGMN can better predict the probability of correctly answering a question based on knowledge state dynamics
+p.10: mics from external memory structures to construct a graph for latent concepts and their relation- ships, while considering student’s forgetting behaviours. Thus, it can better predict student learning performance based on both knowledge 
+
+######## KT035 pages=13 ########
+p.1: dge structure features are extracted by constructing a heterogeneous graph-based graph information augmentation component. Question differentiation parameters are derived by transforming the TrueSkill system. Besides, learners’ history-related practices 
+p.2: representation of heterogeneous learner interaction graphs based on massive amounts of data. (2) The model transforms the TrueSkill system to obtain interpretable parameters. Explainable item differences and item difficulty are generated
+p.3: etwork (DKVMN). Due to the fixed binary Q-matrix designed by the expert, it lacks a personalized description of the student at the input level. GKT (Nakagawa, Iwasawa, & Matsuo, 2019) Black box model, graph structure can be inte
+p.3:  consideration of the directionality of prerequisites between knowledge and the correlation information between nodes. SKT (Tong, Liu et al., 2020) A propagation model is introduced to model the propagation of different knowledge po
+
+######## KT036 pages=13 ########
+p.1: nstruction of a homogeneous graph using prerequisite relations to represent the relation between knowledge concepts. JKT ( Song et al., 2021 ) employed a joint graph convolutional * Corresponding author. E-mail addresses: hlyang@wtu
+p.2: ations between exercises resulting from prerequisite relations between knowledge ( Chen et al., 2018 ). In fact, each exercise contains a variety of hetero - geneous characteristics such as content q , knowledge concept c , and diff
+p.3: f our approach as follows: (1) We first construct a heterogeneous graph network with exercise content, knowledge, and difficulty, utilizing a hierarchical ag - gregation method to acquire representations for the diverse ex - ercise nodes. (2) For the 
+p.3: of the knowledge structure on KT tasks, prerequisite-driven deep knowledge tracing (Chen et al., 2018) incorporates question-concept mapping, student-question matrices, and prerequisite relations be - tween knowledge concepts into D
+
+######## KT037 pages=14 ########
+p.1: concepts (i.e., from C1 to C6) with the prerequisite relations. Introducing concept map infor- mation into knowledge state estimation provides a data source for KT model construction and helps to mitigate the data sparseness. In the
+p.2: one type of educational relation called prerequisite rela- tion as an example. Given some concepts serve as the prereq- uisites of another concept (e.g., “adding” and “multiplication” are the prerequisites of “factorization” in math
+p.2: hat the learner likely has mastered its prerequisite ones (i.e., “adding” and “multiplication”). In addition to the prerequisite relation, many other relation types, such as inclu- sion, causal, and progressive relations, also appea
+p.2: ding” and “multiplication” serve as the prerequisites for the concept “factorization,” and “factorization” serves as the prerequisites for concepts “linear equation” and “square root”), this concept (e.g., “factorization”) would be 
+
+######## KT038 pages=12 ########
+p.2:  ?2 ?1 Question ?1 ?2 ?1 ?2 ?1 Response Question Concept ?1 ???????? ?2 ?????????? ② Varying Time Intervals ?1 ?2 ?3 ?4 ?5 … … … … … … … … ① Growing Scale time ∆??ℎ??? ∆????? mastery estimation for ?? mastery estimation for ?? ③ Evolvin
+p.6: istics of all datasets. Dataset Student Question Concept Interaction ASSISTment12 25.3k 50.9k 245 2, 621.3k ASSISTment17 1.7k 3.2k 102 942.8k Slepemapy.cz 81.7k 2.9k 1, 458 9, 786.5k Junyi 175.4k 0.7k 40 25, 670.2k EdNet-KT1 685.4k 12.3
+p.10: ve: Deep temporal reasoning for dynamic knowledge graphs. InInternational Conference on Machine Learning (ICML). 3462–3471. [31] Andrew Z Wang, Rex Ying, Pan Li, Nikhil Rao, Karthik Subbian, and Jure Leskovec. 2021. Bipartite dynamic r
+p.11: the end nodes and computes the neighbor co-occurrence encoding as the first-order relative position label. The comparison of details of baselines and DyGKT is shown in Table 3. A.3 Supplementary to Experiment Results The ablation
+
+######## KT042 pages=17 ########
+p.2: ation maps between questions, including co-occurrence and answer-agreement, and leverages a two-level attention mechanism to fuse multi-faceted information. However, most GNN-based KT methods are susceptible to the subjective ten
+p.2: dency of experts within the Q-matrix. To resolve this issue, tracking knowledge proﬁciency of students with calibrated Q-matrix (CQKT) [16] devises a novel Calibrated Q-matrix-based framework and achieves the state-o
+p.3:  relation maps from two perspectives of co-occurrence and answer-agreement. CQKT [16] proposes a calibrated Q-matrix-based framework to dynamically track knowledge proﬁciency of students. Although those recurrent and attentive mo
+p.17:  proﬁciency of students with calibrated Q-matrix, Expert Systems with Applications 192 (2022) 116454 . [17] Y. Sun, J. Han, Mining heterogeneous information networks: a structural analysis approach, ACM SIGKDD Explorations Newsl
+
+######## KT047 pages=13 ########
+p.3: Wu et al., 2022) constructs an exercise session graph to model a student’s answering process and takes the self-attention with a forgetting mechanism to model exercises and skills. Although these recurrent and attentive methods have 
+p.3: ork and KT. We want to fill this gap by constructing the heterogeneous graph between questions and then propose a dual-channel heterogeneous graph network to aggregate neighbors’ information and enhance the question representation. 2.3. Contrastive learnin
+p.13: proficiency of students with calibrated Q-matrix. Expert Systems with Applications , 192, Article 116454. Wang, Y., Tang, S., Lei, Y., Song, W., Wang, S., & Zhang, M. (2020). DisenHAN: Disen- tangled heterogeneous graph attentio
+p.13: Q., Huang, C., & Tang, Y. (2022). SGKT: Session graph- based knowledge tracing for student performance prediction. Expert Systems with Applications, 206, Article 117681. Wu, T., & Ling, Q. (2023). Self-supervised heterogeneous hyperg
+
+######## KT050 pages=16 ########
+p.1: arsity in KT. Chen et al. [6] pro- vide prerequisite relationships between concepts for KT by incorporating the knowledge structure information and creat- ing links between questions for dealing with the data sparsity problem. Howev
+p.2: graph to further consider the stu- dent-question-concept relationship mainly because students’ knowledge state can be modeled by the questions that they have answered. Though some questions may have the same concepts, we can still disti
+p.2:  ques- tions, and concepts in a student-question-concept (SQC) rela- tion graph to model their higher-order relationships. Then, we intervene on the observed answers by generating interrupted sub-graphs, from which we can obtain counter
+p.2: m a counterfactual perspective. Student Question Concept S1 S2 S3 S4 Q1 Q2 Q3 Q4 Q5 C1 C2 C3 C4 Fig. 2. An example of modeling the relationships among students, ques- tions, and concepts in a unified graph. WANG et al.: GRAPHCA: LEARNIN
+
+######## KT052 pages=18 ########
+p.1: ledge space, including multiple skills, prerequisites, attribution, and conceptual meta-paths. Firstly, we use the multi-hierarchical knowledge capsule network to track a variety of high-level knowledge concepts, and then extract th
+p.3: shared dependent information, including prerequisites [ 15], attributions, implicit multiple skills [7], and long-term dependencies of different seman- tics [3, 10]. (2) The multi-hierarchical heterogeneous graph can represent the k
+p.4: dge capsules is pro- posed to track the prerequisite knowledge and simulate the learning process based on memory for updating the knowledge state. (3) The multi-level heterogeneous graph structure latent in the complex background kn
+p.4: ensions. Some research incorporates the prerequisite relations between pedagogical concepts [ 15]. Some researchers focuses on explainable and personalized performance [ 23]. Using the Key-value external memory matrix, DKVMN [ 10] e
+
+######## KT053 pages=12 ########
+NO_CONSTRUCT_PHRASE
+
+######## KT056 pages=18 ########
+p.3: d on the student’s exercise records, we construct graphs covering concepts and exercises in terms of long- and short- term knowledge states. From the long-term perspective, the student’s overall mastery of the concept of squaring remai
+p.5: ance the representation of nodes in the knowledge graph by using the idea of mutual information maximization. Meanwhile, the introduction of temporal knowledge graph (TKG) enables GNN to model temporal feature data, and in recent years
+p.5:  2019). Tong et al. (2020) utilized the prerequisites and similarity relations in the conceptual knowledge structure, while considering the temporal dynamics of learning sequences and the spatial organization of the knowledge struct
+p.7: hese connections are represented in the adjacency matrix 𝐴 of it, and since all relationships are undirected, 𝐴 is symmetric. Information Processing and Management 62 (2025) 104074 7 
+
+######## KT060 pages=13 ########
+p.1: u). students’ learning path planning or knowledge graph construction, the first step is to accurately predict a students’ knowledge proficiency level (Cui & Sachan, 2023; Luaces et al., 2017). The field of knowledge tracing has seen co
+p.3: ion of relational inductive biases from knowledge graphs, which improves the performance of knowl- edge tracing systems. A method known as Graph Knowledge Tracing (GKT) (Nakagawa et al., 2019) has been proposed, which models the latent
+p.3: 2017) to embed a heterogeneous graph of question concepts and de- signed two attention-based encoders to represent learners’ engagement and knowledge states. To address the neglect of complex relationships between exercises, the introdu
+p.5: x of the 𝑙 + 1-th layer. ̃𝐴 denotes the adjacency matrix augmented with self-loops, and ̃𝐷 is the degree matrix of ̃𝐴. 𝑊 (𝑙) is the weight matrix of the 𝑙th layer, and 𝜎 is the activation function. Expert Systems With Application
+
+######## KT062 pages=13 ########
+p.1: ills, we developed a grammatical skills interaction graph based on the similarity of knowledge concepts. This approach significantly improves the accuracy of inferring students’ programming grammatical skill states. The LGS-KT model has 
+p.2: rammatical skills, we first establish a similarity graph of knowledge concepts and then, based on this graph, extract the grammatical knowledge relationships in- volved by different students to build a grammar skill interaction graph, e
+p.2: volution graph and a grammatical skills interaction graph, our model can meticulously track and analyze changes and developments in students’ skills during the programming exercise. The introduction of these stu- dent profiles provides n
+p.4: concepts) and use this to con- struct a similarity graph of the problems. For each student, we filter out the structural relationships of programming problems involved in their
+
+######## KT063 pages=13 ########
+p.1: h-based KT models often focus solely on prerequisite associations among concepts or correlations between concepts and questions, neglecting the complex multi-association relationships among entities. This oversight causes biased que
+p.1: r, these classic KT models overlook the knowledge graph structure, leading to loss of entity information. Recently, many researchers have recognized the importance of asso- ciations between questions and concepts [11]. Graph-based know
+p.1: ledge tracing (GKT) utilizes prerequisite associations among concepts to con- struct a concept graph. Structure-based knowledge tracing (SKT) [12] https://doi.org/10.1016/j.knosys.2025.112958 Received 26 September 2024; R
+p.2: associations among questions, including prerequisites and similarities; the middle diagram shows correlations between questions and concepts; and the right diagram depicts associations among concepts, including prerequisites and sim
+
+######## KT064 pages=13 ########
+p.1: ocate/knosys Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing Jing Wang a, Huifang Ma a ,∗, Mengyuan Zhang a, Lei Zhang b, Liang Chang c a College of Computer Science and Engineering, Northwest Normal Universit
+p.1: model, named Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing (MGIGKT). Our model incorporates two modules designed to model students’ knowledge states from the perspectives of temporal perception and interacti
+p.3: ons between interactions, we propose an Interaction Graph Dependency Modeling module, which creates interaction graphs from the perspectives of similarity and dissimilarity. We design a dual-channel encoding mechanism to understand stude
+p.3: tions. To tackle this, we introduce the Interaction Graph Dependency Modeling module, which constructs interac- tion graphs and utilizes a dual-channel encoding component with a cross-channel contrastive learning mechanism to delve into 
+
+######## KT065 pages=22 ########
+p.3: s, but did not explore them further. In Session Graph-based KT (SGKT) [34], on the other hand, the concept of a session graph is used to model the learner interaction process. This interaction mech- anism enables the knowledge states
+p.3: state changes. Ni et al. [40] input the question concept dichotomous graph directly into the graph embedding module to ob- tain the representation of each question and concept. They used the representation of each question and concept a
+p.6:  intrinsic characteristic nodes 𝑉𝑓 . To construct the hypergraph structure, a similarity function 𝑆(𝑣𝑖,𝑣𝑗 ) is first defined to measure the association strength between nodes: 𝑆(𝑣𝑖,𝑣𝑗 ) = cos(𝑣𝑖,𝑣𝑗 ) = 𝑣𝑖 ⋅𝑣𝑗 ‖𝑣𝑖‖ ‖𝑣𝑗 ‖ (1) where cos represents
+p.7: tional. For instance, ‘‘addition’’ is a prerequisite for ‘‘multiplication’’, but not vice versa. GCNs disregard edge directions, potentially leading to confusion in information propagation. DGCNN preserves edge direction informa- ti
+
+######## KT066 pages=15 ########
+p.2:  knowledge states from learner–question interaction graphs [21]. However, a significant limitation of existing KT models is that they only utilize pairwise relationships to model knowl- edge states, overlooking higher-order relationship 
+p.4: these responses can be achieved through constructed hypergraphs. Hence, the proficient formation of hyperedges constitutes a fundamental component of KT based on hypergraphs. However, it remains challenging to extract the hyperedges that impl
+p.8: arity matrix is O(N 2), the size of the adjacency matrix of the local state hypergraph is N El, and the size of the node embedding matrix is Nd , where N is the number of questions. The global knowledge state encoder channel take
+p.9: is a graph-based method, which uses the Q-matrix-induced partial-order-based method to pre-train the exercise embedding. Authorized licensed use limited to: University of Pittsburgh. Downloaded on July 08,2026 at 03:16:02 UTC fr
+
+######## KT067 pages=28 ########
+p.12: ec- tively balanced. And represented by adjacency matrix W ASS ∈ RN2×N2 . The specific formula of the similarity measure function can be formulated as: Fig. 6 a Represents creating knowledge concept structure. Consider the k2(Sel
+p.13: vj respectively. Then, we associate the knowledge graph in the students’ learning interactions with SKM to form a new graph, which is represented by the adjacency matrix A: N is equal to the sum of N1 + N2 . The correlation weight betw
+p.15: Technologies (2025) 30:9813–9840 binary adjacency matrix. This matrix, denoted as W QUE , effectively represents the presence or absence of edges in a graph. Additionally, to enhance the question representation based on both the 
+p.18: n performance resulting from frequently co-occurring tags. Finally, we sort the dataset in descending order based on the number of answers for each stu- dent user in the "user_id" column and select the top 2,000 students’ answer 
+
+######## KT068 pages=18 ########
+p.4: semantic dependencies, derived from the co-occurrence patterns of knowledge concepts in learners’ response sequences. By analyzing how knowledge concepts appear together in responses, we identify and quantify their relations, whi
+p.17: Zhang, Y., et al. (2024). Text-enhanced knowledge graph representation learning with local structure. Information Processing & Management, (5). Liu, F., Hu, X., Bu, C., & Yu, K. (2022). Fuzzy Bayesian knowledge tracing. IEEE Transactio
+
+######## KT069 pages=25 ########
+p.6: e weighted inﬂuence wi, j e between two co-occurring exer- cises is calculated as follows: wi, j e = co_correct (Vi e, V j e )∑ m co_occur (Vie, Vme ), (1) where wi, j e represents the co-correctness rate between exercises Vi e a
+p.25:  Huang, Q., Huang, C., Tang, Y .: Sgkt: Session graph-based knowledge tracing for student performance prediction. Expert Syst. Appl. 206, 117681 (2022) 38. Wong, K.Y ., Chung, F.l.: Visualizing time series data with temporal matching
+
+######## KT070 pages=12 ########
+p.4: 𝑉𝑢,𝐴𝑢} where𝐴𝑢∈ R𝑇𝑢×𝑇𝑢 is the learnable adjacency matrix, and𝑉𝑢 is the submitted code set of a learner. Each node𝑣𝑢,𝑖∈𝑉𝑢 corresponds to the code𝑥𝑢,𝑖 at the attempting step𝑖 within the programming sequence. The node embedding vect
+p.4: entially resulting in a fully connected adjacency matrix [3, 49]. This may reduce the discrimination of relations between differ- ent code pairs, which is harmful to the observation of core and weak submissions, as well as limit 
+p.5: value in M𝑢, to generate an informative adjacency matrix𝐴𝑢, as follows: 𝐴𝑢,<𝑖,𝑗 > = ( 1, 𝑀 𝑢,<𝑖,𝑗 >≥ Rank𝜖(M𝑢) 0, otherwise (4) where Rank𝜖(M𝑢) returns the value of the 𝜖-th largest value in the metric matrix M𝑢 to control the sp
+p.5: ions (codes with the feedback Accepted) from the entire training data corresponding to it as its solution setS𝑞𝑢,𝑖 . We then calculate the similarity between the embeddings of isolated code𝑥𝑢,𝑖 and each solution code𝑥𝑢,𝑗′ as: 𝑆𝑖 ={{𝑠𝑖,
+
+######## KT077 pages=32 ########
+p.1: T as a graph classification problem and construct dynamic graphs from student responses, enabling the model to capture structural relations between exercises and concepts for more personalized KT. Second, we introduce a data-centric curriculum
+p.3: ponse sequences as flat time series, we construct a graph at each timestep, where nodes represent previously attempted exercises or concepts, and edge attributes encode contextual information such as response timestamps or attempt freque
+p.8: r R2GCurL framework for KT, which first constructs dynamic graphs based on students’ response sequences and then trains the KT model and CL modules together in an end-to-end fashion to complete the KT task. In particular, we first explain the c
+p.10: for sequence-based KT models. Given the constructed graphs, a standard GNN and the weightGNN are employed to model the structural information. weights (see Figure 3(a)). WeightGNN has! local aggregation layers, allowing each node to acce
+
+######## KT079 pages=16 ########
+p.2:  topology modeling, STSKT considers the co-occurrence relationships of questions on skills to alleviate the challenges of sparse question representations at the knowledge level. By leveraging the temporal co-occurrence of student
+p.4: ises three types of edges: (i) question co-occurrence edgeeo, indicating questions that share at least one common concept; (ii) collaboration association edgeec, capturing the collaborative relationship between students who attem
+p.4: 1-g) hs1 Gated adaptive fusion Question co-occurrence edges Collaboration association edges Temporal proximity edges Question co-occurrence edges Collaboration association edges Temporal proximity edges q3 q1 K1 t6 t6 t1 t1 ＜ θ2 
+p.5: ecific methods are as follows. Question Co-occurrence Edges: Existing research often represents question in- formation based on the relationships between questions and skills [19] or between ques- tions and students [20]. Neverth
+
+######## KT084 pages=22 ########
+p.2:  acquisition, forgetting phenomena, and prerequisite relationships between knowledge components. Recent advances in deep learning have revolutionized this field, leading to sophisticated models based on recurrent neural networks, at
+p.2: ships and contextual information within knowledge graphs, missing opportunities to exploit the hierarchical nature of knowledge domains and the semantic connections between related concepts. Without proper structural support and cross-
+p.2: th edges encoding relationships such as prerequisite dependencies and semantic similarities. This graph-based modeling enables the capture of high-order interactions and structural dependencies that are not apparent in traditional s
+p.4: e graphs. Recent developments encompass session graph-based knowledge tracing (SGKT) [31] for student performance prediction and joint graph convolutional network-based knowledge tracing (JKT) [32]. To address data sparsity challenge
+
+######## KT085 pages=14 ########
+p.5: ate transition. The knowledge cognition transition graph 𝑡 at time 𝑡 is the state 𝑠𝑡 in the graph generation environment. The rein- forcement learning agent comprehensively observes the entire graph. In the dynamic graph generation pro
+p.6: (𝑙)), (6) where, ̃𝐴𝑝𝑚 = 𝐴𝑝𝑚 + 𝐼𝑁 is the adjacency matrix of decomposed homogeneous graph with self-connections, 𝐼𝑁 is the identify matrix, ̃𝐷𝑖𝑖 = ∑ 𝑗 ̃𝐴𝑖𝑗, and 𝑊 (𝑙) is a 𝑙th layer trainable weight matrix. 𝐻 (𝑙) ∈ R𝑁×𝑑 represents
+
+######## KT086 pages=13 ########
+p.2: ale graph data mining scenarios such as knowledge graphs, recommenda- tion systems, and social networks was accelerated. Therefore, graph structure-based KT analysis methods (Nakagawa et al., 2019; Tong et al., 2020; Yang et al., 2021)
+p.4: ta-path  is derived. Furthermore, all adjacency matrices derived from meta-paths are fused with a speciﬁc strategy. As a result, the fusion adjacency matrix of coarse view, denoted by 𝐴𝑐, is characterized as the average of norm
+p.4: alized adjacency matrices Expert Systems With Applications 295 (2026) 128840 4 
+p.5:  speciﬁc vector space Eq. (1) 𝐴 𝑞 The adjacency matrix induced by a meta-path  Eq. (3) ̃𝐴 𝑞 The symmetrically normalized 𝐴 𝑞 Eq. (3) 𝐴𝑐 The fusion adjacency matrix characterizes the connection relationships between questi
+
+######## KT089 pages=15 ########
+p.5: s. To achieve this, we need to generate adjacency matrices representing intra-class relationships. These relationships can be represented as the exercise correlation graph G 2 = {(ei,r (ei,e j),e j)|ei,e j ∈E } and the knowledge 
+p.7: rm positive sample pairs and encoded as adjacency matrices. Finally, we calculate contrastive loss for each view, maximizing the similarity between positive sample pairs to improve the performance of the model. Data Augmentation.

@@ -1,0 +1,218 @@
+texts are still difficult to use. 2) When the expert’s pre-
+definition is not used, automatic modeling of the complex
+knowledge structure of the knowledge capsule at same layer
+is insufficient, and the knowledge capsules graph network
+needs to be improved to better participate in the routing
+calculation. 3) Our model does not consider the important
+impact of forgetting behavior and contextual time interval
+on the prediction task and interpretability, and cannot
+evaluate the evolution of knowledge based on the time
+interval. 4) Need to optimize the routing strategy to reduce
+the amount of parameters and computational overhead.
+Acknowledgements This work is partially supported by the National
+Natural Science Foundation of China (Nos.11590774,11590772,
+11590770)
+References
+1. Ding M, Zhou C, Chen Q, Yang H, Tang J (2019) Cognitive
+graph for multi-hop reading comprehension at scale. CoRR
+arXiv:1905.05460
+2. Evans JStBT (2008) Dual-processing accounts of reasoning,
+judgment, and social cognition. Annu Rev Psychol 59:255–278
+3. Khajah M, Lindsey RV, Mozer MC (2016) How deep is
+knowledge tracing? arXiv:1604.02416
+4. Piech CJ (2015) Uncovering patterns in student work: Machine
+learning to understand human learning. In: Uncovering Patterns in
+Student Work, Stanford University
+5. Piech C, Bassen J, Huang J, Ganguli S, Sahami M, Guibas LJ,
+Sohl-Dickstein J (2015) Deep knowledge tracing. Adv Neural Inf
+Process Syst 28:505–513
+6. Yudelson MV, Koedinger KR, Gordon GJ (2013) Individualized
+bayesian knowledge tracing models. In: International conference
+on artificial intelligence in education. Springer, pp 171–180
+7. Corbett AT, Anderson JR (1994) Knowledge tracing: Modeling
+the acquisition of procedural knowledge. User Model User-
+Adapted Interact 4(4):253–278
+8. Lord FM (1980) Applications of item response theory to practical
+testing problems. Routledge
+9. Wang P, Jiang A, Liu X, Shang J, Zhang L (2018) Lstm-based
+eeg classification in motor imagery tasks. IEEE Trans Neural Syst
+Rehab Eng 26(11):2086–2095
+10. Zhang J, Shi X, King I, Yeung D-Y (2017) Dynamic key-value
+memory networks for knowledge tracing. In: Proceedings of the
+26th international conference on World Wide Web, pp 765–774
+11. Kang W-C, McAuley J (2018) Self-attentive sequential recom-
+mendation. In: 2018 IEEE International Conference on Data
+Mining. IEEE, pp 197–206
+12. Wang X, Ji H, Shi C, Wang B, Ye Y, Cui P, Yu PS (2019)
+Heterogeneous graph attention network. In: The World Wide Web
+Conference, pp 2022–2032
+13. Shi C, Li Y, Zhang J, Sun Y, Philip SY (2016) A survey of
+heterogeneous information network analysis. IEEE Trans Knowl
+Data Eng 29(1):17–37
+14. Nakagawa H, Iwasawa Y, Matsuo Y (2019) Graph-based knowl-
+edge tracing: Modeling student proficiency using graph neural
+network. In: 2019 IEEE/WIC/ACM International Conference on
+Web Intelligence (WI). IEEE, pp 156–163
+15. Chen P, Lu Y, Zheng VW, Pian Y (2018) Prerequisite-driven deep
+knowledge tracing. In: 2018 IEEE International Conference on
+Data Mining (ICDM). IEEE, pp 39–48
+16. Battaglia PW, Hamrick JB, Bapst V, Sanchez-Gonzalez A,
+Zambaldi V, Malinowski M, Tacchetti A, Raposo D, Santoro A,
+Faulkner R et al (2018) Relational inductive biases, deep learning,
+and graph networks. arXiv:1806.01261
+17. Grefenstette E, Hermann KM, Suleyman M, Blunsom P (2015)
+Learning to transduce with unbounded memory. Adv Neural Inf
+Process Syst 28:1828–1836
+18. d Baker RyanSJ, Corbett AT, Aleven V (2008) More accurate
+student modeling through contextual estimation of slip and guess
+probabilities in bayesian knowledge tracing. In: International
+conference on intelligent tutoring systems. Springer, pp 406–
+415
+19. Pardos ZA, Heffernan NT (2011) Kt-idem: Introducing item
+difficulty to the knowledge tracing model. In: International
+conference on user modeling, adaptation, and personalization.
+Springer, pp 243–254
+20. Cen H, Koedinger K, Junker B (2006) Learning factors analysis–a
+general method for cognitive model evaluation and improvement.
+In: International Conference on Intelligent Tutoring Systems.
+Springer, pp 164–175
+21. Pavlik Jr PI, Cen H, Koedinger KR (2009) Performance
+factors analysis–a new alternative to knowledge tracing. Online
+Submission
+22. Vie J-J, Kashima H (2019) Knowledge tracing machines:
+Factorization machines for knowledge tracing. In: Proceedings of
+the AAAI Conference on Artificial Intelligence, vol 33, pp 750–
+757
+23. Yeung C-K (2019) Deep-irt: Make deep learning based knowledge
+tracing explainable using item response theory. arXiv:1904.11738
+24. Abdelrahman G, Wang Q (2019) Knowledge tracing with
+sequential key-value memory networks. In: Proceedings of the
+42nd International ACM SIGIR Conference on Research and
+Development in Information Retrieval, pp 175–184
+25. Sun X, Zhao X, Li B, Ma Y, Sutcliffe R, Feng J (2021) Dynamic
+key-value memory networks with rich features for knowledge
+tracing. IEEE Transactions on Cybernetics
+26. Liu S, Zou R, Sun J, Zhang K, Jiang L, Zhou D, Yang J (2021) A
+hierarchical memory network for knowledge tracing. Expert Syst
+Appl 177:114935
+27. Pandey S, Karypis G (2019) A self-attentive model for knowledge
+tracing. arXiv:1907.06837
+28. Ghosh A, Heffernan N, Lan AS (2020) Context-aware attentive
+knowledge tracing. In: Proceedings of the 26th ACM SIGKDD
+International Conference on Knowledge Discovery & Data
+Mining, pp 2330–2339
+29. Ouyang Y, Zhou Y, Zhang H, Rong W, Xiong Z (2021) Pakt: A
+position-aware self-attentive approach for knowledge tracing. In:
+International Conference on Artificial Intelligence in Education.
+Springer, pp 285–289
+30. Pandey S, Srivastava J (2020) Rkt: Relation-aware self-attention
+for knowledge tracing. In: Proceedings of the 29th ACM Inter-
+national Conference on Information & Knowledge Management,
+pp 1205–1214
+31. Zeng J, Zhang Q, Xie N, Yang B (2021) Application of deep
+self-attention in knowledge tracing. arXiv:2105.07909
+32. Gori M, Monfardini G, Scarselli F (2005) A new model
+for learning in graph domains. In: Proceedings. 2005 IEEE
+International Joint Conference on Neural Networks, 2005, vol 2.
+IEEE, pp 729–734
+33. Kipf TN, Welling M (2016) Semi-supervised classification with
+graph convolutional networks. arXiv:1609.02907
+Z. He et al.
+7246
+
+34. Sanchez-Gonzalez A, Heess N, Springenberg JT, Merel J, Ried-
+miller M, Hadsell R, Battaglia P (2018) Graph networks as learn-
+able physics engines for inference and control. arXiv:1806.01242
+35. Yao L, Mao C, Luo Y (2019) Graph convolutional networks for
+text classification. In: Proceedings of the AAAI Conference on
+Artificial Intelligence, vol 33, pp 7370–7377
+36. Qi X, Liao R, Jia J, Fidler S, Urtasun R (2017) 3d graph neural
+networks for rgbd semantic segmentation. In: Proceedings of the
+IEEE International Conference on Computer Vision, pp 5199–
+5208
+37. Wang X, He X, Cao Y, Liu M, Chua T-S (2019) Kgat: Knowledge
+graph attention network for recommendation. In: Proceedings of
+the 25th ACM SIGKDD International Conference on Knowledge
+Discovery & Data Mining, pp 950–958
+38. Sun Y, Han J, Yan X, Yu PS, Wu T (2011) Pathsim: Meta
+path-based top-k similarity search in heterogeneous information
+networks. Proc VLDB Endowment 4(11):992–1003
+39. Sabour S, Frosst N, Hinton GE (2017) Dynamic routing between
+capsules. Adv Neural Inf Process Syst 30:3856–3866
+40. Rawlinson D, Ahmed A, Kowadlo G (2018) Sparse unsupervised
+capsules generalize better. arXiv:1804.06094
+41. Zhang S, Zhou Q, Wu X (2018) Fast dynamic routing based on
+weighted kernel density estimation. In: International Symposium
+on Artificial Intelligence and Robotics. Springer, pp 301–309
+42. Xinyi Z, Chen L (2018) Capsule graph neural network. In:
+International conference on learning representations
+43. Huang Z, Yin Y, Chen E, Xiong H, Su Y, Hu G et al (2019)
+Ekt: Exercise-aware knowledge tracing for student performance
+prediction. IEEE Trans Knowl Data Eng
+44. Tong H, Zhou Y, Wang Z (2020) Hgkt: Introducing problem
+schema with hierarchical exercise graph for knowledge tracing.
+arXiv:2006.16915
+45. Devlin J, Chang M-W, Lee K, Toutanova K (2018) Bert:
+Pre-training of deep bidirectional transformers for language
+understanding. arXiv:1810.04805
+46. Veliˇckovi´c P, Cucurull G, Casanova A, Romero A, Lio P, Bengio
+Y (2017) Graph attention networks. arXiv:1710.10903
+47. Tsai Y-HH, Srivastava N, Goh H, Salakhutdinov R (2020)
+Capsules
+with
+inverted
+dot-product
+attention
+routing.
+arXiv:2002.04764
+48. Kingma DP, Ba J (2014) Adam: A method for stochastic
+optimization. arXiv:1412.6980
+Publisher’s note Springer Nature remains neutral with regard to
+jurisdictional claims in published maps and institutional affiliations.
+Zeyu He received the BE
+degree in computer science
+and technology from Beijing
+Information Science and Tech-
+nology University (BISTU),
+China, in 2010. He is cur-
+rently
+working
+toward
+the
+Ph.D. degree in the School of
+Chinese Academy of Sciences
+(CAS).
+His
+main
+research
+interests include graph neural
+network, recommender sys-
+tems and intelligent education
+systems.
+Wang Li received
+the BE
+degree
+in
+Communication
+Engineering from Shandong
+Normal
+University
+(SDU),
+China. She received the MA
+degree in the School of Chi-
+nese Academy of Sciences
+(CAS).
+Her
+main
+research
+interests include pronuncia-
+tion assessment and acoustic
+model.
+He
+has
+published
+several papers in referred con-
+ference proceedings, such as
+Interspeech 2019.
+Modeling knowledge proficiency using multi-hierarchical...
+7247

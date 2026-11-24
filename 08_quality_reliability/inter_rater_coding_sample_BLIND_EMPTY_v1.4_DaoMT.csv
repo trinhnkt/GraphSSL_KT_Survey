@@ -1,0 +1,11 @@
+paper_id,model,coderB_id,coderB_S_criterion,coderB_ssl_family,coderB_graph_provenance,coderB_gnn_encoder,coderB_strict_kc_cold_start,coderB_item_cold_start,coderB_learner_cold_start,coderB_ece_reported,coderB_locator,coderB_note
+KT004,GKT,DaoMT,N,NONE,MODEL_DEFINED_FIXED,GNN_GENERIC,NO,NO,NO,NO,"Sec. 3.3.1–3.3.2; Sec. 4","Graph construction/variants; experimental evaluation; no strict cold-start protocol and no ECE reporting"
+KT011,Bi-CLKT,DaoMT,Y,MULTIVIEW_CONTRASTIVE,MODEL_DEFINED_FIXED,GCN,NO,NO,NO,NO,"Abstract p.1","Two-layer comparative learning; node-level exercise subgraph + graph-level concept contrast; no strict cold-start or ECE identified"
+KT014,PDKT-C,DaoMT,N,NONE,EXTERNAL_FIXED,NONE,NO,NO,NO,NO,"Abstract & Introduction p.1","Prerequisite relations as structural constraints; no SSL/pretext, no GNN, no strict cold-start or ECE"
+KT026,PEBG,DaoMT,Y,GRAPH_RECONSTRUCTION,MODEL_DEFINED_FIXED,NONE,NO,NO,NO,NO,"Abstract & Fig.1 p.1","Pre-train Q-emb from difficulty + bipartite Q-skill relations; PNN reconstructs side info (enc codebook=NONE); no strict cold-start or ECE"
+KT039,CL4KT,DaoMT,Y,SEQUENCE_CONTRASTIVE,NA,NONE,NO,NO,NO,NO,"Abstract & Fig.1 p.1","Sequence contrastive learning via augmentation; no explicit graph; no strict cold-start or ECE"
+KT044,SINKT,DaoMT,N,NONE,EXTERNAL_FIXED,GAT,NO,YES,NO,NO,"Abstract p.1; experimental protocol","LLM concept-question graph; inductive KT; question hold-out = item cold-start; no SSL pretext, no strict KC CS, no ECE"
+KT047,DC-SSL,DaoMT,Y,GRAPH_CONTRASTIVE,MODEL_DEFINED_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,"Abstract p.1","SSL on dual-channel heterogeneous graph; contrastive auxiliary task; no strict cold-start or ECE"
+KT068,HKT,DaoMT,Y,GRAPH_CONTRASTIVE,EXTERNAL_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,"Abstract & Keywords p.1","Hierarchical KT; keywords include graph contrastive learning; no strict cold-start or ECE on this page"
+KT070,Coda,DaoMT,N,NONE,MODEL_DEFINED_FIXED,GCN,NO,NO,NO,NO,"Abstract p.1","Code graph + cluster-aware GCN denoising/regularization; no SSL pretext; no strict cold-start or ECE"
+KT076,KGNN-KT,DaoMT,N,NONE,EXTERNAL_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,"Abstract p.1","LLM-extracted programming KG; semantic + temporal + graph concept reps; no SSL pretext; no strict cold-start or ECE"

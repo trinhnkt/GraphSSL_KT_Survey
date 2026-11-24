@@ -1,0 +1,546 @@
+# A Dual-Encoder Contrastive Learning Model for Knowledge Tracing
+
+PMC12294018. Entropy, 27(7):685. Published 2025-06-26.
+
+## Authors
+
+Yanhong Bai, Xingjiao Wu, Tingjiang Wei, Liang He
+
+## Details
+
+- DOI: https://doi.org/10.3390/e27070685
+- PMID: 40724402 (https://pubmed.ncbi.nlm.nih.gov/40724402/)
+- PMCID: PMC12294018
+- License: https://creativecommons.org/licenses/by/4.0/
+
+---
+
+## Abstract
+
+Knowledge tracing (KT) models learners’ evolving knowledge states to predict future performance, serving as a fundamental component in personalized education systems. However, existing methods suffer from data sparsity challenges, resulting in inadequate representation quality for low-frequency knowledge concepts and inconsistent modeling of students’ actual knowledge states. To address this challenge, we propose Dual-Encoder Contrastive Knowledge Tracing (DECKT), a contrastive learning framework that improves knowledge state representation under sparse data conditions. DECKT employs a momentum-updated dual-encoder architecture where the primary encoder processes current input data while the momentum encoder maintains stable historical representations through exponential moving average updates. These encoders naturally form contrastive pairs through temporal evolution, effectively enhancing representation capabilities for low-frequency knowledge concepts without requiring destructive data augmentation operations that may compromise knowledge structure integrity. To preserve semantic consistency in learned representations, DECKT incorporates a graph structure constraint loss that leverages concept–question relationships to maintain appropriate similarities between related concepts in the embedding space. Furthermore, an adversarial training mechanism applies perturbations to embedding vectors, enhancing model robustness and generalization. Extensive experiments on benchmark datasets demonstrate that DECKT significantly outperforms existing state-of-the-art methods, validating the effectiveness of the proposed approach in alleviating representation challenges in sparse educational data.
+
+## 1. Introduction
+
+With the rapid advancement of online education platforms and intelligent learning systems, personalized learning has emerged as a central objective of modern education [1,2]. Personalization techniques have demonstrated effectiveness across diverse domains, from educational content delivery to user preference modeling in various applications [3,4]. Driven by breakthroughs in artificial intelligence and machine learning, adaptive learning systems have revolutionized educational delivery by automatically adjusting content difficulty, pacing, and instructional strategies based on individual learner characteristics and real-time performance indicators. These systems leverage learning analytics, recommendation engines, and intelligent tutoring systems to provide tailored instructional content and real-time feedback. Modern online education platforms integrate AI-powered assessment tools and adaptive algorithms to monitor learning progress continuously and optimize educational pathways dynamically, creating unprecedented opportunities for data-driven educational interventions [5,6].
+
+Within this paradigm, knowledge tracing (KT) plays a pivotal role by modeling and predicting students’ evolving knowledge states over time, thereby enabling accurate learning assessment and informed instructional decision-making [7,8]. High-precision KT models are essential for capturing individual learning trajectories, understanding the complex interplay between knowledge components, and providing reliable cognitive state representations that drive personalized educational recommendations. Traditional knowledge tracing techniques, such as Bayesian knowledge tracing (BKT) [9], rely on hidden Markov models to estimate student knowledge states through probabilistic inference, treating knowledge mastery as binary states transitioning between learned and unlearned conditions. While effective for simple learning scenarios, these classical approaches struggle to capture the complexity of real-world learning behaviors, particularly the non-linear dynamics of knowledge acquisition, forgetting phenomena, and prerequisite relationships between knowledge components. Recent advances in deep learning have revolutionized this field, leading to sophisticated models based on recurrent neural networks, attention mechanisms, and memory-augmented structures [10,11]. These neural approaches demonstrate significant improvements in modeling capability and predictive accuracy by leveraging large-scale learning interaction data and capturing temporal dependencies in student learning processes. Deep KT models such as deep knowledge tracing (DKT) [12], dynamic key–value memory networks (DKVMNs) [11], and self-attentive knowledge tracing (SAKT) [10] have shown superior performance across diverse educational domains.
+
+However, when confronted with data sparsity challenges, these methods still exhibit limited effectiveness in modeling low-frequency questions and knowledge concepts, particularly in realistic educational settings where student interaction patterns follow long-tail distributions. The fundamental issues stem from two critical aspects that significantly impact model performance in sparse data environments. On one hand, existing methods predominantly rely on predefined knowledge concept labels, treating all questions under the same concept as equivalent representations and overlooking fine-grained variations in content complexity, difficulty levels, and semantic expressions [9,11,12]. On the other hand, current approaches lack effective mechanisms to leverage structural relationships and contextual information within knowledge graphs, missing opportunities to exploit the hierarchical nature of knowledge domains and the semantic connections between related concepts. Without proper structural support and cross-concept semantic enrichment, low-frequency knowledge concepts suffer from insufficient training signals, leading to poor representation quality, increased prediction uncertainty, and degraded model generalization in sparse data environments.
+
+To tackle these challenges, graph neural networks (GNNs) have been introduced to capture concept relations through structured graphs [13,14,15,16]. GNN-based approaches represent knowledge concepts and questions as nodes in a graph, with edges encoding relationships such as prerequisite dependencies and semantic similarities. This graph-based modeling enables the capture of high-order interactions and structural dependencies that are not apparent in traditional sequential models. While GNN-based methods enhance node representations by modeling semantic dependencies and propagating information through graph structures, they often suffer from limited message propagation on low-degree nodes, leading to degraded embeddings for low-frequency knowledge concepts. The message passing mechanism tends to favor well-connected nodes that receive rich information from multiple neighbors, while sparsely connected nodes struggle to obtain sufficient contextual information for effective representation learning. Their heavy reliance on explicit labels and predefined graph structures further constrains representation improvement in weakly supervised scenarios, and many GNN-based KT models assume static structures that fail to adapt to the dynamic nature of knowledge acquisition.
+
+Recently, contrastive learning has shown significant promise in alleviating data sparsity challenges across various domains [17,18,19], demonstrating particular effectiveness in scenarios where labeled data are limited and representation quality is crucial. By constructing positive and negative sample pairs and optimizing embeddings to maximize agreement between similar instances while minimizing agreement between dissimilar ones, contrastive learning can extract rich semantic information from unlabeled data and improve model robustness. In knowledge tracing, existing contrastive approaches primarily focus on two strategies: graph structure-based contrasting through multi-view representations [20,21], and heterogeneous graph modeling with auxiliary tasks that incorporate additional supervision signals [22,23,24]. The first category typically employs techniques such as node masking, edge dropping, and subgraph sampling to create augmented views, then applies contrastive losses to align representations across these views. The second category focuses on incorporating auxiliary information such as textual descriptions and difficulty levels to create richer representations through multi-task learning frameworks. However, these methods rely heavily on explicit data augmentation operations that may destroy critical knowledge structures in sparse educational data, potentially severing knowledge concept dependency paths and disrupting hierarchical relationships. These issues collectively exacerbate representation quality imbalance, significantly constraining model performance for low-frequency knowledge concepts.
+
+To address the above challenges, this paper proposes Dual-Encoder Contrastive Knowledge Tracing (DECKT). Inspired by momentum-based contrastive learning frameworks such as MoCo [25], DECKT constructs a dual-branch architecture comprising a primary encoder using graph attention networks (GATs) for modeling question–concept interactions, and a momentum encoder updated through the exponential moving average (EMA) that maintains a stable representation space. The primary encoder actively learns from training data, while the momentum encoder provides consistent representations that serve as reliable contrastive targets. This design generates differentiated contrastive views without explicit data augmentation, preserving knowledge structure integrity while improving representation quality imbalance for low-frequency knowledge concepts. DECKT incorporates a momentum-based dual-encoder architecture that avoids destructive data augmentation while providing robust contrastive learning through the natural evolution of model parameters. Additionally, a graph structure constraint loss function maintains semantic consistency between questions and knowledge concepts in the embedding space, enforcing appropriate similarities between related concepts while ensuring sufficient separation between distinct concepts. Furthermore, an adversarial training mechanism enhances model robustness through min–max optimization, introducing carefully calibrated perturbations to input representations that improve generalization in sparse data environments. Together, these components create a comprehensive framework that addresses both representation learning challenges and structural modeling requirements for effective knowledge tracing.
+
+The main contributions of this paper are as follows:
+
+We propose DECKT, a novel dual-encoder contrastive learning approach that improves representation quality imbalance through momentum-based contrastive view generation, avoiding knowledge structure destruction while enhancing low-frequency knowledge concept representations.
+
+We design a graph structure constraint loss function to maintain semantic consistency between questions and knowledge concepts, and introduce an adversarial training mechanism to improve model robustness in sparse data environments.
+
+Extensive experiments on multiple large-scale datasets demonstrate that DECKT achieves superior and stable performance compared to existing methods in addressing representation challenges and modeling low-frequency knowledge concepts.
+
+## 2. Related Work
+
+### 2.1. Knowledge Tracing
+
+Knowledge tracing serves as a fundamental technique in intelligent educational systems, aiming to model the evolution of learners’ knowledge states to predict their future learning performance. The field has undergone a significant transformation from traditional statistical approaches to deep learning methodologies. Early Bayesian knowledge tracing (BKT) [9] employed hidden Markov models to characterize binary state transitions of knowledge mastery, yet its simplified assumptions constrained the ability to capture complex learning processes. The emergence of deep learning techniques introduced revolutionary breakthroughs to this domain, with deep knowledge tracing (DKT) [12] incorporating LSTM networks to handle variable-length sequences and capture long-term dependencies. To address the knowledge concept representation confusion inherent in DKT, dynamic key–value memory networks (DKVMNs) [11] leverage external memory mechanisms to separately store knowledge concept representations and learning states. The successful integration of attention mechanisms further advanced the field, with self-attentive knowledge tracing (SAKT) [10] utilizing transformer architectures for parallel sequence processing, and context-aware attentive knowledge tracing (AKT) [26] incorporating forgetting factors to improve long sequence modeling capabilities. Recent advances include alternate autoregressive knowledge tracing (AAKT) [27] and cold-start knowledge tracing with kernel bias and cone attention (csKT) [28] to overcome limitations in sequence modeling.
+
+The development of graph neural network techniques has motivated researchers to focus on modeling structured relationships among knowledge concepts. Graph-based knowledge tracing (GKT) [14] pioneered the integration of graph convolutional networks to model dependencies between knowledge concepts, establishing a research paradigm that combines graph structures with sequential modeling. Subsequent research has enriched the application of graph neural networks in knowledge tracing, including relation-aware self-attention for knowledge tracing (RKT) [29] which incorporates multiple relation types into self-attention mechanisms, and hierarchical graph knowledge tracing (HGKT) [30] which models complex knowledge dependencies through hierarchical exercise graphs. Recent developments encompass session graph-based knowledge tracing (SGKT) [31] for student performance prediction and joint graph convolutional network-based knowledge tracing (JKT) [32]. To address data sparsity challenges, GraphCA [33] improves knowledge tracing performance through counterfactual augmented learning, while dynamic graph embedding via meta-learning [34] provides novel insights for handling dynamic educational environments. Additionally, learning states-enhanced knowledge tracing [35] further improves model performance by simulating diversity in real-world learning processes. Modern knowledge tracing also confronts challenges in handling large-scale skill sets, heterogeneous learning patterns, and complex inter-skill associations, with dual-graph convolutional networks and positive/negative feature enhancement networks [36] addressing these challenges through simultaneous processing of dual-graph structures for knowledge concepts and student learning patterns.
+
+Parallel to these developments, recent advances in large language models (LLMs) have opened new avenues for knowledge tracing applications. Initial efforts leverage LLMs for difficulty modeling through DCL4KT + LLM [37], which demonstrates how language models can enhance traditional contrastive learning frameworks by providing more accurate difficulty predictions. Researchers have also addressed cold-start problems via semantic feature extraction [38], enabling knowledge tracing systems to handle previously unseen questions more effectively. Further advances include structure-aware approaches like SINKT [39] that construct concept–question graphs using LLM-derived semantic relationships, representing a significant step toward inductive knowledge tracing. Domain-specific applications have also emerged, such as CEKT [40] for programming knowledge tracing, which harnesses code comprehension capabilities to improve assessment accuracy. While these approaches demonstrate the transformative potential of semantic understanding in educational contexts, they primarily address content-level enhancements rather than fundamental representation learning challenges. Nevertheless, existing approaches commonly encounter the sparsity challenge in knowledge concept–problem associations, particularly exhibiting deficiencies in representation learning for low-frequency knowledge concepts, thereby limiting predictive accuracy in practical applications.
+
+### 2.2. Contrastive Learning
+
+Contrastive learning, as a pivotal branch of self-supervised learning, learns effective data representations by maximizing attraction between similar samples while minimizing attraction between dissimilar samples, achieving remarkable success in computer vision and natural language processing domains. The Simple Contrastive Learning (SimCLR) framework [41] learns visual representations through data augmentation and contrastive loss functions, while Momentum Contrast (MoCo) [25] introduces momentum encoders and queue mechanisms to enhance training efficiency. As an important extension, Deep Graph Infomax (DGI) [42] learns node representations by contrasting graph patches with graph summaries, and Graph Contrastive Learning with Augmentations (GRACE) [43] maximizes mutual information between identical nodes across two augmented views.
+
+In the knowledge tracing domain, contrastive learning applications demonstrate rapid development trends. Bi-graph contrastive learning-based knowledge tracing (Bi-CLKT) [20] employs a dual-layer contrastive learning framework through “exercise-to-exercise” and “concept-to-concept” structures, acquiring discriminative representations at both the node and graph levels, effectively addressing the limitation of traditional graph neural network methods that overemphasize node details while neglecting high-level semantic information. Difficulty-focused contrastive learning for knowledge tracing [37] integrates large language models for difficulty prediction, designing difficulty-centered contrastive learning methods that significantly enhance knowledge tracing model performance. Self-paced contrastive learning for knowledge tracing [44] achieves balance between global and local information through self-paced learning data augmentation and self-supervised contrastive learning, effectively mitigating model bias in sparse data environments. Weighted heterogeneous graph-based three-view contrastive learning [23] enhances tracking accuracy and robustness by integrating multi-view information of students and knowledge points. Contrastive learning for knowledge tracing (CL4KT) [21] proposes a contrastive learning framework that handles complexity in knowledge acquisition processes by revealing semantically similar or dissimilar samples in learning histories. Stable knowledge tracing with diagnostic transformer [24] constructs problem-level to knowledge-level architectures and proposes contrastive learning-based training algorithms focused on maintaining stability in knowledge state diagnosis. Knowledge tracing with contrastive learning and attention-based LSTM network (CALSKT) [45] constructs attention mechanism-based LSTM networks and extracts self-supervised signals from learners’ original learning histories through contrastive learning frameworks. However, existing work predominantly adopts contrastive learning frameworks from other domains without sufficient consideration of educational data characteristics, particularly regarding how to appropriately define positive and negative samples in knowledge tracing tasks to address knowledge concept–problem association sparsity challenges. Therefore, designing contrastive learning mechanisms suitable for knowledge tracing tasks, particularly solutions targeting knowledge concept–problem association sparsity problems, remains a research direction worthy of in-depth exploration.
+
+## 3. Methods
+
+### 3.1. Task Formulation
+
+In knowledge tracing, the goal is to predict whether a student will correctly answer a future question based on their past interactions. Let $E = { {e}_{1} , {e}_{2} , … , {e}_{n} }$ denote the set of questions and $K = { {k}_{1} , {k}_{2} , … , {k}_{m} }$ the set of knowledge concepts. Each question ${e}_{i}$ may involve multiple concepts ${k}_{j}$, with their associations represented by an adjacency matrix $A ∈ {R}^{n × m}$, where ${A}_{i , j} = 1$ indicates that question ${e}_{i}$ is associated with concept ${k}_{j}$, and ${A}_{i , j} = 0$ otherwise. A student’s interaction history is given as a sequence $S = {{ ( {e}_{t} , {r}_{t} ) }}_{t = 1}^{T}$, where ${e}_{t}$ is the question attempted at time t, and ${r}_{t} ∈ { 0 , 1 }$ indicates whether the response was correct.
+
+To model question–concept dependencies, we construct a bipartite graph $G = ( V , E )$, where $V = E ∪ K$, and edges connect questions to their associated concepts as defined by A. The core task is to predict the probability that the student will answer the next question ${e}_{T + 1}$ correctly, given their interaction history:
+
+$$
+P ( {r}_{T + 1} = 1 ∣ S , {e}_{T + 1} )
+$$
+
+This requires learning effective embeddings of questions and concepts, and leveraging the student’s past performance to infer their mastery of future content.
+
+### 3.2. Model Architecture
+
+To alleviate representation quality imbalance caused by data sparsity, this paper proposes DECKT, a dual-encoder contrastive knowledge tracing model, as illustrated in Figure 1. DECKT employs a momentum-based dual-encoder architecture where the primary encoder, built upon graph attention networks (GATs), processes current input data and captures semantic interactions between questions and knowledge concepts, while the momentum encoder maintains stable representations through exponential moving average (EMA) updates. This design enables natural contrastive view construction through temporal parameter evolution, enhancing representation capabilities for low-frequency knowledge concepts without destructive data augmentation. The model optimizes a multi-objective loss function that integrates InfoNCE contrastive loss with a graph structure constraint loss, ensuring both contrastive informativeness and structural coherence in the learned embeddings. DECKT follows a two-stage training strategy: the representation learning stage jointly optimizes embeddings through contrastive and structural objectives, while the adversarial enhancement stage introduces calibrated perturbations to improve model robustness in sparse data environments. Upon training completion, the enriched question and concept representations are fed into a sequence prediction module to forecast student performance. The detailed implementation of each component is provided in the following sections.
+
+### 3.3. Dual Encoder Module
+
+The core of DECKT lies in its dual-encoder architecture that generates contrastive views through parameter evolution rather than explicit data augmentation. The architecture consists of two collaboratively trained encoders that naturally create diverse perspectives on the same graph structure. The primary encoder is built upon a multi-layer graph attention network, designed to capture complex high-order interactions between questions and knowledge concepts, as well as latent dependencies among concepts. The momentum encoder draws inspiration from the momentum update mechanism in contrastive learning [25], applying exponential moving average (EMA) updates to the parameters of the primary encoder to produce stable contrastive views, thereby reducing noise during representation learning. Unlike conventional contrastive methods that rely on explicit data augmentations, such as edge deletion or feature masking, to construct contrastive views, DECKT generates views directly from the intact graph structure. This design naturally preserves the original topology and improves representation stability under sparse data conditions.
+
+#### 3.3.1. Primary Encoder
+
+The primary encoder in DECKT is designed to learn robust node representations by capturing structural interactions between questions and knowledge concepts. DECKT adopts a multi-layer graph attention network (GAT) as its backbone, which enables the adaptive weighting of neighboring nodes through learnable attention mechanisms while preserving the structural flexibility of the knowledge graph.
+
+Formally, given a question–concept adjacency matrix $A ∈ {R}^{n × m}$, where n and m represent the number of questions and knowledge concepts, respectively, the primary encoder learns a mapping function ${f}_{θ}$ that encodes structural information into node embeddings:
+
+$$
+{Z}_{{e}_{i}}^{θ} , {Z}_{{k}_{j}}^{θ} = {f}_{θ} ( A )
+$$
+
+where ${Z}_{{e}_{i}}^{θ} ∈ {R}^{n × d}$ and ${Z}_{{k}_{j}}^{θ} ∈ {R}^{m × d}$ denote the d-dimensional embeddings of questions and knowledge concepts, respectively.
+
+Within each GAT layer, the attention mechanism computes the normalized importance between a question node ${e}_{i}$ and its neighboring concept node ${k}_{j}$:
+
+$$
+{α}_{i j} = \frac{exp (\mathrm{LeakyReLU} ({a}^{⊤} [ W {Z}_{{e}_{i}}^{( l )} ∥ W {Z}_{{k}_{j}}^{( l )} ]))}{{∑}_{k ∈ N ( i )} exp (\mathrm{LeakyReLU} ({a}^{⊤} [ W {Z}_{{e}_{i}}^{( l )} ∥ W {Z}_{{k}_{k}}^{( l )} ]))}
+$$
+
+where $W ∈ {R}^{d × {d}^{′}}$ is a trainable transformation matrix, $a ∈ {R}^{2 {d}^{′}}$ is a learnable attention parameter vector, $∥$ represents vector concatenation, and $N ( i )$ denotes the neighborhood set for node i. This attention mechanism enables the model to adaptively focus on the most relevant knowledge concepts for each question.
+
+The updated node representation is computed by aggregating information from its neighbors:
+
+$$
+{Z}_{{e}_{i}}^{( l + 1 )} = \underset{j ∈ N ( i )}{∑} {α}_{i j} W {Z}_{{k}_{j}}^{( l )}
+$$
+
+where ${Z}_{{e}_{i}}^{( l )}$ represents the embedding of node ${e}_{i}$ at layer l.
+
+To capture diverse semantic relationships across multiple representational subspaces, DECKT employs multi-head attention with H parallel attention mechanisms, and the outputs are concatenated and linearly transformed to produce the final layer representation. To ensure stable training and mitigate gradient vanishing in deep architectures, DECKT incorporates residual connections and layer normalization:
+
+$$
+{Z}_{{e}_{i}}^{( l + 1 )} = \mathrm{LayerNorm} ( {Z}_{{e}_{i}}^{( l + 1 )} + {Z}_{{e}_{i}}^{( l )} )
+$$
+
+This design maintains well-conditioned embedding spaces and enables effective information propagation across multiple GAT layers, facilitating the learning of high-order semantic relationships between questions and knowledge concepts.
+
+#### 3.3.2. Momentum Encoder
+
+Knowledge tracing requires temporal consistency in node representations to effectively model students’ evolving knowledge states. However, frequent gradient updates in the primary encoder may introduce instability in the embedding space, particularly under data sparsity where representations of low-frequency knowledge concepts are susceptible to noisy fluctuations.
+
+To mitigate this challenge, DECKT incorporates a momentum encoder that maintains stable representations through parameter smoothing. The momentum encoder shares the identical GAT architecture as the primary encoder but is excluded from direct gradient-based optimization. Instead, its parameters are updated via the exponential moving average (EMA) of the primary encoder’s parameters, providing a temporally consistent view of the embedding space that serves as reliable contrastive targets.
+
+Formally, let ${θ}_{t}$ and ${ϕ}_{t}$ denote the parameters of the primary and momentum encoders at training step t, respectively. The momentum encoder is initialized with the same parameters as the primary encoder and updated iteratively:
+
+$$
+{ϕ}_{0} = {θ}_{0} , {ϕ}_{t} = m · {ϕ}_{t − 1} + ( 1 − m ) · {θ}_{t}
+$$
+
+where $m ∈ [ 0 , 1 )$ is the momentum coefficient that controls the temporal smoothing strength. A higher value of m increases the retention of historical information, while a lower value allows for faster adaptation to recent parameter changes.
+
+The recursive update rule can be expanded to show the contribution of historical parameters:
+
+$$
+{ϕ}_{t} = ( 1 − m ) {∑}_{i = 0}^{t} {m}^{i} · {θ}_{t − i}
+$$
+
+This formulation reveals that ${ϕ}_{t}$ represents a weighted average of all historical primary encoder parameters, with exponentially decreasing weights for older updates.
+
+Given the momentum encoder parameters ${ϕ}_{t}$, the momentum encoder generates stable node embeddings:
+
+$$
+{\overset{˜}{Z}}_{{e}_{i}}^{ϕ} , {\overset{˜}{Z}}_{{k}_{j}}^{ϕ} = {f}_{ϕ} ( A )
+$$
+
+where ${\overset{˜}{Z}}_{{e}_{i}}^{ϕ}$ and ${\overset{˜}{Z}}_{{k}_{j}}^{ϕ}$ denote the question and concept embeddings produced by the momentum encoder, respectively. These embeddings maintain temporal consistency and serve as stable reference points for contrastive learning, effectively reducing the impact of gradient noise and improving representation quality for low-frequency knowledge concepts without compromising the structural integrity of the knowledge graph.
+
+### 3.4. Prediction Layer
+
+After obtaining enhanced node representations from the dual encoders, DECKT employs a prediction layer to model student knowledge states and forecast future performance. The prediction layer constructs interaction embeddings by combining question representations with response information:
+
+$$
+{x}_{t} = {Z}_{{e}_{t}}^{θ} + {r}_{t} · {E}_{r}
+$$
+
+where ${Z}_{{e}_{t}}^{θ}$ is the question embedding from the primary encoder and ${E}_{r}$ is a learnable response embedding.
+
+An LSTM network processes the interaction sequence to capture temporal dynamics:
+
+$$
+{h}_{t} = \mathrm{LSTM} ( {x}_{t} , {h}_{t − 1} )
+$$
+
+For predicting performance on question ${e}_{T + 1}$, the model combines the current knowledge state with the target question representation:
+
+$$
+P ( {r}_{T + 1} = 1 ∣ S , {e}_{T + 1} ) = σ ( {W}_{p} [ {h}_{T} ∥ {Z}_{{e}_{T + 1}}^{θ} ] + {b}_{p} )
+$$
+
+where $σ$ is the sigmoid function, and ${W}_{p}$ and ${b}_{p}$ are learnable parameters. The model is trained using binary cross-entropy loss to optimize prediction accuracy.
+
+### 3.5. Representation Optimization Module
+
+To alleviate representation quality imbalance caused by data sparsity, DECKT incorporates a joint optimization strategy combining contrastive learning and structural consistency constraints. This design enhances the discriminability of node embeddings while maintaining semantic alignment with the underlying knowledge graph structure.
+
+Contrastive Learning Objective. DECKT adopts a contrastive learning objective based on the InfoNCE loss to enhance representation discriminability. The objective encourages embeddings of the same node from the primary and momentum encoders to be similar while distinguishing different nodes. For question nodes, the contrastive loss is computed as:
+
+$$
+{L}_{\mathrm{question}} = \underset{i ∈ B}{∑} − log \frac{exp ( \mathrm{sim} ( {Z}_{{e}_{i}}^{θ} , {\overset{˜}{Z}}_{{e}_{i}}^{ϕ} ) / τ )}{{∑}_{j ∈ B} exp ( \mathrm{sim} ( {Z}_{{e}_{i}}^{θ} , {\overset{˜}{Z}}_{{e}_{j}}^{ϕ} ) / τ )}
+$$
+
+where $B$ denotes the batch of sampled nodes, ${Z}_{{e}_{i}}^{θ}$ and ${\overset{˜}{Z}}_{{e}_{i}}^{ϕ}$ are the embeddings of question ${e}_{i}$ from the primary and momentum encoders, respectively, $\mathrm{sim} ( · , · )$ denotes cosine similarity, and $τ$ is the temperature parameter.
+
+Similarly, the contrastive loss for knowledge concept nodes ${L}_{\mathrm{concept}}$ follows the same formulation. The total contrastive loss combines both components:
+
+$$
+{L}_{\mathrm{contrast}} = {L}_{\mathrm{question}} + {L}_{\mathrm{concept}}
+$$
+
+Graph Structure Constraint. To preserve semantic relationships between questions and knowledge concepts, DECKT introduces a graph structure constraint loss that minimizes embedding distances between connected nodes. For the question–concept bipartite graph $G = ( V , E )$, the structural loss is defined as:
+
+$$
+{L}_{\mathrm{struct}} = \underset{( {e}_{i} , {k}_{j} ) ∈ E}{∑} {∥ {Z}_{{e}_{i}}^{θ} − {Z}_{{k}_{j}}^{θ} ∥}_{2}^{2}
+$$
+
+where $( {e}_{i} , {k}_{j} ) ∈ E$ indicates a connection between question ${e}_{i}$ and knowledge concept ${k}_{j}$, and ${Z}_{{e}_{i}}^{θ}$ and ${Z}_{{k}_{j}}^{θ}$ are the corresponding embeddings from the primary encoder. This constraint guides semantically related nodes to maintain proximity in the embedding space, enhancing representation quality for low-frequency knowledge concepts through better structural coherence.
+
+The final optimization objective combines both components:
+
+$$
+{L}_{\mathrm{total}} = {L}_{\mathrm{contrast}} + λ {L}_{\mathrm{struct}}
+$$
+
+where $λ$ is a hyperparameter balancing contrastive learning and structural consistency.
+
+### 3.6. Adversarial Enhancement Module
+
+To enhance model robustness for low-frequency knowledge concepts under sparse data conditions, DECKT incorporates an adversarial training mechanism that applies calibrated perturbations to the embedding space. This mechanism forces the model to learn robust representations that maintain consistency under adversarial conditions, improving generalization in sparse educational scenarios.
+
+The adversarial training follows a min–max optimization framework:
+
+$$
+\underset{θ}{min} \underset{∥ δ ∥ ≤ ϵ}{max} {L}_{\mathrm{adv}} ( θ , {Z}^{θ} + δ , {\overset{˜}{Z}}^{ϕ} )
+$$
+
+where $θ$ represents the primary encoder parameters, ${Z}^{θ}$ denotes the primary encoder embeddings, ${\overset{˜}{Z}}^{ϕ}$ represents the stable momentum encoder embeddings, and $δ$ is the adversarial perturbation bounded by $∥ δ ∥ ≤ ϵ$.
+
+DECKT employs the Fast Gradient Sign Method (FGSM) to efficiently generate perturbations:
+
+$$
+δ = ϵ · \mathrm{sign} ( {∇}_{{Z}^{θ}} {L}_{\mathrm{contrast}} ( {Z}^{θ} , {\overset{˜}{Z}}^{ϕ} ) )
+$$
+
+The perturbations are applied separately to question and concept embeddings:
+
+$$
+{\overset{^}{Z}}_{{e}_{i}} = {Z}_{{e}_{i}}^{θ} + {δ}_{e} , {\overset{^}{Z}}_{{k}_{j}} = {Z}_{{k}_{j}}^{θ} + {δ}_{k}
+$$
+
+The adversarial loss is defined as the contrastive loss between perturbed primary encoder embeddings and stable momentum encoder embeddings:
+
+$$
+{L}_{\mathrm{adv}} = {L}_{\mathrm{contrast}} ( {\overset{^}{Z}}_{{e}_{i}} , {\overset{˜}{Z}}_{{e}_{i}}^{ϕ} ) + {L}_{\mathrm{contrast}} ( {\overset{^}{Z}}_{{k}_{j}} , {\overset{˜}{Z}}_{{k}_{j}}^{ϕ} )
+$$
+
+This adversarial mechanism encourages robust representations that are particularly beneficial for low-frequency knowledge concepts where limited training data make the model susceptible to overfitting, thereby achieving enhanced generalization capability in sparse educational data environments.
+
+### 3.7. Multi-Stage Training Strategy
+
+To effectively leverage the complementary advantages of contrastive learning and adversarial training, DECKT employs a two-stage training strategy that progressively enhances representation quality and model robustness.
+
+Stage 1: Representation Learning. The first stage focuses on learning high-quality node embeddings through the joint optimization of prediction accuracy, contrastive learning, and structural consistency:
+
+$$
+{L}_{\mathrm{stage} 1} = {L}_{\mathrm{pred}} + {λ}_{c} {L}_{\mathrm{contrast}} + {λ}_{s} {L}_{\mathrm{struct}}
+$$
+
+where ${L}_{\mathrm{pred}}$ is the prediction loss (binary cross-entropy), ${L}_{\mathrm{contrast}}$ and ${L}_{\mathrm{struct}}$ are defined in the previous section, and ${λ}_{c}$ and ${λ}_{s}$ are weighting coefficients. During this stage, the primary encoder parameters $θ$ are updated through gradient descent, while the momentum encoder parameters $ϕ$ are updated via exponential moving average to provide stable contrastive targets.
+
+Stage 2: Adversarial Enhancement. After the representation learning stage converges, the model enters the adversarial training stage to improve robustness by introducing carefully calibrated perturbations to the embedding space:
+
+$$
+{L}_{\mathrm{stage} 2} = {L}_{\mathrm{pred}} + {λ}_{c} {L}_{\mathrm{contrast}} + {λ}_{s} {L}_{\mathrm{struct}} + {λ}_{a} {L}_{\mathrm{adv}}
+$$
+
+where ${L}_{\mathrm{adv}}$ represents the adversarial loss that applies min–max optimization to enhance model generalization under sparse data conditions, and ${λ}_{a}$ controls the strength of adversarial regularization.
+
+This multi-stage approach ensures stable optimization by first establishing robust representations through contrastive learning, then refining decision boundaries through adversarial training, ultimately improving the model’s ability to handle low-frequency knowledge concepts in sparse educational datasets.
+
+Algorithm 1 presents the complete DECKT training procedure. The algorithm employs a two-stage strategy: first optimizing node embeddings through combined prediction, contrastive, and structural losses to establish high-quality representations, then applying adversarial training to enhance model robustness and generalization in sparse educational data. Algorithm 1 Dual-Encoder Contrastive Knowledge Tracing (DECKT)
+
+Require: Graph G, dataset $D$, hyperparameters ${λ}_{c} , {λ}_{s} , {λ}_{a} , m$
+
+Ensure: Embeddings ${Z}_{{e}_{i}}^{θ} , {Z}_{{k}_{j}}^{θ}$, parameters $θ$
+
+1: Initialize: $θ$, $ϕ ← θ$
+
+2: Stage 1: Representation Learning
+
+3: while not converged do
+
+4: for batch $( S , y ) ∈ D$ do
+
+5: ${Z}_{{e}_{i}}^{θ} , {Z}_{{k}_{j}}^{θ} ← {f}_{θ} ( G )$
+
+6: ${\overset{˜}{Z}}_{{e}_{i}}^{ϕ} , {\overset{˜}{Z}}_{{k}_{j}}^{ϕ} ← {f}_{ϕ} ( G )$
+
+7: Compute ${L}_{\mathrm{pred}}$ using LSTM
+
+8: Compute ${L}_{\mathrm{contrast}}$ and ${L}_{\mathrm{struct}}$
+
+9: $L = {L}_{\mathrm{pred}} + {λ}_{c} {L}_{\mathrm{contrast}} + {λ}_{s} {L}_{\mathrm{struct}}$
+
+10: Update $θ$ to minimize $L$
+
+11: $ϕ ← m · ϕ + ( 1 − m ) · θ$
+
+12: end for
+
+13: end while
+
+14: Stage 2: Adversarial Enhancement
+
+15: while not converged do
+
+16: for batch $( S , y ) ∈ D$ do
+
+17: Compute embeddings and losses as in Stage 1
+
+18: Generate adversarial perturbations
+
+19: Compute ${L}_{\mathrm{adv}}$ with perturbed embeddings
+
+20: $L = {L}_{\mathrm{pred}} + {λ}_{c} {L}_{\mathrm{contrast}} + {λ}_{s} {L}_{\mathrm{struct}} + {λ}_{a} {L}_{\mathrm{adv}}$
+
+21: Update $θ$ to minimize $L$
+
+22: $ϕ ← m · ϕ + ( 1 − m ) · θ$
+
+23: end for
+
+24: end while
+
+25: return ${Z}_{{e}_{i}}^{θ} , {Z}_{{k}_{j}}^{θ} , θ$
+
+### 3.8. Theoretical Analysis
+
+In sparse educational graphs, low-frequency knowledge concepts often suffer from unstable representations due to limited interaction data. Traditional contrastive learning approaches commonly rely on perturbations of the graph structure (e.g., edge sampling or node masking) to construct augmented views. However, such perturbations may disrupt the semantic integrity of item–concept relationships, particularly degrading the modeling of infrequent nodes.
+
+To address this challenge, we adopt a momentum-based contrastive learning framework, where a momentum encoder is updated via an exponential moving average (EMA) of the primary encoder’s parameters:
+
+$$
+{ϕ}_{t} = m · {ϕ}_{t − 1} + ( 1 − m ) · {θ}_{t}
+$$
+
+This update mechanism serves as a temporal smoothing process that accumulates historical information and suppresses gradient noise, which is particularly beneficial for low-frequency nodes. The contrastive objective is optimized using InfoNCE loss between embeddings from the primary and momentum encoders, where the stable representations generated by the momentum encoder effectively mitigate the risk of noisy or collapsed positives in sparse regimes.
+
+From an information-theoretic perspective, prior work has established that [25,46] under continuity and view-stationarity assumptions, the InfoNCE loss provides a lower bound to the mutual information $I ( z , {z}^{+} )$ between positive view pairs, thereby promoting discriminative representations through mutual information maximization. Furthermore, since the momentum encoder evolves slowly without receiving direct gradients, it provides a quasi-static target view during training, which aligns with the convergence assumptions in recent theoretical analyses of contrastive learning. Together, these properties endow the proposed method with both practical robustness and theoretical guarantees for representation learning under data sparsity.
+
+## 4. Experimental Design
+
+### 4.1. Datasets and Preprocessing
+
+To comprehensively evaluate the model’s performance across different educational scenarios, this paper conducts experiments on four representative datasets, with basic information shown in Table 1.
+
+ASSISTments2009 (ASSIST09) (https://sites.google.com/site/assistmentsdata/home/2009-2010-assistment-data), accessed on 26 May 2025: From the ASSISTments online tutoring platform during the 2009–2010 academic year, recording students’ interaction trajectories on mathematics problems; widely used as a standard benchmark in knowledge tracing research.
+
+ASSISTments2012 (ASSIST12) (https://sites.google.com/view/assistmentsdatamining/dataset), accessed on 26 May 2025: Sourced from the 2012–2013 academic year, with larger data volume and more complex concept distribution; suitable for evaluating model scalability and generalization capability.
+
+Slepemapy.cz (https://pslcdatashop.web.cmu.edu/DatasetInfo?datasetId=1891), accessed on 26 May 2025: From an adaptive geography learning platform focusing on spatial knowledge acquisition tasks; used to test the model’s adaptability in concept modeling for non-mathematical domains.
+
+EdNet (https://github.com/riiid/ednet), accessed on 26 May 2025: Released by the Korean Santa educational platform, containing approximately 27 million interaction records from about 130,000 students, one of the largest publicly available educational datasets currently; commonly used for large-scale knowledge tracing and personalized learning research.
+
+Statics2011 (https://pslcdatashop.web.cmu.edu/DatasetInfo?datasetId=507), accessed on 26 May 2025: From Carnegie Mellon University’s Engineering Statics course during Fall 2011, containing student interaction records from the Open Learning Initiative (OLI) platform. This dataset focuses on engineering mechanics concepts and represents a typical STEM education scenario with complex multi-step problems involving force analysis, moment calculations, and structural mechanics.
+
+### 4.2. Baseline Methods
+
+To comprehensively evaluate model performance, this paper selects representative methods as comparison baselines, with detailed information as follows:
+
+DKT [12]: Uses LSTM networks to encode students’ knowledge states, treats the learning process as a sequence modeling problem, and predicts student performance on future exercises by updating hidden states.
+
+DKVMN [11]: Dynamically models students’ mastery of different knowledge concepts using two distinguishable memory matrices, capturing the evolution of knowledge states through reading and writing mechanisms.
+
+SAKT [10]: Utilizes self-attention mechanisms to capture relationships between exercises and knowledge concepts, effectively capturing long-range dependencies in students’ historical exercise sequences, suitable for modeling long sequential interaction information.
+
+Deep-IRT [47]: Combines deep learning with Item Response Theory (IRT), introducing student ability and exercise difficulty parameters in the prediction process, enhancing model interpretability.
+
+GIKT [13]: Utilizes graph structures to represent relationships between student interaction data and knowledge concepts, modeling dependencies between knowledge concepts through graph neural networks.
+
+DKT + Forgetting [47]: Introduces forgetting curve theory based on DKT, simulating students’ behavior of forgetting knowledge over time, making prediction results more aligned with real learning patterns.
+
+GKT [14]: Directly operates on knowledge graphs using graph neural networks, explicitly incorporating prior knowledge structure information, thereby enhancing the ability to model students’ knowledge states.
+
+KTM [48]: Models knowledge tracing tasks as feature interaction problems, integrating various sparse features such as students, exercises, and knowledge concepts using factorization machine frameworks, featuring good generalization ability and sparse adaptability.
+
+AKT [26]: Based on multi-head self-attention mechanisms, introduces monotonic attention to model forgetting behavior, while incorporating prior relationship information between knowledge concepts to improve modeling accuracy.
+
+HawkesKT [49]: Focuses on fine-grained temporal span effects between interactions in the learning process.
+
+CL4KT [21]: Adopts a contrastive learning paradigm, enhancing knowledge representation quality through positive and negative sample contrast mechanisms, improving the model’s ability to recognize similar learning patterns.
+
+CDKT [50]: Integrates the contrastive learning framework into the DKT model, aiming to enhance the quality of student representations through contrastive learning mechanisms, thereby more accurately modeling students’ knowledge states and learning behaviors.
+
+### 4.3. Experimental Setup
+
+The experiments in this paper are implemented based on the PyTorch 1.9.0 framework, with all experiments conducted on an NVIDIA A100 GPU equipped with 40 GB of memory. To ensure experimental reproducibility, this paper uses a fixed random seed (42) to initialize all model parameters. The main model employs a two-layer graph neural network as the encoder, with 2 attention heads per layer, an output dimension of 32 for each attention head, resulting in a final 64-dimensional node embedding representation. During training, this paper uses the Adam optimizer with an initial learning rate of 0.001 and applies a cosine annealing strategy for learning rate adjustment, with a minimum learning rate set to $1 × {10}^{− 5}$.
+
+For the key components of the model, the momentum encoder’s update coefficient is set to 0.8, a relatively large value that ensures stability in feature representation. The temperature parameter $τ$ for contrastive learning is set to 0.5, which has been validated as an effective value capable of producing sufficiently discriminative contrastive signals. In the adversarial training module, the perturbation upper bound $ε$ is set to 0.01, with adversarial samples generated through 3 iterative steps, each with a learning rate of 0.001. These parameter settings have been thoroughly tuned on the validation set, achieving a good balance between model performance and training stability.
+
+Training uses mini-batch gradient descent with a batch size of 64, with training data randomly shuffled in each epoch to increase sample diversity. This paper employs an early stopping strategy to prevent overfitting, terminating training when the AUC on the validation set shows no improvement for 10 consecutive training epochs. All experiments are repeated 5 times with the average performance reported to ensure statistical reliability of the results.
+
+### 4.4. Overall Performance Comparison
+
+This paper compares DECKT with various baseline methods across five datasets, as illustrated in Table 2 and Table 3. The results demonstrate that DECKT consistently achieves superior performance across all evaluation metrics. DECKT attains AUC scores of 0.7901, 0.7817, 0.7845, 0.7740, and 0.7893 on the ASSIST09, ASSIST12, Slepemapy.cz, EdNet, and Statics2011 datasets, respectively, showing significant improvements over existing methods. Across all datasets, our model outperforms the best baseline by up to 1.68 percentage points in AUC, demonstrating consistent superiority across diverse educational contexts. The experimental results validate DECKT’s excellent robustness and generalization capability, with the model maintaining stable advantages across various scenarios, from highly sparse datasets to large-scale educational platforms, thoroughly demonstrating its broad adaptability across different educational contexts and data characteristics.
+
+### 4.5. Ablation Study Analysis
+
+To evaluate the independent contributions of each DECKT component, we conduct systematic ablation experiments by removing the dual encoder architecture, adversarial training mechanism, and graph structure constraint loss. The results show clear hierarchical importance rankings across all five benchmark datasets, as shown in Figure 2. In the complexity analysis, we use the following notation: L denotes the number of GAT layers, $| E |$ denotes the number of edges in the graph, $| V |$ denotes the number of nodes, d denotes the embedding dimension, H denotes the number of attention heads, and $| θ |$ denotes the total number of model parameters.
+
+The dual-encoder architecture provides the largest performance contribution, with removal resulting in an average decrease of 1.13% AUC and 1.00% ACC. The impact is particularly significant on sparse datasets, with Slepemapy.cz and Statics2011 showing 1.25% and 1.15% AUC decreases, respectively, validating the effectiveness of momentum contrastive learning for low-frequency knowledge concepts. The computational complexity is $O ( L × | E | × d × H + | θ | )$ time and $O ( 2 | θ | + | V | × d + | E | )$ space overhead, where parameter replication of the momentum encoder doubles memory requirements, and EMA update operations require traversing all parameters at each training step. However, since this only affects the training phase without increasing inference costs, such an overhead is acceptable in practical deployment.
+
+Adversarial training demonstrates consistent cross-dataset contributions, with performance stably decreasing by 0.58–0.68% AUC (average 0.63% AUC, 0.57% ACC) upon removal. Using a perturbation magnitude of $ϵ = 0.05$ achieves an optimal robustness–performance trade-off by simulating natural noise in student behavioral data, enhancing the model’s adaptability to real deployment environments. This component incurs $O ( L × | E | × d × H + | V | × d )$ time complexity and $O ( | V | × d )$ additional space overhead, where perturbation generation requires extra gradient computation and backpropagation, increasing the training time by approximately 60–80%. While the storage overhead for perturbation vectors is relatively small, it still requires careful management on large-scale graphs and can be further optimized through gradient accumulation and mixed-precision training.
+
+The graph structure constraint shows the smallest absolute contribution (average 0.44% AUC, 0.40% ACC), yet remains crucial for maintaining semantic consistency, with more significant contributions in sparse knowledge graphs. This component operates efficiently with $O ( | E | × d )$ time complexity and negligible space overhead, as it only requires computing similarity between adjacent nodes without additional structural storage, making it the most computationally efficient among the three modules. Importantly, it is independent of specific curricula or languages, relying solely on underlying graph structure, thus demonstrating potential for cross-educational system generalization. For scalability challenges on large-scale educational platforms, the current model controls overall complexity at the system design level by enforcing sparsity on concept–item adjacency matrices and limiting aggregation operations to local subgraph ranges. To further adapt to practical deployment requirements, future work can introduce more efficient encoders (such as graph convolutional networks replacing GAT), structure-aware subgraph sampling strategies, or leverage knowledge distillation for model compression and inference acceleration [51]. The graph structure constraint’s minimal computational footprint makes it particularly suitable for resource-constrained deployment scenarios, while its curriculum-agnostic nature facilitates seamless integration across diverse educational domains.
+
+### 4.6. Embedding Visualization Analysis
+
+To further evaluate the quality of representations learned by our model, we employed t-SNE dimensionality reduction techniques to visualize question node embeddings in two dimensions, as illustrated in Figure 3. The figure displays embedding distributions before (left) and after (right) applying contrastive and adversarial learning mechanisms, focusing on the 10 most sample-rich knowledge concepts (IDs 6, 28, 29, 31, 33, 47, 69, 70, 86, and 87) in the ASSIST09 dataset. The visualization results reveal that before training, question embeddings of the same knowledge concept (same color) demonstrate preliminary clustering tendencies, yet the overall distribution remains dispersed with irregular cluster shapes and ambiguous inter-class boundaries. Some knowledge concepts exhibit strong proximity relationships, such as ID 86 (yellow-green) with ID 6 (blue), and ID 69 (pink) with ID 31 (red) appearing significantly close in the embedding space; meanwhile, embeddings for ID 6 are particularly scattered, indicating poor representation quality and reflecting the model’s lack of distinct inter-class discriminative ability prior to training. After introducing contrastive learning and adversarial training, the structure of the embedding space improves markedly. The boundaries between different knowledge concepts become clearer, with more compact intra-cluster structures and significantly enlarged inter-cluster distances. For example, the previously mixed ID 86 and ID 6 achieve clear separation, while ID 69 and ID 31, though still adjacent, both demonstrate substantially enhanced internal cohesion. Additionally, previously dispersed knowledge concepts (such as ID 6 and ID 70) exhibit stronger intra-class cohesion. This indicates that through contrastive loss and perturbation mechanisms, the model significantly enhances intra-class similarity modeling and inter-class discriminability, improving the semantic structural consistency of embedding representations.
+
+### 4.7. Prediction Visualization Analysis
+
+Figure 4 presents a heatmap visualization of DECKT’s prediction performance on a representative student interaction sequence, demonstrating strong predictive calibration across 27 questions spanning six knowledge concepts (c37, c45, c54, c69, c70, c86). The visualization shows excellent high-confidence prediction accuracy, with all predictions ≥ 0.7 probability (11 instances including 0.87, 0.81, 0.84, and 0.86) correctly corresponding to positive student responses. Conversely, low-confidence predictions ≤ 0.4 (seven instances such as 0.21, 0.23, and 0.34) predominantly align with incorrect responses at an 85.7% rate, with only one boundary case (0.34 probability with correct response in concept c69) deviating from expected patterns. The model achieves an overall prediction accuracy of 81.5% (22/27), validating DECKT’s effectiveness in capturing student knowledge states. However, the visualization also reveals concept-specific performance variations: while concepts c37 and c70 demonstrate perfect prediction–response alignment, concept c45 shows systematic prediction errors (0.66–0.67 probabilities with incorrect responses), and concept c86 exhibits challenging low-mastery patterns with predominantly low probabilities and poor performance outcomes. These variations highlight DECKT’s ability to differentiate between well-mastered and problematic knowledge areas, providing educators with nuanced insights into student learning patterns across diverse conceptual domains while maintaining robust predictive reliability in high-confidence scenarios.
+
+### 4.8. Hyperparameter Sensitivity Analysis
+
+We conducted systematic experiments on the ASSISTments2009 dataset to assess the impact of key hyperparameters, momentum coefficient m, temperature parameter $τ$, adversarial perturbation strength $ϵ$, and contrastive loss weight ${λ}_{c}$, with the results illustrated in Figure 5. The momentum coefficient m shows optimal performance at 0.8 (AUC = 0.7901), achieving the best balance between stability and adaptability, while values of 0.7 or 0.9 result in slightly reduced performance. The temperature parameter $τ$ performs optimally at 0.5 (AUC = 0.7901), as smaller values ($τ = 0.3$) produce overly steep gradients and larger values ($τ = 0.7$) yield insufficient discrimination. The adversarial perturbation strength $ϵ$ exhibits asymmetric sensitivity with optimal performance at 0.05 (AUC = 0.7910), where higher values ($ϵ = 0.1$) significantly degrade performance and lower values ($ϵ = 0.01$) cause milder reduction. The contrastive loss weight ${λ}_{c}$ peaks at 1.0 (AUC = 0.7910) and remains stable up to 2.0, with excessive values interfering with knowledge tracing accuracy. The optimal configuration ($m = 0.8$, $τ = 0.5$, $ϵ = 0.05$, ${λ}_{c} = 1.0$) demonstrates consistent performance across datasets, validating the robustness of these hyperparameter settings for diverse educational scenarios.
+
+### 4.9. Complexity Analysis
+
+This section analyzes the time and space complexity of DECKT. Let $| E |$ denote the number of questions, $| K |$ the number of knowledge concepts, $| V | = | E | + | K |$ the total nodes, $| E |$ the number of edges, d the embedding dimension, N the number of training samples, B the batch size, and T the total number of training epochs. In the graph attention module, each layer performs edge-based attention computation and aggregation with complexity $O ( | E | · d )$, while the structural constraint loss involves distance calculations for all connected node pairs with the same complexity $O ( | E | · d )$. The contrastive loss employs batch-wise view construction with complexity $O ( {B}^{2} · d )$, and adversarial training includes perturbation generation and backpropagation with complexity $O ( B · d )$. Therefore, the time complexity per epoch is $O ( | E | · d + {B}^{2} · d + B · d )$, and the total training complexity is $O ( T · ( | E | + {B}^{2} ) · d )$. For space complexity, the model parameters from the encoder layers require $O ( L · {d}^{2} )$ space, where L is the number of layers, the node embeddings occupy $O ( | V | · d )$ space, the graph structure requires $O ( | V | + | E | )$ storage, and the attention matrices require $O ( | E | )$ space, bounded by $O ( | V {|}^{2} )$ in dense graphs. The total space complexity is $O ( L · {d}^{2} + | V | · d + | E | + B )$, where model parameters and attention matrices are the primary memory bottlenecks that can be mitigated through sparse computation and gradient checkpointing techniques.
+
+## 5. Conclusions
+
+This paper investigates the challenge of representation quality imbalance in knowledge tracing under data sparsity, a critical issue that significantly impacts the effectiveness of adaptive learning systems in real-world educational scenarios. To address this challenge, we propose DECKT, a dual-encoder contrastive learning framework that systematically improves representation quality for low-frequency knowledge concepts through three key innovations. First, DECKT employs a momentum encoder to generate stable contrastive views without destructive data augmentation, preserving the structural integrity of knowledge graphs while enabling effective contrastive learning. Second, the framework incorporates graph structure constraints to maintain semantic consistency between questions and knowledge concepts, ensuring that related concepts remain appropriately clustered in the embedding space. Third, adversarial training is integrated to enhance model robustness against input perturbations and improve generalization capabilities in sparse data environments. Extensive experiments on multiple benchmark datasets demonstrate that DECKT consistently outperforms state-of-the-art baselines across various evaluation metrics, with particularly notable improvements of up to 1.68 percentage points in AUC for scenarios involving low-frequency knowledge concepts. The ablation studies confirm the effectiveness of each component, while hyperparameter analysis validates the robustness of the proposed approach across different educational datasets. Future work may explore lightweight contrastive learning strategies to reduce computational overhead, advanced structural regularization techniques for better handling of extremely sparse concepts, and multi-modal extensions to incorporate additional educational features such as learning context and student profiles, thereby further enhancing model effectiveness and practical applicability in diverse educational applications.
+
+*Figure 1 Overview of DECKT model framework. Blue indicates primary encoder, pink shows momentum encoder, yellow represents LSTM and momentum updates. Dashed arrows indicate momentum updates and interactions.*
+
+*Figure 2 Ablation study analysis.*
+
+*Figure 3 Embedding visualization analysis.*
+
+*Figure 4 Prediction visualization analysis. The top row indicates the associated knowledge concepts for each question. The middle row shows the student’s actual answers, where ✓ indicates a correct response and × indicates an incorrect response. The bottom row presents the predicted probabilities of answering correctly, with darker blue indicating a higher predicted probability of a correct response.*
+
+*Figure 5 Hyperparameter sensitivity analysis. Red dots indicate the optimal parameter values that achieved maximum AUC.*
+
+*Table 1 Dataset statistics.*
+
+| Dataset | Students | Exercises | Knowledge Concepts | Interactions |
+| --- | --- | --- | --- | --- |
+| ASSIST09 | 3.7 k | 16.9 k | 111 | 110.2 k |
+| ASSIST12 | 25.3 k | 50.9 k | 245 | 879.5 k |
+| Slepemapy.cz | 81.7 k | 2.9 k | 1473 | 2877.5 k |
+| EdNet | 784.3 k | 13.2 k | 188 | 95,293.9 k |
+| Statics2011 | 0.33 k | 1.2 k | 110 | 195.0 k |
+
+*Table 2 AUC performance comparison across different models and datasets.*
+
+| Model | ASSIST09 | ASSIST12 | Slepemapy.cz | EdNet | Statics2011 |
+| --- | --- | --- | --- | --- | --- |
+| DKT | 0.7525 | 0.7322 | 0.7512 | 0.7468 | 0.7698 |
+| DKVMN | 0.7326 | 0.7057 | 0.7371 | 0.7303 | 0.7545 |
+| DKVMN-E | 0.6742 | 0.6943 | 0.7237 | 0.7013 | 0.7197 |
+| SAKT | 0.6894 | 0.6912 | 0.6739 | 0.6972 | 0.7123 |
+| Deep-IRT | 0.7565 | 0.7365 | 0.7546 | 0.7461 | 0.7612 |
+| GIKT | 0.7559 | 0.7523 | 0.7640 | 0.7245 | 0.7667 |
+| DKT + Forgetting | 0.7573 | 0.7462 | 0.7574 | 0.7281 | 0.7623 |
+| GKT | 0.7489 | 0.7345 | 0.7501 | 0.7344 | 0.7659 |
+| KTM | 0.7353 | 0.7514 | 0.7421 | 0.7469 | 0.7639 |
+| AKT | 0.7519 | 0.7649 | 0.7547 | 0.7423 | 0.7735 |
+| HawkesKT | 0.7617 | 0.7669 | 0.7572 | 0.7546 | 0.7801 |
+| CL4KT | 0.7616 | 0.7539 | 0.7465 | 0.7353 | 0.7683 |
+| CDKT | 0.7733 | 0.7709 | 0.7545 | 0.7505 | 0.7745 |
+| DECKT | 0.7901 | 0.7817 | 0.7845 | 0.7740 | 0.7893 |
+
+*Table 3 ACC performance comparison across different models and datasets.*
+
+| Model | ASSIST09 | ASSIST12 | Slepemapy.cz | EdNet | Statics2011 |
+| --- | --- | --- | --- | --- | --- |
+| DKT | 0.7247 | 0.7371 | 0.7820 | 0.7184 | 0.7356 |
+| DKVMN | 0.7189 | 0.7294 | 0.7859 | 0.7026 | 0.7298 |
+| DKVMN-E | 0.6946 | 0.7255 | 0.7847 | 0.7032 | 0.7089 |
+| SAKT | 0.6864 | 0.7216 | 0.7711 | 0.6748 | 0.6912 |
+| Deep-IRT | 0.7268 | 0.7396 | 0.7823 | 0.7364 | 0.7489 |
+| GIKT | 0.7371 | 0.7389 | 0.7366 | 0.7080 | 0.7401 |
+| DKT + Forgetting | 0.7272 | 0.7373 | 0.7819 | 0.7023 | 0.7367 |
+| GKT | 0.7178 | 0.7300 | 0.7799 | 0.7137 | 0.7303 |
+| KTM | 0.7100 | 0.7412 | 0.7772 | 0.7159 | 0.7380 |
+| AKT | 0.7199 | 0.7523 | 0.7827 | 0.7204 | 0.7438 |
+| HawkesKT | 0.7305 | 0.7475 | 0.7823 | 0.7318 | 0.7515 |
+| CL4KT | 0.7235 | 0.7215 | 0.7708 | 0.7181 | 0.7360 |
+| CDKT | 0.7297 | 0.7019 | 0.7786 | 0.7239 | 0.7335 |
+| DECKT | 0.7450 | 0.7753 | 0.8190 | 0.7490 | 0.7527 |
+
+## Footnotes
+
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to people or property resulting from any ideas, methods, instructions or products referred to in the content.
+
+## Author Contributions
+
+Conceptualization, Y.B.; methodology, Y.B.; software, Y.B.; validation, X.W.; formal analysis, T.W.; investigation, T.W.; resources, L.H.; data curation, Y.B.; writing—original draft preparation, Y.B.; writing—review and editing, X.W.; visualization, T.W.; supervision, T.W.; project administration, L.H. All authors have read and agreed to the published version of the manuscript.
+
+## Institutional Review Board Statement
+
+Not applicable.
+
+## Data Availability Statement
+
+Data are available on request due to restrictions, e.g., privacy or ethical. The data presented in this study are available on request from the corresponding author.
+
+## Conflicts of Interest
+
+The authors declare no conflicts of interest.
+
+## References
+
+- 1. Diwan C., Srinivasa S., Suri G., Agarwal S., Ram P. AI-based learning content generation and learning pathway augmentation to increase learner engagement Comput. Educ. Artif. Intell. 2023 4 100110 doi: 10.1016/j.caeai.2022.100110
+- 2. Shemshack A., Spector J.M. A systematic literature review of personalized learning terms Smart Learn. Environ. 2020 7 33 doi: 10.1186/s40561-020-00140-9
+- 3. Forouzandeh S., Berahmand K., Rostami M., Aminzadeh A., Oussalah M. UIFRS-HAN: User interests-aware food recommender system based on the heterogeneous attention network Eng. Appl. Artif. Intell. 2024 135 108766 doi: 10.1016/j.engappai.2024.108766
+- 4. Rostami M., Berahmand K., Forouzandeh S., Ahmadian S., Farrahi V., Oussalah M. A novel healthy food recommendation to user groups based on a deep social community detection approach Neurocomputing 2024 576 127326 doi: 10.1016/j.neucom.2024.127326
+- 5. Zhang K., Aslan A.B. AI technologies for education: Recent research & future directions Comput. Educ. Artif. Intell. 2021 2 100025
+- 6. Schiff D. Education for AI, not AI for education: The role of education and ethics in national AI policy strategies Int. J. Artif. Intell. Educ. 2022 32 527 563 doi: 10.1007/s40593-021-00270-2
+- 7. Bai Y., Zhao J., Wei T., Cai Q., He L. A survey of explainable knowledge tracing Appl. Intell. 2024 54 6483 6514 doi: 10.1007/s10489-024-05509-8
+- 8. Abdelrahman G., Wang Q., Nunes B. Knowledge tracing: A survey ACM Comput. Surv. 2023 55 1 37 doi: 10.1145/3569576
+- 9. Corbett A.T., Anderson J.R. Knowledge tracing: Modeling the acquisition of procedural knowledge User Model. User-Adapt. Interact. 1994 4 253 278 doi: 10.1007/BF01099821
+- 10. Pandey S., Karypis G. A Self-Attentive Model for Knowledge Tracing Proceedings of the 12th International Conference on Educational Data Mining Montreal, QC, Canada 2–5 July 2019 384 389
+- 11. Zhang J., Shi X., King I., Yeung D.Y. Dynamic Key-Value Memory Networks for Knowledge Tracing Proceedings of the 26th International Conference on World Wide Web Perth, Australia 3–7 April 2017 765 774
+- 12. Piech C., Bassen J., Huang J., Ganguli S., Sahami M., Guibas L.J., Sohl-Dickstein J. Deep knowledge tracing Adv. Neural Inf. Process. Syst. 2015 28 2236 2244
+- 13. Yang Y., Shen J., Qu Y., Liu Y., Wang K., Zhu Y., Zhang W., Yu Y. GIKT: A Graph-Based Interaction Model for Knowledge Tracing Proceedings of the Machine Learning and Knowledge Discovery in Databases: European Conference Bilbao, Spain 13–17 September 2021 299 315
+- 14. Nakagawa H., Iwasawa Y., Matsuo Y. Graph-Based Knowledge Tracing: Modeling Student Proficiency Using Graph Neural Network Proceedings of the IEEE/WIC/ACM International Conference on Web Intelligence Thessaloniki, Greece 14–17 October 2019 156 163
+- 15. Liu Y., Yang Y., Chen X., Shen J., Zhang H., Yu Y. Improving knowledge tracing via pre-training question embeddings arXiv 2020 arxiv: 2012.05031
+- 16. Gan W., Sun Y., Sun Y. Knowledge structure enhanced graph representation learning model for attentive knowledge tracing Int. J. Intell. Syst. 2022 37 2012 2045 doi: 10.1002/int.22763
+- 17. Zhang T., He S., Dai T., Wang Z., Chen B., Xia S.T. Vision-Language Pre-Training with Object Contrastive Learning for 3D Scene Understanding Proceedings of the AAAI Conference on Artificial Intelligence Vancouver, BC, Canada 20–27 February 2024 Volume 38 7296 7304
+- 18. Liu J., Chen S. Timesurl: Self-Supervised Contrastive Learning for Universal Time Series Representation Learning Proceedings of the AAAI Conference on Artificial Intelligence Vancouver, BC, Canada 20–27 February 2024 Volume 38 13918 13926
+- 19. Xu X., Dong H., Qi L., Zhang X., Xiang H., Xia X., Xu Y., Dou W. Cmclrec: Cross-Modal Contrastive Learning for User Cold-Start Sequential Recommendation Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval Washington, DC, USA 14–18 July 2024 1589 1598
+- 20. Song X., Li J., Lei Q., Zhao W., Chen Y., Mian A. Bi-CLKT: Bi-graph contrastive learning based knowledge tracing Knowl. Based Syst. 2022 241 108274 doi: 10.1016/j.knosys.2022.108274
+- 21. Lee W., Chun J., Lee Y., Park K., Park S. Contrastive Learning for Knowledge Tracing Proceedings of the ACM Web Conference 2022 Lyon, France 25–29 April 2022 2330 2338
+- 22. Wu T., Ling Q. Self-supervised heterogeneous hypergraph network for knowledge tracing Inf. Sci. 2023 624 200 216 doi: 10.1016/j.ins.2022.12.075
+- 23. Sun J., Du S., Liu Z., Yu F., Liu S., Shen X. Weighted heterogeneous graph-based three-view contrastive learning for knowledge tracing in personalized e-learning systems IEEE Trans. Consum. Electron. 2023 70 2838 2847 doi: 10.1109/TCE.2023.3293953
+- 24. Yin Y., Dai L., Huang Z., Shen S., Wang F., Liu Q., Chen E., Li X. Tracing Knowledge Instead of Patterns: Stable Knowledge Tracing with Diagnostic Transformer Proceedings of the ACM Web Conference 2023 Austin, TX, USA 30 April–4 May 2023 855 864
+- 25. He K., Fan H., Wu Y., Xie S., Girshick R. Momentum Contrast for Unsupervised Visual Representation Learning Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Seattle, WA, USA 14–19 June 2020 9729 9738
+- 26. Ghosh A., Heffernan N., Lan A.S. Context-Aware Attentive Knowledge Tracing Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining Online 23–27 August 2020 2330 2339
+- 27. Zhou H., Rong W., Zhang J., Sun Q., Ouyang Y., Xiong Z. AAKT: Enhancing Knowledge Tracing with Alternate Autoregressive Modeling IEEE Trans. Learn. Technol. 2024 18 25 38 doi: 10.1109/TLT.2024.3521898
+- 28. Bai Y., Li X., Liu Z., Huang Y., Guo T., Hou M., Xia F., Luo W. csKT: Addressing cold-start problem in knowledge tracing via kernel bias and cone attention Expert Syst. Appl. 2025 266 125988 doi: 10.1016/j.eswa.2024.125988
+- 29. Pandey S., Srivastava J. RKT: Relation-Aware Self-Attention for Knowledge Tracing Proceedings of the 29th ACM International Conference on Information & Knowledge Management Online 19–23 October 2020 1205 1214
+- 30. Tong H., Zhou Y., Wang Z. HGKT: Introducing problem schema with hierarchical exercise graph for knowledge tracing arXiv 2020 arxiv: 2006.16915
+- 31. Wu Z., Huang L., Huang Q., Huang C., Tang Y. SGKT: Session graph-based knowledge tracing for student performance prediction Expert Syst. Appl. 2022 206 117681 doi: 10.1016/j.eswa.2022.117681
+- 32. Song X., Li J., Tang Y., Zhao T., Chen Y., Guan Z. Jkt: A joint graph convolutional network based deep knowledge tracing Inf. Sci. 2021 580 510 523 doi: 10.1016/j.ins.2021.08.100
+- 33. Wang X., Zhao S., Guo L., Zhu L., Cui C., Xu L. GraphCA: Learning from graph counterfactual augmentation for knowledge tracing IEEE/CAA J. Autom. Sin. 2023 10 2108 2123 doi: 10.1109/JAS.2023.123678
+- 34. Mao Y., Hao Y., Cao X., Fang Y., Lin X., Mao H., Xu Z. Dynamic Graph Embedding via Meta-Learning IEEE Trans. Knowl. Data Eng. 2023 36 2967 2979 doi: 10.1109/TKDE.2023.3329238
+- 35. Wang S., Zhang X., Yang X., Zhang X., Wang K. Learning states enhanced Knowledge Tracing: Simulating the diversity in real-world learning process Expert Syst. Appl. 2025 274 126838 doi: 10.1016/j.eswa.2025.126838
+- 36. Wang J., Tang Q., Zheng Z. A knowledge tracing approach with dual graph convolutional networks and positive/negative feature enhancement network PLoS ONE 2025 20 e0317992 doi: 10.1371/journal.pone.0317992 pmid: 40203239 pmcid: PMC11981649
+- 37. Lee U., Yoon S., Yun J.S., Park K., Jung Y., Stratton D., Kim H. Difficulty-Focused Contrastive Learning for Knowledge Tracing with a Large Language Model-Based Difficulty Prediction Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024) Torino, Italy 20–25 May 2024 4891 4900
+- 38. Guo Y., Shen S., Liu Q., Huang Z., Zhu L., Su Y., Chen E. Mitigating Cold-Start Problems in Knowledge Tracing with Large Language Models: An Attribute-Aware Approach Proceedings of the 33rd ACM International Conference on Information and Knowledge Management Boise, ID, USA 21–25 October 2024 727 736
+- 39. Fu L., Guan H., Du K., Lin J., Xia W., Zhang W., Tang R., Wang Y., Yu Y. Sinkt: A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model Proceedings of the 33rd ACM International Conference on Information and Knowledge Management Boise, ID, USA 21–25 October 2024 632 642
+- 40. Sun X., Liu Q., Zhang K., Shen S., Yang L., Li H. Harnessing code domain insights: Enhancing programming knowledge tracing with large language models Knowl. Based Syst. 2025 317 113396 doi: 10.1016/j.knosys.2025.113396
+- 41. Chen T., Kornblith S., Norouzi M., Hinton G. A Simple Framework for Contrastive Learning of Visual Representations Proceedings of the International Conference on Machine Learning Online 13–18 July 2020 1597 1607
+- 42. Velickovic P., Fedus W., Hamilton W.L., Liò P., Bengio Y., Hjelm R.D. Deep Graph Infomax Proceedings of the ICLR 2019 New Orleans, LA, USA 6–9 May 2019
+- 43. Zhu Y., Xu Y., Yu F., Liu Q., Wu S., Wang L. Deep graph contrastive representation learning arXiv 2020 arxiv: 2006.04131
+- 44. Dai H., Yun Y., Zhang Y., An R., Zhang W., Shang X. Self-paced contrastive learning for knowledge tracing Neurocomputing 2024 609 128366 doi: 10.1016/j.neucom.2024.128366
+- 45. Xu L., Guo L., Wu X., Wang X., Guo L. Knowledge Tracing with Contrastive Learning and Attention-Based Long Short-Term Memory Network Proceedings of the International Conference on Intelligent Computing Tianjin, China 5–8 August 2024 Springer Singapore 2024 25 36
+- 46. Arora S., Liang Y., Ma T. A Theoretical Analysis of Contrastive Unsupervised Representation Learning Proceedings of the ICML Long Beach, CA, USA 9–15 June 2019
+- 47. Yeung C.K. Deep-IRT: Make deep learning based knowledge tracing explainable using item response theory arXiv 2019 arxiv: 1904.11738
+- 48. Vie J.J., Kashima H. Knowledge Tracing Machines: Factorization Machines for Knowledge Tracing Proceedings of the AAAI Conference on Artificial Intelligence Honolulu, HI, USA 27 January–1 February 2019 Volume 33 750 757
+- 49. Wang C., Ma W., Zhang M., Lv C., Wan F., Lin H., Tang T., Liu Y., Ma S. Temporal Cross-Effects in Knowledge Tracing Proceedings of the 14th ACM International Conference on Web Search and Data Mining Online 8–12 March 2021 517 525
+- 50. Dai H., Yun Y., Zhang Y., Zhang W., Shang X. Contrastive Deep Knowledge Tracing Proceedings of the International Conference on Artificial Intelligence in Education Durham, UK 27–31 July 2022 289 292
+- 51. Forouzandeh S., DW P.M., Jalili M. DistillHGNN: A Knowledge Distillation Approach for High-Speed Hypergraph Neural Networks Proceedings of the Thirteenth International Conference on Learning Representations Singapore 24–28 April 2025

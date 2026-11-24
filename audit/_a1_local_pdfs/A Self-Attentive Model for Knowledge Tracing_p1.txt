@@ -1,0 +1,192 @@
+A Self-Attentive model for Knowledge Tracing
+Shalini Pandey
+University of Minnesota
+Twin Cities, MN 55455, USA
+pande103@umn.edu
+George Karypis
+University of Minnesota
+Twin Cities, MN 55455, USA
+karypis@umn.edu
+ABSTRACT
+Knowledge tracing is the task of modeling each student’s
+mastery of knowledge concepts (KCs) as (s)he engages with
+a sequence of learning activities. Each student’s knowledge
+is modeled by estimating the performance of the student
+on the learning activities. It is an important research area
+for providing a personalized learning platform to students.
+In recent years, methods based on Recurrent Neural Net-
+works (RNN) such as Deep Knowledge Tracing (DKT) and
+Dynamic Key-Value Memory Network (DKVMN) outper-
+formed all the traditional methods because of their ability
+to capture complex representation of human learning. How-
+ever, these methods face the issue of not generalizing well
+while dealing with sparse data which is the case with real-
+world data as students interact with few KCs. In order to
+address this issue, we develop an approach that identiﬁes
+the KCs from the student’s past activities that are rele-
+vant to the given KC and predicts his/her mastery based
+on the relatively few KCs that it picked. Since predictions
+are made based on relatively few past activities, it handles
+the data sparsity problem better than the methods based
+on RNN. For identifying the relevance between the KCs,
+we propose a self-attention based approach, Self Attentive
+Knowledge Tracing (SAKT). Extensive experimentation on
+a variety of real-world dataset shows that our model out-
+performs the state-of-the-art models for knowledge tracing,
+improving AUC by 4.43% on average.
+Keywords
+Knowledge Tracing, Massive Open Online Courses, Self-
+attention, sequential recommendation
+1.
+INTRODUCTION
+The availability of massive dataset of students’ learning tra-
+jectories about their knowledge concepts (KCs), where a KC
+can be an exercise, a skill or a concept, has attracted data
+miners to develop tools for predicting students’ performance
+and giving proper feedback [8]. For developing such person-
+Figure 1: Left subﬁgure shows the sequence of exercises that the
+student attempts and the right subﬁgure shows the knowledge
+concepts to which each of the exercises belong.
+alized learning platforms, knowledge tracing (KT) is consid-
+ered to be an important task and is deﬁned as the task of
+tracing a student’s knowledge state, which represents his/her
+mastery level of KCs, based on his/her past learning ac-
+tivities.
+The KT task can be formalized as a supervised
+sequence learning task - given student’s past exercise inter-
+actions X = (x1, x2, . . . , xt), predict some aspect of his/her
+next interaction xt+1. On the question-answering platform,
+the interactions are represented as xt = (et, rt), where et is
+the exercise that the student attempts at timestamp t and
+rt is the correctness of the student’s answer. KT aims to
+predict whether the student will be able to answer the next
+exercise correctly, i.e., predict p(rt+1 = 1|et+1, X).
+Recently deep learning models such as Deep Knowledge Trac-
+ing (DKT) [6] and its variant [10] used Recurrent Neural
+Network (RNN) to model a student’s knowledge state in
+one summarized hidden vector. Dynamic Key-value mem-
+ory network (DKVMN) [11] exploited Memory Augmented
+Neural Network [7] for KT. Using two matrices, key and
+value, it learns the correlation between the exercises and
+the underlying KC and student’s knowledge state, respec-
+tively.
+The DKT model faces the issue of its parameters
+being non-interpretable [4]. DKVMN is more interpretable
+than DKT as it explicitly maintains a KC representation
+matrix (key) and a knowledge state representation matrix
+(value). However, since all these deep learning models are
+based on RNNs, they face the issue of not generalizing while
+dealing with sparse data [3].
+In this paper, we propose to use a purely attention mech-
+anism based method, transformer [9]. In the KT task, the
+skills that a student builds while going through the sequence
+of learning activities, are related to each other and the per-
+formance on a particular exercise is dependent on his per-
+formance on the past exercises related to that exercise. For
+example, in ﬁgure 1, for a student to solve an exercise on
+“Quadratic equation”(exercise 5) which belongs to the knowl-
+arXiv:1907.06837v1  [cs.LG]  16 Jul 2019
+
+edge concept “Equations”, he needs to know how to ﬁnd
+“square roots” (exercise 3) and “linear equations” (exercise
+4). SAKT, proposed in this paper ﬁrst identiﬁes relevant
+KCs from the past interactions and then predicts student’s
+performance based on his/her performance on those KCs.
+For predicting student’s performance on an exercise, we used
+exercises as KCs. As we show later, SAKT assigns weights
+to the previously answered exercises, while predicting the
+performance of the student on a particular exercise.
+The
+proposed SAKT method signiﬁcantly outperforms the state-
+of-the-art KT methods gaining a performance improvement
+of 4.43% on the AUC, on an average across all datasets.
+Furthermore, the main component (self-attention) of SAKT
+is suitable for parallelism; thus, making our model order of
+magnitude faster than RNN based models.
+(a) Network of SAKT. At each timestamp the attention
+weights are estimated for each of the previous element
+only. Keys, Values and Queries are extracted from the
+embedding layer shown below. When jth element is query
+and ith element is key, attention weight is ai,j.
+(b) Embedding layer embeds the current exercise that the
+student is attempting and his past interactions. At every
+time stamp t+1, the current question et+1 is embedded in
+the query space using Exercise embedding and elements
+of past interactions xt is embedded in the key and value
+space using the Interaction embedding.
+Figure 2: Diagram showing the architecture of SAKT.
+2.
+PROPOSED METHOD
+Our model predicts whether a student will be able to an-
+swer the next exercise et+1 based on his previous interac-
+tion sequence X = x1, x2, . . . , xt.
+As shown in ﬁgure 2,
+we can transform the problem into a sequential modeling
+Table 1: Notations
+Notations
+Description
+N
+total number of students
+E
+total number of exercises
+X
+Interaction sequence of a student: (x1, x2, . . . , xt)
+xi
+ith exercise-answer pair of a student
+n
+maximum length of sequence
+d
+latent vector dimensionality
+e
+Sequence of exercises solved by the student
+M
+Interaction embedding matrix
+P
+Positional embedding matrix
+E
+Exercise lookup matrix
+ˆ
+M
+Past interactions embedding
+ˆE
+Exercise embedding
+problem. It is convenient to consider the model with inputs
+x1, x2, . . . , xt−1 and the exercise sequence with one position
+ahead, e2, e3, . . . , et and the output being the correctness
+of the response to exercises r2, r3, . . . , rt. The interaction
+tuple xt = (et, rt) is presented to the model as a number
+yt = et + rt × E, where E is the total number of exercises.
+Thus, the total values that an element in the interaction
+sequence can take is 2E, while elements in the exercise se-
+quence can take E possible values.
+We now describe the diﬀerent layers of our architecture.
+Embedding layer: We transform the obtained input se-
+quence y = (y1, y2, . . . , yt) into s = (s1, s2, . . . , sn), where
+n is the maximum length that the model can handle. Since
+the model can work with inputs of ﬁxed length sequence, if
+the sequence length, t is less than n, we repetitively add a
+padding of question-answer pair to the left of the sequence.
+However, if t is greater than n, we partition the sequence
+into subsequences of length n. Speciﬁcally, when t is greater
+than n, yt is partitioned into t/n subsequences each of length
+n. All these subsequences serve as input to the model.
+We train an Interaction embedding matrix, M ∈R2E×d,
+where d is the latent dimension. This matrix is used to ob-
+tain an embedding, Msi for each element, si in the sequence.
+Similarly, we train exercise embedding matrix, E ∈RE×d
+such that each exercise in the set ei is embedded in the eith
+row.
+Position Encoding: Position Encoding is the layer in the
+self-attention neural network which is used for encoding the
+position so that like convolution network and recurrent neu-
+ral network, we can encode the order of the sequence. This
+layer is particularly important in knowledge tracing problem
+because a student’s knowledge state evolves gradually and
+steadily with time. The knowledge state at a particular time
+instance should not show wavy transitions [10]. In order to
+incorporate this we use a parameter, position embedding,
+P ∈Rn×d which is learned while training. The ith row of
+position embedding matrix, Pi is then added to the interac-
+tion embedding vector of the ith element of the interaction
+sequence.
+The output from the embedding layer is embedded interac-

@@ -1,0 +1,250 @@
+R2GCurL: Reinforced Robust KT via Dynamic Graph Curriculum Learning
+129:29
+Table 11. Trajectory-Level Interpretability Proxies on ASSIST2017 under the 50% Noise
+Setting for Selected Baselines and the Four R2GCurL Variants
+Metric
+Baselines
+R2GCurL Variants
+DKT
+DKVMN
+SAKT
+AKT
+GNN
+DKVMN
+SAKT
+AKT
+SCRD ↓
+0.097
+0.160
+0.176
+0.134
+0.098
+0.078
+0.066
+0.125
+RCTR ↑
+0.447
+0.493
+0.467
+0.474
+0.446
+0.592
+0.506
+0.479
+consistent if (푟푡= 1 ∧Δ푡≥−휖) or (푟푡= 0 ∧Δ푡≤휖), and RCTR =
+1
+푇−1
+Í푇−1
+푡=1 퐼푡. Higher RCTR
+indicates that adjacent prediction updates move in a direction more consistent with whether the
+student answered correctly or incorrectly. We use these two metrics as compact trajectory-level
+diagnostics rather than as a complete or universal notion of interpretability. Table 11 shows that the
+R2GCurL variants maintain stable and response-aligned knowledge-state trajectories under noisy
+conditions. In particular, R2GCurL-DKVMN and R2GCurL-SAKT achieve both lower SCRD and
+higher RCTR than their corresponding backbones, indicating smoother same-concept evolution
+together with more response-consistent local updates. The R2GCurL-GNN and R2GCurL-AKT
+variants also remain competitive on both metrics, showing that the proposed design preserves
+favorable local trajectory characteristics while improving robustness. Overall, these results provide
+supportive evidence that R2GCurL can yield more coherent trajectory-level behavior beyond final
+predictive accuracy.
+9
+Conclusions and Future Work
+R2GCurL unifies dynamic graph modeling and adaptive CL to improve personalized structural
+modeling, robustness to noisy interactions, and training efficiency in KT. By representing student
+trajectories as dynamic exercise–concept graphs, the framework captures both local interaction
+structure and cumulative historical structure. The curriculum module further derives a continuity-
+based structural signal from dynamic graph entropy and uses an RL-based scheduler to adapt
+curriculum emphasis according to model feedback. Across five real-world datasets and multiple
+noise settings, the proposed method consistently improves predictive performance while keeping
+computational overhead within a practical range. The empirical results further show that the RL-
+based scheduler provides clear advantages over simpler heuristic alternatives in noisy settings, and
+that the resulting knowledge-state trajectories are more coherent and response-aligned. In future
+work, we plan to validate these mechanisms in broader tutoring scenarios, extend the framework
+to multimodal educational data, and investigate lighter-weight adaptive schedulers together with
+richer trajectory-level interpretability analyses.
+References
+[1] Martín Abadi, Paul Barham, Jianmin Chen, Zhifeng Chen, Andy Davis, Jeffrey Dean, Matthieu Devin, Sanjay Ghe-
+mawat, Geoffrey Irving, Michael Isard, et al. 2016. TensorFlow: A system for large-scale machine learning. In
+Proceedings of the 12th USENIX Symposium on Operating Systems Design and Implementation (OSDI ’16), 265–283.
+[2] Ghodai Abdelrahman and Qing Wang. 2022. Deep graph memory networks for forgetting-robust knowledge tracing.
+IEEE Transactions on Knowledge and Data Engineering 35, 8 (2022), 7844–7855.
+[3] Ghodai Abdelrahman, Qing Wang, and Bernardo Nunes. 2023. Knowledge tracing: A survey. ACM Computing Surveys
+55, 11 (2023), 1–37.
+[4] Joseph E. Beck and June Sison. 2006. Using knowledge tracing in a noisy environment to measure student reading
+proficiencies. International Journal of Artificial Intelligence in Education 16, 2 (2006), 129–143.
+[5] Yoshua Bengio, Jérôme Louradour, Ronan Collobert, and Jason Weston. 2009. Curriculum learning. In Proceedings of
+the 26th Annual International Conference on Machine Learning, 41–48.
+ACM Transactions on Information Systems, Vol. 44, No. 6, Article 129. Publication date: July 2026.
+
+129:30
+T. Peng et al.
+[6] Greg Brockman, Vicki Cheung, Ludwig Pettersson, Jonas Schneider, John Schulman, Jie Tang, and Wojciech Zaremba.
+2016. OpenAI Gym. arXiv:1606.01540. Retrieved from https://arxiv.org/abs/1606.01540
+[7] Hao Cen, Kenneth Koedinger, and Brian Junker. 2006. Learning factors analysis–a general method for cognitive model
+evaluation and improvement. In Proceedings of the International Conference on Intelligent Tutoring Systems. Springer,
+164–175.
+[8] Ke Cheng, Linzhi Peng, Pengyang Wang, Junchen Ye, Leilei Sun, and Bowen Du. 2024. DyGKT: Dynamic graph
+learning for knowledge tracing. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data
+Mining, 409–420.
+[9] Albert T. Corbett and John R. Anderson. 1994. Knowledge tracing: Modeling the acquisition of procedural knowledge.
+User Modelling and User-Adapted Interaction 4 (1994), 253–278.
+[10] Chaoran Cui, Yumo Yao, Chunyun Zhang, Hebo Ma, Yuling Ma, Zhaochun Ren, Chen Zhang, and James Ko. 2024.
+DGEKT: A dual graph ensemble learning method for knowledge tracing. ACM Transactions on Information Systems
+42, 3 (2024), 78:1–78:24.
+[11] Jiajun Cui, Zeyuan Chen, Aimin Zhou, Jianyong Wang, and Wei Zhang. 2023. Fine-grained interaction modeling
+with multi-relational transformer for knowledge tracing. ACM Transactions on Information Systems 41, 4 (2023),
+104:1–104:26.
+[12] Jiajun Cui, Minghe Yu, Bo Jiang, Aimin Zhou, Jianyong Wang, and Wei Zhang. 2024. Interpretable knowledge tracing
+via response influence-based counterfactual reasoning. In Proceedings of the 2024 IEEE 40th International Conference
+on Data Engineering (ICDE). IEEE, 1103–1116.
+[13] Ziquan Fang, Yuntao Du, Xinjun Zhu, Danlei Hu, Lu Chen, Yunjun Gao, and Christian S. Jensen. 2022. Spatio-temporal
+trajectory similarity learning in road networks. In Proceedings of the 28th ACM SIGKDD Conference on Knowledge
+Discovery and Data Mining, 347–356.
+[14] Matthias Fey and Jan E. Lenssen. 2019. Fast graph representation learning with PyTorch geometric. In Proceedings of
+the ICLR Workshop on Representation Learning on Graphs and Manifolds, 1–12.
+[15] Aritra Ghosh, Neil Heffernan, and Andrew S. Lan. 2020. Context-aware attentive knowledge tracing. In Proceedings of
+the 26th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining, 2330–2339.
+[16] Tieliang Gong, Qian Zhao, Deyu Meng, and Zongben Xu. 2015. Why curriculum learning & self-paced learning work
+in big/noisy data: A theoretical perspective. Big Data and Information Analytics 1, 1 (2015), 111–127.
+[17] Teng Guo, Yu Qin, Yubin Xia, Mingliang Hou, Zitao Liu, Feng Xia, and Weiqi Luo. 2025. Enhancing knowledge tracing
+through decoupling cognitive pattern from Error-Prone data. In Proceedings of the ACM on Web Conference 2025
+(WWW ’25). Guodong Long, Michale Blumestein, Yi Chang, Liane Lewin-Eytan, Zi Helen Huang, and Elad Yom-Tov
+(Eds.), ACM, 5108–5116.
+[18] Liangliang He, Xiao Li, Pancheng Wang, Jintao Tang, and Ting Wang. 2024. MAN: Memory-augmented atten-
+tive networks for deep learning-based knowledge tracing. ACM Transactions on Information Systems 42, 1 (2024),
+8:1–8:22.
+[19] Shuyan Huang, Zitao Liu, Xiangyu Zhao, Weiqi Luo, and Jian Weng. 2023. Towards robust knowledge tracing models
+via k-sparse attention. In Proceedings of the 46th International ACM SIGIR Conference on Research and Development in
+Information Retrieval, 2441–2445.
+[20] Gaurav Kumar, George Foster, Colin Cherry, and Maxim Krikun. 2019. Reinforcement learning based curriculum
+optimization for neural machine translation. In Proceedings of the 2019 Conference of the North American Chapter of
+the Association for Computational Linguistics: Human Language Technologies, Vol. 1, 2054–2061.
+[21] Haoyang Li, Xin Wang, and Wenwu Zhu. 2023. Curriculum graph machine learning: A survey. In Proceedings of the
+32nd International Joint Conference on Artificial Intelligence, 667–6682.
+[22] Yuchen Li, Rui Kong, Xinran Chen, Chengzhe Zhang, Jiamin Chen, Cheng Deng, Xinyu Ma, Haojie Zhang, Tianhao
+Peng, Hengyi Cai, et al. 2026. Probe-and-fetch: Dynamic KV cache pruning for accelerated long-context inference in
+web-scale AI search. In Proceedings of the ACM Web Conference 2026, 8127–8137.
+[23] Yuchen Li, Zhonghao Lyu, Yongqi Zhang, Hao Zhang, Tianhao Peng, Haoyi Xiong, Shuaiqiang Wang, Linghe Kong,
+Guihai Chen, and Dawei Yin. 2025. S3PRank: Towards satisfaction-oriented learning to rank with semi-supervised
+pre-training. IEEE Transactions on Knowledge and Data Engineering 38 (2025), 559–572.
+[24] Yuchen Li, Haoyi Xiong, Yongqi Zhang, Jiang Bian, Tianhao Peng, Xuhong Li, Shuaiqiang Wang, Linghe Kong, and
+Dawei Yin. 2025. RankElectra: Semi-supervised pre-training of learning-to-rank electra for web-scale search. In
+Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V. 1, 2415–2425.
+[25] Timothy P. Lillicrap, Jonathan J. Hunt, Alexander Pritzel, Nicolas Heess, Tom Erez, Yuval Tassa, David Silver,
+and Daan Wierstra. 2015. Continuous control with deep reinforcement learning. arXiv:1509.02971. Retrieved from
+https://arxiv.org/abs/1509.02971
+[26] Jianhua Lin. 1991. Divergence measures based on the Shannon entropy. IEEE Transactions on Information Theory 37, 1
+(1991), 145–151.
+ACM Transactions on Information Systems, Vol. 44, No. 6, Article 129. Publication date: July 2026.
+
+R2GCurL: Reinforced Robust KT via Dynamic Graph Curriculum Learning
+129:31
+[27] Fei Liu, Chenyang Bu, Haotian Zhang, Le Wu, Kui Yu, and Xuegang Hu. 2024. FDKT: Towards an interpretable deep
+knowledge tracing via fuzzy reasoning. ACM Transactions on Information Systems 42, 5 (2024), 139:1–139:26.
+[28] Yunfei Liu, Yang Yang, Xianyu Chen, Jian Shen, Haifeng Zhang, and Yong Yu. 2021. Improving knowledge tracing via
+pre-training question embeddings. In Proceedings of the 29th International Conference on International Joint Conferences
+on Artificial Intelligence, 1556–1562.
+[29] Frederic M. Lord. 2012. Applications of Item Response Theory to Practical Testing Problems. Routledge.
+[30] Haiping Ma, Yong Yang, Chuan Qin, Xiaoshan Yu, Shangshang Yang, Xingyi Zhang, and Hengshu Zhu. 2024. HD-KT:
+Advancing robust knowledge tracing via anomalous learning interaction detection. In Proceedings of the ACM on Web
+Conference 2024, 4479–4488.
+[31] Volodymyr Mnih, Adria Puigdomenech Badia, Mehdi Mirza, Alex Graves, Timothy Lillicrap, Tim Harley, David
+Silver, and Koray Kavukcuoglu. 2016. Asynchronous methods for deep reinforcement learning. In Proceedings of the
+International Conference on Machine Learning. PMLR, 1928–1937.
+[32] Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Alex Graves, Ioannis Antonoglou, Daan Wierstra, and Martin
+Riedmiller. 2013. Playing Atari with deep reinforcement learning. arXiv:1312.5602. Retrieved from https://arxiv.org/
+abs/1312.5602
+[33] Hiromi Nakagawa, Yusuke Iwasawa, and Yutaka Matsuo. 2019. Graph-based knowledge tracing: Modeling student
+proficiency using graph neural network. In Proceedings of the IEEE/WIC/ACM International Conference on Web
+Intelligence, 156–163.
+[34] Shalini Pandey and George Karypis. 2019. A self-attentive model for knowledge tracing. In Proceedings of the 12th
+International Conference on Educational Data Mining (EDM ’19). International Educational Data Mining Society,
+384–389.
+[35] Shalini Pandey and Jaideep Srivastava. 2020. RKT: Relation-aware self-attention for knowledge tracing. In Proceedings
+of the 29th ACM International Conference on Information & Knowledge Management, 1205–1214.
+[36] Zachary A. Pardos and Neil T. Heffernan. 2010. Modeling individualization in a Bayesian networks implementation of
+knowledge tracing. In Proceedings of the 18th International Conference on User Modeling, Adaptation, and Personalization
+(UMAP ’10). Springer, 255–266.
+[37] Adam Paszke, Sam Gross, Soumith Chintala, Gregory Chanan, Edward Yang, Zachary DeVito, Zeming Lin, Alban
+Desmaison, Luca Antiga, and Adam Lerer. 2017. Automatic differentiation in pytorch. In Proceedings of the NeurIPS.
+[38] Tianhao Peng, Xuhong Li, Haitao Yuan, Yuchen Li, and Haoyi Xiong. 2025. SOLA-GCL: Subgraph-oriented learnable
+augmentation method for graph contrastive learning. In Proceedings of the AAAI Conference on Artificial Intelligence,
+Vol. 39, 19875–19883.
+[39] Tianhao Peng, Wenjun Wu, Haitao Yuan, Zhifeng Bao, Zhao Pengrui, Xin Yu, Xuetao Lin, Yu Liang, and Yanjun Pu.
+2023. GraphRARE: Reinforcement learning enhanced graph neural network with relative entropy. In Proceedings of
+the 2024 IEEE 40th International Conference on Data Engineering (ICDE).
+[40] Tianhao Peng, Haitao Yuan, Yongqi Zhang, Yuchen Li, Peihong Dai, Qunbo Wang, Senzhang Wang, and Wen-
+jun Wu. 2025. TagRec: Temporal-Aware graph contrastive learning with theoretical augmentation for sequential
+recommendation. IEEE Transactions on Knowledge and Data Engineering 37 (2025), 3015–3029.
+[41] Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran Sahami, Leonidas J. Guibas, and Jascha
+Sohl-Dickstein. 2015. Deep knowledge tracing. In Advances in Neural Information Processing Systems, Vol. 28, 505–513.
+[42] Yanjun Pu, Fang Liu, Rongye Shi, Haitao Yuan, Ruibo Chen, Tianhao Peng, and Wenjun Wu. 2024. ELAKT: Enhancing
+locality for attentive knowledge tracing. ACM Transactions on Information System 42, 4 (2024), 112:1–112:27.
+[43] Yang Qin, Xinning Zhu, Xiaosheng Tang, Chunhong Zhang, Kunbao Wu, Fengjie Chang, Jianzhou Diao, and Zheng Hu.
+2025. Interpretable knowledge tracing with difficulty-aware attention and selective state space model. In Proceedings of
+the 48th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR ’25). Nicola
+Ferro, Maria Maistro, Gabriella Pasi, Omar Alonso, Andrew Trotman, and Suzan Verberne (Eds.), ACM, 316–325.
+[44] Antonin Raffin, Ashley Hill, Adam Gleave, Anssi Kanervisto, Maximilian Ernestus, and Noah Dormann. 2021. Stable-
+Baselines3: Reliable reinforcement learning implementations. Journal of Machine Learning Research 22, 268 (2021),
+1–8.
+[45] John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov. 2017. Proximal policy optimization
+algorithms. arXiv:1707.06347. Retrieved from https://arxiv.org/abs/1707.06347
+[46] Shuanghong Shen, Qi Liu, Zhenya Huang, Yonghe Zheng, Minghao Yin, Minjuan Wang, and Enhong Chen. 2024. A
+survey of knowledge tracing: Models, variants, and applications. IEEE Transactions on Learning Technologies 17 (2024),
+1858–1879.
+[47] Dongmin Shin, Yugeun Shim, Hangyeol Yu, Seewoo Lee, Byungsoo Kim, and Youngduck Choi. 2021. Saint+: Integrating
+temporal features for EdNet correctness prediction. In Proceedings of the 11th International Learning Analytics and
+Knowledge Conference (LAK ’21), 490–496.
+ACM Transactions on Information Systems, Vol. 44, No. 6, Article 129. Publication date: July 2026.
+
+129:32
+T. Peng et al.
+[48] Xiangyu Song, Jianxin Li, Taotao Cai, Shuiqiao Yang, Tingting Yang, and Chengfei Liu. 2022. A survey on deep
+learning based knowledge tracing. Knowledge-Based Systems 258 (2022), 110036.
+[49] Petru Soviany, Radu Tudor Ionescu, Paolo Rota, and Nicu Sebe. 2022. Curriculum learning: A survey. International
+Journal of Computer Vision 130, 6 (2022), 1526–1565.
+[50] Valentin I. Spitkovsky, Hiyan Alshawi, and Dan Jurafsky. 2010. From baby steps to leapfrog: How “less is more” in
+unsupervised dependency parsing. In Proceedings of the Human Language Technologies: The 2010 Annual Conference of
+the North American Chapter of the Association for Computational Linguistics, 751–759.
+[51] Yuhao Tang, Junyu Luo, Ling Yang, Xiao Luo, Wentao Zhang, and Bin Cui. 2024. Multi-view teacher with curriculum
+data fusion for robust unsupervised domain adaptation. In Proceedings of the 2024 IEEE 40th International Conference
+on Data Engineering (ICDE). IEEE, 2598–2611.
+[52] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, and Illia
+Polosukhin. 2017. Attention is all you need. In Advances in Neural Information Processing Systems, Vol. 30, 5998–6008.
+[53] Chengyi Wang, Yu Wu, Shujie Liu, Ming Zhou, and Zhenglu Yang. 2020. Curriculum pre-training for end-to-end speech
+translation. In Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics, 3728–3738.
+[54] Xin Wang, Yudong Chen, and Wenwu Zhu. 2021. A survey on curriculum learning. IEEE Transactions on Pattern
+Analysis and Machine Intelligence 44, 9 (2021), 4555–4576.
+[55] Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, and Bryan Hooi. 2021. CurGraph: Curriculum learning for graph
+classification. In Proceedings of the Web Conference 2021, 1238–1248.
+[56] Ronald J. Williams and David Zipser. 1989. A learning algorithm for continually running fully recurrent neural
+networks. Neural Computation 1, 2 (1989), 270–280.
+[57] Xiaolu Xiong, Siyuan Zhao, Eric G. Van Inwegen, and Joseph E. Beck. 2016. Going Deeper with Deep Knowledge
+Tracing. International Educational Data Mining Society.
+[58] Yu Yan, Zheng Guan, Xue Wang, Yanyou Wei, and Zhijun Yang. 2024. Knowledge tracing with soft labels via
+knowledge distillation and IRT-based modeling. In Proceedings of the 2024 IEEE 3rd International Conference on
+Electrical Engineering, Big Data and Algorithms (EEBDA). IEEE, 382–386.
+[59] Sean Bin Yang, Chenjuan Guo, Jilin Hu, Bin Yang, Jian Tang, and Christian S. Jensen. 2022. Weakly-supervised
+temporal path representation learning with contrastive curriculum learning. In Proceedings of the 2022 IEEE 38th
+International Conference on Data Engineering (ICDE). IEEE, 2873–2885.
+[60] Yang Yang, Jian Shen, Yanru Qu, Yunfei Liu, Kerong Wang, Yaoming Zhu, Weinan Zhang, and Yong Yu. 2021. GIKT: A
+graph-based interaction model for knowledge tracing. In Proceedings of the European Conference on Machine Learning
+and Knowledge Discovery in Databases (ECML PKDD ’20). Springer, 299–315.
+[61] Chun-Kit Yeung and Dit-Yan Yeung. 2018. Addressing two problems in deep knowledge tracing via prediction-
+consistent regularization. In Proceedings of the 5th Annual ACM Conference on Learning at Scale, 1–10.
+[62] Xueqiang Zeng, Guangcheng Fu, Haofei Chen, Qiyun Peng, and Mingwen Wang. 2025. Interactive code information
+integrated programming knowledge tracing. In Proceedings of the 48th International ACM SIGIR Conference on Research
+and Development in Information Retrieval (SIGIR ’25). Nicola Ferro, Maria Maistro, Gabriella Pasi, Omar Alonso,
+Andrew Trotman, and Suzan Verberne (Eds.), ACM, 2728–2732.
+[63] Jiani Zhang, Xingjian Shi, Irwin King, and Dit-Yan Yeung. 2017. Dynamic key-value memory networks for knowledge
+tracing. In Proceedings of the 26th International Conference on World Wide Web, 765–774.
+[64] Jing Zhao, Jiajie Xu, Yuan Xu, Junhua Fang, Pingfu Chao, and Xiaofang Zhou. 2024. CCML: Curriculum and contrastive
+learning enhanced meta-learner for personalized spatial trajectory prediction. IEEE Transactions on Knowledge and
+Data Engineering 36 (2024), 4499–4514.
+[65] Mingjun Zhao, Haijiang Wu, Di Niu, and Xiaoli Wang. 2020. Reinforced curriculum learning on pre-trained neural
+machine translation models. In Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 34, 9652–9659.
+[66] Yiyun Zhou, Zheqi Lv, Shengyu Zhang, and Jingyuan Chen. 2025. Disentangled knowledge tracing for alleviating
+cognitive bias. In Proceedings of the ACM on Web Conference 2025 (WWW ’25). Guodong Long, Michale Blumestein, Yi
+Chang, Liane Lewin-Eytan, Zi Helen Huang, and Elad Yom-Tov (Eds.), ACM, 2633–2645.
+Received 11 August 2025; revised 4 April 2026; accepted 13 May 2026
+ACM Transactions on Information Systems, Vol. 44, No. 6, Article 129. Publication date: July 2026.

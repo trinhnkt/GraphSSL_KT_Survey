@@ -1,0 +1,187 @@
+{
+  "title": [
+    "SINKT: A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0002-7827-244X",
+      "authenticated-orcid": false,
+      "given": "Lingyue",
+      "family": "Fu",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "Shanghai Jiao Tong University, Shanghai, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0009-0007-0337-3135",
+      "authenticated-orcid": false,
+      "given": "Hao",
+      "family": "Guan",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shanghai Jiao Tong University, Shanghai, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-2611-5055",
+      "authenticated-orcid": false,
+      "given": "Kounianhua",
+      "family": "Du",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shanghai Jiao Tong University, Shanghai, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-8953-3203",
+      "authenticated-orcid": false,
+      "given": "Jianghao",
+      "family": "Lin",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shanghai Jiao Tong University, Shanghai, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-2544-775X",
+      "authenticated-orcid": false,
+      "given": "Wei",
+      "family": "Xia",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "2012, Huawei Noah's Ark Lab, Shenzhen, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-0127-2425",
+      "authenticated-orcid": false,
+      "given": "Weinan",
+      "family": "Zhang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shanghai Jiao Tong University, Shanghai, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-9224-2431",
+      "authenticated-orcid": false,
+      "given": "Ruiming",
+      "family": "Tang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Huawei Noah's Ark Lab, Shenzhen, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-3221-0470",
+      "authenticated-orcid": false,
+      "given": "Yasheng",
+      "family": "Wang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Huawei Noah's Ark Lab, Shenzhen, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-0281-8271",
+      "authenticated-orcid": false,
+      "given": "Yong",
+      "family": "Yu",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Shanghai Jiao Tong University, Shanghai, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2024,
+        10,
+        21
+      ]
+    ]
+  },
+  "container-title": [
+    "Proceedings of the 33rd ACM International Conference on Information and Knowledge Management"
+  ],
+  "volume": null,
+  "issue": null,
+  "page": "632-642",
+  "publisher": "ACM",
+  "DOI": "10.1145/3627673.3679760",
+  "type": "proceedings-article"
+}

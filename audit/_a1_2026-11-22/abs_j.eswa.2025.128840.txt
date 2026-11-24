@@ -1,0 +1,8 @@
+CROSSREF
+
+
+OPENALEX
+
+
+BIBLIO
+{"volume": "295", "issue": null, "first_page": "128840", "last_page": "128840"}

@@ -1,0 +1,15 @@
+Dynamic heterogeneous graph contrastive networks for knowledge tracing.pdf
+pages 14 chars 86972
+HEAD Contents lists available at ScienceDirect Applied Soft Computing journal homepage: www.elsevier.com/locate/asoc Dynamic heterogeneous graph contrastive networks for knowledge tracing Yehong Han a, Hailiang Tanga,b,∗, Wenxiao Zhangb,c, Lin Dua, Jun Zhaod, Minglai Shaoe a School of Information Science and Engineering, Qilu Normal University, Jinan, China b School of Software, Kunsan National University, Gunsan, Republic of Korea c School of Finance and Economics, Shandong University of Engineering
+p1: contrastive, self-supervised, heterogeneous, ECE, accuracy
+p2: contrastive, heterogeneous, ECE
+p3: heterogeneous, ECE
+p4: contrastive, meta-path, metapath, heterogeneous, ECE
+p5: meta-path, metapath, heterogeneous
+p6: contrastive, bipartite, meta-path, metapath, heterogeneous
+p7: contrastive, meta-path, metapath
+p8: heterogeneous
+p9: accuracy
+p10: accuracy
+p12: contrastive, self-supervised, metapath, heterogeneous, accuracy
+p14: self-supervised, meta-path, heterogeneous

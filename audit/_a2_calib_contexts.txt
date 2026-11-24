@@ -1,0 +1,22 @@
+
+===== Contrastive Learning for Knowledge Tracing.pdf n=7 =====
+0.6 0.8 1.0 Predicted probability 0.0 0.2 0.4 0.6 0.8 1.0 Fraction of positives Perfectly calibrated AKT CL4KT w/ Mask Only CL4KT w/ Crop Only CL4KT w/ Perm Only CL4KT w/ Repl Only CL4KT Fig
+4KT w/ Mask Only CL4KT w/ Crop Only CL4KT w/ Perm Only CL4KT w/ Repl Only CL4KT Figure 7: Calibration binned by predictions on assist09. 4.5 Ablation Study (RQ4) To verify the effectiveness o
+26 -1.382 Interaction AKT -3.143 -3.444 -1.977 CL4KT -3.185 -3.468 -2.097 results: 1) the calibration of KT models, which is crucial for down- stream applications such as learning resource re
+ [41] that is proposed to measure the quality of representations. First, we visualize the calibration plots to detect systematic biases of KT models by measuring the difference between predic
+ between predicted probabilities and observed frequen- cies. Figure 7 shows the different calibration results of AKT and CL4KT. Although AKT underestimates learners when the proba- bility of 
+T underestimates learners when the proba- bility of correct answers is low, CL4KT is well-calibrated and does not reveal any severe biases. This difference shows that CL4KT can alleviate the
+. Also, we observe that the composition of multiple augmentation methods is effective for calibration. Next, we compare AKT and CL4KT in terms of uniformity measuring how well the embeddings 
+
+===== Fusing Hybrid Attentive Network with Self-Supervised Dual-Channel Heterogeneous Graph for Knowledge Tracing.pdf n=2 =====
+ations between questions and skills. Along this line, CQKT (Wang et al., 2022) proposes a calibrated Q- matrix-based framework to track knowledge proficiency of students dynamically. HHN (Wu
+a, H., Zhao, Y., Li, Z., & He, X. (2022). Tracking knowledge proficiency of students with calibrated Q-matrix. Expert Systems with Applications, 192, Article 116454. Wang, Y., Tang, S., Lei,
+
+===== Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing.pdf n=1 =====
+3] W. Wang, H. Ma, Y. Zhao, Z. Li, X. He, Tracking knowledge proficiency of students with calibrated Q-matrix, Expert Syst. Appl. 192 (2022) 116454. [24] W. Wang, H. Ma, Y. Zhao, F. Yang, L.
+
+===== Self-Supervised Heterogeneous Hypergraph Network for Knowledge Tracing.pdf n=4 =====
+ithin the Q-matrix. To resolve this issue, tracking knowledge proﬁciency of students with calibrated Q-matrix (CQKT) [16] devises a novel Calibrated Q-matrix-based framework and achieves the
+ing knowledge proﬁciency of students with calibrated Q-matrix (CQKT) [16] devises a novel Calibrated Q-matrix-based framework and achieves the state-of-the-art performance. In sum- mary, the
+on maps from two perspectives of co-occurrence and answer-agreement. CQKT [16] proposes a calibrated Q-matrix-based framework to dynamically track knowledge proﬁciency of students. Although 
+16] W. Wang, H. Ma, Y. Zhao, Z. Li, X. He, Tracking knowledge proﬁciency of students with calibrated Q-matrix, Expert Systems with Applications 192 (2022) 116454. [17] Y. Sun, J. Han, Mining

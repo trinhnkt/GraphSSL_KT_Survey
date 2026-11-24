@@ -1,0 +1,173 @@
+“Conversion of Fractions to Percents”, and their learned difficulty
+parameters. We show three questions for each concept: an easy one,
+an average one, and a hard one. Using the “Probability of a Single
+Event” concept as an example, the learned difficulty parameter
+values (µq) are −0.0515 for the easy one, 0.0088 for the average one,
+and 0.0548 for the hard one. These learned difficulty levels match
+our understanding about the difficulty levels of these questions.
+These results suggest that AKT has the potential to be applied
+in real-world educational settings. Using the estimated difficulty
+parameters, a computerized learning platform can either i) auto-
+matically select questions with appropriate difficulty levels for each
+learner given their past responses, or ii) support teachers to adjust
+course plans by providing them feedback on question difficulty
+levels learned from real data. Therefore, AKT improves over exist-
+ing KT methods by not only providing state-of-the-art predictive
+performance but also exhibiting interpretability and potential for
+personalized learning.
+5
+CONCLUSIONS AND FUTURE WORK
+In this paper, we have proposed attentive knowledge tracing, a
+new method for knowledge tracing that relies fully on attention
+networks. Our method improves upon existing knowledge tracing
+methods by building context-aware representations of questions
+and responses, using a monotonic attention mechanism to sum-
+marize past learner performance in the right time scale, and by
+using the Rasch model to capture individual differences among
+questions covering the same concept. Experimental results on a
+series of benchmark real-world learner response datasets show
+that our method outperforms state-of-the-art KT methods and ex-
+hibit excellent interpretability. Avenues of future work include i)
+incorporating question text to further enhance the interpretability
+of question and concept embeddings and ii) testing whether our
+method can improve prediction performance on language learning
+datasets where memory decay occurs [26].
+REFERENCES
+[1] Hao Cen, Kenneth Koedinger, and Brian Junker. 2006. Learning factors analysis–
+A general method for cognitive model evaluation and improvement. In Proc.
+International Conference on Intelligent Tutoring Systems. 164–175.
+[2] Benoît Choffin, Fabrice Popineau, Yolaine Bourda, and Jill-Jênn Vie. 2019. DAS3H:
+Modeling student learning and forgetting for pptimally scheduling distributed
+practice of skills. In Proc. International Conference on Educational Data Mining.
+29–38.
+[3] Albert Corbett and John Anderson. 1994. Knowledge tracing: Modeling the
+acquisition of procedural knowledge. User Modeling and User-adapted Interaction
+4, 4 (Dec. 1994), 253–278.
+[4] Xavier Glorot and Yoshua Bengio. 2010. Understanding the difficulty of training
+deep feedforward neural networks. In Proc. International Conference on Artificial
+Intelligence and Statistics. 249–256.
+[5] Ian Goodfellow, Yoshua Bengio, and Aaron Courville. 2016. Deep Learning. MIT
+Press.
+[6] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2016. Deep residual
+learning for image recognition. In Proc. IEEE Conference on Computer Vision and
+Pattern Recognition. 770–778.
+[7] Sepp Hochreiter and Jürgen Schmidhuber. 1997. Long short-term memory. Neural
+Computation 9, 8 (Nov. 1997), 1735–1780.
+[8] MM Khajah, Y Huang, JP González-Brenes, MC Mozer, and P Brusilovsky. 2014.
+Integrating knowledge tracing and item response theory: A tale of two frame-
+works. In Proc. International Workshop on Personalization Approaches in Learning
+Environments, Vol. 1181. 7–15.
+[9] Mohammad Khajah, Robert Lindsey, and Michael Mozer. 2016. How deep is
+knowledge tracing?. In Proc. International Conference on Educational Data Mining.
+94–101.
+[10] Diederik P Kingma and Jimmy Ba. 2015. Adam: A method for stochastic opti-
+mization. In Proc. International Conference on Learning Representations.
+[11] Andrew Lan and Richard Baraniuk. 2016. A Contextual Bandits Framework
+for Personalized Learning Action Selection. In Proc. International Conference on
+Educational Data Mining. 424–429.
+[12] Andrew Lan, Tom Goldstein, Richard Baraniuk, and Christoph Studer. 2016.
+Dealbreaker: A nonlinear latent variable model for educational data. In Proc.
+International Conference on Machine Learning. 266–275.
+[13] Andrew Lan, Christoph Studer, and Richard Baraniuk. 2014. Time-varying
+learning and content analytics via sparse factor analysis. In Proc. ACM SIGKDD
+International Conference on Knowledge Discovery and Data Mining. 452–461.
+[14] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. 2016. Layer normaliza-
+tion. arXiv preprint arXiv:1607.06450 (July 2016).
+[15] Robert Lindsey, Jeffery Shroyer, Harold Pashler, and Michael Mozer. 2014. Im-
+proving students’ long-term knowledge retention through personalized review.
+Psychological Science 25, 3 (Jan. 2014), 639–647.
+[16] Frederick Lord. 1980. Applications of Item Response Theory to Practical Testing
+Problems. Erlbaum Associates.
+[17] Michael Mozer, Denis Kazakov, and Robert Lindsey. 2017.
+Discrete-event
+continuous-time recurrent nets. arXiv preprint arXiv:1710.04110 (Oct. 2017).
+[18] Shalini Pandey and George Karypis. 2019. A self attentive model for knowledge
+tracing. In Proc. International Conference on Educational Data Mining. 384–389.
+[19] Zachary Pardos and Neil Heffernan. 2010.
+Modeling individualization in a
+Bayesian networks implementation of knowledge tracing. In Proc. International
+Conference on User Modeling, Adaptation, and Personalization. 255–266.
+[20] Razvan Pascanu, Tomas Mikolov, and Yoshua Bengio. 2013. On the difficulty of
+training recurrent neural networks. In Proc. International Conference on Machine
+Learning. 1310–1318.
+[21] Harold Pashler, Nicholas Cepeda, Robert Lindsey, Ed Vul, and Michael Mozer.
+2009. Predicting the optimal spacing of study: A multiscale context model of
+memory. In Proc. Conference on Advances in Neural Information Processing Systems.
+1321–1329.
+[22] Philip Pavlik Jr, Hao Cen, and Kenneth Koedinger. 2009. Performance factors
+analysis–A new alternative to knowledge tracing. In Proc. International Conference
+on Artificial Intelligence in Education. 531–538.
+[23] Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran Sahami,
+Leonidas J Guibas, and Jascha Sohl-Dickstein. 2015. Deep knowledge tracing. In
+Proc. Conference on Advances in Neural Information Processing Systems. 505–513.
+[24] Chris Piech, Jonathan Huang, Andy Nguyen, Mike Phulsuksombati, Mehran
+Sahami, and Leonidas Guibas. 2015. Learning Program Embeddings to Propagate
+Feedback on Student Code. In Proc. International Conference on Machine Learning.
+1093–1102.
+[25] Georg Rasch. 1993. Probabilistic Models for Some Intelligence and Attainment Tests.
+MESA Press.
+[26] Siddharth Reddy, Igor Labutov, Siddhartha Banerjee, and Thorsten Joachims.
+2016. Unbounded human learning: Optimal scheduling for spaced repetition. In
+Proc. ACM SIGKDD International Conference on Knowledge Discovery and Data
+Mining. 1815–1824.
+[27] Nitish Srivastava, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan
+Salakhutdinov. 2014. Dropout: A simple way to prevent neural networks from
+overfitting. The Journal of Machine Learning Research 15, 1 (June 2014), 1929–
+1958.
+[28] Laurens Van Der Maaten. 2014. Accelerating t-SNE using tree-based algorithms.
+The Journal of Machine Learning Research 15, 1 (2014), 3221–3245.
+[29] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. Attention is all you
+need. In Proc. Conference on Advances in Neural Information Processing Systems.
+5998–6008.
+[30] Jill-Jênn Vie and Hisashi Kashima. 2019. Knowledge tracing machines: Factor-
+ization machines for knowledge tracing. In Proc. AAAI Conference on Artificial
+Intelligence, Vol. 33. 750–757.
+[31] Kevin Wilson, Yan Karklin, Bojian Han, and Chaitanya Ekanadham. 2016. Back to
+the basics: Bayesian extensions of IRT outperform neural networks for proficiency
+estimation. In Proc. International Conference on Educational Data Mining. 539–544.
+[32] Beverly Park Woolf. 2010. Building Intelligent Interactive Tutors: Student-centered
+Strategies for Revolutionizing E-learning. Morgan Kaufmann.
+[33] Xiaolu Xiong, Siyuan Zhao, Eric G Van Inwegen, and Joseph E Beck. 2016. Going
+deeper with deep knowledge tracing. International Educational Data Mining
+Society (2016).
+[34] Chun-Kit Yeung and Dit-Yan Yeung. 2018. Addressing two problems in deep
+knowledge tracing via prediction-consistent regularization. In Proc. ACM Confer-
+ence on Learning at Scale. ACM, 5.
+[35] Michael Yudelson, Kenneth Koedinger, and Geoffrey Gordon. 2013. Individualized
+Bayesian knowledge tracing models. In Proc. International Conference on Artificial
+Intelligence in Education. 171–180.
+[36] Jiani Zhang, Xingjian Shi, Irwin King, and Dit-Yan Yeung. 2017. Dynamic key-
+value memory networks for knowledge tracing. In Proc. International Conference
+on World Wide Web. 765–774.
+Applied Data Science Track Paper
+KDD '20, August 23–27, 2020, Virtual Event, USA
+2338
+
+Supplementary Material
+Parameter tuning. For all methods, we use a two-layer, fully-
+connected network for the response prediction model, with 512
+and 256 hidden units in the first and second layers, respectively.
+For AKT, we fix the number of attention heads to H = 8 and use
+the same dimension for the queries, keys, and values for each head
+in the encoders and the knowledge retriever, i.e., Dk = Dv = D/8
+where D is the input embedding dimension. For AKT, we share
+the query and key embedding layer in the attention mechanism.
+We do not perform grid search over the values of these parame-
+ters since the performance of KT methods is insensitive to these
+parameters. For all methods, we use {256, 512}, {256, 512}, and
+{0, 0.05, 0.1, 0.15, 0.2, 0.25} as values of the input embedding di-
+mension, the hidden state dimension, and the dropout rate for the
+feedforward network, respectively. We also use {1, 10, ∞} as values
+of the maximum gradient norm for clipping [20] where ∞means
+no gradient norm clipping. For AKT, SAKT, and their variants, we
+use {5×10−6, 10−5, 10−4} as values of the learning rate in the Adam
+optimizer. For DKT, DKT+, and DKVMN, we use {10−4, 10−3} as val-
+ues of the learning rate. Additionally, for DKVMN, we use {20, 50}
+as values of the memory size parameter, following [36]. For DKT+,
+we use {0.1, 0.2}, {0.3, 1}, and {3, 30} as values of the reconstruc-
+tion regularization, the ℓ1-norm penalty, and the ℓ2-norm penalty
+parameters, respectively, following [34].
+Applied Data Science Track Paper
+KDD '20, August 23–27, 2020, Virtual Event, USA
+2339

@@ -1,0 +1,100 @@
+{
+  "title": [
+    "LGS-KT: Integrating logical and grammatical skills for effective programming knowledge tracing"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0009-0003-4147-8094",
+      "authenticated-orcid": false,
+      "given": "Xinjie",
+      "family": "Sun",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Qi",
+      "family": "Liu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Kai",
+      "family": "Zhang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Shuanghong",
+      "family": "Shen",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yan",
+      "family": "Zhuang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0009-0002-9592-1816",
+      "authenticated-orcid": false,
+      "given": "Yuxiang",
+      "family": "Guo",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2025,
+        5
+      ]
+    ]
+  },
+  "container-title": [
+    "Neural Networks"
+  ],
+  "volume": "185",
+  "issue": null,
+  "page": "107164",
+  "publisher": "Elsevier BV",
+  "DOI": "10.1016/j.neunet.2025.107164",
+  "type": "journal-article"
+}

@@ -1,0 +1,1063 @@
+
+
+===== PDF PAGE 7 =====
+Tong et al.27 introduced problem schema with a hierarchical exercise graph to KT. The problem
+schema clustered similar exercises into the same group to incorporate the question–question re-
+lations. Pandey et al.15 calculated the exercise–exercise relations based on the performance data and
+the exercise text, and incorporated it into a transformer model for relation‐aware KT. All of these
+methods exploit the relation information in various graphs and introduce the distinctive in-
+formation of questions into the KT task. However, they ignore the KS information of the skills in
+the domain. Similarly to our work, Nakagawa et al.25 and Chen et al.20 incorporated the KS
+information into the KT procedure. Chen et al.'s work assumes that the KS is already given by
+experts, and models the prerequisite as an ordering pair. In this way, the mastery of related skills is
+constrained by referring to the KS. Nakagawa et al. used the KS information and a graph neural
+network (GNN) to update the learners' hidden knowledge states. Unlike these earlier works, our
+method learns the KS from learner response data and integrates it with the Q‐matrix to build a KS‐
+enhanced relation graph. Leveraging the Metapath2Vec method, we learn the dense embeddings of
+all nodes, which incorporate the multihop question–question, question–skill, and skill–skill rela-
+tions in the domain. The different types of models are compared in Table 1.
+2.2
+|
+Knowledge structure discovery
+Knowledge structure discovery facilitates the intelligence of online learning systems by pro-
+viding personalized learning paths and services to accommodate the needs of different learners.
+Automating this process has been attempted in several studies. Most of the existing KS‐
+discovery methods identify the latent skills required for answering the questions, and find the
+similarities among the questions in the domain for clustering the potential KS. The technique
+of Lindsey et al.43 discovers a skill set that learners use for problem solving. This technique
+assumes a monotonic improvement of learner performance along a sequence of questions
+requiring the same skill. Pan et al.23 automatically inferred the prerequisite relation between
+knowledge concepts in MOOCs using natural language processing techniques. Mussack et al.44
+discovered the problem similarity by combing the problem features and learner behaviors.
+Rihák et al.45 and Nazaretsky et al.46 proposed various measurement indices that cluster the
+education items from performance data. Their methods assume that learner performances are
+similar on items requiring the same skills. However, in these studies, clusters of questions
+requiring the same latent skills are regarded as the KS in the domain; in contrast, our KS is
+constructed from the prerequisite relations among explicit skills.
+Wang et al.47 proposed a latent‐variable selection method with regularization for cognitive
+diagnostics, which learns the skill hierarchies from learner response data. Using a DKT model,
+Zhang et al.24 discovered the topological order of skills from learners' exercise performance.
+Like our group, they intuited that the KS is difficult to directly extract from response data, but
+this difficulty can be bridged by ordering the learners' mastery of skills. Hence, in this paper, we
+discover the prerequisite skill pairs in the KS by ordering the learners' performances in
+question‐solving (i.e., their mastery of the underlying skills).
+2.3
+|
+Graph representation learning models
+Graph representation learning models such as GNNs have solved various tasks through their
+excellent ability to process graph‐structure data. Traditional machine learning methods have
+2018 |
+GAN ET AL.
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+
+===== PDF PAGE 8 =====
+TABLE 1
+Comparisons of different learning models
+Data source
+Category
+Representative work
+Typical technique
+Problem/skill
+representation
+Difficulty
+Q–S
+relation
+KS
+Elapsed
+time
+Use of
+skill
+Consider
+sequence
+order
+Probabilistic
+model
+BKT, FuzzyCDM
+HMM, Bayesian
+Network
+Parameters
+–
+✕
+✕
+✕
+Single
+✓
+Factor analysis
+model
+IRT, AFM, PFA, KTM,
+DAS3H, RKTM
+Linear/logistic
+regression
+Parameters
+Skill‐level
+constant
+✕
+✕
+✕
+Multiple
+✕
+Deep learning
+model
+DKT, DKVMN, SAINT,
+AKT, IEKT
+RNN, LSTM,
+MANN,
+Transformer
+One hot encoding
+–
+✕
+✕
+✕
+Single
+✓
+Graph‐based
+model
+GIKT, PEBG, RKT,
+HGKT, CoKT
+GCN, GNN
+Dense embedding
+Constant
+✓
+✕
+✕
+Multiple
+✓
+Our model
+Metapath2Vec
+Convolutional dense
+embedding
+Multilevel,
+adaptive
+✓
+✓
+✓
+Multiple
+✓
+GAN ET AL.
+|
+2019
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+
+===== PDF PAGE 9 =====
+limited ability to extract and encode the high‐dimensional, non‐Euclidean information on
+graph structure from graphs.48 Following the edges in the graph, GNNs obtain the node re-
+presentation from a whole graph by propagating and aggregating information from the
+neighbor nodes. In this way, node embeddings can summarize their graph positions and
+the structures of their local‐graph neighborhoods.48 The obtained graph‐based embeddings can
+be directly used for various downstream tasks. In the deep‐learning models of KT tasks, they
+alleviate the sparsity problem of the one‐hot representation. One widely used GNN model is the
+GCN, which was recently used as the input‐question representation of KT.12,27 GCNs are
+especially suitable for isomorphic graphs, in which the nodes are of the same type. Recent
+graph‐to‐vector models such as Metapath2Vec28 have proven successful in heterogeneous
+graph‐representation learning. Such models are eminently suitable for KT tasks because
+question–skill graphs are typical heterogeneous graphs. In this paper we leverage the Meta-
+path2Vec model to learn the dense embedding from the relation graph, and input the obtained
+embedding to the model that traces the evolution of learner proficiency.
+3
+|
+PROBLEM FORMULATION
+Let us suppose that in a learning system, each question is associated with one or several skills
+needed to solve the question. This association is generally given as a binary q‐matrix O in which
+each entry
+
+O
+{0, 1}
+j k
+,
+indicates whether the jth question is related to the kth skill. Learners
+can learn each skill by attempting several corresponding questions. Moreover, each learner can
+individually answer the questions at different times, and will answer a question correctly or
+incorrectly at each attempt. Whenever a learner attempts an item at time point t, the system
+generates an exercise record n
+u q s
+et r
+= (
+,
+,
+,
+,
+)
+t
+i
+t
+k
+t
+t , where nt is a quintuple including the learner
+ID
+
+u
+u u
+u
+{
+,
+, …,
+}
+i
+I
+1
+2
+, exercise ID
+
+q
+q q
+q
+{
+,
+, …,
+}
+t
+J
+1
+2
+, underlying skills
+
+s
+s s
+s
+{ ,
+, …,
+}
+k
+K
+1
+2
+, the
+elapsed time ett spent on solving the given question qt, and the correctness
+
+r
+{0, 1}
+t
+of
+the learner's answer at timestamp t. A learner's exercising process is then modeled as a
+sequence X
+n n
+n
+= {
+,
+, …,
+}
+T
+1
+2
+, where T indicates the latest timestamp.
+Given a learner's past exercising sequence X in a system and a new question qt+1, our goal is
+to model the learner–question interaction procedure, and hence track the evolution of a
+learner's knowledge proficiency over time. Based on the learner knowledge proficiency, we
+then predict the probability
+
+p r
+X q
+(
+= 1
+,
+)
+t
+t
++1
++1 that the learner answers question qt+1 correctly.
+We now introduce some definitions that will used in the following sections.
+Definition 1 (Question‐skill graph). The q‐matrix O containing the question–skill
+relations can be naturally represented as a question–skill graph G
+Q S L
+= { ,
+,
+}, where Q
+and S are sets of question and skill nodes, respectively, and
+
+L
+O
+= [
+]
+{0, 1}
+jk
+indicates
+whether question node qj and skill node sk are connected by an edge.
+Definition 2 (Knowledge structure). The KS is a directed graph with all skills as nodes.
+It can be represented as
+
+KS
+S L
+= { ,
+}, where 
+L
+denotes the prerequisite relations
+between two skill nodes in the graph.
+Definition 3 (Cognitive question difficulty). This factor models the learner‐oriented
+question difficulty in the dynamic learning process based on the learners' current
+2020 |
+GAN ET AL.
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+
+===== PDF PAGE 10 =====
+cognition (i.e., their current cognitive structures built during the exercising solving
+procedure).
+In this paper, the incorrect interactions in the learners' previous exercising process indicate
+the cognitive difficulty of answering the questions. Moreover, learners attempt the same
+question using their skills at different frequencies. To model this behavior, we define the
+cognitive question difficulty of each question at both the question and skill levels, as follows:
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+}
+c
+if N
+c
+otherwise
+Ψ
+=
+*( −1) ,
+5
+,
+v t v
+q s
+l
+N
+v
+t
+,
+={ , }
+== 0
+0:
+v
+t
+v
+t
+0:
+0:
+(1)
+where Ψq t, and Ψs t, denote the learner's cognitive difficulty at the question and skill levels at
+timestamp t, respectively. These entities are quantified into c + 1 levels, ranging from zero to c.
+Nv is the set of question or skills attempted by the learner before time t and lv is the outcome of
+the previous attempt on the same question or skill. A zero outcome indicates a failure. If a
+student has attempted a question or a skill fewer than five times, the level is set to c, indicating
+the highest level of cognitive difficulty.
+A list of symbol notations used in this study is presented in Table 2 to facilitate reading.
+Algorithm 1 The proposed KSGKT method for attentive knowledge tracing
+Input: the learners' exercise logs E in a system, the Q‐
+matrix O
+Output: the predicted probability pt+1 that the learner
+answers exercise qt+1 correctly, the matrix
+representation Rw of the KS, and the final
+embedding matrix Q, S of the question and skill
+nodes.
+1: Rw, Rˆ0, αi t, +1, pt+10;
+2: initialize Q, S, D from a Gaussian distribution;
+3: infer Rw from the exercise logs E;
+⊳Eight methods in Section 4.1
+4: calculate Rˆ using Equation (4) and (5);
+5: calculate Ψq t, and Ψs t, using Equation (1);
+⊳Cognitive item difficulty
+6: repeat:
+7:
+Q, SMetapath Vec
+2
+(Rˆ, “QSQ”, Q, S);
+⊳Embedding learning in Section 4.2
+8:
+
+q
+Convolution q
+Q
+s
+avg S
+d
+D d
+D
+(
+=
+,
+=
+(
+),
+= Ψ
+,
+= Ψ
+)
+q
+q
+q
+q t
+s
+s t
+,
+,
+;
+⊳Convolutional question representation
+in 4.3
+9:
+
+
+h
+LSTM Concat q t r
+h
+θ
+(
+( , ,
+),
+;
+)
+t
+t
+t
+t−1
+;
+⊳update learner knowledge state using LSTM in Section 4.4
+10:
+calculate attention αi t, +1 using Equation (15);
+11:
+
+p
+MLP
+q
+h α
+=
+(
+,
+,
+)
+t
+t
+i
+i t
++1
++1
+, +1 ;
+⊳Predict learner performance with three attention methods in Section 4.4
+12: until 
+r
+log p
+r
+log
+p
+= −
+(
++ (1 −
+)
+(1 −
+))
+t
+t
+t
+t
+t
++1
++1
++1
++1
+is minimum
+⊳minimize cross‐entropy loss
+13: return pt+1, Rw, Q, S.
+GAN ET AL.
+|
+2021
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+
+===== PDF PAGE 11 =====
+4
+|
+PROPOSED METHOD
+This section introduces the proposed KSGKT framework for KT, as shown in Figure 2. The
+framework proceeds the KT task using five modules: knowledge structure discovery, graph‐
+based embedding learning, convolutional question representation, attention mechanism, and
+learner knowledge state evolution. Before conducting the embedding learning, we must build
+the KS‐enhanced question–skill graph by integrating the KS inferred from the learner response
+data into the question–skill graph. Based on the built KS‐enhanced question–skill graph, the
+dense embeddings of all skill and question nodes are obtained through the graph embedding
+learning method Methpath2Vec. To incorporate more distinctive information of the questions,
+the cognitive question difficulty at both the question and skill levels are also inferred from the
+learning histories of individual learners. A convolutional representation method is then pro-
+posed to fuse the question and skill embeddings with the cognitive question difficulty. It
+considers each separate factor and the interactions between each pair of factors, thus obtaining
+the comprehensive representations of questions (Figure 3). These representations are fed to the
+attentive KT network for predicting learner performance (see Figure 4, for the KT procedure).
+To capture the long‐term dependencies in the exercising sequence, different attention me-
+chanisms are applied. For reference, the algorithm for our proposed method is shown in
+Algorithm 1.
+TABLE 2
+A list of symbol notations used in this study
+Var.
+Description
+ui
+Learner ui
+qt
+Question qt
+sk
+Skills sk
+rt
+The correctness of the learner's answer at timestamp t
+ett
+The elapsed time spent on solving the given question at timestamp t
+O
+The binary q‐matrix
+Rw
+The representation of the KS as a skill relation matrix
+Rˆ
+Matrix representation of the KS‐enhanced question‐skill graph
+q
+Question embedding vector
+s
+Average skill embedding vector in a question
+dq
+Question difficulty embedding vector at the question level
+ds
+Question difficulty embedding vector at the skill level
+q
+The final comprehensive question embedding
+xt
+The interaction embedding at timestamp t
+ht
+The hidden knowledge state of a learner at step t
+αi t, +1
+The attention between current questions and previous question
+
+g q q
+( ,
+)
+͠ i
+t+1
+The correlation between current questions and previous question
+pt+1
+The predicted learner performance at step t + 1
+2022 |
+GAN ET AL.
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+
+===== PDF PAGE 17 =====
+such as the vanilla RNN, and gated recurrent unit cell (GRU) models52 can be also used for this
+task. To better compare with other KT methods and show the effectiveness of the knowledge
+structure enhanced graph representation learning model, here we also adopt the LSTM in the
+final part of our framework for fair consideration. The hidden knowledge state ht of a learner at
+step t is updated based on the current input and the previous state h
+LSTM x
+h
+θ
+=
+( ,
+;
+)
+t
+t
+t−1
+as
+follows:
+i
+σ W x
+W h
+b
+f
+σ W x
+W h
+b
+o
+σ W x
+W h
+b
+c
+f c
+i tanh W x
+W h
+b
+h
+o tanh c
+=
+(
++
++
+),
+=
+(
++
++
+),
+=
+(
++
++
+),
+=
++
+(
++
++
+),
+=
+( ),
+t
+xi
+t
+hi
+t
+i
+t
+xf
+t
+hf
+t
+f
+t
+xo
+t
+ho
+t
+o
+t
+t
+t
+t
+xc
+t
+hc
+t
+c
+t
+t
+t
+−1
+−1
+−1
+−1
+−1
+(13)
+where the i f
+o
+,
+,
+t
+t
+t are the input, forget, and output gates, respectively, ct is the cell memory
+vector, and W* and b* are network parameters.
+We then employ an attention mechanism that accounts for the impact of previous
+attempts on the current attempt. A new question will likely be strongly affected by similar
+questions or questions requiring the same skillset as the new question. Moreover, ac-
+cording to forgetting‐curve theory, the impact exponentially decays as time passes.53 To
+describe these effects, we assume that the learner‐knowledge state in the current step is
+the weighted sum of the aggregated states in the previous steps. The weights are based on
+the correlations:
+
+h
+α
+h
+=
+.
+t
+i
+t
+i t
+i
++1
+=1
+, +1
+(14)
+The attention was calculated by three methods: shared skill‐based attention, question
+similarity‐based attention, and a combination of both former attention methods.
+
+
+
+
+α
+corre
+exp
+θ t
+t
+g q q
+=
+,
+=
+(−
+−
+) ( ,
+),
+͠
+i t
+exp corre
+exp corre
+i t
+t
+i
+i
+t
+, +1
+(
+)
+(
+)
+, +1
++1
++1
+i t
+j
+j t
+, +1
+, +1
+(15)
+where 
+
+t
+t
+−
+t
+i
++1
+is the time interval between step i and t + 1, θ > 0 is the learnable decay rate
+over time, the exponential term down‐weights the importance of questions in the distant past,
+and g (.) denotes the correlation between two questions. The g
+s
+(.)
+computed by the three
+methods provide three kinds of attentions.
+• Shared skill based‐attention: This method calculates the number of skills shared by two
+questions in the KS‐enhanced q‐matrix Rˆ. We define
+
+
+
+g q q
+( ,
+) =
+͠ i
+t
+n
+s
++1
+qt+1 , where n is the
+number of shared skills and 
+
+sqt+1 denotes the number of skills contained in question qt+1.
+• Question
+similarity‐based
+attention:
+This
+method
+calculates
+the
+correlations
+between two question representations by determining their similarities. We define
+
+
+g q q
+cos q q
+( ,
+) =
+( ,
+)
+͠
+͠
+i
+t
+i
+t
++1
++1 , that is, the cosine similarities between the two vectors of question
+representation.
+2028 |
+GAN ET AL.
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+
+===== PDF PAGE 18 =====
+• Combined attention: This method combines the above correlations with coefficients. We
+define
+
+
+
+
+g q q
+λ
+λ cos q q
+( ,
+) =
++ (1 −
+)
+( ,
+)
+͠
+͠
+i
+t
+n
+S
+i
+t
++1
++1
+qt+1
+, where λ is a tunable parameter that bal-
+ances the above two correlations.
+The learner performance at step t + 1 can be predicted from the question representation
+qt+1 and the current knowledge state ht+1 as follows:
+
+s
+tanh W q
+h
+b
+p
+σ W s
+b
+=
+(
+[
+,
+]) +
+,
+=
+(
++
+),
+t
+s
+t
+t
+s
+t
+p t
+p
++1
++1
++1
++1
++1
+(16)
+where W* and b* are parameters in the fully connected layer and the sigmoid activation layer,
+respectively.
+Finally, we optimized our model by the cross‐entropy loss; specifically, we minimized the
+following objective function between the true answer lt and the predicted performance pt+1 at
+each interaction:
+
+r
+p
+r
+p
+= −
+(
+log
++ (1 −
+)log(1 −
+)).
+t
+t
+t
+t
+t
++1
++1
++1
++1
+(17)
+5
+|
+EXPERIMENTAL SETTINGS
+In a series of experimental tasks, we evaluated the proposed KSGKT model on three public real‐
+world data sets. This section describes the experimental settings (aims, data sets, comparison
+baselines, setup and implementation, and evaluation metrics). The detailed experimental re-
+sults and model analysis are presented in the next section.
+5.1
+|
+Experimental aims
+Our experiments aimed to answer the following questions:
+1. Based on the knowledge proficiency inferred from the learners' exercise histories, how well
+does KSGKT predict the learners' performance on new questions? (See Section 6.1).
+2. How does embedding learning on the KS‐enhanced graph affect the performance of the
+proposed model? (See Section 6.2.1).
+3. Does the question embedding learned on the graph provides meaningful information? (See
+Section 6.2.2).
+4. How well do the eight methods infer the KS from data? Is the inferred KS explainable? (See
+Section 6.2.3 and 6.2.4).
+5. How effective is the convolutional question representation of the KT task? (See
+Section 6.2.5).
+6. How effective is the attention mechanism in the proposed method? What is the effect of
+changing the attention‐calculating method? (See Section 6.2.6).
+GAN ET AL.
+|
+2029
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+
+===== PDF PAGE 19 =====
+5.2
+|
+Data sets
+Experiments were performed on three well‐established data sets, namely, Assist0910,* As-
+sist1213,† and EdNet‡. All data sets are public real‐world data sets containing the temporal
+interaction records between learners and real computer‐aided tutoring systems. These data sets
+incorporate rich information on the learners and questions, along with their interactions over
+time; hence, they are very suitable for long‐term dynamic KT studies in large‐scale scenarios.
+Assist0910: This data set was collected from 2009 to 2010 using the ASSISTment system.54 It
+contains the interactions of 3002 learners and 17,705 items associated with 123 skills, forming
+277,540 interaction records.
+Assist1213: This data set, which updates Assist0910, was collected over the whole year of
+2012. In this data set, 22,339 learners in the system attempted 52,825 mathematics questions
+requiring 265 skills. This data set contains the largest number of learners, questions, and
+interaction entries (nearly 2.7 million). It is a one‐skill‐per‐question data set, meaning that each
+question requires one skill.
+EdNet: The EdNet data set is newly available to the public.55 Following [12], we randomly
+selected 5000 students who answered 12,372 questions requiring 188 skills, thus obtaining
+347,866 interaction logs. This data set contains the minimum number of attempted items per
+learner (69.57) but the largest number of skills per item among the three data sets.
+As done in existing studies,9,12 we eliminated noise by deleting users with fewer than 10
+interaction entries and questions with “not‐a number” (NaN) skills from the three data sets.
+Table 5 summarizes the statistics of the data sets.
+5.3
+|
+Compared models
+As part of our model evaluation, we competed the model against several state‐of‐the‐art skill‐
+and question–based KT models. The performances of the various models were compared.
+• BKT6 conducts KT using a hidden Markov model, and represents the learner knowledge
+states as a set of binary variables.
+• DKT7 is the first KT model based on a deep neural network. This model treats the learner‐
+knowledge prediction as a sequence learning task and captures the complex representations
+TABLE 5
+Statistics of the three data sets used in this study
+Data set
+Assist0910
+Assist1213
+Ednet
+# of learners
+3002
+22,339
+5000
+# of questions
+17,705
+52,825
+12,372
+# of skills
+123
+265
+188
+# of interaction records
+277,540
+2,672,532
+347,864
+# skills per item
+1.20
+1.00
+2.28
+# questions per skill
+172.33
+199.34
+149.78
+# of attempted items per learner
+92.45
+119.64
+69.57
+2030 |
+GAN ET AL.
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+
+===== PDF PAGE 20 =====
+of student knowledge using the hidden vectors of RNNs. The input is a one‐hot encoding of
+skills.
+• DKVMN8 establishes the learners' knowledge states using an auxiliary memory that aug-
+ments the neural networks. This method embeds the skill information into a key matrix and
+accumulates the temporal information from the learners' exercising sequences. It then infers
+their knowledge states on these skills.
+• KTM9 is a factor analysis model based on the factorization machine. It is a generic framework
+that incorporates the side information into the student model. Learner performance is pre-
+dicted based on a sparse set of weights applied to all features in the samples.
+• DKT‐Q is a variant of DKT that replaces the skills embedding with a one‐hot encoding of
+questions as the input.
+• DKT‐Q&S is a variant of DKT that inputs both the questions and skill representations to
+the DKT.
+• DKT‐CQE is a variant of DKT that inputs our convolutional question embeddings to
+the DKT.
+• GIKT12 is a graph‐based interaction model that learns the question representations from the
+question–skill relation graph using a GCN and conducts KT within the LSTM framework.
+• DAS3H33 is a factor analysis model built on the KTM, it considers item difficulty, student
+ability, skill, and student skill practice history.
+• RKTM35 is a a recurrent knowledge tracing machine model by temporally enriching the
+encoding of KTM and DAS3H with the knowledge state of students.
+• AKT16 is an attentive KT model, it builds context‐aware representations of questions and
+utilizes a novel monotonic attention mechanism to relate a learner's current answers to
+questions to their past responses.
+• CoKT42 enriches the question information into the KT model using a question‐question
+collaborative embedding method.
+• IEKT39 is a single‐state RNN‐based model. It incorporates the learner characteristics into the
+model by considering learners' cognition levels and knowledge acquisition sensitivity on
+questions.
+Among the baseline models, the former three are skill‐based models, in which the KT is
+based on the skills contained in the questions. The latter 10 and the proposed model are
+question‐based models that account for the distinctive question information.
+5.4
+|
+Setup and implementation
+Before conducting the experiments, we extracted 20% of the sequences in the data set as the test
+set and retained the remaining 80% as the training set.
+To embed the nodes in the graph using Metapath2Vec, we set the length of all meta‐paths as
+℘= 7 and the number of paths as ℵ= 100 for each question node in the graph. The em-
+bedding dimension d of the skill and question representations was set to 128. We pretrain these
+embeddings in the graph and obtain the stable results based on Equation (7), and fix them in
+the training and testing process. The final dimension of the convolutional question re-
+presentation was d = 256
+′
+. The size of the hidden layers of the LSTM was set to 256. The other
+hyperparameters were set through grid searching. The embedding matrix of the correctness and
+GAN ET AL.
+|
+2031
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+
+===== PDF PAGE 21 =====
+all parameter matrices in the networks were randomly initialized and updated through the
+training process.
+The model was optimized using Adam optimization of the learning rate on a case‐by‐
+case basis in the three data sets. The norm clipping threshold and batch size were main-
+tained at 10 and 64, respectively. Similarly to the existing models, the sequence length of the
+model input was fixed at 200. Accordingly, the long sequences were divided into several
+short sequences and the short sequences were padded with null symbols to extend their
+length to 200.
+The proposed model was implemented using TensorFlow. Our model was tested over 50
+epochs because it converged over that period. The other baselines were implemented with their
+best parameter settings, as specified in the original works.
+As the evaluation metric, we selected the area under the receiver operating characteristic
+(ROC) curve (AUC), which is widely used in existing studies. An AUC of 0.5 indicates that the
+result is no better than random guessing; the larger the value, the better is the model
+performance.
+6
+|
+RESULTS AND ANALYSIS
+This section presents the experimental results and model analysis. To answer our first research
+question in Section 5.1, Section 6.1 compares the learner‐score prediction performances of our
+proposed KSGKT model and all baseline models. The other five questions are answered in
+relevant model analyses. In Section 6.2.1, the contribution of the embedding learning on the
+KS‐enhanced graph is evaluated in an ablation study and the second question is answered.
+Section 6.2.2 presents the visualization of the question embedding learned on the graph and
+answers the third question. Sections 6.2.3 and 6.2.4 compare the eight methods for KS discovery
+and verify the interpretability of the inferred KS, and the fourth question is answered. To
+answer the fifth and sixth research questions, the contributions of two separate components
+(convolutional question representation and the attention mechanism) are evaluated through
+the ablation studies in Sections 6.2.5 and 6.2.6.
+6.1
+|
+Performance prediction
+The different models were evaluated by their performances in predicting the future learner
+scores from the estimated knowledge state. Table 6 presents the AUC results of all models on
+the three data sets.
+Our model outperformed the other models on all three data sets. Specifically, the AUC
+scores of the KSGKT model were 0.8242, 0.7851, and 0.7754 on the Assist0910, Assist1213,
+and EdNet data sets, respectively, 3.97%, 1.39%, and 2.25%, respectively, above those of the
+state‐of‐the‐art AKT model. Similarly to the original DKT model, our model processes the
+time‐series data using a recurrent neural network framework, but achieved 8.3%, 5.95%, and
+8.65% higher AUCs than the DKT model on the Assist0910, Assist1213, and EdNet data sets,
+respectively.
+The skill‐based BKT model was the worst performer among the models because it tracks
+the mastery of each skill separately, without considering a contextual trial sequence of all
+skills. DKT and DKVMN achieved similar performances and considerably outperformed the
+2032 |
+GAN ET AL.
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License

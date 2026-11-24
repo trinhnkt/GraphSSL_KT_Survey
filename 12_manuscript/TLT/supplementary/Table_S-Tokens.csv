@@ -1,0 +1,47 @@
+token,readable_name,where_used
+MODEL_DEFINED_FIXED,model-defined fixed graph,Graph-KT provenance display
+EXTERNAL_FIXED,external fixed graph,Graph-KT provenance display
+DYNAMIC_LEARNED,dynamically learned graph,Graph-KT provenance display
+JOINTLY_LEARNED_TRAINING,jointly learned during training,eight-value provenance record
+PRECOMPUTED_UNCLEAR_SPLIT,"precomputed graph, split unclear",eight-value provenance record
+TRAIN_ONLY_INFERRED,"train-only graph, inferred",eight-value provenance record
+FULL_DATA_INFERRED,"full-data graph, inferred",eight-value provenance record
+MIXED_PROVENANCE,mixed provenance,eight-value provenance record
+PRETRAINED_TWO_STAGE,"pretrained graph, two-stage",eight-value provenance record
+UNCLEAR,unclear,provenance record
+GNN_GENERIC,generic GNN,encoder family
+GRAPH_RECONSTRUCTION,graph reconstruction,pretext family
+MULTIVIEW_CONTRASTIVE,multi-view contrast,pretext family
+GRAPH_MEMORY,graph memory,encoder family
+GRAPH_OPTIMAL_TRANS,optimal transport on graphs,encoder family
+COOCCURRENCE_SIMILARITY,co-occurrence similarity,graph source
+SEQUENTIAL_TRANSITION,sequential transition,graph source
+DYNAMIC_COOCCURRENCE,dynamic co-occurrence,graph source
+DYNAMIC_GNN,dynamic GNN,encoder family
+HETEROGENEOUS_GNN,heterogeneous GNN,encoder family
+HYPERGRAPH_GNN,hypergraph GNN,encoder family
+CAPSULE_GNN,capsule GNN,encoder family
+SPATIOTEMPORAL_GNN,spatiotemporal GNN,encoder family
+SPARSE_INTERACTION_ONLY,interaction sparsity only,sparse-protocol category
+ITEM_COLD_START,item cold-start,cold-start field
+STRICT_KC_COLD_START,strict KC cold-start,cold-start field
+EXCLUDE_FULLTEXT,exclude at full text,screening decision
+PRIMARY_CORE,primary-core,corpus label
+REPRODUCED,survey-computed,evidence status
+graph_provenance,graph provenance,field name
+graph_source,graph source,field name
+gnn_encoder,GNN encoder,field name
+ssl_family,pretext family,field name
+graph_leakage_risk,graph-leakage risk,field name
+sparse_protocol_category,sparse-protocol category,field name
+sparse_interaction_drop_eval,interaction-drop evaluation,field name
+ece_reported,ECE reported,field name
+strict_kc_cold_start,strict KC cold-start,field name
+item_cold_start,item cold-start,field name
+learner_cold_start,learner cold-start,field name
+NA,not applicable,quality-item code
+NONE,none,code value
+NO,no,code value
+UNCERTAIN,uncertain,screening decision
+UNCLEAR,unclear,code value
+OTHER,other,code value

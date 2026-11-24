@@ -1,0 +1,1102 @@
+
+
+===== PAGE 1 =====
+Contents lists available at ScienceDirect
+Neurocomputing
+journal homepage: www.elsevier.com/locate/neucom
+Self-paced contrastive learning for knowledge tracing
+Huan Dai, Yue Yun, Yupei Zhang, Rui An, Wenxin Zhang, Xuequn Shang ∗
+School of Computer Science, Northwestern Polytechnical University, Xi’an, 710129, China
+A R T I C L E I N F O
+Communicated by J. Gui
+Keywords:
+Knowledge tracing
+Self-paced learning
+Contrastive learning
+Question difficulty ranking
+A B S T R A C T
+Knowledge tracing presents a fundamental research challenge within personalized education, aiming to
+dynamically monitor students’ evolving mastery of individual skills through analysis of their online answer
+data. Noteworthy advancements have been achieved in knowledge tracing models, particularly with the
+integration of deep learning techniques. These models leverage long-short-term memory (LSTM) networks to
+process students’ answer sequences, discern latent skill states, and predict subsequent responses. Nevertheless,
+real-world scenarios introduce a substantial challenge, given the inherent sparsity of student interaction data,
+implying that each student interacts with only a limited number of skills. Deep knowledge tracing models,
+when confronted with sparse data, tend to exhibit a bias towards learning from students with large sample
+sizes, consequently resulting in compromised learning outcomes due to insufficient interaction data. Addressing
+these challenges, this paper introduces an innovative self-paced learning data augmentation approach designed
+to augment the number of student answer sequence samples. Additionally, the paper employs self-supervised
+contrastive learning to strike a balance between local and global information, thereby mitigating the model’s
+inclination to overly focus on local samples. To effectively address the aforementioned challenges, the paper
+proposes a deep knowledge tracing framework grounded in self-paced contrastive learning. The efficacy of
+the self-paced contrastive learning strategy is validated using real datasets, demonstrating superior prediction
+accuracy compared to alternative algorithms.
+1. Introduction
+In recent decades, the concept of intelligent education has gar-
+nered increasing attention. Traditional one-to-many teaching methods
+in classrooms have faced challenges in adapting to the escalating need
+for personalized learning experiences among students. The widespread
+adoption of online education has resulted in the accumulation of a sub-
+stantial repository of continuous student response records. Analyzing
+these records to monitor shifts in students’ comprehension of diverse
+knowledge concepts has become a foundational task in educational data
+mining, prompting the emergence of research in knowledge tracing.
+The primary goal of knowledge tracing is to employ advanced big data
+mining techniques to extract students’ underlying knowledge structures
+from the vast pool of response data [1,2]. Its mathematical representa-
+tion entails predicting the probability 𝑃 (𝑦𝑛+1 = 1|𝑌,𝑞 𝑛+1) of a student
+providing a correct response to the next question, based on their his-
+torical response records𝑌 = [𝑦1,𝑦 2,𝑦 3, …,𝑦𝑛]. Several approaches have
+been proposed to tackle this challenge. For example, Early Bayesian
+Knowledge Tracing (BKT) conceptualized students’ response patterns
+as a hidden Markov process, assuming a binary knowledge state that
+∗ Corresponding author.
+E-mail addresses: daihuan@mail.nwpu.edu.cn (H. Dai), yundayue@mail.nwpu.edu.cn (Y. Yun), ypzhaang@nwpu.edu.cn (Y. Zhang),
+anrui@mail.nwpu.edu.cn (R. An), zwx@nwpu.edu.cn (W. Zhang), shang@nwpu.edu.cn (X. Shang).
+URLs: https://www.researchgate.net/profile/Huan-Dai-3 (H. Dai), https://teacher.nwpu.edu.cn/ypzhang.html (Y. Zhang).
+classifies students’ mastery of each skill as either ‘‘mastered’’ or ‘‘not
+mastered’’ [3,4].
+However, the Bayesian knowledge tracing model encountered sev-
+eral limitations:
+(1) It could only model a single skill, necessitating multiple Bayesian
+models for tracing multiple skills. This significantly impacted the
+computational efficiency of the model;
+(2) The model exclusively considered two knowledge states, mastery
+and non-mastery, neglecting the intermediate Values between
+these extremes. This meant that the model failed to accurately
+capture changes in students’ knowledge status.
+In response to challenges, the deep knowledge tracing model was
+developed to address the issues mentioned above [ 5–7]. This model
+posits a student’s potential knowledge state as a vector, capable of
+simultaneously modeling multiple skills. However, the deep knowledge
+tracing model faces challenges, primarily due to sparse interaction
+data between students and skills in online education. Table 1 presents
+comprehensive statistics, including the total number of students, skills,
+https://doi.org/10.1016/j.neucom.2024.128366
+Received 4 October 2023; Received in revised form 4 June 2024; Accepted 10 August 2024
+Neurocomputing 609 (2024) 128366 
+Available online 13 August 2024 
+0925-2312/© 2024 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies. 
+
+===== PAGE 2 =====
+H. Dai et al.
+Table 1
+Dataset statistics.
+Dataset Statistics
+#students #skills #records #questions per student #Avg skills covered per record
+ASSISTments2009 4151 123 325 637 78 2
+ASSISTments2015 19 840 100 683 801 36 2
+KDDcup2010 574 437 808 775 1409 3
+STATIC2011 333 1223 189 297 568 3
+and student interaction records in each dataset. For every dataset, we
+calculated the average number of question interactions per student and
+the average number of skills involved in a student interaction record.
+The data from Table 1 reveals that each student in a dataset answers
+a substantial number of questions; however, the average interaction
+record encompasses only 2 to 3 skills. This finding underscores the
+sparse interaction between students’ question-answering records and
+the number of skills. Expanding on this statistical overview, Fig. 1
+specifically examines a subset of 50 students randomly chosen from
+the ASSISTment 2009 dataset. The analysis calculates the ratio between
+the total number of questions answered by these selected students and
+the overall number of skills associated with those questions. Fig. 1
+illustrates that the highest ratio is only 0.38, indicating minimal skill
+involvement in a single question. Despite some students answering a
+significant number of questions, these questions only cover a small
+number of skills, resulting in sparse interaction data between students
+and skills. This sparsity not only facilitates an overemphasis on local
+information by deep models during learning but also impedes substan-
+tial improvements in model accuracy due to the limited data within the
+response sequences.
+This paper presents a revolutionary self-paced contrastive learning
+framework that tackles the sparsity issue in student sequence data by
+leveraging self-paced learning [ 8] for data augmentation. To achieve
+this, the framework employs a contrastive learning strategy [ 9] to
+balance global and local information, ultimately enhancing the model’s
+prediction accuracy. Through this approach, the model generates in-
+dividualized encodings for each student. In the data enhancement
+phase, traditional techniques such as sequence masking, subsequence
+replacement, and sequence reordering are employed. Additionally, a
+novel data enhancement method rooted in self-paced sorting is in-
+troduced. This method utilizes self-paced learning to organize skills
+with the underlying assumption that if a student can correctly an-
+swer a challenging skill, they should also be capable of correctly
+answering less challenging ones [ 10]. Consequently, questions related
+to more straightforward skills are substituted for students who answer
+questions correctly, while questions related to more challenging skills
+are substituted for incorrectly answered questions. Following the data
+enhancement process, the contrastive learning method is applied to
+mitigate the disparity between global and local information, ultimately
+enhancing the model’s predictive capabilities.
+Our self-paced contrastive learning strategy has undergone rigor-
+ous evaluation using real-world datasets, demonstrating its superior
+performance over existing methodologies in predicting students’ future
+performance. Notably, the integration of self-paced ranking automates
+the identification of the hierarchy of skill difficulties, providing a
+valuable indicator for personalized education. This contribution not
+only establishes a robust theoretical foundation but also presents a well-
+defined technical framework for smart education. The demonstrated
+success of our approach in real-world scenarios underscores its poten-
+tial to significantly enhance the effectiveness and personalization of
+educational processes.
+The primary contributions of our work can be summarized as fol-
+lows:
+• This is the first to pioneer the integration of self-paced con-
+trastive learning into the field of knowledge tracing research.
+We introduce a data enhancement technique rooted in self-paced
+Fig. 1. Histogram of the ratio of the number of skills to the number of questions
+answered by each of the 50 randomly selected students in the ASSISTment 2009 dataset.
+learning, specifically designed for the domain of educational data
+mining. This innovative approach utilizes self-paced learning to
+autonomously arrange skills by their level of difficulty.
+• We present a novel contrastive loss function tailored to segregate
+the data into two distinct categories. We divided the samples into
+local and global samples based on the ratio of the number of skills
+to the number of questions. The contrastive loss function allocates
+weights to global and local samples to prevent the model from
+getting trapped in local information.
+• We conducted a comprehensive evaluation of our method using
+real-world datasets. The results unequivocally demonstrate its
+effectiveness, showcasing notable improvements when compared
+to existing knowledge tracing techniques.
+2. Related work
+2.1. Deep knowledge tracing
+The Deep Knowledge Tracing (DKT) model was originally intro-
+duced by Piech et al. [ 5]. As a pioneering deep learning solution
+for addressing the knowledge tracing problem. Piech et al. concep-
+tualized the knowledge tracing challenge as managing the sequence
+of students’ responses to questions. They employed Long Short-Term
+Memory Networks (LSTM) [ 11,12] to process this time-series data,
+effectively emulating students’ performance in answering questions and
+ultimately predicting their responses to future questions. LSTM, a type
+of recurrent neural network, plays a central role in simulating student
+performance within the DKT model. It employs a multitude of artificial
+neurons to represent the potential knowledge state, with connections
+between neurons spanning both past and future time steps to capture
+the temporal dynamics of question answering. LSTM leverages the
+student’s historical response data at each time step to learn the student’s
+latent knowledge status and make predictions regarding their ability
+to answer subsequent questions correctly. The DKT model is formally
+defined as follows:
+ℎ𝑡 = tanh (𝑊ℎ𝑥𝑥𝑡 +𝑊ℎℎℎ𝑡−1 +𝑏ℎ
+)
+𝑦𝑡 =𝜎(𝑊𝑦ℎℎ𝑡 +𝑏𝑦
+) (1)
+In Eq. ( 1), both 𝑡𝑎ℎ𝑛 and 𝜎 represent activation functions. The 𝑡𝑎ℎ𝑛
+activation function operates by first multiplying the input element by
+the weight matrix, incorporating the neuron’s information, and subse-
+quently adding the bias weight. The 𝜎 activation function follows the
+Neurocomputing 609 (2024) 128366 
+2 
+
+===== PAGE 3 =====
+H. Dai et al.
+same procedure, involving multiplication by the input weight matrix
+followed by the addition of the bias term.
+The DKT model primarily concentrates on predicting the correct-
+ness of a student’s response to the next question and lacks inherent
+incorporation of educational characteristics [13,14]. This limitation
+poses challenges in effectively interpreting the neural network model.
+Therefore, what distinguishes our approach from the DKT model and
+current tracing models in this chapter is our consideration of automat-
+ically mining question difficulty attributes from the interaction data
+between students and questions, rather than merely calculating the
+average difficulty. This distinction is crucial as it allows our model
+to capture nuanced aspects of question difficulty, providing a more
+insightful and comprehensive understanding of the educational context.
+By automatically extracting difficulty attributes from the interaction
+data, our approach aligns with the nuanced nature of educational
+scenarios, contributing to a more robust and interpretable predictive
+model.
+2.2. Self-paced learning
+Both humans and animals frequently acquire knowledge and skills
+through a structured progression of problems, rather than random
+arrangements [15–17]. These problems typically evolve from simpler
+ones, involving fewer concepts, to more complex ones with a higher
+degree of conceptual intricacy. Inspired by this learning principle, Be-
+gio et al. introduced a novel learning framework known as Curriculum
+Learning [18,19]. The curriculum learning training approach involves
+commencing training with straightforward samples and gradually in-
+troducing more challenging samples for training.
+Subsequently, Kumar et al. translated this concept into a practical
+technique, which they termed Self-paced Learning (SPL). SPL incorpo-
+rates new regularization terms into the learning objectives, facilitating
+an adaptive learning process. The SPL theory has found extensive
+application in various domains, including target tracking [20], image
+classification [21], and multimedia event detection [22].
+2.3. Contrastive learning
+Early developments in contrastive learning stemmed from self-
+supervised learning, where models accomplished self-supervised learn-
+ing goals through instance discrimination tasks [23]. Specifically, con-
+trastive learning involves augmenting the same image differently and
+assessing the similarity between the resulting pairs of images’ features.
+The objective is to enhance the similarity between the augmented pairs
+of the same image while reducing the similarity between features of
+different images.
+As technology progressed, contrastive learning expanded into su-
+pervised and semi-supervised learning paradigms, leveraging annotated
+data to refine models’ feature representation capabilities further. In
+recent years, contrastive learning techniques within deep learning have
+seen remarkable advancements. Notable methods include SimCLR [24],
+MoCo v1 [25], MoCo v2 [26], BYOL [27], and others, often employing
+Siamese neural network architectures. During training, image pairs are
+selected either as pairs of the same image after augmentation (positive
+samples) or pairs of different images after augmentation (negative
+samples).
+Deep contrastive learning, by conducting thorough comparisons be-
+tween positive and negative sample pairs, enables neural network mod-
+els to automatically extract superior feature representations from the
+data. The foundational work of CPC [28] pioneered deep contrastive
+learning, optimizing feature extraction networks by maximizing the
+similarity between predicted and actual results of sequential data. The
+introduction of the InfoNCE loss, widely adopted in current contrastive
+learning research, has further strengthened these techniques.
+Additionally, Khosla et al. introduced the Supervised Contrastive
+Learning loss, extending the principles of contrastive learning to su-
+pervised contexts for enhanced feature representation using labeled
+data [29]. Meanwhile, Chen et al. devised a semi-supervised contrastive
+learning algorithm, initially pretraining all data with contrastive learn-
+ing and subsequently transferring the pre-trained model’s knowledge
+through distillation learning using labeled data [30]. It has proven
+particularly valuable in fields such as face recognition [31], speech
+recognition [32,33], image classification [34,35], and other related
+domains where the quantity of available data may be limited but the
+diversity of categories is significant.
+In educational data mining, student response data is binary and
+lacks the depth and diversity inherent in image, audio, and video
+data. As a result, existing contrastive learning methods do not per-
+form well on educational datasets, highlighting the need for new data
+enhancement methods and fine-grained rules for categorizing posi-
+tive and negative examples. However, from a data-centric standpoint,
+the utilization of ’one-hot’ encoding fails to encapsulate the nuanced
+individual differences among students, as highlighted by previous re-
+search [36]. In this paper, we adopt the concept of contrastive learning
+to derive personalized encodings for individual students. Building on
+the research motivation discussed earlier, the inherent susceptibility of
+the original DKT model to learning local information is acknowledged,
+creating a one-sided model centered solely on a student’s answer his-
+tory. In this study, we address this limitation by subdividing the sample
+data into global and local samples and implementing a contrastive
+learning strategy to mitigate the issue of sample imbalance.
+3. Method
+This chapter offers a comprehensive exploration of the technical
+intricacies of the self-paced contrastive learning strategy. It commences
+with an introduction to the research problem, followed by a detailed
+elucidation of the algorithmic workflow. Subsequently, the specific
+methodology for data augmentation is expounded upon, followed by
+a comprehensive overview of the training strategy and the contrastive
+learning process. The flowchart illustrating the self-paced contrastive
+learning strategy is presented in Fig. 2.
+3.1. Problem description
+The students’ learning history is recorded as a sequence of question-
+answer interactions, which can be denoted as follows: 𝑌 = [𝑦1,𝑦 2, …,
+𝑦𝑛] Here, 𝑛 represents the length of the sequence, and each element
+𝑦𝑡 = (𝑞𝑡,𝑎𝑡) in the sequence represents a question-answer pair. Specif-
+ically, 𝑞𝑡 denotes the question posed at time 𝑡, and 𝑎𝑡 represents the
+student’s response, where 𝑎𝑡 can take on values from the set {0, 1}. In
+this binary representation, 0 signifies that the student answered the
+question incorrectly, while 1 signifies that the student answered the
+question correctly [37].
+The knowledge tracing problem aims to forecast a student’s perfor-
+mance on the upcoming question, denoted as 𝑞𝑡+1, using the sequence
+of their preceding question-answer interactions. In simpler terms, we
+seek to predict 𝑎𝑡+1, which signifies the student’s response to the next
+question𝑞𝑡+1, relying on their historical learning history represented by
+𝑌 .
+𝑃 (𝑎𝑡+1 = 1 ∣ 𝑞𝑡+1,𝑌 ) (2)
+3.2. Model architecture
+Fig. 2 delineates the two primary components of the SPCLKT model:
+Question Difficulty Sorting and the Contrastive Learning Strategy.
+(1) Question Difficulty Sorting : This module serves as the cornerstone
+for data augmentation, employing a self-paced learning approach to au-
+tomatically sort the difficulty of questions based on students’ historical
+learning data. The self-paced learning method is intricately designed
+to augment data during the sorting process, ensuring a more precise
+reflection of students’ learning characteristics. Let us now delve into the
+algorithm for question difficulty ranking based on self-paced learning:
+Neurocomputing 609 (2024) 128366 
+3 
+
+===== PAGE 4 =====
+H. Dai et al.
+Fig. 2. The flowchart of the self-paced contrastive learning strategy.
+To capture the difficulty levels of questions, we introduce a set
+of latent variables that represent various tiers of question difficulty.
+Consequently, the objective function of the question difficulty discovery
+model can be formulated as follows:
+min𝑤,𝑣 𝐸(𝑤,𝑣 ) =
+𝑛∑
+𝑖=1
+𝑣𝑖𝑙𝑡
+𝑖(𝐰) +𝜆𝑡𝑓 (𝑣;𝑡) (3)
+In the provided equation:𝑙𝑡
+𝑖 =𝑙(𝑦T𝛿(𝑠𝑖
+𝑡+1
+),𝑎𝑡+1
+) represents the predic-
+tive loss of student 𝑖 in the 𝑡th iteration. 𝛿(𝑠𝑖𝑡+1
+) denotes the ‘‘One-hot
+Encoding’’ of the student 𝑖’s response to the question at time 𝑡 + 1.𝑎𝑡+1
+represents the true label of the student 𝑖’s response to the question. 𝑦
+signifies the predicted value of the student’s response to the question.𝑤
+stands for the parameters of the learning model. 𝑙𝑡
+𝑖 indicates the binary
+cross-entropy loss of student 𝑖 in the 𝑡th iteration.
+This equation essentially quantifies the predictive loss of each stu-
+dent based on their response predictions 𝑦 and the true labels 𝑎 using
+binary cross-entropy loss. It helps in assessing how well the model’s pre-
+dictions align with the actual student responses, with 𝛿(𝑠𝑖𝑡+1
+) serving
+to encode the student’s responses.
+In Formula (3), 𝑓 (𝑣;𝑡) represents the self-paced regularization op-
+erator. Here, 𝑣 = [ 𝑣1,𝑣 2, …,𝑣𝑛]𝑇 denotes the latent weight variable
+derived from the function 𝑓 (𝑣;𝑡), and 𝜆 is used to denote the decay
+parameter. This equation involves a regularization term that aims to
+guide and control the learning process, with 𝑣 being a vector of latent
+weights influenced by the self-paced regularization operator.
+The self-paced regularization function in Formula ( 3) is given as:
+𝜆𝑡𝑓 (𝑣𝑖;𝑡) =𝜆𝑡
+( 1
+2𝑣2 −𝑣
+)
+(4)
+This function is continuous and smooth, designed for learning the
+difficulty levels of questions. It exhibits convexity for 𝑣 ∈ [0, 1]. Con-
+sequently, when the gradient ∇𝑣𝐸(𝑣) = 0 , the function can attain the
+global minimum. This convexity property makes it suitable for guiding
+the learning process and effectively discovering question difficulties.
+Indeed, by computing Formula (4), you can determine the value of
+𝑣. The optimization process, often involving techniques like gradient
+descent, will seek to find the optimal values of 𝑣 that minimize the
+objective function, thus providing you with the desired values for the
+latent weight variable.
+𝜕𝐸
+𝜕𝑣𝑖
+= 𝓁𝑖 +𝜆𝑡(𝑣 − 1) = 0 (5)
+The closed-form optimal solution for 𝑣𝑖(𝑖 = 1, 2, …,𝑛 ) is:
+𝑣𝑖 =
+{
+1 −
+𝓁𝑡
+𝑖
+𝜆𝑡, 𝓁𝑡
+𝑖 <𝜆 𝑡
+0, 𝓁𝑡
+𝑖 ≥𝜆𝑡 (6)
+The observations from Formulas ( 6) suggest that as the loss gradually
+increases, the weight 𝑣𝑖 decreases progressively. In particular, as 𝓁𝑖
+approaches 0, we have lim𝓁𝑖→0𝑣 = 1, and as 𝓁 approaches infinity, we
+have lim𝓁→∞𝑣 = 0. This indicates that the question difficulty discovery
+model benefits from simpler samples since simpler samples result in
+lower loss values and, consequently, higher weights.
+By obtaining the values of 𝑣, you can determine the difficulty of
+questions. Then, the average difficulty of questions related to the same
+skill can be calculated, effectively establishing the difficulty level of the
+skill. This process facilitates the sorting of skills from easy to difficult,
+which is valuable for educational analysis and knowledge tracing.
+(2) Contrastive Learning Strategy : This module aims to minimize
+the semantic gap between similar learning representations while max-
+imizing the distinction between dissimilar representations. Building
+upon the preceding question of difficulty sorting, a specific method
+is employed to enhance the diversity of representations in students’
+historical data, as elaborated in Section 3.3 . Following the augmenta-
+tion of data, student samples are meticulously categorized into global
+and local samples. Through an encoding-decoding mechanism and the
+application of a contrastive loss function, the model undergoes training
+to derive representations of students’ answer data. Subsequently, these
+processed learning representations are input into a deep knowledge
+tracing model to predict students’ performance in answering questions.
+Additional insights into the contrastive learning strategy are expounded
+upon in Section 3.4.
+3.3. Data augmentation method with self-paced learning
+Given the intricate nature of Knowledge Tracing (KT) tasks and
+the unique semantic characteristics in educational data, applying ex-
+isting data augmentation methods from fields like computer vision and
+natural language processing may not be suitable for student response
+sequences. Therefore, we introduced a novel KT data augmentation
+technique tailored specifically to the educational context. This aug-
+mentation method, named Skill Replacement, is meticulously crafted to
+Neurocomputing 609 (2024) 128366 
+4 
+
+===== PAGE 5 =====
+H. Dai et al.
+ensure that each student’s level of proficiency in their learning history
+remains consistent before and after augmentation. This approach is
+designed to preserve the educational integrity and relevance of the
+data.
+Within the self-paced contrastive learning strategy, we incorporate a
+self-paced learning technique to autonomously assess the difficulty lev-
+els of current skills. When a student correctly answers a particular skill,
+there is a higher likelihood of them answering skills of lower difficulty
+correctly as well. Conversely, if a student answers a skill incorrectly,
+they are more likely to struggle with more challenging skills. Building
+on these insights, we introduce the skill replacement data augmentation
+method, which maintains the student’s mastery of skills consistently,
+even as their response sequence changes. In essence, it ensures that
+the student’s understanding of the skills remains unchanged despite the
+augmentation process.
+Skill Replacement : This method adopts a knowledge structure that
+captures cognitive relationships among learning materials, including
+prerequisites and dependencies. To maintain simplicity, we assume
+that this knowledge structure takes the form of a chain-like directed
+acyclic graph, organized based on question difficulty. Specifically, we
+establish a sequence of questions arranged by the probability of correct
+answers, as calculated from the training data:𝑞(1),𝑞 (2), …,𝑞 (𝑀), where
+𝑀 represents the total number of questions. Here, 𝑞(1) and 𝑞(𝑀)
+correspond to the easiest and most challenging questions, respectively.
+It is important to note that this knowledge structure can be adapted to a
+more intricate form if necessary to represent the underlying educational
+relationships better.
+According to our motivation, we randomly select interactions with
+a probability𝛾. If the student answered those interactions correctly, we
+replaced the questions with easier ones. Conversely, if they answered
+incorrectly, we replace them with more difficult questions. Importantly,
+this process does not fundamentally change the student’s proficiency
+in skills. Given the 𝑐th question 𝑞𝑡 = 𝑞(𝑐) and a positive integer 𝑘,
+we can sample easier questions (𝑞(𝑐 −𝑘)) and more difficult questions
+(𝑞(𝑐 + 𝑘)) based on their respective positions in the difficulty order.
+This replacement method maintains the student’s overall knowledge
+level while introducing variations in question difficulty to simulate real
+learning scenarios.
+3.4. Contrastive learning framework
+The current research problem grapples with challenges associated
+with sparse interactions between students and skills within online
+education datasets, as illustrated in Table 1 and Fig. 1. In these datasets,
+each student has responded to a substantial number of questions,
+yet these questions are distributed over a very limited set of skills.
+Statistical analysis reveals that some students may have answered a
+thousand questions, but these questions are related to only ten skills.
+When deep learning models are tasked with learning the relationship
+between student responses and questions, they tend to favor students
+with a larger number of responses, resulting in an excessive focus on
+local information. This bias towards students with more responses may
+cause the model to overlook the response patterns of students with
+fewer questions, ultimately leading to inaccurate predictions of student
+performance. This underscores a significant challenge in achieving
+accurate knowledge tracing in scenarios characterized by such sparse
+data distributions.
+To mitigate the deep learning model’s overemphasis on local sam-
+ples and to improve its capacity to learn from global samples, this
+paper introduces an innovative contrastive learning strategy. This strat-
+egy serves a dual purpose: it extracts features from student answer
+sequences using contrastive learning while also striking a balance in
+the model’s learning between local and global samples. To tackle the
+problem of sample imbalance, the paper assigns varying weights to
+local and global information. The contrastive loss function used is as
+follows:
+𝑐𝑙 =
+exp(sim(𝑓,𝑧 +) ∕𝜏)
+𝜇∑
+𝑓 ∈ local exp(sim(𝑓,𝑥 −local
+) ∕𝜏) +∑
+𝑓 ∈ overall exp(sim(𝑓,𝑥 -overall
+) ∕𝜏)
+(7)
+In the provided equation: 𝑧+ represents the positive sample of sam-
+ple 𝑓, where the numerator represents the distance between positive
+sample pairs. The denominator is divided into two parts: when 𝑓 is a
+local sample, the first part of the denominator is computed, and when
+𝑓 is a global sample, the second part of the denominator is computed.𝜇
+serves as the weight parameter, responsible for balancing the emphasis
+on local and global information.𝜏 is the temperature parameter, which
+plays a role in controlling the scaling of the loss function.
+This equation encapsulates the contrastive loss function, which
+helps the model extract meaningful features from student answer se-
+quences while ensuring a balanced learning approach between local
+and global samples. The parameters𝜇 and𝜏 are essential in fine-tuning
+the behavior of the loss function and guiding the learning process.
+3.5. Training
+During the model training process, the overall loss function com-
+prises both the prediction loss and the contrastive loss. Consequently,
+the training loss function can be expressed as the sum of these two
+components, which is as follows:
+ = entro +𝜆cl (8)
+4. Experiments
+4.1. Datasets
+In this study, we systematically compare our approach with preva-
+lent knowledge tracing methods using four publicly available educa-
+tion datasets. The objective of these experiments is to predict student
+performance in answering questions. Herein, we provide a concise
+introduction to the public datasets employed in our analysis:
+ASSISTment 2009: This dataset is sourced from the ASSISTment online
+tutoring platform and is extensively utilized for Knowledge Tracing
+(KT) tasks. Our experiments were conducted on the updated ’Skill
+Builder’ dataset, which is known for its sparse nature. This dataset
+encompasses 4151 students who answered 325,637 exercises along
+with 123 distinct exercise tags.
+ASSISTment 2015: This dataset, collected from the ASSISTments edu-
+cational platform in 2015, differs from the 2009 dataset. It is derived
+from a record of interactive sessions, with all such records being in-
+cluded. During preprocessing, records with correct values other than 1
+or 0 were excluded. The resulting dataset encompasses 19,840 students,
+100 exercise items, and 683,801 interactions.
+KDDcup2010: This dataset originates from the KDD Cup 2010 Educa-
+tional Data Mining Challenge. It comprises records of interactions be-
+tween students and computer-aided tutoring systems. In these systems,
+students engage in problem-solving activities, and each interaction
+between the student and the computer is logged as a transaction. The
+tutoring systems involved are the Carnegie Learning Algebra system,
+deployed in 2005–2006 and 2006–2007, and the Bridge to Algebra sys-
+tem, deployed in 2006–2007. This dataset encompasses 1840 students
+with 2289 726 interactions.
+STATIC2011: This dataset is gathered from a university’s engineering
+mechanics course. In this mechanics system, each exercise is composed
+of multiple steps. Given the relatively limited diversity of exercises in
+this dataset, each step of an exercise is treated as a separate input
+for the model. Consequently, exercise IDs and step IDs together serve
+Neurocomputing 609 (2024) 128366 
+5 
+
+===== PAGE 6 =====
+H. Dai et al.
+as inputs, effectively considering different steps of the same exercise
+as distinct input IDs. This dataset encompasses 333 students, 1223
+exercise items, and 189,297 interactions.
+4.2. Comparison methods
+In this experiment, we compare our proposed method with the
+following models, which have been chosen as representative models
+in the development of knowledge tracing.
+(1) DKT Model [ 5]: This model represents pioneering work in ap-
+plying deep learning to knowledge tracing. It utilizes deep re-
+current neural networks to process student response sequences.
+The model takes each student’s response sequence as input and
+predicts the probability of correctly answering the next question.
+(2) DKVMN Model [ 38]: This model builds upon the DKT model and
+addresses the challenge of accurately tracking specific skills mas-
+tered by students. It introduces a key–value memory network,
+where keys are used to store skills and values store information
+about student mastery. The model continuously updates the
+value network based on student response data and subsequently
+predicts the probability of correctly answering future questions.
+This enhancement aims to provide a more precise understanding
+of individual student knowledge.
+(3) SAKT Model [ 37]: This model is designed to address the issue of
+sparse student interaction data for each skill in online education
+datasets, which can lead to reduced prediction accuracy in neu-
+ral network models. The SAKT model introduces a self-attention
+supervised learning strategy. When predicting a student’s perfor-
+mance on the next question, the model evaluates the similarity
+between skills and historical responses. It identifies the most
+similar questions as references before predicting the student’s
+response. This approach aims to enhance prediction accuracy by
+considering the relevance of historical responses to the current
+question.
+(4) ENAS-KT [ 39]: This model addresses limitations in Transform-
+ers for KT by adding convolution operations to enhance local
+context modeling for capturing students’ forgetting behavior. It
+proposes an evolutionary neural architecture search approach to
+automate input feature selection and determine optimal opera-
+tions for balancing local and global context modeling. The search
+space design replaces the original global path in the Transformer
+with a combination of global and local paths containing differ-
+ent convolutions. An effective evolutionary algorithm explores
+the search space, accelerating convergence with a search space
+reduction strategy.
+(5) Q-MCKT [ 40]: This model addresses the issues of incorporating
+individual question information into knowledge tracing and the
+interpretability of prediction results by proposing the Q-MCKT
+framework. It enhances the representation of less-interactive
+questions through a mixture of expert techniques and a fine-
+grained question-centric contrastive task. Additionally, it em-
+ploys an item response theory-based prediction layer to generate
+interpretable prediction results, aiming to improve the model’s
+accuracy and interpretability.
+Experimental Setup: During the data preprocessing phase, in-
+stances with fewer than 20 student interaction records in the dataset
+were omitted. This choice was guided by the reasoning that instances
+with limited interaction data may suggest a lack of active engagement
+from students after logging into the online learning system. Such data
+were considered potential noise that could detrimentally affect the
+model’s learning effectiveness, prompting their exclusion from the
+experimental analysis. The deep model has three hidden layers, each
+comprising 200 neurons. The entire codebase is implemented in Python
+3.
+Fig. 3. Histogram of Student Interactions in the ASSISTment 2009 Dataset. Each bar
+represents the number of data instances falling within the respective ratio range.
+Demarcation Between Global and Local Data: The research ad-
+dressed the important question of distinguishing between global and
+local data within the dataset. In this experiment, using the ASSISTment
+2009 dataset as an example, the following procedure was employed:
+(1) The total number of student responses and skills for each student
+was calculated.
+(2) The ratio of skills to questions was computed, resulting in values
+ranging from 0.02 to 0.3.
+(3) This range was divided into 28 segments, and the number of
+instances falling into each segment was recorded.
+(4) A histogram was constructed based on these tallied instances as
+shown in Fig. 3.
+(5) Cumulative probabilities were calculated for each segment
+within the histogram.
+(6) Segments with cumulative probabilities exceeding 80% were
+identified as representing local information. This implies that
+instances with a skill-to-question ratio greater than or equal to
+0.2 would significantly influence the model’s predictions.
+This method was employed to determine which instances in the dataset
+should be considered as local information, thus aiding in the delin-
+eation between global and local data.
+4.3. Prediction experiments
+Educational Experiment and Evaluation: Predicting students’ fu-
+ture performance in answering questions is a critical task in educa-
+tional data mining. The accuracy of these predictions directly impacts
+the model’s ability to track students’ knowledge states effectively. In
+this experiment, the following evaluation metrics were used to assess
+prediction accuracy:
+(1) AUC (Area Under the Curve): AUC is a measure of the model’s
+ability to distinguish between positive and negative instances. It
+is often used in binary classification tasks [ 41].
+(2) ACC (Accuracy): Accuracy measures the proportion of cor-
+rectly classified instances out of the total instances. It provides a
+straightforward assessment of overall model performance [ 42].
+(3) F1 Score: The F1 score is a metric that combines precision and
+recall, making it suitable for imbalanced datasets. It provides a
+balance between precision (the ability to avoid false positives)
+and recall (the ability to identify true positives) [ 43].
+The experimental results, including AUC, ACC, and F1 scores, are
+presented in Table 2. These metrics are used to evaluate and compare
+the prediction accuracy of the models in the educational context.
+Neurocomputing 609 (2024) 128366 
+6 
+
+===== PAGE 7 =====
+H. Dai et al.
+Table 2
+The accuracy table for predicting students’ future performance in our method and the comparative methods.
+Datasets ASSISTment 2009 ASSISTment2015 KDD Cup2010 STATIC2011
+ACC AUC F1 ACC AUC F1 ACC AUC F1 ACC AUC F1
+DKT 0.78 0.79 0.80 0.75 0.73 0.73 0.76 0.82 0.78 0.81 0.82 0.84
+DKVMN 0.76 0.80 0.82 0.75 0.72 0.81 0.74 0.77 0.76 0.76 0.83 0.84
+SAKT 0.77 0.80 0.81 0.77 0.72 0.79 0.77 0.79 0.78 0.79 0.82 0.83
+ENAS-KT 0.73 0.81 0.81 0.72 0.74 0.81 0.75 0.77 0.82 0.74 0.80 0.83
+Q-MCKT 0.74 0.79 0.80 0.73 0.72 0.75 0.75 0.77 0.79 0.76 0.78 0.82
+SPCLKT 0.80 0.82 0.83 0.79 0.75 0.82 0.81 0.83 0.84 0.83 0.84 0.86
+Observations from Table 2: The results from Table 2 reveal sev-
+eral key findings: (1) Our Strategy Outperforms Other Methods: In
+the majority of instances, the self-paced contrastive learning strategy
+demonstrates superior performance compared to the DKT, DKVMN,
+SAKT, ENAS-KT, and Q-MCKT methods across all evaluation metrics.
+This underscores its heightened predictive capability within the realm
+of educational data. (2) Superior Performance in Sparse Data: Notably,
+in the ASSISTment 2009 dataset, where student interaction data is
+sparser compared to other datasets, the self-paced contrastive learn-
+ing strategy still demonstrates superior predictive performance. This
+highlights the approach’s effectiveness, even when dealing with lim-
+ited interaction data. (3) Justification for Data Augmentation: The
+success of the self-paced contrastive learning strategy suggests that
+the introduction of data augmentation methods specifically tailored to
+educational data into the original KT model is justified. These tailored
+augmentation techniques contribute to improved predictive accuracy.
+(4) Mitigation of Imbalanced Samples: Using a contrastive learning
+strategy has successfully mitigated the impact of imbalanced samples
+on the model. This demonstrates the importance of addressing sample
+imbalance in educational datasets for more accurate predictions.
+Overall, the self-paced contrastive learning method stands out as a
+promising approach for enhancing knowledge tracing and predictive
+performance in educational contexts.
+4.4. Ablation studies and model analysis
+Analysis of Effectiveness and Ablation Study: In this experi-
+ment, we analyzed to evaluate the effectiveness of the self-paced data
+augmentation method and the contrastive learning strategy on the
+STATIC2011 dataset. In the self-augmentation module, questions are
+arranged in ascending order of difficulty, denoted as 𝑞1 < 𝑞2 < 𝑞3... <
+𝑞(𝑀−1) < 𝑞𝑀. If a student answers 𝑞2 incorrectly, there is a higher
+likelihood that the student will answer questions with a difficulty
+level similar to or higher than 𝑞2 incorrectly as well. Consequently,
+questions from 𝑞3 to 𝑞𝑀 are more likely to be answered incorrectly
+by the student. In the experiment, we randomly replaced the student’s
+answer sequence with five questions, augmenting the dataset with
+additional student answer sequences. This analysis involved an ablation
+study of components, systematically testing and evaluating different
+elements to gauge their contributions to the overall model performance.
+This approach aids in comprehending the impact and significance
+of each component in enhancing the model’s effectiveness. Table 3
+illustrates that the model’s performance closely aligns with the original
+DKT model when neither the self-paced augmentation module nor the
+contrastive learning module is incorporated. Furthermore, the table
+indicates that the inclusion of the contrastive learning module has a
+more pronounced impact compared to the self-augmentation module.
+Analysis of Different Data Augmentation Strategies: Due to the
+intricate nature of KT tasks and the distinctive semantic information
+inherent in educational data, the direct application of existing data
+augmentation methods from Computer Vision and Natural Language
+Processing fields may not necessarily enhance the predictive accu-
+racy of DKT models. In this experiment, several data augmentation
+methods are devised to evaluate the effectiveness of our proposed self-
+augmentation technique, which is tailored to better suit the unique
+Table 3
+Experimental table of the impact of different modules in the Self-paced contrastive
+learning strategy on the model.
+id Self-paced enhancement Contrastive updating ACC AUC F1
+i 0.78 0.79 0.80
+ii ✓ 0.79 0.81 0.82
+iii ✓ 0.80 0.82 0.84
+iv ✓ ✓ 0.82 0.84 0.85
+Table 4
+Comparison table of different data augmentation strategies.
+ACC AUC F1
+Masking 0.68 0.75 0.79
+Clipping 0.73 0.78 0.81
+Reordering 0.74 0.79 0.83
+Self-paced 0.79 0.83 0.85
+characteristics of educational data. The data augmentation methods
+compared in this experiment include:
+Answer Sequence Masking: This involves replacing some questions in
+the original history with a special token ‘[mask]’ without altering their
+answers. Specifically, for each example, we randomly mask some ques-
+tions with a probability of 𝛾𝑚𝑎𝑠𝑘. Properly masked learning histories
+can be viewed as noisy points in the original learning history.
+Answer Subsequence Clipping: Random clipping is a commonly used
+data augmentation technique that involves creating random subsets
+of the original data. Clipped data can help machine learning models
+generalize better by providing a localized view of the data distribution.
+Inspired by this, our clipping method from student-question interaction
+data involves extracting a subsequence from the original history of
+answered questions. This subsequence offers a local perspective of the
+entire learning history. For each example, we extract a continuous
+subsequence of length 𝐿𝑐 =𝛾𝑐𝑟𝑜𝑝 ∗𝑁, starting from a randomly chosen
+point.
+Answer Sequence Reordering: The interaction permutation method
+involves reordering interactions within a subsequence of the original
+history. The underlying principle behind the permutation module is
+that the student’s knowledge state represented by the interaction se-
+quence remains similar even when the order within the sequence is al-
+tered. Furthermore, we assume that each student’s proficiency remains
+consistent within an interaction sequence, as a student does not acquire
+additional learning materials while solving questions. For each exam-
+ple, we randomly shuffle a continuous subsequence(𝑠𝑟,𝑠𝑟+1, …,𝑠𝑟+𝐿𝑝−1)
+starting from a random point r of length 𝐿𝑝 =𝛾𝑝𝑒𝑟𝑚 ∗𝑁.
+Table 4 presents the impact of different data augmentation methods
+on the Knowledge Tracing model. From the table, we observe that
+conventional data augmentation methods are not suitable for educa-
+tional data as they fail to increase sample diversity. In contrast, the
+proposed self-augmentation method effectively enhances data diversity
+and improves the model’s predictive accuracy.
+Sensitivity Experiments for Hyperparameters: Tables 5 and 6
+present the outcomes of sensitivity experiments conducted to evaluate
+the influence of two crucial hyperparameters: the balance parameter
+𝜇, controlling the weight assigned to local sample information, and
+Neurocomputing 609 (2024) 128366 
+7 
+
+===== PAGE 8 =====
+H. Dai et al.
+Table 5
+Exploring the influence of the balance parameter 𝜇 in the self-contrastive learning
+strategy.
+𝜇 ACC AUC F1
+0 0.73 0.75 0.79
+0.5 0.74 0.75 0.82
+0.7 0.76 0.82 0.83
+0.99 0.73 0.75 0.78
+0.999 0.72 0.75 0.76
+Table 6
+Exploring the influence of the contrastive learning temperature parameter 𝜏 in the
+self-contrastive learning strategy.
+𝜏 ACC AUC F1
+0.05 0.74 0.76 0.81
+0.10 0.77 0.79 0.82
+0.15 0.79 0.82 0.83
+0.20 0.77 0.79 0.83
+0.25 0.78 0.81 0.82
+the contrastive learning temperature parameter 𝜏, which affects global
+sample information. These experiments entail adjusting these hyper-
+parameters and observing their impact on the model’s performance,
+aiding in the identification of optimal settings. From Table 5, it is evi-
+dent that a larger balancing parameter 𝜇 signifies an increased model
+emphasis on local information, leading to a decrease in performance.
+Hence, maintaining a balance between global and local information
+is imperative. Similarly, a larger temperature parameter 𝜏 does not
+necessarily yield better results, as the experimental outcomes are more
+favorable when 𝜏 is set to 0.15.
+5. Visualization of student knowledge state tracking results
+Smooth Transition in Knowledge Tracing: The self-paced contrastive
+learning strategy exhibits a smooth transition in its knowledge tracing
+results. During the learning process that involves question difficulty, the
+model selects samples with similar question difficulty for training. As
+the student’s knowledge and ability evolve, the model gradually transi-
+tions to training with more challenging question samples. This training
+approach prevents a situation where most of the knowledge levels
+drop simultaneously when a student answers a question incorrectly.
+It ensures a more gradual and accurate representation of students’
+changing knowledge states.
+Variations in Student Ability Levels: Fig. 4 illustrates the fluctuations
+in a student’s ability levels across three distinct skills. The first column
+of the figure represents the student’s initial ability state. As the student
+responds to questions associated with each skill, their ability levels for
+each point undergo gradual changes. Here are some key observations
+from the figure: (1) Dynamic Ability Evolution: The student’s ability
+levels evolve dynamically as they answer questions. When the student
+correctly answers the first question, the mastery level of the second skill
+increases. Conversely, when the student answers the last four questions
+incorrectly, the mastery level of the second skill starts to decline.
+Additionally, after the student answers the sixth question incorrectly,
+the mastery level of the ninth skill also decreases. (2) Identification
+of Mastery: After responding to a total of 36 questions, it becomes
+apparent that the student has not yet mastered the second skill. This
+insight allows educators to focus further learning efforts on the second
+skill until mastery is achieved. This adaptive approach to tracking
+and addressing students’ knowledge gaps is a valuable aspect of the
+educational data mining process.
+6. Analysis of skill difficulty results
+In this section, we present the results of our analysis of question
+difficulty using the self-paced contrastive learning strategy, focusing
+on the ASSISTment2009 dataset. We utilized the weights generated
+by the self-paced learning to visualize variations in students’ knowl-
+edge and skill levels. Fig. 5 illustrates the knowledge skills associated
+with different questions. Here are key insights from this visualiza-
+tion: (1) Relative Question Difficulty: The self-paced strategy assesses
+the relative difficulty of each question for students, considering their
+knowledge and skills. It calculates the average difficulty for each skill,
+offering a measure of its relative difficulty level concerning students’
+knowledge abilities. (2) Learning Recommendations: The visualization
+provides valuable learning recommendations for students. For instance,
+it suggests starting with topics like ’Solving Single-Variable Linear
+Equations’ as an initial step. Subsequently, students can progress to
+tackle skills related to ‘Geometry’ and ’Rational Numbers at a later
+stage. These recommendations are based on the model’s assessment of
+question difficulty and can guide students in their learning journey.
+7. Conclusion
+The paper focuses on addressing the challenges of data sparsity and
+sample imbalance in knowledge tracing tasks through the introduction
+of a novel self-paced contrastive learning strategy. Notably, this work
+represents the pioneering use of self-paced contrastive learning to im-
+prove educational temporal data and handle imbalanced sample data.
+The self-paced contrastive learning strategy begins by employing a self-
+paced regularization term to autonomously rank question difficulty
+levels. Subsequently, question replacement operations are conducted on
+student response temporal sequences based on the following principle:
+if a student correctly answers a question, they are likely to answer
+questions of lower difficulty correctly, and if they answer a question in-
+correctly, they are likely to answer more difficult questions incorrectly.
+These replacements reorganize the order of questions without altering
+the structure of a student’s knowledge mastery.
+Moreover, traditional deep learning models tend to exhibit bias in
+favor of students with larger sample sizes, as these models prioritize stu-
+dents who interact with a limited number of skills in all their attempted
+questions. This bias can lead to models favoring students with more
+extensive data during predictions. To mitigate this issue, the paper
+introduces an innovative contrastive learning strategy. This approach
+first categorizes data into global and local data segments, considering
+the ratio of skills involved in each student’s response sequence relative
+to the total number of questions. In the novel contrastive loss function,
+distinct weights are assigned to global and local data, facilitating deep
+knowledge tracing models in learning from global data information.
+This strategy helps balance the model’s focus between students with
+varying levels of interaction with skills.
+The self-paced contrastive learning strategy we have proposed has
+undergone rigorous experimental validation on publicly available edu-
+cational datasets, showcasing its superiority when compared to existing
+knowledge tracing methods. Notably, the self-paced data augmenta-
+tion component enhances the model’s interpretability by autonomously
+identifying the difficulty levels of questions and skills. This not only
+contributes to the model’s predictive accuracy but also provides valu-
+able technical support for personalized education initiatives.
+In our future work, we intend to explore alternative data augmen-
+tation methods that can be effectively applied in educational contexts.
+Additionally, we aim to enhance the knowledge tracing model by
+considering not only the correctness of responses but also incorporating
+additional online response attributes. These attributes could further
+enhance the model’s predictive accuracy and provide a more com-
+prehensive understanding of student performance in online learning
+environments.
+Neurocomputing 609 (2024) 128366 
+8 
+
+===== PAGE 9 =====
+H. Dai et al.
+Fig. 4. An example of a student’s changing knowledge state on three skills.
+Fig. 5. Illustration of the average difficulty level of skills.
+CRediT authorship contribution statement
+Huan Dai: Writing – review & editing, Writing – original draft, Visu-
+alization, Software, Methodology, Formal analysis, Conceptualization.
+Yue Yun: Software, Resources, Methodology, Formal analysis. Yupei
+Zhang: Writing – original draft, Validation, Supervision, Methodology,
+Funding acquisition. Rui An: Software, Formal analysis, Data curation.
+Wenxin Zhang: Software, Resources, Formal analysis. Xuequn Shang:
+Writing – original draft, Supervision, Funding acquisition.
+Declaration of competing interest
+All authors disclosed no relevant relationships.
+Data availability
+Data will be made available on request.
+Acknowledgments
+This study was funded in part by the National Natural Science
+Foundation of China (U1811262), the Key Research and Development
+Program of China (No. 2020AAA0108500), National Natural Science
+Foundation of China (62272392). Research on Higher Education at
+Northwestern Polytechnical University (No. GJGZZD202202).
+References
+[1] G. Abdelrahman, Q. Wang, B. Nunes, Knowledge tracing: A survey, ACM Comput.
+Surv. 55 (11) (2023) 1–37.
+[2] X. Song, J. Li, T. Cai, S. Yang, T. Yang, C. Liu, A survey on deep learning based
+knowledge tracing, Knowl.-Based Syst. 258 (2022) 110036.
+[3] M.V. Yudelson, K.R. Koedinger, G.J. Gordon, Individualized bayesian knowledge
+tracing models, in: Artificial Intelligence in Education: 16th International Confer-
+ence, AIED 2013, Memphis, TN, USA, July 9-13, 2013. Proceedings 16, Springer,
+2013, pp. 171–180.
+[4] F. Liu, X. Hu, C. Bu, K. Yu, Fuzzy Bayesian knowledge tracing, IEEE Trans. Fuzzy
+Syst. 30 (7) (2021) 2412–2425.
+[5] C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami, L.J. Guibas, J.
+Sohl-Dickstein, Deep knowledge tracing, Adv. Neural Inf. Process. Syst. 28
+(2015).
+[6] S. Minn, Y. Yu, M.C. Desmarais, F. Zhu, J.-J. Vie, Deep knowledge tracing and
+dynamic student classification for knowledge tracing, in: 2018 IEEE International
+Conference on Data Mining, ICDM, IEEE, 2018, pp. 1182–1187.
+[7] X. Song, J. Li, Y. Tang, T. Zhao, Y. Chen, Z. Guan, Jkt: A joint graph
+convolutional network based deep knowledge tracing, Inform. Sci. 580 (2021)
+510–523.
+[8] W. Li, H. Chen, T. Li, J. Wan, B. Sang, Unsupervised feature selection via self-
+paced learning and low-redundant regularization, Knowl.-Based Syst. 240 (2022)
+108150.
+[9] C.-H. Yeh, C.-Y. Hong, Y.-C. Hsu, T.-L. Liu, Y. Chen, Y. LeCun, Decoupled
+contrastive learning, in: European Conference on Computer Vision, Springer,
+2022, pp. 668–684.
+[10] J.H. Block, R.B. Burns, Mastery learning, Rev. Res. Educ. 4 (1976) 3–49.
+[11] Y. Yu, X. Si, C. Hu, J. Zhang, A review of recurrent neural networks: LSTM cells
+and network architectures, Neural Comput. 31 (7) (2019) 1235–1270.
+[12] K. Smagulova, A.P. James, A survey on LSTM memristive neural network
+architectures and applications, Eur. Phys. J. Spec. Top. 228 (10) (2019)
+2313–2324.
+[13] K. Nagatani, Q. Zhang, M. Sato, Y.-Y. Chen, F. Chen, T. Ohkuma, Augmenting
+knowledge tracing by considering forgetting behavior, in: The World Wide Web
+Conference, 2019, pp. 3101–3107.
+[14] A. Ghosh, N. Heffernan, A.S. Lan, Context-aware attentive knowledge tracing, in:
+Proceedings of the 26th ACM SIGKDD International Conference on Knowledge
+Discovery & Data Mining, 2020, pp. 2330–2339.
+[15] M. Kumar, B. Packer, D. Koller, Self-paced learning for latent variable models,
+Adv. Neural Inf. Process. Syst. 23 (2010).
+[16] J.G. Tullis, A.S. Benjamin, On the effectiveness of self-paced learning, J. Mem.
+Lang. 64 (2) (2011) 109–118.
+[17] E. Jung, R. Lim, D. Kim, A schema-based instructional design model for self-paced
+learning environments, Educ. Sci. 12 (4) (2022) 271.
+[18] Y. Bengio, J. Louradour, R. Collobert, J. Weston, Curriculum learning, in:
+Proceedings of the 26th Annual International Conference on Machine Learning,
+2009, pp. 41–48.
+[19] P. Soviany, R.T. Ionescu, P. Rota, N. Sebe, Curriculum learning: A survey, Int.
+J. Comput. Vis. 130 (6) (2022) 1526–1565.
+[20] Y. Ge, F. Zhu, D. Chen, R. Zhao, et al., Self-paced contrastive learning with
+hybrid memory for domain adaptive object re-id, Adv. Neural Inf. Process. Syst.
+33 (2020) 11309–11321.
+[21] L. Li, K. Zhao, J. Gan, S. Cai, T. Liu, H. Mu, R. Sun, Robust adaptive semi-
+supervised classification method based on dynamic graph and self-paced learning,
+Inf. Process. Manage. 58 (1) (2021) 102433.
+[22] W. Xu, W. Liu, H. Chi, S. Qiu, Y. Jin, Self-paced learning with privileged
+information, Neurocomputing 362 (2019) 147–155.
+[23] J. Gui, T. Chen, J. Zhang, Q. Cao, Z. Sun, H. Luo, D. Tao, A survey on self-
+supervised learning: Algorithms, applications, and future trends, 2023, arXiv
+preprint arXiv:2301.05712.
+[24] P. Wang, K. Han, X.-S. Wei, L. Zhang, L. Wang, Contrastive learning based hybrid
+networks for long-tailed image classification, in: Proceedings of the IEEE/CVF
+Conference on Computer Vision and Pattern Recognition, 2021, pp. 943–952.
+[25] K. He, H. Fan, Y. Wu, S. Xie, R. Girshick, Momentum contrast for unsupervised
+visual representation learning, in: Proceedings of the IEEE/CVF Conference on
+Computer Vision and Pattern Recognition, 2020, pp. 9729–9738.
+[26] X. Chen, H. Fan, R. Girshick, K. He, Improved baselines with momentum
+contrastive learning, 2020, arXiv preprint arXiv:2003.04297 .
+Neurocomputing 609 (2024) 128366 
+9 
+
+===== PAGE 10 =====
+H. Dai et al.
+[27] J.-B. Grill, F. Strub, F. Altché, C. Tallec, P. Richemond, E. Buchatskaya, C.
+Doersch, B. Avila Pires, Z. Guo, M. Gheshlaghi Azar, et al., Bootstrap your own
+latent-a new approach to self-supervised learning, Adv. Neural Inf. Process. Syst.
+33 (2020) 21271–21284.
+[28] A.v.d. Oord, Y. Li, O. Vinyals, Representation learning with contrastive predictive
+coding, 2018, arXiv preprint arXiv:1807.03748 .
+[29] P. Khosla, P. Teterwak, C. Wang, A. Sarna, Y. Tian, P. Isola, A. Maschinot, C.
+Liu, D. Krishnan, Supervised contrastive learning, Adv. Neural Inf. Process. Syst.
+33 (2020) 18661–18673.
+[30] T. Chen, S. Kornblith, K. Swersky, M. Norouzi, G.E. Hinton, Big self-supervised
+models are strong semi-supervised learners, Adv. Neural Inf. Process. Syst. 33
+(2020) 22243–22255.
+[31] Y. Yang, W. Hu, H. Lin, H. Hu, Robust cross-domain pseudo-labeling and con-
+trastive learning for unsupervised domain adaptation NIR-VIS face recognition,
+IEEE Trans. Image Process. (2023).
+[32] L. Sun, N. Yolwas, L. Jiang, A method improves speech recognition with
+contrastive learning in low-resource languages, Appl. Sci. 13 (8) (2023) 4836.
+[33] X. Shen, X. Huang, S. Zou, X. Gan, Multimodal knowledge-enhanced interactive
+network with mixed contrastive learning for emotion recognition in conversation,
+Neurocomputing (2024) 127550.
+[34] Q. Liu, J. Peng, N. Chen, W. Sun, Y. Ning, Q. Du, Category-specific prototype self-
+refinement contrastive learning for few-shot hyperspectral image classification,
+IEEE Trans. Geosci. Remote Sens. (2023).
+[35] P. Wang, K. Han, X.-S. Wei, L. Zhang, L. Wang, Contrastive learning based hybrid
+networks for long-tailed image classification, in: Proceedings of the IEEE/CVF
+Conference on Computer Vision and Pattern Recognition, 2021, pp. 943–952.
+[36] A. Khan, S.K. Ghosh, Student performance analysis and prediction in classroom
+learning: A review of educational data mining studies, Educ. Inf. Technol. 26
+(2021) 205–240.
+[37] S. Pandey, G. Karypis, A self-attentive model for knowledge tracing, 2019, arXiv
+preprint arXiv:1907.06837.
+[38] J. Zhang, X. Shi, I. King, D.-Y. Yeung, Dynamic key-value memory networks
+for knowledge tracing, in: Proceedings of the 26th International Conference on
+World Wide Web, 2017, pp. 765–774.
+[39] S. Yang, X. Yu, Y. Tian, X. Yan, H. Ma, X. Zhang, Evolutionary neural architecture
+search for transformer in knowledge tracing, Adv. Neural Inf. Process. Syst. 36
+(2024).
+[40] H. Zhang, Z. Liu, C. Shang, D. Li, Y. Jiang, A question-centric multi-experts
+contrastive learning framework for improving the accuracy and interpretability
+of deep sequential knowledge tracing models, 2024, arXiv preprint arXiv:2403.
+07322.
+[41] J. Myerson, L. Green, M. Warusawitharana, Area under the curve as a measure
+of discounting, J. Exp. Anal. Behav. 76 (2) (2001) 235–243.
+[42] S. Makridakis, Accuracy measures: theoretical and practical concerns, Int. J.
+Forecast. 9 (4) (1993) 527–529.
+[43] D. Chicco, G. Jurman, The advantages of the matthews correlation coefficient
+(MCC) over F1 score and accuracy in binary classification evaluation, BMC
+Genom. 21 (1) (2020) 1–13.
+Huan Dai graduated from Chang’an University in Xi’an,
+China, and is currently studying for a PhD at the School
+of Computer Science at Northwestern Polytechnical Uni-
+versity. Her main research direction is the application of
+machine learning in educational big data mining, including
+student cognitive diagnosis, knowledge tracking, and other
+fields. She has published many papers mainly at artificial
+intelligence education conferences such as EDM and AIED.
+Yue Yun graduated from Xi’an University of Electronic
+Science and Technology of China with a bachelor’s de-
+gree and is currently pursuing a PhD at the School of
+Computer Science at Northwestern Polytechnical University.
+His main research directions include machine learning,
+educational big data mining, personalized learning path
+recommendation, reinforcement learning, and Markov se-
+quential decision-making. He is committed to promoting
+the application of reinforcement learning technology in real
+education recommendation scenarios.
+Yupei Zhang is currently a permanent associate professor
+in the Department of Science and Software, School of
+Computer Science, Northwestern Polytechnical University, a
+member of the International Educational Data Mining Asso-
+ciation, a member of the International Learning Analytics
+Association, and a member of the IEEE Association. His
+research interests include large-scale data science analysis,
+scientific research and engineering tool construction (deep
+learning, machine learning, and statistical learning), and
+theoretical computing foundations.
+Rui An graduated with a master’s degree from Northwestern
+Polytechnical University in Xi’an, China. She is currently
+working towards a PhD with the School of Computer Sci-
+ence at Northwestern Polytechnical University. Her research
+interests include Educational Data Mining, Time Series
+Analysis, and Causal Discovery.
+Wenxin Zhang graduated from Northwestern Polytechnical
+University with a bachelor’s degree and a master’s degree
+and is now studying for a doctorate at Northwestern Poly-
+technical University. His main research direction is the
+application of machine learning and deep learning in ed-
+ucational big data mining, focusing on knowledge tracking,
+incremental knowledge tracking, and other fields.
+Xuequn Shang is a professor at Northwestern Polytechnical
+University, a national leading CJ scholar, and currently the
+dean of the School of Computer Science at Northwestern
+Polytechnical University. She has been engaged in big data
+management and analysis research and system development
+for a long time. Her main research fields are data mining,
+machine learning, big data, bioinformatics, etc. She has
+published more than 100 papers in important domestic and
+foreign academic journals and authoritative international
+academic conferences such as Nature Communications, Cell
+Reports, Briefings in Bioinformatics, Bioinformatics, IJCV,
+TMM, ICDE, IJCAI, AAAI, etc.
+Neurocomputing 609 (2024) 128366 
+10 

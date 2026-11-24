@@ -1,0 +1,9 @@
+encoder_group,Q-matrix/expert-authored,Log-derived,Architecture-defined,External,Dynamic-learned,row_total
+GCN/generic,1,3,2,3,3,12
+Heterogeneous,0,3,3,1,0,7
+GAT,1,1,0,1,1,4
+Hypergraph,0,2,0,0,0,2
+Dynamic GNN,0,0,0,0,2,2
+None (no GNN),1,0,0,2,0,3
+Other,0,1,1,1,3,6
+col_total,3,10,6,8,9,36

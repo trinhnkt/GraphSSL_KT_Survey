@@ -1,0 +1,21 @@
+paper_id,model,draft_id,S_criterion,ssl_family,graph_provenance,gnn_encoder,strict_kc_cold_start,item_cold_start,learner_cold_start,ece_reported,locator,note
+KT004,GKT,AI_DRAFT_NOT_IRR,N,NONE,MODEL_DEFINED_FIXED,GNN_GENERIC,NO,NO,NO,NO,p.2 GNN; p.4 dense/transition; p.4 VAE/NRI,VAE/NRI learns edges; not a KT contrastive pretext. No ECE/cold-start string.
+KT011,Bi-CLKT,AI_DRAFT_NOT_IRR,Y,MULTIVIEW_CONTRASTIVE,MODEL_DEFINED_FIXED,GCN,NO,NO,NO,NO,p.1-3 SSL; p.5 co-occur; p.6 GCN,Two-layer exercise/concept contrastive. Exclusive family = multi-view.
+KT014,PDKT-C,AI_DRAFT_NOT_IRR,N,NONE,EXTERNAL_FIXED,NONE,NO,NO,NO,NO,p.1-3 prerequisite; p.3-5 GRU,Expert prerequisite as GRU regularizer. No GNN.
+KT026,PEBG,AI_DRAFT_NOT_IRR,Y,GRAPH_RECONSTRUCTION,MODEL_DEFINED_FIXED,NONE,NO,NO,NO,NO,p.2 bipartite; p.3 L1-L4,L1 recovers rij. Next-item 'new question' is not a hold-out. No GNN in extract.
+KT031,KSG-AKT,AI_DRAFT_NOT_IRR,N,NONE,EXTERNAL_FIXED,OTHER,NO,NO,NO,NO,p.3 Q-matrix; p.7 Metapath2Vec,Metapath2Vec + expert Q-matrix. PEBG only in related work. Encoder not GCN.
+KT035,HHSKT,AI_DRAFT_NOT_IRR,N,NONE,MODEL_DEFINED_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,p.2 hetero GNN; p.8 60/20/20,CV split is not zero-exposure KC.
+KT037,CMKT,AI_DRAFT_NOT_IRR,N,NONE,EXTERNAL_FIXED,NONE,NO,NO,NO,NO,p.1 concept map + RNN,Map as constraints + embedding. No GNN named.
+KT038,DyGKT,AI_DRAFT_NOT_IRR,N,NONE,DYNAMIC_LEARNED,DYNAMIC_GNN,NO,NO,NO,NO,p.1-2 dynamic QA graph,Unseen-question sentence is motivation; no hold-out protocol in extract.
+KT039,CL4KT,AI_DRAFT_NOT_IRR,Y,SEQUENCE_CONTRASTIVE,NA,NONE,NO,NO,NO,NO,p.3 CL4KT; p.4 Transformer; p.9 calib plot,Sequence contrast. DAG only for Repl aug. Calibration figure is not ECE string.
+KT042,S2-HHN,AI_DRAFT_NOT_IRR,Y,MULTIVIEW_CONTRASTIVE,MODEL_DEFINED_FIXED,HYPERGRAPH_GNN,NO,NO,NO,NO,p.2-3 multi-view CL; p.2 long-tail,Long-tail prose is not a coded hold-out.
+KT043,3V-CLKT,AI_DRAFT_NOT_IRR,Y,MULTIVIEW_CONTRASTIVE,MODEL_DEFINED_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,p.1-2 TCL4KT three-view,Weighted heterogeneous graph + pretext.
+KT044,SINKT,AI_DRAFT_NOT_IRR,N,NONE,EXTERNAL_FIXED,GAT,NO,YES,NO,NO,p.2 LLM graph; p.4 GAT; p.7 remove 1/4 Q,LLM graph + inductive. S=N (no SINKT pretext). §5.5 holds out questions not a stated KC-zero split.
+KT047,DC-SSL,AI_DRAFT_NOT_IRR,Y,GRAPH_CONTRASTIVE,MODEL_DEFINED_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,p.2 two-channel CL,Contrast between DHGN channels.
+KT050,GraphCA,AI_DRAFT_NOT_IRR,Y,GRAPH_CONTRASTIVE,MODEL_DEFINED_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,p.1-3 hetero GCN + CF CL,Counterfactual contrastive. Cold-start hit is a recsys citation.
+KT066,HyperKT,AI_DRAFT_NOT_IRR,Y,MULTIVIEW_CONTRASTIVE,MODEL_DEFINED_FIXED,HYPERGRAPH_GNN,NO,NO,NO,NO,p.1-2 cross-view CL,Hypergraph views vs line-graph views.
+KT068,HKT,AI_DRAFT_NOT_IRR,Y,GRAPH_CONTRASTIVE,EXTERNAL_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,p.2 expert KHT; p.7 hier. CL,Primary exclusive family = graph contrastive; reconstruction also present.
+KT070,Coda,AI_DRAFT_NOT_IRR,N,NONE,MODEL_DEFINED_FIXED,GCN,NO,NO,NO,NO,p.1-4 code GCN; p.7 70/10/20,Denoising adaptor + CodeBERT. Not a KT pretext.
+KT076,KGNN-KT,AI_DRAFT_NOT_IRR,N,NONE,EXTERNAL_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,p.1 LLM KG; p.4 RGCN; p.7 BCE,Scan. BCE+L2. 7:2:1 split / graph ablation ≠ KC hold-out.
+KT077,R2GCurL,AI_DRAFT_NOT_IRR,N,NONE,DYNAMIC_LEARNED,DYNAMIC_GNN,NO,NO,NO,NO,p.1-8 dynamic bipartite; RL curriculum,Curriculum/RL. Contrastive only in references.
+KT079,STG-SKT,AI_DRAFT_NOT_IRR,N,NONE,DYNAMIC_LEARNED,SPATIOTEMPORAL_GNN,NO,NO,NO,NO,p.2-4 streaming hetero graph,Cited sequential CL is another paper.

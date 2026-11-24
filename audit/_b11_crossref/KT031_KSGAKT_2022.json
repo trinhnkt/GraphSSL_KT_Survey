@@ -1,0 +1,75 @@
+{
+  "title": [
+    "Knowledge structure enhanced graph representation learning model for attentive knowledge tracing"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0003-3342-5534",
+      "authenticated-orcid": false,
+      "given": "Wenbin",
+      "family": "Gan",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "National Institute of Informatics Sokendai, Tokyo Japan"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yuan",
+      "family": "Sun",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "National Institute of Informatics Sokendai, Tokyo Japan"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yi",
+      "family": "Sun",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Computer Science and Technology University of Chinese Academy of Sciences Beijing China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2021,
+        11,
+        24
+      ]
+    ]
+  },
+  "container-title": [
+    "International Journal of Intelligent Systems"
+  ],
+  "volume": "37",
+  "issue": "3",
+  "page": "2012-2045",
+  "publisher": "Wiley",
+  "DOI": "10.1002/int.22763",
+  "type": "journal-article"
+}

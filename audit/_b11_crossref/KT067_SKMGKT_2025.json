@@ -1,0 +1,87 @@
+{
+  "title": [
+    "Graph-based effective knowledge tracing via subject knowledge mapping"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0009-0006-0378-0462",
+      "authenticated-orcid": false,
+      "given": "Ziyan",
+      "family": "Yang",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Jia",
+      "family": "Hu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Shaochun",
+      "family": "Zhong",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Lan",
+      "family": "Yang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Geyong",
+      "family": "Min",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2024,
+        12,
+        10
+      ]
+    ]
+  },
+  "container-title": [
+    "Education and Information Technologies"
+  ],
+  "volume": "30",
+  "issue": "7",
+  "page": "9813-9840",
+  "publisher": "Springer Science and Business Media LLC",
+  "DOI": "10.1007/s10639-024-13069-0",
+  "type": "journal-article"
+}

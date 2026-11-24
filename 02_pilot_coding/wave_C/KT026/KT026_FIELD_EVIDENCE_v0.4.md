@@ -1,5 +1,9 @@
 # KT026 Field-Level Evidence Table (v0.4 PILOT)
 
+> **Historical artifact — rows retained.**  
+> `E026_005` (`S_criterion=NO`, generic pretraining) and `E026_016` (`ssl_family=NONE`) are **not** the current codes.  
+> Current: `KT026_FIELD_EVIDENCE_v1.1.md` (`S_criterion=YES`). This file is kept so the pilot decision remains auditable. Not a SCOPE / `_LOCKED` change.
+
 This document contains the long-form field-level evidence records for paper **KT026**, satisfying the schema required in Section 2 of `coding_codebook_v0.4_PILOT.md`.
 
 ## Schema

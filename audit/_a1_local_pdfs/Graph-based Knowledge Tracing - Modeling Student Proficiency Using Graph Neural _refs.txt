@@ -1,0 +1,160 @@
+WI ’19, October 14–17, 2019, Thessaloniki, Greece
+Nakagawa, et al.
+GKT is a generic algorithm that completes the previous algorithms
+such as DKT, GKT can also be effective in various subjects. However,
+different subjects can exhibit different latent graph structures; thus,
+we must compare the effect of subjects to our model, e.g., what type
+of graph is appropriate for predicting student performance or can
+be obtained from the learning-based approaches.
+5.3
+Incorporating Richer GNN Architectures
+We proposed the first GNN-based knowledge tracing method and
+validated relatively simple architectures. In the following, we dis-
+cuss three directions to improve our model.
+One is imposing appropriate constraints for information prop-
+agation between nodes based on their edge types. In this study,
+for a fair comparison, we defined two types of edges for both the
+statistics-based and learning-based approaches. However, we did
+not impose any constraint for each node type; therefore, the mean-
+ing for each node type such as dependency direction and causality
+may be slight, especially for the learned edges. A solution to this is
+to impose some constraints for information propagation between
+nodes based on their edge types, e.g., defining directions for edges
+and limit propagation to only one direction, from source nodes to
+target nodes. Additionally, this can serve as a relational inductive
+bias and improve the sample efficiency and interpretability of GKT.
+Another is incorporating a hidden state common to all concepts,
+such as that of DKT, into GKT. Although adopting only a single
+hidden vector to represent the student knowledge state complicated
+the modeling of complex interactions between concepts in DKT,
+adding this type of representation to GKT could improve the per-
+formance by serving as global features [2]. Global features imply
+the features common for each node and can represent knowledge
+states common across variable concepts or the student’s original
+intelligence invariant to individual concept understandings.
+The last possible solution is implementing multihop propagation.
+In this study, we limited the propagation to a single hop, i.e., the
+information of answering a certain node is propagated only to its
+neighboring node at one time step. However, to effectively model
+the human learning mechanism, using multiple hops will be more
+appropriate. Additionally, this can enable the model to learn the
+sparse connections, because the model can propagate features to
+distant nodes without connecting to other nodes.
+6
+CONCLUSION
+We proposed a GNN-based knowledge tracing method called GKT,
+which considers the latent knowledge structure that has been ig-
+nored by the previous deep learning-based methods. Casting the
+knowledge structure as a graph, we reformulated the knowledge
+tracing task as an application of the GNN. Empirical validations
+on two open datasets indicated that our method could potentially
+improve the prediction of student proficiency and demonstrated
+highly interpretable predictions than those of the previous methods.
+These results confirmed the potential of our method in enhancing
+knowledge tracing performance and the possibility of its applica-
+tion to real educational environments. We believe this work could
+help improve the learning experience of students in diverse settings.
+REFERENCES
+[1] Peter Battaglia, Razvan Pascanu, Matthew Lai, Danilo Jimenez Rezende, et al.
+2016. Interaction networks for learning about objects, relations and physics. In
+Advances in neural information processing systems. 4502–4510.
+[2] Peter W Battaglia, Jessica B Hamrick, Victor Bapst, Alvaro Sanchez-Gonzalez,
+Vinicius Zambaldi, Mateusz Malinowski, Andrea Tacchetti, David Raposo, Adam
+Santoro, Ryan Faulkner, et al. 2018. Relational inductive biases, deep learning,
+and graph networks. arXiv preprint arXiv:1806.01261 (2018).
+[3] Zhengdao Chen, Lisha Li, and Joan Bruna. 2018. Supervised Community Detec-
+tion with Line Graph Neural Networks. (2018).
+[4] Kyunghyun Cho, Bart Van Merriënboer, Caglar Gulcehre, Dzmitry Bahdanau,
+Fethi Bougares, Holger Schwenk, and Yoshua Bengio. 2014. Learning phrase
+representations using rnn encoder-decoder for statistical machine translation.
+arXiv preprint arXiv:1406.1078 (2014).
+[5] Albert T Corbett and John R Anderson. 1994. Knowledge tracing: Modeling the
+acquisition of procedural knowledge. User Modeling and User-adapted Interaction
+4, 4 (1994), 253–278.
+[6] Alex Fout, Jonathon Byrd, Basir Shariat, and Asa Ben-Hur. 2017. Protein interface
+prediction using graph convolutional networks. In Advances in Neural Information
+Processing Systems. 6530–6539.
+[7] Justin Gilmer, Samuel S Schoenholz, Patrick F Riley, Oriol Vinyals, and George E
+Dahl. 2017. Neural message passing for quantum chemistry. arXiv preprint
+arXiv:1704.01212 (2017).
+[8] Marco Gori, Gabriele Monfardini, and Franco Scarselli. 2005. A new model for
+learning in graph domains. In Neural Networks, 2005. IJCNN’05. Proceedings. 2005
+IEEE International Joint Conference on, Vol. 2. IEEE, 729–734.
+[9] Will Hamilton, Zhitao Ying, and Jure Leskovec. 2017. Inductive representation
+learning on large graphs. In Advances in Neural Information Processing Systems.
+1024–1034.
+[10] Sergey Ioffe and Christian Szegedy. 2015. Batch normalization: Accelerating
+deep network training by reducing internal covariate shift.
+arXiv preprint
+arXiv:1502.03167 (2015).
+[11] Diederik Kingma and Jimmy Ba. 2014. Adam: A method for stochastic optimiza-
+tion. arXiv preprint arXiv:1412.6980 (2014).
+[12] Diederik P Kingma and Max Welling. 2013. Auto-encoding variational bayes.
+arXiv preprint arXiv:1312.6114 (2013).
+[13] Thomas Kipf, Ethan Fetaya, Kuan-Chieh Wang, Max Welling, and Richard
+Zemel. 2018. Neural relational inference for interacting systems. arXiv preprint
+arXiv:1802.04687 (2018).
+[14] Thomas N Kipf and Max Welling. 2016. Semi-supervised classification with graph
+convolutional networks. arXiv preprint arXiv:1609.02907 (2016).
+[15] Alex Krizhevsky, Ilya Sutskever, and Geoffrey E Hinton. 2012. Imagenet classifica-
+tion with deep convolutional neural networks. In Advances in neural information
+processing systems. 1097–1105.
+[16] Chris J Maddison, Andriy Mnih, and Yee Whye Teh. 2016. The Concrete Distri-
+bution: A Continuous Relaxation of Discrete Random Variables. arXiv preprint
+arXiv:1611.00712 (2016).
+[17] Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran Sahami,
+Leonidas J Guibas, and Jascha Sohl-Dickstein. 2015. Deep knowledge tracing. In
+Advances in Neural Information Processing Systems. 505–513.
+[18] Alvaro Sanchez-Gonzalez, Nicolas Heess, Jost Tobias Springenberg, Josh Merel,
+Martin Riedmiller, Raia Hadsell, and Peter Battaglia. 2018.
+Graph net-
+works as learnable physics engines for inference and control. arXiv preprint
+arXiv:1806.01242 (2018).
+[19] J.
+Stamper,
+A.
+Niculescu-Mizil,
+S.
+Ritter,
+G.J.
+Gordon,
+and
+K.R
+Koedinger.
+2010.
+Bridge
+to
+Algebra
+2006-2007.
+Development
+data
+set
+from
+KDD
+Cup
+2010
+Educational
+Data
+Mining
+Challenge.
+http://pslcdatashop.web.cmu.edu/KDDCup/downloads.jsp.
+[20] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. Attention is all
+you need. In Advances in Neural Information Processing Systems. 5998–6008.
+[21] Petar Velickovic, Guillem Cucurull, Arantxa Casanova, Adriana Romero, Pietro
+Lio, and Yoshua Bengio. 2017.
+Graph attention networks.
+arXiv preprint
+arXiv:1710.10903 1, 2 (2017).
+[22] Lisa Wang, Angela Sy, Larry Liu, and Chris Piech. 2017. Deep knowledge tracing
+on programming exercises. In Proceedings of the Fourth (2017) ACM Conference
+on Learning@ Scale. ACM, 201–204.
+[23] Xiaolong Wang, Ross Girshick, Abhinav Gupta, and Kaiming He. 2018. Non-local
+neural networks. In Proceedings of the IEEE Conference on Computer Vision and
+Pattern Recognition. 7794–7803.
+[24] Ronald J Williams and David Zipser. 1989. A learning algorithm for continually
+running fully recurrent neural networks. Neural computation 1, 2 (1989), 270–280.
+[25] Jiani Zhang, Xingjian Shi, Irwin King, and Dit-Yan Yeung. 2016. Dynamic Key-
+Value Memory Network for Knowledge Tracing. arXiv preprint arXiv:1611.08108
+(2016).
+163

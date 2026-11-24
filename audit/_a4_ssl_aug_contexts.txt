@@ -1,0 +1,299 @@
+
+######## KT011 exists=True ########
+
+--- KT011 p.1 hits=3 ---
+comparative learning scheme based on an “exercise-to-exercise” (E2E) relational subgraph. It involves node-level contrastive learning of subgraphs to obtain discriminative representations 
+cise” (E2E) relational subgraph. It involves node-level contrastive learning of subgraphs to obtain discriminative representations of exercises, and graph-level contrastive learning to obt
+tion performance. Also, we explored two diﬀerent variants, using RNN and memory-augmented neural networks as the prediction layer for comparison to obtain better representations of exerci
+
+--- KT011 p.3 hits=2 ---
+uish between diﬀerent problems under the same concept. DHKT, on the other hand, augments DKT by using relationships between problems and skills to ob- tain a representation of the exercis
+the embed- ding of nodes of the graph into a latent space through GNN, and then reconstruct the structure and properties of the original graph through the learned representations. 3 
+
+--- KT011 p.4 hits=2 ---
+d the original graph step by step. The learned representations are then used to reconstruct the original diagram. These representations encode the structural and attribute fea- tures of the o
+fea- tures of the original graph. Contrastive learning, on the other hand, uses augmentation methods to structurally disrupt the input data, separating out the predicted ob- jects and cor
+
+--- KT011 p.5 hits=5 ---
+mple 1. As shown in Figure 1, we constructed an example of an exercise inﬂuence subgraph by assuming a high degree of similarity in the questions that a student can answer correctly at the
+ode. In turn, the properties of diﬀerent concepts are reﬂected between diﬀerent subgraphs. They represent “exercise-to-exercise” (E2E) and “concept-to-concept” (C2C) relational information
+pts. We, therefore, ﬁll this gap by using the construction of exercise inﬂuence subgraphs, with nodes connecting diﬀerent exercises to each other and subgraphs connecting diﬀerent concepts
+ inﬂuence subgraphs, with nodes connecting diﬀerent exercises to each other and subgraphs connecting diﬀerent concepts to each other. By building an exercise inﬂuence subgraph, we can tran
+
+--- KT011 p.6 hits=19 ---
+ly, graph CL paradigms ﬁrst generate two graph views by performing random graph augmentations on the original graph, such as eliminating or adding edges, eliminating nodes, mask- ing attr
+ on the original graph, such as eliminating or adding edges, eliminating nodes, mask- ing attributes, etc. For the global graphCL, these two views are treated as a positive pair, while
+eciﬁcally, the graph CL paradigm consists of four main components: • Graph data augmentation. The given graph G is augmented by eliminating or adding edges, elimi- nating nodes, masking a
+nsists of four main components: • Graph data augmentation. The given graph G is augmented by eliminating or adding edges, elimi- nating nodes, masking attributes, etc. to obtain two relat
+
+--- KT011 p.7 hits=1 ---
+ning pe uv and pe v. Finally, we generate two corrupted graph views eG1, eG2 by augmentation for the exercise and conceptual levels, respectively. In Bi-CLKT, the probabilities of generat
+
+--- KT011 p.8 hits=3 ---
+l GCN, we randomly draw N small batches of exercise inﬂuence graphs, so that 2N augmented graphs are generated as positive pairs, while all other graphs are used as their negative pairs.T
+ absolutely distinguished. This is mainly due to the fact that these contextual subgraphs are extracted from the same original graph and overlap each other. Therefore, we used normalised t
+ining, we use the Adam optimiser with an initial learning rate of 0.001 and the subgraph size does not exceed 20. the dimensionality of the node representation is 1024. the marginal value 
+
+--- KT011 p.10 hits=9 ---
+igate the eﬀectiveness of three important components of our proposed model: (1) augmentation methods; (2) dmbedding methods; (3) the predictive layer. We set a total of nine comparative s
+ive settings and report the performances in Table 3 and Table 4. 5.6. Eﬀects of Augmentation methods We observed that all three variants of Bi-CLKT with diﬀerent node centrality measures 
+rformed the ex- isting KT baseline model on all datasets. We also note that the augmentation with degree and PageRank cen- trality are two powerful variants that achieve the best or compe
+t achieve the best or competitive performance on all datasets. Speciﬁcally, the augmented variant with PageRank centrality works best on the ASSISTment 2009, ASSISTment Chall and STATICS 
+
+--- KT011 p.11 hits=2 ---
+ormance. The best performing runs per metric per dataset are marked in boldface Augmentation ASSISTment 2009 ASSISTment 2015 ASSISTment Chall STATICS 2011 AUC ACC AUC ACC AUC ACC AUC ACC 
+rn from large amounts of unlabelled data. Bi-CLKT consists of three main parts: subgraph establishing, contrastive learning and performance prediction. In the contrastive learning part, we
+
+--- KT011 p.12 hits=1 ---
+ Y. Xu, F. Yu, Q. Liu, S. Wu, L. Wang, Graph contrastive learning with adaptive augmentation, in: Proceedings of the Web Conference 2021, 2021, pp. 2069–2080. [36] Q. Liu, Z. Huang, Y. Yi
+
+######## KT026 exists=True ########
+
+--- KT026 p.5 hits=1 ---
+ size for three datasets is set to 256, the learning rate is 0.001. We also use dropout with a probability of 0.5 to alleviate overﬁt- ting. We divide each dataset into 80% for training a
+
+######## KT042 exists=True ########
+
+--- KT042 p.1 hits=2 ---
+of KT with an auxiliary self-supervised task, i.e., we additionally generate an augmented view with adaptive data augmentation to imple- ment contrastive learning and exploit the unobserv
+vised task, i.e., we additionally generate an augmented view with adaptive data augmentation to imple- ment contrastive learning and exploit the unobserved relations among questions. We c
+
+--- KT042 p.3 hits=6 ---
+. To further enhance the robustness of hypergraph learn- ing, we introduce data augmentation to change the hypergraph structure and generate the augmented view for questions. Different fr
+introduce data augmentation to change the hypergraph structure and generate the augmented view for questions. Different from the previous methods, which drop nodes or edges uniformly, we 
+ant connections. According to the importance of nodes, we adaptively adjust the dropout proba- bility of each node. Thereafter, we unify the prediction task and the self-supervised task, 
+ant connective structures. 2. We introduce a self-supervised task with adaptive augmentation to supplement auxiliary signals for heterogeneous hypergraph modeling, aiming to learn intrins
+
+--- KT042 p.4 hits=3 ---
+imination. DGI [20] is the ﬁrst to introduce the InfoMax principle into GNN and augment the original graph by simply shufﬂing node features. GMI [33] measures the mutual information betwe
+ to generate addi- tional structural views. GCA [35] optimizes the uniform data augmentation schemes with the adaptive mechanism. HeCo [36] considers two views of an HIN, including networ
+ously. CL4KT [37] introduces contrastive learning into KT and conducts the data augmentation on stu- dents’ learning history sequence to reveal semantical similarity. But CL4KT cannot fus
+
+--- KT042 p.5 hits=5 ---
+ HHN. To explicitly perceive the heterogeneity, we extract the semantic-speciﬁc subgraphs G1; G2;    ; GK f g based on meta-paths from HHN. The discrepant connective structures (node-hy
+-paths from HHN. The discrepant connective structures (node-hyperedge pairs) in subgraphs indicate different latent relations among nodes. Given the initial question embeddings H0 ¼ h0 1; 
+; i 2 jVhj; ð4Þ where h 0 i;Gk 2 RDrepresents the projected feature in the k-th subgraph based on meta-path Uk, and WGk 2 RDDis the projec- tion matrix. Intra-graph Attention. First, we a
+ix. Intra-graph Attention. First, we aggregate the neighbor information in each subgraph to extract single semantic details. Following up the previous methods, we also conduct the aggregat
+
+--- KT042 p.6 hits=4 ---
+yer, and N;Gk represents the set of nodes that are connected by hyperedge  in subgraph Gk. Note that we do not introduce any nonlinear transformation in the attention, which would lead t
+tion of question h via intra- and inter-attentions. Then we conduct an adaptive augmentation to generate the augmented view and learn the augmented representation ~h as h. Afterwards the 
+ and inter-attentions. Then we conduct an adaptive augmentation to generate the augmented view and learn the augmented representation ~h as h. Afterwards the two representations from diff
+e conduct an adaptive augmentation to generate the augmented view and learn the augmented representation ~h as h. Afterwards the two representations from different views are utilized to p
+
+--- KT042 p.7 hits=5 ---
+to avoid overﬁtting. Ei;Gk denotes the set of hyperedges that contain node i in subgraph Gk. u is the LeakyReLU activation function. Similarly we can obtain the semantic representations fo
+aph Attention. After independently aggregating the information within different subgraphs, we can obtain the heterogeneous semantic representations hl i;G1; hl i;G2;    ; hl i;GK n o fo
+eatures from diverse aspects. To learn the importance of relations in different subgraphs, we conduct an inter-graph attention to fuse those semantic- speciﬁc embeddings at each layer. As 
+mportance of each hypergraph. Based on this setup, we can measure the weight of subgraph Gk for node i as wi;Gk ¼ W  h l i;Gk þ b  T  1 jEGkj X 2EGk tanh WGk  zl ;Gk þ bGk   8 < :
+
+--- KT042 p.8 hits=21 ---
+ In this paper, we choose Lmain as the main supervised task. 3.5. Adaptive Data Augmentation on HHN Although contrastive learning has been widely applied in CV and NLP, it has rarely been
+gree biases in learn- ing representations and the vulnerability in facing noisy perturbations. To alleviate the above problem, we introduce a novel data augmentation paradigm to generate 
+ noisy perturbations. To alleviate the above problem, we introduce a novel data augmentation paradigm to generate the augmented view for HHN. Different from most of the augment-based meth
+ above problem, we introduce a novel data augmentation paradigm to generate the augmented view for HHN. Different from most of the augment-based methods, which just remove nodes or edges 
+
+--- KT042 p.9 hits=3 ---
+~GK  n o ; ð26Þ where EGk; E~Gk are the sets of hyperedges in the inherent and augmented views, respectively. i; j ð Þ 2 EGk means that nodes i and j are included in one hyperedge simult
+ i and j are included in one hyperedge simultaneously. Formally, we utilize the InfoNCE objective as the contrastive loss to con- trast node representations from different views. The obje
+e the contrastive loss Laug i similarly, where the target embedding is from the augmented view. The overall objective is given as Lssl ¼ 1 jVhj X i2Vh Linh i þ Laug i   : ð28Þ Finally, 
+
+--- KT042 p.10 hits=1 ---
+l function, to measure the degree of cross-effects. CL4KT [37] applies the data augmentation method to generate two correlated views of a student’s history sequences and introduces contra
+
+--- KT042 p.12 hits=3 ---
+y the intra-graph attention is used and the same importance is assigned to each subgraph.  HHNinter: only the inter-graph attention is used. Because there are two stage transformations in
+es, the inter-graph attention learns the importance of rela- tions in different subgraphs and preserves meaningful semantics for nodes. Note that, when we remove the inter-graph attention,
+A possible reason is that these semantic-speciﬁc representations from different subgraphs are equally important so that applying the attention mechanism to them may not yield signiﬁcant im
+
+--- KT042 p.13 hits=1 ---
+ Analysis of the self-supervised framework. Here we mainly analyze the adaptive augmentation and the selection of negative samples, and evaluate their positive contributions to self-super
+
+--- KT042 p.14 hits=3 ---
+ by the self-supervised framework could be easily neutralized.  Probability of dropout, qs;qk: The results are shown in Fig. 4. When the probability is not too large, the performance of 
+ qk (0.4 or 0.5), the performance declines precipitously. A high probability of dropout would destroy the connective structures inevitably, which leads to the incapacity of learning the s
+sentation, we supplement the network with self-supervised task and generate the augmented view via Table 4 Ablation study of intra- and inter-graph attention. Methods Stage ASSISTments200
+
+--- KT042 p.17 hits=2 ---
+ Y. Xu, F. Yu, Q. Liu, S. Wu, L. Wang, Graph contrastive learning with adaptive augmentation, in: Proceedings of the Web Conference 2021, 2069– 2080, 2021. [36] X. Wang, N. Liu, H. Han, C
+911.08538. [40] K. Nagatani, Q. Zhang, M. Sato, Y.-Y. Chen, F. Chen, T. Ohkuma, Augmenting knowledge tracing by considering forgetting behavior, in: The world Wide Web Conference, 3101–31
+
+######## KT043 exists=True ########
+
+--- KT043 p.2 hits=1 ---
+rder semantics between questions. Self-supervised learning technology [30] uses pretext tasks to extract supervision information from large-scale unsuper- vised data, and trains the netwo
+
+--- KT043 p.4 hits=1 ---
+t. In order to focus more on the higher-order information between questions, we mask the non-question nodes after obtaining the ﬁnal sampled meta-path sequences, and use the speciﬁc me
+
+--- KT043 p.6 hits=1 ---
+ning rate is 0.008. We add L2 norm on the weights and set weight decay as 1e-5. Dropout in (16) is set to 0.3. For other models, their hyper-parameters are either set as the original opti
+
+######## KT047 exists=True ########
+
+--- KT047 p.3 hits=2 ---
+ic et al., 2019) is the first to introduce the InfoMax prin- ciple into GNN and augment the original graph by simply shuffling node features. InfoGraph (Sun et al., 2019) extends deep Inf
+ additional structural views. GCA (Zhu et al., 2021) optimizes the uniform data augmentation schemes with the adaptive mechanism. Although contrastive learning has been widely implemented
+
+--- KT047 p.5 hits=1 ---
+ws of any different nodes as the negative pairs naturally. Formally, we utilize InfoNCE objective (Van den Oord et al., 2018) as the contrastive loss to contrast node representations from
+
+--- KT047 p.13 hits=2 ---
+ Nagatani, K., Zhang, Q., Sato, M., Chen, Y.-Y., Chen, F., & Ohkuma, T. (2019). Augmenting knowledge tracing by considering forgetting behavior. In The world wide web conference (pp. 3101
+., Liu, Q., Wu, S., & Wang, L. (2021). Graph contrastive learning with adaptive augmentation. In Proceedings of the web conference 2021 (pp. 2069–2080). 
+
+######## KT050 exists=True ########
+
+--- KT050 p.1 hits=19 ---
+ GraphCA: Learning From Graph Counterfactual Augmentation for Knowledge Tracing Xinhua Wang, Shasha Zhao, Lei Guo, Lei Zhu, Chaoran Cui, and Lia
+ GraphCA: Learning From Graph Counterfactual Augmentation for Knowledge Tracing Xinhua Wang, Shasha Zhao, Lei Guo, Lei Zhu, Chaoran Cui, and Liancheng X
+ress KT by only exploring the observational sparsity data distribution, and the counterfactual data distribution has been largely ignored. 2) Cur- rent works designed for KT only consider either
+accurate student modeling. To address the above limitations, we propose a graph counterfactual augmentation method for knowledge tracing. Concretely, to consider the multiple relation- ships amo
+
+--- KT050 p.2 hits=23 ---
+ed, then, we can deduce similar answers to the other one. By doing this, we can augment the answer records of stu- dents to alleviate the data sparsity issue. Intuitively, modeling the co
+s of stu- dents to alleviate the data sparsity issue. Intuitively, modeling the counterfactual world enables us to consider more unob- served characteristics of students, and thus can learn more
+or both students and questions. Moti- vated by the work in [7], we generate the counterfactual data for every student according to the following strategies (as we have shown in Fig. 1(a), and mo
+ctual disruption. The example of the resulting sub-graph is shown in Fig. 1(a). Counterfactual transformation can be seen as one kind of data augmentation method. 2) Another limita- tion of exis
+
+--- KT050 p.3 hits=7 ---
+the counterfactual learning technique to generate the aug- mented data mainly because it provides us with an efficient
+nother reason we leverage coun- terfactual learning as our solution is that the augmented data can help us to answer the “what if...” questions under the potential outcome framework, whic
+on, we further conduct contrastive learning between the observa- tional and the counterfactual user representations. That is, by contrast with such out-of-distribution hard negative samples, the
+ on the data sparsity issue of knowledge tracing and solve it by leveraging the counterfactual data in an inno- vatively devised counterfactual contrasting graph learning method, namely GraphCA.
+
+--- KT050 p.4 hits=20 ---
+ However, none of the existing methods solves KT by contrastive learning from a counterfactual learning view, and its effectiveness needs to be further explored. D. Methods Solving Data Sparsity
+42] use contrastive learning to conduct knowledge tracing and propose four data augmenta- tion strategies (CL4KT) to model students’ knowledge states. But their strategies are different f
+ strategies are different from ours in the following aspects: 1) We conduct the counterfactual augmentations on the basis of graphs, while CL4KT only deals with sequential data, where the connec
+ different from ours in the following aspects: 1) We conduct the counterfactual augmentations on the basis of graphs, while CL4KT only deals with sequential data, where the connections am
+
+--- KT050 p.5 hits=21 ---
+samples by considering two different synthesis mechanisms of masking critical objects or words. Wang et al. [57] propose the counterfactual cycle-consistent (CCC) fr
+s mechanisms of masking critical objects or words. Wang et al. [57] propose the counterfactual cycle-consistent (CCC) framework, which applies counterfactual learning to cross-tasks in order to 
+[57] propose the counterfactual cycle-consistent (CCC) framework, which applies counterfactual learning to cross-tasks in order to learn instruction following and generation simultaneously. The 
+in order to learn instruction following and generation simultaneously. The data augmentation methods of graph structure are generally catego- rized as node dropping, edge perturbation, at
+
+--- KT050 p.6 hits=10 ---
+nnection between and to indicate their question-concept relation. D. Graph Data Augmentation To alleviate the inherent data sparsity issue in the knowl- edge tracing task, we resort to th
+ions for counterfac- tual learning, we further conduct graph transformations to augment the observed data by the following two transforma- tion strategies. 1) Counterfactual Replacement W
+ augment the observed data by the following two transforma- tion strategies. 1) Counterfactual Replacement With Similar Questions: In this work, for each student node (context), the observed dat
+fers to the nodes with common concepts in the SQC graph. To qk qi construct the counterfactual sub-graphs denoting students’ answer sequences, which have similar potential outcomes as the corres
+
+--- KT050 p.7 hits=5 ---
+an M, then we replace the question sequence with the same number of answers. 2) Counterfactual Disruption: The counterfactual replace- ment strategy tends to obtain the unobserved student answer
+ion sequence with the same number of answers. 2) Counterfactual Disruption: The counterfactual replace- ment strategy tends to obtain the unobserved student answer records by replacing already a
+ if...” question by finding the potential outcome of each stu- dent node on the counterfactual fact that the student answered these questions in different orders, where the treatment is denoted 
+ whether we have changed the students’ answer orders. Then, how to generate the counterfactual data by changing the students’ answer orders is one of our main tasks. That is, we tend to change t
+
+--- KT050 p.8 hits=9 ---
+ransformed Counter- factual Graph: As described in Section III-D, we obtain two augmented sub-graphs and by performing counterfac- tual graph transformations to achieve the outcomes of ou
+tudents’ learning states. G1 sj N s,r j a) Student representation learning with counterfactual replacement: As in the transformed counterfactual graph , student nodes are only connected with the
+ representation learning with counterfactual replacement: As in the transformed counterfactual graph , student nodes are only connected with the questions that have been answered by the students
+j + messagel sj←N s,r j ). (15) G1 so j b) Student representation learning with counterfactual dis- ruption: Similarly to the counterfactual graph , the mes- sages that are passed to student are
+
+--- KT050 p.9 hits=13 ---
+ment: We consider the outcome of the first counterfactual transformation as the positive sample, and the destructed rep- resentation as the student’s negativ
+he positive sample, and maximize its distance with the negative samples, we use InfoNCE [64] with a standard binary cross- entropy loss as our learning objective. By doing this, we effec-
+·) where n denotes the numbers of students, denotes student representation with counterfactual replacement. is the discriminator function that takes two vectors as input and then scores them for
+ representations to achieve discrimination. b) Contrast with the outcome of the counterfactual disrup- tion: In this counterfactual disruption view, we also treat the outcome of the counterfactu
+
+--- KT050 p.10 hits=4 ---
+knowledge tracing model based on contrastive learning, which proposes four data augmentation methods thus capturing an effective knowledge state represen- tation. To better illustrate the
+e details of tuning the hyper-parameters are shown in Section VI-B. We also use dropout [70] with the probability of 0.8 to prevent overfitting. V. Experimental Results (RQ1) We compare t
+ #Records 278 868 2 711 602 1 817 393 WANG et al.: GRAPHCA: LEARNING FROM GRAPH COUNTERFACTUAL AUGMENTATION FOR KT 2117 
+68 2 711 602 1 817 393 WANG et al.: GRAPHCA: LEARNING FROM GRAPH COUNTERFACTUAL AUGMENTATION FOR KT 2117 
+
+--- KT050 p.11 hits=10 ---
+ part of our model on the prediction results. We build the GraphCA-RCRO (Remove counterfactual trans- formation module for both views), GraphCA-RCR (Remove graph transformation module for counte
+ion module for both views), GraphCA-RCR (Remove graph transformation module for counterfactual replacement), GraphCA-RCO (Remove graph transformation module for counterfactual disruption), and G
+ounterfactual replacement), GraphCA-RCO (Remove graph transformation module for counterfactual disruption), and GraphCA-RCL (Remove con- trastive learning) architectures by removing the counterf
+CA 0.790 0.741 0.778 0.748 0.786 0.835 GraphCA-RCRO: This suggests that neither counterfactual replacement of graph transformations nor counterfactual dis- ruption of graph transformations are c
+
+--- KT050 p.12 hits=5 ---
+arameters: the first is the number of replacement questions when performing the counterfactual transformation, the sec- ond is the number of pairs of swap questions when generating counterfactua
+ormation, the sec- ond is the number of pairs of swap questions when generating counterfactual data, and the last is the size of the embedding dimension. In this subsection, we will investigate 
+ GraphCA varies smoothly around the peak region, which is because the generated counterfactual data are positive samples and we do not change the semantic representation of the observed stu- den
+86 0.7402 0.7778 0.7483 0.7821 0.8323 WANG et al.: GRAPHCA: LEARNING FROM GRAPH COUNTERFACTUAL AUGMENTATION FOR KT 2119 
+
+--- KT050 p.13 hits=6 ---
+due to its additional counter- factual learning cost. D. Case Study To make the counterfactual data modeling process of our model more intuitive and understandable, we provide a case study based
+ 14278, 14864, 14258, 14261}. We obtain the second and third rows of records by counterfactual transformation strategies. For the replacement question operation, we randomly select 5 questions f
+ly change the original student semantic representation, which suggests that the counterfactual transformation strategy men- tioned in our model is reasonable. Fig. 8 depicts an example of a stud
+dent repre- sentations by constructing the SQC graph. In addition, we per- form counterfactual graph transformations from two views based on two factual observations. Then we design con- trastiv
+
+--- KT050 p.14 hits=3 ---
+–774. [19] K. Nagatani, Q. Zhang, M. Sato, Y.-Y. Chen, F. Chen, and T. Ohkuma, “Augmenting knowledge tracing by considering forgetting behavior,” in Proc. World Wide Web Conf., 2019, pp. 
+st Fig. 9. The limitation of GraphCA. WANG et al.: GRAPHCA: LEARNING FROM GRAPH COUNTERFACTUAL AUGMENTATION FOR KT 2121 
+limitation of GraphCA. WANG et al.: GRAPHCA: LEARNING FROM GRAPH COUNTERFACTUAL AUGMENTATION FOR KT 2121 
+
+--- KT050 p.15 hits=13 ---
+–4705. [49] S. Garg, V. Perot, N. Limtiaco, A. Taly, E. H. Chi, and A. Beutel, “Counterfactual fairness in text classification through robustness,” in Proc. AAAI/ACM Conf. AI, Ethics, and Societ
+ty, 2019, pp. 219–226. [50] M. J. Kusner, J. Loftus, C. Russell, and R. Silva, “Counterfactual fairness,” Advances in Neural Information Processing Systems, vol. 30, pp. 4069–4079, 2017. [51] Z.
+. [51] Z. Wang, J. Zhang, H. Xu, X. Chen, Y. Zhang, W. X. Zhao, and J.-R. Wen, “Counterfactual data-augmented sequential recommendation,” in Proc. 44th Int. ACM SIGIR Conf. Research and Developm
+hang, H. Xu, X. Chen, Y. Zhang, W. X. Zhao, and J.-R. Wen, “Counterfactual data-augmented sequential recommendation,” in Proc. 44th Int. ACM SIGIR Conf. Research and Development in Inform
+
+--- KT050 p.16 hits=3 ---
+] N. Srivastava, G. Hinton, A. Krizhevsky, I. Sutskever, and R. Salakhutdinov, “Dropout: A simple way to prevent neural networks from overfitting,” The J. Machine Learning Research, vol. 
+the Chinese Computer Society and ACM. WANG et al.: GRAPHCA: LEARNING FROM GRAPH COUNTERFACTUAL AUGMENTATION FOR KT 2123 
+puter Society and ACM. WANG et al.: GRAPHCA: LEARNING FROM GRAPH COUNTERFACTUAL AUGMENTATION FOR KT 2123 
+
+######## KT066 exists=True ########
+
+--- KT066 p.3 hits=9 ---
+y, utilizing a contrastive learning objec- tive maximizes agreement between two augmented views of the same interaction sequence. Contrastive learning-based research in KT is currently in
+s early stages [17], [45]. Bigraph contrastive learning-based KT (Bi-CLKT) [46] augments the input graph by ran- domly removing edges and masking node characteristics in the “exercise-to-
+sed KT (Bi-CLKT) [46] augments the input graph by ran- domly removing edges and masking node characteristics in the “exercise-to-exercise” and “concept-to-concept” graphs. A contrastiv
+t” graphs. A contrastive learning framework for KT (CL4KT) [45] gen- erates the augmentation sequence from the original response with various data augmentation methods as negative sam- pl
+
+--- KT066 p.8 hits=1 ---
+uggestions in [38], we employ mutual information noise constrastive estimation (InfoNCE) [47] as our contrastive learning objective: Lgs = −log σ  s  θ gs i , ψ gg i  −log σ  1 −s  ˜θ
+
+--- KT066 p.9 hits=1 ---
+stive learning task is set to 0.002. To optimize HyperKT, the learning rate and dropout rate are set as 0.001 and 0.6. We perform a sensitivity analysis on the setting of key hyperparamet
+
+--- KT066 p.10 hits=1 ---
+rategy to improve the performance of graph contrastive learning. We replace the augmented views in HyperKT with the hypergraphs adaptively sampled from the local and global state hypergra
+
+--- KT066 p.11 hits=1 ---
+s a notable advantage by transforming state hypergraphs into line graphs as the augment views. Finally, we compare the performance of the baseline model and HyperKT under different train–
+
+--- KT066 p.14 hits=2 ---
+2022. [13] K. Nagatani, Q. Zhang, M. Sato, Y.-Y. Chen, F. Chen, and T. Ohkuma, “Augmenting knowledge tracing by considering forgetting behavior,” in Proc. World Wide Web Conf., May 2019, 
+. Chen, Y. Sui, T. Chen, Z. Wang, and Y. Shen, “Graph contrastive learning with augmentations,” in Proc. NIPS, vol. 33, 2020, pp. 5812–5823. Authorized licensed use limited to: University
+
+--- KT066 p.15 hits=1 ---
+huo and G. Tan, “Graph contrastive learning with adaptive proximity-based graph augmentation,” IEEE Trans. Neural Netw. Learn. Syst., early access, Jun. 5, 2023, doi: 10.1109/TNNLS.2023.3
+
+######## KT068 exists=True ########
+
+--- KT068 p.4 hits=4 ---
+ive and negative sample pairs and employing contrastive loss functions, such as InfoNCE loss (Oord, Li, & Vinyals, 2018). Notable approaches, such as GraphCL (You et al., 2020) and Deep G
+rmance and generalization of graph representation learning through diverse data augmentation strategies and contrastive objectives (Zhang, Niu, Ma, & Zhang, 2025). In KT tasks, GRL has be
+ted as edges in the graph. The Knowledge Association Graph consists of multiple subgraphs, each corresponding to a specific hierarchical level. The complete graph is expressed as = {1, 
+ level. The complete graph is expressed as = {1, 2, … , 𝐼}, where 𝑘 is the subgraph for the 𝑘th level, and 𝐼 is the total number of levels. For clarity, the key notations used are sum
+
+--- KT068 p.5 hits=1 ---
+construction of the KHT and KAG is followed by embedding training through graph reconstruction and cross-graph hierarchical contrastive learning. (d) The structure of the weight allocation ne
+
+--- KT068 p.6 hits=1 ---
+on is subsequently applied, resulting in the output path feature matrix: 𝐎= (𝐏+ Dropout(𝐀)) 𝐖𝑜, (7) where 𝐖𝑜∈R𝑑×𝑑 represents the weight matrix. As multiple paths can converge on the root 
+
+--- KT068 p.7 hits=1 ---
+effectively captures the information embedded within the KHT and the KAG. Graph reconstruction techniques are utilized to enhance the hierarchical properties. Our method addresses the limitat
+
+--- KT068 p.9 hits=1 ---
+ng strategy. Initially, the embeddings of KHT and KAG are optimized using graph reconstruction and cross-graph hierarchical contrastive learning methods. These optimized embeddings are then i
+
+--- KT068 p.11 hits=2 ---
+, 0.002}, the weight decay coefficient is selected from {1e–2, 1e–3, 1e–4}, the dropout rate is chosen from {0.1, 0.2, 0.3}, the number of encoding layers is selected from {1, 2, 3, 4}, t
+Ultimately, the learning rate is set to 0.001, weight decay is set to 1e–4, the dropout rate is set to 0.1, and the embedding dimension is set to 128. The number of encoding layers, tempe
+
+--- KT068 p.13 hits=1 ---
+ learning exponent. 2. A lower temperature coefficient 𝜏 helps to improve graph reconstruction performance. By enhancing the embedding representations of knowledge concepts, it further boosts
+
+--- KT068 p.17 hits=1 ---
+ Zhang, W. (2024). Interpretable knowledge tracing via response influence-based counterfactual reasoning. In 2024 IEEE 40th international conference on data engineering. IEEE. Falakmasir, M., Pa
+
+--- KT068 p.18 hits=1 ---
+Sui, Y., Chen, T., Wang, Z., & Shen, Y. (2020). Graph contrastive learning with augmentations. Advances in Neural Information Processing Systems. Zaremba, W. (2014). Recurrent neural netw

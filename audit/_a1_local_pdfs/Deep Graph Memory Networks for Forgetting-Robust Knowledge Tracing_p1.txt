@@ -1,0 +1,216 @@
+JOURNAL SUBMISSION
+1
+Deep Graph Memory Networks for
+Forgetting-Robust Knowledge Tracing
+Ghodai Abdelrahman, Qing Wang
+Abstract—Tracing a student’s knowledge is vital for tailoring the learning experience. Recent knowledge tracing methods tend to
+respond to these challenges by modelling knowledge state dynamics across learning concepts. However, they still suffer from several
+inherent challenges including: modelling forgetting behaviours and identifying relationships among latent concepts. To address these
+challenges, in this paper, we propose a novel knowledge tracing model, namely Deep Graph Memory Network (DGMN). In this model,
+we incorporate a forget gating mechanism into an attention memory structure in order to capture forgetting behaviours dynamically
+during the knowledge tracing process. Particularly, this forget gating mechanism is built upon attention forgetting features over latent
+concepts considering their mutual dependencies. Further, this model has the capability of learning relationships between latent
+concepts from a dynamic latent concept graph in light of a student’s evolving knowledge states. A comprehensive experimental
+evaluation has been conducted using four well-established benchmark datasets. The results show that DGMN consistently outperforms
+the state-of-the-art KT models over all the datasets. The effectiveness of modelling forgetting behaviours and learning latent concept
+graphs has also been analyzed in our experiments.
+Index Terms—Deep Learning, Graph, Memory Networks, Knowledge Tracing, Forgetting.
+!
+1
+INTRODUCTION
+Knowledge tracing (KT) is a fundamental problem in hu-
+man learning and has attracted increasing interests in re-
+cent years. Conceptually, the KT problem is to predict the
+probability of correctly answering new questions given a
+history of question answering sequence [1]. Early work
+has attempted to address the KT problem using Bayesian
+approaches [1], [2], [3], [4]. Typically, these approaches used
+state-space models (e.g., hidden Markov models) to track a
+knowledge state as a binary random variable (i.e., 0 for not
+knowing and 1 for knowing) and predict the probability of
+correctly answering a question. However, one major limita-
+tion of these approaches is that they rely on oversimpliﬁed
+assumptions about knowledge states and latent concepts
+in order to keep the Bayesian inference computationally
+tractable. To overcome this limitation, deep learning KT
+approaches have been proposed. For example, Piech et al. [5]
+introduced a recurrent neural network called Deep Knowl-
+edge Tracing (DKT) to track knowledge states over a question
+answering sequence. Several recent attempts [6], [7], [8]
+further enhanced deep KT models with an external memory
+structure to represent knowledge states. These deep learning
+models have shown the state-of-the-art results on well-
+established KT datasets. Nonetheless, they still suffer from
+the following inherent challenges:
+(1)
+Cognitive modelling studies on human’s memory
+showed a knowledge decline trend over time due
+to forgetting behaviours, known as the forget curve
+theory [9]. However, it is challenging to model such
+forgetting behaviours (e.g., when and how forgetting
+•
+All authors are with Research School of Computer Science, Australian
+National University, Canberra, ACT, 0200.
+behaviors occur) into knowledge states and reﬂect
+them in a KT model for predicting a student’s learn-
+ing performance.
+(2)
+Concept learning is a phenomenal ability of human
+beings, which involves to extract latent concepts
+from questions (e.g., learning topics in a math course)
+and identify their relationships [10]. However, it is
+not yet clear to which extent latent concepts and their
+relationships can be explicitly modelled and lever-
+aged for predicting a student’s learning performance
+in a KT model.
+In this work, we aim to tackle these challenges by
+introducing a novel forgetting-robust KT model, namely
+Deep Graph Memory Network (DGMN). The novelty of this
+proposed model lies in three aspects: (1) modelling for-
+getting features over latent concepts in a concept space
+while considering their mutual relationships; (2) learning
+a dynamical latent concept graph to reﬂect the dynamics of
+a student’s knowledge states over latent concepts and their
+relationships; (3) incorporating a forget gating mechanism
+to account for the effect of forgetting features on a student’s
+learning performance. Below, we brieﬂy describe these three
+new aspects of our proposed DGMN model.
+Recent KT efforts to address forgetting behaviours tend
+to have limitations. One direction [11] follows a deep learn-
+ing approach in modelling forgetting and it assumes only
+one latent concept to exist, which is not a realistic assump-
+tion as in many real-world cases where would be multiple
+concepts (e.g., topics such as addition, subtraction, and
+multiplication in a math course). Moreover, this assumption
+renders the calculation of forgetting features to be based on
+questions themselves as all of them share the same concept
+resulting in an inaccurate estimation for forgetting as shown
+in the example depicted in Figure 1. The other direction [12],
+arXiv:2108.08105v1  [cs.LG]  18 Aug 2021
+
+JOURNAL SUBMISSION
+2
+[13], [14] follows a Bayesian approach that assumes a prior
+information on a student knowledge state across concepts
+and considers forgetting over concepts but in isolation from
+their mutual relationships (e.g., prerequisites dependencies
+between topics in a course) as they lack methods for rep-
+resenting these relationships. The deep learning direction
+has an advantage over the Bayesian one in bypassing the
+assumption around existence of prior information about
+student knowledge states; thus, it can operate in cold-start
+scenarios. To the best of our knowledge, the work presented
+in this paper is the ﬁrst deep learning approach that consid-
+ers a student forgetting behaviour over multiple concepts
+and accounts for their mutual relationships.
+In the real world, however, students tend to forget or
+remember latent concepts (i.e., essential skills) rather than
+questions themselves and the relationships across these
+latent concepts would impact the forgetting effect on each
+of them. For example, a student might be able to correctly
+answer a new math question which she has never seen
+before, after she has mastered the latent concepts (e.g.,
+dot product) behind such a question. Figure 1 illustrates
+two different forgetting modelling paradigms: over one la-
+tent concept shared across questions versus over multiple latent
+concepts shared across questions. Let us consider two forget-
+ting features [11]: (i) Time Lapse that counts the number
+of time steps lapsed since a question has been answered
+last time, and (ii) Trials that refers to the total number of
+times that a student has answered a question. In Figure 1.a,
+forgetting is modelled over one latent concept shared by
+all the questions that are identiﬁed by their question tags,
+while in Figure 1.b, forgetting is modelled over multiple
+concepts that are identiﬁed by their concept tags and shared
+by the questions. We can see that the question q1 has
+appeared twice in this sequence. At the time step t6, q1
+thus has the forgetting features Time Lapse=5 and Trials=2
+in Figure 1.a and Time Lapse=1 and Trials=6 in Figure 1.b.
+Accordingly, forgetting is considered to likely occur on q1
+in Figure 1.a. However, since the concept underlying q1 is
+c2, which indeed underlies all the questions in this sequence
+(i.e., q1, q3, q5 and q8), the student has learned c2 through
+all these questions and forgetting would unlikely happen
+at the time step t6. Therefore, modelling forgetting features
+over multiple concepts can improve the tracing ability on
+a student’s knowledge states, whereas modelling over one
+concept cannot achieve this outcome.
+Nonetheless, when learning forgetting features over a
+concept space, a difﬁculty arises: since only a question an-
+swering sequence is available, how can we model forgetting
+features effectively in terms of latent concepts behind questions
+rather than questions themselves? We observe that, the key
+to tackling this difﬁculty is to design a KT model that can
+not only learn latent concepts behind questions via a ques-
+tion answering sequence, but also capture the relationships
+among latent concepts. More importantly, such a KT model
+should have the capability of dynamically tracing changes on
+latent concepts and their relationships in light of a student’s
+performance over time. Previously, several graph-based KT
+approaches have been suggested [15], [16]. However, these
+approaches assume that graphs for latent concepts are pre-
+deﬁned based on the ground truth in training data, thereby
+failing to capture the dynamics of a student’s knowledge
+states in terms of how well they master latent concepts and
+their connections over time. In this work, our DGMN model
+overcomes this problem by designing a deep graph memory
+structure, consisting of an attentive key-value memory for
+dynamically capturing a student’s knowledge states over
+latent concepts and a latent concept graph for dynamically
+learning relationships among latent concepts.
+Even with modelling forgetting features over a concept
+space upon a deep graph memory structure, there is still one
+question to be answered: how can we effectively use forgetting
+features to reﬂect a student’s forgetting behaviour (i.e., decline of
+memory retention in time) and count for its effect on predicting
+answers? This poses a need to ﬁnd a good way of combining
+forgetting features with knowledge state features (i.e., skill
+mastery information). To address this, our DGMN model
+incorporates a forget gating mechanism that can learn an
+optimal combination of these two groups of features during
+training, thus enabling an integrated analysis of their joint
+effects on predicating answers. Furthermore, non-linearity
+introduced by such a forget gating mechanism can enhance
+the learning capacity of representing informative features
+in knowledge tracing for predicting a student’s learning
+performance.
+In summary, the main contributions of this work are as
+follows:
+•
+We propose a novel KT model, namely DGMN,
+which is augmented with a deep graph mem-
+ory structure to dynamically trace both a student’s
+knowledge states over latent concepts in an attentive
+key-value memory and the relationships among la-
+tent concepts in a latent concept graph.
+•
+We design the modelling of forgetting features over
+a latent concept space considering their mutual re-
+lationships and devise a forget gating mechanism
+to combine forgetting features with knowledge state
+features in our proposed DGMN model for predict-
+ing a student’s learning performance.
+•
+We propose to capture embedding representations
+of latent concepts and their relationships in a dy-
+namic latent concept graph and leverage its useful
+information to rank questions for improving model
+optimization.
+•
+We have extensively evaluated the performance of
+our proposed DGMN model by comparing it against
+the state-of-the-art deep learning and graph KT mod-
+els on four well-established KT datasets.
+The reminder of this paper is organized as follows. Sec-
+tion 2 deﬁnes the research problem. Section 3 describes our
+proposed KT method. Section 4 presents the experimental
+design. Section 5 discusses the experimental results and
+ﬁndings. Section 6 reviews the related work and Section 7
+concludes the paper.
+2
+PROBLEM DEFINITION
+Let Q be a set of questions and xt = ({q1, y1}, {q2, y2},
+. . . , {qt−1, yt−1}) be a question answering sequence, where
+qi ∈Q and yi ∈{0, 1} is an answer of qi with 0 representing
+an incorrect answer and 1 representing a correct answer.
+A question answering sequence contains the history of a

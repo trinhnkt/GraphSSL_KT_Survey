@@ -1,0 +1,39 @@
+Convolutional Neural Network
+for Trajectory Prediction
+Nishant Nikhil1,2 and Brendan Tran Morris 2[0000−0002−8592−8806]
+1 Indian Institute of Technology Kharagpur
+nishantnikhil@iitkgp.ac.in
+2 University of Nevada, Las Vegas
+brendan.morris@unlv.edu
+Abstract. Predicting trajectories of pedestrians is quintessential for au-
+tonomous robots which share the same environment with humans. In
+order to eﬀectively and safely interact with humans, trajectory predic-
+tion needs to be both precise and computationally eﬃcient. In this work,
+we propose a convolutional neural network (CNN) based human trajec-
+tory prediction approach. Unlike more recent LSTM-based moles which
+attend sequentially to each frame, our model supports increased paral-
+lelism and eﬀective temporal representation. The proposed compact CNN
+model is faster than the current approaches yet still yields competitive
+results.
+Keywords: Convolutional Neural Network, Trajectory Prediction, An-
+ticipating Human Behavior
+1 Introduction
+Autonomous robots like self-driving cars on a road or a food-delivery robot in a
+restaurant must share the same space with humans. In order to do so in a safe
+and acceptable manner, these robots must be able to understand and cooperate
+with humans. One task of paramount importance for avoiding collisions and for
+smooth maneuvering is to accurately predict the future trajectories of humans
+in their shared space. Further, given the wide diversity of platforms and envi-
+ronments for which prediction may be required (e.g. small robots with limited
+computing capabilities or without connectivity to cloud computing resources),
+simple models with better time complexity are desired.
+Traditionally, hand-crafted features were used for trajectory prediction and
+modeling motion of pedestrians’ trajectory with respect to others surrounding
+them. [1] propose a discrete choice framework for pedestrian dynamics, mod-
+eling short-term behavior of individuals as a response to the presence of other
+pedestrians. The Social Force model [2] incorporates two interactive forces for
+microsimulation of crowds. Attractive forces guiding the pedestrians towards
+their goal and repulsive forces for encouraging collision avoidance in-between
+the pedestrians and in-between a pedestrian and environmental obstacles. Ya-
+maguchi et al. [3] solves the same problem as an energy minimization problem.
+arXiv:1809.00696v2  [cs.CV]  26 Nov 2018

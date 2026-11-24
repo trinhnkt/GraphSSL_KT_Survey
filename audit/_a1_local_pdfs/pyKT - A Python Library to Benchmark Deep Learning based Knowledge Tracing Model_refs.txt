@@ -1,0 +1,187 @@
+References
+[1] Ghodai Abdelrahman and Qing Wang. Knowledge tracing with sequential key-value memory networks.
+In Benjamin Piwowarski, Max Chevalier, Éric Gaussier, Yoelle Maarek, Jian-Yun Nie, and Falk Scholer,
+editors, Proceedings of the 42nd International ACM SIGIR Conference on Research and Development in
+Information Retrieval, Paris, France, July 21-25, 2019, pages 175–184. ACM, 2019.
+[2] Ghodai Abdelrahman, Qing Wang, and Bernardo Pereira Nunes. Knowledge tracing: A survey. ArXiv
+preprint, abs/2201.06953, 2022.
+[3] Hao Cen, Kenneth Koedinger, and Brian Junker. Learning factors analysis–a general method for cognitive
+model evaluation and improvement. In International Conference on Intelligent Tutoring Systems, pages
+164–175. Springer, 2006.
+[4] Penghe Chen, Yu Lu, Vincent W Zheng, and Yang Pian. Prerequisite-driven deep knowledge tracing. In
+2018 IEEE International Conference on Data Mining, pages 39–48. IEEE, 2018.
+[5] Song Cheng, Qi Liu, Enhong Chen, Zai Huang, Zhenya Huang, Yiying Chen, Haiping Ma, and Guoping
+Hu. DIRT: deep learning enhanced item response theory for cognitive diagnosis. In Proceedings of the 28th
+ACM International Conference on Information and Knowledge Management, Beijing, China, November
+3-7, 2019, pages 2397–2400. ACM, 2019.
+[6] Benoît Chofﬁn, Fabrice Popineau, Yolaine Bourda, and Jill-Jênn Vie. DAS3H: Modeling student learning
+and forgetting for optimally scheduling distributed practice of skills. In International Conference on
+Educational Data Mining, 2019.
+[7] Youngduck Choi, Youngnam Lee, Junghyun Cho, Jineon Baek, Byungsoo Kim, Yeongmin Cha, Dongmin
+Shin, Chan Bae, and Jaewe Heo. Towards an appropriate query, key, and value computation for knowledge
+tracing. In Proceedings of the Seventh ACM Conference on Learning@Scale, pages 341–344, 2020.
+[8] Albert T Corbett and John R Anderson. Knowledge tracing: Modeling the acquisition of procedural
+knowledge. User Modeling and User-adapted Interaction, 4(4):253–278, 1994.
+[9] Mingyu Feng, Neil Heffernan, and Kenneth Koedinger. Addressing the assessment challenge with an
+online system that tutors as it assesses. User Modeling and User-adapted Interaction, 19(3):243–266,
+2009.
+[10] Aritra Ghosh, Neil T. Heffernan, and Andrew S. Lan. Context-aware attentive knowledge tracing. In
+Rajesh Gupta, Yan Liu, Jiliang Tang, and B. Aditya Prakash, editors, The 26th ACM SIGKDD Conference
+on Knowledge Discovery and Data Mining, Virtual Event, CA, USA, August 23-27, 2020, pages 2330–2339.
+ACM, 2020.
+[11] Aritra Ghosh, Jay Raspat, and Andrew Lan. Option tracing: Beyond correctness analysis in knowledge
+tracing. In International Conference on Artiﬁcial Intelligence in Education, pages 137–149. Springer,
+2021.
+[12] Xiaopeng Guo, Zhijie Huang, Jie Gao, Mingyu Shang, Maojing Shu, and Jun Sun. Enhancing knowledge
+tracing via adversarial training. In Proceedings of the 29th ACM International Conference on Multimedia,
+pages 367–375, 2021.
+[13] Tanja Käser, Severin Klingler, Alexander G Schwing, and Markus Gross. Dynamic bayesian networks for
+student modeling. IEEE Transactions on Learning Technologies, 10(4):450–462, 2017.
+[14] Elise Lavoué, Baptiste Monterrat, Michel Desmarais, and Sébastien George. Adaptive gamiﬁcation for
+learning environments. IEEE Transactions on Learning Technologies, 12(1):16–28, 2018.
+[15] Jinseok Lee and Dit-Yan Yeung. Knowledge query network for knowledge tracing: How knowledge inter-
+acts with skills. In Proceedings of the 9th International Conference on Learning Analytics & Knowledge,
+pages 491–500, 2019.
+[16] Qi Liu, Zhenya Huang, Yu Yin, Enhong Chen, Hui Xiong, Yu Su, and Guoping Hu. EKT: Exercise-aware
+knowledge tracing for student performance prediction. IEEE Transactions on Knowledge and Data
+Engineering, 33(1):100–115, 2019.
+[17] Qi Liu, Shuanghong Shen, Zhenya Huang, Enhong Chen, and Yonghe Zheng. A survey of knowledge
+tracing. ArXiv preprint, abs/2105.15106, 2021.
+[18] Yunfei Liu, Yang Yang, Xianyu Chen, Jian Shen, Haifeng Zhang, and Yong Yu. Improving knowledge
+tracing via pre-training question embeddings. In Christian Bessiere, editor, Proceedings of the Twenty-Ninth
+International Joint Conference on Artiﬁcial Intelligence, pages 1577–1583. ijcai.org, 2020.
+11
+
+[19] Ting Long, Yunfei Liu, Jian Shen, Weinan Zhang, and Yong Yu. Tracing knowledge state with individual
+cognition and acquisition estimation. In Proceedings of the 44th International ACM SIGIR Conference on
+Research and Development in Information Retrieval, pages 173–182, 2021.
+[20] Sein Minn, Yi Yu, Michel C Desmarais, Feida Zhu, and Jill-Jenn Vie. Deep knowledge tracing and dynamic
+student classiﬁcation for knowledge tracing. In 2018 IEEE International Conference on Data Mining,
+pages 1182–1187. IEEE, 2018.
+[21] Koki Nagatani, Qian Zhang, Masahiro Sato, Yan-Ying Chen, Francine Chen, and Tomoko Ohkuma.
+Augmenting knowledge tracing by considering forgetting behavior. In Ling Liu, Ryen W. White, Amin
+Mantrach, Fabrizio Silvestri, Julian J. McAuley, Ricardo Baeza-Yates, and Leila Zia, editors, The World
+Wide Web Conference, San Francisco, CA, USA, May 13-17, 2019, pages 3101–3107. ACM, 2019.
+[22] Hiromi Nakagawa, Yusuke Iwasawa, and Yutaka Matsuo. Graph-based knowledge tracing: Modeling
+student proﬁciency using graph neural network. In 2019 IEEE/WIC/ACM International Conference on
+Web Intelligence, pages 156–163. IEEE, 2019.
+[23] Shalini Pandey and George Karypis. A self-attentive model for knowledge tracing. In 12th International
+Conference on Educational Data Mining, pages 384–389. International Educational Data Mining Society,
+2019.
+[24] Shalini Pandey and Jaideep Srivastava. RKT: relation-aware self-attention for knowledge tracing. In
+Mathieu d’Aquin, Stefan Dietze, Claudia Hauff, Edward Curry, and Philippe Cudré-Mauroux, editors, The
+29th ACM International Conference on Information and Knowledge Management, Virtual Event, Ireland,
+October 19-23, 2020, pages 1205–1214. ACM, 2020.
+[25] Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran Sahami, Leonidas J Guibas, and
+Jascha Sohl-Dickstein. Deep knowledge tracing. Advances in Neural Information Processing Systems, 28,
+2015.
+[26] Shi Pu, Michael Yudelson, Lu Ou, and Yuchi Huang. Deep knowledge tracing with transformers. In
+International Conference on Artiﬁcial Intelligence in Education, pages 252–256. Springer, 2020.
+[27] Sergio Ramirez, Nour El Mawas, and Jean Heutte. Machine learning techniques for knowledge tracing: A
+systematic literature review. In Proceedings of the 13th International Conference on Computer Supported
+Education. Science and Technology Publications, Lda, 2021.
+[28] Sami Sarsa, Juho Leinonen, and Arto Hellas. Deep learning models for knowledge tracing: Review and
+empirical evaluation. ArXiv preprint, abs/2112.15072, 2021.
+[29] Shuanghong Shen, Qi Liu, Enhong Chen, Zhenya Huang, Wei Huang, Yu Yin, Yu Su, and Shijin Wang.
+Learning process-consistent knowledge tracing. In Proceedings of the 27th ACM SIGKDD Conference on
+Knowledge Discovery & Data Mining, pages 1452–1460, 2021.
+[30] Shuanghong Shen, Qi Liu, Enhong Chen, Han Wu, Zhenya Huang, Weihao Zhao, Yu Su, Haiping Ma,
+and Shijin Wang. Convolutional knowledge tracing: Modeling individualization in student learning
+process. In Proceedings of the 43rd International ACM SIGIR Conference on Research and Development
+in Information Retrieval, pages 1857–1860, 2020.
+[31] Dongmin Shin, Yugeun Shim, Hangyeol Yu, Seewoo Lee, Byungsoo Kim, and Youngduck Choi. SAINT+:
+Integrating temporal features for EdNet correctness prediction. In 11th International Learning Analytics
+and Knowledge Conference, pages 490–496, 2021.
+[32] J Stamper, A Niculescu-Mizil, S Ritter, G Gordon, and K Koedinger. Algebra I 2005-2006 and Bridge
+to Algebra 2006-2007. Development data sets from KDD Cup 2010 Educational Data Mining Challenge,
+2010.
+[33] Paul Steif and Norman Bier. Oli engineering statics-fall 2011, 2014.
+[34] Yu Su, Qingwen Liu, Qi Liu, Zhenya Huang, Yu Yin, Enhong Chen, Chris Ding, Si Wei, and Guoping Hu.
+Exercise-enhanced sequential modeling for student performance prediction. In Proceedings of the AAAI
+Conference on Artiﬁcial Intelligence, volume 32, 2018.
+[35] Nguyen Thai-Nghe, Lucas Drumond, Tomáš Horváth, Artus Krohn-Grimberghe, Alexandros Nanopoulos,
+and Lars Schmidt-Thieme. Factorization techniques for predicting student performance. In Educational
+Recommender Systems and Technologies: Practices and Challenges, pages 129–153. IGI Global, 2012.
+[36] Zejie Tiana, Guangcong Zhengc, Brendan Flanaganb, Jiazhi Mic, and Hiroaki Ogatab. BEKT: Deep
+Knowledge Tracing with Bidirectional Encoder Representations from Transformers.
+12
+
+[37] Shiwei Tong, Qi Liu, Wei Huang, Zhenya Huang, Enhong Chen, Chuanren Liu, Haiping Ma, and Shijin
+Wang. Structure-based Knowledge Tracing: An Inﬂuence Propagation View. In 2020 IEEE International
+Conference on Data Mining, pages 541–550. IEEE, 2020.
+[38] Chenyang Wang, Weizhi Ma, Min Zhang, Chuancheng Lv, Fengyuan Wan, Huijie Lin, Taoran Tang, Yiqun
+Liu, and Shaoping Ma. Temporal cross-effects in knowledge tracing. In Proceedings of the 14th ACM
+International Conference on Web Search and Data Mining, pages 517–525, 2021.
+[39] Fei Wang, Qi Liu, Enhong Chen, Zhenya Huang, Yuying Chen, Yu Yin, Zai Huang, and Shijin Wang.
+Neural cognitive diagnosis for intelligent education systems. In Proceedings of the AAAI Conference on
+Artiﬁcial Intelligence, volume 34, pages 6153–6161, 2020.
+[40] Zichao Wang, Angus Lamb, Evgeny Saveliev, Pashmina Cameron, Yordan Zaykov, José Miguel Hernández-
+Lobato, Richard E Turner, Richard G Baraniuk, Craig Barton, Simon Peyton Jones, et al. Instructions and
+guide for diagnostic questions: The NeurIPS 2020 education challenge. ArXiv preprint, abs/2007.12061,
+2020.
+[41] Kevin H Wilson, Yan Karklin, Bojian Han, and Chaitanya Ekanadham. Back to the basics: Bayesian
+extensions of IRT outperform neural networks for proﬁciency estimation. International Educational Data
+Mining Society, 2016.
+[42] Jinze Wu, Zhenya Huang, Qi Liu, Defu Lian, Hao Wang, Enhong Chen, Haiping Ma, and Shijin Wang.
+Federated deep knowledge tracing. In Proceedings of the 14th ACM International Conference on Web
+Search and Data Mining, pages 662–670, 2021.
+[43] Xiaolu Xiong, Siyuan Zhao, Eric G Van Inwegen, and Joseph E Beck. Going deeper with deep knowledge
+tracing. International Educational Data Mining Society, 2016.
+[44] Yang Yang, Jian Shen, Yanru Qu, Yunfei Liu, Kerong Wang, Yaoming Zhu, Weinan Zhang, and Yong Yu.
+GIKT: A graph-based interaction model for knowledge tracing. In Joint European Conference on Machine
+Learning and Knowledge Discovery in Databases, pages 299–315. Springer, 2020.
+[45] Chun-Kit Yeung and Dit-Yan Yeung. Addressing two problems in deep knowledge tracing via prediction-
+consistent regularization. In Proceedings of the Fifth Annual ACM Conference on Learning@Scale, pages
+1–10, 2018.
+[46] Jiani Zhang, Xingjian Shi, Irwin King, and Dit-Yan Yeung. Dynamic Key-Value Memory Networks for
+Knowledge Tracing. In Rick Barrett, Rick Cummings, Eugene Agichtein, and Evgeniy Gabrilovich, editors,
+Proceedings of the 26th International Conference on World Wide Web, Perth, Australia, April 3-7, 2017,
+pages 765–774. ACM, 2017.
+[47] Moyu Zhang, Xinning Zhu, Chunhong Zhang, Yang Ji, Feng Pan, and Changchuan Yin. Multi-Factors
+Aware Dual-Attentional Knowledge Tracing. In Proceedings of the 30th ACM International Conference on
+Information & Knowledge Management, pages 2588–2597, 2021.
+Checklist
+1. For all authors...
+(a) Do the main claims made in the abstract and introduction accurately reﬂect the paper’s
+contributions and scope? [Yes]
+(b) Did you describe the limitations of your work? [Yes] See Section 5
+(c) Did you discuss any potential negative societal impacts of your work? [N/A] Our work
+has no potential negative societal impacts.
+(d) Have you read the ethics review guidelines and ensured that your paper conforms to
+them? [Yes]
+2. If you are including theoretical results...
+(a) Did you state the full set of assumptions of all theoretical results? [N/A]
+(b) Did you include complete proofs of all theoretical results? [N/A]
+3. If you ran experiments (e.g. for benchmarks)...
+(a) Did you include the code, data, and instructions needed to reproduce the main exper-
+imental results (either in the supplemental material or as a URL)? [Yes] All codes,
+datasets and detailed instructions can be found at https://pykt.org.
+13
+
+(b) Did you specify all the training details (e.g., data splits, hyperparameters, how they were
+chosen)? [Yes] Training details can be found in the Section 4. The hyperparameter
+search space is provided in Appendix A.3.
+(c) Did you report error bars (e.g., with respect to the random seed after running experi-
+ments multiple times)? [Yes] We use 5-fold cross validation to evaluate each models
+and report the average scores with standard deviations in result tables in Appendix.
+(d) Did you include the total amount of compute and the type of resources used (e.g., type
+of GPUs, internal cluster, or cloud provider)? [Yes]
+4. If you are using existing assets (e.g., code, data, models) or curating/releasing new assets...
+(a) If your work uses existing assets, did you cite the creators? [Yes]
+(b) Did you mention the license of the assets? [Yes] The datasets used in our work
+are publicly released and we have well cited the corresponding papers and implicitly
+mentioned their download links.
+(c) Did you include any new assets either in the supplemental material or as a URL? [N/A]
+(d) Did you discuss whether and how consent was obtained from people whose data you’re
+using/curating? [Yes]
+(e) Did you discuss whether the data you are using/curating contains personally identiﬁable
+information or offensive content? [Yes] The datasets we used don’t contain personally
+identiﬁable information or offensive content.
+5. If you used crowdsourcing or conducted research with human subjects...
+(a) Did you include the full text of instructions given to participants and screenshots, if
+applicable? [N/A]
+(b) Did you describe any potential participant risks, with links to Institutional Review
+Board (IRB) approvals, if applicable? [N/A]
+(c) Did you include the estimated hourly wage paid to participants and the total amount
+spent on participant compensation? [N/A]
+14

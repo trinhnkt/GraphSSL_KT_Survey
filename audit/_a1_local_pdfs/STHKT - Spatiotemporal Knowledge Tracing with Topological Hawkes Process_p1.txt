@@ -1,0 +1,159 @@
+Contents lists available at ScienceDirect
+Expert Systems With Applications
+journal homepage: www.elsevier.com/locate/eswa
+STHKT: Spatiotemporal Knowledge Tracing with Topological Hawkes
+Process
+Shuting Li a,b, Shuanghong Shen c, Yu Su b,d,∗, Xinjie Sun c, Junyu Lu b,c, Qi Mo a,b, Zhenyi Wu a,b,
+Qi Liu b,c
+a AHU-IAI AI Joint Laboratory, Anhui University, Hefei, Anhui, China
+b Institute of Artificial Intelligence, Hefei Comprehensive National Science Center, Hefei, Anhui, China
+c School of Data Science, University of Science and Technology of China, Hefei, Anhui, China
+d Key Laboratory of Philosophy and Social Science of Anhui Province on Adolescent Mental Health and Crisis Intelligence Intervention, China
+A R T I C L E
+I N F O
+Keywords:
+Knowledge Tracing
+Topological graph
+Hawkes process
+Attention mechanism
+A B S T R A C T
+Knowledge Tracing (KT) is a method that seeks to forecast students’ future performance based on their
+historical interactions with intelligent tutoring systems. Various KT techniques have been developed from
+distinct perspectives, such as probability, logic, and deep learning, to scrutinize interaction sequences.
+However, most current methods predominantly concentrate on temporal or structural information, considering
+simple question sequences or interaction sequences, but fail to describe the topological dependencies between
+sequences, which can lead to changes in causal structures,as referred to as dynamic structural information in
+the paper. The dynamic information includes the clustering effect among concepts and questions, as well
+as the group effect among students and questions: Questions with the same knowledge concepts tend to
+present increasingly similar response patterns in the sequence, and concurrently, students who answer similar
+questions often exhibit closer knowledge states. We introduce the STHKT method, which employs a tripartite
+heterogeneous graph to capture relationships among concepts, questions, and students. By incorporating
+temporal information through a topological graph, we employ two Graph Convolution Networks (GCNs) to
+model the two effects separately. Following this, we apply the Hawkes Process to introduce a spatiotemporal
+attention mechanism that combines both effects. Through comparative experiments, ablation studies and case
+studies, we validate the efficacy of key components in the model. Experiment results indicate that the STHKT
+model can effectively model the two major effects, integrate dynamic structural information, and to some
+extent improve the accuracy of predicting students’ response probabilities. It is the first time that these two
+effects have been considered in the process of knowledge tracing, and it is adaptable to large-scale online
+education platforms.
+1. Introduction
+Knowledge Tracing, as defined in Abdelrahman et al. (2023), Liu
+et al. (2021), is a task aimed at modeling students’ knowledge profi-
+ciency based on their learning interaction data. This is accomplished by
+observing students’ responses to questions related to various concepts,
+thereby indirectly tracing their knowledge states on specific concepts.
+Generally speaking, most models simplify the learning environment by
+presuming that students’ responses are binary (i.e., correct or incorrect).
+Given a new question, the output of the knowledge tracing model is
+the probability of students answering it correctly. This is one of the
+most critical components in constructing adaptive education systems.
+In adaptive education systems, whether it is precise recommendation,
+∗Corresponding author at: Institute of Artificial Intelligence, Hefei Comprehensive National Science Center, Hefei, Anhui, China.
+E-mail addresses: WA22301164@stu.ahu.edu.cn (S. Li), closer@mail.ustc.edu.cn (S. Shen), yusu@hfnu.edu.cn (Y. Su), xinjiesun@mail.ustc.edu.cn (X. Sun),
+lujunyu@mail.ustc.edu.cn (J. Lu), WA22301170@stu.ahu.edu.cn (Q. Mo), WA21301039@stu.ahu.edu.cn (Z. Wu), qiliuql@ustc.edu.cn (Q. Liu).
+students’ learning path planning or knowledge graph construction, the
+first step is to accurately predict a students’ knowledge proficiency
+level (Cui & Sachan, 2023; Luaces et al., 2017).
+The field of knowledge tracing has seen continuous development
+through the introduction of innovative methodologies. Bayesian Knowl-
+edge Tracing (BKT) (Yudelson et al., 2013) was the first method
+proposed for mining students’ knowledge states, utilizing the Hidden
+Markov Model. With the maturation of deep networks, Deep Knowledge
+Tracing (DKT) (Piech et al., 2015) was introduced, simulating students’
+learning process using RNN/LSTM (Lipton et al., 2015). Since then,
+various neural network methods have been employed for knowledge
+https://doi.org/10.1016/j.eswa.2024.125248
+Received 31 March 2024; Received in revised form 23 August 2024; Accepted 26 August 2024
+Expert Systems With Applications 259 (2025) 125248 
+Available online 28 August 2024 
+0957-4174/© 2024 Published by Elsevier Ltd. 
+
+S. Li et al.
+Fig. 1. A toy example of the process of knowledge tracing which traced by AKT and DKT, which in the visualization data on the right, orange represents AKT, while blue represents
+DKT. In the middle of the figure, we use 𝑝(𝑞1, 𝑞2)𝑙𝑜𝑔2
+𝑝(𝑞1,𝑞2)
+𝑝(𝑞1)𝑝(𝑞2) to calculate the correlation score of 𝑞1 and 𝑞2, and we can find the two questions which have the same concepts, are
+increasingly related. On the right side of the figure, we choose the five most similar sequences and the five least similar sequences.
+Then we predict the correct probability of
+𝑞5, and fine the five sequences which are the most similar have the more similar prediction.
+tracing. One particularly powerful branch is the attention-based knowl-
+edge tracing model (Ghosh et al., 2020). Due to the inherent matching
+of dependency relationships between knowledge concepts, researchers
+have employed Graph Neural Networks (GNN) to utilize the graph
+structure within knowledge concepts for knowledge tracing (Nakagawa
+et al., 2019). In practical terms, these advancements significantly im-
+pact educational technology. Models using attention mechanisms and
+graph neural networks improve the tracing of students’ understanding,
+offering precise feedback and tailored recommendations. Integrating
+these methods into tutoring systems allows real-time support and
+more personalized instruction, enhancing overall student outcomes and
+contributing to individualized learning.
+However, despite the notable success of the aforementioned meth-
+ods, these approaches always focus on temporal or structural informa-
+tion, considering simple question sequences or interaction sequences.
+They often fail to adequately describe the topological dependencies
+between these sequences, which can lead to changes in causal struc-
+tures, namely dynamic structural information in the paper. This is
+evident in two distinct effects: (1) the knowledge concept clustering
+effect: questions sharing the same knowledge concepts tend to
+present increasingly similar response patterns in the sequence.
+As illustrated in Fig. 1, we quantify the correlation between 𝑞1 and
+𝑞2 across various different timestamps by calculating the similarity of
+the probability of correct answer on them between 𝑞1 and 𝑞2 at differ-
+ent moments using Mutual Information: 𝑝(𝑞1, 𝑞2)𝑙𝑜𝑔2
+𝑝(𝑞1,𝑞2)
+𝑝(𝑞1)𝑝(𝑞2) (Shannon,
+1948). If 𝑞1 and 𝑞2 are completely independent, their joint probability
+𝑝(𝑞1, 𝑞2) equals the product of their individual probabilities 𝑝(𝑞1) and
+𝑝(𝑞2). At this point, the correlation is zero, indicating that there is no
+information sharing between 𝑞1 and 𝑞2. If 𝑞1 and 𝑞2 are completely
+related, then 𝑝(𝑞1, 𝑞2) = 𝑝(𝑞1) = 𝑝(𝑞2), at this time the correlation
+is at its maximum, indicating that the information between 𝑞1 and
+𝑞2 is completely shared. Therefore, this formula can effectively mea-
+sure the correlation between two questions. As students continue to
+solve questions, question 𝑞1 and 𝑞2 that share the same knowledge
+concepts show a gradually increasing similarity in their responses. (2)
+the student group effect: students who answer similar questions
+often demonstrate similar knowledge states, i.e., the higher the
+overlap of answered questions, the closer the students’ knowledge
+states tend to be. In Fig. 1, we select the five sequences that are most
+similar to the sequence shown in the middle and the five least similar
+sequences, and respectively evaluate the correctness rate for 𝑞5. We
+observe that the probability of correctly answering 𝑞5 is relatively close
+among the five most similar sequences, and they are all generally high.
+This implies that the sequence exemplified in the figure, along with
+the five most similar sequences, possess relatively similar knowledge
+states.
+We assert that it is vital and advantageous to contemplate the
+concepts of clustering effect and student group effect within the context
+of knowledge tracing. In this paper, we have proposed a Spatiotempo-
+ral Knowledge Tracing framework (STHKT1) based on a Topological
+Hawkes Process to better model the two effects mentioned above.
+Firstly, to obtain the structural information in the knowledge tracing
+process, we construct a tripartite heterogeneous graph comprising of
+Concepts, Questions and Students (Su et al., 2022). Secondly, to com-
+bine structural information with temporal information, we topologize
+the question sequences and associated concepts and students within
+the tripartite heterogeneous graph, thereby creating topological graphs.
+During the topologization of a question sequence, we select question
+nodes from the tripartite heterogeneous graph and generate directed
+edges according to temporal relationships. Then, we identify all ad-
+jacent concept and student nodes based on these question nodes. If
+there is a common concept or student node between two question
+nodes, the earlier one points to the shared node, followed by the later
+question node, thereby forming a topological graph. Thirdly, to model
+the influence of clustering effect and group effect with advantage, we
+employ a graph convolutional method. This approach fundamentally
+captures cumulative effects (Cai et al., 2022; Defferrard et al., 2016;
+Shang & Sun, 2019). Ultimately, given that Hawkes processes and the
+convolution process of topological graphs are essentially identical, we
+combine the results of modeling the two effects with a monotonic
+attention mechanism, using Hawkes process. It enhances the monotonic
+attention to a spatiotemporal attention mechanism. By leveraging the
+characteristics of topological graphs and Hawkes process, we integrate
+temporal information into the knowledge tracing process, combining it
+with the two effects to achieve higher prediction accuracy.
+Our main contributions are summarized as follows:
+1 https://github.com/Ting1024/STHKT3.git
+Expert Systems With Applications 259 (2025) 125248 
+2 

@@ -1,0 +1,271 @@
+Model Generalization: A Sharpness Aware Optimization
+Perspective
+Jozef Marus Coldenhoff∗
+School of Computer and Communication Sciences
+EPFL
+Chengkun Li∗
+School of Engineering
+EPFL
+Yurui Zhu∗
+College of Humanities
+EPFL
+Abstract—Sharpness-Aware
+Minimization
+(SAM)
+and
+adaptive
+sharpness-aware minimization (ASAM) aim to improve the model
+generalization. And in this project, we proposed three experiments to
+valid their generalization from the sharpness aware perspective. And our
+experiments show that sharpness aware-based optimization techniques
+could help to provide models with strong generalization ability. Our
+experiments also show that ASAM could improve the generalization
+performance on un-normalized data, but further research is needed to
+conﬁrm this.
+Index Terms—Machine Learning, Optimization, Loss sharpness, SAM,
+ASAM.
+I. INTRODUCTION
+In recent years, the generalization of deep neural networks has
+steadily risen to prominence as an important topic in modern machine
+learning, plenty of works have been done to address the limitations
+of pure optimization. Better model generalization means more stable
+results when dealing with unobserved data in real-world applications.
+Empirical evidence has shown that the shape of the loss function
+affects how well the models generalize; convergence at a ﬂatter
+minima is more likely to lead to better generalization.
+Stochastic gradient descent (SGD) is known for ﬁnding a ﬂat
+minima that tends to generalize well. Xie and Sato et al. [1]
+theoretically proved that SGD favors ﬂat minima exponentially due
+to the Hessian-dependent covariance of stochastic gradient noise.
+Furthermore, Jastrzebski et al. [2] theoretically and empirically
+showed that using a large learning rate and/or small batch size steers
+SGD towards ﬂatter minima.
+Foret and Kleiner et al. [3] introduced Sharpness-Aware Minimiza-
+tion (SAM) to improve generalization by simultaneously minimizing
+both loss value and loss sharpness. Subsequently, Kwon and Kim
+et al. [4] proposed adaptive sharpness-aware minimization (ASAM),
+which adaptively adjusts maximization regions thus acting uniformly
+under parameter re-scaling. Since the advent of SAM, many studies
+have demonstrated that SAM combined with different optimization
+methods can all improve the generalization. [5], [6], [7], [8]. However,
+there are not many experiments to validate the performance of
+ASAM.
+In this project, we aim to evaluate how the SAM and ASAM
+optimizer perform on a Computer Vision image classiﬁcation task,
+and whether SGD using SAM and ASAM can truly beat vanilla SGD
+in terms of generalization performance.
+II. METHODS
+The Sharpness-Aware Minimization (SAM) performs one more
+step of gradient ascent to approximately determine the worst-case
+weight perturbation before updating the weights [3]. This is done,
+because in the paper they derive that adding a sharpness minimization
+objective to the loss function can be optimized by evaluating the
+*These authors contributed equally to this work
+gradient or the loss at a point in parameter space within an ϵ-ball
+around the current parameters, and adding that evaluated gradient
+to the current parameters. This has as an intended effect that the
+network balances lowering the training loss, and its sharpness. More
+speciﬁcally, [3] deﬁnes the sharpness of loss function as Equation 1.
+max
+∥ϵ∥2≤ρ LS(w + ϵ) −LS(w)
+(1)
+And the sharpness-aware minimization can be deﬁned as the
+following min-max optimization:
+min w max
+∥ϵ∥p≤ρ LS(w + ϵ) + λ
+2 ∥w∥2
+2
+(2)
+And the weights can be updated after the ϵ is calculated, using
+Equation 3:
+(
+ϵt = ρ
+∇LS(wt)
+∥∇LS(wt)∥2
+wt+1 = wt −αt (∇LS (wt + ϵt) + λwt)
+(3)
+However, [4] note that as was shown by [9] a rectiﬁer neural
+network can be arbitrarily reparameterized in such a way that the
+function of the network stays the same, while changing the sharpness
+of the loss landscape. [4] then suggest that rescaling the ϵ-ball to
+match the scale of the parameters could improve the performance of
+the SAM algorithm by removing the scale-dependence from the loss
+maximization step. This resulted in the ASAM optimizer, where the
+maximization problem is changed to:
+max
+∥T −1
+w
+ϵ∥2≤ρ
+LS(w + ϵ) −LS(w)
+(4)
+Where T −1
+w
+is a rescaling operator deﬁned by the magnitudes of the
+parameters in fully connected and convolution layers.
+The ﬁnal weight update is the calculated as:
+(
+ϵt = ρ
+T 2
+w∇LB(wt)
+∥Tw∇LS(wt)∥2
+wt+1 = wt −α (∇LB (wt + ϵ) + λwt)
+(5)
+We carried out the following experiments to discover model’s
+generalization from the sharpness aware perspective.
+III. EXPERIMENTS
+A. Experiment A
+The aim of our ﬁrst experiment is to test the generalization ability
+of model trained with Sharpness Aware Minimization (SAM) and
+vanilla Stochastic Gradient Descent (SGD) on image classiﬁcation
+task at testing time. To this end, we trained ResNet-18 on CIFAR-
+10 for 100 epochs using SAM and SGD. For SAM, it needs a base
+optimizer, so we use a SGD with the same conﬁguration with the
+SGD we compared to in order to ensure fairness. The SGD is trained
+with 0 momentum and constant learning rates of 0.01 (the learning
+arXiv:2208.06915v1  [cs.LG]  14 Aug 2022
+
+rate is selected by grid search with the goal of balancing training time
+and training stability) with batch size of 128, for image classiﬁcation
+task we use Cross Entropy Loss. We measured the classiﬁcation
+accuracy of models trained with these two optimizers on test data-set
+to determine their generalization ability.
+Additionally, since SAM updates twice per training step, so we
+compare the testing accuracy of SAM at ﬁrst 50 epochs with the
+testing accuracy of SGD at ﬁrst 100 epochs. We report the results in
+Table I which are measured as average across 3 seeds.
+Seed
+Method
+Testing accuracy
+20
+SAM
+71.22
+SGD
+65.15
+30
+SAM
+70.77
+SGD
+64.03
+40
+SAM
+70.98
+SGD
+64.17
+TABLE I
+RESULT OF EXPERIMENT 1: COMPARING THE TESTING ACCURACY OF
+MODELS TRAINED WITH SGD/SAM.
+From the result we can see that with every random initialization,
+SAM has a signiﬁcantly higher testing accuracy than vanilla SGD.
+B. Experiment B
+According to Andriushchenko et al. [5], using smaller batch sizes
+steers SGD toward ﬂatter minima, and in contrast, a large batch size
+theoretically makes it harder for SGD harder to escape from sharper
+minima due to less noise in the gradient. In the second experiment, we
+will explore whether SAM helps to mitigate the poor generalization
+associated with larger batch sizes of SGD and see if it can help
+generalize better in the test time by ﬁnding a ﬂatter minimum. We
+here trained the ResNet-18 on CIFAR-10 for 100 epochs using both
+vanilla SGD and SAM with the same conﬁguration in Section III-A.
+We report the testing accuracy w.r.t training epochs and training
+loss (in log scale) w.r.t training epochs in Figure 1 and Figure 2. All
+curves are averaged across 3 seeds with standard deviation plotted in
+light colors.
+0
+20
+40
+60
+80
+100
+Epochs
+0.45
+0.50
+0.55
+0.60
+0.65
+0.70
+0.75
+0.80
+Test Accuracy
+Testing Accuracy on CIFAR-10 w.r.t Training Epochs (3 seeds)
+bz_16 SAM
+bz_64 SAM
+bz_128 SAM
+bz_16 SGD
+bz_64 SGD
+bz_128 SGD
+Fig. 1. Testing accuracy on CIFAR-10 with SAM/SGD trained with different
+batch sizes and initial weights.
+Testing Accuracy Interpretation: From Figure 1, we can observe
+that models trained with smaller batch size generalize better at
+testing time for models trained with either SAM or SGD, which
+is in consistent with the observations in [5]. However, from our
+experiments, we observe that the test accuracy of the models using
+SGD varies more than the test accuracy of the models using SAM
+across 3 seeds, this is especially evident in larger batch sizes (64 and
+128), where the variance of the SAM-based model is signiﬁcantly
+lower than that of the SGD-based model. In addition, comparing the
+models trained with SAM/SGD for the same batch size, the models
+trained with SAM achieved test accuracy at around 5 ∼10% higher
+than SGD.
+0
+20
+40
+60
+80
+100
+Epochs
+10
+3
+10
+2
+10
+1
+100
+Training Loss
+Training Loss on CIFAR-10 w.r.t Training Epochs (3 seeds)
+bz_16 SAM
+bz_64 SAM
+bz_128 SAM
+bz_16 SGD
+bz_64 SGD
+bz_128 SGD
+Fig. 2.
+Training loss on CIFAR-10 with SAM/SGD trained with different
+batch sizes and initial weights.
+Training Loss Interpretation: From Figure 2 we can easily
+distinguish the loss curves of the SAM-based models from the SGD-
+based models by either the convergence rate or the variance of loss.
+Interestingly, our set of experiments shows that lower losses do not
+necessarily lead to higher accuracy in test time, and in addition, we
+can see that faster convergence in the case of SGD during training
+represents lower generalization performance in our experiments as
+well. On the other hand, we can observe a similar phenomenon for the
+loss curve variance, i.e., the SGD-based model has a larger variance
+in the loss curve compared to the SAM-based model. We interpret
+this result in the perspective of sharpness, this high variance may
+come from different weight initializations, where training with SGD
+may be stuck at different sharp local minima, while training with
+SAM leads to ﬂatter minima, or perhaps even the same minima for
+different weight initializations.
+C. Experiment C
+ASAM intends to address the parameter scaling problem that SAM
+and other sharpness minimization-based optimizers may encounter.
+As it has been shown by [9] that one may arbitrarily reparameterize
+rectiﬁer networks in such a way that the function of the network stays
+the same, while changing the ﬂatness of the loss landscape. ASAM
+tackles this by rescaling the ϵ-ball where the loss is maximized to
+reﬂect the different magnitudes of the parameters.
+We wanted to see how much this rescaling problem affects SAM
+in an image classiﬁcation task and whether ASAM can solve the
+problem. Hence we conduct an experiment to test this. We design
+the experiment to train ResNet-18 on CIFAR-10 for 200 epochs
+using vanilla SGD with SAM and ASAM, in order to ﬁnd whether
+ASAM is more robust to parameter scaling, we remove all Batch
+Normalization layers [10]. We conduct this experiment with the
+same hyperparameters as the ASAM authors use in their comparison
+between SAM and ASAM using CIFAR-10 and ResNet 20. The
+learning rate for both SAM and ASAM is set to 0.01, batch size
+of 128, momentum and weight decay are set to 0.9 and 0.0005, and
+ﬁnally, a cosine annealing learning rate scheduler [11] is used to
+train the networks. For this experiment, we use the standard data
+normalization of CIFAR-10, where the input pixels have an intensity

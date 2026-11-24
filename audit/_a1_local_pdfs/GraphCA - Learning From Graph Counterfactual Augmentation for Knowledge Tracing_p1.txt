@@ -1,0 +1,228 @@
+ 
+GraphCA: Learning From Graph Counterfactual
+Augmentation for Knowledge Tracing
+Xinhua Wang, Shasha Zhao, Lei Guo, Lei Zhu, Chaoran Cui, and Liancheng Xu
+ 
+   Abstract—With  the  popularity  of  online  learning  in  educa-
+tional settings, knowledge tracing (KT) plays an increasingly sig-
+nificant role. The task of KT is to help students learn more effec-
+tively  by  predicting  their  next  mastery  of  knowledge  based  on
+their  historical  exercise  sequences.  Nowadays,  many  related
+works  have  emerged  in  this  field,  such  as  Bayesian  knowledge
+tracing  and  deep  knowledge  tracing  methods.  Despite  the
+progress that has been made in KT, existing techniques still have
+the following limitations: 1) Previous studies address KT by only
+exploring  the  observational  sparsity  data  distribution,  and  the
+counterfactual data distribution has been largely ignored. 2) Cur-
+rent works designed for KT only consider either the entity rela-
+tionships  between  questions  and  concepts,  or  the  relations
+between two concepts, and none of them investigates the relations
+among students, questions, and concepts, simultaneously, leading
+to inaccurate student modeling. To address the above limitations,
+we  propose  a  graph  counterfactual  augmentation  method  for
+knowledge tracing. Concretely, to consider the multiple relation-
+ships  among  different  entities,  we  first  uniform  students,  ques-
+tions, and concepts in graphs, and then leverage a heterogeneous
+graph convolutional network to conduct representation learning.
+To  model  the  counterfactual  world,  we  conduct  counterfactual
+transformations  on  students’ learning  graphs  by  changing  the
+corresponding  treatments  and  then  exploit  the  counterfactual
+outcomes  in  a  contrastive  learning  framework.  We  conduct
+extensive  experiments  on  three  real-world  datasets,  and  the
+experimental results demonstrate the superiority of our proposed
+GraphCA  method  compared  with  several  state-of-the-art  base-
+lines.
+    Index Terms— Contrastive learning, counterfactual representation,
+graph neural network, knowledge tracing.
+  
+I.  Introduction
+T
+HE development of computer science and artificial intelli-
+gence has promoted the progress of the education indus-
+try. Many computer-assisted education applications have been
+developed  rapidly,  especially,  large-scale  online  education.
+More  and  more  researchers  are  paying  more  attention  to
+developing learning strategies to help improve their learning
+effect  and  efficiency  in  online  learning  [1],  [2].  Though  a
+large  scale  of  students’ learning  data  can  be  collected,  con-
+ducting effective personalized knowledge tracing (KT) in the
+online scenario is a challenging task due to its inherent data
+sparsity issue. That is, most students solely answered a small
+number of questions in history, leading to inaccurate student
+and question representation learning for KT.
+Recently, several studies have been focused on addressing
+the  data  sparsity  issue  of  KT.  For  example,  Pandey  and
+Karypis [3] focus on solving the data sparsity problem of KT
+by only leveraging the students’ past activities that are rele-
+vant to the given knowledge concept (KC), where a self-atten-
+tion  based  approach  is  proposed.  Wang et  al.  [4]  propose  a
+novel  deep  hierarchical  knowledge  tracing  (DHKT)  model,
+which solves the data sparsity problem by using the hierarchi-
+cal information between questions and concepts to obtain only
+the rich relationships between questions and concepts. Yang et
+al. [5] utilize the graph convolutional network (GCN) to cap-
+ture  the  inter-question  and  inter-concept  abundant  relations
+and  propose  a  graph-based  knowledge  tracing  interaction
+model to mitigate the data sparsity in KT. Chen et al. [6] pro-
+vide  prerequisite  relationships  between  concepts  for  KT  by
+incorporating the knowledge structure information and creat-
+ing links between questions for dealing with the data sparsity
+problem.
+However, the data sparsity issue in KT is still unsolved, due
+to the following limitations of existing methods: 1) Existing
+methods for solving the data sparsity issue omit the usage of
+counterfactual data. Counterfactual data refers to the interac-
+tions  that  have  not  happened,  but  could,  would,  or  might
+under  differing  conditions  [7].  Following  its  definition  in
+causal inference, we can further deem this kind of data as an
+augmentation of the observed data, providing us with an effi-
+cient  way  to  confront  the  data  sparsity  issue.  The  relations
+between the observed data and counterfactual data are shown
+in Fig. 1(b).  The  motivation  we  leverage  the  counterfactual
+technique is that it provides us with an effective way to model
+the  counterfactual  data,  which  further  helps  us  alleviate  the
+data sparsity issue in KT modeling. Counterfactual data is a
+kind  of  interaction  behavior  that  is  not  observational  in  the
+past, as one student can only interact (the observed) with one
+question at the same time. Although the counterfactual data is
+not  observational,  it  may  contain  useful  information.  For
+example,  if  we  know  two  questions  examine  similar  knowl-
+edge  points,  and  the  answer  for  one  of  them  has  been
+ 
+Manuscript received December 13, 2022; revised March 2, 2023 and April
+5,  2023;  accepted  May  15,  2023.  This  work  was  supported  by  the  Natural
+Science Foundation of China (62372277), the Natural Science Foundation of
+Shandong  Province  (ZR2022MF257,  ZR2022MF295)  and  Humanities  and
+Social  Sciences  Fund  of  the  Ministry  of  Education  (21YJC630157).
+Recommended by Associate Editor Wenguan Wang. (Corresponding author:
+Lei Guo.)
+Citation: X. H. Wang, S. S. Zhao, L. Guo, L. Zhu, C. R. Cui, and L. C. Xu,
+“GraphCA: Learning from graph counterfactual augmentation for knowledge
+tracing,” IEEE/CAA J. Autom. Sinica, vol. 10, no. 11, pp. 2108–2123, Nov.
+2023.
+X. H. Wang, S. S. Zhao, L. Guo, L. Zhu, and L. C. Xu are with the School
+of Information Science and Engineering, Shandong Normal University, Jinan
+250358,  China  (e-mail:  wangxinhua@sdnu.edu.cn;  zhaoshasha2242@163.
+com; guolei@sdnu.edu.cn; leizhu0608@gmail.com; lcxu@sdnu.edu.cn).
+C.  R.  Cui  is  with  the  School  of  Computer  Science  and  Technology,
+Shandong  University  of  Finance  and  Economics,  Jinan  250014,  China  (e-
+mail: crcui@sdufe.edu.cn).
+Color  versions  of  one  or  more  of  the  figures  in  this  paper  are  available
+online at http://ieeexplore.ieee.org.
+Digital Object Identifier 10.1109/JAS.2023.123678
+2108 
+IEEE/CAA JOURNAL OF AUTOMATICA SINICA, VOL. 10, NO. 11, NOVEMBER 2023
+
+recorded,  then,  we  can  deduce  similar  answers  to  the  other
+one. By doing this, we can augment the answer records of stu-
+dents to alleviate the data sparsity issue. Intuitively, modeling
+the  counterfactual  world  enables  us  to  consider  more  unob-
+served  characteristics  of  students,  and  thus  can  learn  more
+accurate representations for both students and questions. Moti-
+vated by the work in [7], we generate the counterfactual data
+for every student according to the following strategies (as we
+have shown in Fig. 1(a), and more details can be seen in Sec-
+tion III-D): The question replacement operation and counter-
+factual disruption. The example of the resulting sub-graph is
+shown in Fig. 1(a). Counterfactual transformation can be seen
+as one kind of data augmentation method. 2) Another limita-
+tion of existing works is that existing studies fail to capture
+the  structure  information  among  multiple  entities,  i.e.,  the
+relationships  among  students,  questions,  and  concepts.  And,
+as the students can only interact with a small number of ques-
+tions  (data  is  sparse),  directly  modeling  them  is  infeasible.
+One  intuitive  way  of  dealing  with  this  issue  is  to  resort  to
+other relationships among different entities. However, previ-
+ous  works  only  consider  either  the  entity  relationships
+between questions and concepts, or the relations between two
+concepts,  and  none  of  them  investigates  their  relationships,
+simultaneously. To overcome this challenge, we further con-
+sider the student-question relationship in a unified graph. We
+incorporate students into the graph to further consider the stu-
+dent-question-concept  relationship  mainly  because  students’
+knowledge  state  can  be  modeled  by  the  questions  that  they
+have  answered.  Though  some  questions  may  have  the  same
+concepts, we can still distinguish the students by their differ-
+ent answers to these questions, as we present students not only
+by the questions, but also by their answers to the questions.
+The  more  information  involved  with  a  student  we  have,  the
+more likely we are to better modeling students. As the direct
+connection with students only involves questions, incorporat-
+ing  concepts  would  not  increase  the  combinatorial  space.
+Instead, further considering the concepts, enables us to learn
+more  accurate  question  representations,  which  will  further
+affect  students’ representation  learning.  Modeling  students,
+questions,  and  concepts  in  a  unified  graph  facilitates  us  in
+learning their high-order relationships. An example of model-
+ing them in a unified graph is shown in Fig. 2.
+To overcome the above limitations, we propose a counter-
+factual graph counterfactual augmentation method for knowl-
+edge tracing, namely GraphCA. Our main idea to confront the
+data sparsity problem is to model the counterfactual data dis-
+tribution rather than solely the observational data distribution.
+Specifically,  we  aim  to  answer  the  following  counterfactual
+question, “what  the  student  representation  would  be  if  we
+intervene  on  the  observed  answers”.  More  concretely,  given
+the observed question sequence, we first unify students, ques-
+tions, and concepts in a student-question-concept (SQC) rela-
+tion graph to model their higher-order relationships. Then, we
+intervene on the observed answers by generating interrupted
+sub-graphs, from which we can obtain counterfactual student
+representation  via  counterfactual  contrastive  graph  learning.
+In  counterfactual  learning,  we  perform  counterfactual  graph
+transformations from two views based on two factual observa-
+tions. First, the student’s knowledge state represented by the
+question  sequence  may  remain  similar  even  if  we  replace
+them  with  similar  questions.  Motivated  by  this,  we  obtain
+counterfactually  positive  user  representation  by  randomly
+replacing similar questions within the question sequence. Sec-
+ond, the student’s knowledge state is independent of the ques-
+tion orders that the student has answered. As such, we achieve
+the  counterfactually  positive  samples  by  randomly  changing
+the  order  of  the  questions.  The  goal  of  our  counterfactual
+strategies  is  to  answer  two “what  if...” questions.  The  first
+strategy  that  intervenes  with  the  students  by  the  question
+replacement operation tends to answer “what the student rep-
+resentation  would  be  if  we  intervene  on  the  observed
+answers”. The section strategy that disrupts students’ answer
+records  by  changing  their  answer  orders  tends  to  answer
+“what the student representation would be if...”. We resort to
+ 
+sub-G
+Change the order 
+of the questions
+Replace questions
+(a) Generating counterfactual data
+(b) The relations between the observed data and counterfactual data
+Observed
+Counterfactual
+Adversarial relations
+Answered (observed) question node
+Unanswered (counterfactual) question 
+Node concept node
+ 
+Fig. 1.     An illustration of modeling unobserved data from a counterfactual perspective.
+ 
+ 
+Student
+Question
+Concept
+S1
+S2
+S3
+S4
+Q1
+Q2
+Q3
+Q4
+Q5
+C1
+C2
+C3
+C4
+ 
+Fig. 2.     An  example  of  modeling  the  relationships  among  students,  ques-
+tions, and concepts in a unified graph.
+ 
+WANG et al.: GRAPHCA: LEARNING FROM GRAPH COUNTERFACTUAL AUGMENTATION FOR KT
+2109 

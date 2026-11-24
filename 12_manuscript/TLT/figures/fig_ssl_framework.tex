@@ -1,43 +1,52 @@
-\documentclass[tikz,border=5pt]{standalone}
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 \usepackage{tikz}
-\usepackage{amsmath}
-\usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows}
+\usetikzlibrary{positioning}
+
+\definecolor{ink}{HTML}{1F2937}
+\definecolor{muted}{HTML}{6B7280}
+\definecolor{head}{HTML}{9A3412}
+\definecolor{ssl}{HTML}{C2410C}
+\definecolor{sslbg}{HTML}{FFF7ED}
+\definecolor{chip}{HTML}{FFFFFF}
 
 \begin{document}
 \begin{tikzpicture}[
-    node distance=1.1cm and 1.3cm,
-    font=\sffamily\small,
-    family/.style={rectangle, draw=orange!80!black, fill=orange!10, thick, rounded corners=4pt, align=center, minimum width=4.0cm, minimum height=1.1cm, drop shadow},
-    objective/.style={rectangle, draw=blue!70!black, fill=blue!8, thick, rounded corners=4pt, align=center, minimum width=3.8cm, minimum height=1.0cm, drop shadow},
-    root/.style={rectangle, draw=purple!80!black, fill=purple!15, ultra thick, rounded corners=5pt, align=center, minimum width=4.8cm, minimum height=1.2cm, drop shadow},
-    arrow/.style={-{Stealth[length=6pt]}, thick, draw=gray!80}
+    font=\sffamily,
+    cell/.style={
+        rectangle, rounded corners=3pt, align=left,
+        minimum width=7.55cm, minimum height=1.18cm,
+        inner sep=5pt, draw=ssl!50, fill=sslbg, line width=0.55pt, text=ink
+    }
 ]
 
-% Root Node
-\node[root] (root) {\textbf{Self-Supervised Learning (SSL-KT)}\\\textbf{4-Family Taxonomy Framework}};
+\fill[head, rounded corners=4pt] (0,0) rectangle (15.6,1.15);
+\node[anchor=west, text=white, font=\sffamily\bfseries\large] at (0.35,0.72)
+    {SSL-KT pretext families};
+\node[anchor=west, text=white!90, font=\sffamily\small] at (0.35,0.32)
+    {$N_S=16$  $\cdot$  $N_{G\cap S}=12$  $\cdot$  sequence-only $=4$};
+\node[anchor=east, text=white, font=\sffamily\bfseries] at (15.25,0.58)
+    {families below: pre-exp.};
 
-% 4 Families
-\node[family, above left=1.5cm and 1.8cm of root] (fam1) {\textbf{Multi-View Contrastive}\\(37.5\% of SSL Corpus)\\Bi-CLKT, 3V-CLKT, CMG-KT};
-\node[family, above right=1.5cm and 1.8cm of root] (fam2) {\textbf{Graph Structural Contrast}\\(31.3\% of SSL Corpus)\\DC-SSL, GraphCA, DV-HGCL};
-\node[family, below left=1.5cm and 1.8cm of root] (fam3) {\textbf{Hypergraph Contrastive}\\(12.5\% of SSL Corpus)\\S2-HHN, HyperKT};
-\node[family, below right=1.5cm and 1.8cm of root] (fam4) {\textbf{Generative Masked GAE}\\(12.5\% of SSL Corpus)\\Pre-train Q-Emb, GMGAE};
-
-% Objectives
-\node[objective, left=0.6cm of fam1] (obj1) {InfoNCE Mutual Info\\$\mathcal{L}_{\text{InfoNCE}}$ Optimization};
-\node[objective, right=0.6cm of fam2] (obj2) {Node / Edge Masking\\Noise Invariance};
-\node[objective, left=0.6cm of fam3] (obj3) {Node-Hyperedge Group\\Alignment};
-\node[objective, right=0.6cm of fam4] (obj4) {Adjacency Matrix $\mathbf{A}$\\Masked MSE Recon};
-
-% Arrows
-\draw[arrow, orange!80!black] (root) -- (fam1);
-\draw[arrow, orange!80!black] (root) -- (fam2);
-\draw[arrow, orange!80!black] (root) -- (fam3);
-\draw[arrow, orange!80!black] (root) -- (fam4);
-
-\draw[arrow, blue!70!black] (fam1) -- (obj1);
-\draw[arrow, blue!70!black] (fam2) -- (obj2);
-\draw[arrow, blue!70!black] (fam3) -- (obj3);
-\draw[arrow, blue!70!black] (fam4) -- (obj4);
+% Left column
+\node[cell] (a) at (3.90,-0.90) {%
+    {\small\bfseries Multiview contrastive  $n=5$}\\[-1pt]
+    {\scriptsize\color{muted}Bi-CLKT, S2-HHN, 3V-CLKT, DC-SSL, HyperKT}};
+\node[cell, below=0.18cm of a] (b) {%
+    {\small\bfseries Graph contrastive  $n=2$}\\[-1pt]
+    {\scriptsize\color{muted}GraphCA, HKT}};
+\node[cell, below=0.18cm of b] (c) {%
+    {\small\bfseries Graph reconstruction  $n=1$}\\[-1pt]
+    {\scriptsize\color{muted}PEBG / Pre-train Q-Emb; bipartite Q--S}};
+\node[cell, below=0.18cm of c] (d) {%
+    {\small\bfseries Sequence contrastive  $n=1$}\\[-1pt]
+    {\scriptsize\color{muted}CL4KT; graph source = none}};
+% Right column
+\node[cell] (note) at (11.70,-0.90) {%
+    {\small\bfseries Not SSL under the S-criterion}\\[-1pt]
+    {\scriptsize\color{muted}SINKT, Coda, KGNN-KT, R$^2$GCurL, STSKT remain Graph-KT only}};
 
 \end{tikzpicture}
 \end{document}

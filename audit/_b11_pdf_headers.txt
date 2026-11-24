@@ -1,0 +1,190 @@
+==== Deep Knowledge Tracing.pdf pages=9
+--- first ---
+Deep Knowledge Tracing
+Chris Piech∗, Jonathan Bassen∗, Jonathan Huang∗‡, Surya Ganguli∗,
+Mehran Sahami∗, Leonidas Guibas∗, Jascha Sohl-Dickstein∗†
+∗Stanford University,†Khan Academy,‡Google
+{piech,jbassen}@cs.stanford.edu, jascha@stanford.edu ,
+Abstract
+Knowledge tracing—where a machine models the knowledge of a student as they
+interact with coursework—is a well established problem in computer supported
+education. Though effectively modeling student knowledge would have high ed-
+ucational impact, the task has many inherent challenges. In this paper we explore
+the utility of using Recurrent Neural Networks (RNNs) to model student learning.
+The RNN family of models have important advantages over previous methods
+in that they do not require the explicit encoding of human domain knowledge,
+and can capture more complex representations of student knowledge. Using neu-
+ral networks results in substantial improvements in prediction performance on a
+range of knowledge tracing datasets. Moreover the learned model can be used for
+intelligent curriculum design and allows straightforward interpretation and dis-
+covery of structure in student tasks. These results suggest a promising new line of
+research for knowledge tracing and an exemplary application task for RNNs.
+1 Introduction
+Computer-assisted education promises open access to world class instruction and a reduction in the
+growing cost of learning. We can develop on this promise by building models of large scale student
+trace data o
+--- last ---
+[8] D BAKER , R. S. J., P ARDOS , Z. A., G OWDA , S. M., N OORAEI , B. B., AND HEFFERNAN , N. T.
+Ensembling predictions of student knowledge within intelligent tutoring systems. In User Modeling,
+Adaption and Personalization. Springer, 2011, pp. 13–24.
+[9] D RASGOW , F., AND HULIN , C. L. Item response theory. Handbook of industrial and organizational
+psychology 1 (1990), 577–636.
+[10] E LLIOT , A. J., AND DWECK , C. S. Handbook of competence and motivation . Guilford Publications,
+2013.
+[11] F ENG , M., H EFFERNAN , N., AND KOEDINGER , K. Addressing the assessment challenge with an online
+system that tutors as it assesses. User Modeling and User-Adapted Interaction 19, 3 (2009), 243–266.
+[12] F ITCH , W. T., HAUSER , M. D., AND CHOMSKY , N. The evolution of the language faculty: clariﬁcat
+
+==== A Self-Attentive Model for Knowledge Tracing.pdf pages=6
+--- first ---
+A Self-Attentive model for Knowledge Tracing
+Shalini Pandey
+University of Minnesota
+T win Cities, MN 55455, USA
+pande103@umn.edu
+George Karypis
+University of Minnesota
+T win Cities, MN 55455, USA
+karypis@umn.edu
+ABSTRACT
+Knowledge tracing is the task of modeling each student’s
+mastery of knowledge concepts (KCs) as (s)he engages with
+a sequence of learning activities. Each student’s knowledge
+is modeled by estimating the performance of the student
+on the learning activities. It is an important research area
+for providing a personalized learning platform to students.
+In recent years, methods based on Recurrent Neural Net-
+works (RNN) such as Deep Knowledge Tracing (DKT) and
+Dynamic Key-Value Memory Network (DKVMN) outper-
+formed all the traditional methods because of their ability
+to capture complex representation of human learning. How-
+ever, these methods face the issue of not generalizing well
+while dealing with sparse data which is the case with real-
+world data as students interact with few KCs. In order to
+address this issue, we develop an approach that identiﬁes
+the KCs from the student’s past activities that are rele-
+vant to the given KC and predicts his/her mastery based
+on the relatively few KCs that it picked. Since predictions
+are made based on relatively few past activities, it handles
+the data sparsity problem better than the methods based
+on RNN. For identifying the relevance between the KCs,
+we propose a self-attention based approach, Self Attentive
+Knowledge 
+--- last ---
+Table 5: Ablation Study
+Architecture Synthetic
+ASSIST
+2009
+ASSIST
+2015
+ASSIST
+Chall
+ST A TICS
+Default 0.832 0.848 0.854 0.734 0.853
+No PE 0.827 0.842 0.849 0.715 0.832
+No RC 0.823 0.847 0.857 0.709 0.834
+No Dropout 0.832 0.845 0.851 0.711 0.840
+Single head 0.823 0.828 0.845 0.709 0.851
+0 block 0.826 0.837 0.822 0.634 0.819
+2 blocks 0.827 0.840 0.853 0.724 0.845
+the RC do not contribute much to the performance of the
+model. In fact removal of residual connection gives better
+performance than default for the ASSIST2015 dataset.
+No Dropout: Dropout is used in neural network to regular-
+ize the model so that it can generalize better. Overﬁtting
+of the model is more eﬀective for dataset with less number
+of records compared to the number of parameters of model.
+As a result, role of dropout is mo
+
+==== pyKT - A Python Library to Benchmark Deep Learning based Knowledge Tracing Models.pdf pages=14
+--- first ---
+PYKT: A Python Library to Benchmark Deep
+Learning based Knowledge Tracing Models
+Zitao Liu
+Guangdong Institute of Smart Education
+Jinan University
+Guangzhou, Guangdong, China
+liuzitao@jnu.edu.cn
+Qiongqiong Liu
+Think Academy International Education
+TAL Education Group
+Beijing, China
+liuqiongqiong1@tal.com
+Jiahao Chen
+Think Academy International Education
+TAL Education Group
+Beijing, China
+chenjiahao@tal.com
+Shuyan Huang⇤
+Think Academy International Education
+TAL Education Group
+Beijing, China
+huangshuyan@tal.com
+Jiliang Tang
+Computer Science and Engineering Department
+Michigan State University
+East Lansing, MI, United States
+tangjili@msu.edu
+Weiqi Luo
+Guangdong Institute of Smart Education
+Jinan University
+Guangzhou, Guangdong, China
+lwq@jnu.edu.cn
+Abstract
+Knowledge tracing (KT) is the task of using students’ historical learning interaction
+data to model their knowledge mastery over time so as to make predictions on their
+future interaction performance. Recently, remarkable progress has been made of
+using various deep learning techniques to solve the KT problem. However, the
+success behind deep learning based knowledge tracing (DLKT) approaches is still
+left somewhat unknown and proper measurement and analysis of these DLKT
+approaches remain a challenge. First, data preprocessing procedures in existing
+works are often private and custom, which limits experimental standardization.
+Furthermore, existing DLKT studies often differ in terms of the evaluation protocol
+and are far a
+--- last ---
+(b)Did you specify all the training details (e.g., data splits, hyperparameters, how they were
+chosen)?[Y es]Training details can be found in the Section 4. The hyperparameter
+search space is provided in Appendix A.3.
+(c)Did you report error bars (e.g., with respect to the random seed after running experi-
+ments multiple times)?[Y es]We use 5-fold cross validation to evaluate each models
+and report the average scores with standard deviations in result tables in Appendix.
+(d)Did you include the total amount of compute and the type of resources used (e.g., type
+of GPUs, internal cluster, or cloud provider)?[Y es]
+4.If you are using existing assets (e.g., code, data, models) or curating/releasing new assets...
+(a)If your work uses existing assets, did you cite the creators?[Y es]
+(b)Did you m
+
+==== Deep Graph Memory Networks for Forgetting-Robust Knowledge Tracing.pdf pages=11
+--- first ---
+JOURNAL SUBMISSION 1
+Deep Graph Memory Networks for
+Forgetting-Robust Knowledge T racing
+Ghodai Abdelrahman, Qing Wang
+Abstract—T racing a student’s knowledge is vital for tailoring the learning experience. Recent knowledge tracing methods tend to
+respond to these challenges by modelling knowledge state dynamics across learning concepts. However, they still suffer from several
+inherent challenges including: modelling forgetting behaviours and identifying relationships among latent concepts. T o address these
+challenges, in this paper, we propose a novel knowledge tracing model, namely Deep Graph Memory Network (DGMN). In this model,
+we incorporate a forget gating mechanism into an attention memory structure in order to capture forgetting behaviours dynamically
+during the knowledge tracing process. Particularly , this forget gating mechanism is built upon attention forgetting features over latent
+concepts considering their mutual dependencies. Further, this model has the capability of learning relationships between latent
+concepts from a dynamic latent concept graph in light of a student’s evolving knowledge states. A comprehensive experimental
+evaluation has been conducted using four well-established benchmark datasets. The results show that DGMN consistently outperforms
+the state-of-the-art KT models over all the datasets. The effectiveness of modelling forgetting behaviours and learning latent concept
+graphs has also been analyzed in our experiments.
+Index Terms—Deep Learni
+--- last ---
+JOURNAL SUBMISSION 11
+[21] J. Stamper, A. Niculescu-Mizil, S. Ritter, G. Gordon, and
+K. Koedinger, “Algebra i 2008–2009. challenge data set from kdd
+cup 2010 educational data mining challenge,” Retrieved April ,
+vol. 25, 2010.
+[22] S. Pandey and G. Karypis, “A self attentive model for knowl-
+edge tracing,” in Proceedings of the 12th International Conference on
+Educational Data Mining, EDM, Montr´ eal, Canada . International
+Educational Data Mining Society (IEDMS), 2019.
+[23] D. Bahdanau, K. Cho, and Y. Bengio, “Neural machine translation
+by jointly learning to align and translate,” in 3rd International
+Conference on Learning Representations, ICLR, 2015.
+[24] X. Glorot and Y. Bengio, “Understanding the difﬁculty of training
+deep feedforward neural networks,” in In Proceedings of the Inter-
+

@@ -1,0 +1,96 @@
+78
+DGEKT: A Dual Graph Ensemble Learning Method for
+Knowledge Tracing
+CHAORAN CUI, YUMO YAO, CHUNYUN ZHANG, and HEBO MA, Shandong University of
+Finance and Economics, China
+YULING MA, Shandong Jianzhu University, China
+ZHAOCHUN REN, Leiden University, The Netherlands
+CHEN ZHANG, Hong Kong Polytechnic University, China
+JAMES KO, Education University of Hong Kong, China
+Knowledge tracing aims to trace students’ evolving knowledge states by predicting their future performance
+on concept-related exercises. Recently, some graph-based models have been developed to incorporate
+the relationships between exercises to improve knowledge tracing, but only a single type of relationship
+information is generally explored. In this article, we present a novel Dual Graph Ensemble learning method
+for Knowledge Tracing (DGEKT), which establishes a dual graph structure of students’ learning interactions
+to capture the heterogeneous exercise–concept associations and interaction transitions by hypergraph
+modeling and directed graph modeling, respectively. To combine the dual graph models, we introduce the
+technique of online knowledge distillation. This choice arises from the observation that, while the knowledge
+tracing model is designed to predict students’ responses to the exercises related to different concepts, it
+is optimized merely with respect to the prediction accuracy on a single exercise at each step. With online
+knowledge distillation, the dual graph models are adaptively combined to form a stronger ensemble teacher
+model, which provides its predictions on all exercises as extra supervision for better modeling ability. In the
+experiments, we compare DGEKT against eight knowledge tracing baselines on three benchmark datasets,
+and the results demonstrate that DGEKT achieves state-of-the-art performance.
+CCS Concepts: • Applied computing →E-learning; • Computing methodologies →Ensemble methods;
+• Mathematics of computing →Time series analysis; Graph algorithms;
+Additional Key Words and Phrases: Knowledge tracing, dual graph structure, graph convolutional networks,
+online knowledge distillation
+This work was supported by the National Natural Science Foundation of China (Grant No. 62077033, Grant No. 62177031,
+and Grant No. 61701281), the Shandong Provincial Natural Science Foundation Key Project (Grant No. ZR2020KF015), the
+Shandong Provincial Natural Science Foundation (Grant No. ZR2021MF044), and the Taishan Scholar Program of Shandong
+Province (Grant No. tsqn202211199).
+Authors’ addresses: C. Cui, Y. Yao, C. Zhang, and H. Ma (Corresponding author), Shandong University of Finance
+and Economics, Jinan, China; e-mails: crcui@sdufe.edu.cn, ymyao@mail.sdufe.edu.cn, zhangchunyun1009@126.com,
+heboma98@gmail.com; Y. Ma, Shandong Jianzhu University, Jinan, China; e-mail: mayuling20@sdjzu.edu.cn; Z. Ren, Lei-
+den University, Leiden, The Netherlands; e-mail: z.ren@liacs.leidenuniv.nl; C. Zhang, Hong Kong Polytechnic University,
+Hong Kong, China; e-mail: jason-c.zhang@polyu.edu.hk; J. Ko, Education University of Hong Kong, Hong Kong, China;
+e-mail: jamesko@eduhk.hk.
+Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee
+provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and
+the full citation on the first page. Copyrights for components of this work owned by others than the author(s) must be
+honored. Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists,
+requires prior specific permission and/or a fee. Request permissions from permissions@acm.org.
+© 2024 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+1046-8188/2024/01-ART78 $15.00
+https://doi.org/10.1145/3638350
+ACM Transactions on Information Systems, Vol. 42, No. 3, Article 78. Publication date: January 2024.
+
+78:2
+C. Cui et al.
+ACM Reference format:
+Chaoran Cui, Yumo Yao, Chunyun Zhang, Hebo Ma, Yuling Ma, Zhaochun Ren, Chen Zhang, and James Ko.
+2024. DGEKT: A Dual Graph Ensemble Learning Method for Knowledge Tracing. ACM Trans. Inf. Syst. 42, 3,
+Article 78 (January 2024), 24 pages.
+https://doi.org/10.1145/3638350
+1
+INTRODUCTION
+According to the statistics of UNESCO,1 more than 1.5 billion students worldwide have been
+affected by school and university closures due to the COVID-19 pandemic. In response to this
+crisis, online learning, which serves as an alternative to traditional face-to-face learning, is
+developing on an unprecedented scale. It is increasingly accessible for students to study on all
+sorts of online learning platforms, including Coursera, Udacity, and edX. In the meantime, it has
+become crucial for online learning platforms to automatically estimate students’ knowledge states,
+i.e., their mastery level of different knowledge concepts (e.g., the concepts of linear equation,
+power function, and inequality in mathematics) [15]. This enables a personalized learning
+experience to be provided for each student, such as learning resource recommendation [42],
+adaptive testing [56], and student profiling [57].
+Knowledge tracing is one of the major research directions to address this problem. Although
+the mission is to monitor students’ evolving knowledge states during the learning process, it
+is difficult to dynamically obtain the true knowledge states of students [24]. As an alternative,
+knowledge tracing predicts students’ future performance on concept-related exercises based on
+their past interactions. In this way, students’ knowledge states of each concept can be indirectly
+traced by observing their answers on the exercises related to the concept. As illustrated in
+Figure 1, knowledge tracing models take the exercise-answering sequence of a student as the
+input. Generally, most models simplify the learning environments by assuming that the student’s
+answers are only binary (i.e., correct or incorrect responses). Given a new exercise, the output of
+knowledge tracing models is the probability that the student correctly answers the exercise.
+In the literature, knowledge tracing has been investigated for decades. At the early stage, some
+studies adopted the hidden Markov model to capture how students’ knowledge state changes,
+among which the most popular method is Bayesian knowledge tracing (BKT) [7, 17]. With the
+rise of deep learning, deep knowledge tracing (DKT) introduced recurrent neural networks
+(RNNs) to knowledge tracing and achieved promising results due to its ability to model long
+dependencies between learning interactions [33]. After that, more types of neural networks were
+used to improve knowledge tracing, such as memory-augmented neural networks [1, 52] and
+transformer networks [10, 31]. Recently, motivated by the observation that knowledge concepts
+are not isolated but interrelated to each other, the relationship information was incorporated
+as an inductive bias to improve knowledge tracing. Especially with the popularity of graph
+convolutional networks (GCNs) [19], different exercises and their dependencies are typically
+viewed as nodes and edges in a graph, and the influence between exercises is modeled via the
+node representation learning applied on the graph.
+In spite of the encouraging progress, graph-based knowledge tracing methods remain unsat-
+isfactory, and the technology is still in its infancy. A major limitation of existing studies is that
+they only focus on a single type of relationship information and ignore the fact that exercises are
+broadly connected via a variety of relationships. The potential benefits of improving the perfor-
+mance of knowledge tracing by integrating different relationship information are under-explored.
+1https://en.unesco.org/covid19/educationresponse/globalcoalition
+ACM Transactions on Information Systems, Vol. 42, No. 3, Article 78. Publication date: January 2024.

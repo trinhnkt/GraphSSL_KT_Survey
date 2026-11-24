@@ -1,0 +1,85 @@
+{
+  "title": [
+    "A cross-domain knowledge tracing model based on graph optimal transport"
+  ],
+  "author": [
+    {
+      "given": "Zhengyang",
+      "family": "Wu",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "role": "author",
+          "vocabulary": "crossref"
+        }
+      ]
+    },
+    {
+      "given": "Yuqi",
+      "family": "Liu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "role": "author",
+          "vocabulary": "crossref"
+        }
+      ]
+    },
+    {
+      "given": "Jianwei",
+      "family": "Cen",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "role": "author",
+          "vocabulary": "crossref"
+        }
+      ]
+    },
+    {
+      "given": "Zetao",
+      "family": "Zheng",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "role": "author",
+          "vocabulary": "crossref"
+        }
+      ]
+    },
+    {
+      "given": "Guandong",
+      "family": "Xu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "role": "author",
+          "vocabulary": "crossref"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2024,
+        12,
+        26
+      ]
+    ]
+  },
+  "container-title": [
+    "World Wide Web"
+  ],
+  "volume": "28",
+  "issue": "1",
+  "page": null,
+  "publisher": "Springer Science and Business Media LLC",
+  "DOI": "10.1007/s11280-024-01311-1",
+  "type": "journal-article"
+}

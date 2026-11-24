@@ -1,0 +1,86 @@
+{
+  "title": [
+    "SGKT: Session graph-based knowledge tracing for student performance prediction"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0002-3171-4618",
+      "authenticated-orcid": false,
+      "given": "Zhengyang",
+      "family": "Wu",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Li",
+      "family": "Huang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Qionghao",
+      "family": "Huang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Changqin",
+      "family": "Huang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yong",
+      "family": "Tang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2022,
+        11
+      ]
+    ]
+  },
+  "container-title": [
+    "Expert Systems with Applications"
+  ],
+  "volume": "206",
+  "issue": null,
+  "page": "117681",
+  "publisher": "Elsevier BV",
+  "DOI": "10.1016/j.eswa.2022.117681",
+  "type": "journal-article"
+}

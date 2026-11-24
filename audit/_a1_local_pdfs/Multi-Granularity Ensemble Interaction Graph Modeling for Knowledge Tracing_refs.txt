@@ -1,0 +1,168 @@
+J. Wang et al.
+Fig. 9. Visualization of the KT process, where the upper part of the figure presents the student’s historical learning records, and the lower part depicts the generated interaction
+graphs.
+In summary, there are two key observations:
+• By combining the results from fine-grained, mid-grained, and
+overall levels of modeling, we can gain a more comprehensive
+understanding of the student’s learning state and provide person-
+alized learning suggestions accordingly.
+• Considering the correlations of interactions between students is
+significantly beneficial for accurately tracing and understanding
+their knowledge states, which not only aids the model in deeply
+uncovering the underlying connections within historical interac-
+tion data but also effectively captures the dynamic changes in
+a student’s knowledge state when answering exercises involving
+potentially related knowledge concepts.
+5. Conclusion
+In this work, we propose a KT model named MGIGKT, which mod-
+els students’ knowledge states from dynamic, time-based perspectives
+and static, interaction-graph-based perspectives to predict their fu-
+ture performance. We first finely partition students’ historical learning
+records, modeling their knowledge states granularly in the Multi-Scale
+Sequential Perception Modeling module to explore learning patterns
+at multiple granularities. Simultaneously, we statically model students’
+knowledge states from two constructed interaction views in the In-
+teraction Graph Dependency Modeling module to capture the latent
+correlations in student interactions comprehensively. MGIGKT captures
+different types of contextual information in student learning records,
+enhancing its modeling capability. Experimental validation on four
+datasets confirms the effectiveness of our proposed model.
+CRediT authorship contribution statement
+Jing Wang: Writing – review & editing, Writing – original draft,
+Visualization, Validation, Methodology, Funding acquisition, Formal
+analysis, Data curation. Huifang Ma: Writing – review & editing,
+Writing – original draft, Visualization, Project administration, Method-
+ology, Funding acquisition, Data curation. Mengyuan Zhang: Writing
+– original draft, Visualization, Project administration, Methodology,
+Formal analysis, Data curation. Lei Zhang: Writing – review & editing,
+Resources, Project administration, Methodology, Investigation. Liang
+Chang: Writing – original draft, Project administration, Methodology,
+Investigation, Funding acquisition, Formal analysis.
+Declaration of competing interest
+The authors declare that they have no known competing finan-
+cial interests or personal relationships that could have appeared to
+influence the work reported in this paper.
+Acknowledgments
+This study is supported by National Natural Science Foundation
+of China (62441701, 62276073, 61762078 and U22A2099), Gansu
+Province Key Foundation Project, China (No. 24JRRA123), the Indus-
+trial Support Project of Gansu Colleges, China (No. 2022CYZC11), and
+the Graduate Research Support Project of Northwest Normal University,
+China (2023KYZZ—S134).
+Data availability
+Data used in this paper are all publicly available.
+References
+[1] G. Abdelrahman, Q. Wang, B. Nunes, Knowledge tracing: A survey, ACM Comput.
+Surv. 55 (11) (2023) 1–37.
+[2] Q. Liu, S. Shen, Z. Huang, E. Chen, Y. Zheng, A survey of knowledge tracing,
+2021, arXiv preprint arXiv:2105.15106.
+[3] Y. Zhao, H. Ma, W. Wang, W. Gao, F. Yang, X. He, Exploiting multiple question
+factors for knowledge tracing, Expert Syst. Appl. 223 (2023) 119786.
+[4] T. Wang, F. Ma, J. Gao, Deep hierarchical knowledge tracing, in: Proceedings of
+the 12th International Conference on Educational Data Mining, 2019.
+[5] Q. Xie, L. Wang, P. Song, X. Lin, SQKT: A student attention-based and question-
+aware model for knowledge tracing, in: Web and Big Data: 5th International
+Joint Conference, APWeb-WAIM 2021, Guangzhou, China, August 23–25, 2021,
+Proceedings, Part II 5, Springer, 2021, pp. 221–236.
+[6] G. Abdelrahman, Q. Wang, Knowledge tracing with sequential key-value memory
+networks, in: Proceedings of the 42nd International ACM SIGIR Conference on
+Research and Development in Information Retrieval, 2019, pp. 175–184.
+Knowledge-Based Systems 309 (2025) 112834 
+12 
+
+J. Wang et al.
+[7] Q. Liu, Z. Huang, Y. Yin, E. Chen, H. Xiong, Y. Su, G. Hu, Ekt: Exercise-aware
+knowledge tracing for student performance prediction, IEEE Trans. Knowl. Data
+Eng. 33 (1) (2019) 100–115.
+[8] C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami, L.J. Guibas, J.
+Sohl-Dickstein, Deep knowledge tracing, Adv. Neural Inf. Process. Syst. 28
+(2015).
+[9] J. Zhang, X. Shi, I. King, D.-Y. Yeung, Dynamic key-value memory networks
+for knowledge tracing, in: Proceedings of the 26th International Conference on
+World Wide Web, 2017, pp. 765–774.
+[10] S. Pandey, G. Karypis, A self-attentive model for knowledge tracing, 2019, arXiv
+preprint arXiv:1907.06837.
+[11] H. Nakagawa, Y. Iwasawa, Y. Matsuo, Graph-based knowledge tracing: modeling
+student proficiency using graph neural network, in: IEEE/WIC/ACM International
+Conference on Web Intelligence, 2019, pp. 156–163.
+[12] C. Cui, Y. Yao, C. Zhang, H. Ma, Y. Ma, Z. Ren, C. Zhang, J. Ko, DGEKT: a dual
+graph ensemble learning method for knowledge tracing, ACM Trans. Inf. Syst.
+42 (3) (2024) 1–24.
+[13] H. Tong, Z. Wang, Y. Zhou, S. Tong, W. Han, Q. Liu, Introducing problem
+schema with hierarchical exercise graph for knowledge tracing, in: Proceedings
+of the 45th International ACM SIGIR Conference on Research and Development
+in Information Retrieval, 2022, pp. 405–415.
+[14] J. Lee, D.-Y. Yeung, Knowledge query network for knowledge tracing: How
+knowledge interacts with skills, in: Proceedings of the 9th International
+Conference on Learning Analytics & Knowledge, 2019, pp. 491–500.
+[15] Y. Choi, Y. Lee, J. Cho, J. Baek, B. Kim, Y. Cha, D. Shin, C. Bae, J. Heo, Towards
+an appropriate query, key, and value computation for knowledge tracing, in:
+Proceedings of the Seventh ACM Conference on Learning@ Scale, 2020, pp.
+341–344.
+[16] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A.N. Gomez, Ł. Kaiser,
+I. Polosukhin, Attention is all you need, Adv. Neural Inf. Process. Syst. 30 (2017).
+[17] L. Sha, P. Hong, Neural knowledge tracing, in: Brain Function Assessment in
+Learning: First International Conference, BFAL 2017, Patras, Greece, September
+24-25, 2017, Proceedings 1, Springer, 2017, pp. 108–117.
+[18] X. Guo, Z. Huang, J. Gao, M. Shang, M. Shu, J. Sun, Enhancing knowledge
+tracing via adversarial training, in: Proceedings of the 29th ACM International
+Conference on Multimedia, 2021, pp. 367–375.
+[19] J. Cui, Z. Chen, A. Zhou, J. Wang, W. Zhang, Fine-grained interaction modeling
+with multi-relational transformer for knowledge tracing, ACM Trans. Inf. Syst.
+41 (4) (2023) 1–26.
+[20] C. Cui, H. Ma, C. Zhang, C. Zhang, Y. Yao, M. Chen, Y. Ma, Do we fully
+understand students’ knowledge states? Identifying and mitigating answer bias
+in knowledge tracing, 2023, arXiv preprint arXiv:2308.07779.
+[21] Y. Yang, J. Shen, Y. Qu, Y. Liu, K. Wang, Y. Zhu, W. Zhang, Y. Yu, GIKT: a
+graph-based interaction model for knowledge tracing, in: Machine Learning and
+Knowledge Discovery in Databases: European Conference, ECML PKDD 2020,
+Ghent, Belgium, September 14–18, 2020, Proceedings, Part I, Springer, 2021,
+pp. 299–315.
+[22] G. Abdelrahman, Q. Wang, Deep graph memory networks for forgetting-robust
+knowledge tracing, IEEE Trans. Knowl. Data Eng. 35 (8) (2022) 7844–7855.
+[23] W. Wang, H. Ma, Y. Zhao, Z. Li, X. He, Tracking knowledge proficiency of
+students with calibrated Q-matrix, Expert Syst. Appl. 192 (2022) 116454.
+[24] W. Wang, H. Ma, Y. Zhao, F. Yang, L. Chang, SEEP: Semantic-enhanced question
+embeddings pre-training for improving knowledge tracing, Inform. Sci. 614
+(2022) 153–169.
+[25] S. Bhatt, J. Zhao, C. Thille, D. Zimmaro, N. Gattani, A novel approach for
+knowledge state representation and prediction, in: Proceedings of the Seventh
+ACM Conference on Learning@ Scale, 2020, pp. 353–356.
+[26] L. Liu, L. Cai, C. Zhang, X. Zhao, J. Gao, W. Wang, Y. Lv, W. Fan, Y. Wang,
+M. He, et al., Linrec: Linear attention mechanism for long-term sequential
+recommender systems, in: Proceedings of the 46th International ACM SIGIR
+Conference on Research and Development in Information Retrieval, 2023, pp.
+289–299.
+[27] D.-A. Clevert, T. Unterthiner, S. Hochreiter, Fast and accurate deep network
+learning by exponential linear units (elus), 2015, arXiv preprint arXiv:1511.
+07289.
+[28] Y. Yang, C. Huang, L. Xia, Y. Liang, Y. Yu, C. Li, Multi-behavior hypergraph-
+enhanced transformer for sequential recommendation, in: Proceedings of the 28th
+ACM SIGKDD Conference on Knowledge Discovery and Data Mining, 2022, pp.
+2263–2274.
+[29] Y. Liu, Y. Zheng, D. Zhang, V.C. Lee, S. Pan, Beyond smoothing: Unsuper-
+vised graph representation learning with edge heterophily discriminating, in:
+Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 37, 2023, pp.
+4516–4524.
+[30] L. Yang, M. Li, L. Liu, C. Wang, X. Cao, Y. Guo, et al., Diverse message passing for
+attribute with heterophily, Adv. Neural Inf. Process. Syst. 34 (2021) 4751–4763.
+[31] S. Shen, E. Chen, B. Xu, Q. Liu, Z. Huang, L. Zhu, Y. Su, Quiz-based knowledge
+tracing, 2023, arXiv preprint arXiv:2304.02413.
+[32] Z. Wu, L. Huang, Q. Huang, C. Huang, Y. Tang, SGKT: Session graph-based
+knowledge tracing for student performance prediction, Expert Syst. Appl. 206
+(2022) 117681.
+[33] H. Tong, Z. Wang, Y. Zhou, S. Tong, W. Han, Q. Liu, Hgkt: Introducing
+hierarchical exercise graph for knowledge tracing, 2020, arXiv preprint arXiv:
+2006.16915.
+[34] Y. Liu, Y. Zheng, D. Zhang, V.C. Lee, S. Pan, Beyond smoothing: Unsuper-
+vised graph representation learning with edge heterophily discriminating, in:
+Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 37, 2023, pp.
+4516–4524.
+[35] M. Feng, N. Heffernan, K. Koedinger, Addressing the assessment challenge with
+an online system that tutors as it assesses, User Model. User-Adapt. Interact. 19
+(2009) 243–266.
+[36] Y. Yin, L. Dai, Z. Huang, S. Shen, F. Wang, Q. Liu, E. Chen, X. Li, Tracing knowl-
+edge instead of patterns: Stable knowledge tracing with diagnostic transformer,
+in: Proceedings of the ACM Web Conference 2023, 2023, pp. 855–864.
+Knowledge-Based Systems 309 (2025) 112834 
+13 

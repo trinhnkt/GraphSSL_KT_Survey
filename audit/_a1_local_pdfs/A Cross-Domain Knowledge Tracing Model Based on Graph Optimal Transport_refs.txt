@@ -1,0 +1,161 @@
+World Wide Web (2025) 28 :10
+Page 23 of 25
+10
+6 Conclusions
+This paper presents a cross-domain knowledge tracing model based on transfer learning
+called AEGOT-CDKT, aiming to bridge the knowledge gap between different domains while
+optimizing and enhancing the performance of knowledge tracing in new domains. The core
+innovation of AEGOT-CDKT lies in introducing an alignment module capable of handling
+and reducing the distributional differences of learners’ knowledge states across different
+domains. Moreover, it applies Graph Optimal Transport algorithm to effectively align the
+graph structures of different domains, thus enhancing the complementarity of student knowl-
+edge state representations and providing learners with more precise learning guidance.
+Finally, experimental studies and visual analyses are conducted to validate the models
+excellent performance in various target domains, further demonstrating the crucial role of
+transfer learning in improving the generalization and adaptability of knowledge tracing mod-
+els.
+Acknowledgements This work was supported by the National Natural Science Foundation of China
+(No.62377015), National Key Research and Development Program of China (No. 2023YFC3341200), and
+Sichuan Science and Technology Program (No. 2024JDRC0055).
+Author Contributions Z.W. and J.C. proposed the concepts and methods of the research, and conducted
+writing the original manuscript. Y.L. conducted experiments and review revisions of the original manuscript.
+Z.Z. review and supervise the experiment of the manuscript. G.X. provided experimental environment and
+datasets, and further review and supervise the manuscript. Z.W. provided funding for the research. All authors
+reviewed the ﬁnal manuscript.
+Funding This work was supported by the National Natural Science Foundation of China (No. 62377015), and
+National Key Research and Development Program of China (No. 2023YFC3341200).
+Data Availability No datasets were generated or analysed during the current study.
+Declarations
+Ethical Approval This declaration is not applicable
+Competing of Interest The authors declare no competing interests.
+References
+1. Zhuang, F., Qi, Z., Duan, K., Xi, D., Zhu, Y., Zhu, H., Xiong, H., He, Q.: A comprehensive survey on
+transfer learning. Proc. IEEE 109(1), 43–76 (2020)
+2. Raffel, C., Shazeer, N., Roberts, A., Lee, K., Narang, S., Matena, M., Zhou, Y., Li, W., Liu, P.J.: Exploring
+the limits of transfer learning with a uniﬁed text-to-text transformer. J. Mach. Learn. Res. 21(140), 1–67
+(2020)
+3. Li, Y., Mehrish, A., Bhardwaj, R., Majumder, N., Cheng, B., Zhao, S., Zadeh, A., Mihalcea, R., Poria, S.:
+Evaluating parameter-efﬁcient transfer learning approaches on sure benchmark for speech understanding.
+In: ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing
+(ICASSP), IEEE, pp. 1–5 (2023)
+4. Qin, Y., Qian, Q., Luo, J., Pu, H.: Deep joint distribution alignment: A novel enhanced-domain adaptation
+mechanism for fault transfer diagnosis. IEEE Trans. Cybern. (2022)
+5. Chen, Z., Liao, Y., Li, J., Huang, R., Xu, L., Jin, G., Li, W.: A multi-source weighted deep transfer network
+for open-set fault diagnosis of rotary machinery. IEEE Trans. Cybern. 53(3), 1982–1993 (2022)
+6. Zhang, Y., Ren, Z., Feng, K., Yu, K., Beer, M., Liu, Z.: Universal source-free domain adaptation method
+for cross-domain fault diagnosis of machines. Mech. Syst. Signal Process. 191, 110159 (2023)
+123
+
+10
+Page 24 of 25
+World Wide Web (2025) 28 :10
+7. Chen, X., Zhang, Y., Tsang, I.W., Pan, Y., Su, J.: Toward equivalent transformation of user preferences
+in cross domain recommendation. ACM Trans. Inform. Syst. 41(1), 1–31 (2023)
+8. Cheng, S., Liu, Q., Chen, E., Zhang, K., Huang, Z., Yin, Y., Huang, X., Su, Y.: Adaptkt: A domain
+adaptable method for knowledge tracing. In: Proceedings of the Fifteenth ACM International Conference
+on Web Search and Data Mining, pp. 123–131 (2022)
+9. Huang, Y., Huang, W., Tong, S., Huang, Z., Liu, Q., Chen, E., Ma, J., Wan, L., Wang, S.: Stan: adversarial
+network for cross-domain question difﬁculty prediction. In: 2021 IEEE International Conference on Data
+Mining (ICDM), IEEE, pp. 220–229 (2021)
+10. Zhang, Y., Si, C., Bu, C., Wu, L., Hu, X.: Adaptive cognitive diagnosis under distribution shift with a
+double-level adversarial framework. Available at SSRN 4596129
+11. Gao, W., Wang, H., Liu, Q., Wang, F., Lin, X., Yue, L., Zhang, Z., Lv, R., Wang, S.: Leveraging transferable
+knowledge concept graph embedding for cold-start cognitive diagnosis. In: Proceedings of the 46th
+International ACM SIGIR Conference on Research and Development in Information Retrieval, pp. 983–
+992 (2023)
+12. Gao, W., Liu, Q., Wang, H., Yue, L., Bi, H., Gu, Y., Yao, F., Zhang, Z., Li, X., He, Y.: Zero-1-to-3:
+Domain-level zero-shot cognitive diagnosis via one batch of early-bird students towards three diagnostic
+objectives. In: Proceedings of the AAAI Conference on Artiﬁcial Intelligence, vol. 38, pp. 8417–8426
+(2024)
+13. Chen, L., Gan, Z., Cheng, Y., Li, L., Carin, L., Liu, J.: Graph optimal transport for cross-domain alignment.
+In: International Conference on Machine Learning, pp. 1542–1553 (2020). PMLR
+14. Rüschendorf, L.: The wasserstein distance and approximation theorems. Probab. Theory Relat. Fields
+70(1), 117–129 (1985)
+15. Mémoli, F.: Gromov-wasserstein distances and the metric approach to object matching. Found. Comput.
+Math. 11, 417–487 (2011)
+16. Corbett, A.T., Anderson, J.R.: Knowledge tracing: Modeling the acquisition of procedural knowledge.
+User Model. User-Adap. Inter. 4, 253–278 (1994)
+17. Anderson, J.R., Boyle, C.F., Corbett, A.T., Lewis, M.W.: Cognitive modeling and intelligent tutoring.
+(1990)
+18. Akpan, B., Kennedy, T.J.: Introduction—theory into practice. Science education in theory and practice:
+An introductory guide to learning theory, 1–13 (2020)
+19. Piech, C., Bassen, J., Huang, J., Ganguli, S., Sahami, M., Guibas, L.J., Sohl-Dickstein, J.: Deep knowledge
+tracing. Advances in neural information processing systems. 28 (2015)
+20. Zhang, J., Shi, X., King, I., Yeung, D.-Y.: Dynamic key-value memory networks for knowledge tracing.
+In: Proceedings of the 26th International Conference on World Wide Web, pp. 765–774 (2017)
+21. Li, J., Deng, Y., Mao, S., Qin, Y., Jiang, Y.: Knowledge-associated embedding for memory-aware knowl-
+edge tracing. IEEE Trans. Comput. Soc. Syst. (2023)
+22. Chen, M., Guan, Q., He, Y., He, Z., Fang, L., Luo, W.: Knowledge tracing model with learning and forget-
+ting behavior. In: Proceedings of the 31st ACM International Conference on Information & Knowledge
+Management, pp. 3863–3867 (2022)
+23. Zu, S., Li, L., Shen, J.: Cakt: Coupling contrastive learning with attention networks for interpretable
+knowledge tracing. In: 2023 International Joint Conference on Neural Networks (IJCNN), IEEE, pp. 1–8
+(2023)
+24. Embretson, S.E., Reise, S.P.: Item Response Theory. Psychology Press, (2013)
+25. Tong, S., Liu, Q., Huang, W., Hunag, Z., Chen, E., Liu, C., Ma, H., Wang, S.: Structure-based knowledge
+tracing: An inﬂuence propagation view. In: 2020 IEEE International Conference on Data Mining (ICDM),
+IEEE, pp. 541–550 (2020)
+26. Nakagawa, H., Iwasawa, Y., Matsuo, Y.: Graph-based knowledge tracing: modeling student proﬁciency
+using graph neural network. In: IEEE/WIC/ACM International Conference on Web Intelligence, pp.
+156–163 (2019)
+27. Yang, Y., Shen, J., Qu, Y., Liu, Y., Wang, K., et.al: Gikt: a graph-based interaction model for knowledge
+tracing. In: Machine Learning and Knowledge Discovery in Databases: European Conference, ECML
+PKDD 2020, Ghent, Belgium, September 14–18, 2020, Proceedings, Part I, Springer, pp. 299–315 (2021)
+28. Song, X., Li, J., Tang, Y., Zhao, T., Chen, Y., Guan, Z.: Jkt: A joint graph convolutional network based
+deep knowledge tracing. Inf. Sci. 580, 510–523 (2021)
+29. Mao, S., Zhan, J., Li, J., Jiang, Y.: Knowledge structure-aware graph-attention networks for knowledge
+tracing. In: International Conference on Knowledge Science, Engineering and Management, Springer,
+pp. 309–321 (2022)
+30. Han, Y., Tang, H., Zhang, W., Du, L., Zhao, J., Shao, M.: Dynamic heterogeneous graph contrastive
+networks for knowledge tracing. Appl. Soft Comput. 112194 (2024)
+123
+
+World Wide Web (2025) 28 :10
+Page 25 of 25
+10
+31. Song, X., Li, J., Lei, Q., Zhao, W., Chen, Y., Mian, A.: Bi-clkt: Bi-graph contrastive learning based
+knowledge tracing. Knowl.-Based Syst. 241, 108274 (2022)
+32. Borgwardt, K.M., Gretton, A., Rasch, M.J., Kriegel, H.-P., Schölkopf, B., Smola, A.J.: Integrating struc-
+tured biological data by kernel maximum mean discrepancy. Bioinformatics 22(14), 49–57 (2006)
+33. Kim, J., Nguyen, D., Min, S., Cho, S., Lee, M., Lee, H., Hong, S.: Pure transformers are powerful graph
+learners. Adv. Neural. Inf. Process. Syst. 35, 14582–14595 (2022)
+34. Xu, M., Wang, H., Ni, B., Guo, H., Tang, J.: Self-supervised graph-level representation learning with
+local and global structure. In: International Conference on Machine Learning, PMLR, pp. 11548–11558
+(2021)
+35. Cen, J., Wu, Z., Huang, L., Chen, Z.: A knowledge tracing model based on graph attention mechanism
+and incorporating external features. In: CCF Conference on Computer Supported Cooperative Work and
+Social Computing, Springer, pp. 187–200 (2022)
+36. Liang, Y., Peng, T., Pu, Y., Wu, W.: Help-dkt: an interpretable cognitive model of how students learn
+programming based on deep knowledge tracing. Sci. Rep. 12(1), 4012 (2022)
+37. Wu, Z., Huang, L., Huang, Q., Huang, C., Tang, Y.: Sgkt: Session graph-based knowledge tracing for
+student performance prediction. Expert Syst. Appl. 206, 117681 (2022)
+38. Wong, K.Y., Chung, F.l.: Visualizing time series data with temporal matching based t-sne. In: 2019
+International Joint Conference on Neural Networks (IJCNN), IEEE, pp. 1–8 (2019)
+Publisher’s Note Springer Nature remains neutral with regard to jurisdictional claims in published maps and
+institutional afﬁliations.
+Springer Nature or its licensor (e.g. a society or other partner) holds exclusive rights to this article under
+a publishing agreement with the author(s) or other rightsholder(s); author self-archiving of the accepted
+manuscript version of this article is solely governed by the terms of such publishing agreement and applicable
+law.
+Authors and Aﬃliations
+Zhengyang Wu1,2 · Yuqi Liu2 · Jianwei Cen2 · Zetao Zheng3 · Guandong Xu4
+B Zhengyang Wu
+wuzhengyang@m.scnu.edu.cn
+B Guandong Xu
+guandong.xu@uts.edu.au
+Yuqi Liu
+liuyuqi@m.scnu.edu.cn
+Jianwei Cen
+cenjw@m.scnu.edu.cn
+Zetao Zheng
+ztzheng@std.uestc.edu.cn
+1
+School of Computer Science, South China Normal University, Guangzhou 510631, China
+2
+School of Artiﬁcial Intelligence, South China Normal University, Foshan 528225, Guangdong,
+China
+3
+Sichuan Artiﬁcial Intelligence Research Institute, Yibin 644000, Sichuan, China
+4
+School of Computer Science, University of Technology Sydney, Sydney 2007, NSW, Australia
+123
