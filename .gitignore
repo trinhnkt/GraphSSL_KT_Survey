@@ -5,9 +5,28 @@ Thumbs.db
 ~$*.xlsx
 *.tmp
 *.bak
+
+# LaTeX / BibTeX build junk
+*.aux
+*.log
+*.out
+*.blg
+*.bbl
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.toc
+*.lof
+*.lot
+
+# Local agent / compile scratch
+**/_pdflatex_*.txt
+**/_bibtex_*.txt
+12_manuscript/TLT/_backup_before_v1.9/
+backup_before_TLT_major_revision/
+
+# Search exports and fulltext PDFs kept locally
 03_search/exports/*
 !03_search/exports/.gitkeep
 06_fulltext/papers/*
 !06_fulltext/papers/.gitkeep
-
-
