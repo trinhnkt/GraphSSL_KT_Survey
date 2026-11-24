@@ -1,0 +1,91 @@
+GASKT: A Graph-Based Attentive
+Knowledge-Search Model for Knowledge
+Tracing
+Mengdan Wang1, Chao Peng1(B), Rui Yang1, Chenchao Wang1, Yao Chen1,
+and Xiaohua Yu2
+1 Institute of Software Engineering, East China Normal University, Shanghai, China
+51194501177@stu.ecnu.edu.cn, cpeng@sei.ecnu.edu.cn
+2 Department of Education Information Technology, East China Normal University,
+Shanghai, China
+xhyu@deit.ecnu.edu.cn
+Abstract. Knowledge tracking (KT) is a fundamental tool to customize
+personalized learning paths for students so that they can take charge of
+their own learning pace. The main task of KT is to model the learning
+state of the students, however the process is quite involved. First, due
+to the sparsity of real-world educational data, the previous KT mod-
+els ignore the high-order information in question-skill; second, the long
+sequence of student interactions poses a demanding challenge for KT
+models when dealing with long-term dependencies, and the last, due to
+the complexity of the forgetting mechanism. To address these issues,
+in this paper, we propose a Graph-based Attentive Knowledge-Search
+Model for Knowledge Tracing (GASKT). The model divides problems
+and skills into two types of nodes, utilizing R-GCN to thoroughly incor-
+porate the relevance of problem-skill through embedding propagation,
+which reduces the impact of sparse data. Besides, it employs the mod-
+iﬁed attention mechanism to address the long-term dependencies issue.
+For the attention weight score between questions, on the basis of using
+the scaled dot-product, the forgetting mechanism is fully considered. We
+conduct extensive experiments on several real-world benchmark datasets,
+and our GASKT outperforms the state-of-the-art KT models, with at
+least 1% AUC improvement.
+Keywords: Knowledge tracing · Relational graph convolutional
+networks · Attention · LSTM · Forgetting mechanism
+1
+Introduction
+Each student has his own pace of learning, but it is diﬃcult to achieve per-
+sonalized education in a traditional classroom. To address the distinct learning
+C. Peng—Supported by the Scientiﬁc and Technological Innovation 2030 Major
+Projects under Grant 2018AAA0100902, the Shanghai Science and Technology Com-
+mission under Grant No. 20511100200 and OneSmart Education Group.
+c
+⃝Springer Nature Switzerland AG 2021
+H. Qiu et al. (Eds.): KSEM 2021, LNAI 12815, pp. 268–279, 2021.
+https://doi.org/10.1007/978-3-030-82136-4_22
+
+GASKT: A Graph-Based Attentive Knowledge-Search Model for KT
+269
+needs, the computer-aided education (CAE) system breaks fresh ground with its
+advanced technology. Knowledge tracing (KT), as a fundamental task in CAE
+systems, aims at evaluating the dynamic changes of students’ knowledge states
+based on historical learning interactions.
+There has been extensive research in the ﬁeld of KT. However, the recent KT
+models mainly have the following three drawbacks. First, due to the sparseness
+of educational data, the high-order information between problems and skills
+has not been fully utilized. Second, because the student’s interaction is a long
+sequence, it is generally appreciated that recurrent neural networks are not good
+at capturing such long-term dependencies. Finally, the complexity of the human
+brain’s forgetting mechanism remains a major challenge.
+Deep Knowledge Tracing (DKT) [1] is the ﬁrst deep KT method, which
+exploits the Long Short-Term Memory (LSTM) [2] to predict the students’ future
+performance. Since DKT uses one hidden variable to represent the knowledge
+state, it’s diﬃcult to trace the dynamic learning process of students. To address
+this limitation, Dynamic Key-Value Memory Networks (DKVMN) [3] extends on
+the memory-augmented neural networks (MANNs), using key matrix to store the
+representation of the skills, and the value matrix to characterize the knowledge
+state of each skill.
+However, neither DKT nor DKVMN fully utilizes the high-order information
+in problem-skill, or adequately takes into account the forgetting behavior of
+students. Moreover, they are based on RNN mode and fail to eﬀectively capture
+long-term dependencies between exercises.
+DKT-forget [4] takes the memory mechanism into account based on DKT,
+adding three forgetting features, but still suﬀers from the remaining two short-
+comings. Exercise-Enhanced Recurrent Neural Network (EERNN) [5] obtains
+embeddings of exercises from their textual information, aiming to obtain rich
+information to address the challenge of the scarcity of education data. How-
+ever, in reality, textual information about the problem is diﬃcult to obtain and
+EERNN fails to suﬃciently consider the forgetting mechanism. Graph-based
+Interaction model for Knowledge Tracing (GIKT) [6] uses graph convolutional
+network (GCN) [7] to get the high-order embedding of the problems and skills,
+and introduces a history recap module to select the top-k most relevant problems
+by the attention score. However, in GIKT, insuﬃcient consideration is given to
+the memory mechanism. For example, although question eτ is close to the cur-
+rent question et, it will be ﬁltered out due to its low score, which is inconsistent
+with the fact that recent information is clearer in short term memory.
+To address the issues in current KT models, inspired by DKT-forget [4],
+EERNN [5] and GIKT [6], our Graph-based Attentive Knowledge-Search Model
+for Knowledge Tracing (GASKT) combines the strengths of the memory mech-
+anism and high-order embedding. Speciﬁcally, unlike EERNN which uses bidi-
+rectional LSTM to encode textual information, we leverage the graph neural
+network to get the embedding of the exercises. Moreover, observing that the
+problems and skills belong to two diﬀerent types of nodes, we transform the rela-
+tionship between them into a heterogeneous graph, and utilize Relational Graph

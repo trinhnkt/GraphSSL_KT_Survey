@@ -1,0 +1,17 @@
+
+== Deep Knowledge Tracing.pdf n=9
+p9 505: embeddings to propagate feedback on student code. CoRR abs/1505.05969 (2015). [26] P IECH , C., S AHAMI , M., H UANG , J., AND GUIBAS , L. A
+
+== A Self-Attentive Model for Knowledge Tracing.pdf n=6
+p6 505: cing. In Advances in Neural Information Processing Systems. 505–513. [7] Adam Santoro, Sergey Bartunov, Matthew Botvinick, Daan Wierstra, an
+p6 513: . In Advances in Neural Information Processing Systems. 505–513. [7] Adam Santoro, Sergey Bartunov, Matthew Botvinick, Daan Wierstra, and Ti
+
+== pyKT - A Python Library to Benchmark Deep Learning based Knowledge Tracing Models.pdf n=14
+p1 NeurIPS: . 36th Conference on Neural Information Processing Systems (NeurIPS 2022) Track on Datasets and Benchmarks.
+p3 NeurIPS: tly answered the question, and 0 otherwise.4V enues include NeurIPS, ICML, ICLR, AAAI, IJCAI, KDD, WWW, SIGIR, MM, WSDM, ICDM, CIKM.5The ver
+p4 NeurIPS: s2011. •NIPS34: This dataset is from the Tasks 3 & 4 at the NeurIPS 2020 Education Challenge. It contains students’ answers to multiple-choi
+p12 384:  International Conference on Educational Data Mining, pages 384–389. International Educational Data Mining Society, 2019. [24]Shalini Pandey
+p12 389: ernational Conference on Educational Data Mining, pages 384–389. International Educational Data Mining Society, 2019. [24]Shalini Pandey and
+p12 volume: oceedings of the AAAI Conference on Artiﬁcial Intelligence, volume 32, 2018. [35]Nguyen Thai-Nghe, Lucas Drumond, Tomáš Horváth, Artus Krohn
+p13 NeurIPS: et al. Instructions and guide for diagnostic questions: The NeurIPS 2020 education challenge.ArXiv preprint, abs/2007.12061, 2020. [41]Kevin
+p13 volume: oceedings of the AAAI Conference on Artiﬁcial Intelligence, volume 34, pages 6153–6161, 2020. [40]Zichao Wang, Angus Lamb, Evgeny Saveliev, 

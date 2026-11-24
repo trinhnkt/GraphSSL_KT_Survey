@@ -1,0 +1,352 @@
+⓵
+⓶
+⓷
+⓸
+⓹
+Exercise attempted:  correct,  incorrect
+Exercise Sequence
+⓹
+⓵
+⓶
+⓷
+⓸
+	
+
+
+
+
+(a) Time series performance diagram.
+(b) subsequence digram.
+Prerequisite
+Similarity
+(c) radar digram. 
+⓵
+⓶
+⓷
+14
+19
+1
+6
+⓵
+⓶
+⓷
+decimals on the number line 1
+number line
+decimals on the number line 1
+telling time
+subtraction 3
+ 
+𝖨
+ 
+𝖨
+Fig. 5: An example of a learner’s evolving knowledge states of 5 concepts as she solves 40 exercises of Junyi. In sub-ﬁgure (a),
+concepts are marked in different colors on the left side. The top part indicates the performance at each time step. Sub-ﬁgure (b)
+shows two subsequences which show two different propagation effects. The radar ﬁgure (c) on the right shows the proﬁciency
+(in the range (0, 1)) of 5 concepts at the beginning (T=0) and the end (T=40).
+time step 3 of concept 1 (decimals on the number line 1),
+which get promoted at step 3. Meanwhile, the proﬁciency
+of concept 2 (decimals on the number line 2) and concept
+3 (number line) also gets promoted, where concept 2 is a
+successor with the prerequisite relation while concept 3 is the
+neighbor with the similarity relation. Furthermore, from area
+II, at step 16, when the learner gets confused with the concept
+2 , the proﬁciency of it decreases. However, the proﬁciency
+of the predecessor of the concept
+1 ,
+2
+remains stable.
+This observation indicates that the inﬂuence along prerequisite
+relations is only unidirectionally propagated in SKT. From
+these observations, we could see that, owing to the ability
+of tracing the inﬂuence propagation among concepts, SKT is
+able to provide a better interpretable insight on evolving states
+for knowledge tracing.
+I. Concept Clustering
+SKT has the power to cluster related or similar concepts
+into a same group, which can not only help the educational
+experts discover the relationship among concepts, but also
+be helpful for improving curricula arrangement. Following
+Piech et al. [25], we visualize the concept representation
+vectors utilizing the T-SNE method [21]. Speciﬁcally, we ﬁrst
+generate the inﬂuence feature vector by Jij =
+y(j|i)
+
+k y(j|k),
+where y(j|i) is the average correctness probability assigned
+by SKT to exercise j when exercise i is answered correctly
+at the ﬁrst time step. Then, we reduce the vector dimension
+to two-dimension space and then obtain the graph of concepts
+clustering. As shown in Figure 6, the concepts in the same
+color is in the same group. The arrow size of the edge
+indicates connection strength, i.e., cosine distance. For better
+illustration, we choose 42 concepts and omit those edges
+with cosine distance smaller than 0.5. From Figure 6, we
+can see that SKT clusters the concepts into ﬁve groups, and
+the concepts in the same group is quite relevant to a certain
+knowledge area, which is annotated beside the group. Based on
+the clustering result, the educational expert can better discover
+the relationship via the connection strength. Meanwhile, the
+teachers in the school can also arrange the learners to learn
+the concepts in the same group for they may be more related
+and may have positive transfer on each other.
+VI. CONCLUSION
+In this paper, we proposed a new knowledge tracing frame-
+work, i.e., Structure-based Knowledge Tracing (SKT). By
+utilizing the knowledge structure, SKT succeeds in modeling
+transfer of knowledge. Speciﬁcally, by concurrently consid-
+ering the inﬂuence propagation in the knowledge structure
+with learners’ exercise performance sequence, SKT is able to
+estimate learners’ knowledge states more precisely. Extensive
+experiments were conducted on real-world datasets and the
+results showed the effectiveness and interpretability of SKT.
+For the future work, we would try to involve more re-
+lations and node attributes in the knowledge structure such
+as collaboration relations [12]. Besides, we would explore
+utilizing more features in knowledge tracing along with the
+knowledge structure such as components in exercises (e.g.,
+equation, image and text). Meanwhile, we would like to apply
+our SKT on some other educational problems such as cognitive
+diagnosis assessment [32].
+Acknowledgement. This research was supported by grants
+from the National Natural Science Foundation of China
+(Grants No. 61922073, 61672483, U1605251) and the Iﬂytek
+joint research program. Qi Liu gratefully acknowledges the
+support of the Youth Innovation Promotion Association of
+CAS (No. 2014299).
+REFERENCES
+[1] J. Atwood and D. Towsley. Diffusion-convolutional neural networks. In
+Advances in neural information processing systems, pages 1993–2001,
+2016.
+[2] J. S. Bergstra, R. Bardenet, Y. Bengio, and B. K´egl.
+Algorithms
+for hyper-parameter optimization. In Advances in neural information
+processing systems, pages 2546–2554, 2011.
+[3] H.-S. Chang, H.-J. Hsu, and K.-T. Chen. Modeling exercise relationships
+in e-learning: A uniﬁed approach. In EDM, pages 532–535, 2015.
+[4] P. Chen, Y. Lu, V. W. Zheng, and Y. Pian.
+Prerequisite-driven deep
+knowledge tracing. In 2018 IEEE International Conference on Data
+Mining (ICDM), pages 39–48. IEEE, 2018.
+[5] K. Cho, B. Van Merri¨enboer, C. Gulcehre, D. Bahdanau, F. Bougares,
+H. Schwenk, and Y. Bengio.
+Learning phrase representations using
+rnn encoder-decoder for statistical machine translation. arXiv preprint
+arXiv:1406.1078, 2014.
+[6] J. Chung, C. Gulcehre, K. Cho, and Y. Bengio. Empirical evaluation of
+gated recurrent neural networks on sequence modeling. arXiv preprint
+arXiv:1412.3555, 2014.
+[7] A. T. Corbett and J. R. Anderson. Knowledge tracing: Modeling the
+acquisition of procedural knowledge. User modeling and user-adapted
+interaction, 4(4):253–278, 1994.
+549
+Authorized licensed use limited to: University of Science & Technology of China. Downloaded on February 14,2021 at 06:18:30 UTC from IEEE Xplore.  Restrictions apply. 
+
+1
+22
+12
+40
+8
+Analytic-geometry
+37
+14
+39
+25
+38
+32
+Algebra
+4
+2
+10
+31
+28
+42
+33
+24
+Probability-statistics
+19
+6
+3
+5
+16
+7
+41
+36
+30
+Geometry
+23
+27
+9
+18
+13
+20
+29
+15
+21
+11
+35
+17
+26
+Arithmetic
+34
+01 angle types
+02 exponents 3
+03 reading pictographs 2
+04 exponents 2
+05 reading pictographs 1
+06 reading tables 1
+07 congruent angles
+08 vertical angles 2
+09 alternate interior angles 2
+10 simplifying expressions 
+11 addition 1
+12 supplementary angles
+13 same side exterior angles 2
+14 exponents 1
+29 corresponding angles
+30 parallel lines 1
+31 plotting the line of best t
+32 multiplying scientic notation 
+33 reading bar charts 2
+34 addition 2
+35 subtraction 1
+36 same side interior angles 2
+37 vertical angles
+38 exponent rules
+39 scientic notation
+40 complementary angles
+41 alternate interior angles
+42 reading bar charts 1
+16 alternate exterior angles 2
+17 subtraction 4
+18 alternate exterior angles
+19 reading stem and leaf plots
+20 parallel lines 2
+21 subtraction 3
+22 complementary angles
+23 same side interior angles
+24 reading tables 2
+25 scientic notation intuition
+26 subtraction 2
+27 corresponding angles 2
+28 reading line charts 1
+15 same side exterior angles
+Fig. 6: Concept clustering.
+[8] H. C. Ellis. The transfer of learning. 1965.
+[9] X. Glorot and Y. Bengio.
+Understanding the difﬁculty of training
+deep feedforward neural networks.
+In Proceedings of the thirteenth
+international conference on artiﬁcial intelligence and statistics, pages
+249–256, 2010.
+[10] S. Hochreiter and J. Schmidhuber. Long short-term memory. Neural
+computation, 9(8):1735–1780, 1997.
+[11] P. A. Howard-Jones and R. Martin. The effect of questioning on concept
+learning within a hypertext system.
+Journal of Computer Assisted
+Learning, 18(1):10–20, 2002.
+[12] X. Huang, Q. Liu, C. Wang, H. Han, J. Ma, E. Chen, Y. Su, and S. Wang.
+Constructing educational concept maps with multiple relationships from
+multi-source data. In J. Wang, K. Shim, and X. Wu, editors, 2019 IEEE
+International Conference on Data Mining, ICDM 2019, Beijing, China,
+November 8-11, 2019, pages 1108–1113. IEEE, 2019.
+[13] Z. Huang, Q. Liu, Y. Chen, L. Wu, K. Xiao, E. Chen, H. Ma, and
+G. Hu. Learning or forgetting? a dynamic approach for tracking the
+knowledge proﬁciency of students. ACM Transactions on Information
+Systems (TOIS), 38(2):1–33, 2020.
+[14] D. Kempe, J. Kleinberg, and ´E. Tardos.
+Maximizing the spread of
+inﬂuence through a social network. In Proceedings of the ninth ACM
+SIGKDD international conference on Knowledge discovery and data
+mining, pages 137–146. ACM, 2003.
+[15] M. Kimura and K. Saito. Tractable models for information diffusion in
+social networks. In European conference on principles of data mining
+and knowledge discovery, pages 259–271. Springer, 2006.
+[16] D. P. Kingma and J. Ba. Adam: A method for stochastic optimization.
+arXiv preprint arXiv:1412.6980, 2014.
+[17] Y. Li, R. Yu, C. Shahabi, and Y. Liu.
+Diffusion convolutional re-
+current neural network: Data-driven trafﬁc forecasting. arXiv preprint
+arXiv:1707.01926, 2017.
+[18] Z. Li, H. Zhao, Q. Liu, Z. Huang, T. Mei, and E. Chen. Learning from
+history and present: Next-item recommendation via discriminatively
+exploiting user behaviors. In Proceedings of the 24th ACM SIGKDD
+International Conference on Knowledge Discovery & Data Mining,
+pages 1734–1743, 2018.
+[19] Q. Liu, S. Tong, C. Liu, H. Zhao, E. Chen, H. Ma, and S. Wang.
+Exploiting cognitive structure for adaptive learning.
+In Proceedings
+of the 25th ACM SIGKDD International Conference on Knowledge
+Discovery & Data Mining, pages 627–635, 2019.
+[20] Q. Liu, B. Xiang, N. J. Yuan, E. Chen, H. Xiong, Y. Zheng, and Y. Yang.
+An inﬂuence propagation view of pagerank.
+ACM Transactions on
+Knowledge Discovery from Data (TKDD), 11(3):1–30, 2017.
+[21] L. v. d. Maaten and G. Hinton. Visualizing data using t-sne. Journal of
+machine learning research, 9(Nov):2579–2605, 2008.
+[22] K. Nagatani, Q. Zhang, M. Sato, Y.-Y. Chen, F. Chen, and T. Ohkuma.
+Augmenting knowledge tracing by considering forgetting behavior. In
+The World Wide Web Conference, pages 3101–3107. ACM, 2019.
+[23] H. Nakagawa, Y. Iwasawa, and Y. Matsuo.
+Graph-based knowledge
+tracing: Modeling student proﬁciency using graph neural network. In
+IEEE/WIC/ACM International Conference on Web Intelligence, pages
+156–163. ACM, 2019.
+[24] J. Piaget. The equilibration of cognitive structures: The central problem
+of intellectual development. University of Chicago press, 1985.
+[25] C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami, L. J. Guibas,
+and J. Sohl-Dickstein. Deep knowledge tracing. In Advances in Neural
+Information Processing Systems, pages 505–513, 2015.
+[26] W. F. Pinar, W. M. Reynolds, P. Slattery, and P. M. Taubman.
+Un-
+derstanding curriculum: An introduction to the study of historical and
+contemporary curriculum discourses, volume 17. Peter Lang, 1995.
+[27] D. H. Schunk.
+Learning theories an educational perspective sixth
+edition. Pearson, 2012.
+[28] Y. Shang, H. Shi, and S.-S. Chen. An intelligent distributed environment
+for active learning. Journal on Educational Resources in Computing
+(JERIC), 1(2es):4–es, 2001.
+[29] P. R.-J. Simons. Transfer of learning: Paradoxes for learners. Interna-
+tional journal of educational research, 31(7):577–589, 1999.
+[30] N. Srivastava, G. Hinton, A. Krizhevsky, I. Sutskever, and R. Salakhutdi-
+nov. Dropout: a simple way to prevent neural networks from overﬁtting.
+The Journal of Machine Learning Research, 15(1):1929–1958, 2014.
+[31] E. L. Thorndike and R. S. Woodworth. The inﬂuence of improvement
+in one mental function upon the efﬁciency of other functions. ii. the
+estimation of magnitudes. Psychological Review, 8(4):384, 1901.
+[32] F. Wang, Q. Liu, E. Chen, Z. Huang, Y. Chen, Y. Yin, Z. Huang, and
+S. Wang. Neural cognitive diagnosis for intelligent education systems.
+arXiv preprint arXiv:1908.08733, 2019.
+[33] H. Wang, T. Xu, Q. Liu, D. Lian, E. Chen, D. Du, H. Wu, and W. Su.
+MCNE: an end-to-end framework for learning multiple conditional
+network representations of social network. In Proceedings of the 25th
+ACM SIGKDD International Conference on Knowledge Discovery and
+Data Mining, pages 1064–1072, 2019.
+[34] T. Wang, F. Ma, and J. Gao. Deep hierarchical knowledge tracing.
+[35] Z. Wang, X. Feng, J. Tang, G. Y. Huang, and Z. Liu. Deep knowledge
+tracing with side information. In International Conference on Artiﬁcial
+Intelligence in Education, pages 303–308. Springer, 2019.
+[36] R. S. Woodworth and E. Thorndike.
+The inﬂuence of improvement
+in one mental function upon the efﬁciency of other functions.(i).
+Psychological review, 8(3):247, 1901.
+[37] L. Wu, P. Sun, Y. Fu, R. Hong, X. Wang, and M. Wang.
+A neural
+inﬂuence diffusion model for social recommendation. In Proceedings
+of the 42nd international ACM SIGIR conference on research and
+development in information retrieval, pages 235–244, 2019.
+[38] X. Xiong, S. Zhao, E. G. Van Inwegen, and J. E. Beck. Going deeper
+with deep knowledge tracing. International Educational Data Mining
+Society, 2016.
+[39] H. Yang and L. P. Cheung. Implicit heterogeneous features embedding
+in deep knowledge tracing. Cognitive Computation, 10(1):3–14, 2018.
+[40] C.-K. Yeung and D.-Y. Yeung. Addressing two problems in deep knowl-
+edge tracing via prediction-consistent regularization. In Proceedings of
+the Fifth Annual ACM Conference on Learning at Scale, page 5. ACM,
+2018.
+[41] J. Zhang, X. Shi, I. King, and D.-Y. Yeung. Dynamic key-value memory
+networks for knowledge tracing. In Proceedings of the 26th international
+conference on World Wide Web, pages 765–774. International World
+Wide Web Conferences Steering Committee, 2017.
+550
+Authorized licensed use limited to: University of Science & Technology of China. Downloaded on February 14,2021 at 06:18:30 UTC from IEEE Xplore.  Restrictions apply. 

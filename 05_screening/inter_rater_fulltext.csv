@@ -1,0 +1,2 @@
+record_id,title,decision_A,decision_B,exact_agreement,decision_A_source,decision_B_source,adjudicated_decision,adjudication_note
+REC_0047,Make Cognitive Diagnosis Model Enhanced by Graph KT,EXCLUDE_FULLTEXT,PRIMARY_ADJACENT_METHOD,NO,06_fulltext/fulltext_screening_v1.0.csv,05_screening/HUMAN_SECOND_SCREEN_FULLTEXT_PHUONG1_VERIFIED.csv,PRIMARY_ADJACENT_METHOD,"Adjudicator Nguyễn Văn Hậu; COMPLETED; pre-adjudication disagreement retained for reliability (raw agreement 0/1)"

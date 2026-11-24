@@ -1,0 +1,102 @@
+ 
+Contents lists available at ScienceDirect
+Information Processing and Management
+journal homepage: www.elsevier.com/locate/ipm
+ 
+HKT: Hierarchical structure-based knowledge tracing
+Qing Li a,b
+, Zhijun Huang a,b
+, Jianwen Sun a,b
+, Xin Yuan a,b
+, 
+Shengyingjie Liu a,b
+,∗, Zhonghua Yan a,b
+a National Engineering Research Center of Educational Big Data, Central China Normal University, Wuhan 430079, China
+b Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan 430079, China
+A R T I C L E  I N F O
+Keywords:
+Knowledge tracing
+Graph representation learning
+Graph contrastive learning
+Hierarchical modeling
+Educational data mining
+ 
+A B S T R A C T
+Knowledge tracing (KT) is a fundamental task in Intelligent Tutoring Systems, aiming to predict 
+learners’ performance on specific questions and trace their evolving knowledge state. With 
+the advancement of deep learning in this field, various methods have been applied to model 
+the relations between knowledge. However, most existing knowledge tracing methods focus 
+on modeling knowledge at a single level, neglecting the inherent hierarchical structure of 
+knowledge, which limits their ability to capture complex relations. In this paper, we propose 
+a novel hierarchical knowledge tracing model (HKT), which integrates influences of multiple 
+knowledge levels to predict learners’ performance. Specifically, we construct different types of 
+hierarchical graphs to capture both intra-hierarchy dependencies and cross-hierarchy relations. 
+To effectively combine information from multiple levels, we design weight allocation networks 
+that dynamically assign weights to different knowledge levels, thereby synthesizing their effects 
+for accurate performance prediction. Experimental results demonstrate that HKT outperforms 
+baseline methods on multiple benchmark datasets, validating the effectiveness of integrating 
+knowledge across all levels compared to single-level models.
+1. Introduction
+The rapid expansion of online learning platforms has generated an immense volume of learner behavior data, opening up 
+new opportunities for the development of Intelligent Tutoring Systems (ITS) (Wang, Lai and Huang, 2024). Effectively managing 
+and analyzing this data, as well as accurately assessing a learner’s knowledge state, continues to pose significant challenges for 
+ITS. Knowledge Tracing (KT), which draws on educational theory and leverages data-driven methodologies, is designed to model 
+cognitive progression and dynamically infer learners’ knowledge states from historical learning data (Abdelrahman, Wang, & Nunes, 
+2023; Qian, Zheng, Wang, & Li, 2024). It provides valuable insights and practical tools for making decisions and managing in 
+education, serving as a powerful driver for personalized learning (Wang & Sahebi, 2023).
+Early KT models based on Hidden Markov Models treat each knowledge concept as an independent variable (Falakmasir, Pardos, 
+Gordon, & Brusilovsky, 2013), which can be considered a pointwise model. We refer to it as Pointwise Knowledge Tracing (POI-
+KT), as shown in Fig. 1(a). Although the approaches are relatively straightforward to implement, they neglect the interdependencies 
+between knowledge concepts, often leading to limited effectiveness in applications (Liu, Hu, Bu, & Yu, 2022). The emergence of deep 
+learning technologies motivates researchers to employ more advanced neural network models to enhance the predictive abilities of 
+KT (Yang, Yu, Ma, Zhang, & Li, 2022). Whether the backbone network is based on recurrent neural networks (Piech et al., 2015) or 
+∗Corresponding author.
+E-mail addresses: viven_a@ccnu.edu.cn (Q. Li), zhijunhuang@mails.ccnu.edu.cn (Z. Huang), sunjw@ccnu.edu.cn (J. Sun), yuanxin@mails.ccnu.edu.cn 
+(X. Yuan), lsyj@mails.ccnu.edu.cn (S. Liu), hit_yan@mail.ccnu.edu.cn (Z. Yan).
+https://doi.org/10.1016/j.ipm.2025.104206
+Received 22 January 2025; Received in revised form 20 April 2025; Accepted 1 May 2025
+Information Processing and Management 62 (2025) 104206 
+Available online 19 May 2025 
+0306-4573/© 2025 Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and similar technologies. 
+
+Q. Li et al.
+Fig. 1. The 4 types of KT models. (a) KT with independent modeling of knowledge concepts; (b) KT with implicit modeling of knowledge concepts; (c) KT with 
+explicit modeling of knowledge concepts; (d) KT with hierarchical modeling of knowledge concepts.
+self-attention networks (Ghosh, Heffernan, & Lan, 2020), the hidden layers of these models inherently consider the latent connections 
+between knowledge concepts during parameter optimization, enabling them to predict future responses effectively. They do not 
+explicitly depict the associations among knowledge concepts, relying instead on internal parameters for implicit learning, which 
+we classify as Implicit Knowledge Tracing (IMP-KT), as shown in Fig. 1(b). Although they show some improvement in predictive 
+accuracy, their flexibility is limited in contexts with complex knowledge structures. After that, researchers have applied graph 
+models to represent the relations between knowledge concepts (Huang et al., 2024), significantly enhancing predictive performance 
+in specific contexts. We refer to these models as Explicit Knowledge Tracing (EXP-KT), as depicted in Fig. 1(c), which effectively 
+captures intricate dependencies among concepts, thereby improving the accuracy of learner behavior predictions.
+Current research on modeling learners’ knowledge structures has predominantly focused on single-level, planar relations between 
+knowledge concepts, without fully considering the complexity of the hierarchical organization and multi-level collaboration of 
+knowledge concepts revealed by cognitive architecture theory (Sweller, Van Merrienboer, & Paas, 1998). For example, when a 
+learner answers a question related to ‘‘finding a common denominator’’, they not only need to understand this concept but also 
+master the higher-level concept of the ‘‘basic properties of fractions’’. Specifically, in order to solve this problem, the learner must 
+first understand the ‘‘basic properties of fractions’’ in order to identify that the question is testing ‘‘finding a common denominator’’ 
+rather than ‘‘simplifying a fraction’’ and then apply the relevant knowledge to answer correctly. Therefore, multi-level modeling of 
+knowledge concepts is crucial for accurately assessing learners’ knowledge structures.
+Guided by cognitive architecture theory (Sweller et al., 1998), learners’ cognitive state modeling with the hierarchical structure 
+of knowledge concepts involves tackling two key challenges. (1) The difference in the level of abstraction of various knowledge 
+concepts makes it a significant challenge to clearly define the hierarchical structure of these concepts within a unified framework. 
+(2) Different levels of knowledge have varying impacts on learner responses, making it necessary to assess the influence weight of 
+each level. However, existing knowledge tracing (KT) methods typically focus on modeling a single level, neglecting the synergistic 
+effects between different levels, which in turn affects the model’s prediction accuracy and generalization ability. Addressing these 
+challenges is vital for developing effective models that accurately capture and utilize the hierarchical nature of knowledge concepts.
+In this work, we propose the Hierarchical Knowledge Tracing (HKT) model, which explicitly incorporates the hierarchical 
+structure of knowledge concepts. It provides a more nuanced understanding of learner performance, distinguishing it from existing 
+methods, as depicted in Fig. 1(d). For (1), we introduce a Knowledge Hierarchy Tree (KHT) based on expert prior knowledge, which 
+models the vertical hierarchical relationships between knowledge concepts and establishes a top-down knowledge organization 
+framework. Meanwhile, we construct a Knowledge Association Graph (KAG) using learning sequence information to represent 
+interrelations between concepts at the same hierarchical level. Subsequently, we construct hierarchical embedding representations 
+that not only indicate the level of each knowledge concept but also capture the distances between levels. These embeddings are 
+further refined through the application of a cross-graph, hierarchical contrastive learning strategy. For (2), we propose weight 
+allocation networks that can dynamically assess the impact of different levels of knowledge concepts on prediction results. By 
+adaptively assigning different levels of weights based on the relevance of the prediction task, the model can provide a comprehensive 
+evaluation of the learner’s responses. Experimental results based on real-world datasets show a significant improvement in predictive 
+performance. Furthermore, our approach exhibits strong interpretability. The explicit modeling of knowledge concepts using KHT 
+and KAG provides an interpretable and structured knowledge framework that aligns with human cognition. The dynamic weight 
+Information Processing and Management 62 (2025) 104206 
+2 

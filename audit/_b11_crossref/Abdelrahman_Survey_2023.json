@@ -1,0 +1,79 @@
+{
+  "title": [
+    "Knowledge Tracing: A Survey"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0002-7470-0494",
+      "authenticated-orcid": false,
+      "given": "Ghodai",
+      "family": "Abdelrahman",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "School of Computing, Australian National University, Acton, Canberra, ACT, Australia"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-9504-4273",
+      "authenticated-orcid": false,
+      "given": "Qing",
+      "family": "Wang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Computing, Australian National University, Acton, Canberra, ACT, Australia"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-9764-9401",
+      "authenticated-orcid": false,
+      "given": "Bernardo",
+      "family": "Nunes",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Computing, Australian National University, Acton, Canberra, ACT, Australia"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2023,
+        2,
+        9
+      ]
+    ]
+  },
+  "container-title": [
+    "ACM Computing Surveys"
+  ],
+  "volume": "55",
+  "issue": "11",
+  "page": "1-37",
+  "publisher": "Association for Computing Machinery (ACM)",
+  "DOI": "10.1145/3569576",
+  "type": "journal-article"
+}

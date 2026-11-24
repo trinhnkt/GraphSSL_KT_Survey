@@ -1,0 +1,665 @@
+modeling flexibility, data adaptability, and educational utility.
+To this end, we proposed four forward-looking research directions: (i) automatic discovery
+and completion of graph structures; (ii) leveraging large-scale models to enhance the modeling
+capacity and generalization performance of GbKT models; (iii) constructing multimodal graph
+structures to incorporate diverse learning signals; and (iv) improving model interpretability by
+integrating educational psychology and cognitive science theories.
+These directions are expected to drive the development of GbKT models toward greater
+intelligence, precision, and usability, expanding their application potential and research value in
+intelligent education systems.
+8.
+ACKNOWLEDGMENT
+The present study is a part of the EDUCA Flagship project funded by the Research Council
+of Finland (358924, 358947) and the Ministry of Education and Culture (Doctoral school pilot
+#VN/3137/2024-OKM-4).
+To support reproducibility, we have released the code used for the benchmarking experi-
+ments in Table 1 at https://github.com/merlinxu81323/GBKT-baseline. The
+repository provides the evaluation scripts, model configuration files, data preprocessing instruc-
+tions, and links to the original public datasets and source implementations where applicable.
+The authors declare no competing interests.
+REFERENCES
+ABDELRAHMAN, G. AND WANG, Q. 2023. Deep graph memory networks for forgetting-robust knowl-
+edge tracing. IEEE Transactions on Knowledge and Data Engineering 35, 8, 7844–7855.
+ANNABI, L. AND NGUYEN, S. M. 2023. Prerequisite structure discovery in intelligent tutoring systems.
+In 2023 IEEE International Conference on Development and Learning (ICDL). IEEE, Piscataway,
+NJ, USA, 176–181.
+BARRETT, J., DAY, A., AND GAL, K. 2024. Improving model fairness with time-augmented Bayesian
+knowledge tracing. In Proceedings of the 14th Learning Analytics and Knowledge Conference. As-
+sociation for Computing Machinery, New York, NY, USA, 46–54.
+CHAMBERLAIN, B., ROWBOTTOM, J., GORINOVA, M. I., BRONSTEIN, M., WEBB, S., AND ROSSI,
+E. 2021. GRAND: Graph Neural Diffusion. In Proceedings of the 38th International Conference on
+Machine Learning, M. Meila and T. Zhang, Eds. Proceedings of Machine Learning Research, vol.
+139. PMLR, Virtual Event, 1407–1418.
+CHANAA, A., EL FADDOULI, N.-E., BITTENCOURT, I. I., CUKUROVA, M., MULDNER, K., LUCKIN,
+R., AND MILL ´AN, E. 2020. Predicting Learners Need for Recommendation Using Dynamic Graph-
+Based Knowledge Tracing. In Artificial Intelligence in Education, S. Isotani, E. Mill´an, A. Ogan,
+P. Hastings, B. McLaren, and R. Luckin, Eds. Vol. 12164. Springer International Publishing, Cham,
+Switzerland, 49–53.
+CHANG, H.-S., HSU, H.-J., AND CHEN, K.-T. 2015. Modeling exercise relationships in e-learning: a
+unified approach. In Proceedings of the 8th International Conference on Educational Data Mining,
+O. C. Santos, J. Boticario, C. Romero, M. Pechenizkiy, A. Merceron, P. Mitros, J. M. Luna, M. C.
+Mihaescu, P. Moreno, A. Hershkovitz, S. Ventura, and M. Desmarais, Eds. International Educational
+Data Mining Society, Madrid, Spain, 532–535.
+36
+76
+Journal of Educational Data Mining, Volume 18, No 2, 2026
+
+CHANG, X., GUO, X., LIANG, K., AND ZHANG, X. 2024. Attention-based hypergraph knowledge trac-
+ing. In Advanced Intelligent Computing Technology and Applications: 20th International Conference,
+ICIC 2024, Tianjin, China, August 5–8, 2024, Proceedings, Part XIII. Springer-Verlag, Singapore,
+480–491.
+CHENG, K., PENG, L., WANG, P., YE, J., SUN, L., AND DU, B. 2024. Dygkt: dynamic graph learning
+for knowledge tracing. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discov-
+ery and Data Mining. Association for Computing Machinery, New York, NY, USA, 409–420.
+CHOI, Y., LEE, Y., CHO, J., BAEK, J., KIM, B., CHA, Y., SHIN, D., BAE, C., AND HEO, J. 2020.
+Towards an appropriate query, key, and value computation for knowledge tracing. In Proceedings
+of the Seventh ACM Conference on Learning @ Scale. Association for Computing Machinery, New
+York, NY, USA, 341–344.
+CHOI, Y., LEE, Y., SHIN, D., CHO, J., PARK, S., LEE, S., BAEK, J., BAE, C., KIM, B., AND HEO, J.
+2020. EdNet: a large-scale hierarchical dataset in education. In Artificial Intelligence in Education,
+I. I. Bittencourt, M. Cukurova, K. Muldner, R. Luckin, and E. Mill´an, Eds. Lecture Notes in Computer
+Science, vol. 12164. Springer International Publishing, Cham, Switzerland, 69–73.
+CORBETT, A. T. AND ANDERSON, J. R. 1994. Knowledge tracing: Modeling the acquisition of proce-
+dural knowledge. User Modeling and User-Adapted Interaction 4, 4 (Dec.), 253–278.
+CUI, C., YAO, Y., ZHANG, C., MA, H., MA, Y., REN, Z., ZHANG, C., AND KO, J. 2024. DGEKT: A
+Dual Graph Ensemble Learning Method for Knowledge Tracing. ACM Trans. Inf. Syst. 42, 3, 78:1–
+78:24.
+CUI, J., QIAN, H., JIANG, B., AND ZHANG, W. 2024. Leveraging Pedagogical Theories to Understand
+Student Learning Process with Graph-based Reasonable Knowledge Tracing. In Proceedings of the
+30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining, R. Baeza-Yates and
+F. Bonchi, Eds. Association for Computing Machinery, New York, NY, USA, 502–513.
+DEVLIN, J., CHANG, M.-W., LEE, K., AND TOUTANOVA, K. 2019. Bert: pre-training of deep bidirec-
+tional transformers for language understanding. In Proceedings of the 2019 Conference of the North
+American Chapter of the Association for Computational Linguistics: Human Language Technolo-
+gies, Volume 1 (Long and Short Papers). Association for Computational Linguistics, Minneapolis,
+MN, USA, 4171–4186.
+DOWLING, C. AND HOCKEMEYER, C. 2001. Automata for the assessment of knowledge. IEEE Trans-
+actions on Knowledge and Data Engineering 13, 3 (May), 451–461.
+EDWARDS, S. H. AND MURALI, K. P. 2017. Codeworkout: short programming exercises with built-
+in data collection. In Proceedings of the 2017 ACM Conference on Innovation and Technology in
+Computer Science Education. Association for Computing Machinery, New York, NY, USA, 188–193.
+ELLIS, H. C. 1965. The transfer of learning. Critical Issues in Psychology Series. Macmillan, New York,
+NY, USA.
+FENG, M., HEFFERNAN, N., AND KOEDINGER, K. 2009. Addressing the assessment challenge with an
+online system that tutors as it assesses. User modeling and user-adapted interaction 19, 3, 243–266.
+GAN, W., SUN, Y., AND SUN, Y. 2022. Knowledge structure enhanced graph representation learning
+model for attentive knowledge tracing. International Journal of Intelligent Systems 37, 3, 2012–2045.
+GHOSH, A., HEFFERNAN, N., AND LAN, A. S. 2020. Context-aware attentive knowledge tracing. In
+Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data
+Mining. Association for Computing Machinery, New York, NY, USA, 2330–2339.
+37
+77
+Journal of Educational Data Mining, Volume 18, No 2, 2026
+
+GU, H., DONG, X., AND ZHOU, D. 2022. Dynamic key-value memory networks based on concept
+structure for knowledge tracing. In 2022 4th International Conference on Computer Science and
+Technologies in Education (CSTE). IEEE, Piscataway, NJ, USA, 290–294.
+GU, W., LIU, Z., AND LIU, S. 2023. Interpretable deep knowledge tracing with graph relationship
+information. In 2023 IEEE 5th International Conference on Civil Aviation Safety and Information
+Technology (ICCASIT). IEEE, Piscataway, NJ, USA, 290–295.
+HAN, D., KIM, D., KIM, M., HAN, K., AND YI, M. Y. 2023. Temporal enhanced inductive graph
+knowledge tracing. Applied Intelligence 53, 23, 29282–29299.
+HAN, Y., TANG, H., ZHANG, W., DU, L., ZHAO, J., AND SHAO, M. 2024. Dynamic heterogeneous
+graph contrastive networks for knowledge tracing. Applied Soft Computing 166, 112194.
+HE, X., LIN, X., AND ZHAO, Y. 2024. Hypergraph transformer for knowledge tracing. In 2024 IEEE
+14th Annual Computing and Communication Workshop and Conference (CCWC). IEEE, Piscataway,
+NJ, USA, 0262–0268.
+JIA, Z., SU, W., LIU, J., AND YUE, W. 2026. Attentive Q-matrix learning for knowledge tracing. Applied
+Intelligence 56, 1, 40.
+JIANG, X., OUYANG, Y., LIU, Z., RONG, W., AND XIONG, Z. 2022. Makt: multichannel attention
+networks based knowledge tracing with representation learning. In 2022 IEEE International Confer-
+ence on Teaching, Assessment and Learning for Engineering (TALE). IEEE, Piscataway, NJ, USA,
+292–299.
+KOEDINGER, K. R., BAKER, R. S. J. D., CUNNINGHAM, K., SKOGSHOLM, A., LEBER, B., AND
+STAMPER, J. 2010. A data repository for the edm community: the pslc datashop. In Handbook of
+Educational Data Mining, C. Romero, S. Ventura, M. Pechenizkiy, and R. S. J. d. Baker, Eds. CRC
+Press, Boca Raton, FL, USA, 43–56.
+LI, J., DENG, Y., MAO, S., QIN, Y., AND JIANG, Y. 2024. Knowledge-Associated Embedding for
+Memory-Aware Knowledge Tracing. IEEE Transactions on Computational Social Systems 11, 3,
+4016–4028.
+LIU, Z., LIU, Q., CHEN, J., HUANG, S., TANG, J., AND LUO, W. 2022. pyKT: a python library
+to benchmark deep learning based knowledge tracing models. In Advances in Neural Information
+Processing Systems. Vol. 35. Curran Associates Inc., Red Hook, NY, USA, 18542–18555.
+LONG, T., LIU, Y., ZHANG, W., XIA, W., HE, Z., TANG, R., AND YU, Y. 2022. Automatical graph-
+based knowledge tracing. In Proceedings of the 15th International Conference on Educational Data
+Mining (EDM 2022). International Educational Data Mining Society, Durham, United Kingdom,
+710–714.
+LONG, Y., YU, W., HUANG, J., ZHANG, T., AND LAI, N. 2024. Mgkt: a multi-relation enhanced graph-
+based model for knowledge tracing. In 2024 International Joint Conference on Neural Networks
+(IJCNN). IEEE, Piscataway, NJ, USA, 1–8.
+LU, Y., WANG, D., CHEN, P., MENG, Q., AND YU, S. 2023. Interpreting deep learning models for
+knowledge tracing. International Journal of Artificial Intelligence in Education 33, 3, 519–542.
+LUO, Y., XIAO, B., JIANG, H., AND MA, J. 2022. Heterogeneous graph based knowledge tracing.
+In 2022 11th International Conference on Educational and Information Technology (ICEIT). IEEE,
+Piscataway, NJ, USA, 226–231.
+MINN, S. AND NKAMBOU, R. 2025. Enhanced interpretable knowledge tracing for students performance
+prediction with human-understandable feature space. arXiv preprint arXiv:2509.18231.
+38
+78
+Journal of Educational Data Mining, Volume 18, No 2, 2026
+
+NAKAGAWA, H., IWASAWA, Y., AND MATSUO, Y. 2019. Graph-based Knowledge Tracing: Modeling
+Student Proficiency Using Graph Neural Network. In 2019 IEEE/WIC/ACM International Conference
+on Web Intelligence (WI). Association for Computing Machinery, New York, NY, USA, 156–163.
+NI, Q., WEI, T., ZHAO, J., HE, L., AND ZHENG, C. 2023. HHSKT: A learner–question interactions
+based heterogeneous graph neural network model for knowledge tracing. Expert Systems with Appli-
+cations 215, 119334.
+OWENS, M., STEVENSON, J., HADWIN, J. A., AND NORGATE, R. 2014. When does anxiety help
+or hinder cognitive test performance? The role of working memory capacity. British Journal of
+Psychology (London, England: 1953) 105, 1 (Feb.), 92–101.
+PANDEY, S. AND KARYPIS, G. 2019. A self-attentive model for knowledge tracing. In Proceedings of the
+12th International Conference on Educational Data Mining. International Educational Data Mining
+Society, Montreal, Canada, 384–389.
+PARDOS, Z. A., BAKER, R. S., SAN PEDRO, M. O., GOWDA, S. M., AND GOWDA, S. M. 2014. Af-
+fective states and state tests: investigating how affect and engagement during the school year predict
+end-of-year learning outcomes. Journal of Learning Analytics 1, 1, 107–128.
+PARDOS, Z. A., BERGNER, Y., SEATON, D. T., AND PRITCHARD, D. E. 2013. Adapting bayesian
+knowledge tracing to a massive open online course in edx. In Proceedings of the 6th International
+Conference on Educational Data Mining (EDM 2013). International Educational Data Mining Soci-
+ety, Memphis, TN, USA, 137–144.
+PETERS, M. E., NEUMANN, M., LOGAN, R., SCHWARTZ, R., JOSHI, V., SINGH, S., AND SMITH,
+N. A. 2019. Knowledge Enhanced Contextual Word Representations. In Proceedings of the 2019
+Conference on Empirical Methods in Natural Language Processing and the 9th International Joint
+Conference on Natural Language Processing (EMNLP-IJCNLP), K. Inui, J. Jiang, V. Ng, and X. Wan,
+Eds. Association for Computational Linguistics, Hong Kong, China, 43–54.
+PIECH, C., BASSEN, J., HUANG, J., GANGULI, S., SAHAMI, M., GUIBAS, L. J., AND SOHL-
+DICKSTEIN, J. 2015. Deep Knowledge Tracing. In Advances in Neural Information Processing Sys-
+tems, C. Cortes, N. D. Lawrence, D. D. Lee, M. Sugiyama, and R. Garnett, Eds. Vol. 28. Curran
+Associates, Inc., Red Hook, NY, USA, 505–513.
+QIN, Y., LIN, Y., TAKANOBU, R., LIU, Z., LI, P., JI, H., HUANG, M., SUN, M., AND ZHOU, J. 2021.
+ERICA: Improving Entity and Relation Understanding for Pre-trained Language Models via Con-
+trastive Learning. In Proceedings of the 59th Annual Meeting of the Association for Computational
+Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1:
+Long Papers), C. Zong, F. Xia, W. Li, and R. Navigli, Eds. Association for Computational Linguistics,
+Online, 3350–3363.
+QIU, L. AND WANG, L. 2025. Knowledge tracing through enhanced questions and directed learning in-
+teraction based on multigraph embeddings in intelligent tutoring systems. IEEE Trans. on Educ. 68, 1,
+43–56.
+SHCHEPAKIN, D., SANKARANARAYANAN, S., AND ZIMMARO, D. 2024. Parametric constraints for
+Bayesian knowledge tracing from first principles. In Proceedings of the 17th International Conference
+on Educational Data Mining, B. Paaßen and C. D. Epp, Eds. International Educational Data Mining
+Society, Atlanta, GA, USA, 18–29.
+SHIN, D., SHIM, Y., YU, H., LEE, S., KIM, B., AND CHOI, Y. 2021. SAINT+: Integrating Temporal
+Features for EdNet Correctness Prediction. In LAK21: 11th International Learning Analytics and
+Knowledge Conference. Association for Computing Machinery, New York, NY, USA, 490–496.
+SONG, X., LI, J., LEI, Q., ZHAO, W., CHEN, Y., AND MIAN, A. 2022. Bi-clkt: bi-graph contrastive
+learning based knowledge tracing. Know.-Based Syst. 241, 108274.
+39
+79
+Journal of Educational Data Mining, Volume 18, No 2, 2026
+
+SONG, X., LI, J., TANG, Y., ZHAO, T., CHEN, Y., AND GUAN, Z. 2021. Jkt: A joint graph convolutional
+network based deep knowledge tracing. Information Sciences 580, 510–523.
+STAMPER, J., NICULESCU-MIZIL, A., RITTER, S., GORDON, G. J., AND KOEDINGER, K. R. 2010.
+Challenge data set from kdd cup 2010 educational data mining challenge. KDD Cup 2010 Educa-
+tional Data Mining Challenge data set. Available at https://www.kdd.org/kdd-cup/view/
+kdd-cup-2010-student-performance-evaluation/Data.
+STINAR, F., LEE, H., BELITZ, C., NASIAR, N., FANCSALI, S. E., RITTER, S., ALMOUBAYYED, H.,
+BAKER, R. S., OCUMPAUGH, J., AND BOSCH, N. 2025. Fairness of Bayesian knowledge tracing
+for math learners of different reading ability. In Proceedings of the 18th International Conference on
+Educational Data Mining, C. Mills, G. Alexandron, D. Taibi, G. Lo Bosco, and L. Paquette, Eds.
+International Educational Data Mining Society, Palermo, Italy, 170–181.
+SU, Y., HAN, X., ZHANG, Z., LI, P., LIU, Z., LIN, Y., ZHOU, J., AND SUN, M. 2021. CokeBERT:
+Contextual Knowledge Selection and Embedding towards Enhanced Pre-Trained Language Models.
+AI Open 2, 127–134.
+SUN, J., DU, S., LIU, Z., YU, F., LIU, S., AND SHEN, X. 2024. Weighted Heterogeneous Graph-Based
+Three-View Contrastive Learning for Knowledge Tracing in Personalized e-Learning Systems. IEEE
+Transactions on Consumer Electronics 70, 1, 2838–2847.
+SUN, J., YU, F., LIU, S., LUO, Y., LIANG, R., AND SHEN, X. 2023. Adversarial Bootstrapped Ques-
+tion Representation Learning for Knowledge Tracing. In Proceedings of the 31st ACM International
+Conference on Multimedia. MM ’23. Association for Computing Machinery, New York, NY, USA,
+8016–8025.
+SUN, Y. 2026. Using hierarchical Bayesian analysis to identify at-risk students in engineering mathemat-
+ics prerequisites. Computer Applications in Engineering Education 34, 1, e70126.
+THORNDIKE, E. L. AND WOODWORTH, R. S. 1901. The influence of improvement in one mental
+function upon the efficiency of other functions. II. The estimation of magnitudes. Psychological Re-
+view 8, 4, 384–395.
+TONG, H., WANG, Z., ZHOU, Y., TONG, S., HAN, W., AND LIU, Q. 2022. Introducing problem schema
+with hierarchical exercise graph for knowledge tracing. In Proceedings of the 45th International ACM
+SIGIR Conference on Research and Development in Information Retrieval (SIGIR ’22). Association
+for Computing Machinery, New York, NY, USA, 405–415.
+TONG, S., LIU, Q., HUANG, W., HUNAG, Z., CHEN, E., LIU, C., MA, H., AND WANG, S. 2020.
+Structure-based knowledge tracing: an influence propagation view. In 2020 IEEE International Con-
+ference on Data Mining (ICDM). IEEE, Piscataway, NJ, USA, 541–550.
+TU, L., ZHU, X., AND JI, Y. 2023. Graph-based dynamic interactive knowledge tracing. In Proceed-
+ings of the 2023 8th International Conference on Distance Education and Learning. Association for
+Computing Machinery, New York, NY, USA, 49–56.
+WANG, X., GAO, T., ZHU, Z., ZHANG, Z., LIU, Z., LI, J., AND TANG, J. 2021. KEPLER: A Unified
+Model for Knowledge Embedding and Pre-trained Language Representation. Transactions of the
+Association for Computational Linguistics 9, 176–194.
+WANG, X., ZHAO, S., GUO, L., ZHU, L., CUI, C., AND XU, L. 2023. GraphCA: Learning from
+Graph Counterfactual Augmentation for Knowledge Tracing. IEEE/CAA Journal of Automatica
+Sinica 10, 11, 2108–2123.
+WANG, Y., CONG, X., AND ZI, L. 2024. Combining knowledge tracing and graph convolution for
+knowledge concept recommendation. Computer and Modernization 0, 08, 17–23.
+40
+80
+Journal of Educational Data Mining, Volume 18, No 2, 2026
+
+WANG, Z., LAMB, A., SAVELIEV, E., CAMERON, P., ZAYKOV, Y., HERN ´ANDEZ-LOBATO, J. M.,
+TURNER, R. E., BARANIUK, R. G., BARTON, C., JONES, S. P., WOODHEAD, S.,
+AND
+ZHANG, C. 2020. Diagnostic questions: the NeurIPS 2020 education challenge. arXiv preprint
+arXiv:2007.12061.
+WANG, Z., WU, W., ZENG, C., LUO, H., AND SUN, J. 2024. Psychological factors enhanced heteroge-
+neous learning interactive graph knowledge tracing for understanding the learning process. Frontiers
+in Psychology 15, 1359199.
+WU, T. AND LING, Q. 2023a. Fusing hybrid attentive network with self-supervised dual-channel hetero-
+geneous graph for knowledge tracing. Expert Syst. Appl. 225, 120212.
+WU, T. AND LING, Q. 2023b. Self-supervised heterogeneous hypergraph network for knowledge tracing.
+Information Sciences 624, 200–216.
+WU, Z., HUANG, L., HUANG, Q., HUANG, C., AND TANG, Y. 2022. Sgkt: session graph-based knowl-
+edge tracing for student performance prediction. Expert Syst. Appl. 206, C, 117681.
+XIA, Z., DONG, N., WU, J., AND MA, C. 2024. Multivariate knowledge tracking based on graph neural
+network in assistments. IEEE Trans. Learn. Technol. 17, 32–43.
+XU, L., WANG, Z., ZHANG, S., YUAN, X., WANG, M., AND CHEN, E. 2024. Modeling student per-
+formance using feature crosses information for knowledge tracing. IEEE Transactions on Learning
+Technologies 17, 1364–1377.
+YANG, H., HU, S., GENG, J., HUANG, T., HU, J., ZHANG, H., AND ZHU, Q. 2024. Heterogeneous
+graph-based knowledge tracing with spatiotemporal evolution. Expert Systems with Applications 238,
+122249.
+YANG, L., SUN, X., LI, H., XU, R., AND WEI, X. 2025. Difficulty aware programming knowledge
+tracing via large language models. Scientific Reports 15, 1, 11475.
+YANG, Y., SHEN, J., QU, Y., LIU, Y., WANG, K., ZHU, Y., ZHANG, W., AND YU, Y. 2021. GIKT:
+A Graph-Based Interaction Model for Knowledge Tracing. In Machine Learning and Knowledge
+Discovery in Databases, F. Hutter, K. Kersting, J. Lijffijt, and I. Valera, Eds. Vol. 12457. Springer
+International Publishing, Cham, 299–315.
+YE, Y. AND SHAN, Z. 2023. HGKT: Hypergraph-based Knowledge Tracing for Learner Performance
+Prediction. In 2023 International Joint Conference on Neural Networks (IJCNN). IEEE, Piscataway,
+NJ, USA, 1–9.
+YING, C., CAI, T., LUO, S., ZHENG, S., KE, G., HE, D., SHEN, Y., AND LIU, T.-Y. 2021. Do
+transformers really perform bad for graph representation? In Proceedings of the 35th International
+Conference on Neural Information Processing Systems. NIPS ’21. Curran Associates Inc., Red Hook,
+NY, USA, 28877–28888.
+YU, J., LU, M., ZHONG, Q., YAO, Z., TU, S., LIAO, Z., LI, X., LI, M., HOU, L., ZHENG, H.-T.,
+LI, J., AND TANG, J. 2023. Moocradar: a fine-grained and multi-aspect knowledge repository for
+improving cognitive student modeling in moocs. In Proceedings of the 46th International ACM SI-
+GIR Conference on Research and Development in Information Retrieval. Association for Computing
+Machinery, New York, NY, USA, 2924–2934.
+ZHANG, J., MO, Y., CHEN, C., AND HE, X. 2021. GKT-CD: Make cognitive diagnosis model en-
+hanced by graph-based knowledge tracing. In 2021 International Joint Conference on Neural Net-
+works (IJCNN). IEEE, Piscataway, NJ, USA, 1–8.
+ZHANG, J., SHI, X., KING, I., AND YEUNG, D.-Y. 2017. Dynamic key-value memory networks for
+knowledge tracing. In Proceedings of the 26th International Conference on World Wide Web. Interna-
+41
+81
+Journal of Educational Data Mining, Volume 18, No 2, 2026
+
+tional World Wide Web Conferences Steering Committee, Republic and Canton of Geneva, Switzer-
+land, 765–774.
+ZHANG, J., XIA, R., AND WANG, Q. 2023. Design of Data-Driven Learning Path Based on Knowledge
+Graph and Tracing Model. In 2023 IEEE International Conference on High Performance Computing
+& Communications, Data Science & Systems, Smart City & Dependability in Sensor, Cloud & Big
+Data Systems & Application (HPCC/DSS/SmartCity/DependSys). IEEE, Piscataway, NJ, USA, 813–
+820.
+ZHANG, J., ZHANG, H., XIA, C., AND SUN, L. 2020. Graph-Bert: Only Attention is Needed for Learn-
+ing Graph Representations. arXiv preprint arXiv:2001.05140.
+ZHANG, T., WANG, C., HU, N., QIU, M., TANG, C., HE, X., AND HUANG, J. 2022. DKPLM: De-
+composable Knowledge-enhanced Pre-trained Language Model for Natural Language Understand-
+ing. Proceedings of the AAAI Conference on Artificial Intelligence 36, 10, 11703–11711.
+ZHAO, Z., LIU, Z., WANG, B., OUYANG, L., WANG, C., AND OUYANG, Y. 2022. Research on deep
+knowledge tracing model integrating graph attention network. In 2022 Prognostics and Health Man-
+agement Conference (PHM-2022 London). IEEE, Piscataway, NJ, USA, 389–394.
+ZHOU, H., BAMLER, R., WU, C. M., AND TEJERO-CANTERO, ´A. 2024. Predictive, scalable and in-
+terpretable knowledge tracing on structured domains. In The Twelfth International Conference on
+Learning Representations. OpenReview.net, Vienna, Austria.
+ZHU, M., QIU, L., AND ZHOU, J. 2024. Meta-path structured graph pre-training for improving knowl-
+edge tracing in intelligent tutoring. Expert Systems with Applications 254, 124451.
+42
+82
+Journal of Educational Data Mining, Volume 18, No 2, 2026
+
+APPENDIX A
+BENCHMARK HYPERPARAMETER SETTINGS
+43
+83
+Journal of Educational Data Mining, Volume 18, No 2, 2026
+
+Table 3: Hyperparameter settings used for the benchmark models. “–” indicates that the hyperparameter is not applicable to the corresponding
+model.
+Model
+Source / selection rule
+Model-specific hyperparameters
+Training hyperparameters
+BKT
+Original paper and pyBKT
+implementation
+Fitting method: EM; knowledge state parameters fitted per skill; forgetting: False; number of fits: 1;
+random seed: 42.
+–
+BKT-F
+Forgetting BKT setting in
+pyBKT
+Fitting method: EM; knowledge state parameters fitted per skill; forgetting: True; number of fits: 1;
+random seed: 42.
+–
+IKT
+Original paper and released
+implementation
+Ability clusters K = 7; KMeans iterations: 40; BKT grid step: 0.1; BKT lower bound: 0.001;
+bounded upper bounds: L0 = 0.85, T = 0.3, G = 0.3, S = 0.1; difficulty fallback value: 5;
+feature set: mastery, ability, difficulty; classifier: TAN-style classifier; sequence block length: 20.
+–
+DKT
+Original paper and released
+implementation
+Recurrent layer: GRU; hidden size: 200; embedding size: 200; dropout: 0.0; maximum sequence
+length: 100.
+Optimizer: Adam; learning rate: 0.001; batch size:
+256.
+DKVMN
+Original paper and released
+implementation
+Question embedding dimension: 50; question-answer embedding dimension: 100; memory size: 20;
+final fully connected dimension: 10; maximum sequence length: 100.
+Optimizer: Adam; learning rate: 0.001; batch size:
+256.
+AKT
+Original paper and official
+implementation
+Model variant: AKT-PID; dmodel = 256; dff = 1024; number of blocks: 1; number of heads: 8;
+dropout: 0.05; sequence length: 200; L2 regularization on difficulty parameters: 1 × 10−5; final
+fully connected dimension: 512.
+Learning rate: 1×10−5; batch size: 24; maximum
+epochs: 300.
+GKT
+Original paper and released
+implementation
+Hidden dimension: 32; embedding dimension: 32; number of edge types: 2; graph type: dense;
+dropout: 0.5; maximum sequence length: 100.
+Optimizer: Adam; learning rate: 0.001; batch size:
+256.
+GRKT
+Original paper and official
+implementation
+Hidden dimension: 128; knowledge hidden dimension: 16; positive projection mode: sigmoid; graph
+hops: 1; threshold: 0.6; Gumbel temperature: 0.2; time interval factor: 0.01; maximum sequence
+length: 100.
+Optimizer: Adam; learning rate: 0.001; batch size:
+256.
+HGR-KT
+Original paper and released
+implementation
+Main model: HANKT1; input dimension: 64; hidden dimension: 64; GRU layers: 1; HAN dimen-
+sion: 64; HAN heads: 1; HAN dropout: 0.0; sequence length: 200; warmup steps: 4000.
+HAN learning rate:
+0.005; main learning rate:
+0.001; batch size: 16; maximum epochs: 100.
+DGEKT
+Original paper and released
+implementation
+Embedding dimension: 256; hidden dimension: 128; graph network depth: 1; GRU hidden layers: 1;
+KD loss weight: 5 × 10−6; KD temperature: 0.5; maximum sequence length: 50.
+Optimizer: Adam; learning rate: 0.001; batch size:
+128; maximum epochs: 20.
+DyGKT
+Original paper and official
+implementation
+Dropout: 0.1; number of neighbors: 50; neighbor sampling strategy: recent; time gap: 2000; time
+feature dimension: 16; node dimension: 64; edge dimension: 64; state dimension: 256; number of
+layers: 2; number of heads: 2.
+Optimizer: Adam; learning rate: 5×10−4; weight
+decay: 1 × 10−4; batch size: 2000; number of
+epochs: 100; patience: 10.
+44
+84
+Journal of Educational Data Mining, Volume 18, No 2, 2026
+
+APPENDIX B
+TABLES OF GBKT MODELS
+45
+85
+Journal of Educational Data Mining, Volume 18, No 2, 2026
+
+Table 4: Summary of GbKT models (Part 1 of 2)
+Articles
+Abbr.
+Model’s name
+Homog.a Heterog.b Hyperc Dyn.d A. KRe B. SPf
+(Song et al., 2021)
+JKT
+Joint Graph Convolutional-Network-based Deep KT
+✓
+✓
+(Sun et al., 2023)
+ABQR
+Adversarial Bootstrapped Question Representation Learn-
+ing for KT
+✓
+✓
+(Song et al., 2022)
+Bi-CLKT
+Bi-Graph Contrastive Learning-based KT
+✓
+✓
+(Gu et al., 2022)
+DKVMN-CS
+Dynamic Key-Value Memory Networks Based on Con-
+cept Structure for KT
+✓
+✓
+(Zhao et al., 2022)
+GAKT
+Graph Attention Knowledge Tracking
+✓
+✓
+(Yang et al., 2021)
+GIKT
+Graph-based Interaction Model for KT
+✓
+✓
+(Zhang et al., 2023)
+LP-KAT
+Data-Driven Learning Path based on Knowledge Graph
+and KT
+✓
+✓
+(Jiang et al., 2022)
+MAKT
+Multichannel Attention Networks-Based KT
+✓
+✓
+(Nakagawa
+et
+al.,
+2019)
+GKT
+Graph-based KT
+✓
+✓
+(Zhang et al., 2021)
+GKT-CD
+Cognitive Diagnosis Model Enhanced by Graph-based KT
+✓
+✓
+(Cui et al., 2024)
+GRKT
+Graph-based Reasonable KT
+✓
+✓
+(Annabi and Nguyen,
+2023)
+PKT
+Prerequisite KT
+✓
+✓
+(Tong et al., 2020)
+SKT
+Structure-based KT
+✓
+✓
+(Xu et al., 2024)
+FCIKT
+Feature-Crosses Information-based KT
+✓
+✓
+(Wang et al., 2023)
+GraphCA
+Graph Counterfactual Augmentation for KT
+✓
+✓
+(Wu and Ling, 2023a)
+HAN-DHGN
+Hybrid Attentive Network + Dual-channel Heterogeneous
+Graph Network
+✓
+✓
+(Luo et al., 2022)
+HGEKT
+Heterogeneous Graph-based KT
+✓
+✓
+(Ye and Shan, 2023)
+HGKT
+Hypergraph-based KT
+✓
+✓
+(Ni et al., 2023)
+HHSKT
+Heterogeneous Hierarchical Short-term KT
+✓
+✓
+(Han et al., 2023)
+IGKT
+Inductive Graph-based KT
+✓
+✓
+(Li et al., 2024)
+KMKT
+Knowledge-Associated Embedding for Memory-Aware
+KT
+✓
+✓
+a Homogeneous graph.
+b Heterogeneous graph.
+c Hypergraph.
+d Dynamic graph.
+e Task type A – Knowledge Representation.
+f Task type B – State Propagation.
+46
+86
+Journal of Educational Data Mining, Volume 18, No 2, 2026
+
+Table 5: Summary of GbKT models (Part 2 of 2)
+Articles
+Abbr.
+Model’s name
+Homog.a Heterog.b Hyperc Dyn.d A. KRe B. SPf
+(Gan et al., 2022)
+KSGKT
+Knowledge-Structure-Enhanced
+Graph
+Representation
+Learning KT
+✓
+✓
+(Qiu and Wang, 2025)
+MGEKT
+KT Based on Multigraph Embeddings
+✓
+✓
+(Zhu et al., 2024)
+MPSG
+Meta-path Structured Graph
+✓
+✓
+(Wu et al., 2022)
+SGKT
+Session Graph-based KT
+✓
+✓
+(Sun et al., 2024)
+TCL4KT
+Three-view Contrastive Learning Framework for KT
+✓
+✓
+(Gu et al., 2023)
+IGKT-ID
+Interpretable Deep KT with Graph Relationship Informa-
+tion
+✓
+✓
+(Cui et al., 2024)
+DGEKT
+Dual Graph Ensemble Learning Method for KT
+✓
+✓
+(Abdelrahman
+and
+Wang, 2023)
+DGMN
+Deep Graph Memory Network
+✓
+✓
+(Chang et al., 2024)
+HAGKT
+Attention-Based Hypergraph KT
+✓
+✓
+(He et al., 2024)
+HTNKT
+Hypergraph Transformer Network for KT
+✓
+✓
+(Long et al., 2024)
+MGKT
+Multi-relation Enhanced Graph-based Model for KT
+✓
+✓
+(Xia et al., 2024)
+MVGKT
+Multivariate Graph Knowledge Tracking
+✓
+✓
+(Wu and Ling, 2023b)
+S2-HHN
+Self-supervised Heterogeneous Hypergraph Network for
+KT
+✓
+✓
+(Tu et al., 2023)
+DGKT
+Graph-based Dynamic Interactive KT
+✓
+✓
+(Wang et al., 2024)
+Psy-KT
+Psychological Factors Enhanced Heterogeneous KT
+✓
+✓
+(Yang et al., 2024)
+TSKT
+Heterogeneous Graph-based KT with Spatiotemporal
+Evolution
+✓
+✓
+(Long et al., 2022)
+AGKT
+Automatical Graph-based KT
+✓
+✓
+(Cheng et al., 2024)
+DyGKT
+Dynamic Graph-based KT
+✓
+✓
+(Tong et al., 2022)
+HGKT-HE
+Hierarchical Exercise Graph for KT
+✓
+✓
+(Han et al., 2024)
+KT-Deeper
+Dynamic Reinforced Heterogeneous Graph Contrastive
+KT
+✓
+✓
+a Homogeneous graph.
+b Heterogeneous graph.
+c Hypergraph.
+d Dynamic graph.
+e Task type A – Knowledge Representation.
+f Task type B – State Propagation.
+47
+87
+Journal of Educational Data Mining, Volume 18, No 2, 2026

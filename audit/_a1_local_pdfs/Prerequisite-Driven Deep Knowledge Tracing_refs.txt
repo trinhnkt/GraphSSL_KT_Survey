@@ -1,0 +1,153 @@
+For the future work, we would like to explore other ways
+to better express those concept interdependencies, for exam-
+ple, graph embedding. In addition, we also would like to
+jointly optimize the prerequisite relation extraction process
+and knowledge tracing process to better identify prerequisite
+relations and estimate students’ knowledge states.
+ACKNOWLEDGMENT
+This research is partially supported by the National Natural
+Science Foundation of China (No. 61702039), the Humanities
+and Social Sciences Foundation of the Ministry of Education
+of China (No. 17YJCZH116) and the Fundamental Research
+Funds for the Central Universities.
+REFERENCES
+[1] Stephen
+H.
+Bach,
+Matthias
+Broecheler,
+Bert
+Huang,
+and
+Lise
+Getoor. Hinge-loss markov random ﬁelds and probabilistic soft logic.
+arXiv:1505.04406 [cs.LG], 2015.
+[2] Ryan SJD Baker, Albert T Corbett, and Vincent Aleven. More accurate
+student modeling through contextual estimation of slip and guess prob-
+abilities in bayesian knowledge tracing. In International Conference on
+Intelligent Tutoring Systems, pages 406–415. Springer, 2008.
+[3] Joseph Beck. Difﬁculties in inferring student knowledge from obser-
+vations (and why you should care).
+In Educational Data Mining:
+Supplementary Proceedings of the 13th International Conference of
+Artiﬁcial Intelligence in Education, pages 21–30, 2007.
+[4] John R Bergan and Patrick Jeska.
+An examination of prerequisite
+relations, positive transfer among learning tasks, and variations in
+instruction for a seriation hierarchy. Contemporary Educational Psy-
+chology, 5(3):203–215, 1980.
+[5] Cristina Carmona, Eva Mill´an, Jos´e-Luis P´erez-de-la-Cruz, M´onica
+Trella, and Ricardo Conejo. Introducing prerequisite relations in a multi-
+layered bayesian student model. In 10th International Conference of
+User Modeling, pages 347–356, 2005.
+[6] Ming-Wei Chang, Lev Ratinov, and Dan Roth.
+Structured learning
+with constrained conditional models.
+Mach. Learn., 88(3):399–431,
+September 2012.
+[7] Yetian Chen, Jos´e P. Gonz´alez-Brenes, and Jin Tian. Joint discovery
+of skill prerequisite graphs and student models. In 9th International
+Conference on Educational Data Mining, pages 46–53, 2016.
+[8] Junyoung Chung, Caglar Gulcehre, KyungHyun Cho, and Yoshua Ben-
+gio. Empirical evaluation of gated recurrent neural networks on sequence
+modeling. arXiv preprint arXiv:1412.3555, 2014.
+[9] Albert T Corbett and John R Anderson. Knowledge tracing: Modeling
+the acquisition of procedural knowledge.
+User modeling and user-
+adapted interaction, 4(4):253–278, 1994.
+[10] Mingyu Feng, Neil Heffernan, and Kenneth Koedinger. Addressing the
+assessment challenge with an online system that tutors as it assesses.
+User Modeling and User-Adapted Interaction, 19(3):243–266, 2009.
+[11] Kuzman Ganchev, Jo˜ao Grac¸a, Jennifer Gillenwater, and Ben Taskar.
+Posterior regularization for structured latent variable models. Journal of
+Mach. Learn. Research, 11:2001–2049, aug 2010.
+[12] Shu Guo, Quan Wang, Lihong Wang, Bin Wang, and Li Guo. Knowledge
+graph embedding with iterative guidance from soft rules. In AAAI, 2018.
+[13] Zhiting Hu, Xuezhe Ma, Zhengzhong Liu, Eduard H. Hovy, and Eric P.
+Xing. Harnessing deep neural networks with logic rules. In Proceedings
+of the 54th Annual Meeting of the Association for Computational
+Linguistics, ACL 2016, August 7-12, 2016, Berlin, Germany, Volume
+1: Long Papers, 2016.
+[14] Zhenya Huang, Qi Liu, Enhong Chen, Hongke Zhao, Mingyong Gao,
+Si Wei, Yu Su, and Guoping Hu.
+Question difﬁculty prediction for
+reading problems in standard tests. In Thirty-First AAAI Conference on
+Artiﬁcial Intelligence, 2017.
+[15] Mohammad Khajah, Rowan Wing, Robert Lindsey, and Michael Mozer.
+Integrating latent-factor and knowledge-tracing models to predict indi-
+vidual differences in learning. In Educational Data Mining 2014, 2014.
+[16] Chen Liang, Zhaohui Wu, Wenyi Huang, and C. Lee Giles. Measuring
+prerequisite relations among concepts. In EMNLP, pages 1668–1674,
+2015.
+[17] Chen Liang, Jianbo Ye, Zhaohui Wu, Bart Pursel, and C. Lee Giles.
+Recovering concept prerequisite relations from university course depen-
+dencies. In AAAI, pages 4786–4791, 2017.
+[18] Gideon S. Mann and Andrew McCallum.
+Generalized expectation
+criteria for semi-supervised learning with weakly labeled data. Journal
+of Mach. Learn. Research, 11:955–984, 2010.
+[19] Shike Mei, Jun Zhu, and Jerry Zhu.
+Robust regbayes: Selectively
+incorporating ﬁrst-order logic domain knowledge into bayesian models.
+In Proc. of ICML, 2014.
+[20] Liangming Pan, Chengjiang Li, Juanzi Li, and Jie Tang. Prerequisite
+relation learning for concepts in moocs.
+In ACL, pages 1447–1456,
+2017.
+[21] Zachary A Pardos and Neil T Heffernan.
+Kt-idem: introducing item
+difﬁculty to the knowledge tracing model. In International Conference
+on User Modeling, Adaptation, and Personalization, pages 243–254.
+Springer, 2011.
+[22] Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran
+Sahami, Leonidas J Guibas, and Jascha Sohl-Dickstein. Deep knowledge
+tracing. In Advances in Neural Information Processing Systems, pages
+505–513, 2015.
+[23] Matthew Richardson and Pedro Domingos.
+Markov logic networks.
+Machine Learning, 62(1-2):107–136, 2006.
+[24] Tim Rockt¨aschel, Sameer Singh, and Sebastian Riedel. Injecting Logical
+Background Knowledge into Embeddings for Relation Extraction. In
+Conference of the North American Chapter of the Association for
+Computational Linguistics
+Human Language Technologies (NAACL
+HLT), 2015.
+[25] Yu Su, Qingwen Liu, Qi Liu, Zhenya Huang, Yu Yin, Enhong Chen,
+Chris Ding, Si Wei, and Guoping Hu.
+Exercise-enhanced sequential
+modeling for student performance prediction.
+In The 32nd AAAI
+Conference on Artiﬁcial Intelligence, 2018.
+[26] Nguyen Thai-Nghe, Lucas Drumond, Tom´aˇs Horv´ath, Artus Krohn-
+Grimberghe, Alexandros Nanopoulos, and Lars Schmidt-Thieme. Fac-
+torization techniques for predicting student performance. In Educational
+recommender systems and technologies: Practices and challenges, pages
+129–153. IGI Global, 2012.
+[27] Shuting Wang, Alexander Ororbia, Zhaohui Wu, Kyle Williams, Chen
+Liang, Bart Pursel, and C Lee Giles.
+Using prerequisites to extract
+concept maps from text books. In Proceedings of the 25th ACM Inter-
+national on Conference on Information and Knowledge Management,
+pages 317–326. ACM, 2016.
+[28] Run-ze Wu, Qi Liu, Yuping Liu, Enhong Chen, Yu Su, Zhigang
+Chen, and Guoping Hu. Cognitive modelling for predicting examinee
+performance. In IJCAI, pages 1017–1024. AAAI Press, 2015.
+[29] Yiming Yang, Hanxiao Liu, Jaime Carbonell, and Wanli Ma. Concept
+graph learning from educational data.
+In Proceedings of the Eighth
+ACM International Conference on Web Search and Data Mining, pages
+159–168. ACM, 2015.
+[30] Michael V Yudelson, Kenneth R Koedinger, and Geoffrey J Gordon.
+Individualized bayesian knowledge tracing models.
+In International
+Conference on Artiﬁcial Intelligence in Education, pages 171–180.
+Springer, 2013.
+[31] Jiani Zhang, Xingjian Shi, Irwin King, and Dit-Yan Yeung. Dynamic
+key-value memory networks for knowledge tracing. In Proceedings of
+the 26th International Conference on World Wide Web, pages 765–774.
+International World Wide Web Conferences Steering Committee, 2017.
+[32] Vincent W. Zheng and Kevin Chen-Chuan Chang.
+Regularizing
+structured classiﬁer with conditional probabilistic constraints for semi-
+supervised learning. In CIKM, pages 1029–1038, 2016.
+48

@@ -1,0 +1,206 @@
+Expert Systems With Applications 206 (2022) 117681
+Available online 15 June 2022
+0957-4174/© 2022 Elsevier Ltd. All rights reserved.
+Contents lists available at ScienceDirect
+Expert Systems With Applications
+journal homepage: www.elsevier.com/locate/eswa
+SGKT: Session graph-based knowledge tracing for student performance
+prediction
+Zhengyang Wu a, Li Huang a, Qionghao Huang b, Changqin Huang b,∗, Yong Tang c,∗
+a School of Computer Science, South China Normal University, Guangzhou, Guangdong, 510631, China
+b Key Laboratory of Intelligent Education Technology and Application of Zhejiang Province, Zhejiang Normal University, Jinhua, Zhejiang, 321004, China
+c Guangzhou Key Laboratory of Big Data and Intelligent Education, Guangzhou, Guangdong, 510631, China
+A R T I C L E
+I N F O
+Keywords:
+Knowledge tracing
+Graph Convolutional Network
+Gated Graph Neural Networks
+Attention Mechanism
+A B S T R A C T
+Knowledge tracing is a modeling method of students’ knowledge mastery. The deep knowledge tracing (DKT)
+model uses long short-term memory (LSTM) to process the sequence data of students exercises. However,
+the LSTM-based model pays more attention to the short-term response status of students while ignoring the
+long-term learning process. Moreover, existing graph-based knowledge tracing models focus on the static
+relationship between exercises and skills, ignoring the dynamic graphs formed by students exercises in a
+session. In this work, we propose a novel knowledge tracing model which is based on an exercise session
+graph, named session graph based knowledge tracing (SGKT). The session graph is used to model the students’
+answering process. In addition, a relationship graph is used to model the relationship between exercises and
+skills. Then we use gated graph neural networks to obtain the students’ knowledge state from the session
+graph and use graph convolutional networks to obtain the embedding representations of exercises and skills
+in the relationship graph. Next, through the interaction mechanism, multiple interaction states composed of
+knowledge states and embedding representations are obtained. The attention mechanism is used to find the
+focus from these states and make predictions. Experiments are conducted on three publicly available datasets
+and the results show that our approach has advantages over some existing baseline methods.
+1. Introduction
+Learning management systems (LMS) have been widely used in var-
+ious educational stages from primary to tertiary education for student
+administration, documentation, tracking, reporting, and the delivery of
+educational courses, training programs, or learning and development
+programs (McGill and Klobas, 2009). The development of educational
+data mining technology has played an important role in improving LMS
+(Miah et al., 2020). Monitoring students’ knowledge mastery based on
+their performance in completing exercises is an important task (Toma-
+sevic et al., 2020) and provides a foundation for more effective learning
+assessment and learning recommendations (Sweeney et al., 2016). This
+problem, known as knowledge tracing (Liu, Shen et al., 2021), aims to
+analyze the exercises that the students have worked on and infers the
+students’ level of knowledge mastery based on whether their answers to
+the exercises are correct, and then predicts the probability that students
+can correctly answer the exercises which will follow.
+Knowledge tracing was first introduced in 1994. It aims to estimate
+students’ learning performance in a learning guidance system (Corbett
+∗Corresponding authors.
+E-mail addresses: wuzhengyang@m.scnu.edu.cn (Z. Wu), lhuang@m.scnu.edu.cn (L. Huang), qhhuang@zjnu.edu.cn (Q. Huang), cqhuang@zjnu.edu.cn
+(C. Huang), yongt@m.scnu.edu.cn (Y. Tang).
+and Anderson, 1994). After adopting the Bayesian network, it is now
+called Bayesian Knowledge Tracing (BKT). After that, BKT has been
+improved in various ways. In 2015, a recurrent neural network (RNN)-
+based model for student performance prediction was proposed, named
+Deep Knowledge Tracing (DKT) (Piech et al., 2015). DKT adopts LSTM
+to perform prediction tasks since the historical records of students’
+answering exercises are in the form of sequences. LSTM is a variant
+of RNN, which is considered a high-performance neural network for
+sequence processing tasks (Graves et al., 2013) and has been widely
+used in various sequence-based models, such as the methods in the field
+of educational data mining proposed by Xiong et al. (2016), Wang et al.
+(2017), Mongkhonvanit et al. (2019), and Liu, Huang et al. (2021).
+While knowledge tracing has been significantly improved using
+various RNN-based models, the existing approaches analyze exercises
+in the sequential order in which the students worked. This implies that
+these RNN-based models tend to weigh the students’ performance on
+recent exercises and ignore their performance on earlier ones. This can
+be true in many application scenarios but critical information can be
+https://doi.org/10.1016/j.eswa.2022.117681
+Received 26 January 2022; Received in revised form 5 April 2022; Accepted 28 May 2022
+
+Expert Systems With Applications 206 (2022) 117681
+2
+Z. Wu et al.
+missed in the practice of education. For example, students may give
+an incorrect answer to an exercise on their first attempt, however,
+after working on the same exercise repeatedly, they may answer it
+correctly, which is a sign of better knowledge mastery than if they
+had answered the exercise correctly the first time. Second, knowledge
+mastery is relatively stable over a long period, hence it is reasonable
+to assume that when students work on an exercise for a second time,
+they may remember their experience of working on it the first time.
+Therefore, graph-based knowledge tracing methods are proposed to
+solve these problems. Graph-based knowledge tracing (GKT) proposed
+in Nakagawa et al. (2019) uses several ways to cast the knowledge
+structure as a graph, where nodes correspond to skills and edges
+correspond to their relationships. These graphs are used as input to the
+model to predict the students’ responses. However, it does not analyze
+which kind of graph is more reasonable. In addition, some existing
+graph-based knowledge tracing models focus more on the relational
+information between exercises and skills (Yang et al., 2020). However,
+the graph structure information constituted by the students’ answering
+behaviors is ignored.
+In RNN-based knowledge tracing models, session sequence is the
+basic data for students’ knowledge state modeling. To improve the rep-
+resentation of session sequences, it is reasonable to structure exercise
+session sequences into a graph structure. This is because compared
+to sequences, graph structures can capture richer local dependencies
+through graph neural networks. Furthermore, a graph neural network
+is capable of providing rich local contextual information by encoding
+edge or node attribute features (Battaglia et al., 2018). Based on
+the session graph, the graph-based model can capture transitions of
+neighbor items and generate the latent vectors for all nodes involved
+in the graph.
+In this work, we propose a novel session graph-based knowledge
+tracing model named SGKT. SGKT uses gated graph neural networks
+(GGNN) to model the students’ knowledge state and uses graph convo-
+lutional network (GCN) and self-attention with a forgetting mechanism
+to model exercises and skills. Then, an interactive mechanism combines
+the student’s knowledge state with the representation of exercises and
+skills to obtain the final prediction result. In particular, SGKT employs
+a heterogeneous relation graph to represent the relationship between
+exercises and skills and it organizes the exercises on which each student
+has worked as a directed session graph. SGKT employs gated recurrent
+units (GRUs) to generate a hidden state of students based on a session
+graph because a GRU not only captures the features in the current
+time-step, it also integrates the features from the neighbor time-step.
+We conducted extensive experiments on three real datasets. The results
+verify the superiority of SGKT in various aspects. The contributions of
+this study are threefold:
+• This study proposes a novel graph-based knowledge tracing model
+that uses a session graph to model students’ knowledge states.
+• To better simulate a scenario in which students answer exercises
+and for model knowledge tracing, this study applies heteroge-
+neous relation graphs and forgetting mechanisms and develops
+a more powerful graph-based solution.
+• This study verifies the robustness of the knowledge tracing solu-
+tion based on the session graph structure model compared with
+the current mainstream solutions through various experiments.
+The rest of the paper is organized as follows. We review the related
+work in Section 2. In Section 3, we introduce some important nota-
+tions and preliminaries. In Section 4, we describe the framework and
+implementation of SGKT. Extensive experimental studies are detailed
+in Section 5. Finally, we present the conclusion in Section 6.
+2. Related work
+In this section, we first review the related work on knowledge
+tracing. Then, the related research on graph-based knowledge tracing is
+summarized.
+2.1. Knowledge tracing
+The term knowledge tracing was first proposed by Corbett and An-
+derson in 1995. A knowledge tracing model comprises three parts: (1)
+student knowledge state modeling; (2) exercises and skills (or knowl-
+edge concepts) modeling; (3) prediction module. In the earliest knowl-
+edge tracing model, the probability estimation of students’ learning
+performance employs Bayesian networks, called Bayesian knowledge
+tracing (BKT). BKT adopts a two-state student modeling framework,
+that is, skills are learned or not learned by students. Baker et al.
+(2008) contextually estimate whether each student’s response is a
+guess or a slip to improve BKT. Lin and Chi (2016) proposed the
+intervention-BKT by adding instructional intervention information in
+student modeling. Zhang and Yao (2018) divided the two states defined
+by the original BKT into three states based on tripartite decision-
+making, which enhanced the semantics of student modeling. Deep
+knowledge tracing (Piech et al., 2015) is the first approach to introduce
+deep neural networks into knowledge tracing. DKT adopts LSTM to
+model the students’ knowledge states, and since there is no exercise
+model, it can predict the probability of a student correctly answering
+each skill in the next time step instead of exercise. To further verify
+the generalization effect of DKT, Xiong et al. (2016) extended it to
+other datasets. Wang et al. (2017) applied DKT to the performance
+tracing of students on programming task and used RNN to process
+the input sequence of programming interactions over time. Minn et al.
+(2018) clustered the students based on the sequence of their responses
+in the exercises to improve the relevance of student modeling in
+DKT. Mongkhonvanit et al. (2019) used RNN to model students’ knowl-
+edge states while watching learning videos and predict the students’
+responses to the next item in the video. Previous DKT-based research
+focused on modeling students’ knowledge states while ignoring the
+modeling of exercises and skills (or knowledge concepts) using one-hot
+encoding. In the work on EKT, Liu, Huang et al. (2021) proposed the
+EERNN model which adopts an exercise embedding module to gener-
+ate an exercise model, which is used to predict student performance
+on future exercises. To trace the students’ knowledge acquisition on
+multiple explicit concepts, knowledge embedding is incorporated in
+the modeling process to extend EERNN. Yang et al. (2020) proposed
+GIKT which uses a bipartite graph to model the relationships between
+exercises and skills and employs LSTM to model students’ knowledge
+states. Bi-CLKT (Song et al., 2022) employs contrastive learning and
+applies graph-level and node-level GCNs to the model relationship of
+exercise-to-exercise (e2e) and concept-to-concept (c2c), and then uses
+deep neural networks to build prediction layers. Song et al. (2021)
+proposed a joint graph convolutional network based deep knowledge
+tracing (JKT) framework to model exercises and skills by learning the
+multi-dimensional relationships of e2e and c2c, and represent exercises
+and skills as dense vectors, where the prediction module of JKT follows
+the structure of DKT.
+In practice, students may demonstrate their mastery of specific skills
+many times, because these skills may be required to complete various
+exercises (Liu, Zou et al., 2021). At this point, if we take exercises and
+skills as nodes, the data on how students answer exercises can form a
+graph structure. However, most existing knowledge tracing models are
+still based on sequence-structure data.
+2.2. Graph neural networks
+A graph is a non-linear structure which is more complex than a
+tree structure. Graph structure data can intuitively express the entities
+and relationships in the real world (Battaglia et al., 2018). GNN is a
+type of neural network which directly operates on graph structure data.
+The concept of GNN was first proposed by Scarselli et al. (2009), who
+extended existing neural networks to process the data represented in
+graph domains. Each node is naturally defined by its features and the
+related nodes in a graph. The aim of GNN is to learn a state embedding

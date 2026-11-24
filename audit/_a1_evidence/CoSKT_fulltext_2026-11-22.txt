@@ -1,0 +1,1275 @@
+
+
+===== PAGE 1 =====
+1476 IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, VOL. 17, 2024
+CoSKT: A Collaborative Self-Supervised
+Learning Method for Knowledge Tracing
+Chunyun Zhang ,H e b oM a , Chaoran Cui ,Y u m oY a o ,W e i r a nX u , Y unfeng Zhang , and Y uling Ma
+Abstract—Knowledge tracing (KT) aims to trace students’ evolv-
+ing knowledge states based on their learning sequences. Recently,
+some deep learning based models have been proposed to incor-
+porate the historical information of individuals to trace students’
+knowledge states and achieve encouraging progress. However, these
+works ignore the collaborative information among those students
+who have similar exercise–answering experiences, which may con-
+tain some valuable information. In this article, we present a novel
+collaborative self-supervised learning method for KT (CoSKT),
+which exploits both similar students’ collaborative information and
+individual information to improve KT. We ﬁrst use the overlap rate
+of students’ learning experiences to retrieve similar students. Based
+on similar students’ exercise–answering sequences, we leverage
+attention mechanism to learn the representation of their common
+knowledge state and expected response to the target exercise.
+Then, we introduce self-supervised learning by encouraging the
+consistency between the common knowledge state and individual
+knowledge state. Finally, we integrate collaborative information
+and individual knowledge state with a gate mechanism to con-
+duct the response prediction of the target exercise. We compare
+CoSKT with nine existing KT methods on three public datasets,
+and the results show that CoSKT achieves the state-of-the-art
+performance.
+Index Terms—Autoregressive model, collaborative information,
+knowledge tracing (KT), self-attention, self-supervised learning
+(SSL).
+I. I NTRODUCTION
+T
+HE outbreak of COVID-19 has accelerated the develop-
+ment of online learning platforms in recent years. Com-
+pared with traditional learning mode, online learning can provide
+students with intelligent services, such as adaptive testing, which
+beneﬁts from a large number of students’ learning logs on on-
+line learning platforms. As one of important fundamental tasks
+Manuscript received 14 February 2023; revised 6 February 2024 and 28 March
+2024; accepted 6 April 2024. Date of publication 9 April 2024; date of current
+version 26 April 2024. This work was supported in part by the National Natural
+Science Foundation of China under Grant 62077033 and Grant 62177031, in part
+by Shandong Provincial Natural Science Foundation under Grant ZR2020KF015
+and Grant ZR2021MF044, and in part by the Taishan Scholar Program of Shan-
+dong Province under Grant tsqn202211199. (Corresponding author: Chaoran
+Cui.)
+Chunyun Zhang, Hebo Ma, Chaoran Cui, Y umo Y ao, and Y unfeng
+Zhang are with the School of Computer Science and Technology, Shan-
+dong University of Finance and Economics, Jinan 250014, China (e-mail:
+zhangchunyun1009@126.com; heboma98@gmail.com; crcui@sdufe.edu.cn;
+iext48@163.com; yfzhang@sdufe.edu.cn).
+Weiran Xu is with the School of Artiﬁcial Intelligence, Beijing Uni-
+versity of Posts and Telecommunications, Beijing 100876, China (e-mail:
+xuweiran@bupt.edu.cn).
+Y uling Ma is with the School of Computer Science and Technology, Shandong
+Jianzhu University, Jinan 250101, China (e-mail: mayuling20@sdjzu.edu.cn).
+The code is available online at https://github.com/lucky7-code/CoSKT.
+Digital Object Identiﬁer 10.1109/TLT.2024.3386750
+of intelligent education, knowledge tracing (KT) endeavors to
+model a student’s changing knowledge state[1]. However, direct
+evaluation of KT methods is challenging since the knowledge
+state of a student cannot be directly observed. Instead, the
+quality of the knowledge state traced by KT models is generally
+evaluated by predicting a student’s next exercise response using
+his or her exercise–answering history.
+KT has been researched for several decades. Early KT meth-
+ods [2], [3] are based on shallow machine learning methods,
+including probabilistic method and logistic method. The most
+representative probabilistic method is Bayesian KT (BKT) [2].
+It considers the learning process as a Markov process and
+utilizes hidden Markov model (HMM) to model and analyze
+the dynamics of students’ knowledge states. Logistic methods
+leverage a logistic function to take different learning factors into
+consideration, thereby facilitating the estimation of the mastery
+level of a particular knowledge concept [4]. With the wide
+application of deep learning, many deep learning methods [5],
+[6], [7], [8] are utilized to improve KT. Deep KT (DKT) is the
+ﬁrst proposed DKT model, which introduces recurrent neural
+networks (RNNs) to model student learning [5]. After that, a
+diverse array of neural networks is developed to improve KT.
+In general, current deep learning-based KT methods are divided
+into two classes: sequential modeling method and graph-based
+method. Sequential modeling methods use the hidden state
+of deep sequence framework, such as RNNs [5] or memory-
+augmented neural networks [9], to represent knowledge state.
+Some of them further introduce attention mechanism to consider
+the relevant exercises in past interactions [7], [10]. Graph-based
+methods leverage graph structure [11], [12] to incorporate the
+relationships of exercises and concepts as a prior information to
+improve KT. Overall, these methods achieve promising results
+and greatly improve the performance of KT.
+Despite the encouraging progress, the performance of current
+KT methods based on deep learning is far from satisfactory.
+One of the major limitations in existing research lies in that
+they generally consider the individual information learned from
+students’ own exercise–answering history, and ignore the fact
+that students with similar exercise–answering experiences have
+comparable grasp of concepts and acquire similar knowledge
+states. We named this kind of information as collaborative
+information, which can offer some valuable clues in tracing
+students’ knowledge state. Intuitively, an experienced teacher
+does not assess students’ mastery of knowledge only based
+on their individual performances; instead, he or she usually
+1939-1382 © 2024 IEEE. Personal use is permitted, but republication/redistribution requires IEEE permission.
+See https://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PAGE 2 =====
+ZHANG et al.: COSKT: A COLLABORA TIVE SELF-SUPERVISED LEARNING METHOD FOR KNOWLEDGE TRACING 1477
+Fig. 1. Motivation of the proposed collaborative self-supervised knowledge
+tracing method (CoSKT). CoSKT leverages collaborative information learned
+from the learning sequences of a student’s similar students together with his or
+her individual information to improve KT.
+divides all students into several grades (e.g., excellent, mod-
+erate, and poor) according to their performances. Based on
+the grouping, the teacher will comprehensively consider the
+common performance of students at the same grade, as well
+as the individual performance of each student to evaluate the
+levels of their knowledge states. Therefore, it can be assumed
+that students within the same grade share some similarities, such
+as similar knowledge state or similar future performance. These
+similarities can help to further evaluate students’ knowledge
+states besides their individual information.
+Taking Fig. 1 as an example. To predict Michael’s response
+toet+1, current KT methods only learn his own knowledge state
+by considering his learning history (shown in the upper part of
+Fig. 1). However, there exist many students in the online learning
+platform who have answered exercise et+1 and have similar
+exercise–answering experiences with that of Michael. As shown
+in Fig. 1, Sara, Mary, and Lily have answered exercise et+1 and
+have answered same exercises with Michael in their exercise–
+answering histories, i.e., {e1,e 2,e 3,e t}, {e2,e 4,e 1,e t}, and
+{e4,e t,e 3}, respectively. All of them can be seen as Micheal’s
+similar students. Therefore, we can explicitly extract collabo-
+rative information from their learning sequence, and consider
+it as a supplement to Micheal’s individual knowledge state to
+facilitate the prediction of his response to et+1.
+In this article, different from previous research solely rely-
+ing on the individual information learned from students’ own
+learning history, we proposed a novel KT method, called Col-
+laborative Self-supervised learning method for Knowledge Trac-
+ing Collaborative Self-supervised learning method for Knowl-
+edge Tracing (CoSKT) . It aims to comprehensively leverage
+collaborative information and individual information to model
+knowledge mastery. We ﬁrst use the overlap rate of a student’s
+learning experience with that of the target student to retrieve
+similar students. Each similar student should have answered
+the same exercise or same concept with the target exercise and
+his or her exercise–answering history has high overlapping rate
+with that of the target student. Then, we leverage attention
+mechanism to extract similar students’ common knowledge
+state and their expected response to the target exercise based
+on similar students’ learning sequences. To better utilize the
+collaborative information, we introduce self-supervised learn-
+ing (SSL) to encourage the consistency between the common
+knowledge state and the individual knowledge state. Finally, we
+incorporate collaborative information and students’ individual
+knowledge state with a gate mechanism to predict their next
+exercise responses.
+The contributions of this study are summarized as follows.
+1) We propose a novel collaborative self-supervised KT
+model, which comprehensively leverages collaborative
+information captured from similar students together with
+students’ individual information to improve the prediction
+accuracy (ACC) of next exercise responses.
+2) We leverage SSL to encourage the consistency between the
+common knowledge state and individual knowledge state,
+which provides extra supervision for better representation
+learning.
+3) Extensive experimental results on three public datasets
+show that CoSKT can achieve a new state-of-the-art per-
+formance compared with nine existing methods.
+The rest of this article is organized as follows. Section II
+presents the related work. Section III details the proposed
+CoSKT method. Section IV illustrates experimental results and
+analysis. Finally, Section V concludes this article.
+II. R ELA TEDWORK
+Since our proposed KT methods are based on SSL, we
+ﬁrst thoroughly review KT literature, and then brieﬂy give an
+overview of SSL.
+A. Knowledge Tracing
+Existing KT methods are generally divided into two groups:
+shallow learning-based KT methods and deep learning-based
+KT methods.
+Shallow learning-based method: Shallow learning-based KT
+methods are mainly based on shallow machine learning methods
+by explicitly considering different kinds of learning factors. One
+of the groups is a probabilistic method. The most representative
+probabilistic method is BKT [2]. As the pioneering work of
+KT, BKT can be seen as an application of HMM. With con-
+sidering four important factors affecting students’ responses,
+it modeled students mastering a knowledge concept or not as a
+two-state framework. Hereafter, many following BKT variations
+were developed by integrating other important factors, such as
+student individualization [13], prior difﬁculty of exercises [14],
+and intrinsic relationship between knowledge concepts [9].A n -
+other typical kind of shallow learning-based method is logistic
+model [4], [15], which utilized a logistic function to encode
+different factors in students’ exercise–answering sequences.
+Furthermore, KT machines (KTM)[16] were leveraged to gener-
+alize logistic models to a higher dimension by using factorization
+machines [17] to make use of other available side information.
+Nevertheless, even though shallow learning-based methods have
+achieved preliminary progress, most shallow-based methods are
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PAGE 3 =====
+1478 IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, VOL. 17, 2024
+difﬁcult to adequately model the learning process due to the
+restricted functional forms [5], [18].
+Deep learning-based method: Deep learning is suited to
+modeling the complex learning process beneﬁting from its
+powerful ability in feature representation [13], [18]. Recently,
+many DKT models have been proposed and reach outstanding
+performance [5], [6], [19], [20]. These methods are generally
+based on the autoregressive architecture, and can be classed into
+two categories: sequential modeling method and graph-based
+method.
+1) Sequential Modeling Method: As the representative se-
+quential modeling method, DKT [5] was the ﬁrst study,
+which introduced deep framework into KT. It considered
+the hidden state of long short-term memory (LSTM) [21]
+unit at each time step as students’ changing knowledge
+state and yielded signiﬁcantly enhanced results in com-
+parison with traditional methods. To enhance the inter-
+pretability of DKT, Zhang et al. [9] utilized a dynamic
+key-value memory network (DKVMN), which can output
+students’ mastery of every concept with exploiting the
+correlations of these concepts. With the great popularity
+of attention mechanism [22], many KT methods utilize
+attention to enhance the performance of KT [7], [10].
+One of the typical methods is the self-attentive KT model
+(SAKT) [10], which leveraged self-attention [22] mech-
+anism to predict a student’s next exercise response by
+using all relational exercises from his or her historical
+interactions. Unlike SAKT using the scaled inner-product
+attention strategy of the classical transformer framework,
+attentive knowledge tracing model (AKT) [7] introduced
+exponential decay into transformer network to model the
+attenuation of a student’s knowledge states over time.
+Furthermore, to improve the performance of classical se-
+quential deep learning-based KT models, various studies
+try to take more elaborate factors related to learning into
+consideration, such as the text description of exercises[6],
+prerequisite relations between concepts [23], and other
+side information collected during learning interaction [9].
+2) Graph-Based Method: Since knowledge concepts are
+correlated to each other, there exists a graph structure
+among all the knowledge concepts (KCs). Hence, several
+graph-based methods are proposed to model the latent
+relationship of knowledge concepts with a graph struc-
+ture to improve the performance of KT [11], [19].T h e
+graph-based KT (GKT) method cast the latent knowledge
+structure as a graph and viewed KT as an application of the
+graph neural network [11]. Similarly, Wang et al.[19] pre-
+sented deep hierarchical KT model (DHKT) based on the
+classical DKT, which learned representations of exercises
+and concepts separately with modeling the relationships
+of exercises and concepts as a graph. After that, following
+the similar architecture with DHKT, pre-training embed-
+dings via bipartite graph model (PEBG) [12] formulated
+the exercise–concept relationships as a bipartite graph
+and introduced a product-based network to pretrain ex-
+ercise embeddings. Besides, motivated by the transfer and
+knowledge theory [18] in education ﬁeld, Tong et al. [24]
+utilized structure-based knowledge tracing model (SKT)
+to model the affect propagation between concepts by cap-
+turing the multiple relationships in knowledge structure.
+However, current deep learning-based methods mainly con-
+sider students’ dynamic individual knowledge state by mod-
+eling their own exercise–answering history. They ignore the
+collaborative information among students who have analogous
+exercise–answering experiences, which can provide some ad-
+ditional information in predicting students’ next exercise re-
+sponses. In this article, different from existing deep learning
+KT methods, we proposed a collaborative KT model, which
+explicitly utilizes students’ collaborative information including
+common knowledge state and expected response to improve KT
+by modeling learning sequences of similar students.
+B. Self-Supervised Learning
+SSL becomes a popular learning strategy due to its pow-
+erful capacity of representation learning in recent years [25].
+It leverages a large amount of unlabeled data itself as super-
+vised information and beneﬁts various downstream tasks [26],
+[27], [28]. Liu et al. [29] divided the mainstream SSL meth-
+ods to three groups: generative method, contrastive method,
+and generative–contrastive (adversarial) method. Recent break-
+throughs in methods [30], [31], [32], [33], such as momen-
+tum contrastive Learning method (MoCo), simple framework
+for contrastive learning method (SimCLR), and swapping as-
+signments between multiple views of the same image method
+(SwA V), show the potential of contrastive learning models for
+representation. In general, contrastive learning tries to learn a
+good representation, which is able to recognize the same sample
+while distinguishing itself from other samples [34]. As a result,
+most contrastive learning methods focus on designing agent
+tasks to construct positive pairs or design objective functions
+to make positive samples close in the representation space [29].
+SimCLR [30] and MoCo [31] are two of the most representative
+works in contrastive learning. Speciﬁcally, SimCLR leveraged
+a simple contrastive learning framework to simplify previous
+approaches to their essential core and improved upon their
+performance. It minimized the distance of positive sample pairs
+and maximized the distance of negative sample pairs by using
+the normalized temperature-scaled cross-entropy (CE) [30] loss
+as the training loss, which is well known as info noise contrastive
+estimation (InfoNCE) [25], [35]. Following the paradigm of
+SimCLR, we introduce contrastive learning into KT to make
+use of collaborative information in an implicit way. Distinguish
+from traditional contrastive learning methods trying to design
+positive samples by making data augmentation from original
+sample, we consider a student’s individual knowledge state and
+the common knowledge state of his or her similar students as
+a positive pair. By using the InfoNCE loss as the optimization
+objective, the CoSKT model learns a good representation of
+knowledge state by pulling similar knowledge states closer and
+pushing dissimilar knowledge states farther away.
+III. M ETHOD
+We will detail the collaborative self-supervised KT model in
+this section. First, we formulate the task of KT and give some
+necessary deﬁnitions for formulation. Next, we detail similar
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PAGE 4 =====
+ZHANG et al.: COSKT: A COLLABORA TIVE SELF-SUPERVISED LEARNING METHOD FOR KNOWLEDGE TRACING 1479
+Fig. 2. Architecture of the proposed CoSKT method.
+students retrieval method, which leverages overlap rate of their
+learning experience to ﬁnd similar students. Then, we illustrate
+a collaborative information representation framework to learn
+similar students’ common knowledge state and their expected
+response based on learning sequences of similar students. Next,
+we introduce an SSL method to obtain a good knowledge state
+representation by encouraging the consistency between the in-
+dividual knowledge state and the common knowledge state of
+his or her similar students. Finally, we integrate collaborative
+information and individual knowledge state with a gate mecha-
+nism to predict the next exercise responses. The framework of
+our method is illustrated in Fig. 2.
+A. Problem Deﬁnition
+Suppose that there exists a set of exercises in an online
+learning platform. In order to learn related knowledge, students
+involved in this platform are asked to answer different exer-
+cises. By using the exercise–answering sequence of students,
+KT model tries to trace their evolving knowledge states. Since
+learning is a complex cognitive process, it is very hard to model
+students’ true knowledge states over time. As an alternative,
+most KT models try to make prediction of students’ responses
+on future exercises based on their exercise–answering history to
+indirectly evaluate their knowledge states.
+Motivated by the fact that students with similar exercise–
+answering experiences share some similarities and will show
+similar performances in their future exercise–answering, we try
+to leverage collaborative information as a supplement of individ-
+ual information to facilitate the prediction of responses to future
+exercises in this article. To better formulate the KT problem from
+the perspective of utilizing collaborative information, we give
+some deﬁnitions in the following.
+Suppose that there is an exercise–answering sequence of
+student u: Iu = {(e1, C1,a 1, ),..., (ei, Ci,a i),..., (et, Ct,
+at)}, whereIu
+i =( ei, Ci,a i) represents the interaction at step i,
+ei represents the exercise that the student answers,ai denotes the
+label of the corresponding response with 1 representing correct
+and 0 representing incorrect, and t is the total number of steps.
+Here, Ci is a set of knowledge concepts related to the exercise
+ei, since one exercise may be related to more than one concept.
+Deﬁnition 1: (Exercise–Answering History of Interaction).
+Given an interaction of student u at step t +1 as Iu
+t+1,t h e
+exercise–answering history of Iu
+t+1 is a sequence including
+all interactions that are generated before Iu
+t+1. We denote the
+exercise–answering history with Iu
+t = {Iu
+1 ,I u
+2 ,...,I u
+t }.
+Deﬁnition 2: (Peer Interaction). Given an exercise et+1 with
+related concept of Ct+1, the interaction I ˜u
+i is generated by
+student ˜u (˜u ̸= u)a ts t e pi.I fI ˜u
+i contains the same conceptCt+1
+or exercise et+1 with Iu
+t+1, it is a peer interaction of the Iu
+t+1.
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PAGE 5 =====
+1480 IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, VOL. 17, 2024
+The peer interaction set is denoted asPu
+t+1 = {Iu
+i }|I|, where|I|
+is the number of peer interactions.
+Deﬁnition 3: (Candidate Similar Exercise–Answering His-
+tory). Given a peer interaction I ˜u
+i of Iu
+t+1, the exercise–
+answering history I ˜u
+i−1 of I ˜u
+i is one of the candidate similar
+exercise–answering history of student u at step t +1 . The can-
+didate similar exercise–answering history set of studentu at step
+t +1 is denoted as Cu
+t+1 = {I ˜u
+i−1}|I|.
+Based on the above deﬁnitions, we formulate KT as a problem
+of predicting a student’s response to exerciseet+1 with his or her
+exercise–answering history Iu
+t , peer interaction set Pu
+t+1, and
+candidate similar exercise–answering history setCu
+t+1 generated
+by other students, i.e., P{at+1 =1 |et+1,Iu
+t ,Pu
+t+1,Cu
+t+1}.
+B. Similar Student Retrieval
+Similar student retrieval is the premise of extracting collabo-
+rative information. To ﬁnd similar students accurately, we make
+use of the overlap rate of a student’s learning experience with
+that of target student as the retrieval metric.
+To be speciﬁc, given an interaction of studentu at stept +1 as
+Iu
+t+1 = {et+1,C t+1, NA} (NA denotes the answer has not been
+given), its exercise–answering history is Iu
+t .W eﬁ r s tr e t r i e v ei n
+the dataset to ﬁnd its peer interactions. As deﬁned in Deﬁnition
+2, suppose thatI ˜u
+j = {ej, Cj,a j} is a peer interaction generated
+by student ˜u, it should satisfy the following conditions: 1) the
+interaction is generated by other students, i.e., u ̸= ˜u and 2) the
+interaction should contain the same exercise or concept with
+Iu
+t+1.
+We named students with peer interaction as candidate similar
+students of student u. Inspired by the work in [8], the bigger
+overlap rate of exercises or concepts the two students answer,
+the greater the similarity of their learning experiences. In this
+case, longer exercise–answering sequences tend to have greater
+similarity. In order to comprehensively consider the overlapping
+rate and sequence length, we utilize an interaction of a union
+metric to measure learning experience overlapping rate between
+the candidate similar student and the target student.
+Speciﬁcally, for a candidate similar student ˜u, we measure the
+overlapping rate between his or her exercise–answering history
+I ˜u
+j−1 and the exercise–answering history Iu
+t of studentu at step
+t +1 , as follows:
+overlaprate(Iu
+t ,I ˜u
+j−1)= |Iu
+t ∩I ˜u
+j−1|
+|Iu
+t ∪I ˜u
+j−1| (1)
+whereI ˜u
+j−1 ∈C u
+t+1. We rank candidate similar students accord-
+ing to the overlap rate scores calculated by (1), and take the top
+K candidate similar students as similar students of student u at
+step t +1 . Their exercise–answering history set is denoted as
+U u
+t = {I ˜u
+j−1}K .
+C. Collaborative Information Representation
+After ﬁnding similar students, we will extract collaborative
+information from the interactions of these students. In this arti-
+cle, we leverage similar students’ common knowledge state and
+the expected response to the target exercise as the collaborative
+information. To learn these information, we ﬁrst discuss the
+learning of students’ individual knowledge states from their
+learning sequence. Then, we illustrate how to construct similar
+students’ common knowledge and how to obtain their expected
+response based on their individual knowledge states and their
+corresponding responses to the target exercise.
+1) Learning Students’ Individual Knowledge State: To
+model the learning sequence of a student’s individual evolving
+knowledge state, we follow the prior DKT-based framework[5].
+The learning processing can be realized as follows:
+First, we initialize the initial knowledge state of a student with
+h0 = 0 ∈ Rdh . For an arbitrary interaction Ik = {ek,C k,a k},
+we represent the exerciseek with its embedding ofqk ∈ Rde and
+deﬁne the embedding of Ik as the concatenation of the exercise
+embedding qk and the answer embedding of ak
+xk =
+{
+[qk : 0], if ak =1
+[0 : qk], otherwise (2)
+where 0 has the same dimension withqk . So, we havexk ∈ Rds ,
+andds =2 de.
+Different from DKT utilizing RNN’s V anilla framework, we
+leverage LSTM [21] to model students’ learning sequences. At
+each time stepk, the LSTM unit outputs the knowledge state hk
+and memory cell value Ck with the basic operation as follows:
+[Ck, hk]= lstm (hk−1, Ck−1, xk) (3)
+where hk−1 is the knowledge state summarizing the information
+of past steps, Ck−1 denotes the past memory cell of the LSTM
+unit, xk is the current input exercise, and lstm represents the
+basic operation of an LSTM unit.
+2) Constructing Similar Students’ Common Knowledge
+State: After learning students’ individual knowledge states,
+we can obtain similar students’ common knowledge to reveal
+their learning commonality. Considering that different students’
+knowledge states contribute differently for the common knowl-
+edge state, we construct their common knowledge states by using
+self-attention mechanism.
+To be speciﬁc, for a student u whose interaction at step
+t +1 is Iu
+t+1, we can retrieve his or her K similar students and
+obtain his or her individual knowledge state hu
+t , as illustrated
+in Sections III-B and III-C1, respectively. For the ith similar
+student with a peer interaction Ii
+j and its exercise–answering
+history Ii
+j−1, his or her interaction Ii
+j can be represented as
+xi
+j by using (2). From his or her exercise–answering history
+Ii
+j−1 = {Ii
+1,I i
+2,...,I i
+j−1}, we can learn his or her knowledge
+state hi
+j−1 by following the method illustrated in Section III-C1.
+We integrate all peer interactions representation and knowledge
+state of these K similar students into matrix M u,r
+t+1 ∈ RK×ds
+and matrix M u,s
+t ∈ RK×dh , respectively.
+Then, the common knowledge state cu
+t is obtained with the
+self-attention mechanism as follows:
+Speciﬁcally, we deﬁne
+Q = hu
+t , K = V = M u,s
+t (4)
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PAGE 6 =====
+ZHANG et al.: COSKT: A COLLABORA TIVE SELF-SUPERVISED LEARNING METHOD FOR KNOWLEDGE TRACING 1481
+then we can conduct an attention operation by using the equation
+in [22]
+Att(Q, K, V )= soft max
+(QKT
+√
+d
+)
+V (5)
+where d denotes the dimension of query (here d = dh).
+The common knowledge state is calculated by using the
+multihead attention
+cu
+t = f ([heads
+1, heads
+2,... heads
+n]T W h) (6)
+where cu
+t ∈ Rdh is the common knowledge state of K similar
+students, W h ∈ Rndh×1 represents the weight vector of the
+concatenation of the attention heads, n represents the attention
+heads number,f represents a projection of multilayer perceptron
+(MLP), and heads
+n denotes the nth attention head
+heads
+n = Att(f s
+qn (Q),f s
+kn (K),f s
+vn (V )) (7)
+wheref s
+qn ,f s
+kn , andf s
+vn are the MLPs of the nth attention head.
+3) Obtaining Similar Students’ Expected Response: Similar
+students’ responses can provide important clues to the predic-
+tion of response of the target exercise to some extent. Similar
+with constructing the common knowledge state, we leverage
+self-attention mechanism to obtain similar students’ expected
+response to the target exercise as follows.
+Speciﬁcally, we deﬁne
+Q = hu
+t , K = M u,s
+t , V = M u,r
+t+1 (8)
+then, we can conduct an attention operation by
+Att(Q, K, V )= soft max
+(QKT
+√
+d
+)
+V (9)
+where d represents the dimension of query (here d = dh).
+The expected response of similar student on the target exercise
+is calculated by using the multihead attention
+ru
+t+1 = f ([headr
+1, headr
+2,..., headr
+n]T W s) (10)
+where ru
+t+1 ∈ Rds is the expected response of K similar stu-
+dents, W s ∈ Rnds×1 represents the weight vector of the con-
+catenation of the attention heads,n represents the attention heads
+number,f denotes the projection of MLP , and headr
+n denotes
+thenth attention head
+headr
+n = Att(f r
+qn (Q),f r
+kn (K),f r
+vn (V )) (11)
+wheref r
+qn ,f r
+kn , andf r
+vn are the MLPs of the nth attention head.
+D. Self-Supervised Learning
+Following the above procedures, we obtained the individual
+knowledge statehu
+t of student u and his or her similar students’
+common knowledge state cu
+t . To make use of the common
+knowledge state of similar student, we introduce the idea of SSL
+to obtain a good knowledge state representation by encouraging
+the consistency between the common knowledge state and the
+individual knowledge state.
+Speciﬁcally, in a mini-batch whose batch size is N , there are
+N ×L knowledge states with each student’s interaction length
+L. For each knowledge state, we can obtain its correspond-
+ing common knowledge state following the method stated in
+Section III-C2 and this results in 2N ×L data. We treat the
+individual knowledge state hu
+t at step t of student u and its
+corresponding common knowledge cu
+t as a positive pair, and
+the left 2(N ×L− 1) knowledge states as negative samples.
+Following the paradigm of SimCLR [30], we utilize a nonlinear
+projection head to improve the representation quality of the com-
+mon knowledge state and individual knowledge state. Then, we
+can obtain the improved representation by feeding all 2N ×L
+knowledge states separately into an MLP network as follows:
+˜h = p(h)= W (2)σ(W (1)h) (12)
+where h refers generally to the two kinds of knowledge states,
+including individual knowledge state and common knowledge
+state, and σ is a rectiﬁed linear unit (ReLU) function.
+Let sim(h, c)= hTc/∥h∥∥c∥represents the similarity ofL2
+normalized h and c. Then, we deﬁne the loss function of a
+positive pair (˜hu
+t , ˜cu
+t ) as
+Lssf = − log
+exp(sim(˜hu
+t , ˜cu
+t )/τ )
+N∗L∑
+i=1
+1(t̸=i) exp(sim(˜hu
+t , ˜hi)/τ )+
+N×L∑
+k=1
+exp(sim(˜hu
+t , ˜ck)/τ )
+,
+(13)
+where 1[t̸=i] equals 1 ift ̸= i, andτ is the parameter of temper-
+ature. Note that Lssf is known as the InfoNCE loss, which has
+been used in previous work [30], [31].
+E. Model Learning
+In traditional deep autoregressive KT methods, students’ in-
+dividual knowledge state ht, which is learned from their own
+learning sequence, is mainly used to predict their next exercise
+response. In this article, we comprehensively consider the indi-
+vidual knowledge state and the common knowledge state ct of a
+student’s similar students to represent his or her ﬁnal knowledge
+state at step t. Speciﬁcally, due to the importance variety of the
+two kinds of knowledge states, we leverage a gating mechanism
+to selectively ensemble ht and ct to obtain the ﬁnal knowledge
+state
+st = g ⊙ht +( 1−g)ct (14)
+where
+g = σ(W g [ht, ct]) +bg (15)
+is used to balance the importance of the two kinds of knowledge
+sates with parameters W g andbg to be learned.
+Furthermore, the similar students’ expected response rt+1
+to exercise et+1 can be seen as a kind of prior information,
+which might be helpful for the next response prediction. Hence,
+we further concatenate the ﬁnal knowledge state st with the
+expected response rt+1 and mapped them to the probability of
+a student’s response to his or her next exercise et+1
+yt+1 = σ(zt)= 1
+1+ e−zt
+(16)
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PAGE 7 =====
+1482 IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, VOL. 17, 2024
+TABLE I
+DETAILED STA TISTICALINFORMA TION OF DA TASETS
+where
+zt = wT
+o [st, rt+1]+ bo (17)
+yt+1 is the predicted probability, and wo and bo denote the full
+information weight and bias parameter, respectively.
+Then, we compute the CE loss between the predicted value
+yt+1 and its true response at+1 by
+Lce = −
+n∑
+i=1
+δi
+t+1(at+1 logyt+1 +( 1−at+1)l o g ( 1−yt+1))
+(18)
+whereδi
+t+1 equals 1 whenet+1 is theith exercise that the student
+engages in during the subsequent step of the process, and 0,
+otherwise.
+Hence, the overall loss of the CoSKT is as follows:
+L = Lce + λLssf (19)
+where λ denotes a tradeoff hyperparameter deciding the relative
+importance of the two loss functions.
+Note that we only conduct the SSL in training procedure. In
+the testing phase, the model without SSL procedure is deployed.
+IV . EXPERIMENTS
+In this section, we describe how we set up our experiments,
+report a series of experimental results, and present detailed
+corresponding analysis.
+A. Dataset
+In this article, we verify the proposed model on three public
+datasets as used in [36] (their detailed statistical information are
+illustrated in Table I).
+ASSIST091 is a mostly used dataset, which is gathered
+from the ASSISTments online tutoring 2 platform during the
+2009–2010 school year. Note that if the length of a student’s
+exercise–answering sequence is too short, it is difﬁcult for KT
+models to accurately model his or her knowledge states. In
+prior studies, such as DHKT [12] and PEBG [19], students
+with a learning sequence length less than three were excluded
+from datasets. To ensure a fair comparison, we followed their
+suggested experimental settings.
+1[Online]. Available: https://sites.google.com/site/assistmentsdata/home/
+2009-2010-assistment-data
+2[Online]. Available: https://new.assistments.org/
+ASSIST173 is gathered from the competition of ASSIST-
+ments data mining held in 2017. We applied identical preprocess
+to both the ASSIST17 and ASSIST09 datasets.
+EdNet4 is a large dataset released in [37]. It contains 130
+million records generated by 0.78 million students. Due to the
+dataset’s large size, we randomly selected 5000 students from
+it, following the methodology outlined in [12]. We then utilized
+their learning sequences to conduct KT experiments.
+For all datasets, we randomly set 80% as training and valida-
+tion data, and the left 20% as testing data.
+B. Evaluation Metric
+The ACC and the area under ROC curve (AUC) [8] are used
+as the evaluation metrics in this article. Speciﬁcally, ACC is
+the rate of the correct predicted samples. AUC is a measure
+of the proportion of true positives (or negatives) that are accu-
+rately identiﬁed as such. Given that the prediction of students’
+responses is conceptualized as a binary classiﬁcation problem, a
+score of 50% is indicative of the performance achievable through
+random guessing.
+C. Baselines
+We choose nine KT methods as baseline methods, includ-
+ing two shallow learning-based KT methods and seven deep
+learning-based KT method.
+1) BKT [2] can be viewed as a variant of HMM. It treats
+students’ knowledge states as a variable with two values
+and models each knowledge concept separately.
+2) KTM [16] tries to make use of the side information with
+factorization machine to improve KT performance. In
+order to be consistent with KTM, only the identities (IDs)
+of exercise and concept are used as side information in
+comparison.
+3) DKT [5] learns students’ knowledge states through in-
+putting their exercise–answering interactions into LSTM
+units.
+4) DKVMN [9] leverages a memory-augmented framework
+to model the update process of students’ grasp of knowl-
+edge concepts with two matrices of key and value.
+5) SAKT [10] introduces the self-attention mechanism to
+place greater emphasis on the relevant history interactions
+when makes prediction.
+6) AKT [7] introduces a monotonic attention strategy into the
+transformer framework by using an exponential decay to
+model attenuation of the knowledge states over time.
+7) CoKT [8] models interstudent information from learning
+sequences of similar students and leverages inter and
+intrastudent information to improve KT.
+8) GKT [11] leverages graph convolutional neural networks
+(GCNs) to cast KT as a time series node-level classi-
+ﬁcation problem by learning the relationships between
+3[Online]. Available: https://sites.google.com/view/assistmentsdatamining/
+data-mining-competition-2017
+4[Online]. Available: https://github.com/riiid/ednet
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PAGE 8 =====
+ZHANG et al.: COSKT: A COLLABORA TIVE SELF-SUPERVISED LEARNING METHOD FOR KNOWLEDGE TRACING 1483
+TABLE II
+PERFORMANCE COMPARISON ON THREE PUBLIC DA TASETS
+knowledge concepts and constructing a graph based on
+these relationships.
+9) PEBG [12] models the exercise–concept relationships
+with a bipartite graph and leverages a product-based
+framework to pretrain exercise embeddings. For fairness,
+we did not use the attribute features of exercises mentioned
+in [12].
+Note that DKT, DKVMN, SAKT, and CoKT are sequential
+modeling methods, and GKT and PEBG are graph-based meth-
+ods.
+D. Implementation Details
+In our implementation, we set embedding size of exercise–
+answering interactions and the hidden state size of LSTM as 80.
+Following the suggested settings in DKT [5], the max length of
+learning sequence is set to 50. If a learning sequence is longer
+than 50, we divide it into multiple subsequences. The number
+of similar students is set as 18, 18, and 12 for ASSIST09, AS-
+SIST17, and EdNet, respectively. The number of self-attention
+heads for common knowledge state and expected response is 8.
+For SSL, we set the temperature factor τ =0 .4. We equal the
+classiﬁcation loss and SSL loss by setting λ =1 . The effect of
+the number of similar students will be discussed in SectionIV -G.
+The training and testing procedures of the CoSKT model
+are implemented in the deep learning framework of PyTorch. 5
+Model parameters are all optimized using mini-batch Adam[38]
+with the batch size as 16, the maximum number of epochs as
+300, and learning rate as 10−3.
+E. Performance Comparison
+Performances of our CoSKT and the nine baseline methods
+are reported in Table II. We indicated the best and second-best
+performance using bold and underline, respectively. It can be
+seen that the performance of our CoSKT almost outperform
+recently proposed deep learning-based methods on the AUC
+and ACC metrics. To be more exact, its AUC value surpasses
+the best baseline by 3.64%, 1.25%, and 0.02% on ASSIST09,
+ASSIST17, and EdNet, respectively. The ACC of CoSKT out-
+performs the best baseline by 0.63% and 2.8% on ASSIST09 and
+ASSIST17, respectively, but drops on the EdNet with 0.96%.
+5[Online]. Available: https://pytorch.org/
+Notably, even though both of CoSKT and DKT adopt similar
+sequential modeling framework, CoSKT performs better than
+DKT. In addition, CoSKT does not make use of attention mech-
+anism in sequential modeling knowledge state, but its perfor-
+mance is higher than both SAKT and AKT. This indicates that
+introducing the collaborative information and SSL into CoSKT
+can improve the performance of KT. We will further verify this
+point in Section IV -F.
+Among all the methods, CoKT is the most relevant to CoSKT.
+It leverages interstudent and intrastudent information for KT.
+Note that CoSKT is superior to the CoKT methods in at least
+4.68% improvement of AUC on the three public datasets. The
+primary cause may be ascribed to the underlying fact that
+in addition to simply integrating collaborative information,
+CoSKT also exploits a knowledge state representation method
+by introducing SSL, which is not fully explored in previous
+works.
+To sum up, deep learning-based methods proposed in recent
+years are ahead of shallow learning methods. This illustrates
+that deep learning models have great advantages in modeling
+students’ exercise–answering sequences in KT. However, shal-
+low learning methods have demonstrated the capacity to attain
+comparable or even superior results in speciﬁc scenarios. For
+instance, KTM produces the best AUC value on EdNet. In
+addition, we notice that DKT exhibits a straightforward network
+structure, but it shows a passable result. As the earliest proposed
+deep learning method, it still achieves comparable or even better
+performance compared with those complex sequential modeling
+methods, including DKVMN, SAKT, and AKT. Moreover, even
+though graph-based methods make use of the relationships of
+exercises or concepts in a graph as a prior, both PEBG and
+GKT can only yield comparable or even worse results than DKT.
+Hence, we believed that more available information and skillful
+techniques should be introduced and developed for KT.
+We also present the AUC improvement of CoSKT over the
+best baselines of three category methods in Fig. 3. We can
+see that there is a signiﬁcant difference in AUC improvement
+across ASSIST09, ASSIST17, and EdNet. Fig. 3 shows that
+the overall improvement of CoSKT on ASSIST09 is more
+signiﬁcant than that on the other two datasets. For instance,
+the minimum improvement on ASSIST09 is 3.64%, which is
+signiﬁcantly higher than the minimum improvements of 0.02%
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PAGE 9 =====
+1484 IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, VOL. 17, 2024
+Fig. 3. AUC improvement of CoSKT over the best baselines in different
+categories.
+and 1.25% on EdNet and ASSIST17, respectively. This can be
+attributed to the fact that ASSIST09 has a lower number of
+concepts per exercise (i.e., 1) as listed in Table I. This means
+that each exercise is related to only one concept. Therefore,
+based on the overlap rate of the same exercise or concept
+between two exercise–answering histories, CoSKT can retrieve
+similar students more precisely, and integrating collaborative
+information leads to better performance. However, note that
+the number of concepts per exercise of EdNet is 2.26 (given
+in Table I), which means that each exercise is related to more
+than two concepts. This presents a challenge for CoSKT to
+retrieve similar students based on the overlap rate of the same
+exercise or concept between two exercise–answering histories,
+since two exercise–answering histories with a high overlap rate
+may differ signiﬁcantly and lead to different responses. This may
+introduce noise into collaborative information, further leading
+to less improvement and even hurting the performance. The
+number of concepts per exercise may be an important factor
+affecting the performance of CoSKT.
+F . Ablation Study
+To further look into the contributions of each key part of the
+proposed CoSKT, ablation studies are conducted.
+1) W/O collaborative information removes the collaborative
+information used in CoSKT, and it only learns students’
+individual knowledge state from their exercise–answering
+history.
+2) W/O contrastive learning simpliﬁes CoSKT by removing
+the procedure of SSL in CoSKT. Instead, it only con-
+catenates individual knowledge state and collaborative
+information.
+3) W/O ensemble information removes the procedure of in-
+tegrating individual information with collaborative infor-
+mation. It only makes use of collaborative information
+to learn a good knowledge state representation by using
+TABLE III
+ABLA TIONSTUDY OF KEY COMPONENTS OF COSKT BY USING THE AUC
+METRIC
+self-supervised learning, but does not explicitly map the
+collaborative information into the predicted probability.
+Contribution of collaborative information: CoSKT integrates
+the collaborative information consisting of common knowledge
+state and expected response of similar students to facilitate pre-
+diction. Note that methods 2 and 3 are two kinds of strategies of
+using collaborative information in explicit and implicit ways, re-
+spectively. Both of them can largely improve the performance of
+method 1, which only uses individual information. These results
+suggest that the collaborative information is indeed beneﬁcial for
+improving KT. Furthermore, we can consider the two ways of
+using collaborative information method to be complementary,
+since CoSKT equipped with the two strategies is superior to
+both of them.
+Beneﬁt from SSL: In this article, we introduce SSL to learn
+a better knowledge state representation. Table III gives that
+our full model of CoSKT outperforms method 2 on ASSIST09
+and ASSIST17, indicating that SSL can improve performance.
+However, the AUC value of our full model CoSKT slightly
+drops compared with on EdNet. This may be due to the in-
+herent complexity of EdNet, where each exercise is related to
+more than two concepts as given in Table I. Retrieving similar
+students from such a complex dataset poses a great challenge
+for CoSKT. Inaccurate retrieval of similar students introduces
+noise into collaborative information, which may hurt the ﬁnal
+performance.
+Furthermore, we believe that SSL is an effective solution for
+knowledge state representation by pushing similar knowledge
+states closer and different knowledge states farther away. To
+gain an intuitive understanding of the CoSKT’s representation
+learning ability, we visualize the knowledge state representation
+before and after using SSL in Fig. 4. We randomly select six
+consecutive time steps of four students and retrieve their top ten
+similar students’ knowledge states at each time step. We then
+visualize these knowledge states using t-distributed stochastic
+neighbor embedding (t-SNE) projections[39]. Knowledge states
+at different time steps are marked with different colors and mark-
+ers. Each subﬁgure represents the evolving knowledge states of
+one student and that of their top ten similar students at each time
+step. The left- and right-hand side parts of each subﬁgure show
+the knowledge state representation before and after using SSL,
+respectively. For instance, in Fig.4(a), knowledge states with the
+same color mix together in the left-hand side part, especially for
+brown and orange ones. In contrast, in the right-hand side part,
+knowledge states with the same color are grouped together, while
+those with different colors are separated. This characteristic
+can largely beneﬁt CoSKT for probability prediction, since
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PAGE 10 =====
+ZHANG et al.: COSKT: A COLLABORA TIVE SELF-SUPERVISED LEARNING METHOD FOR KNOWLEDGE TRACING 1485
+Fig. 4. Visualization of knowledge state representation before and after using SSL. The left- and right-hand side parts of each subﬁgure show the know ledge
+state representation of a student’s six consecutive time steps and that of his or her top ten most similar students at each time step before and after usi ng SSL.
+Fig. 5. Impact of the number of similar students.
+similar students share common knowledge states, and knowl-
+edge states that are farther apart at different times have better
+discrimination.
+G. Impact of Similar Students Number
+We perform experiments on the three public datasets to show
+the impact of the similar students numberK on the performance
+of CoSKT. Intuitively, the value ofK cannot be too large or too
+small. If K is too small, there will be too few similar students,
+leading to insufﬁcient clues in the collaborative information.
+On the other hand, if K is too large, too many similar students
+will introduce noise into the collaborative information. In this
+article, we varied the value of K from 1 to 20. As shown in
+Fig. 5, the AUC values of CoSKT in three datasets improve
+with the increase of K before reaching the optimal value, but
+decrease with further increase of K. This observation is consis-
+tent with our intuition. Speciﬁcally, CoSKT achieves the best
+performance at 18, 18, and 12 for ASSIST09, ASSIST17, and
+EdNet, respectively. Actually, changes in K have a relatively
+small impact on model’s performance. For example, on the
+ASSIST09 dataset, the alteration in AUC remains within a 1%
+range. Similarly, on the ASSIST17 and EdNet datasets, the shift
+in AUC value is conﬁned to a mere 0.2%. These results indicate
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PAGE 11 =====
+1486 IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, VOL. 17, 2024
+Fig. 6. Impact of the learning sequence length on the performance of CoSKT when the length is less than 50.
+Fig. 7. Effect of collaborative information on the prediction of next exercise responses.
+that our model’s performance is not sensitive to changes in K,
+which further demonstrates the stability of our model.
+H. Discussions on Cold Start Problem
+The cold start problem is a signiﬁcant issue in KT, particularly
+in learning environments with an insufﬁcient number of students
+or target students with short learning sequences. In the ﬁrst
+scenario, the limited number of students within the learning
+environments may hinder KT models from retrieving a sufﬁcient
+number of similar students. This situation is analogous to when
+we intentionally set a small value for the number of similar
+students K in our CoSKT model. In both cases, KT models
+cannot make use of sufﬁcient collaborative information. As
+depicted in Fig. 5, whenK is small, the performance of CoSKT
+deteriorates compared with the optimal scenario, highlighting
+the impact of the cold start problem on our method. In the
+second case, KT models encounter difﬁculties when attempting
+to accurately model a student’s knowledge states if his or her
+exercise–answering sequence is too short. Consequently, they
+cannot retrieve reliable similar students, resulting in unreliable
+collaborative information. This can degrade the performance
+of KT models. To illustrate this point effectively, we present
+Fig. 6, which depicts the impact of learning sequence length on
+the performance of our CoSKT. From Fig. 6, we can see that
+the performance of CoSKT is not satisfying when the learning
+sequence length is merely 5. However, as the length value in-
+creases, the performance exhibits an initial signiﬁcant improve-
+ment, followed by a gradual saturation. Notably, we limit our
+performance analysis to the learning sequence length less than
+50, aligning with the suggested length of 50 in DKT framework.
+To address the challenges posed by the cold start problem,
+one possible strategy involves incorporating students’ side in-
+formation during modeling their learning sequences. Generally,
+the extant public KT datasets encompass students’ performance
+data, including exercises and student answers, alongside various
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PAGE 12 =====
+ZHANG et al.: COSKT: A COLLABORA TIVE SELF-SUPERVISED LEARNING METHOD FOR KNOWLEDGE TRACING 1487
+ancillary information gathered throughout the learning process.
+This supplementary information includes aspects, such as re-
+sponse time, opportunity count, and initial actions. As stated
+in [18], side information is also important and can be utilized
+to obtain more precise knowledge states. For example, even two
+students give the same response to an exercise, they have dif-
+ferent response time or opportunity count, and their knowledge
+states may be different. Therefore, leveraging side information
+represents a promising approach to mitigating the cold start
+problem.
+I. Case Study
+To visualize the effect of collaborative information on the
+prediction of next exercise responses, we illustrate the prediction
+process of the (t +1 )th (i.e.,t =4 0) exercise to be answered by
+student u in Fig. 7. Each block in Fig. 7 denotes an interaction.
+The ﬁrst row represents the exercise–answering sequence of the
+target studentu with exerciseet+1 to be answered and his or her
+exercise–answering history is Iu
+t+1. The remaining ten rows are
+learning sequences of his or her top ten similar students retrieved
+by our method. Each block of similar students is noted with
+exercise ID (number), concept (color), and ground truth (solid
+or hollow). Speciﬁcally, for interactions of the target student,
+dissimilar concepts with et+1 are pink, otherwise yellow; for
+interactions of similar students, overlapped concept with Iu
+t+1
+are blue, otherwise green.
+From the individual information shown in Fig. 7, we can see
+that the target student u has answered four exercises, which
+contains similar concept with et+1. But he or she only has 50%
+ACC in answering these exercises. Hence, it is hard to predict
+whether he can answer et+1 correctly or not with the evidence
+contained in his or her individual information. Nevertheless, the
+target student u gives the right response, as shown in Fig. 7
+(et+1 is noted with solid block). On the other side, from the
+perspective of utilizing collaborative information, there are 6/10
+= 60% similar students correctly answeringet+1. This indicates
+the target student is more likely to give right response to et+1.
+Our CoSKT integrates the collaborative information with the
+individual information, and predicts that he or she has 58.74%
+probability of giving correct answer to the exercise. This shows
+that the collaborative information is helpful for the next exercise
+response prediction, especially when it is difﬁcult to make
+correct predictions using only individual information.
+V. C ONCLUSION
+In this study, we proposed CoSKT to improve the performance
+of KT by making use of collaborative information among stu-
+dents with similar exercise–answering history. CoSKT ﬁrst re-
+trieves similar students and learns their common knowledge state
+and expected response. Then, it introduces SSL to encourage the
+consistency between individual knowledge state and the com-
+mon knowledge state. The modules of collaborative information
+extraction and SSL indeed beneﬁt the performance of KT and our
+CoSKT achieves a new state of the art performance. However,
+note that our CoSKT only utilizes students’ performance data
+and employs the classical DKT framework to model knowledge
+states. In our future work, we will explore more elaborate
+network architectures and incorporate side information, such as
+response time, to more accurately model the evolving knowledge
+states of students.
+REFERENCES
+[1] G. Abdelrahman, Q. Wang, and B. Nunes, “Knowledge tracing: A survey,”
+ACM Comput. Surv., vol. 55, no. 11, pp. 1–37, 2023.
+[2] A. T. Corbett and J. R. Anderson, “Knowledge tracing: Modeling the ac-
+quisition of procedural knowledge,” User Model. User-Adapted Interact.,
+vol. 4, no. 4, pp. 253–278, 1995.
+[3] M. V . Y udelson, K. R. Koedinger, and G. J. Gordon, “Individualized
+Bayesian knowledge tracing models,” in Proc. 16th Int. Conf. Artif. Intell.
+Educ., 2013, pp. 171–180.
+[4] H. Cen, K. Koedinger, and B. Junker, “Learning factors analysis–A general
+method for cognitive model evaluation and improvement,” inProc. 8th Int.
+Conf. Intell. Tutoring Syst., 2006, pp. 164–175.
+[5] C. Piech et al., “Deep knowledge tracing,” in Proc. Annu. Conf. Neural
+Inf. Process. Syst., 2015, pp. 505–513.
+[6] Q. Liu et al., “EKT: Exercise-aware knowledge tracing for student per-
+formance prediction,” IEEE Trans. Knowl. Data Eng. , vol. 33, no. 1,
+pp. 100–115, Jan. 2021.
+[7] A. Ghosh, N. Heffernan, and A. S. Lan, “Context-aware attentive knowl-
+edge tracing,” inProc. 26th ACM SIGKDD Int. Conf. Knowl. Discov. Data
+Mining, 2020, pp. 2330–2339.
+[8] T. Long et al., “Improving knowledge tracing with collaborative infor-
+mation,” in Proc. 15th ACM Int. Conf. Web Search Data Mining , 2022,
+pp. 599–607.
+[9] J. Zhang, X. Shi, I. King, and D.-Y . Y eung, “Dynamic key-value memory
+networks for knowledge tracing,” inProc. 26th Int. Conf. World Wide Web,
+2017, pp. 765–774.
+[10] S. Pandey and G. Karypis, “A self-attentive model for knowledge tracing,”
+in Proc. 12th Int. Conf. Educ. Data Mining , 2019, pp. 384–389.
+[11] H. Nakagawa, Y . Iwasawa, and Y . Matsuo, “Graph-based knowledge
+tracing: Modeling student proﬁciency using graph neural network,” in
+Proc. IEEE/WIC/ACM Int. Conf. Web Intell., 2019, pp. 156–163.
+[12] Y . Liu, Y . Y ang, X. Chen, J. Shen, H. Zhang, and Y . Y u, “Improving
+knowledge tracing via pre-training question embeddings,” in Proc. 29th
+Int. Conf. Int. Joint Conf. Artif. Intell. , 2021, pp. 1577–1583.
+[13] M. Khajah, R. V . Lindsey, and M. C. Mozer, “How deep is knowl-
+edge tracing?,” in Proc. 9th Int. Conf. Educ. Data Mining , 2016,
+pp. 94–101.
+[14] Z. A. Pardos and N. T. Heffernan, “KT-IDEM: Introducing item difﬁculty
+to the knowledge tracing model,” in Proc. 19th Int. Conf. User Model.,
+Adapt., Personalization, 2011, pp. 243–254.
+[15] P . I. Pavlik, H. Cen, and K. R. Koedinger, “Performance factors analysis–a
+new alternative to knowledge tracing,” inProc. 14th Int. Conf. Artif. Intell.
+Educ., 2009, pp. 531–538.
+[16] J.-J. Vie and H. Kashima, “Knowledge tracing machines: Factorization
+machines for knowledge tracing,” in Proc. 33rd AAAI Conf. Artif. Intell. ,
+2019, pp. 750–757.
+[17] Z. Tao, X. Wang, X. He, X. Huang, and T.-S. Chua, “HoAFM: A high-order
+attentive factorization machine for CTR prediction,”Inf. Process. Manage.,
+vol. 57, no. 6, 2020, Art. no. 102076.
+[18] Q. Liu, S. Shen, Z. Huang, E. Chen, and Y . Zheng, “A survey of knowledge
+tracing,” 2021, arXiv:2105.15106.
+[19] T. Wang, F. Ma, and J. Gao, “Deep hierarchical knowledge tracing,” in
+Proc. 12th Int. Conf. Educ. Data Mining , 2019, pp. 671–674.
+[20] W. Zhao, J. Xia, X. Jiang, and T. He, “A novel framework for deep knowl-
+edge tracing via gating-controlled forgetting and learning mechanisms,”
+Inf. Process. Manage., vol. 60, no. 1, 2023, Art. no. 103114.
+[21] S. Hochreiter and J. Schmidhuber, “Long short-term memory,” Neural
+Computation, vol. 9, no. 8, pp. 1735–1780, 1997.
+[22] A. V aswani et al., “Attention is all you need,” in Proc. Annu. Conf. Neural
+Inf. Process. Syst., 2017, pp. 5998–6008.
+[23] C. Wang et al., “Temporal cross-effects in knowledge tracing,” in Proc.
+14th ACM Int. Conf. Web Search Data Mining , 2021, pp. 517–525.
+[24] S. Tong et al., “Structure-based knowledge tracing: An inﬂuence propaga-
+tion view,” inProc. IEEE 20th Int. Conf. Data Mining, 2020, pp. 541–550.
+[25] R. D. Hjelm et al., “Learning deep representations by mutual information
+estimation and maximization,” in Proc. 7th Int. Conf. Learn. Representa-
+tions, 2019, pp. 1–14.
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PAGE 13 =====
+1488 IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, VOL. 17, 2024
+[26] Y . Y ang, R. Miao, Y . Wang, and X. Wang, “Contrastive graph convolutional
+networks with adaptive augmentation for text classiﬁcation,” Inf. Process.
+Manage., vol. 59, no. 4, 2022, Art. no. 102946.
+[27] S. Li et al., “Self-supervised learning for conversational recommendation,”
+Inf. Process. Manage., vol. 59, no. 6, 2022, Art. no. 103067.
+[28] R. Wang, L. Li, X. Tao, P . Wang, and P . Liu, “Contrastive and attentive
+graph learning for multi-view clustering,” Inf. Process. Manage., vol. 59,
+no. 4, 2022, Art. no. 102967.
+[29] X. Liu et al., “Self-supervised learning: Generative or contrastive,” IEEE
+Trans. Knowl. Data Eng., vol. 35, no. 1, pp. 857–876, Jan. 2023.
+[30] T. Chen, S. Kornblith, M. Norouzi, and G. Hinton, “A simple framework
+for contrastive learning of visual representations,” in Proc. 37th Int. Conf.
+Mach. Learn., 2020, pp. 1597–1607.
+[31] K. He, H. Fan, Y . Wu, S. Xie, and R. Girshick, “Momentum contrast for
+unsupervised visual representation learning,” in Proc. IEEE/CVF Conf.
+Comput. Vis. Pattern Recognit., 2020, pp. 9726–9735.
+[32] M. Caron, I. Misra, J. Mairal, P . Goyal, P . Bojanowski, and A. Joulin, “Un-
+supervised learning of visual features by contrasting cluster assignments,”
+in Proc. Annu. Conf. Neural Inf. Process. Syst. , 2020, pp. 9912–9924.
+[33] J.-B. Grill et al., “Bootstrap your own latent-a new approach to self-
+supervised learning,” inProc. Annu. Conf. Neural Inf. Process. Syst., 2020,
+pp. 21271–21284.
+[34] T. Wang and P . Isola, “Understanding contrastive representation learning
+through alignment and uniformity on the hypersphere,” in Proc. 37th Int.
+Conf. Mach. Learn., 2020, pp. 9929–9939.
+[35] A. v. d. Oord, Y . Li, and O. Vinyals, “Representation learning with
+contrastive predictive coding,” 2018, arXiv:1807.03748.
+[36] C. Cui et al., “DGEKT: A dual graph ensemble learning method for
+knowledge tracing,” ACM Trans. Inf. Syst., vol. 42, no. 3, pp. 1–24, 2024.
+[37] Y . Choi et al., “EdNet: A large-scale hierarchical dataset in education,” in
+Proc. 21st Int. Conf. Artif. Intell. Educ. , 2020, pp. 69–73.
+[38] D. P . Kingma and J. Ba, “ADAM: A method for stochastic optimization,”
+in Proc. 3rd Int. Conf. Learn. Representations , 2015.
+[39] L. V . d. Maaten and G. Hinton, “Visualizing data using t-SNE,” J. Mach.
+Learn. Res., vol. 9, no. 11, pp. 2579–2605, 2008.
+Chunyun Zhang received the Ph.D. degree in signal
+and information processing from the Beijing Uni-
+versity of Posts and Telecommunications, Beijing,
+China, in 2015.
+She is currently an Associate Professor with the
+School of Computer Science and Technology, Shan-
+dong University of Finance and Economics, Jinan,
+China. Her main research interests include natu-
+ral language processing, machine learning, and data
+mining.
+Hebo Ma is currently working toward the postgrad-
+uate degree in computer application technology with
+the School of Computer Science and Technology,
+Shandong University of Finance and Economics, Ji-
+nan, China.
+His main research interests include educational
+data mining and machine learning.
+Chaoran Cuireceived the B.E. degree in software en-
+gineering, and the Ph.D. degree in computer science
+from Shandong University, Jinan, China, in 2010 and
+2015, respectively.
+During 2015 to 2016, he was a Research Fellow at
+Singapore Management University. He is currently
+a Professor with the School of Computer Science
+and Technology, Shandong University of Finance
+and Economics, Jinan. His research interests in-
+clude data mining, machine learning, and multimedia
+processing.
+Yumo Yaois currently working toward the postgrad-
+uate degree in computer application technology with
+the School of Computer Science and Technology,
+Shandong University of Finance and Economics, Ji-
+nan, China.
+His main research interests include machine
+learning and educational data mining.
+Weiran Xu received the Ph.D. degree in signal and
+information processing from the Beijing University
+of Posts and Telecommunications, Beijing, China, in
+2003.
+He is currently an Associate Professor with Web
+Searching Teaching and Research Center, Beijing
+University of Posts and Telecommunications. His cur-
+rent research interests include information extraction,
+pattern recognition, and machine learning.
+Yunfeng Zhang received the Ph.D. degree in com-
+putational mathematics from Shandong University,
+Jinan, China, in 2007.
+He is currently a Professor with the School of Com-
+puter Science and Technology, Shandong University
+of Finance and Economics, Jinan. His research inter-
+ests include machine learning and computer graphics.
+Yuling Ma received the master’s and the Ph.D. de-
+grees in computer science and technology from Shan-
+dong University, Jinan, China, in 2008 and 2020,
+respectively.
+She is currently a Lecturer with the School of Com-
+puter Science and Technology, Shandong Jianzhu
+University, Jinan. Her research interests include edu-
+cational data mining and machine learning.
+Authorized licensed use limited to: NASATI. Downloaded on November 22,2026 at 14:58:18 UTC from IEEE Xplore.  Restrictions apply. 

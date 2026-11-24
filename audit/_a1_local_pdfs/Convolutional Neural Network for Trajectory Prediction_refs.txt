@@ -1,0 +1,94 @@
+10
+N. Nikhil and B. T. Morris
+what is happening without overlaying the trajectories on the image frame. This
+strongly hints that trajectories alone (even with social pooling) is not suﬃcient
+to make robust prediction.
+Note that unlike state-of-the-art architectures (e.g. S-GAN and SoPhie), our
+CNN prediction architecture does not include any context outside of individual
+trajectory information. Similar social pooling schemes could be added and fur-
+ther improvements are expected. Additionally, S-GAN reported a 49× speed up
+over S-LSTM which would make our CNN architecture 500× S-LSTM.
+4
+Conclusions
+We present a convolutional architecture based neural network model for trajec-
+tory prediction. The simple model gives competitive results with the current
+state-of-art LSTM-based models while providing better inference time perfor-
+mance. We hope that following this work, more people would be interested in
+utilizing clever convolutional architectures for trajectory prediction. Given the
+current architecture is quite simple, future work will examine the use of dilated
+convolutions to decrease the number of layers while maintaining the same recep-
+tive ﬁeld and incorporating social context into the model.
+References
+1. Antonini, G., Bierlaire, M., Weber, M.: Discrete choice models of pedestrian walk-
+ing behavior. Transportation Research Part B: Methodological 40(8) (2006) 667–
+687
+2. Helbing, D., Molnar, P.: Social force model for pedestrian dynamics. 51 (05 1998)
+3. Yamaguchi, K., Berg, A.C., Ortiz, L.E., Berg, T.L.: Who are you with and where
+are you going? In: CVPR 2011. (June 2011) 1345–1352
+4. Gupta, A., Johnson, J., Fei-Fei, L., Savarese, S., Alahi, A.: Social gan: Socially
+acceptable trajectories with generative adversarial networks. In: IEEE Conference
+on Computer Vision and Pattern Recognition (CVPR). Number CONF (2018)
+5. Alahi, A., Goel, K., Ramanathan, V., Robicquet, A., Fei-Fei, L., Savarese, S.: Social
+lstm: Human trajectory prediction in crowded spaces. In: The IEEE Conference
+on Computer Vision and Pattern Recognition (CVPR). (June 2016)
+6. Sadeghian, A., Kosaraju, V., Sadeghian, A., Hirose, N., Savarese, S.: Sophie: An
+attentive gan for predicting paths compliant to social and physical constraints.
+arXiv preprint arXiv:1806.01482 (2018)
+7. Fernando, T., Denman, S., Sridharan, S., Fookes, C.:
+Soft + hardwired atten-
+tion: An LSTM framework for human trajectory prediction and abnormal event
+detection. CoRR abs/1702.05552 (2017)
+8. Mikolov, T., Karaﬁ´at, M., Burget, L., ˇCernock`y, J., Khudanpur, S.: Recurrent
+neural network based language model.
+In: Eleventh Annual Conference of the
+International Speech Communication Association. (2010)
+9. Hochreiter, S., Schmidhuber, J.: Long short-term memory. Neural Comput. 9(8)
+(November 1997) 1735–1780
+10. Bai, S., Kolter, J.Z., Koltun, V.: An empirical evaluation of generic convolutional
+and recurrent networks for sequence modeling. CoRR abs/1803.01271 (2018)
+
+Convolutional Neural Network for Trajectory Prediction
+11
+11. Gehring, J., Auli, M., Grangier, D., Yarats, D., Dauphin, Y.N.:
+Convolutional
+sequence to sequence learning. CoRR abs/1705.03122 (2017)
+12. Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.N., Kaiser,
+L., Polosukhin, I.: Attention is all you need. CoRR abs/1706.03762 (2017)
+13. Oord,
+A.v.d.,
+Kalchbrenner,
+N.,
+Vinyals,
+O.,
+Espeholt,
+L.,
+Graves,
+A.,
+Kavukcuoglu, K.: Conditional image generation with pixelcnn decoders. In: Pro-
+ceedings of the 30th International Conference on Neural Information Processing
+Systems. NIPS’16, USA, Curran Associates Inc. (2016) 4797–4805
+14. Aneja, J., Deshpande, A., Schwing, A.: Convolutional image captioning. In: Com-
+puter Vision and Pattern Recognition. (2018)
+15. Deo, N., Trivedi, M.M.: Convolutional social pooling for vehicle trajectory predic-
+tion. CoRR abs/1805.06771 (2018)
+16. Xue, H., Huynh, D.Q., Reynolds, M.: Ss-lstm: A hierarchical lstm model for pedes-
+trian trajectory prediction. In: 2018 IEEE Winter Conference on Applications of
+Computer Vision (WACV). (March 2018) 1186–1194
+17. Xue, H., Huynh, D.Q., Reynolds, M.: Ss-lstm: A hierarchical lstm model for pedes-
+trian trajectory prediction. In: 2018 IEEE Winter Conference on Applications of
+Computer Vision (WACV). (March 2018) 1186–1194
+18. Kingma, D.P., Ba, J.:
+Adam: A method for stochastic optimization.
+CoRR
+abs/1412.6980 (2014)
+19. Pellegrini, S., Ess, A., Van Gool, L.: Improving data association by joint modeling
+of pedestrian trajectories and groupings. In: Proceedings of the 11th European
+Conference on Computer Vision: Part I. ECCV’10, Berlin, Heidelberg, Springer-
+Verlag (2010) 452–465
+20. Leal-Taix, L., Fenzi, M., Kuznetsova, A., Rosenhahn, B., Savarese, S.: Learning
+an image-based motion context for multiple people tracking. IEEE Conference on
+Computer Vision and Pattern Recognition (CVPR) (2014)
+21. Lee, N., Choi, W., Vernaza, P., Choy, C.B., Torr, P.H.S., Chandraker, M.K.: Desire:
+Distant future prediction in dynamic scenes with interacting agents. 2017 IEEE
+Conference on Computer Vision and Pattern Recognition (CVPR) (2017) 2165–
+2174

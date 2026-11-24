@@ -1,0 +1,8 @@
+CROSSREF
+
+
+OPENALEX
+Knowledge tracing (KT) aims to trace students' evolving knowledge states based on their learning sequences. Recently, some deep learning based models have been proposed to incorporate the historical information of individuals to trace students' knowledge states and achieve encouraging progress. However, these works ignore the collaborative information among those students who have similar exercise-answering experiences, which may contain some valuable information. In this paper, we present a novel collaborative self-supervised learning method for KT (CoSKT), which exploits both similar students' collaborative information and individual information to improve knowledge tracing. We firstly use the overlap rate of students' learning experiences to retrieve similar students. Based on similar students' exercise-answering sequences, we leverage attention mechanism to learn the representation of their common knowledge state and expected response to the target exercise. Then, we introduce self-supervised learning by encouraging the consistency between the common knowledge state and individual knowledge state. Finally, we integrate collaborative information and individual knowledge state with a gate mechanism to conduct the response prediction of the target exercise. We compare CoSKT with nine existing KT methods on three public datasets, and the results show that CoSKT achieves the state-of-the-art performance. The codes and models of CoSKT are available athttps://github.com/lucky7-code/CoSKT.
+
+BIBLIO
+{"volume": "17", "issue": null, "first_page": "1476", "last_page": "1488"}

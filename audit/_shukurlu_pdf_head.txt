@@ -1,0 +1,32 @@
+arXiv:2504.15163v1  [cs.LG]  21 Apr 2025
+Survey of Loss Augmented Knowledge Tracing
+Altun Shukurlu ∗
+Abstract
+The training of artiﬁcial neural networks is heavily depend ent on the careful selection of
+an appropriate loss function. While commonly used loss func tions, such as cross-entropy [ 1]
+and mean squared error (MSE) [ 2], generally suﬃce for a broad range of tasks, challenges oft en
+emerge due to limitations in data quality or ineﬃciencies wi thin the learning process. In such
+circumstances, the integration of supplementary terms int o the loss function can serve to address
+these challenges, enhancing both model performance and rob ustness. Two prominent techniques,
+loss regularization and contrastive learning [ 3], have been identiﬁed as eﬀective strategies for
+augmenting the capacity of loss functions in artiﬁcial neur al networks.
+Knowledge tracing is a compelling area of research that leve rages predictive artiﬁcial in-
+telligence to facilitate the automation of personalized an d eﬃcient educational experiences for
+students. In this paper, we provide a comprehensive review o f the deep learning-based knowledge
+tracing (DKT) algorithms trained using advanced loss funct ions and discuss their improvements
+over prior techniques. We discuss contrastive knowledge tr acing algorithms, such as Bi-CLKT
+[4], CL4KT [ 5], SP-CLKT [ 6], CoSKT [ 7], and prediction-consistent DKT [ 8], providing perfor-
+mance benchmarks and insights into real-world deployment c hallenges. The survey concludes
+with future research directions, including hybrid loss str ategies and context-aware modeling.
+1 Introduction
+Knowledge Tracing (KT) has become a foundational concept in modern educational technologies,
+particularly in the development of intelligent tutoring sy stems (ITS) and personalized learning
+platforms. The primary goal of KT is to model a student’s know ledge state over time and predict
+their future performance on unseen tasks or questions [
+9, 10, 11]. This prediction helps tailor the
+learning experience to the individual, providing insights into which concepts need reinforcement
+and guiding the next best action for personalized learning [ 12].
+Traditional KT models, such as Bayesian Knowledge Tracing ( BKT), treat the student’s knowledge
+state as a binary variable (known or unknown) that evolves pr obabilistically with each student
+interaction [ 9]. These early models have been successful in various educat ional applications due
+∗ University of Virginia, as4xa@v

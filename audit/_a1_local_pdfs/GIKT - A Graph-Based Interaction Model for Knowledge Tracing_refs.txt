@@ -1,0 +1,115 @@
+GIKT: A Graph-based Interaction Model for Knowledge Tracing
+15
+Addendum Version
+After the deadline of submitting the camera-ready version to the proceedings,
+we found our realization of “soft selection” mentioned in Section 4.4 is somewhat
+unreasonable, thus we adopt another suitable realization for this strategy, which
+causes some diﬀerences of the results with the proceeding version. This version
+is the newest version and we report the revised experiment results in this version
+with the code. As the conference proceedings have been prepared already, PC
+chairs suggested us to upload an addendum version by ourself. Please refer to
+this version.
+References
+1. Abdelrahman, G., Wang, Q.: Knowledge tracing with sequential key-value memory
+networks. In: the 42nd International ACM SIGIR Conference (2019)
+2. d Baker, R.S., Corbett, A.T., Aleven, V.: More accurate student modeling through
+contextual estimation of slip and guess probabilities in bayesian knowledge tracing.
+In: International conference on intelligent tutoring systems. pp. 406–415. Springer
+(2008)
+3. Beck, D., Haﬀari, G., Cohn, T.: Graph-to-sequence learning using gated graph
+neural networks. arXiv preprint arXiv:1806.09835 (2018)
+4. Chen, P., Lu, Y., Zheng, V.W., Pian, Y.: Prerequisite-driven deep knowledge trac-
+ing. In: 2018 IEEE International Conference on Data Mining (ICDM). pp. 39–48.
+IEEE (2018)
+5. Choi, Y., Lee, Y., Shin, D., Cho, J., Park, S., Lee, S., Baek, J., Kim, B.,
+Jang, Y.: Ednet: A large-scale hierarchical dataset in education. arXiv preprint
+arXiv:1912.03072 (2019)
+6. Corbett, A.T., Anderson, J.R.: Knowledge tracing: Modeling the acquisition of
+procedural knowledge. User modeling and user-adapted interaction 4(4), 253–278
+(1994)
+7. Deﬀerrard, M., Bresson, X., Vandergheynst, P.: Convolutional neural networks on
+graphs with fast localized spectral ﬁltering. In: Advances in neural information
+processing systems. pp. 3844–3852 (2016)
+8. Ebbinghaus, H.: Memory: A contribution to experimental psychology. Annals of
+neurosciences 20(4), 155 (2013)
+9. Garcia, V., Bruna, J.: Few-shot learning with graph neural networks. arXiv preprint
+arXiv:1711.04043 (2017)
+10. Hamilton, W., Ying, Z., Leskovec, J.: Inductive representation learning on large
+graphs. In: Advances in neural information processing systems. pp. 1024–1034
+(2017)
+11. Hochreiter, S., Schmidhuber, J.: Long short-term memory. Neural computation
+9(8), 1735–1780 (1997)
+12. Kingma, D.P., Ba, J.: Adam: A method for stochastic optimization. arXiv preprint
+arXiv:1412.6980 (2014)
+13. Kipf, T.N., Welling, M.: Semi-supervised classiﬁcation with graph convolutional
+networks. arXiv preprint arXiv:1609.02907 (2016)
+14. Minn, S., Desmarais, M.C., Zhu, F., Xiao, J., Wang, J.: Dynamic student classiﬃ-
+cation on memory networks for knowledge tracing. In: Paciﬁc-Asia Conference on
+Knowledge Discovery and Data Mining. pp. 163–174. Springer (2019)
+
+16
+Y. Yang et al.
+15. Minn, S., Yu, Y., Desmarais, M.C., Zhu, F., Vie, J.J.: Deep knowledge tracing and
+dynamic student classiﬁcation for knowledge tracing. In: 2018 IEEE International
+Conference on Data Mining (ICDM). pp. 1182–1187. IEEE (2018)
+16. Nagatani, K., Zhang, Q., Sato, M., Chen, Y.Y., Chen, F., Ohkuma, T.: Augmenting
+knowledge tracing by considering forgetting behavior. In: The World Wide Web
+Conference. pp. 3101–3107 (2019)
+17. Nakagawa, H., Iwasawa, Y., Matsuo, Y.: Graph-based knowledge tracing: Model-
+ing student proﬁciency using graph neural network. In: IEEE/WIC/ACM Interna-
+tional Conference on Web Intelligence. pp. 156–163. ACM (2019)
+18. Pardos, Z.A., Heﬀernan, N.T.: Modeling individualization in a bayesian networks
+implementation of knowledge tracing. In: International Conference on User Mod-
+eling, Adaptation, and Personalization. pp. 255–266. Springer (2010)
+19. Pardos, Z.A., Heﬀernan, N.T.: Kt-idem: Introducing item diﬃculty to the knowl-
+edge tracing model. In: International conference on user modeling, adaptation, and
+personalization. pp. 243–254. Springer (2011)
+20. Pavlik Jr, P.I., Cen, H., Koedinger, K.R.: Performance factors analysis–a new al-
+ternative to knowledge tracing. Online Submission (2009)
+21. Piech, C., Bassen, J., Huang, J., Ganguli, S., Sahami, M., Guibas, L.J., Sohl-
+Dickstein, J.: Deep knowledge tracing. In: Advances in neural information process-
+ing systems. pp. 505–513 (2015)
+22. Qi, X., Liao, R., Jia, J., Fidler, S., Urtasun, R.: 3d graph neural networks for rgbd
+semantic segmentation. In: Proceedings of the IEEE International Conference on
+Computer Vision. pp. 5199–5208 (2017)
+23. Qu, Y., Bai, T., Zhang, W., Nie, J., Tang, J.: An end-to-end neighborhood-based
+interaction model for knowledge-enhanced recommendation. In: Proceedings of
+the 1st International Workshop on Deep Learning Practice for High-Dimensional
+Sparse Data. pp. 1–9 (2019)
+24. Rendle, S.: Factorization machines. In: 2010 IEEE International Conference on
+Data Mining. pp. 995–1000. IEEE (2010)
+25. Su, Y., Liu, Q., Liu, Q., Huang, Z., Yin, Y., Chen, E., Ding, C., Wei, S., Hu,
+G.: Exercise-enhanced sequential modeling for student performance prediction. In:
+Thirty-Second AAAI Conference on Artiﬁcial Intelligence (2018)
+26. Veliˇckovi´c, P., Cucurull, G., Casanova, A., Romero, A., Lio, P., Bengio, Y.: Graph
+attention networks. arXiv preprint arXiv:1710.10903 (2017)
+27. Vie, J.J., Kashima, H.: Knowledge tracing machines: Factorization machines for
+knowledge tracing. In: Proceedings of the AAAI Conference on Artiﬁcial Intelli-
+gence. vol. 33, pp. 750–757 (2019)
+28. Wang, T., Ma, F., Gao, J.: Deep hierarchical knowledge tracing. In: Proceedings
+of the 12th International Conference on Educational Data Mining, EDM 2019,
+Montr´eal, Canada, July 2-5, 2019 (2019), https://drive.google.com/file/d/
+1wlW6zAi-l4ZAw8rBA_mXZ5tHgg6xKL00
+29. Wang, T., Ma, F., Gao, J.: Deep hierarchical knowledge tracing. In: Proceedings
+of the 12th International Conference on Educational Data Mining, EDM 2019,
+Montr´eal, Canada, July 2-5, 2019 (2019), https://drive.google.com/file/d/
+1wlW6zAi-l4ZAw8rBA_mXZ5tHgg6xKL00
+30. Wang, X., He, X., Cao, Y., Liu, M., Chua, T.S.: Kgat: Knowledge graph attention
+network for recommendation. In: Proceedings of the 25th ACM SIGKDD Interna-
+tional Conference on Knowledge Discovery & Data Mining. pp. 950–958 (2019)
+31. Williams, R.J., Zipser, D.: A learning algorithm for continually running fully re-
+current neural networks. Neural computation 1(2), 270–280 (1989)
+
+GIKT: A Graph-based Interaction Model for Knowledge Tracing
+17
+32. Xiong, X., Zhao, S., Van Inwegen, E.G., Beck, J.E.: Going deeper with deep knowl-
+edge tracing. International Educational Data Mining Society (2016)
+33. Yao, L., Mao, C., Luo, Y.: Graph convolutional networks for text classiﬁcation.
+In: Proceedings of the AAAI Conference on Artiﬁcial Intelligence. vol. 33, pp.
+7370–7377 (2019)
+34. Yudelson, M.V., Koedinger, K.R., Gordon, G.J.: Individualized bayesian knowledge
+tracing models. In: International conference on artiﬁcial intelligence in education.
+pp. 171–180. Springer (2013)
+35. Zhang, J., Shi, X., King, I., Yeung, D.Y.: Dynamic key-value memory networks for
+knowledge tracing. In: Proceedings of the 26th international conference on World
+Wide Web. pp. 765–774 (2017)

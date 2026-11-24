@@ -1,0 +1,16 @@
+Heterogeneous graph knowledge tracing with novel contrastive view and meta-path contexts.pdf
+pages 13 chars 75904
+HEAD Contents lists available at ScienceDirect Expert Systems With Applications journal homepage: www.elsevier.com/locate/eswa Heterogeneous graph knowledge tracing with novel contrastive view and meta-path contexts Jie Liu a, Zheng Guan a,∗, Xue Wang a, Zhijun Yang b a School of Information Science and Engineering, Yunnan University, Kunming, 650500, China b Department of Education Teaching Instruments and Equipment Center, Department of Education Teaching, Yunnan Provincial, Kunming, 6500106, China
+p1: contrastive, meta-path, heterogeneous, ECE
+p2: contrastive, self-supervised, meta-path, heterogeneous, ECE, accuracy
+p3: contrastive, meta-path, heterogeneous, ECE, accuracy
+p4: meta-path, heterogeneous
+p5: contrastive, meta-path
+p6: contrastive
+p7: contrastive, meta-path
+p8: contrastive, meta-path, heterogeneous, AUC, accuracy
+p9: contrastive, meta-path, heterogeneous, AUC
+p10: AUC
+p11: meta-path, AUC
+p12: contrastive, meta-path, metapath
+p13: contrastive, self-supervised, meta-path, heterogeneous

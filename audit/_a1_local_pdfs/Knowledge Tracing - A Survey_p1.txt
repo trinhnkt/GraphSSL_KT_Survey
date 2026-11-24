@@ -1,0 +1,76 @@
+Knowledge Tracing: A Survey
+GHODAI ABDELRAHMAN, QING WANG, and BERNARDO PEREIRA NUNES, School of
+Computing, Australian National University
+Humans’ ability to transfer knowledge through teaching is one of the essential aspects for human intelligence.
+A human teacher can track the knowledge of students to customize the teaching on students’ needs. With the
+rise of online education platforms, there is a similar need for machines to track the knowledge of students
+and tailor their learning experience. This is known as the Knowledge Tracing (KT) problem in the literature.
+Effectively solving the KT problem would unlock the potential of computer-aided education applications such
+as intelligent tutoring systems, curriculum learning, and learning materials’ recommendation. Moreover, from
+a more general viewpoint, a student may represent any kind of intelligent agents including both human and
+artificial agents. Thus, the potential of KT can be extended to any machine teaching application scenarios
+which seek for customizing the learning experience for a student agent (i.e., a machine learning model). In
+this paper, we provide a comprehensive and systematic review for the KT literature. We cover a broad range
+of methods starting from the early attempts to the recent state-of-the-art methods using deep learning, while
+highlighting the theoretical aspects of models and the characteristics of benchmark datasets. Besides these,
+we shed light on key modelling differences between closely related methods and summarize them in an
+easy-to-understand format. Finally, we discuss current research gaps in the KT literature and possible future
+research and application directions.
+Additional Key Words and Phrases: Knowledge Tracing, Memory Networks, Deep Learning, Sequence Mod-
+elling, Key-Value Memory, Bayesian Knowledge Tracing (BKT), Intelligent Education, Factor Analysis ,survey
+ACM Reference Format:
+Ghodai Abdelrahman, Qing Wang, and Bernardo Pereira Nunes. 2022. Knowledge Tracing: A Survey . 1, 1
+(January 2022), 36 pages. https://doi.org/10.1145/nnnnnnn.nnnnnnn
+1
+INTRODUCTION
+Teaching is a vital activity to facilitate transfer of knowledge. It is well-known that one key factor of
+teaching is the ability of human teachers to track the learning progress of their students. This ability
+allows human teachers to adjust their teaching pace, materials and methodology to maximize
+the knowledge growth of each individual student. Over the past 30 years, a variety of online
+education platforms such as Massive Open Online Courses (MOOCs) [109], intelligent tutoring
+systems [90], and educational games [67] have emerged to complement and sometimes completely
+replace conventional education systems. The COVID-19 pandemic, for example, has challenged
+conventional classroom-based teaching and sped up digital transformation in education systems. To
+alleviate the disruption of COVID-19, teachers and students around the world had to rapidly adjust
+to an online education mode. However, while there is a pressing need for teaching using computer
+technologies, technology-enhanced teaching has also posed new challenges, one of which is how
+to effectively track the learning progress of a student through their online interaction with teaching
+Authors’ address: Ghodai Abdelrahman, ghodai.abdelrahman@anu.edu.au; Qing Wang, qing.wang@anu.edu.au; Bernardo
+Pereira Nunes, Bernardo.Nunes@anu.edu.au, School of Computing, Australian National University, Canberra, ACT, 2601.
+Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee
+provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and
+the full citation on the first page. Copyrights for components of this work owned by others than ACM must be honored.
+Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires
+prior specific permission and/or a fee. Request permissions from permissions@acm.org.
+© 2022 Association for Computing Machinery.
+XXXX-XXXX/2022/1-ART $15.00
+https://doi.org/10.1145/nnnnnnn.nnnnnnn
+, Vol. 1, No. 1, Article . Publication date: January 2022.
+arXiv:2201.06953v1  [cs.CY]  8 Jan 2022
+
+2
+Ghodai Abdelrahman, Qing Wang, and Bernardo Pereira Nunes
+materials – a challenge known as the Knowledge Tracing (KT) problem [5, 6, 112]. In a nutshell,
+KT aims to observe, represent, and quantify a student’s knowledge state, e.g., the mastery level of
+skills underlying the teaching materials.
+Fig. 1. An example scenario for knowledge tracing in an Intelligent Tutoring System (ITS).
+To better understand the KT problem, let us consider the learning activity depicted in Figure 1.
+It shows an interaction scenario between a student and an Intelligent Tutoring System (ITS) in
+which the student is given a sequence of questions taken from a question set {𝑞1,𝑞2,𝑞3,𝑞4} and
+asked to answer these questions. During the interaction, the ITS estimates the student’s knowledge
+states over the skills {𝑘1,𝑘2,𝑘3,𝑘4} (e.g., math skills such as addition, subtraction and multiplication)
+that are required to answer these questions. However, capturing a student’s knowledge state is a
+challenging task due to several reasons:
+• Each question might require more than one skill, which adds complexity to trace knowledge
+states. For instance, as shown by the arrows going from skills to questions in Figure 1, question
+𝑞2 requires the skills {𝑘1,𝑘3}. It is worth noting that skill is also referred to as knowledge
+component in some previous studies [65].
+• Dependency among skills is another important factor to consider when tackling the KT
+problem. For example, although 𝑞3 requires only skill 𝑘2, skills 𝑘1 and 𝑘4 are prerequisites
+for skill 𝑘2 according to the dependency graph shown in Figure 1. Thus, the mastery level of
+skills required by the question 𝑞3 should also consider 𝑘1 and 𝑘4, in addition to skill 𝑘2.
+• A student’s forgetting behavior [30] may result in decaying their knowledge over skills.
+By modeling forgetting features, skills can be ranked by their relevance to forgetting. For
+example, the bottom of Figure 1 shows that skill 𝑘1 is least affected by forgetting when the
+latest question 𝑞1 is reached, whereas skill 𝑘2 is the most affected one.
+, Vol. 1, No. 1, Article . Publication date: January 2022.

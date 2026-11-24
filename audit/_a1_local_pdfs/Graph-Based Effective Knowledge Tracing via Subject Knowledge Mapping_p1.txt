@@ -1,0 +1,83 @@
+Vol.:(0123456789)
+Education and Information Technologies (2025) 30:9813–9840
+https://doi.org/10.1007/s10639-024-13069-0
+Graph‑based effective knowledge tracing via subject 
+knowledge mapping
+Ziyan Yang1   · Jia Hu2 · Shaochun Zhong1 · Lan Yang1 · Geyong Min2
+Received: 23 June 2024 / Accepted: 20 September 2024 / Published online: 10 December 2024 
+© The Author(s), under exclusive licence to Springer Science+Business Media, LLC, part of Springer Nature 
+2024
+Abstract
+Intelligent technology plays a pivotal role in revolutionizing learning assess-
+ments, overcoming the constraints of traditional assessment methods and driving 
+educational innovation. Knowledge tracing (KT) emerges as a critical component 
+for assessing students’ learning states and forecasting their future performance. 
+However, existing graph-based KT models often ignore certain real-world factors 
+(e.g., sequence dependencies, question information, and hierarchical relationships 
+between knowledge concepts). These factors hinder the model’s overall performance 
+in predicting students’ learning progress and identifying their knowledge deficien-
+cies, thus limiting the model’s applicability in personalized learning. To address 
+these challenges, we propose a novel graph-based effective knowledge tracing model 
+via subject knowledge mapping (SGKT). We begin by extracting essential features 
+from historical learning interactions, which include the relationships between ques-
+tions, the difficulty of questions, and the relationships between knowledge concepts. 
+These knowledge concepts are seamlessly integrated with a purpose-designed sub-
+ject knowledge mapping, establishing intricate hierarchical relations. Subsequently, 
+we employ graph convolutional networks to aggregate the embeddings of questions 
+and knowledge concepts, thereby optimizing the update process for predicting stu-
+dents’ knowledge states. Experimental validation on the dataset demonstrates the 
+superior performance of our model, surpassing the original KT model and other rel-
+evant approaches by up to 5% in terms of the area under the curve and accuracy. 
+These results not only demonstrate the efficacy of our proposed model but also pro-
+vide valuable insights for advancing learning assessments.
+Keywords  Learning assessment · Knowledge tracing · Graph convolutional 
+network · Subject knowledge mapping · Feature embedding
+Extended author information available on the last page of the article
+
+9814
+	
+Education and Information Technologies (2025) 30:9813–9840
+1  Introduction
+UNESCO, in Education 2030 Framework for Action, underscores education’s 
+commitment to individuals’ holistic development (Mundial, 2016). Personal-
+ized education hinges on students understanding their knowledge mastery levels 
+(Williams & Zipser, 1989; Hooshyar, 2024). As Ausubel et al. (1978) noted, "the 
+single most important factor shaping the learning process is what the student is 
+already aware of". The ascent of personalized learning is propelled by techno-
+logical advancements in Artificial Intelligence (AI), big data, and the Internet of 
+Things (IoT). In this technological environment, Knowledge tracing (KT) tech-
+niques have emerged in the realm of human–computer interaction, designed to 
+simulate the dynamic interactions between students and the exercise content they 
+engage with. This simulation enables accurate, real-time assessment and predic-
+tion of students’ changing knowledge mastery levels (Abdelrahman et al., 2023). 
+Consequently, students can address weaknesses, identify areas for improvement, 
+and choose suitable methods and resources for learning. Simultaneously, teachers 
+can dynamically tailor teaching activities based on the insights provided by KT, 
+ensuring that classroom designs are in harmony with the actual learning condi-
+tions of students, thereby fulfilling the goals of teaching support.
+The growth of personalized learning underscores the imperative to identify and 
+dynamically assess students’ knowledge states (Murtaza et al., 2022). Given that 
+students’ knowledge states are often implicit, direct assessment poses challenges 
+(Ma et  al., 2023). Figure  1 depicts the shift from "one-dimensional static out-
+come-based diagnosis" to "multi-dimensional dynamic process-based Tracing". 
+Initially, Classical Test Theory (CTT) assessed students’ ability ratings directly 
+through fixed exams and their corresponding scores (Gulliksen, 2013). How-
+ever, the approach of directly linking constant difficulty levels of each exam with 
+ability scores lacks scientific rigor. To address this issue, Item Response Theory 
+(IRT) emerged, facilitating the estimation of mastery stages of latent-knowledge 
+(Maghsudi et al., 2021; Traub, 1981). IRT considers students’ abilities and test 
+paper conditions, creating a functional relation. However, relying solely on a 
+standard total score still fails to characterize students’ mastery of various knowl-
+edge concepts due to individual cognitive variances. This implies that even if the 
+total scores are the same, there can be significant differences in students’ under-
+standing of specific knowledge concepts.
+In the realm of assessment theory, a new paradigm emerged with the creation 
+of cognitive diagnostic theory, integrating psychological assessment and cogni-
+tive science (Ackerman, 2014; Lubis & Yus, 2024). Gierl et al. (2008) utilized 
+cognitive attribute diagnostics to uncover variations in students’ arithmetic 
+scores, offering comprehensive assessments of algebraic understanding. Static 
+cognitive diagnosis suits situations like exams, providing in-depth assessments 
+of learning data within a specific time-frame, indicating the current states of 
+knowledge mastery. However, real learning unfolds gradually over an extended 
+period. Through a continual process of learning, forgetting, and responsive feed-
+back, students’ command of knowledge undergoes dynamic changes (Liu et al., 

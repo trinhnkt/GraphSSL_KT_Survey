@@ -1,0 +1,95 @@
+Contents lists available at ScienceDirect
+Information Processing and Management
+journal homepage: www.elsevier.com/locate/ipm
+Exploring long- and short-term knowledge state graph
+representations with adaptive fusion for knowledge tracing
+Ganfeng Yu a, Zhiwen Xie b, Guangyou Zhou b
+,∗, Zhuo Zhao a,
+Jimmy Xiangji Huang c
+a Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan, 430079, Hubei, China
+b Hubei Provincial Key Laboratory of Artificial Intelligence and Smart Learning & School of Computer, Central China Normal
+University, Wuhan, 430079, Hubei, China
+c Information Retrieval and Knowledge Management Research Lab, York University, Toronto, Canada
+A R T I C L E I N F O
+Keywords:
+Knowledge tracing
+Knowledge states
+Graph representation learning
+Temporal graph prediction
+Educational AI
+A B S T R A C T
+Knowledge Tracing (KT) is an important research area in online education that focuses on
+predicting future academic performance based on students’ historical exercise records. The key
+to solving the KT problem lies in assessing students’ knowledge states through their responses
+to concept-related exercises. However, analyzing exercise records from a single perspective
+does not provide a comprehensive model of student knowledge. The truth is that students’
+knowledge states often exhibit long- and short-term phenomena, corresponding to long-term
+knowledge systems and short-term real-time learning, both of which are closely related to
+learning quality and preferences. Existing studies have often neglected the learning preferences
+implied by long-term knowledge states and their impact on student performance. Therefore, we
+introduce a hybrid knowledge tracing model that utilizes both long- and short-term knowledge
+state representations (L-SKSKT). It enhances KT by fusing these two types of knowledge state
+representations and measuring their impact on learning quality. L-SKSKT includes a graph
+construction method designed to model students’ long- and short-term knowledge states. In
+addition, L-SKSKT incorporates a knowledge state graph embedding model that can effectively
+capture long- and short-term dependencies, generating corresponding knowledge state repre-
+sentations. Furthermore, we propose a fusion mechanism to integrate these representations and
+trace their impact on learning outcomes. Extensive empirical results on four benchmark datasets
+show that our approach achieves the best performance for KT, and beats various strong baselines
+with a large margin.
+1. Introduction
+Enabled by various information technologies, online learning platforms have evolved significantly over time (Domingue et al.,
+2014; Vardi, 2012). Learning platforms enhance education by providing a richer, more flexible environment that complements
+traditional teaching methods. These platforms offer significant advantages, such as flexibility, convenience, rich resources, and
+diverse curriculum options, making them highly attractive in modern education (Cole et al., 2017; Liu, Huang et al., 2023;
+Zhang et al., 2025). Meanwhile, the capability of platforms to automatically monitor students’ learning progress and knowledge
+∗Corresponding author.
+E-mail addresses:
+yuganfeng@mails.ccnu.edu.cn (G. Yu), zwxie@ccnu.edu.cn (Z. Xie), gyzhou@mail.ccnu.edu.cn (G. Zhou), zhuo@mails.ccnu.edu.cn
+(Z. Zhao), jhuang@yorku.ca (J.X. Huang).
+https://doi.org/10.1016/j.ipm.2025.104074
+Received 21 October 2024; Received in revised form 8 January 2025; Accepted 14 January 2025
+Information Processing and Management 62 (2025) 104074 
+Available online 25 January 2025 
+0306-4573/© 2025 The Authors. 
+Published by Elsevier Ltd. 
+This is an open access article under the CC BY license 
+( http://creativecommons.org/licenses/by/4.0/ ). 
+
+G. Yu et al.
+Fig. 1. A simple schematic of KT. Based on a student’s learning sequence of concept-related exercises, KT predicts responses to the final exercise and indirectly
+models the student’s performance of knowledge-concept mastery over long- and short-term knowledge states.
+state, dynamically adjust teaching progress, and optimize a personalized learning experience tailored to students’ needs becomes
+crucial. One of the key research areas to help address these issues is knowledge tracing (KT). Typically, KT attempts to estimate
+and track a student’s knowledge state for mastering concepts based on historical learning records and then predicts a student’s
+future academic performance based on the estimated knowledge state. Taking the example shown in Fig. 1, to predict a student’s
+academic performance during the response exercise 𝑞7, the KT system evaluates the knowledge states (e.g., mastery of knowledge
+concepts, such as squaring, addition, multiplication) based on the student’s historical exercise records from the response exercises 𝑞1
+to 𝑞6 (Anderson et al., 1990; Shen et al., 2024).
+KT can help teachers to dynamically adjust teaching schedules, learning materials and provide students with learning services that
+support personalized and adaptive learning in online learning systems (Wang, Wu et al., 2019). Since KT tasks are too abstract and
+difficult to define accurately, researchers often convert it into prediction tasks based on students’ knowledge state representations.
+In the literature, previous KT models have evolved from traditional approaches such as probabilistic models (Baker et al., 2008) to
+deep learning-based approaches (Gan et al., 2020; Ghosh et al., 2020). Deep learning-based approaches are based on deep neural
+networks such as deep knowledge tracing (DKT) using recurrent neural networks (RNNs) (Piech et al., 2015), dynamic key–value
+memory networks (DKVMN) using memory networks (MNs) (Zhang, Shi et al., 2017) and graph knowledge tracing (GKT) using
+graph neural networks (GNNs) (Nakagawa et al., 2019). Among them, GNN-based KT exhibits superior performance because they
+model concepts or exercises as nodes in a unified graph representation learning framework, which effectively simulates the structural
+relationships between different concepts and the interactions between different exercises to model students’ knowledge states.
+Although these existing approaches have made great advancements, they are still unsatisfactory. The main limitation of existing
+research is that it focuses on constructing students’ knowledge state embedding based on the knowledge concepts and related
+exercises they have learned in a short period of time, analyzes the short-term iterative process, ignoring the comprehensive
+knowledge system constructed by the students in the long-term learning process, and lacking a more holistic analysis of the
+knowledge states. Meanwhile, existing research on knowledge state modeling is relatively limited, which restricts its applicability and
+flexibility in handling complex knowledge state embedding. In summary, the potential for comprehensive modeling of knowledge
+states to improve KT performance remains to be explored.
+In practice, we observe in conjunction with cognitive load theory (Krathwohl, 2002; Paas et al., 2016) that students generally
+possess relatively stable long-term knowledge states and dynamic short-term knowledge states. Long-term knowledge states reflect
+students’ deep understanding of knowledge and overall learning preferences, corresponding to the stable knowledge system. In
+contrast, the short-term knowledge state reflects recent learning preferences and outcomes, usually shows the real-time change
+phenomenon. This implies that accurately modeling a student’s knowledge state requires considering both long- and short-term
+perspectives. The modeling approach should not only comprehensively assess the student’s overall learning process to capture their
+long-term knowledge state, but also focus on their recent learning activities and performance to update their short-term knowledge
+state in real-time. This method is crucial for improving the accuracy of KT prediction.
+Information Processing and Management 62 (2025) 104074 
+2 

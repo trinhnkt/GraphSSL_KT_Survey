@@ -6,5 +6,5 @@ MODERATE,26
 LIMITED,0
 mean_normalized,0.76
 applicable_max,16
-source,supplementary/supplementary_quality_scores.csv
+source,supplementary/supplementary_quality_scores.csv (v1.8; QA6 capped; raw=component sum; 37 rows)
 two_variable_table,tables/H2_qa7_two_variables.csv

@@ -1,0 +1,203 @@
+ORCID
+Wenbin Gan
+https://orcid.org/0000-0003-3342-5534
+ENDNOTES
+* Assist0910: https://sites.google.com/site/assistmentsdata/home/assistment-2009-2010-data/skill-builder-data-
+2009-2010
+† Assist1213: https://sites.google.com/site/assistmentsdata/home/2012-13-school-data-with-affect
+‡ EdNet: http://bit.ly/ednet_kt1
+REFERENCES
+1.
+Hasanov A, Laine TH, Chung TS. A survey of adaptive context‐aware learning environments. J Ambient
+Intell Smart Environ. 2019;11(5):403‐428.
+2.
+Hoi SCH, Sahoo D, Lu J, Zhao P. Online learning: a comprehensive survey. Neurocomputing. 2021;459:
+249‐289. doi:10.1016/j.neucom.2021.04.112
+3.
+Desmarais MC, Baker RS. A review of recent advances in learner and skill modeling in intelligent learning
+environments. User Model User‐Adapted Interact. 2012;22(1‐2):9‐38.
+4.
+Pelánek R. Bayesian knowledge tracing, logistic models, and beyond: an overview of learner modeling
+techniques. User Modeling and User‐Adapted Interaction. 2017;27(3‐5):313‐350.
+5.
+Thai‐Nghe N, Schmidt‐Thieme L. Multi‐relational factorization models for student modeling in intelligent
+tutoring systems. In: 2015 Seventh International Conference on Knowledge and Systems Engineering (KSE),
+IEEE; 2015:61‐66.
+6.
+Corbett AT, Anderson JR. Knowledge tracing: modeling the acquisition of procedural knowledge. User
+Model User‐Adapted Interact. 1994;4(4):253‐278.
+7.
+Piech C, Bassen J, Huang J, et al. Deep knowledge tracing. In: Advances in Neural Information Processing
+Systems; 2015:505‐513.
+8.
+Zhang J, Shi X, King I, Yeung DY. Dynamic key‐value memory networks for knowledge tracing. In:
+Proceedings of the 26th WWW; 2017:765‐774.
+9.
+Vie JJ, Kashima H. Knowledge tracing machines: factorization machines for knowledge tracing. In: Pro-
+ceedings of the AAAI Conference on Artificial Intelligence. Vol. 33; 2019:750‐757.
+10.
+Huang Z, Liu Q, Chen Y, et al. Learning or forgetting? A dynamic approach for tracking the knowledge
+proficiency of students. ACM Trans Inform Syst. 2020;38(2):1‐33.
+11.
+Gan W, Sun Y, Peng X, Sun Y. Modeling learner's dynamic knowledge construction procedure and cog-
+nitive item difficulty for knowledge tracing. Appl Intell. 2020;50(11):3894‐3912.
+12.
+Yang Y, Shen J, Qu Y, et al. GIKT: a graph‐based interaction model for knowledge tracing. In: ECML
+PKDD. Lecture Notes in Computer Science. Vol 12457. Springer, Cham; 2020. doi:10.1007/978‐3‐030‐67658‐
+2_18
+13.
+Liu Q, Wu R, Chen E, et al. Fuzzy cognitive diagnosis for modelling examinee performance. ACM Trans
+Intell Syst Technol. 2018;9(4):1‐26.
+14.
+Liu Y, Yang Y, Chen X, Shen J, Zhang H, Yu Y. Improving knowledge tracing via pre‐training question
+embeddings. In: Proceedings of the Twenty‐Ninth International Joint Conference on Artificial In-
+telligence; 2020.
+15.
+Pandey S, Srivastava J. RKT: relation‐aware self‐attention for knowledge tracing. In: Proceedings of the 29th
+ACM International Conference on Information & Knowledge Management; 2020:1205‐1214.
+16.
+Ghosh A, Heffernan N, Lan AS. Context‐aware attentive knowledge tracing. In: Proceedings of the 26th
+ACM SIGKDD International Conference on Knowledge Discovery & Data Mining; 2020:2330‐2339.
+17.
+Gan W, Sun Y, Ye S, Fan Y, Sun Y. Field‐aware knowledge tracing machine by modelling students'
+Dynamic Learning Procedure and Item Difficulty. In: 2019 International Conference on Data Mining
+Workshops (ICDMW), IEEE; 2019:1045‐1046.
+18.
+Minn S, Zhu F, Desmarais MC. Improving knowledge tracing model by integrating problem difficulty. In:
+2018 IEEE International conference on data mining workshops (ICDMW) IEEE; 2018:1505‐1506.
+GAN ET AL.
+|
+2043
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+19.
+Kotovsky K, Simon HA. What makes some problems really hard: explorations in the problem space of
+difficulty. Cognitive Psychol. 1990;22(2):143‐183.
+20.
+Chen P, Lu Y, Zheng VW, Pian Y. Prerequisite‐driven deep knowledge tracing. In: 2018 IEEE International
+Conference on Data Mining (ICDM) IEEE; 2018:39‐48.
+21.
+Käser T, Klingler S, Schwing AG, Gross M. Dynamic Bayesian networks for student modeling. IEEE
+Transactions on Learning Technologies. 2017;10(4):450‐462.
+22.
+Liu Q, Tong S, Liu C, et al. Exploiting cognitive structure for adaptive learning. In: Proceedings of the 25th
+ACM SIGKDD International Conference on Knowledge Discovery & Data Mining; 2019:627‐635.
+23.
+Pan L, Li C, Li J, Tang J. Prerequisite relation learning for concepts in moocs. In: Proceedings of the 55th
+AnnualMeeting of the Association for Computational Linguistics (Vol 1: Long Papers); 2017:1447‐1456.
+24.
+Zhang J, King I. Topological order discovery via deep knowledge tracing. In: International Conference on
+Neural Information Processing. Springer; 2016:112‐119.
+25.
+Nakagawa H, Iwasawa Y, Matsuo Y. Graph‐based knowledge tracing: Modeling student proficiency using
+graph neural network. In: 2019 IEEE/WIC/ACM International Conference on Web Intelligence (WI) IEEE;
+2019:156‐163.
+26.
+Abdelrahman G, Wang Q. Knowledge tracing with sequential key‐value memory networks. In: Proceedings
+of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers); 2019:
+175‐184.
+27.
+Tong H, Zhou Y, Wang Z. HGKT: introducing problem schema with hierarchical exercise graph for
+knowledge tracing. arXiv preprint arXiv:2006.16915; 2020.
+28.
+Dong Y, Chawla NV, Swami A. metapath2vec: scalable representation learning for heterogeneous net-
+works. In: 2019 IEEE/WIC/ACM International Conference onWeb Intelligence (WI) IEEE; 2017:135‐144.
+29.
+Kipf TN, Welling M. Semi‐supervised classification with graph convolutional networks. arXiv preprint
+arXiv:1609.02907; 2016.
+30.
+Baker FB. The basics of item response theory. ERIC. 2001.
+31.
+Cen H, Koedinger K, Junker B. Learning factors analysis—a general method for cognitive model evaluation
+and improvement. In: ITS Springer; 2006:164‐175.
+32.
+Pavlik Jr PI, Cen H, Koedinger KR. Performance factors analysis‐a new alternative to knowledge tracing.
+Online Submission. 2009.
+33.
+Choffin B, Popineau F, Bourda Y, Vie JJ. Evaluating DAS3H on the EdNet dataset. In: AAAI 2021‐The 35th
+Conference on Artificial Intelligence/Imagining Post‐COVID Education with AI; 2021.
+34.
+Choffin B, Popineau F, Bourda Y, Vie JJ. DAS3H: modeling student learning and forgetting for optimally
+scheduling distributed practice of skills. In: Proceedings of the 12th EDM; 2019.
+35.
+Lai Z, Wang L, Ling Q. Recurrent knowledge tracing machine based on the knowledge state of students.
+Expert Systems. 2021:e12782.
+36.
+Pardos ZA, Heffernan NT. KT‐IDEM: Introducing item difficulty to the knowledge tracing model. In:
+International Conference on User Modeling, Adaptation, and Personalization. Springer; 2011:243‐254.
+37.
+Wang Z, Gu Y, Lan A, Baraniuk R. VarFA: a variational factor analysis framework for efficient bayesian
+learning analytics. In: Proceedings of The 13th International Conference on Educational Data Mining
+(EDM); 2020.
+38.
+Pandey S, Karypis G. A self‐attentive model for knowledge tracing. In: Proceedings of the 12th International
+Conference on Educational Data Mining; 2019.
+39.
+Long T, Liu Y, Shen J, Zhang W, Yu Y. Tracing knowledge state with individual cognition and acquisition
+estimation. In: Proceedings of the 44th International ACM SIGIR Conference on Research and Development in
+Information Retrieval; 2021:173‐182.
+40.
+Vaswani A, Shazeer N, Parmar N, et al. Attention is all you need. In: Proceedings of the 31st International
+Conference on Neural Information Processing Systems (NIPS'17); 2017:6000‐6010.
+41.
+Liu Q, Huang Z, Yin Y, et al. EKT: exercise‐aware knowledge tracing for student performance prediction.
+IEEE Trans Knowl Data Eng. 2019;33(1):100‐115.
+42.
+Sun J, Zhou J, Zhang K, Li Q, Lu Z. Collaborative embedding for knowledge tracing. In: International
+Conference on Knowledge Science, Engineering and Management. Springer; 2021:333‐342.
+43.
+Lindsey RV, Khajah M, Mozer MC. Automatic discovery of cognitive skills to improve the prediction of
+student learning. In: Advances in Neural Information Processing Systems Citeseer; 2014:1386‐1394.
+2044 |
+GAN ET AL.
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+44.
+Mussack D, Flemming R, Schrater P, Cardoso‐Leite P. Towards discovering problem similarity through
+deep learning: Combining problem features and user behavior. In: Proceedings of The 12th International
+Conference on Educational Data Mining (EDM 2019). Vol. 615; 2019:618.
+45.
+Rihák J, Pelánek R. Measuring similarity of educational items using data on learners' performance. In-
+ternational Educational Data Mining Society. 2017.
+46.
+Nazaretsky T, Hershkovitz S, Alexandron G. Kappa learning: a new item‐similarity method for clustering
+educational items from response data. International Educational Data Mining Society. 2019.
+47.
+Wang C, Lu J. Learning attribute hierarchies from data: Two exploratory approaches. Journal of
+Educational and Behavioral Statistics. 2021;46(1):58‐84.
+48.
+Hamilton WL, Ying R, Leskovec J. Representation learning on graphs: methods and applications. arXiv
+preprint arXiv:1709.05584; 2017.
+49.
+Pelánek R. Measuring similarity of educational items: an overview. IEEE Trans Learn Technol. 2019;13(2):
+354‐366.
+50.
+Yang S, Zhu M, Hou J, Lu X. Deep knowledge tracing with convolutions. arXiv preprint ar-
+Xiv:2008.01169; 2020.
+51.
+Shin D, Shim Y, Yu H, Lee S, Kim B, Choi Y. SAINT+: integrating temporal features for EdNet correctness
+prediction. In: LAK21: 11th International Learning Analytics and Knowledge Conference; 2021:490‐496.
+52.
+Cho K, Van Merriënboer B, Bahdanau D, Bengio Y. On the properties of neural machine translation:
+encoder‐decoder approaches. In: Eighth Workshop on Syntax, Semantics and Structure in Statistical
+Translation (SSST‐8); 2014.
+53.
+Ebbinghaus H. Memory: a contribution to experimental psychology. Annals Neurosci. 2013;20(4):155.
+54.
+Feng M, Heffernan N, Koedinger K. Addressing the assessment challenge with an online system that tutors
+as it assesses. User Model User‐Adapted Interact. 2009;19(3):243‐266.
+55.
+Choi Y, Lee Y, Shin D, et al. Ednet: a large‐scale hierarchical dataset in education. In: International
+Conference on Artificial Intelligence in Education Springer; 2020:69‐73.
+56.
+Maaten Lvd, Hinton G. Visualizing data using t‐SNE. J Mach Learn Res. 2008;9(Nov):2579‐2605.
+57.
+Shi D, Wang T, Xing H, Xu H. A learning path recommendation model based on a multidimensional
+knowledge graph framework for e‐learning. Knowledge‐Based Syst. 2020;195(5):105618.
+How to cite this article: Gan W, Sun Y, Sun Y. Knowledge structure enhanced graph
+representation learning model for attentive knowledge tracing. Int J Intell Syst. 2022;37:
+2012‐2045. doi:10.1002/int.22763
+GAN ET AL.
+|
+2045
+ 1098111x, 2022, 3, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/int.22763 by Tsinghua University Library, Wiley Online Library on [05/11/2022]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License

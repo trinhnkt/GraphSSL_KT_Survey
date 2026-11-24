@@ -1,0 +1,268 @@
+6752
+IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 36, NO. 4, APRIL 2025
+Dual-Channel Adaptive Scale Hypergraph Encoders
+With Cross-View Contrastive Learning
+for Knowledge Tracing
+Jiawei Li , Yuanfei Deng , Yixiu Qin , Shun Mao , and Yuncheng Jiang , Member, IEEE
+Abstract— Knowledge tracing (KT) refers to predicting learn-
+ers’ performance in the future according to their historical
+responses, which has become an essential task in intelligent
+tutoring systems. Most deep learning-based methods usually
+model the learners’ knowledge states via recurrent neural
+networks (RNNs) or attention mechanisms. Recently emerging
+graph neural networks (GNNs) assist the KT model to capture
+the relationships such as question–skill and question–learner.
+However, non-pairwise and complex higher-order information
+among responses is ignored. In addition, a single-channel encoded
+hidden vector struggles to represent multigranularity knowledge
+states. To tackle the above problems, we propose a novel KT
+model named dual-channel adaptive scale hypergraph encoders
+with cross-view contrastive learning (HyperKT). Specifically,
+we design an adaptive scale hyperedge distillation component
+for generating knowledge-aware hyperedges and pattern-aware
+hyperedges that reflect non-pairwise higher-order features among
+responses. Then, we propose dual-channel hypergraph encoders
+to capture multigranularity knowledge states from global and
+local state hypergraphs. The encoders consist of a simplified
+hypergraph convolution network and a collaborative hypergraph
+convolution network. To enhance the supervisory signal in the
+state hypergraphs, we introduce the cross-view contrastive learn-
+ing mechanism, which performs among state hypergraph views
+and their transformed line graph views. Extensive experiments on
+three real-world datasets demonstrate the superior performance
+of our HyperKT over the state-of-the-art (SOTA).
+Index Terms— Contrastive learning, hyperedge distillation,
+hypergraph learning, knowledge tracing (KT).
+NOMENCLATURE
+G = (V, E)
+Hypergraph G with the node set V
+and edge set E.
+H ∈R|V|×|E|
+Incidence matrix.
+L(G)
+Line graph of hypergraph G.
+Ek
+Set of knowledge-aware hyperedges.
+Manuscript received 27 April 2023; revised 27 December 2023; accepted
+2 April 2024. Date of publication 23 April 2024; date of current version
+7 April 2025. This work was supported in part by the National Natural Science
+Foundation of China under Grant 61772210 and Grant U1911201, in part by
+the Key Research and Development Program of Guangdong of China under
+Grant 2023B0303010004, and in part by the Innovation Team Project for
+Universities in Guangdong Province in China under Grant 2023KCXTD011.
+(Corresponding author: Yuncheng Jiang.)
+Jiawei Li, Yuanfei Deng, Yixiu Qin, and Shun Mao are with the School
+of Computer Science, South China Normal University, Guangzhou 510631,
+China (e-mail: lijiawei@m.scnu.edu.cn; dengyf@m.scnu.edu.cn; yxqin@m.
+scnu.edu.cn; shunm@m.scnu.edu.cn).
+Yuncheng Jiang is with the School of Computer Science, South China
+Normal University, Guangzhou 510631, China, and also with the School
+of Artificial Intelligence and the School of Software, South China Normal
+University, Foshan 528225, China (e-mail: ycjiang@scnu.edu.cn).
+Digital Object Identifier 10.1109/TNNLS.2024.3386810
+E p
+Set of pattern-aware hyperedges.
+Hk ∈R|V|×|Ek|
+Knowledge-aware
+hyperedges
+incidence
+matrix.
+Hp ∈R|V|×|E p|
+Pattern-aware
+hyperedges
+incidence
+matrix.
+U
+Set of learners.
+Q
+Set of questions.
+X
+Set of learner’s historical responses.
+s(qa,qb)
+Similarity of question qa and question qb.
+f
+Function of knowledge-aware hyperedge
+generation.
+g
+Function of pattern-aware hyperedge gen-
+eration.
+Pc(X)
+Set of all consecutive subsequences of X.
+γ
+Intervention parameter of question
+similarity.
+ρ
+Learning pattern-aware control function.
+X(l)
+Embeddings of nodes at layer l in
+hypergraph G.
+9(l)
+Embeddings of nodes at layer l in line
+graph L(G).
+θ
+Embeddings of knowledge state.
+I. INTRODUCTION
+W
+ITH the rapid expansion of online intelligent tutoring
+systems, there has been an exponential increase in the
+abundance of question resources and learner behavior data [1].
+Assessing these data proves instrumental in enabling learners
+to accurately understand their strengths and weaknesses, con-
+sequently facilitating the development of personalized learning
+paths [2]. As an effective technology for educational data
+mining, knowledge tracing (KT) lays the foundation for
+human cognitive states tracing, adaptive learning systems, and
+exercise recommendations [3], [4]. The KT model aims to
+accurately predict learners’ future performance by tracing the
+knowledge mastery states [5], [6]. Specifically, the KT model
+predicts the probability of learners correctly answering the
+next question based on their historical response records.
+The existing KT models based on Bayesian [7] and factor
+analysis [8] represent typical methods that have consistently
+demonstrated strong performance. Leveraging the powerful
+representation capabilities of deep learning, there is a dis-
+cernible trend toward KT research based on deep learning
+methods [9], [10]. To acquire the hidden knowledge state, early
+2162-237X © 2024 IEEE. Personal use is permitted, but republication/redistribution requires IEEE permission.
+See https://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: University of Pittsburgh. Downloaded on July 08,2026 at 03:16:02 UTC from IEEE Xplore.  Restrictions apply. 
+
+LI et al.: DUAL-CHANNEL ADAPTIVE SCALE HYPERGRAPH ENCODERS
+6753
+deep learning-based KT approaches encode learners’ response
+sequences via recurrent neural networks (RNNs) [11], memory
+networks [12], and attention mechanism [9]. Recent stud-
+ies have focused on modeling diverse learning behaviors
+from response sequences, which are beneficial to improving
+the performance of the KT model, such as the forgetting
+mechanism [13], [14], learner individualization [15], temporal
+cross-effects [16], and learning gains [14].
+While optimizing the modeling of the learning process and
+learning behavior can enhance prediction performance, a sig-
+nificant challenge arises from the sparse interaction between
+learners and a large number of questions [17]. To address the
+data sparsity issue, some approaches aim to incorporate textual
+information of questions into the KT model [6]. However, the
+textual content of questions is often challenging to obtain [10].
+Recently, graph neural networks (GNNs) have demonstrated
+notable success in modeling graph structural data [18].
+Graph-based KT models have exhibited remarkable perfor-
+mance, utilizing message-passing on question–skill graphs to
+refine question embeddings [19], [20]. Other graph-based KT
+methods focus on modeling latent knowledge states from
+learner–question interaction graphs [21].
+However, a significant limitation of existing KT models is
+that they only utilize pairwise relationships to model knowl-
+edge states, overlooking higher-order relationship patterns
+prevalent among responses [22]. For instance, the non-pairwise
+high-order relationship among responses of interacting sub-
+sequence reflects the learner’s knowledge state within that
+time span. Unlike graph-based models that emphasize pairwise
+relationships, hypergraph generalizes edges to connect more
+than two nodes [23], [24], offering a natural manner to
+capture complex higher-order relationships among responses.
+While the incorporation of hypergraphs to model higher-order
+relationships among responses is advantageous for inferring
+learners’ knowledge states, generating effective hyperedges
+poses a challenge [25]. In addition, existing KT methods
+typically encode the knowledge state in a single channel [26],
+resulting in the inability to model the multigranular knowledge
+states during the learning process. In fact, response sequences
+under different views represent diverse knowledge states of
+learners.
+To
+address
+the
+above
+issues,
+this
+article
+proposes
+dual-channel
+adaptive
+scale
+hypergraph
+encoders
+with
+cross-view contrastive learning for KT (HyperKT), which
+consists of three key learning components. First, to cap-
+ture the non-pairwise and complex high-order relationships
+among responses, we propose a hyperedge distillation com-
+ponent for constructing state hypergraphs. Leveraging prior
+knowledge of problem skills and learning patterns during
+the learning process, hyperedge distillation adaptively extracts
+knowledge-aware hyperedges and pattern-aware hyperedges
+from response sequences. A distillation matrix is obtained
+through hyperedge distillation, facilitating the capture of
+essential information transmission between nodes and hyper-
+edges in the hypergraph. Then, we construct global and
+local state hypergraphs, which are encoded via introduced
+dual-channel hypergraph encoders to capture multigranu-
+larity knowledge states. One channel of the hypergraph
+encoder employs a simplified hypergraph convolution net-
+work, efficiently modeling learners’ global knowledge states.
+In particular, for the local state hypergraph encoder channel,
+we propose a collaborative hypergraph convolution network to
+model fine-grained local knowledge states, with collaborative
+information comprising hyperedge distillation matrices and
+attention weight matrices. Finally, to address the issue of
+insufficient supervision signals in the state hypergraph caused
+by the sparsity of response sequences, we design a cross-view
+hypergraph contrastive learning mechanism, performing local
+and global contrastive learning between two hypergraph views
+and their transformed line graph views. The cross-view con-
+trastive learning on the state hypergraphs maximizes the
+mutual information between the learned local knowledge state
+and the global knowledge state.
+The main contributions of the proposed HyperKT are sum-
+marized as follows.
+1) To capture non-pairwise high-order relationships among
+responses, we propose a hyperedge distillation compo-
+nent to guide the generation of knowledge-aware and
+pattern-aware hyperedges from response sequences.
+2) We design dual-channel hypergraph encoders to model
+multigranular knowledge states from global and local
+state hypergraphs, including simplified and collaborative
+hypergraph convolution channels.
+3) To enhance self-supervised signals in hypergraphs,
+we introduce a cross-view contrastive learning mech-
+anism, maximizing the mutual information of the global
+and local knowledge states learned from multiviews.
+4) Extensive experiments on three public datasets demon-
+strate that the proposed HyperKT outperforms various
+state-of-the-art (SOTA) models.
+The remainder of this article is organized as follows.
+Section II reviews the relevant works of this article. Sec-
+tions III and IV describe the problem definition and the
+details of the proposed HyperKT. The experimental results and
+analyses are presented in Section V. Section VI concludes this
+article.
+II. RELATED WORKS
+A. Knowledge Tracing
+The goal of KT is to trace learners’ changing knowledge
+states during exercise and correctly predict their performance
+on the subsequent questions. Existing KT methods can be
+categorized into traditional machine learning-based methods
+and deep learning-based methods.
+Traditional
+machine
+learning-based
+Bayesian
+KT
+(BKT) [27] models the learner’s knowledge state as a
+binary variable and updates it using Bayesian principles.
+Dynamic
+BKT
+(DBKT)
+[28]
+models
+the
+complicated
+relationship between skills using dynamic Bayesian networks.
+Factorization machines are also a tool for traditional machine
+learning-based methods [29]. KT machines (KTMs) [8] use
+factoring machines to provide supplementary information to
+the KT model to improve performance.
+Deep KT (DKT) [11], the first study to introduce deep learn-
+ing in KT, models learners’ knowledge states via RNNs. The
+Authorized licensed use limited to: University of Pittsburgh. Downloaded on July 08,2026 at 03:16:02 UTC from IEEE Xplore.  Restrictions apply. 

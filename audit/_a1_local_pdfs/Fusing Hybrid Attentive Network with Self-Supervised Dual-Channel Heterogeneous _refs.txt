@@ -1,0 +1,204 @@
+Expert Systems With Applications 225 (2023) 120212
+12
+T. Wu and Q. Ling
+Fig. 8. Embedding visualization. Each point represents one question and its color stands for the attribute of the question.
+However, there are still some limitations in our method. On one
+hand, the proposed graph network cannot effectively construct the
+representation of the newly updated questions in online systems. On
+the other hand, we capture a student’s long-term and short-term intents
+in historical sequences by the proposed hybrid attention network, but
+ignore the differences of initial knowledge states of students. In the
+future, we plan to introduce a meta-learning paradigm to address the
+above limitations in the KT field, and exploit meta-learning at the KT
+model level and HIN at the data level simultaneously.
+CRediT authorship contribution statement
+Tangjie Wu: Conceptualization, Data curation, Software, Method-
+ology, Formal analysis, Validation. Qiang Ling: Investigation, Project
+administration, Writing – review, Funding acquisition, Resources.
+Declaration of competing interest
+The authors declare that they have no known competing finan-
+cial interests or personal relationships that could have appeared to
+influence the work reported in this paper.
+Data availability
+Data will be made available on request.
+Acknowledgments
+This work was supported in part by Provincial Quality Program
+of High Education Schools of Anhui Province, China under Grant
+2021jyxm1743, in part by the Key Science and Technology Program of
+Anhui, China under Grants 202203f07020002 and 202203a05020012,
+and in part by the Applied Science and Technology Achievement Cul-
+tivation Project of Institute of Advanced Technology, University of
+Science and Technology of China.
+References
+Abdelrahman, G., & Wang, Q. (2019). Knowledge tracing with sequential key-value
+memory networks. In Proceedings of the 42nd international ACM SIGIR conference on
+research and development in information retrieval (pp. 175–184).
+Adesope, O. O., Trevisan, D. A., & Sundararajan, N. (2017). Rethinking the use of tests:
+A meta-analysis of practice testing. Review of Educational Research, 87(3), 659–701.
+Carpenter, S. K., Pashler, H., Wixted, J. T., & Vul, E. (2008). The effects of tests on
+learning and forgetting. Memory & Cognition, 36(2), 438–448.
+Chung, J., Gulcehre, C., Cho, K., & Bengio, Y. (2014). Empirical evaluation of gated
+recurrent neural networks on sequence modeling. arXiv preprint arXiv:1412.3555.
+Collobert, R., & Weston, J. (2008). A unified architecture for natural language
+processing: Deep neural networks with multitask learning. In Proceedings of the
+25th international conference on machine learning (pp. 160–167).
+Corbett, A. T., & Anderson, J. R. (1994). Knowledge tracing: Modeling the acquisition of
+procedural knowledge. User Modeling and User-Adapted Interaction, 4(4), 253–278.
+Dong, W., Woźniak, M., Wu, J., Li, W., & Bai, Z. (2023). De-noising aggregation of
+graph neural networks by using principal component analysis. IEEE Transactions on
+Industrial Informatics, 19(3), 2385–2394.
+Dong, W., Wu, J., Zhang, X., Bai, Z., Wang, P., & Woźniak, M. (2022). Improving
+performance and efficiency of Graph Neural Networks by injective aggregation.
+Knowledge-Based Systems, 254, Article 109616.
+Fersini, E., Messina, E., & Archetti, F. (2014). A p-median approach for predicting drug
+response in tumour cells. BMC Bioinformatics, 15(1), 1–19.
+Ghosh, A., Heffernan, N., & Lan, A. S. (2020). Context-aware attentive knowledge
+tracing. In Proceedings of the 26th ACM SIGKDD international conference on knowledge
+discovery & data mining (pp. 2330–2339).
+Hamilton, W., Ying, Z., & Leskovec, J. (2017). Inductive representation learning on
+large graphs. Advances in Neural Information Processing Systems, 30.
+Hassani, K., & Khasahmadi, A. H. (2020). Contrastive multi-view representation learning
+on graphs. In International conference on machine learning (pp. 4116–4126). PMLR.
+Hedrea, R.-C. R., & Petriu, E. M. (2021). Evolving fuzzy models of shape memory alloy
+wire actuators. Science and Technology, 24(4), 353–365.
+Hochreiter, S., & Schmidhuber, J. (1997). Long short-term memory. Neural Computation,
+9(8), 1735–1780.
+Hu, Z., Dong, Y., Wang, K., & Sun, Y. (2020). Heterogeneous graph transformer. In
+Proceedings of the web conference 2020 (pp. 2704–2710).
+Ji, W., Wang, K., Wang, X., Chen, T., & Cristea, A. (2020). Sequential recommender via
+time-aware attentive memory network. In Proceedings of the 29th ACM international
+conference on information & knowledge management (pp. 565–574).
+
+Expert Systems With Applications 225 (2023) 120212
+13
+T. Wu and Q. Ling
+Jiang, H., Xiao, B., Luo, Y., & Ma, J. (2023). A self-attentive model for tracing
+knowledge and engagement in parallel. Pattern Recognition Letters, 165, 25–32.
+Kasurinen, J., & Nikula, U. (2009). Estimating programming knowledge with Bayesian
+knowledge tracing. ACM SIGCSE Bulletin, 41(3), 313–317.
+Kingma, D. P., & Ba, J. (2014). Adam: A method for stochastic optimization. arXiv
+preprint arXiv:1412.6980.
+Kipf,
+T.
+N.,
+&
+Welling,
+M.
+(2016).
+Semi-supervised
+classification
+with
+graph
+convolutional networks. arXiv preprint arXiv:1609.02907.
+Lindsey, R. V., Shroyer, J. D., Pashler, H., & Mozer, M. C. (2014). Improving students’
+long-term knowledge retention through personalized review. Psychological Science,
+25(3), 639–647.
+Liu, S., Zou, R., Sun, J., Zhang, K., Jiang, L., Zhou, D., & Yang, J. (2021). A hierarchical
+memory network for knowledge tracing. Expert Systems with Applications, 177,
+Article 114935.
+Lu, Y., Fang, Y., & Shi, C. (2020). Meta-learning on heterogeneous information networks
+for cold-start recommendation. In Proceedings of the 26th ACM SIGKDD international
+conference on knowledge discovery & data mining (pp. 1563–1573).
+Van der Maaten, L., & Hinton, G. (2008). Visualizing data using t-SNE. Journal of
+Machine Learning Research, 9(11), 2579–2605.
+Minn, S., Desmarais, M. C., Zhu, F., Xiao, J., & Wang, J. (2019). Dynamic student
+classiffication on memory networks for knowledge tracing. In Pacific-Asia conference
+on knowledge discovery and data mining (pp. 163–174). Springer.
+Nagatani, K., Zhang, Q., Sato, M., Chen, Y.-Y., Chen, F., & Ohkuma, T. (2019).
+Augmenting knowledge tracing by considering forgetting behavior. In The world
+wide web conference (pp. 3101–3107).
+Ni, Q., Wei, T., Zhao, J., He, L., & Zheng, C. (2023). HHSKT: A learner–question
+interactions based heterogeneous graph neural network model for knowledge
+tracing. Expert Systems with Applications, 215, Article 119334.
+Van den Oord, A., Li, Y., & Vinyals, O. (2018). Representation learning with contrastive
+predictive coding. arXiv e-prints, arXiv–1807.
+Pandey, S., & Karypis, G. (2019). A self-attentive model for knowledge tracing. arXiv
+preprint arXiv:1907.06837.
+Peng, Z., Huang, W., Luo, M., Zheng, Q., Rong, Y., Xu, T., & Huang, J. (2020).
+Graph representation learning via graphical mutual information maximization. In
+Proceedings of the web conference 2020 (pp. 259–270).
+Peters, B., Niculae, V., & Martins, A. F. (2019). Sparse sequence-to-sequence models.
+arXiv preprint arXiv:1905.05702.
+Piech, C., Spencer, J., Huang, J., Ganguli, S., Sahami, M., Guibas, L., & Sohl-Dickstein, J.
+(2015). Deep knowledge tracing. arXiv preprint arXiv:1506.05908.
+Pozna, C., Precup, R.-E., Tar, J. K., Škrjanc, I., & Preitl, S. (2010). New results
+in modelling derived from Bayesian filtering. Knowledge-Based Systems, 23(2),
+182–194.
+Ren, Y., Liu, B., Huang, C., Dai, P., Bo, L., & Zhang, J. (2019). Heterogeneous deep
+graph infomax. arXiv preprint arXiv:1911.08538.
+Schlichtkrull, M., Kipf, T. N., Bloem, P., Berg, R. v. d., Titov, I., & Welling, M. (2018).
+Modeling relational data with graph convolutional networks. In European semantic
+web conference (pp. 593–607). Springer.
+Shang, J., Qu, M., Liu, J., Kaplan, L. M., Han, J., & Peng, J. (2016). Meta-path guided
+embedding for similarity search in large-scale heterogeneous information networks.
+arXiv preprint arXiv:1610.09769.
+Shi, C., Li, Y., Zhang, J., Sun, Y., & Philip, S. Y. (2016). A survey of heterogeneous
+information network analysis. IEEE Transactions on Knowledge and Data Engineering,
+29(1), 17–37.
+Song, X., Li, J., Tang, Y., Zhao, T., Chen, Y., & Guan, Z. (2021). Jkt: A joint graph
+convolutional network based deep knowledge tracing. Information Sciences, 580,
+510–523.
+Su, Y., Liu, Q., Liu, Q., Huang, Z., Yin, Y., Chen, E., Ding, C., Wei, S., & Hu, G.
+(2018). Exercise-enhanced sequential modeling for student performance prediction.
+In Proceedings of the AAAI conference on artificial intelligence, Vol. 32.
+Sun, Y., & Han, J. (2013). Mining heterogeneous information networks: a structural
+analysis approach. Acm Sigkdd Explorations Newsletter, 14(2), 20–28.
+Sun, Y., Han, J., Yan, X., Yu, P. S., & Wu, T. (2011). Pathsim: Meta path-based top-k
+similarity search in heterogeneous information networks. Proceedings of the VLDB
+Endowment, 4(11), 992–1003.
+Sun, F.-Y., Hoffmann, J., Verma, V., & Tang, J. (2019). Infograph: Unsupervised
+and semi-supervised graph-level representation learning via mutual information
+maximization. arXiv preprint arXiv:1908.01000.
+Sun, J., Zou, R., Liang, R., Gao, L., Liu, S., Li, Q., Zhang, K., & Jiang, L. (2022).
+Ensemble knowledge tracing: Modeling interactions in learning process. Expert
+Systems with Applications, Article 117680.
+Tong, H., Wang, Z., Liu, Q., Zhou, Y., & Han, W. (2020). HGKT: Introducing hierarchical
+exercise graph for knowledge tracing. arXiv preprint arXiv:2006.16915.
+Tsallis, C. (1988). Possible generalization of Boltzmann-Gibbs statistics. Journal of
+Statistical Physics, 52(1), 479–487.
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł.,
+& Polosukhin, I. (2017). Attention is all you need. In Advances in neural information
+processing systems (pp. 5998–6008).
+Veličković, P., Cucurull, G., Casanova, A., Romero, A., Lio, P., & Bengio, Y. (2017).
+Graph attention networks. arXiv preprint arXiv:1710.10903.
+Velickovic, P., Fedus, W., Hamilton, W. L., Liò, P., Bengio, Y., & Hjelm, R. D. (2019).
+Deep graph infomax. ICLR (Poster), 2(3), 4.
+Wang, X., Ji, H., Shi, C., Wang, B., Ye, Y., Cui, P., & Yu, P. S. (2019). Heterogeneous
+graph attention network. In The world wide web conference (pp. 2022–2032).
+Wang, X., Liu, N., Han, H., & Shi, C. (2021). Self-supervised heterogeneous graph
+neural network with co-contrastive learning. In Proceedings of the 27th ACM SIGKDD
+conference on knowledge discovery & data mining (pp. 1726–1736).
+Wang, C., Ma, W., Zhang, M., Lv, C., Wan, F., Lin, H., Tang, T., Liu, Y., & Ma, S.
+(2021). Temporal cross-effects in knowledge tracing. In Proceedings of the 14th ACM
+international conference on web search and data mining (pp. 517–525).
+Wang, W., Ma, H., Zhao, Y., Li, Z., & He, X. (2022). Tracking knowledge proficiency
+of students with calibrated Q-matrix. Expert Systems with Applications, 192, Article
+116454.
+Wang, Y., Tang, S., Lei, Y., Song, W., Wang, S., & Zhang, M. (2020). DisenHAN: Disen-
+tangled heterogeneous graph attention network for recommendation. In Proceedings
+of the 29th ACM international conference on information & knowledge management (pp.
+1605–1614).
+Wei, L., Li, B., Li, Y., & Zhu, Y. (2022). Time interval aware self-attention approach
+for knowledge tracing. Computers & Electrical Engineering, 102, Article 108179.
+Wu, Z., Huang, L., Huang, Q., Huang, C., & Tang, Y. (2022). SGKT: Session graph-
+based knowledge tracing for student performance prediction. Expert Systems with
+Applications, 206, Article 117681.
+Wu, T., & Ling, Q. (2023). Self-supervised heterogeneous hypergraph network for
+knowledge tracing. Information Sciences, 624, 200–216.
+Xu, K., Hu, W., Leskovec, J., & Jegelka, S. (2018). How powerful are graph neural
+networks? arXiv preprint arXiv:1810.00826.
+Yang, Y., Shen, J., Qu, Y., Liu, Y., Wang, K., Zhu, Y., Zhang, W., & Yu, Y. (2020).
+GIKT: a graph-based interaction model for knowledge tracing. arXiv preprint arXiv:
+2009.05991.
+Yudelson, M. V., Koedinger, K. R., & Gordon, G. J. (2013). Individualized bayesian
+knowledge tracing models. In International conference on artificial intelligence in
+education (pp. 171–180). Springer.
+Zhang, J., Shi, X., King, I., & Yeung, D.-Y. (2017). Dynamic key-value memory networks
+for knowledge tracing. In Proceedings of the 26th international conference on world
+wide web (pp. 765–774).
+Zhang, C., Song, D., Huang, C., Swami, A., & Chawla, N. V. (2019). Heterogeneous
+graph neural network. In Proceedings of the 25th ACM SIGKDD international
+conference on knowledge discovery & data mining (pp. 793–803).
+Zhu, Y., Xu, Y., Yu, F., Liu, Q., Wu, S., & Wang, L. (2021). Graph contrastive
+learning with adaptive augmentation. In Proceedings of the web conference 2021
+(pp. 2069–2080).

@@ -1,0 +1,2038 @@
+
+
+######## LGS-KT - Integrating Logical and Grammatical Skills for Effective Programming Knowledge Tracing.pdf ########
+
+----- p.5 -----
+Neural Networks 185 (2025) 107164
+5
+X. Sun et al.
+Fig. 2. The core architecture of our LGS-KT model has been presented. The diagram reveals the knowledge tracking process in programming practice. At time step 𝑡, the inputs
+include the submitted code 𝑐𝑡, the knowledge concept 𝐾 𝐶𝑡, the student’s response 𝑟𝑡, and the knowledge state ℎ𝑡. Additionally, we can also predict the student’s performance at
+the next time step 𝑡 + 1, denoted as 𝑦𝑡+1.
+practice sequence to construct a neural network graph of grammatical
+skills interactions, as shown in Fig. 2(c). Finally, by comprehensively
+considering the students’ logical and grammatical skills, we predict the
+sequence of students’ programming behaviors, as shown in Fig. 2(d). In
+the following sections, we will provide a more detailed description and
+discussion of these four modules.
+Algorithm 1 LGS-KT Algorithm
+Require: 𝐶𝑡: Student’s submitted code, 𝑄𝑡: Code quality score, 𝐺𝑡:
+Grammar score, 𝐿: Submission sequence
+Ensure: 𝑃𝑡+1: Prediction of student’s behavior at time 𝑡 + 1
+1: Input: 𝐶𝑡, 𝑄𝑡, 𝐺𝑡, 𝐿
+2: Initialization: Extract features from 𝐶𝑡, compute 𝑄𝑡 and 𝐺𝑡
+3: procedure Information Extraction
+4: Calculate 𝐶 𝑄𝑡 =𝑄𝑡 ×𝐺𝑡
+5: end procedure
+6: procedure Logical Skill Graph Construction
+7: Calculate edit distance 𝑑 𝑤(𝐶𝑡, 𝐶𝑡+1)
+8: Construct logical skill graph using 𝑑 𝑤 and neighboring nodes
+9: end procedure
+10: procedure Grammar Skill Graph Construction
+11: Calculate similarity 𝑆𝑖𝑗 between problems
+12: Construct grammatical skill graph using 𝑆𝑖𝑗 and neighboring
+nodes
+13: end procedure
+14: procedure Collaborative Prediction
+15: Integrate logical and grammatical skills: ℎ𝑡 = 𝑓 (𝐿𝑆 𝑇 𝑀 , ℎ′
+𝑔 𝑡,
+ℎ′
+𝑙 𝑡, 𝐶𝑡, 𝐺𝑡, 𝑅𝑡)
+16: Generate 𝑃𝑡+1
+17: end procedure
+4.1. Source code information extraction
+The source code submitted by students contains rich informa-
+tion, which can essentially be used to assess students’ coding abil-
+ities (Brown, Kölling, Kyfonidis, & Weill-Tessier, 2022). In order to
+evaluate students’ coding levels as accurately as possible, we assess
+their code from two dimensions: code quality and code grammar. The
+specific evaluation methods are shown in Eqs. (1) and ( 2). To fully
+utilize the interaction effects between 𝐺(𝑐𝑡) (grammar score) and 𝐺(𝑐𝑡)
+(quality score), we calculate 𝐶 𝑄𝑡 in the following manner:
+𝐶 𝑄𝑡 = 𝐆 ⋅ 𝐐, (3)
+where 𝐆 and 𝐐 are the embedding corresponding to the grammar score
+and quality score, respectively.
+4.2. Reweighted logical skills evolution graph
+Students’ demonstration of logical skills during programming ex-
+ercises is crucial for evaluating their programming abilities (Marjan,
+Uddin, & Ibn Afjal, 2023). In online assessment systems, the system
+provides timely feedback on the students’ submitted code, including
+its correctness and performance. To find the optimal solution, students
+often need to attempt and adjust multiple times, leading to multiple
+submissions of the same problem. Inspired by previous work (Zhang &
+Shasha, 1989) on edit distance, we can determine the changes made
+by students between consecutive submissions by observing the modifi-
+cations in their code, thereby obtaining the distance 𝑑 𝑤 between two
+consecutive submissions. Let𝑐𝑡 and𝑐𝑡+1 be two consecutive submissions
+for the same problem, where the node set of 𝑐𝑡 is 𝑁𝑐𝑡 ∈ {𝑛1, 𝑛2, …, 𝑛𝑖},
+and the node set of𝑐𝑡+1 is𝑁𝑐𝑡+1 ∈ {𝑚1, 𝑚2, …, 𝑚𝑗}. We define a matrix
+D, where 𝐷𝑖,𝑗 represents the edit distance between the subtree rooted
+at 𝑛𝑖 in 𝑐𝑡 and the subtree rooted at 𝑚𝑗 in 𝑐𝑡+1. This calculation can be
+performed using the following recursive formula:
+𝐷i,j =
+⎧
+⎪
+⎨
+⎪⎩
+𝑗 if 𝑖 = 0, ∀𝑗 ∈ {0, 1, 2, …, 𝑚},
+𝑖 if 𝑗 = 0, ∀𝑖 ∈ {0, 1, 2, …, 𝑛},
+min(𝐷i-1,j +𝛿(𝑛i, ∅), 𝐷i,j-1 +𝛿(∅, 𝑚j), 𝐷i-1,j-1 +𝛿(𝑛i, 𝑚j)),
+𝑑 𝑤(𝑐𝑡, 𝑐𝑡+1) =
+𝑛∑
+𝑖=0
+𝑚∑
+𝑗=0
+𝐷𝑖,𝑗,
+(4)
+where 𝛿(𝑛𝑖, ∅) is the cost of deleting node 𝑛𝑖, 𝛿(∅, 𝑚𝑗 ) is the cost of
+inserting node 𝑚𝑗, and 𝛿(𝑛𝑖, 𝑚𝑗 ) is the cost of replacing node 𝑛𝑖 with
+𝑚𝑗, and 𝑚𝑖𝑛(⋅) is the minimum value function.
+To represent the evolution of students’ logical skills during the
+programming process, we measure these skills by observing changes
+between different submissions of the same problem. These changes
+manifest as differences in edit distances, source code modifications,
+and variations in quality and grammar. After obtaining these changes
+between the codes, we need to construct a sequence graph based on
+
+----- p.6 -----
+Neural Networks 185 (2025) 107164
+6
+X. Sun et al.
+these changes and the evolutionary path of the code. This sequence
+graph can be referred to as the reweighted logical skills evolution
+graph. It takes the students’ submitted code 𝑐 and the code quality
+grammar score 𝐶 𝑄 as input data 𝑉 , and constructs the graph with
+directed edges𝐸 representing the order of code evolution. The specific
+calculation formula is as follows:
+𝑙 𝑥𝑡−1 ==𝑊1(𝐺 𝑄𝑡−1⊕ 𝑔(𝑐𝑡−1)) +𝑏1,
+ℎ′
+𝑗 =𝑊2(𝑅𝑒𝑙 𝑢(𝑙 𝑥𝑡−1)) +𝑏2,
+ℎ′
+𝑙 𝑡 =𝜎
+⎛
+⎜
+⎜⎝
+∑
+𝑗∈⃗𝑁(𝑡)
+𝑓 (𝑑 𝑤(𝑐𝑗, 𝑐𝑡)) 1√𝑑𝑡𝑑𝑗
+𝑊3𝑅𝑒𝑙 𝑢(ℎ′
+𝑗 )
+⎞
+⎟
+⎟⎠
+,
+(5)
+where 𝑔(⋅) is the encoding function using GraphCodeBERT, 𝜎(⋅) is
+the 𝑠𝑜𝑓 𝑡𝑚𝑎𝑥(⋅) function, 𝑓 (⋅) is a normalization function, and 𝑅𝑒𝑙 𝑢(⋅)
+is an activation function. ⊕ represents vector concatenation, 𝑊1 ∈
+R(𝑑𝑔 +768)×𝑑𝑔 , 𝑊2, 𝑊3 ∈ R𝑑𝑔 ×𝑑𝑔 are learnable weight parameters, 𝑏1, 𝑏2 ∈
+R𝑑𝑔 are bias terms, ⃗𝑁(𝑡) represents the directed neighbor nodes of code
+𝑐𝑡, and 𝑑𝑡 and 𝑑𝑗 are the degrees of nodes 𝑡 and 𝑗, respectively.
+4.3. Grammar skill interaction graph
+In programming practice, there is often significant knowledge con-
+nectivity between different programming problems (Wang et al., 2017).
+Similar problems can often be solved using similar solutions. Therefore,
+accurately assessing the similarity between the problems students have
+solved, and building a correlation graph of each student’s sequence of
+programming exercises based on this is very important. Specifically,
+we first encode the global set of programming problems (knowledge
+concepts) using CodeBERT, then calculate the pairwise similarity using
+cosine similarity, and form a similarity matrix. The specific calculation
+is as follows:
+⃗ 𝑣𝑖 =𝑓 𝑐(𝑐𝑖),
+𝑆𝑖𝑗 =
+⃗ 𝑣𝑖 ⋅⃗ 𝑣𝑗
+‖⃗ 𝑣𝑖‖ ⋅‖⃗ 𝑣𝑗‖,
+𝐒 = [𝑆𝑖𝑗 ]𝑚×𝑚,
+(6)
+where 𝑓 𝑐(⋅) is the encoding function of CodeBERT, 𝑆𝑖𝑗 represents the
+similarity between two problems, and 𝐒 is the matrix of programming
+problem similarities.
+Follow this, we will construct the connections between program-
+ming problems for each student. We first collect the programming
+problems involved from the sequence of programming assignments
+submitted by student𝑆𝑖. Then, using the similarity matrix 𝐒, we select
+elements that satisfy 𝑆𝑖𝑗 ≥ 𝑡 (where 𝑡 is a threshold hyperparameter)
+as the basis for constructing the knowledge interaction graph between
+programming problems for that student. By adopting this method, we
+can not only effectively outline the interconnections between different
+programming problems for each student but also combine the student’s
+performance on specific programming problems to construct a graph
+that reflects the interactions of their grammar skills. This graph not
+only uncovers relationships within the data but also enhances our
+understanding of students’ learning patterns and knowledge construc-
+tion. Consequently, it allows for a more nuanced grasp of their skill
+development and mastery of knowledge throughout the programming
+learning process. The specific calculation method for the grammatical
+skills interaction graph is detailed below:
+𝑔 𝑥𝑖 =𝑊𝑐 𝑝(⃗ 𝑣𝑖⊕ 𝐄𝐆[𝐺(𝑐𝑖)]) +𝑏𝑐 𝑝,
+ℎ𝑖 =𝑊4𝑅𝑒𝑙 𝑢(𝑔 𝑥𝑖) +𝑏4,
+ℎ′
+𝑔 𝑡 =𝜎
+⎛
+⎜
+⎜⎝
+∑
+𝑖∈⃗𝑁(𝑡)
+1√
+𝑑𝑡𝑑𝑖
+𝑊5𝑅𝑒𝑙 𝑢(ℎ𝑖)
+⎞
+⎟
+⎟⎠
+,
+(7)
+where 𝑊𝑐 𝑝 ∈ R(𝑑𝑔 +768)×𝑑𝑔 , 𝑊4, 𝑊5 ∈ R𝑑𝑔 ×𝑑𝑔 are learnable weight
+parameters, 𝑏𝑐 𝑝, 𝑏4 ∈ R𝑑𝑔 are bias terms, ⃗𝑁(𝑡) represents the directed
+neighbor nodes of problem 𝑐 𝑝𝑡, and 𝑑𝑡 and 𝑑𝑖 are the degrees of nodes
+𝑡 and 𝑖 respectively.
+4.4. Collaborative output layer
+Through the reweighted logical skill evolution graph, we capture
+the dynamic changes in students’ logical skills during multiple consec-
+utive submissions on the same problem, represented as ℎ′
+𝑙 𝑡. Simulta-
+neously, using the grammatical skills interaction graph, we depict the
+representation of knowledge interaction between different program-
+ming problems asℎ′
+𝑔 𝑡. A student’s programming ability is a combination
+of logical and grammatical skills; thus, adequately modeling these skills
+is key to comprehensively assessing a student’s programming level.
+Specifically, we combine the learned skill features with the code
+snippets submitted by students, related knowledge concepts, and the
+students’ responses to the problems. We process this information
+through a sequential learning process to obtain the student’s knowledge
+states at time step𝑡, denoted asℎ𝑡. Then, to more accurately reflect how
+students apply the learned knowledge in practice, we merge the KC at
+time step𝑡 + 1,𝑘𝑐𝑡+1, with the student’s knowledge state representation
+to make predictions at that moment. The formula is as follows:
+ℎ𝑡 =𝐿𝑆 𝑇 𝑀(𝛼 ℎ′
+𝑔 𝑡⊕ (1 −𝛼)ℎ′
+𝑙 𝑡⊕ 𝑘𝑐𝑡⊕ 𝑔(𝑐𝑡)⊕ 𝑟𝑡),
+𝑝𝑟𝑒𝑡 =ℎ𝑡⊕ 𝑘𝑐𝑡+1,
+𝑝𝑟𝑒𝑡+1 =𝜎(𝑤𝑡(𝑝𝑡 +𝑏𝑡)),
+(8)
+where 𝑤𝑡 ∈ R1×(𝑑+𝑑) is a learnable weight parameter, and 𝑏1
+𝑡 ∈ R1 is a
+bias term.
+4.5. Objective function
+To train all parameters within the LGS-KT model, we employ the
+cross-entropy logarithmic loss function as the objective function, which
+is based on the discrepancy between the model’s predicted value 𝑝𝑟𝑒
+and the actual result 𝑟 of whether the student’s submitted code is
+accepted by the system.
+(𝛽) = −
+𝑇∑
+𝑡=1
+(𝑟𝑡 log(𝑝𝑟𝑒𝑡) + (1 −𝑟𝑡) log(1 −𝑝𝑟𝑒𝑡)) +𝜆𝛽‖𝛽‖2, (9)
+where 𝜆𝛽 represents the set of all parameters in the LGS-KT model,
+and 𝜆𝛽 refers to the regularization hyperparameter. To minimize the
+objective function, we utilize the Adam optimizer. The experimental
+section will further detail the specific configurations of other settings.
+5. Experiments
+In this section, we will first present the real-world datasets used
+in our experiments and thoroughly explain the specific details of the
+training phase, as well as the baseline models selected. Subsequently,
+this paper will conduct a comparative analysis between the baseline
+models and our proposed model in predicting students’ future learning
+outcomes. Moreover, to fully demonstrate the advantages of the LGS-KT
+model, we will explore the following research questions:
+• RQ1 What is the performance of the proposed LGS-KT model in
+modeling knowledge states?
+• RQ2 Does our proposed LGS-KT model exhibit superior perfor-
+mance in predicting student performance?
+• RQ3 Can the reweighted logical skill evolution graph module
+effectively represent changes in students’ logical skills?
+• RQ4 Can the grammatical skills interaction graph module learn
+meaningful grammatical skills features?
+• RQ5 How do the various modules in LGS-KT affect the results of
+KT?
+• RQ6 Does the choice of embedding methods affect the predictive
+performance of the model?
+• RQ7 How does the LGS-KT model interpret the code submitted
+by students?
+
+
+######## Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing.pdf ########
+
+----- p.5 -----
+J. Wang et al.
+Fig. 3. The proposed MGIGKT framework. (a) is the overall workflow of the model. (b) is the Multi-Scale Sequential Perception Modeling module, dynamically modeling the
+student’s knowledge state from a temporal perspective. (c) is the Interaction Graph Dependency Modeling module, modeling two types of interaction graphs based on similarity,
+and capturing the student’s knowledge state from a static perspective.
+Fine-grained modeling of students’ knowledge states: Fine-
+grained modeling of students’ historical learning records allows for
+more precise tracing of changes in their knowledge states over different
+learning periods, thereby providing a deeper understanding of their
+learning characteristics and behavior patterns [28]. To achieve this
+goal, we design a fine-grained attention network to more effectively
+capture knowledge state changes at specific granularities. Specifically,
+we introduce a time-aware encoder to generate knowledge state rep-
+resentations 𝐇𝑇 𝑀1 and 𝐇𝑇 𝑀2, where 𝑇 𝑀1 and 𝑇 𝑀2 represent the
+different temporal granularities. Since the steps for modeling knowl-
+edge states at both granularities are the same, we will omit the
+subscripts 1 and 2 in the following text and use 𝐇𝑇 𝑀 directly. The
+formula is represented as follows:
+𝐇𝑇 𝑀 ′
+= {𝑎𝑔 𝑔(𝐈𝑠
+1, …, 𝐈𝑠
+𝑙 ), 𝑎𝑔 𝑔(𝐈𝑠
+𝑙+1, …, 𝐈𝑠
+2𝑙), …, 𝑎𝑔 𝑔(𝐈𝑠
+𝑡−𝑙+1, …, 𝐈𝑠
+𝑡 )}, (6)
+where the function 𝑎𝑔 𝑔(⋅) represents the aggregator operation of row
+vector addition. After obtaining representations capturing short-term
+knowledge states, a self-attention operation is applied to them to obtain
+granularity-specific knowledge state representations. The formula is
+represented as follows:
+𝐇𝑇 𝑀 =𝑠𝑜𝑓 𝑡𝑚𝑎𝑥(
+𝐇𝑇 𝑀 ′
+𝐖𝑄
+𝑇 𝑀 (𝐇𝑇 𝑀 ′
+𝐖𝐾
+𝑇 𝑀 )⊤
+√
+𝑑
+) 𝐇𝑇 𝑀 ′
+𝐖𝑉
+𝑇 𝑀, (7)
+where 𝐖𝑄
+𝑇 𝑀, 𝐖𝐾
+𝑇 𝑀, 𝐖𝑉
+𝑇 𝑀 ∈ R𝑡×𝑑 are the projection matrices mapping
+granularity-specific knowledge state representations to query, key and
+value. In our model, we configure transformer modules with two
+scales, ultimately generating three granularity-specific knowledge state
+representations: 𝐇𝐸, 𝐇𝑇 𝑀1, 𝐇𝑇 𝑀2.
+Finally, we integrate the three granularity-specific knowledge state
+representations into the same latent space using a multi-scale aggrega-
+tion layer, as shown below:
+𝐇𝑆 =𝑓1
+( 𝐇𝐸 ∥ 𝐇𝑇 𝑀 1 ∥ 𝐇𝑇 𝑀 2
+), (8)
+where ∥ denotes matrix concatenation, and the function𝑓1 is a projec-
+tion function that transforms the embedding matrix of dimension 3𝑑
+into dimension𝑑. Finally, we obtain the knowledge state matrix 𝐇𝑆 of
+the student after being modeled by the sequence module.
+3.2.3. Interaction graph dependency modeling (IGDM)
+As previously mentioned, we believe that in real online education
+systems, there are latent correlations between the knowledge concepts
+involved in interactions. In addition to knowledge concept informa-
+tion, interaction data also includes information on whether students
+answered the exercises correctly. If we group interactions solely based
+on their association with knowledge concepts, we might overlook the
+correctness of the student’s responses, leading to the loss of important
+answer outcome information [29]. To more accurately describe the
+complex relationships in students’ historical interactions, we introduce
+an Interaction Graph Dependency Modeling module that can describe
+the relationships between interactions. Specifically, we construct two
+types of interaction graphs: one to represent the similarities between
+interactions and the other to describe their dissimilarities. Through
+these two graphs, we cannot only capture the direct correlations in
+students’ historical interactions but also reveal the latent, deeper corre-
+lations. We apply Graph Neural Networks (GNNs) to these two graphs,
+performing low-pass and high-pass filtering operations. Specifically, we
+use the dissimilarity matrix to push apart the representations of dis-
+similar nodes, reducing interference from dissimilar neighbors, and the
+similarity matrix to bring the representations of similar nodes closer.
+This approach allows us to obtain distinctive representations of stu-
+dents’ knowledge states. We further optimize these representations by
+employing a contrastive learning mechanism. This mechanism provides
+additional supervisory signals to the model by comparing knowledge
+state representations across different interaction graphs, guiding the
+model to generate more consistent and meaningful representations.
+Consequently, the model can predict students’ future learning per-
+formance with greater accuracy, as it can now capture the subtle
+differences and complexities in the knowledge states.
+Construction of Interaction Graphs: To model the relationships
+between students’ historical interactions, we generate two types of
+interaction graphs. To improve computational efficiency, we use dot
+products to calculate the similarity𝑎𝑖𝑗 between any two student histor-
+ical interactions 𝐈𝑖 and 𝐈𝑗, and use this similarity value as the weight of
+the corresponding element in the adjacency matrix 𝐀(𝑠𝑚) of the similar-
+ity graph. Then, we normalize the obtained similarity matrix row-wise
+to ensure that each weight value is between 0 and 1. Additionally, to
+ensure the simplicity and effectiveness of the graph structure, we set a
+similarity threshold, which is set to 0.5 in this paper. Only when the
+similarity between two nodes exceeds this threshold do we establish
+an edge between them. This approach helps to highlight nodes with
+strong correlations, thereby more accurately reflecting the structural
+information in the graph. The formula is represented as follows:
+𝑎(𝑠𝑚)
+𝑖𝑗 =𝑠𝑖𝑔 𝑚𝑜𝑖𝑑(𝐈⊤
+𝑖 𝐈𝑗 ), (9)
+Knowledge-Based Systems 309 (2025) 112834 
+5 
+
+----- p.6 -----
+J. Wang et al.
+𝐀(𝑠𝑚) =𝑠𝑖𝑔 𝑚𝑜𝑖𝑑(𝐈⊤𝐈). (10)
+Next, based on the obtained similarity matrix 𝐀(𝑠𝑚), we construct the
+adjacency weight matrix 𝐀(𝑛𝑠) for the dissimilarity interaction graph.
+𝐀(𝑛𝑠) = 𝐉 − 𝐀(𝑠𝑚), (11)
+where 𝐉 represents a matrix where all elements are 1.
+Dual-Channel Encoding: To comprehensively model the latent cor-
+relations between interactions and learn the static knowledge state of
+students from both similar and dissimilar interaction graphs, we design
+two encoders that perform low-pass and high-pass filtering on these
+two different views, respectively. This approach allows us to capture
+shared information among interactions based on similar edges, while
+filtering out irrelevant information between adjacent interactions based
+on dissimilar edges. Such a processing approach aids in more accurately
+identifying and leveraging the key features within interaction data,
+thereby enhancing the accuracy and efficiency of KT.
+Using a low-pass graph filter can smooth features along the nodes
+[30], as low-pass filtering specifically captures the low-frequency in-
+formation in the graph signal, thereby preserving the shared knowl-
+edge between similar nodes. Consequently, in the similarity interaction
+graph, we choose to use a simple low-pass GNN as the low-pass graph
+filter. This is represented as:
+𝐈(𝑠𝑚)
+0 =𝑀 𝐿𝑃1(𝐈), (12)
+𝐈(𝑠𝑚)
+𝑙 = 𝐀(𝑠𝑚) ⋅ 𝐈(𝑠𝑚)
+𝑙−1 ⋅ 𝐖(𝑠𝑚)
+𝑙−1, (13)
+where 𝐖(𝑠𝑚)
+𝑙−1 ∈ R𝑑×𝑑 is a learnable projection matrix.
+Dissimilarity interaction graphs consist of edges that connect dis-
+similar nodes. In this view, applying a low-pass filter might smooth
+out the features of connected nodes, thus blurring the differences
+between dissimilar nodes and reducing node discriminability. To avoid
+this, we employ a high-pass graph filter (the inverse operation of
+a low-pass filter) to sharpen the features of nodes along the edges.
+The purpose of this is to distinguish between nodes that are dif-
+ferent yet interconnected. The process of graph convolution on the
+dissimilarity interaction graph is consistent with that on the similarity
+interaction graph. The primary difference lies in replacing the adja-
+cency weight matrix in the convolution operation with the dissimilarity
+adjacency weight matrix 𝐀(𝑛𝑠) and different𝑀 𝐿𝑃2. In this way, we ulti-
+mately obtain the knowledge state 𝐈(𝑛𝑠) modeled based on the student’s
+dissimilarity interaction graph.
+By utilizing two dedicated encoders, we obtain two distinct sets of
+representations, each capturing low-frequency and high-frequency in-
+formation, respectively. These representations reveal the characteristics
+of a student’s knowledge state from two complementary perspectives.
+To integrate the information from these viewpoints, we concatenate the
+representations, thereby forming the final static representation of the
+student’s knowledge state:
+𝐇𝐺 =𝑓2(𝐈(𝑠𝑚) ∥ 𝐈(𝑛𝑠)), (14)
+where𝑓2 is a projection function that transforms the embedding matrix
+of dimension 2𝑑 into dimension 𝑑.
+3.2.4. Fusion and prediction (FP)
+Ultimately, we successfully construct two models of knowledge
+state: one, denoted as 𝐇𝑆, which models learning patterns from multi-
+ple granularities, and the other, denoted as 𝐇𝐺, which comprehensively
+simulates the latent correlations between interactions. To integrate
+these two perspectives of knowledge state, we employ an adaptive
+aggregation strategy. The aggregation process is as follows:
+𝛼𝑆
+𝑡 =
+𝜶⊤ ⋅ 𝐖𝛼 ⋅ 𝐇𝑆
+𝑡
+𝜶⊤ ⋅ 𝐖𝛼 ⋅ 𝐇𝑆
+𝑡 + 𝜶⊤ ⋅ 𝐖𝛼 ⋅ 𝐇𝐺
+𝑡
+, (15)
+𝛼𝐺
+𝑡 =
+𝜶⊤ ⋅ 𝐖𝛼 ⋅ 𝐇𝐺
+𝑡
+𝜶⊤ ⋅ 𝐖𝛼 ⋅ 𝐇𝑆
+𝑡 + 𝜶⊤ ⋅ 𝐖𝛼 ⋅ 𝐇𝐺
+𝑡
+, (16)
+𝐡𝐭 =𝛼𝑆
+𝑡 𝐇𝑆
+𝑡 ⊕ 𝛼𝐺
+𝑡 𝐇𝐺
+𝑡 , (17)
+̂ 𝑦𝑡+1 =𝑀 𝐿𝑃 (𝐡𝑡⊕ 𝐄𝑡+1), (18)
+where 𝜶 ∈ R𝑑 is learnable projection vectors, 𝐖𝛼 ∈ R𝑑×𝑑 is learnable
+projection matrices. 𝛼𝑆
+𝑡 , 𝛼𝐺
+𝑡 represent the importance of 𝐇𝑆
+𝑡 and 𝐇𝐺
+𝑡 at
+time 𝑡, used for the final aggregation of knowledge state.
+Model Training: To train all the parameters in the model, we
+leverage the binary cross-entropy loss as a loss function between the
+predicted performance ̂ 𝑦𝑡+1 and actual performance𝑦𝑡+1. The following
+objective function is defined over training data:
+𝐿𝑝 = −
+∑
+𝑡+1
+(𝑦𝑡+1𝑙 𝑜𝑔 ̂ 𝑦𝑡+1 + (1 − 𝑦𝑡+1
+)𝑙 𝑜𝑔(1 − ̂ 𝑦𝑡+1
+)). (19)
+To enhance the effectiveness of learning student knowledge state
+representations from two distinct graph structures, we incorporate
+the contrastive learning. This mechanism provides additional supervi-
+sory signals to the model by comparing the representations generated
+from these two different graph structures. This approach encourages
+the model to generate consistent semantic representations across both
+graph structures, thereby enhancing the quality of the representations
+and the overall performance of the model. Specifically, as shown in
+Fig. 4, for a given node 𝑣(𝑠𝑚)
+𝑖 , we first identify it as the anchor node in
+the similarity graph and compare it with𝑣(𝑛𝑠)
+𝑖 in the dissimilarity view
+to form a positive sample pair, aiming to make the representations of
+the positive sample pair closer. At the same time, we use other nodes
+in the dissimilarity view as negative sample pairs to pull the represen-
+tations of these negative pairs further apart. A similar operation is also
+performed for each node in the dissimilarity graph. Through this dual-
+channel contrastive learning loss design, we can better distinguish the
+differences between nodes in the feature space, thereby enhancing the
+expressiveness and stability of the overall model.
+𝐿𝑐 = − 1
+𝑛
+∑
+𝑣𝑖∈
+⎡
+⎢
+⎢
+⎢⎣
+∑
+𝑣𝑗 ∈𝑖
+1
+2||𝑖||
+⎛
+⎜
+⎜
+⎜⎝
+𝑙 𝑜𝑔 𝑒𝑠𝑖𝑚(𝐈(𝑠𝑚)
+𝑖 ,𝐈(𝑛𝑠)
+𝑗 )∕𝜏𝑐
+∑
+𝑣𝑘∈⧵𝑣𝑖𝑒𝑠𝑖𝑚(𝐈(𝑠𝑚)
+𝑖 ,𝐈(𝑛𝑠)
+𝑗 )∕𝜏𝑐
++𝑙 𝑜𝑔 𝑒𝑠𝑖𝑚(𝐈(𝑛𝑠)
+𝑖 ,𝐈(𝑠𝑚)
+𝑗 )∕𝜏𝑐
+∑
+𝑣𝑘∈⧵𝑣𝑖𝑒𝑠𝑖𝑚(𝐈(𝑛𝑠)
+𝑖 ,𝐈(𝑠𝑚)
+𝑗 )∕𝜏𝑐
+⎞
+⎟
+⎟
+⎟⎠
+⎤
+⎥
+⎥
+⎥⎦
+, (20)
+where 𝑠𝑖𝑚(⋅) employs the cosine similarity function, and 𝜏𝑐 is the
+temperature hyperparameter.
+In this paper, our overall optimization objective is divided into two
+parts: the model prediction loss𝐿𝑝 and the contrastive learning loss of
+the interaction graph dependency module 𝐿𝑐. These two components
+together form our optimization objective, as shown in the specific
+formula below:
+𝐿 (𝜃) =𝐿𝑝 +𝜆𝐿𝑐, (21)
+where𝜃 represents all the parameters in this model.𝜆 is used to control
+the impact of the contrastive loss on the model.
+3.3. Time complexity analysis
+MGIGKT employs a meticulously designed Multi-Scale Sequence
+Perception Modeling module, an Interaction Graph Dependency Model-
+ing module, and a Fusion and Prediction module to accurately generate
+students’ knowledge states. To understand this trade-off precisely, we
+conduct a time complexity analysis at a constant level, focusing solely
+on the two knowledge state modeling modules and the fusion and
+prediction module to provide a more accurate assessment of the overall
+time complexity. In the Multi-Scale Sequence Perception Modeling
+module, students’ knowledge states are modeled both holistically and
+Knowledge-Based Systems 309 (2025) 112834 
+6 
+
+
+######## Graph Knowledge Tracing in Cognitive Situation - Validation of Classic Assertions in Cognitive Psychology.pdf ########
+
+----- p.5 -----
+Knowledge-Based Systems 315 (2025) 113281
+5
+Q. Wu et al.
+Fig. 3. An overview of the overall architecture of the CSGKT model.
+and intrinsic characteristics (Feature A, . . . , Feature N ) are quantized 
+to obtain the extrinsic factor pattern 𝑧 and intrinsic feature pattern 𝑓 , 
+respectively. 𝑧 and 𝑓 denote the combined pattern of extrinsic factor 
+and intrinsic characteristic influences on the learner, respectively. The 
+second module is to form the associated information. The input is the 
+set of knowledge concepts 𝐶, which consists of a blend of question 
+attributes and skill attributes from extrinsic factors, and answer at-
+tributes from intrinsic characteristics. This module uses DGCNN to learn 
+the association between knowledge concepts and obtains the cognitive 
+activities 𝑥𝑧, which reflects the learner’s state in the learning process, 
+and the knowledge states 𝑥𝑓 , which reflects the learner’s mastery of 
+knowledge. The third module is state evolution. The inputs are the four 
+parameters obtained from the first and second modules. This module 
+uses LSTM to train the temporal hidden states of the four parameters 
+and obtains 𝑧ℎ𝑡, 𝑓ℎ𝑡, ℎ𝑧
+𝑡 , and ℎ𝑓
+𝑡 . The fourth module is stable cognition. 
+The input is the hidden state obtained from the third module. This 
+module uses the Erase-add Gate mechanism to filter out cognitive bias 
+and match the cognitive activity with the knowledge state to get the 
+final prediction result 𝑦𝑡. Next, we describe these four modules in detail. 
+The pseudo-code of CSGKT is described as Algorithm 1.
+3.1. Problem formulation
+In an online education platform, each question 𝑞𝑖 corresponds to one 
+or more knowledge concepts. Learners acquire the relevant knowledge 
+concepts by answering the questions. Let 𝑄 = {𝑞1,𝑞 2, …,𝑞𝑛} denote the 
+question set containing 𝑛 questions, where 𝑞𝑖 denotes the 𝑖th question, 
+which is a 𝑘-dimensional one-hot vector, i.e., 𝑞𝑖 ∈ R𝑘. The learner’s 
+(question, answer) sequence is denoted as 𝑆 = {( 𝑞1,𝑎 1), (𝑞2,𝑎 2), …,
+(𝑞𝑡,𝑎𝑡)}, where 𝑞𝑖 ∈ 𝑄 denotes the question answered by the learner 
+at timestamp 𝑖, and 𝑡 is the most recent timestamp. Each learner can 
+answer the question of interest at a specific time and give a correct or 
+incorrect response, denoted as 𝑎𝑖 ∈ {0, 1}. If 𝑎𝑖 = 0, the answer is wrong; 
+if 𝑎𝑖 = 1, the answer is correct. Given a learner’s past learning sequence 
+𝑆 and a new question 𝑞𝑡+1, we need to model the learner’s historical 
+learning sequences to trace the changes in their knowledge state over 
+time. Our goal is to predict the probability 𝑃 (𝑎𝑡+1 = 1 ∣ 𝑆,𝑞𝑡+1) that the 
+learner will answer the new question correctly based on the current 
+knowledge state.
+3.2. Forming schemas
+HGNN [55] extends the concept of traditional GNN to handle hy-
+pergraph data. In HGNN, both nodes and hyperedges of the hypergraph 
+can carry multiple elements or attributes, and the connectivity relation-
+ships of the hyperedges can be more complex. The key idea of HGNN 
+Algorithm 1 Cognitive Situation-based Graph Knowledge Tracing 
+(CSGKT)
+Input: Extrinsic factor nodes set 𝑉𝑧, Intrinsic characteristic nodes set 
+𝑉𝑓 , Knowledge concept set 𝐶, Interaction sequence 𝑆
+Output: Predicted result 𝑦𝑡
+1: initialize node embeddings for 𝑉𝑧 and 𝑉𝑓
+2: initialize hyperedge embeddings for hyperedges connecting nodes 
+in 𝑉𝑧 and 𝑉𝑓
+3: for node in 𝑉𝑧 do
+4: 𝑉𝑧_𝑒𝑚𝑏𝑒𝑑𝑑𝑖𝑛𝑔 ←𝐸𝑚𝑏𝑒𝑑𝑑𝑖𝑛𝑔 (𝑛𝑜𝑑𝑒,ℎ𝑦𝑝𝑒𝑟𝑒𝑑𝑔𝑒𝑠 _𝑐𝑜𝑛𝑛𝑒𝑐𝑡𝑒𝑑 _𝑡𝑜_𝑛𝑜𝑑𝑒)
+5: end for
+6: for node in 𝑉𝑓 do
+7: 𝑉𝑓 _𝑒𝑚𝑏𝑒𝑑𝑑𝑖𝑛𝑔 ←𝐸𝑚𝑏𝑒𝑑𝑑𝑖𝑛𝑔 (𝑛𝑜𝑑𝑒,ℎ𝑦𝑝𝑒𝑟𝑒𝑑𝑔𝑒𝑠 _𝑐𝑜𝑛𝑛𝑒𝑐𝑡𝑒𝑑 _𝑡𝑜_𝑛𝑜𝑑𝑒)
+8: end for
+9: 𝑧 ←ℎ𝑦𝑝𝑒𝑟𝑔𝑟𝑎𝑝ℎ(𝑉𝑧_𝑒𝑚𝑏𝑒𝑑𝑑𝑖𝑛𝑔 ) ⊳ Equation (3)
+10: 𝑓 ←ℎ𝑦𝑝𝑒𝑟𝑔𝑟𝑎𝑝ℎ(𝑉𝑓 _𝑒𝑚𝑏𝑒𝑑𝑑𝑖𝑛𝑔 ) ⊳ Equation (4)
+11: initialize directed edges based on the knowledge concept set 𝐶
+12: for node in 𝐶 do
+13: 𝐶_𝑒𝑚𝑏𝑒𝑑𝑑𝑖𝑛𝑔 ←𝐸𝑚𝑏𝑒𝑑𝑑𝑖𝑛𝑔 (𝑛𝑜𝑑𝑒,𝑑𝑖𝑟𝑒𝑐𝑡𝑒𝑑 _𝑒𝑑𝑔𝑒𝑠 )
+14: end for
+15: 𝑥𝑧 ←𝑑𝑖𝑟𝑒𝑐𝑡𝑒𝑑 _𝑔𝑟𝑎𝑝ℎ_𝑐𝑜𝑛𝑣𝑜𝑙𝑢𝑡𝑖𝑜𝑛(𝐶_𝑒𝑚𝑏𝑒𝑑𝑑𝑖𝑛𝑔,𝑧 ) ⊳ Equation (8)
+16: 𝑥𝑓 ←𝑑𝑖𝑟𝑒𝑐𝑡𝑒𝑑 _𝑔𝑟𝑎𝑝ℎ_𝑐𝑜𝑛𝑣𝑜𝑙𝑢𝑡𝑖𝑜𝑛(𝐶_𝑒𝑚𝑏𝑒𝑑𝑑𝑖𝑛𝑔,𝑓 ) ⊳ Equation (8)
+17: for 𝑡 in range(len(𝑆)) do
+18: 𝑧ℎ[𝑡],𝑓ℎ [𝑡],ℎ𝑧[𝑡],ℎ𝑓 [𝑡] ← 𝐿𝑆𝑇𝑀 (𝑧),𝐿𝑆𝑇𝑀 (𝑓 ),𝐿𝑆𝑇𝑀 (𝑥𝑧),
+𝐿𝑆𝑇𝑀 (𝑥𝑓 ) ⊳ Equation (9)
+19: end for
+20: 𝜆𝑧,𝜆𝑥,𝜇𝑥,𝜇𝑓 ←𝐸𝑟𝑎𝑠𝑒𝐴𝑑𝑑 _𝐺𝑎𝑡𝑒(𝑧ℎ𝑡,ℎ𝑧
+𝑡,ℎ𝑓
+𝑡 ,𝑓ℎ 𝑡) ⊳ Equation (10)
+21: 𝑦𝑡 ←𝑓𝑢𝑠𝑖𝑜𝑛 (𝜆𝑥,𝜆𝑧,𝜇𝑥,𝜇𝑓 ) ⊳ Equation (10)
+22: return 𝑦𝑡
+is to capture the relationships between the nodes in the hypergraph 
+by designing appropriate hypergraph convolution operations. These 
+convolution operations consider all the elements in the hyperedges 
+to compute the representation of the nodes. Traditional graph struc-
+tures struggle to express the multifaceted relationships in cognitive 
+situations. For instance, factors such as ‘‘question difficulty’’, ‘‘learner 
+ability’’, and ‘‘learning environment’’ collectively influence a learner’s 
+knowledge state and cognitive level, a multi-dimensional association 
+that binary edges struggle to capture. The hyperedges in HGNNs, 
+capable of connecting multiple nodes, are well-suited for modeling such 
+higher-order relationships.
+Schema refers to the cognitive process of abstracting and summa-
+rizing basic information about a specific kind of object and forming 
+a mental framework diagram. In HGNN, we can create several groups 
+
+----- p.6 -----
+Knowledge-Based Systems 315 (2025) 113281
+6
+Q. Wu et al.
+Table 1
+Parameter names and parameter explanations for the dataset corresponding to the ten extrinsic factors and seven intrinsic characteristics.
+ Type Annotation Parameter Explanation 
+ Question problem_id The ID of the problem. 
+ Assignment assignment_id All content associated with a problem is called
+an assignment and has the same assignment ID.
+ 
+ Teacher status_id Used to tell if a teacher has marked an
+assignment as excused.
+ 
+ Class learner_class_id The ID of the class. 
+ Network network_state The state of the network when the learner did
+the assignment.
+ 
+ School school_id ID of the school where the problem was assigned. 
+ Opportunity opportunity The number of opportunities the learner has to
+practice on this skill.
+ 
+ Homework homework_percent The percent of learners who did the assignment
+as homework (number of assignments/number of 
+assignments finished).
+ 
+ Resource skill_id ID of the skill associated with the problem 
+ 
+Extrinsic 
+Factors
+Tutor tutor_mode This column indicates the mode the learner is in,
+including tutor, test mode, pre-test, or post-test.
+ 
+ Answer correct This column is the target for prediction. 
+ Ability user_id The ID of the learner doing the problem. 
+ Thinking first_response_time Time between start time and first learner action
+(asking for hint or entering an answer).
+ 
+ Self-discipline bottom_hint This column is the prompt for the question and
+contains the answer to the question.
+ 
+ Resilience overlap_time The time in milliseconds for the learner to
+complete the problem.
+ 
+ Adaptability first_action This column indicates the learner’s first reaction
+to seeing the problem, including attempt, hint,
+scaffolding or learner clicked on the problem but 
+did nothing else.
+ 
+ 
+Intrinsic 
+Characteristics
+Patience attempt_count Number of attempts(number of times a learner
+entered an answer).
+ 
+of hyperedge structures by utilizing the intricate correlations among 
+multi-modes/multi-data in extrinsic factors and intrinsic characteris-
+tics. Through the ‘‘node-edge-node’’ (NEN) transformation, we can 
+efficiently extract high-order schema on the hypergraph. Specifically, 
+suppose there are 𝑚 extrinsic factor nodes 𝑉𝑧 = {𝑣𝑧
+1,𝑣𝑧
+2, …,𝑣𝑧
+𝑚} and 𝑛
+intrinsic characteristic nodes 𝑉𝑓 = {𝑣𝑓
+1,𝑣𝑓
+2, …,𝑣𝑓
+𝑛 }, where 𝑣𝑧
+𝑖 denotes 
+the 𝑖th 𝑚-dimensional extrinsic factor node and 𝑣𝑓
+𝑗 denotes the 𝑗th 
+𝑛-dimensional intrinsic characteristic node. Table 1 lists the specific 
+information of extrinsic factor nodes and intrinsic characteristic nodes. 
+We integrate learning factors into the hypergraph structure through 
+extrinsic factor nodes 𝑉𝑧 and intrinsic characteristic nodes 𝑉𝑓 . To 
+construct the hypergraph structure, a similarity function 𝑆(𝑣𝑖,𝑣𝑗 ) is first 
+defined to measure the association strength between nodes: 
+𝑆(𝑣𝑖,𝑣𝑗 ) = cos(𝑣𝑖,𝑣𝑗 ) =
+𝑣𝑖 ⋅𝑣𝑗
+‖𝑣𝑖‖ ‖𝑣𝑗 ‖ (1)
+where cos represents cosine similarity. Subsequently, a threshold 𝜏
+is set, and a hyperedge is created between nodes 𝑣𝑖 and 𝑣𝑗 when 
+𝑆(𝑣𝑖,𝑣𝑗 ) > 𝜏. This approach allows for the capture of complex multi-
+dimensional relationships, extending beyond simple binary relations.
+Extrinsic factor nodes 𝑉𝑧 correspond to extrinsic factors influencing 
+the learning environment, encompassing ten aspects including ques-
+tions, assignments, teachers, classes, and networks. These factors influ-
+ence cognitive processes by stimulating learners’ cognitive activities. 
+For instance, different tutoring modes require varying levels of cog-
+nitive resources, while question difficulty and relevant skills affect 
+learners’ information processing demands. Factors such as networks 
+and homework percentage also impact learners’ learning outcomes.
+Intrinsic characteristic nodes 𝑉𝑓 represent learners’ traits and cog-
+nition, comprising seven aspects including answer correctness, abil-
+ity, thinking time, and self-discipline. These intrinsic characteristics 
+influence cognitive processes by shaping learners’ knowledge states 
+and, more importantly, reflect individual differences among learners. 
+For example, ability (user_id) can be viewed as a representation of 
+learners’ prior knowledge and overall learning capacity; thinking time 
+(first_response_time) and initial action (first_action) reflect learners’ 
+cognitive processing speed and question-solving strategies, revealing 
+different learning styles; self-discipline (bottom_hint) and patience (at-
+tempt_count) be related to learning motivation, demonstrating learn-
+ers’ persistence and help-seeking behaviors when facing challenges. 
+Through these multidimensional intrinsic characteristics, our model 
+can capture individual differences in learning styles, motivation levels, 
+and knowledge foundations, thereby providing a more personalized 
+learning experience for each learner.
+To better capture the relationships between these nodes, we use 
+HGNN to describe the associations beyond the individual nodes. There-
+fore, we define an Extrinsic Factor Hyper-Graph (EFHG), i.e. 𝐺𝑧 =
+(𝑉𝑧,𝐸𝑧,𝑊 𝑧) and an Intrinsic Characteristic Hyper-Graph (ICHG), i.e.
+𝐺𝑓 = (𝑉𝑓,𝐸𝑓,𝑊 𝑓 ), where 𝐸𝑧 and 𝐸𝑓 are the hyperedge set of EFHG 
+and ICHG respectively. We initialize 𝑊𝑧 and 𝑊𝑓 as diagonal matrices 
+of hyperedge weights, with dimensions of |𝐸𝑧| and |𝐸𝑓 |, i.e., 𝑊𝑧 =
+𝐼|𝐸𝑧| and 𝑊𝑓 = 𝐼|𝐸𝑓 |, respectively. Based on the similarity function 
+in Eq. (1), the incidence matrices 𝐻𝑧 ∈ R|𝑉𝑧|×|𝐸𝑧| and 𝐻𝑓 ∈ R|𝑉𝑓 |×|𝐸𝑓 |
+for the EFHG and ICHG can be defined as follows: 
+𝐻𝑧(𝑖,𝑗 ) =
+{
+1, if 𝑆(𝑣𝑧
+𝑖,𝑣𝑧
+𝑗 )>𝜏,
+0, otherwise
+𝐻𝑓 (𝑖,𝑗 ) =
+{
+1, if 𝑆(𝑣𝑓
+𝑖 ,𝑣𝑓
+𝑗 )>𝜏,
+0, otherwise
+(2)
+here, a hyperedge 𝑒𝑧 is formed when the similarity between 𝑣𝑧
+𝑖 and 𝑣𝑧
+𝑗
+exceeds 𝜏, and the set of these hyperedges constitutes 𝐸𝑧. Similarly, a 
+hyperedge 𝑒𝑓 is formed when the similarity between 𝑣𝑓
+𝑖 and 𝑣𝑓
+𝑗 exceeds 
+𝜏, and the set of these hyperedges constitutes 𝐸𝑓 . This construction 
+
+----- p.7 -----
+Knowledge-Based Systems 315 (2025) 113281
+7
+Q. Wu et al.
+Fig. 4. The extrinsic factor node’s essential information transforms.
+method ensures that the hypergraph captures higher-order similarity 
+relationships between nodes.
+To acquire the essential information contained within node 𝑣𝑧
+𝑖 , we 
+utilize embedding techniques to obtain the extrinsic factor schema 
+𝑧𝑖. We then leverage the capabilities of HGNN to establish the rules 
+governing the propagation of information through the convolution 
+operator at each layer. 𝑧𝑖 can be dynamically updated through the 
+process of aggregating the relevant information emanating from both 
+node 𝑣𝑧
+𝑖 and its neighboring nodes, as per Eq. (3). 
+𝑧𝑖
+(𝑙+1) =𝛿((𝐷𝑧
+𝑣)−1∕2𝐻𝑧𝑊𝑧(𝐷𝑧
+𝑒 )−1∕2(𝐻𝑧)𝑇 (𝐷𝑧
+𝑣)−1∕2𝑧𝑖
+𝑙𝛩𝑙) (3)
+where 𝑧(𝑙+1)
+𝑖 ,𝑧𝑙
+𝑖 ∈ R𝑚, denote the input embedding and output embed-
+ding of the extrinsic factor node 𝑣𝑧
+𝑖 between the two layers, respectively. 
+𝛩𝑙 ∈ R𝑚×𝑚 is a learnable parameter matrix of layer 𝑙 and the propaga-
+tion matrix within the node layer. 𝐻𝑧 ∈ R𝑚×|𝐸𝑧|, the node-hyperedge 
+association matrix, represents the connectivity of the nodes and hyper-
+edges. 𝑊𝑧 ∈ R|𝐸𝑧|×|𝐸𝑧| is the hyperedge weight matrix. 𝛿(⋅) represents 
+a nonlinear activation function such as LeakyReLU [56]. 𝐷𝑧
+𝑣 ∈ R𝑚×𝑚, 
+is the degree matrix of the extrinsic factor node 𝑣𝑧
+𝑖 , and the diagonal 
+elements denote the degree of 𝑣𝑧
+𝑖 . 𝐷𝑧
+𝑒 ∈ R|𝐸𝑧|×|𝐸𝑧|, is the degree matrix 
+of the extrinsic factor hyperedges, and the diagonal elements denote 
+the degree of the hyperedges. They denote the number of connections 
+of nodes and hyperedges, and the characteristic aggregation of nodes 
+and hyperedges is smoothed by taking the inverse of the number of 
+nodes and hyperedges. Where 𝐷𝑧
+𝑣 = ∑
+𝑒𝑗𝑊𝑧(𝑒)𝐻𝑧
+𝑖𝑗 (𝑣𝑖 ∈𝑉𝑧,𝑒𝑗 ∈𝐸𝑧) and 
+𝐷𝑧
+𝑒 = ∑
+𝑣𝑖𝐻𝑧
+𝑖𝑗 (𝑣𝑖 ∈𝑉𝑧,𝑒𝑗 ∈𝐸𝑧).
+In Fig. 4, the extrinsic factor node’s essential information trans-
+forms. This is achieved through the use of the HGNN layer, which 
+facilitates NEN transformations, thereby allowing for a more refined 
+treatment of extrinsic factors and intrinsic characteristics. Specifically, 
+the initial node’s essential information 𝑧𝑖𝑙 is filtered using a learnable 
+processing matrix 𝛩𝑙, and the node’s essential information is gathered 
+based on the hyperedge, resulting in the creation of the hyperedge 
+feature 𝐻𝑧. By multiplying the filtered information and the hyper-
+edge feature, the essential information of the output node is obtained 
+by aggregating the essential information of the relevant hyperedge. 
+Consequently, the HGNN layer can be effectively utilized to extract 
+the higher-order schema from both the EFHG and ICHG through NEN 
+transformations. This enhances the overall efficacy of the approach.
+Similarly, we can update the intrinsic characteristic schema 𝑓𝑖 by 
+aggregating information from the neighboring nodes of 𝑣𝑓
+𝑖 and its 
+associated hyperedge using Eq. (4). 
+𝑓𝑖
+(𝑙+1) =𝛿((𝐷𝑓
+𝑣 )
+−1∕2
+𝐻𝑓𝑊𝑓 (𝐷𝑓
+𝑒 )
+−1∕2
+(𝐻𝑓 )
+𝑇
+(𝐷𝑓
+𝑣 )
+−1∕2
+𝑓𝑖
+𝑙𝛺𝑙) (4)
+where 𝑓 (𝑙+1)
+𝑖 ,𝑓 𝑙
+𝑖 ∈ R𝑛, denote the input embedding and output em-
+bedding of intrinsic characteristic node 𝑣𝑓
+𝑖 between the two layers, 
+respectively. 𝛺𝑙 ∈ R𝑛×𝑛 is a learnable parameter matrix of layer 𝑙 and 
+the propagation matrix within the node layer. 𝐻𝑓 ∈ R𝑛×|𝐸𝑓 |, the node-
+hyperedge association matrix, represents the connectivity of the nodes 
+and hyperedges. 𝑊𝑓 ∈ R|𝐸𝑓 |×|𝐸𝑓 | is the hyperedge weight matrix. 𝐷𝑧
+𝑣 ∈
+R𝑛×𝑛, is the degree matrix of the intrinsic characteristic node 𝑣𝑓
+𝑖 , and the 
+diagonal elements denote the degree of 𝑣𝑓
+𝑖 . 𝐷𝑓
+𝑒 ∈ R|𝐸𝑓 |×|𝐸𝑓 |, is the de-
+gree matrix of the intrinsic characteristic hyperedges, and the diagonal 
+elements denote the degree of the hyperedges. They denote the number 
+of connections of nodes and hyperedges, and the feature aggregation of 
+nodes and hyperedges is smoothed by taking the inverse of the number 
+of nodes and hyperedges. Where 𝐷𝑓
+𝑣 = ∑
+𝑒𝑗𝑊𝑓 (𝑒)𝐻𝑓
+𝑖𝑗 (𝑣𝑖 ∈𝑉𝑓,𝑒𝑗 ∈𝐸𝑓 )
+and 𝐷𝑓
+𝑒 = ∑
+𝑣𝑖𝐻𝑓
+𝑖𝑗 (𝑣𝑖 ∈𝑉𝑓,𝑒𝑗 ∈𝐸𝑓 ).
+3.3. Forming associated information
+DGCNN [57] exploits directional information in directed graphs for 
+node representation learning and graph classification tasks. The core 
+idea of DGCNN is to aggregate the neighbor information of the nodes 
+through a convolutional operation, which considers the direction of 
+the edges. This allows DGCNN to distinguish between incoming and 
+outgoing edges and thus better capture the topology of the directed 
+graph. It uses a convolutional layer to process the neighbor information 
+of the nodes to generate a representation of the nodes. Moreover, 
+relationships between knowledge concepts are typically directional. For 
+instance, ‘‘addition’’ is a prerequisite for ‘‘multiplication’’, but not vice 
+versa. GCNs disregard edge directions, potentially leading to confusion 
+in information propagation. DGCNN preserves edge direction informa-
+tion, allowing knowledge concept representations to aggregate along 
+correct paths, thus more accurately depicting knowledge structures.
+In Section 3.1, we established that each question must involve 
+at least one knowledge concept, denoted as 𝑐𝑖 ∈ 𝐶, where 𝐶 =
+{𝑐1,𝑐 2, …,𝑐𝑘} represents a set of knowledge concepts of size 𝑘. Specif-
+ically, the set of knowledge concepts 𝐶 is a combination of question 
+attributes and skill attributes that are extrinsic factors, and answer 
+attributes that are intrinsic features. Question attributes and skill at-
+tributes correspond to each other, and they reflect the connection 
+between the question and the corresponding skill point, i.e., the expres-
+sion of the knowledge concept. The answer attribute, on the other hand, 
+reflects the accuracy of the answer. These attributes are interwoven 
+to form a directed graph to establish relationships between knowledge 
+concepts and make them more visible. To construct a directed graph of 
+knowledge concepts, a relationship strength function 𝑅(𝑐𝑖,𝑐𝑗 ) is defined 
+as follows: 
+𝑅(𝑐𝑖,𝑐𝑗 ) = 𝑃 (𝑐𝑗 ∣𝑐𝑖) =
+𝑐𝑜𝑢𝑛𝑡(𝑐𝑖 →𝑐𝑗 )
+𝑐𝑜𝑢𝑛𝑡(𝑐𝑖) (5)
+where 𝑐𝑜𝑢𝑛𝑡(𝑐𝑖 → 𝑐𝑗 ) represents the frequency of 𝑐𝑗 immediately fol-
+lowing 𝑐𝑖 in the learning sequence, and 𝑐𝑜𝑢𝑛𝑡(𝑐𝑖) denotes the total 
+occurrences of 𝑐𝑖. This function measures the transition probability 
+from concept 𝑐𝑖 to 𝑐𝑗 .
+In knowledge systems, concepts inherently possess precedence or 
+succession relationships to varying degrees. Consequently, each knowl-
+edge concept 𝑐𝑖 is decoupled into an in-degree node 𝑐𝑖𝑛
+𝑖 and an out-
+degree node 𝑐𝑜𝑢𝑡
+𝑖 , transforming the knowledge concept set 𝐶 into a 
+directed structure 𝐶 ′ = { 𝑐𝑖𝑛
+1 ,𝑐𝑜𝑢𝑡
+1 ,𝑐𝑖𝑛
+2 ,𝑐𝑜𝑢𝑡
+2 , …,𝑐𝑖𝑛
+𝑘,𝑐𝑜𝑢𝑡
+𝑘 } with in-degrees 
+and out-degrees. As a result, the size of the new knowledge concept 
+set 𝐶 ′ becomes 2𝑘. This directed structure is defined as 𝐺𝑐 = (𝐶 ′,𝐸𝑐), 
+
+----- p.8 -----
+Knowledge-Based Systems 315 (2025) 113281
+8
+Q. Wu et al.
+where 𝐸𝑐 ⊆ 𝐶′ × 𝐶 ′ represents the edge set. For any two original 
+concepts 𝑐𝑖 and 𝑐𝑗 , if a relationship exists from 𝑐𝑖 to 𝑐𝑗 , a directed edge 
+is added from 𝑐𝑜𝑢𝑡
+𝑖 to 𝑐𝑖𝑛
+𝑗 in the new graph structure. Learners’ mastery 
+of knowledge concepts is influenced not only by historical learning 
+information 𝑆 but also by extrinsic factors and intrinsic characteristics. 
+Based on the relationship strength function in Eq. (5), the decoupled 
+adjacency matrix 𝐴 ∈ R2𝑘×2𝑘 is defined as follows: 
+𝐴𝑖𝑗 =
+{
+𝑅(𝑐⌊𝑖∕2⌋,𝑐 ⌊𝑗∕2⌋) if 𝑖%2 = 0 and 𝑗%2 = 1
+0 otherwise
+(6)
+where ⌊𝑖∕2⌋ represents the floor division and 𝑖%2 represents the modulo 
+operation. This definition ensures that only edges from out-degree 
+nodes to in-degree nodes have non-zero weights, maintaining the di-
+rectionality of relationships between knowledge concepts. As defined 
+in Eq. (7), the directed edges are normalized to obtain the transition 
+adjacency matrix 𝐴′ ∈ R2𝑘×2𝑘, which assigns weights to each directed 
+edge: 
+𝐴′
+𝑖𝑗 =
+𝐴𝑝
+𝑖𝑗
+∑
+𝑘𝐴𝑝
+𝑖𝑘
+(7)
+where 𝑝 represents the norm. This normalization method ensures that 
+the sum of outgoing edge weights for each node equals 1 while preserv-
+ing directional information of the edges. Note that this normalization 
+applies to nodes with non-zero out-degrees.
+Based on Eq. (8), the association information between nodes is 
+extracted using DGCNN to derive the initial cognitive activity 𝑥𝑧 and 
+knowledge state 𝑥𝑓 of learners. 
+𝑥(𝑙+1)
+𝑧 = [𝛿(𝐷−1∕2𝐴′𝐷−1∕2𝑧𝑖
+𝑙𝛷𝑙),𝛿 (𝐷−1∕2𝐴′𝑇𝐷−1∕2𝑧𝑖
+𝑙𝛷𝑙)]
+𝑥(𝑙+1)
+𝑓 = [𝛿(𝐷−1∕2𝐴′𝐷−1∕2𝑓𝑖
+𝑙𝜓𝑙),𝛿 (𝐷−1∕2𝐴′𝑇𝐷−1∕2𝑓𝑖
+𝑙𝜓𝑙)]
+(8)
+Since the dimensions 𝑚 and 𝑛 of the node features are much larger 
+than the dimension 𝑘 of the knowledge concepts, the dimension 𝑑 =
+min{𝑚,𝑛, 2𝑘} is defined here. 𝐷 ∈ R𝑑×𝑑 is the degree matrix, 𝐷𝑖𝑖 =∑
+𝑗 (𝐴′𝑖𝑗 +𝐴′𝑗𝑖 ). 𝑧𝑙
+𝑖, 𝑓𝑙
+𝑖 ∈ R𝑑×𝑑 are the node features of the previous 
+layer. 𝛷,𝜓 ∈ R𝑑×𝑑 are the model parameters to be learned in the 
+network.
+3.4. State evolution
+KT is fundamentally a sequence modeling problem, where learners’ 
+cognitive states change dynamically over time. In educational sce-
+narios, this change typically exhibits both long-term trends (such as 
+gradual improvement in abilities) and short-term fluctuations (such 
+as variations in attention). Numerous studies [12,58,59] have demon-
+strated that LSTM networks are well-suited for sequence prediction 
+problems with long-term dependencies. The gating mechanisms and 
+memory cell design of LSTM make it particularly adept at capturing 
+both long-term and short-term dependencies in sequential data, making 
+it highly suitable for modeling the evolution of cognitive states.
+Thus, we adopt LSTM to model the dynamic changes in extrinsic 
+factor schema 𝑧, intrinsic characteristic schema 𝑓 , cognitive activity 𝑥𝑧, 
+and knowledge state 𝑥𝑓 over time. During each training, it is necessary 
+to trace the hidden state of each parameter at the 𝑡th timestamp, which 
+is denoted as 𝑧ℎ𝑡, 𝑓ℎ𝑡, ℎ𝑧
+𝑡 , and ℎ𝑓
+𝑡 . Eq. (9) illustrates the updating 
+process, taking the cognitive activity as an example. 
+𝑖𝑡 =𝜎(𝑥𝑧
+𝑡𝑊𝑥𝑧,𝑖 +ℎ𝑧
+𝑡−1𝑊ℎ𝑧,𝑖 +𝑏𝑖)
+𝑓𝑡 =𝜎(𝑥𝑧
+𝑡𝑊𝑥𝑧,𝑓 +ℎ𝑧
+𝑡−1𝑊ℎ𝑧,𝑓 +𝑏𝑓 )
+𝑜𝑡 =𝜎(𝑥𝑧
+𝑡𝑊𝑥𝑧,𝑜 +ℎ𝑧
+𝑡−1𝑊ℎ𝑧,𝑜 +𝑏𝑜)
+𝑐𝑡 =𝑓𝑡⊙𝑐𝑡−1 +𝑖𝑡⊙ tanh(𝑥𝑧
+𝑡𝑊𝑥𝑧,𝑐 +ℎ𝑧
+𝑡−1𝑊ℎ𝑧,𝑐 +𝑏𝑐 )
+ℎ𝑧
+𝑡 =𝑜𝑡⊙ tanh(𝑐𝑡)
+(9)
+where, 𝑖𝑡, 𝑓𝑡, and 𝑜𝑡 represent the input gate, forget gate, and output 
+gate, respectively. The variable 𝑐𝑡 is the cell state vector, while 𝑊∗ ∈
+R𝑑×𝑑 and 𝑏∗ ∈ R𝑑 are trainable network parameters. The function 𝜎(⋅)
+represents a non-linear activation function, such as Sigmoid.
+3.5. Stable cognition
+In cognitive processes, learners’ cognitive activities and knowledge 
+states are not always in perfect alignment. For instance, learners some-
+times overestimate their abilities (high cognitive activity with a low 
+knowledge state) or underestimate themselves due to frustrations (low 
+cognitive activity with a high knowledge state). Simply merging these 
+two states lead to prediction biases. As observed in Fig. 3, various pa-
+rameters operate independently, advancing according to specific rules 
+within their respective domains, potentially resulting in mismatches 
+between learners’ knowledge states and cognitive activities.
+Inspired by the literature [17], an Erase-add Gate is designed to 
+address this mismatch issue. The core concept of the Erase-add Gate is 
+to align learners’ current knowledge states and cognitive activities by 
+dynamically adjusting the contributions of different situational factors. 
+This mechanism effectively resolves the mismatch problem by allowing 
+the model to dynamically ‘‘erase’’ irrelevant information and ‘‘add’’ 
+important new information at each time step. Specifically, when a 
+learner’s cognitive activity level exceeds their actual knowledge state, 
+the Erase-add Gate reduces the weight of cognitive activity while in-
+creasing the influence of the knowledge state, thereby avoiding overly 
+optimistic predictions. Conversely, when a learner’s knowledge state 
+surpasses their cognitive activity performance, the mechanism appro-
+priately enhances the contribution of cognitive activity to prevent the 
+model from underestimating the learner’s potential.
+This dynamic adjustment process simulates selective attention and 
+information update mechanisms in human cognition, enabling the 
+model to more accurately reflect changes in learners’ cognitive states 
+across different learning stages. Specifically, the operation of the Erase-
+add Gate is shown in Eq. (10). 
+[𝜆𝑧,𝜆𝑥,𝜇𝑥,𝜇𝑓 ] = [𝜉𝑒𝑎(𝑧ℎ𝑡),𝜉𝑒𝑎(ℎ𝑧
+𝑡 ),𝜉𝑒𝑎(ℎ𝑓
+𝑡 ),𝜉𝑒𝑎(𝑓ℎ𝑡)]
+𝑦𝑡 =𝜎(𝜆𝑥 −𝜎(𝜆𝑧 +𝜆𝑥)𝜆𝑧 + tanh(𝜇𝑥 +𝜇𝑓 )𝜇𝑥𝜇𝑓 )
+(10)
+here, 𝜉𝑒𝑎(⋅) is the Erase-add Gate function, defined as: 
+𝜉𝑒𝑎(𝑥) = 𝜎(𝑊𝑒𝑥 +𝑏𝑒)⊙ tanh(𝑊𝑎𝑥 +𝑏𝑎) (11)
+where 𝑊𝑒,𝑊𝑎 ∈ R𝑑×𝑑 are weight matrices, 𝑏𝑒,𝑏𝑎 ∈ R𝑑 are bias vectors, 
+and 𝑑 is the dimension of the hidden state. ⊙ denotes element-wise 
+multiplication, 𝜎 is the sigmoid function, and tanh is the hyperbolic 
+tangent function. 𝜎(𝑊𝑒𝑥 + 𝑏𝑒) controls the degree of erasing, while 
+tanh(𝑊𝑎𝑥 + 𝑏𝑎) generates newly added information. 𝜆𝑧, 𝜆𝑥, 𝜇𝑥, and 
+𝜇𝑓 are new states obtained after filtering extrinsic factor patterns, 
+intrinsic characteristic patterns, cognitive activities, and knowledge 
+states through the Erase-add Gate.
+In Eq. (10), the first term 𝜆𝑥 represents the current cognitive ac-
+tivity state, the second term 𝜎(𝜆𝑧 + 𝜆𝑥)𝜆𝑧 simulates the ‘‘erasing’’ 
+effect of extrinsic factors on cognitive activities, while the third term 
+tanh(𝜇𝑥 +𝜇𝑓 )𝜇𝑥𝜇𝑓 represents the fusion of knowledge states and cog-
+nitive activities, i.e., the process of ‘‘adding’’ new information. This 
+design enables the model to dynamically adjust the balance between 
+knowledge states and cognitive activities based on the current cogni-
+tive situation, thereby more accurately capturing the learner’s actual 
+cognitive processes.
+Finally, the model is optimized using the cross-entropy loss function. 
+More specifically, we calculate the difference between the ground truth 
+answer 𝑎𝑡 and the predicted result 𝑦𝑡, while accounting for the impact 
+of extrinsic factors, intrinsic characteristics, cognitive activity, and 
+knowledge state on the model. The cross-loss term between the true 
+answer and the predicted result is shown in Eq. (12). 
+𝑙(𝑎𝑡,𝑦𝑡) = − 1
+𝑛
+𝑛∑
+𝑖=1
+(𝜁 (𝑎𝑡)log𝜁(y𝑖) + (1 −𝜁(𝑎𝑡))log(1 −𝜁(y𝑖))) (12)
+where, 𝑛 represents the total number of questions, and 𝜁(⋅) denotes that 
+the nonlinear activation function is performed twice. Similarly, we can 
+obtain the cross-entropy loss term for other influencing factors 𝑙(𝑎𝑡,𝜆𝑧), 
+
+
+######## A Cross-Domain Knowledge Tracing Model Based on Graph Optimal Transport.pdf ########
+
+----- p.5 -----
+World Wide Web (2025) 28 :10 Page 5 of 25 10
+distributions across domains through conditional adversarial learning and difﬁculty-based
+sampling methods. However, these methods often overlook the implicit graph topology
+information present in intermediate layer embeddings and lack detailed pre-training tasks
+to explicitly model graph topology alignment, relying instead on sequential encoding mech-
+anisms for embeddings. Recent studies [ 33, 34] have emphasized the critical role of GNNs
+in explicitly capturing the topological structure of data, exploring both local and global
+semantics within graphs. This highlights the importance of considering the implicit structure
+between node embeddings for enhancing KT models.
+3 Preliminaries
+In this section, we ﬁrst review the deﬁnition of knowledge tracing (KT). Then, we explain
+what cross-domain knowledge tracing (CDKT) is. We have listed some frequently used
+symbols in Table 1, and provide a detailed explanation of their roles in this context.
+3.1 Knowledge tracing
+KT is a data mining task applied in the ﬁeld of education, which automatically traces the
+changes in knowledge state based on students’ historical learning records. Speciﬁcally, the
+KT task can be deﬁned as follows:
+Given a sequence of historical exercise interactions involving speciﬁc knowledge concepts
+by students in an online learning system:X = (x
+1, x2,..., xt) ={ (e1, y1), (e2, y2) ,...,( et,
+yt)},w h e r ext = (et, yt) typically represents a tuple, et is the exercise answered at timet,a n d
+yt ∈{ 0, 1} is the answer label indicating whether the exercise was answered correctly or not
+(1 for correct, 0 for incorrect). KT aims at predict the probabilitypt+1 = (yt+1 = 1 | et+1, X)
+of a student correctly answering the next interaction et+1.
+3.2 Attribute graph of knowledge tracing
+To enhance the efﬁcacy of KT predictions, we optimized the reconstruction of model inputs.
+This involved modeling the multi-dimensional relationships between ‘Exercise to Exercise’
+Table 1 A summary of notations
+Notation Description
+S; T Source domain; target domain
+GS; GT Source domain graph; target domain graph
+V;| V| A set of exercises; the number of exercises
+n The number of nodes in the graph
+N(i) The set of neighbors of node i
+A The structure matrix of graph G
+ˆA The reconstruction structure matrix of graph G
+xi The raw feature vector of node i
+gi The embedding vector of node i during aggregation
+zi The ﬁnal embedding vector of node i after aggregation
+ht The hidden knowledge state of a student at time step t
+123
+
+----- p.6 -----
+10 Page 6 of 25 World Wide Web (2025) 28 :10
+(E2E) and ‘Concept to Concept’ (C2C) as separate subgraphs, which were then integrated
+into a comprehensive knowledge tracing node-attribute graph.
+In the Exercise to Exercise (E2E) subgraph Ge = (Ve, Ee,w i, j
+e ),e x e r c i s e sVe are repre-
+sented as nodes, and edges Ee reﬂect the relationships between these exercises. By analyzing
+the correctness of students’ responses to different exercises under the same knowledge con-
+cept, we can calculate the inﬂuencewi, j
+e (i, j ∈ N, i, j ≤ m) between exercises and construct
+weighted edges accordingly. The weighted inﬂuence wi, j
+e between two co-occurring exer-
+cises is calculated as follows:
+wi, j
+e = co_correct (Vi
+e, V j
+e )∑
+m co_occur (Vie, Vme ), (1)
+where wi, j
+e represents the co-correctness rate between exercises Vi
+e and V j
+e . This rate denotes
+the proportion of students who correctly answered both exercises Vi
+e and V j
+e among all
+students who attempted both exercises. It reﬂects the degree of correlation between the two
+exercises based on student performance. A higher co-correctness rate suggests that if a student
+answers one exercise correctly, they are also more likely to answer the other correctly. This
+metric is useful for identifying exercises that are closely related to each other.
+Before constructing the Concept to Concept (C2C) subgraph, we ﬁrst calculate the average
+correctness rate of all knowledge concepts in the dataset and compare it with each student’s
+performance. Students who achieve above-average correctness rates on exercises related
+to a particular concept are considered to have mastered that concept. Based on this, we
+then construct the C2C subgraph. Speciﬁcally, in the C2C subgraph
+Gc = (Vc, Ec,w i, j
+c ),
+knowledge concepts Vc are represented as nodes, and edges Ec are determined based on
+students’ performance on different knowledge concepts. The inﬂuence between knowledge
+concepts wi, j
+c is calculated as follows:
+wi, j
+c = co_mastery (Vi
+c, V j
+c )∑
+m co_occur (Vic, Vmc ), (2)
+where co_mastery denotes the number of students who demonstrate above-average mastery
+in exercises related to both knowledge concepts.wi, j
+c represents the co-mastery rate between
+these two knowledge concepts, which is the proportion of students who exhibit above-average
+mastery in exercises for both concepts. This co-mastery rate reﬂects the degree of association
+between the two knowledge concepts, with a higher rate indicating a stronger relationship
+between the concepts in student learning.
+The knowledge tracing node-attribute graph consists of a set of student collections
+U,
+exercise setVe, student and exercise interaction setEu , and attributes associated with exercises
+Ae, denoted as G = (U, Ve, Eu, Ae),w h e r eU and Ve serve as vertices, and Eu serve as edges.
+3.3 Cross-domain knowledge tracing
+The objective of CDKT is to align the knowledge state distributions of two domains, effec-
+tively transferring knowledge from the source domain to the target domain for KT. In the
+context of transfer learning, we have a more informative source domain
+S and a target domain
+T . Given the historical exercise interaction sequence X of a speciﬁc concept for a student,
+we represent the student’s historical answer records in the source domain S and in the target
+domain T as X S and X T , respectively. Assuming that we have modeled the multidimensional
+interaction records between ‘exercise - knowledge concept ’as a graphG, we can describe the
+123
+
+----- p.7 -----
+World Wide Web (2025) 28 :10 Page 7 of 25 10
+graph generated by the ﬁne-tuned model (target domain model) as the target domain graph
+GT , with node embeddings represented as {xT
+1 , xT
+2 ,..., xT
+|V|}; correspondingly, the output
+generated by the pre-trained model (source domain model) is deﬁned as the source domain
+graph
+GS , with node embeddings shown as {xS
+1 , xS
+2 ,..., xS
+|V|}. To facilitate effective knowl-
+edge transfer across domains, a cross-domain alignment module has been designed, treating
+the cross-domain alignment problem as a graph matching task by matching and adjusting
+the graph structures of different domains to minimize the differences between the source and
+target domains in the feature space, making the transfer from
+GS to GT smoother and more
+effective.
+4 Methodology
+In this section, we will introduce the overall architecture of AEGOT-CDKT and then elaborate
+on the details of each module.
+4.1 Overview of AEGOT-CDKT framework
+The overall framework of AEGOT-CDKT is shown in Figure2. This method mainly includes
+two stages: pre-training and cross-domain prediction, in which the ﬁrst stage is the genera-
+tion of intra-domain exercises and knowledge concept representations, and the second stage
+is cross-domain prediction. First, in the initial pre-training phase, we use C2C and E2E
+subgraphs from the source and target domains to learn and optimize interactions between
+students and knowledge concepts. and is used to train and boost graph autoencoders, result-
+ing in more accurate representations of exercises and knowledge concept embeddings. In
+the cross-domain prediction stage, we use the LSTM model as the basis to integrate the
+embeddings obtained in the ﬁrst stage with the students’ learning behavior characteristics
+as the input of the cross-domain prediction model, so as to construct a comprehensive and
+complementary representation of the students’ knowledge state to predict their performance
+on the exercises.
+We then introduce an innovative alignment module within the LSTM to reduce distribution
+discrepancies between the source and target domains. This module leverages Graph Optimal
+Transport to minimize the gap between knowledge state distributions across the two domains,
+facilitating effective knowledge transfer. This method allows similar learning features from
+Figure 2 The framework structure of AEGOT-CDKT
+123
+
+
+######## GraphCA - Learning From Graph Counterfactual Augmentation for Knowledge Tracing.pdf ########
+
+----- p.5 -----
+samples by considering two different synthesis mechanisms of
+masking critical objects or words. Wang et al. [57] propose
+the counterfactual cycle-consistent (CCC) framework, which
+applies counterfactual learning to cross-tasks in order to learn
+instruction following and generation simultaneously. The data
+augmentation methods of graph structure are generally catego-
+rized as node dropping, edge perturbation, attribute masking,
+and subgraph-based methods [58]–[60]. We notice that there
+are also studies conducting graph data augmentations by coun-
+terfactual learning. For example, Zhao et al. [61] develop a
+data augmentation-based link prediction method that creates
+counterfactual links and learns representations from observed
+and counterfactual links. But, their work is proposed for link
+prediction, and the advantage of counterfactual graph data
+augmentation on KT modeling is still unexplored. In our set-
+ting, we follow the definition in [62] proposed by Imbens and
+Rubin. Then, we can define our counterfactual transformation
+as one of the data augmentation methods that generate coun-
+terfactual data from the unobserved world following the data
+transformation strategies, by which we can answer the “what...
+if...”. Moreover, their work does not consider the robustness
+of the learned representations, which is further investigated in
+our proposed method by combing it with contrastive learning.  
+III.  Methodologies
+This section first introduces the definitions used in this
+work, then overviews our proposed KT method, and finally
+describes each of its components in detail.  
+A. Preliminaries
+sN
+q1
+a1); : : : ;(
+qN
+aN
+qi
+ai
+2
+qi
+ai
+ai
+sN
+qN+1
+qN+1
+p(aN+1 = 1jsN; qN+1)
+Definition 1: The knowledge tracing task: Suppose we
+know a student’s historical exercise interaction sequence =
+{( , , )}, where is the i-th question that the stu-
+dent has answered, and {0,1} represents the correctness of
+the student’s answer to . Let = 1 if the answer is correct
+and = 0, otherwise. Given the sequence of interactions 
+and the next question , the task of KT is to predict the
+probability that the student will correctly answer , with
+probability .
+s1
+s2; : : : ;s j; : : : ;sn
+q1; q2; : : : ;qh; : : : ;qm
+c1
+c2; : : : ;cl; : : : ;ck
+Rs
+[rs
+jh]nm
+Rq
+[rq
+hl]mk
+Definition 2: Student-question-concept (SQC) graph: Let
+S = { , }, Q = { } and C =
+{ , } be the sets of students, questions and
+concepts, where m, n and k denote the numbers of questions,
+students and concepts, respectively. Regarding the relation-
+ship between students and questions, we suppose that one stu-
+dent can answer multiple questions, and a question can also be
+answered by more than one student. For questions and con-
+cepts, we assume that one question contains one or more con-
+cepts, and one concept is covered by multiple questions, i.e.,
+there is a many-to-many relationship between questions and
+concepts. As thus, we can conclude two kinds of interactions
+between S, Q, and C, that is, student-question interactions and
+question-concept interactions, which are respectively denoted
+by = and = , where r = 1 indicates the
+observed interactions and r = 0 denotes the unobserved ones.
+2
+2
+Definition 3: Counterfactual learning: Let X be the set of
+contexts, T be the set of treatments, and Y be the set of out-
+come values. For a context x X and a treatment t T, we
+Yt
+2
+denote the outcome of x under the treatment t by (x) Y.
+Ideally, we would need all possible outcomes of x under all
+treatments to learn the causal relationships. However, in real-
+ity, only one treatment is applied and thus only one outcome is
+obtained when a content x is given.  
+B. Overview of GraphCA
+In this work, we tend to answer the following counterfac-
+tual question, “what the student representation would be if we
+intervene on the observed answers”. As we know, conducting
+counterfactual learning usually has to explore the following
+three factors: context, treatment, and outcome, where the con-
+text is the given background variable; the treatment is the
+independent variable, which is randomized; and the outcome
+is the dependent variable, which is related to treatment. In our
+method, we treat the student node as the context X, whether
+the student’s answering records have been intervened as the
+treatment T, and the student’s representation as the outcome Y.
+To answer “what the student representation would be”, we
+construct the augmentation views on the basis of two factual
+observations. Our counterfactual transformation strategies are
+developed based on existing causal inference theory, and they
+also follow the SUTVA [62] assumption. The overall architec-
+ture of our GraphCA is shown in Fig. 3. Specifically, we first
+find the questions (from unanswered questions) that are simi-
+lar to the ones she has answered. Then, we disturb her histori-
+cal answers by the following two strategies: 1) We randomly
+replace the questions in her historical answer record with sim-
+ilarly unanswered questions to generate the unobserved
+answer sequence. As we replace the questions with similar
+ones, we deem the disturbed sequence is similar to the origi-
+nal one. 2) Another way to obtain unobserved student answer
+records is to disrupt the answer sequence of the same ques-
+tion set. As the disturbed answer record has the same question
+set, we also deem this answer sequence has a similar meaning
+to the original one. After that, we achieve students’ counter-
+factual representations by performing a graph convolution
+layer on the transformed graph, where we treat the counterfac-
+tual representations from the above generated answer
+sequences as positive samples, and their representation trans-
+formation forms as negative samples (the details can be seen
+in Section III-E-3). Then, we further conduct contrastive
+learning on the original and counterfactual representations to
+model students more accurately and robustly.  
+C. SQC Graph Construction
+rs
+rq
+j
+s2 S
+q2 Q
+c2 C
+rs
+rq
+To consider the hierarchical relationships among students,
+questions, and concepts, we first model them in a unified
+graph (i.e., the SQC graph), which further serves as the foun-
+dation of the counterfactual graph transformation and student
+representation learning. Specifically, we define G = {(s, , q,
+ , c) , , } as the constructed graph that mod-
+els the relationship among students, questions, and concepts,
+where s, q, and c denote the student s, the question q, and the
+concept c, respectively. and indicate the relationships
+between the student-question and the question-concept,
+respectively. In SQC, there are three types of nodes, i.e., stu-
+dents, questions, and concepts, and two kinds of edges, i.e.,
+ 2112 IEEE/CAA JOURNAL OF AUTOMATICA SINICA, VOL. 10, NO. 11, NOVEMBER 2023
+
+----- p.6 -----
+s j
+qh
+s j
+qh
+qh
+cl
+qh
+cl
+qh
+cl
+the relationships between students and questions, and the rela-
+tionships between questions and concepts. For student ,
+question , there is a connection between and only if
+the student interacts with the question. For question and
+concept , if contains , we build a connection between 
+and to indicate their question-concept relation.  
+D. Graph Data Augmentation
+To alleviate the inherent data sparsity issue in the knowl-
+edge tracing task, we resort to the modeling of the counterfac-
+tual world, which not only contains observed data but also
+unobserved data. To provide data foundations for counterfac-
+tual learning, we further conduct graph transformations to
+augment the observed data by the following two transforma-
+tion strategies.
+1) Counterfactual Replacement With Similar Questions: In
+this work, for each student node (context), the observed data
+contains only the treatment with true values, and the corre-
+sponding outcome of the fact. To answer “what the student
+representation would be if we intervene on the observed
+answers”, and obtain the outcome of each student node (con-
+text) under different treatments, we intervene with the stu-
+dents by the question replacement operation [63]. Moreover,
+since the answers of each student to the unanswered questions
+are unknown, we use the result of the nearest observed ques-
+tion as a substitute. Here, the nearest neighbor question refers
+to the nodes with common concepts in the SQC graph. To
+qk
+qi
+construct the counterfactual sub-graphs denoting students’
+answer sequences, which have similar potential outcomes as
+the corresponding factual observations, we conduct graph aug-
+mentations by the following replacement strategy: 1) We first
+identify the unanswered questions that are similar to the ones
+that have been answered by the students. 2) Then, we perform
+graph augmentation on the original sub-graph sub-G for each
+student by randomly replacing the question nodes with the
+most similar questions as their substitutes (from the sets of
+unanswered questions). We obtain the nearest node to the
+replaced question node according to the following method:
+ 
+qk = arg min
+qi;qk2Q
+fd(qi; qk)g (1)
+ 
+where d(·,·) is used to measure the distance between two
+nodes. We use cosine similarity to calculate the similarity
+between two questions, which can express the degree of pref-
+erence between nodes and learn the degree of similarity
+between nodes. Its definition is shown as follows:
+ 
+simik = qi qk
+∥ qi∥2∥ qk∥2
+(2)
+ 
+qi
+qk
+qi
+qk
+where and are the embeddings of questions and ,
+respectively. As we replace the questions with similar ones,
+we deem that the disturbed sequence is similar to the original
+one and the student representations we obtained through GCN
+are similar to the observed student representations. When per-
+forming counterfactual replacement, the number of replaced
+ 
+Representation learning on the SQC graph
+Layer 0
+Layer ...
+Representation learning on the counterfactual transformed graph
+Student-question 
+relation
+Question-concept 
+relation
+Student Question Concept
+S1 S2 S3 S4
+Q1 Q2 Q3 Q4 Q5
+C2C1 C3
+Counterfactual 
+transformation
+sub-G
+Replace questions
+Change the order of 
+the Questions
+Go
+c
+Gr
+c
+Answered Unanswered
+Question node
+Concept node
+Contrastive student learning
+Prediction
+S1' S2' S3' S4'
+S1 S2 S3 S4
+Obs. Coun.
+Positive 
+examples
+Obs. Oth.
+Negative 
+examples
+Contrastive 
+loss
+Contrastive student learning
+ 
+Fig. 3. Overview of the architecture of GraphCA. 
+WANG et al.: GRAPHCA: LEARNING FROM GRAPH COUNTERFACTUAL AUGMENTATION FOR KT 2113 
+
+
+######## HHSKT - A Learner-Question Interactions Based Heterogeneous Graph Neural Network Model for Knowledge Tracing.pdf ########
+
+----- p.5 -----
+Expert Systems With Applications 215 (2023) 119334
+5
+Q. Ni et al.
+Fig. 2. The middle part is the base feature extractor (BFE), and the bottom part is the hierarchical feature extraction module (HFE). The sequence processing module is the main
+module for extracting sequence features, which ultimately predicts learners’ performance based on their learning behavior and the item difficulty evaluator (DE) combined with
+the representation information from the BFE and the HFE.
+Table 2
+Table of notations.
+Notations Descriptions
+KT Knowledge Tracing;
+KS Knowledge State;
+KCs Knowledge Components;
+GNN Graph Neural Network;
+GCN Graph Convolutional Network;
+RNN Recurrent Neural Network;
+BG Basic graph;
+BFE,HFE Base Feature Extractor; Hierarchical Feature Extractor;
+𝑞𝑠
+𝑖 , 𝑐𝑠
+𝑖 , 𝑟𝑠
+𝑖 Representing the questions, concepts and responses answered by the learner 𝑠 at time step 𝑖, respectively;
+𝑉 An adjacency matrix containing three types of nodes: question nodes, knowledge nodes, and learner nodes;
+𝐸 The connections of nodes contained by 𝑉 ;
+𝜆 Node features and Edge features;
+𝑥𝑖 The original input sequence;
+𝑢𝑖, 𝑞𝑖, 𝑠𝑖 Learner 𝑢𝑖; Question 𝑞𝑖; Skill 𝑠𝑖;
+𝑑𝑖 The difficulty evaluator output at time step 𝑖;
+𝑎𝑡𝑡𝑖 The window attention at time step 𝑖;
+𝐻𝑙
+𝑡 The node representation of node 𝑡 at the 𝑙th GNN layer;
+𝐴𝑇𝑇 −ℎ𝑒𝑎𝑑𝑖 Heterogeneous multi-head attention in BFE;
+𝑀𝑠𝑔 −ℎ𝑒𝑎𝑑𝑖 Heterogeneous multi-head message in BFE;
+𝑊𝐴𝑇𝑇
+𝜙(𝑒) Edge-based weight matrix that capture different relational information;
+̂𝐴, 𝑋, 𝑊𝛼 Adj matrix, Node embedding, Weight matrix;
+𝑆, 𝑍 The coarsening matrix; The intermediate hidden vector of the graph coarsening process;
+𝜇, 𝜎 Normal distribution parameters: the mean 𝜇 and the variance 𝜎;
+as a node 𝑉 = { 𝑣1, …,𝑣𝑁 }, which share dependencies called edges
+𝐸 ∈ { 𝑉 × 𝑉 }, and the same skill 𝑠𝑖 usually has connected edges
+with multiple questions, and the same learner 𝑢𝑖 is associated with
+multiple questions. In addition, different edges 𝐸𝑖 usually occur at
+different time nodes, so the lag time (LT), and answer time (RT) in the
+interaction sequence should be considered as properties of the edges.
+The input sequence  = {𝑥1,𝑥 2, …,𝑥𝑡
+} are sampled and aggregated
+with higher-order information by graph BG to form the embedding
+̂𝑋 = {̂ 𝑥1, ̂ 𝑥2, …, ̂ 𝑥𝑡
+}, and the final prediction 𝑟𝑠
+𝑖 ∈ {0 , 1} is obtained
+by the prediction module, which described in Section 4 .
+4. The HHSKT model
+4.1. Model overview
+The architecture of our proposed method is shown in Fig. 2. HHSKT
+consists of two main parts: the question characterization system and
+
+----- p.6 -----
+Expert Systems With Applications 215 (2023) 119334
+6
+Q. Ni et al.
+Fig. 3. The GNN-based base feature extractor (BFE) is used to extract the interaction
+features and knowledge structure features in the heterogeneous graph. The update
+process of the question node embedding is shown in the figure, where the blue part
+and non-shaded symbols indicate the target and neighboring nodes.
+the sequence processing system. The details of these processes are
+explained below.
+Here, the question characterization consists of two modules, the
+bottom one is the base feature extractor (BFE), and the other is the
+hierarchical feature extraction module (HFE). The sequence processing
+module is the main module for extracting sequence features, which ulti-
+mately predicts learners’ performance based on their learning behavior
+and the item difficulty evaluator (DE) combined with the representation
+information from the BFE and the HFE. Moreover, the essential step
+of our model is to generate the basic graph (BG) from the exercise,
+where the basic graph is the heterogeneous graph 𝐵𝐺 = (𝑉,𝐸,𝜆 ). 𝑉 is
+an adjacency matrix containing three types of nodes: question nodes,
+knowledge nodes, and learner nodes, the connections of these nodes
+are saved as 𝐸, and 𝜆 represents node features and edge features.
+The original input sequence  = {𝑥1,𝑥 2, …,𝑥𝑡
+}, each 𝑥𝑖 includ-
+ing learner 𝑢𝑖, question 𝑞𝑖 and skill 𝑠𝑖, the input sequence is first
+transformed from each input token 𝑥𝑖 into an embedding ̂ 𝑥𝑖 using an
+embedding layer (omitted in the figure), where 𝐄𝑠 ∈ R||×𝑑, 𝐄𝑞 ∈
+R||×𝑑, 𝐄𝑎 ∈ R2×𝑑. The original input sequence is also sampled to
+form a Sampled Heterogeneous Graph, after which a higher-order
+representation of the input sequence is obtained by BFE aggregation
+̂𝑋 = {̂ 𝑥1, ̂ 𝑥2, …, ̂ 𝑥𝑡
+}, but not directly using the graph hidden states for
+prediction. An additional transformer layer is used to fuse the difficulty
+of the difficulty evaluator output ̂𝐷 = {̂𝑑1, ̂𝑑2, …, ̂𝑑𝑡
+} and the window
+attention ̂𝐴𝑇𝑇 = { ̂𝑎𝑡𝑡1, ̂𝑎𝑡𝑡2, …, ̂𝑎𝑡𝑡𝑡
+}, the predicted response to the next
+question𝑞𝑡 is computed from the information in the first𝑡 − 1 elements.
+The model forms a prediction tensor×× through a fully connected
+layer, where each element represents the probability that the learner
+has mastered the corresponding knowledge concept at time 𝑡.
+4.2. Base feature extractor
+Formally, given an input graph 𝐵𝐺 = (𝑉,𝐸,𝜆 ) and a GNN model
+𝐺𝑁𝑁𝜃, the key idea of majority graph neural networks (GNNs) is to ag-
+gregate feature information from a node’s direct (first-order) neighbors,
+such as inductive representation learning on large graphs (GraphSAGE)
+or Graph Attention network (GAT) (Hamilton, Ying, & Leskovec, 2017;
+Veliković et al., 2017). However, they cannot aggregate information
+from different nodes and are vulnerable to neighbor nodes (Zhang,
+Song, Huang, Swami, & Chawla, 2019). A basic feature extraction
+module based on a heterogeneous GNN approach is used for question
+feature and skill processing, as shown in Fig. 3. The extractor takes
+the item sequence {𝑞1,𝑞 2, …,𝑞𝑖} and skill sequence {𝑐1,𝑐 2, …,𝑐𝑖} as
+inputs. Heterogeneous graphical information is used as additional
+input, learner nodes and interactions between learners, items and re-
+sponses are included. The output of the feature extractor module is
+an embedding of items and skills, containing the higher-order features
+after being crossed.
+The first contribution based on the intuition is that the differentia-
+tion of skills and items is not only related to themselves, but also to the
+interaction sequence. The original graph is heterogeneous, and more
+information about the features related to the current input sequence
+can be found on the graph from the input items and skills. So inspired
+by Heterogeneous Graph Transformer (HGT), the global sampling was
+introduced in base feature extractor (BFE) which based on multi-hop
+sampling of small batches of input sequences, to obtain feature data
+according to richness (Hu, Dong, Wang, & Sun, 2020). After multi-hop
+sampling, the sampled data and the original data are fed separately into
+a heterogeneous graph neural network for information aggregation,
+where different skills and item embeddings contain features of their
+neighboring related nodes. The raw data use masks to prevent the
+relationships to be predicted from being captured in advance.
+4.2.1. Heterogeneous knowledge extractor
+The basic extractor is trained and sampled to obtain the relative
+difficulty information between different questions, as shown in Fig. 3.
+Formally, the original data needs to be projected through the em-
+bedding layer into the desired embedding information. In this module,
+the embedding layer is represented as 𝐄𝑠 ∈ R||×𝑑, 𝐄𝑞 ∈ R||×𝑑, 𝐄𝑎 ∈
+R2×𝑑.  and  represent the number of skills and items, respectively.
+The module suppose 𝐻𝑙
+𝑡 is the node representation of target node 𝑡 at
+the𝑙th GNN layer, the update procedure from the (𝑙 − 1)th layer to the
+𝑙th layer shown as Eq. (1):
+𝐻𝑙
+𝑡 ← Aggregate
+∀𝑠∈𝑁(𝑡),∀𝑒∈𝐸(𝑠,𝑡)
+({
+Extract
+(
+𝐻 (𝑙−1)
+𝑠 ;𝐻 (𝑙−1)
+𝑡 ,𝑒
+)})
+(1)
+where 𝑁(𝑡) denotes all the source nodes of node 𝑡 and 𝐸(𝑠,𝑡 ) denotes
+all the edges from node 𝑠 to 𝑡. 𝐸𝑥𝑡𝑟𝑎𝑐𝑡 (⋅) represents the neighbor
+information extractor. For example, other questions, skills, and learners
+are all possible source nodes for it when question is the target node.
+Node attention uses the target node’s representation𝐻𝑙−1
+𝑡 and the edge
+𝑒 between the two nodes as query, and extract useful information from
+source node 𝐻𝑙−1
+𝑠 . 𝐴𝑔𝑔𝑟𝑒𝑔𝑎𝑡𝑒 (⋅) serves as the aggregation function of
+the neighborhood information.
+The messages are calculated using different messages for different
+edge weights inspired by HGT and Transformer. The weight matrices
+of the different interaction operators are parameterized as source node
+projection, edge projection and target node projection.
+Attention(𝑠,𝑒,𝑡 ) = Sof tmax
+∀𝑠∈𝑁(𝑡)
+(∥𝑖∈[1,ℎ] ATT −ℎ𝑒𝑎𝑑𝑖(𝑠,𝑒,𝑡 ))
+(2)
+ATT-head 𝑖(𝑠,𝑒,𝑡 ) =
+(
+𝐾𝑖(𝑠)𝑊𝐴𝑇𝑇
+𝜙(𝑒) 𝑄𝑖(𝑡)𝑇
+)
+⋅
+𝜔⟨𝜏(𝑠),𝜙(𝑒),𝜏(𝑡)⟩
+√
+𝑑
+𝐾𝑖(𝑠) = K-Linear 𝑖
+𝜏(𝑠)
+(𝐻 (𝑙−1)[𝑠])
+𝑄𝑖(𝑡) = Q-Linear 𝑖
+𝜏(𝑡)
+(𝐻 (𝑙−1)[𝑡])
+(3)
+Different attention vectors are computed for different edges, and
+a multi-headed attention mechanism is used, as shown in Eqs. (2)
+and (3). For the 𝑖th attention head 𝐴𝑇𝑇ℎ𝑒𝑎𝑑 𝑖(𝑠,𝑒,𝑡 ), The source node
+𝑠 is projected into the 𝑖th key vector 𝐾𝑖(𝑠) using different linear
+depending on the type of the source node. Each type of node in the
+graph has a corresponding unique Linear projection, thus keeping the
+differences between different types of nodes to the maximum extent.
+For embedding of items, the mask matrix is introduced to prevent the
+information of edges from being aggregated into the node represen-
+tation in advance. The computation of dot product attention between
+different nodes for heterogeneous graphs is different from the original
+transformer model. 𝜔 ∈ R||×||×|| represents the weights of differ-
+ent node relationships, and links from different relationships usually
+have different weights for the target node. There may be different
+edge types, such as 𝜏(𝑠) and 𝜏(𝑖), between items and skill nodes, and
+between learners and items. Therefore, each edge type 𝜙(𝑒) retains a
+unique edge-based matrix𝑊𝐴𝑇𝑇
+𝜙(𝑒) ∈ R
+𝑑
+ℎ ×𝑑
+ℎ to capture different relational
+information.
+
+
+######## SGKT - Session Graph-Based Knowledge Tracing for Student Performance Prediction.pdf ########
+
+----- p.3 -----
+Expert Systems With Applications 206 (2022) 117681
+3
+Z. Wu et al.
+ℎ𝑣 ∈ 𝑅𝑠 which contains the information of the neighborhood for each
+node. The state embeddingℎ𝑣 is a𝑠-dimension vector of node𝑣 and can
+produce an output 𝑜𝑣 such as the node label. In application, the GNN
+retains a state that can represent information from its neighborhood
+with arbitrary depth. A typical application of GNN is node classifica-
+tion. Essentially, every node in the graph is associated with a label, and
+we want to predict the nodes’ labels without ground truths. In the node
+classification task setup, each node 𝑣 is characterized by its feature 𝑥𝑣
+and associated with a ground-truth label 𝑡𝑣. Given a partially labeled
+graph𝐺, the goal is to leverage these labeled nodes to predict the labels
+of the unlabeled. It learns to represent each node with a 𝑑-dimensional
+vector (hidden state) ℎ𝑣, containing its neighborhood information.
+GCN (Kipf and Welling , 2017) updates node representations based
+on itself and its neighbors and is often proposed for semi-supervised
+graph classification. Using multiple graph convolutional layers, GCN
+can ensure the updated nodes represent the attributes of neighbor nodes
+and the information of higher-order neighbors.
+To reduce the limitations in the GNN model and improve the long-
+term propagation of information across the graph structure, GGNN ( Li
+et al., 2016) uses a gate mechanism in the propagation step and unrolls
+the recurrence for a fixed number of steps𝑇 and uses back-propagation
+through time to compute the gradient.
+2.3. Graph-based knowledge tracing
+Recently, research on knowledge tracing has focused on exploring
+the use of graph structures to capture more information.
+The model proposed by Chanaa and Faddouli (2020) first constructs
+a dynamic graph that changes over time, where each node represents
+a student, the nodes are fixed, but the edges are dynamic. Both nodes
+and graph topology are transforming over time, matching the knowl-
+edge tracing of students. The model learns feature representation by
+aggregating each student (i.e., node) and its neighbors, then extracting
+the network topology information at each different time step. Finally,
+the representation of each node is sent to the classifier to determine
+the student’s knowledge state. Nakagawa et al. ( 2019) proposed GKT.
+This model sets the course exercises as a graph structure 𝐺 = (𝑉,𝐸 ).
+The 𝑛 skills are the nodes 𝑉 = { 𝑣1, …,𝑣𝑛} of the graph, and the
+shared dependency of these skills is the edge 𝐸 ⊆ 𝑉 × 𝑉 of the
+graph. Assume that the student independently has the knowledge state
+ℎ𝑡 = { ℎ𝑡
+𝑣𝑖
+} at that time for each skill at time 𝑡, and the knowledge
+state is updated with time as follows: when answering the exercises
+related to the skill𝑣𝑖, the student’s knowledge state is not only the skill
+of the answer itself, it also contains information on its neighbor skills;
+then, the updated knowledge state is used to predict the probability of
+the student correctly answering each skill at 𝑡. GIKT proposed by Yang
+et al. (2020) considers the exercise–skill relationship graph a bipartite
+graph and then uses the GCN to fully integrate the exercise–skill corre-
+lation through embedding propagation. PEBG-KT proposed by Liu et al.
+(2020) employs a pre-training approach to learn a low-dimensional
+embedding via the exercise–skill Bipartite Graph for each exercise with
+useful side information. However, the model proposed by Chanaa and
+Faddouli ( 2020) and GKT ignore the relationship between exercises
+and skills. GIKT and PEBG-KT use bipartite graphs which focus on the
+relationship between exercises and skills but ignore the relationship
+between exercises. Furthermore, they all ignore the graph structure
+formed during the students’ exercise answering sessions.
+3. Preliminaries
+In this section, we first formally define the task of student perfor-
+mance prediction in an intelligent learning system. Then, we describe
+how to represent a heterogeneous relation graph about the students,
+exercises, and skills. Next, we explain the construction of the session
+graph. Table 1 shows some important notations. The following section
+gives a more detailed explanation of their roles.
+Table 1
+A summary of notations.
+Notation Description
+HRG The heterogeneous relation graph of students, exercises and skills
+SG The exercise session graph
+𝑒𝑖 The 𝑖th exercise
+𝑘𝑗 The 𝑗th skill
+𝑎𝑖 The answer of the 𝑖th exercise
+ℎ𝑖 The hidden state of 𝑖th student
+𝑝𝑡 The probability of correctly answering the next candidate exercise
+at time-step 𝑡
+Fig. 1. Heterogeneous relation graph of students answering exercises.
+Definition 1 (Student Performance Prediction Problem ). Given the exer-
+cise answering records of each student from time-step 1 to𝑡−1, our goal
+is to predict the probability𝑝𝑡 of correctly answering the next candidate
+exercise at time-step 𝑡.
+Definition 2 (Heterogeneous Relation Graph ). In the process of answer-
+ing exercises, there are heterogeneous relationships among students,
+exercises, and skills. A heterogeneous relation graph (HRG) is denoted
+as 𝐻𝑅𝐺 = { V; E} consisting of an object set V and a link set E. V is
+a set of object types (student, exercise or skill). E is a set of relation
+types, and E = {𝑟𝐴,𝑟𝐶 }, where𝑟𝐴 represents the relation answered, and
+𝑟𝐶 represents the relation contains.
+Take Fig. 1 as an example. The student𝑠1 answered the exercises𝑒1
+and𝑒2, and the student𝑠2 answered the exercises𝑒2 and𝑒3.𝑒1 requires
+skills 𝑘1, 𝑘2. 𝑒2 requires skills 𝑘2, 𝑘3, and 𝑒3 requires skill 𝑘4. In this
+HRG, 𝑉 = {𝑠1,𝑠 2,𝑒 1,𝑒 2,𝑘 1,𝑘 2,𝑘 3,𝑘 4}, From the figure, we can observe
+that there is a relationship between 𝑒1 and 𝑒2 through knowledge 𝑘2,
+and there is also a relationship between 𝑒2 and 𝑒3 through student 𝑠2.
+This is because the student answered these two exercises in a session.
+Therefore, for the exercise and skill, the meta relationship path of this
+HRG includes exercise–skill–exercise (eKe), exercise–student–exercise
+(eSe), and skill–exercise–skill (kEk).
+Definition 3 (Session Graph ). In an exercise answering session, each
+answer 𝑎𝑖 is related to an exercise 𝑒𝑖, denoted by the tuple 𝑒𝑎
+𝑖 = (𝑒𝑖,𝑎𝑖).
+Students answer the exercises individually, so there is a partial ordering
+relationship among all 𝑒𝑎 in the session. Consider a pair of linked
+exercise and answer as a node, a session graph is denoted as 𝑆𝐺 =
+{𝑒𝐴,𝑃 }, where 𝑒𝐴 = { 𝑒𝑎
+𝑖|1 ≤ 𝑖 ≤ 𝑛}, 𝑛 is the length of the session
+sequence, and 𝑃 represents the partial order.
+Take Fig. 2 as an example. The upper part shows the sequence in
+which the exercises were answered 𝑒
+√
+1 → 𝑒×
+2 → 𝑒×
+3 → 𝑒
+√
+4 → 𝑒
+√
+2 , where
+skill𝑒2 appears twice. This sequence can be transformed into a directed
+graph, shown in the lower part. Nodes 𝑒1, 𝑒3, and 𝑒4 are all neighbor
+nodes of node 𝑒2.
+
+----- p.4 -----
+Expert Systems With Applications 206 (2022) 117681
+4
+Z. Wu et al.
+Fig. 2. A session-graph example.
+Definition 4 (Forgetting Mechanism ). In the process of learning, for-
+getting is inevitable. Due to forgetting, the exercises that students
+have answered correctly may be answered incorrectly after a period.
+Furthermore, the forgetting rate is positively correlated with the length
+of time. We formalize the forgetting mechanism (Chen et al., 2021) as:
+𝑚(𝛥𝜏) = 𝜃1 ×𝑒𝑥𝑝−𝜃2𝛥𝜏 +𝜃3, (1)
+where𝜃1,𝜃2, and𝜃3 are the fitting parameters and𝑚(𝛥𝜏) represents the
+residual memory ratio. A higher𝑚(𝛥𝜏) means that the student has more
+memory about the corresponding content. 𝛥𝜏 is the time step between
+the current moment and the initial moment.
+4. Session graph-based knowledge tracing model
+To address the problem defined in Section 3 , we propose SGKT, a
+session graph-based knowledge tracing framework. As shown in Fig. 3,
+SGKT comprises three parts: the HRG embedding module (for exercises
+and skills modeling), the SG embedding module (for student knowl-
+edge state modeling), and the prediction module. The HRG embedding
+module is used to learn the embedding of exercise-to-exercise and
+skill-to-skill relational information from HRG. It generates the represen-
+tation vector, and then employs self-attention mechanisms with FM to
+add dynamic semantics to them. The SG embedding module is used to
+generate the students’ knowledge state. The prediction module predicts
+the probability of students answering the next exercise correctly. The
+SG embedding and prediction modules are jointly optimized during
+training, where the exercises and skills embeddings are dynamically
+obtained from the HRG embedding module.
+4.1. HRG embedding module
+This module uses the GCN model to generate the embedding repre-
+sentation of the nodes in the HRG composed of students, exercises, and
+skills. Before embedding HRG, we first define neighbors according to
+the meta relationship path in Definition 2, where three meta-relational
+paths are defined, namely eSe, eKe, and kEk. Specifically, we process
+the dataset according to the following rules: the neighbors of an ex-
+ercise are the exercises answered by the same student, i.e., eSe, or
+the exercises that require the same skill, i.e., eKe. A skill’s neighbor
+is that skill covered by the same exercise, i.e., kEk. Therefore, during
+the propagation of the GCN, we use two matrices, one is the exercise–
+exercise relation matrix, and the other is the exercise–skill relation
+matrix. As shown in the upper part of Fig. 3 , although HRG is a
+tripartite graph, the embedding layer of this module only focuses on the
+state of exercises and skills, and students are regarded as a connection
+between exercises. In the matrices of exercises and skills propagated in
+GCN, the neighbors of an exercise are the other exercises answered by
+the same student and related skills. The neighbors of skills are all the
+exercises related to it. To extract the high-order information, we use
+GCN to generate the embedding of exercises and skills i.e.,
+∼
+𝑒 and
+∼
+𝑘.
+GCN has a lot of graph convolution layers to encode high-order
+neighbor information, and each layers’ node can be updated by states
+of itself and neighbor nodes. We set the 𝑖th node in the graph as 𝛽𝑖,
+indicating skill state 𝑘𝑖 or exercise state 𝑒𝑖. We also set 𝛽𝑖’s neighbor
+nodes as 𝐍𝑖. So the exercise of an𝑙th layer of GCN can be expressed as:
+𝛽𝑙
+𝑖 =𝑅𝑒𝐿𝑈
+(
+1
+𝐍𝑖
+∑
+𝑗∈{𝑖}∪𝐍𝑖
+𝐲𝑙𝛽𝑙−1
+𝑗 + 𝐳𝑙
+)
+, (2)
+where 𝐲𝑙 and 𝐳𝑙 are the aggregate weight and bias, which can be learned
+in the 𝑙th GCN layer, and the activation function ReLU is used in it.
+After embedding the propagation by GCN, we can obtain the
+∼
+𝑒 and
+∼
+𝑘.
+4.2. SG embedding module
+This embedding module uses the GGNN model to generate students’
+knowledge hidden states based on the session graph.
+4.2.1. Knowledge hidden state
+During the exercises and corresponding answers propagated in
+GGNN, they are combined in the following way:
+𝑐𝑖 =𝑒𝑖⊕𝑎𝑖, (3)
+where 𝑒𝑖 denotes the 𝑖th exercise in the session and ⊕ indicates
+an element-wise addition. The process of information propagation in
+GGNN is shown in Fig. 4.𝛼𝑖 is a new state, being the input of the GRU
+which contains information about the neighbor nodes of the current
+node𝑐𝑖, which indicates the effect of the previous exercise on the next
+exercise in the exercise session. 𝛼𝑖 can be formalized as:
+𝛼𝑖 = 𝐂𝐨𝐧𝐜𝐚𝐭(𝐌𝐈
+𝐢
+([𝑐1,𝑐 2, …,𝑐𝑛
+] 𝐖𝐈 + 𝐛𝐈),
+𝐌𝐨
+𝐢
+([𝑐1,𝑐 2, …,𝑐𝑛
+] 𝐖𝐨 + 𝐛𝐨)), (4)
+where 𝐖𝐼, 𝐖𝑂 ∈ 𝑅𝑑×𝑑 are the parameter matrices, and 𝑏𝐼,𝑏𝑂 ∈ 𝑅𝑑
+are the bias vectors. [𝑐1,𝑐 2, …,𝑐𝑛
+] is the list of exercises and answers
+that have been processed, and 𝐌𝐈
+𝐢, 𝐌𝐎
+𝐢 ∈ R1×𝐧 are the 𝑖th row of each
+matrix corresponding to the𝑐𝑖. An example of information propagation
+between layer 𝑡 − 1 and layer 𝑡 of GGNN is shown in Fig. 4 , where the
+solid line represents the post-order relationship, and the dashed line
+represents the pre-order relationship. [ 𝛼1, 𝛼2, . . . ,𝛼𝑛] is the input of
+GRU, and [ℎ1,ℎ2, . . . ,ℎ𝑛] is the output which is the knowledge hidden
+state of the student. This hidden state can be updated not only by the
+states of the current exercise and answer but also by its neighbor nodes’
+states. The update process of ℎ𝑖 can be formalized as follows:
+𝑐𝑡
+𝑖 =𝛼𝑡−1
+𝑖 ⊕𝑐 𝑡−1
+𝑖 , (5)
+𝜔𝑡
+𝑖 =𝜎(𝑈𝜔𝑐𝑡
+𝑖 +𝑉𝜔ℎ𝑡−1
+𝑖
+), (6)
+𝑟𝑡
+𝑖 = 𝜎(𝑈𝑟𝑐𝑡
+𝑖 +𝑉𝑟ℎ𝑡−1
+𝑖
+), (7)
+∼
+ℎ𝑡
+𝑖 =𝑡𝑎𝑛ℎ(𝑈ℎ𝑐𝑡
+𝑖 +𝑉ℎ
+(𝑟𝑡
+𝑖⊗ℎ𝑡−1
+𝑖
+)), (8)
+ℎ𝑡
+𝑖 = (1 −𝜔𝑡
+𝑖
+)⊗ℎ𝑡−1
+𝑖 +𝜔𝑡
+𝑖⊗
+∼
+ℎ
+𝑡
+𝑖, (9)
+where 𝑈𝜔, 𝑈𝑟, 𝑈ℎ ∈ 𝑅2𝑑×𝑑, 𝑉𝜔,𝑉𝑟, 𝑉ℎ ∈ 𝑅𝑑×𝑑, are the parameters
+that can be learned, 𝜎 is the activation function Sigmoid, ⊕ indicates
+element-wise addition, and ⊗ indicates dot product. 𝜔𝑡
+𝑖 is the update
+gate that can update the forgetting information. 𝑟𝑡
+𝑖 is the reset gate that
+can filter information. In Eq. ( 8),𝑟𝑡
+𝑖⊗ℎ𝑡−1
+𝑖 indicates that new informa-
+tion is generated from some past information. In Eq. (9), (1 −𝜔𝑡
+𝑖
+)⊗ℎ𝑡−1
+𝑖
+indicates some past information has been forgotten and𝜔𝑡
+𝑖⊗
+∼
+ℎ𝑡
+𝑖 indicates
+some new information has been remembered.

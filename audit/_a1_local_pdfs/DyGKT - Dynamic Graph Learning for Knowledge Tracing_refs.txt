@@ -1,0 +1,272 @@
+KDD ’24, August 25–29, 2024, Barcelona, Spain.
+Ke Cheng et al.
+References
+[1] Unai Alvarez-Rodriguez, Federico Battiston, Guilherme Ferraz de Arruda, Yamir
+Moreno, Matjaž Perc, and Vito Latora. 2021. Evolutionary dynamics of higher-
+order interactions in social networks. Nature Human Behaviour 5, 5 (2021),
+586–595.
+[2] Yen-Yu Chang, Pan Li, Rok Sosic, MH Afifi, Marco Schweighauser, and Jure
+Leskovec. 2021. F-fade: Frequency factorization for anomaly detection in edge
+streams. In Proceedings of the 14th ACM International Conference on Web Search
+and Data Mining. 589–597.
+[3] Jiahao Chen et al. 2023. Improving Interpretability of Deep Sequential Knowledge
+Tracing Models with Question-Centric Cognitive Representations. In Proceedings
+of the 37th AAAI Conference on Artificial Intelligence.
+[4] Youngduck Choi, Youngnam Lee, Junghyun Cho, Jineon Baek, Byungsoo Kim,
+Yeongmin Cha, Dongmin Shin, Chan Bae, and Jaewe Heo. 2020. Towards an ap-
+propriate query, key, and value computation for knowledge tracing. In Proceedings
+of the seventh ACM conference on learning@ scale. 341–344.
+[5] Ziwei Fan, Zhiwei Liu, Jiawei Zhang, Yun Xiong, Lei Zheng, and Philip S Yu.
+2021. Continuous-time sequential recommendation with temporal graph collab-
+orative transformer. In Proceedings of the 30th ACM international conference on
+information & knowledge management. 433–442.
+[6] Aritra Ghosh, Neil Heffernan, and Andrew S Lan. 2020. Context-aware atten-
+tive knowledge tracing. In Proceedings of the 26th ACM SIGKDD international
+conference on knowledge discovery & data mining. 2330–2339.
+[7] Sepp Hochreiter and Jürgen Schmidhuber. 1997. Long short-term memory. Neural
+computation 9, 8 (1997), 1735–1780.
+[8] Lu Jiang, Pengyang Wang, Ke Cheng, Kunpeng Liu, Minghao Yin, Bo Jin, and
+Yanjie Fu. 2021. Eduhawkes: a neural hawkes process approach for online study
+behavior modeling. In Proceedings of the 2021 SIAM International Conference on
+Data Mining (SDM). SIAM, 567–575.
+[9] Lu Jiang, Yibin Wang, Jianan Wang, Pengyang Wang, and Minghao Yin. 2023.
+Multi-view MOOC quality evaluation via information-aware graph represen-
+tation learning. In Proceedings of the AAAI Conference on Artificial Intelligence,
+Vol. 37. 8070–8077.
+[10] Srijan Kumar, Xikun Zhang, and Jure Leskovec. 2019. Predicting dynamic em-
+bedding trajectory in temporal interaction networks. In Proceedings of the 25th
+ACM SIGKDD international conference on knowledge discovery & data mining.
+1269–1278.
+[11] Amar Lalwani and Sweety Agrawal. 2019. What does time tell? Tracing the
+forgetting curve using deep knowledge tracing. In Artificial Intelligence in Educa-
+tion: 20th International Conference, AIED 2019, Chicago, IL, USA, June 25-29, 2019,
+Proceedings, Part II 20. Springer, 158–162.
+[12] Zachary C Lipton, John Berkowitz, and Charles Elkan. 2015. A critical review of
+recurrent neural networks for sequence learning. arXiv preprint arXiv:1506.00019
+(2015).
+[13] Zitao Liu, Qiongqiong Liu, Jiahao Chen, Shuyan Huang, Boyu Gao, Weiqi Luo,
+and Jian Weng. 2023. Enhancing deep knowledge tracing with auxiliary tasks. In
+Proceedings of the ACM Web Conference 2023. 4178–4187.
+[14] Zitao Liu, Qiongqiong Liu, Jiahao Chen, Shuyan Huang, and Weiqi Luo. 2023.
+simpleKT: a simple but tough-to-beat baseline for knowledge tracing. arXiv
+preprint arXiv:2302.06881 (2023).
+[15] Ting Long, Yunfei Liu, Jian Shen, Weinan Zhang, and Yong Yu. 2021. Tracing
+knowledge state with individual cognition and acquisition estimation. In Proceed-
+ings of the 44th International ACM SIGIR Conference on Research and Development
+in Information Retrieval. 173–182.
+[16] Haiping Ma, Jingyuan Wang, Hengshu Zhu, Xin Xia, Haifeng Zhang, Xingyi
+Zhang, and Lei Zhang. 2022. Reconciling cognitive modeling with knowledge
+forgetting: A continuous time-aware neural network approach. In Proceedings of
+the 31st International Joint Conference on Artificial Intelligence. 2174–2181.
+[17] Alexander Miller, Adam Fisch, Jesse Dodge, Amir-Hossein Karimi, Antoine Bor-
+des, and Jason Weston. 2016. Key-value memory networks for directly reading
+documents. arXiv preprint arXiv:1606.03126 (2016).
+[18] Koki Nagatani, Qian Zhang, Masahiro Sato, Yan-Ying Chen, Francine Chen,
+and Tomoko Ohkuma. 2019. Augmenting knowledge tracing by considering
+forgetting behavior. In The world wide web conference. 3101–3107.
+[19] Hiromi Nakagawa, Yusuke Iwasawa, and Yutaka Matsuo. 2019. Graph-based
+knowledge tracing: modeling student proficiency using graph neural network.
+In IEEE/WIC/ACM International Conference on Web Intelligence. 156–163.
+[20] Shalini Pandey and George Karypis. 2019. A self-attentive model for knowledge
+tracing. arXiv preprint arXiv:1907.06837 (2019).
+[21] Shalini Pandey and Jaideep Srivastava. 2020. RKT: relation-aware self-attention
+for knowledge tracing. In Proceedings of the 29th ACM International Conference
+on Information & Knowledge Management. 1205–1214.
+[22] Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran Sahami,
+Leonidas J Guibas, and Jascha Sohl-Dickstein. 2015. Deep knowledge tracing.
+Advances in neural information processing systems 28 (2015).
+[23] Stephen Ranshous, Shitian Shen, Danai Koutra, Steve Harenberg, Christos Falout-
+sos, and Nagiza F Samatova. 2015. Anomaly detection in dynamic networks:
+a survey. Wiley Interdisciplinary Reviews: Computational Statistics 7, 3 (2015),
+223–247.
+[24] Emanuele Rossi, Ben Chamberlain, Fabrizio Frasca, Davide Eynard, Federico
+Monti, and Michael M. Bronstein. 2020. Temporal Graph Networks for Deep
+Learning on Dynamic Graphs. CoRR abs/2006.10637 (2020).
+[25] Shuanghong Shen, Zhenya Huang, Qi Liu, Yu Su, Shijin Wang, and Enhong Chen.
+2022. Assessing Student’s Dynamic Knowledge State by Exploring the Question
+Difficulty Effect. In Proceedings of the 45th International ACM SIGIR Conference
+on Research and Development in Information Retrieval. 427–437.
+[26] Shuanghong Shen, Qi Liu, Enhong Chen, Zhenya Huang, Wei Huang, Yu Yin, Yu
+Su, and Shijin Wang. 2021. Learning process-consistent knowledge tracing. In
+Proceedings of the 27th ACM SIGKDD conference on knowledge discovery & data
+mining. 1452–1460.
+[27] Weiping Song, Zhiping Xiao, Yifan Wang, Laurent Charlin, Ming Zhang, and Jian
+Tang. 2019. Session-based social recommendation via dynamic graph attention
+networks. In Proceedings of the Twelfth ACM international conference on web
+search and data mining. 555–563.
+[28] Shashank Sonkar, Andrew E Waters, Andrew S Lan, Phillip J Grimaldi, and
+Richard G Baraniuk. 2020. qdkt: Question-centric deep knowledge tracing. arXiv
+preprint arXiv:2005.12442 (2020).
+[29] Ilya Sutskever, Oriol Vinyals, and Quoc V Le. 2014. Sequence to sequence learning
+with neural networks. Advances in neural information processing systems 27
+(2014).
+[30] Dai H. Trivedi R. and Song L.. Wang Y. 2017. Know-evolve: Deep temporal
+reasoning for dynamic knowledge graphs. In International Conference on Machine
+Learning (ICML). 3462–3471.
+[31] Andrew Z Wang, Rex Ying, Pan Li, Nikhil Rao, Karthik Subbian, and Jure Leskovec.
+2021. Bipartite dynamic representations for abuse detection. In Proceedings of the
+27th ACM SIGKDD Conference on Knowledge Discovery & Data Mining. 3638–3648.
+[32] Chenyang Wang, Weizhi Ma, Min Zhang, Chuancheng Lv, Fengyuan Wan, Huijie
+Lin, Taoran Tang, Yiqun Liu, and Shaoping Ma. 2021. Temporal cross-effects in
+knowledge tracing. In Proceedings of the 14th ACM International Conference on
+Web Search and Data Mining. 517–525.
+[33] Xiaolu Xiong, Siyuan Zhao, Eric G Van Inwegen, and Joseph E Beck. 2016. Going
+deeper with deep knowledge tracing. International Educational Data Mining
+Society (2016).
+[34] Da Xu, Chuanwei Ruan, Evren Korpeoglu, Sushant Kumar, and Kannan Achan.
+2020. Inductive Representation Learning on Temporal Graphs. arXiv preprint
+arXiv:2002.07962 (2020).
+[35] Yang Yang, Jian Shen, Yanru Qu, Yunfei Liu, Kerong Wang, Yaoming Zhu, Weinan
+Zhang, and Yong Yu. 2021. GIKT: a graph-based interaction model for knowledge
+tracing. In Machine Learning and Knowledge Discovery in Databases: European
+Conference, ECML PKDD 2020, Ghent, Belgium, September 14–18, 2020, Proceedings,
+Part I. Springer, 299–315.
+[36] Chun-Kit Yeung and Dit-Yan Yeung. 2018. Addressing two problems in deep
+knowledge tracing via prediction-consistent regularization. In Proceedings of the
+fifth annual ACM conference on learning at scale. 1–10.
+[37] Le Yu, Zihang Liu, Tongyu Zhu, Leilei Sun, Bowen Du, and Weifeng Lv. 2022. Mod-
+elling Evolutionary and Stationary User Preferences for Temporal Sets Prediction.
+arXiv preprint arXiv:2204.05490 (2022).
+[38] Le Yu, Leilei Sun, Bowen Du, and Weifeng Lv. 2023.
+Towards Better Dy-
+namic Graph Learning: New Architecture and Unified Library. arXiv preprint
+arXiv:2303.13047 (2023).
+[39] Le Yu, Guanghui Wu, Leilei Sun, Bowen Du, and Weifeng Lv. 2022. Element-
+guided Temporal Graph Representation Learning for Temporal Sets Prediction.
+In Proceedings of the ACM Web Conference 2022. 1902–1913.
+[40] Jiani Zhang, Xingjian Shi, Irwin King, and Dit-Yan Yeung. 2017. Dynamic key-
+value memory networks for knowledge tracing. In Proceedings of the 26th inter-
+national conference on World Wide Web. 765–774.
+
+DyGKT: Dynamic Graph Learning for Knowledge Tracing
+KDD ’24, August 25–29, 2024, Barcelona, Spain.
+A
+Appendix
+In the appendix, details of the experiments are introduced.
+A.1
+Datasets Analysis
+ASSISTment12 contains student exercise data from the 2012-2013
+school year, sourced from the ASSISTments online tutoring ser-
+vice system. ASSISTment17 was featured in the 2017 ASSISTments
+Longitudinal Data Mining Competition. Slepemapy.cz is derived
+from the online adaptive system slepemapy.cz, designed for geogra-
+phy practice. Junyi is collected from Junyi Academy, an E-learning
+platform established in 2012. Finally, EdNet-KT1 is an artificial
+intelligence tutoring system aiding students in TOEIC preparation.
+We further explore the features of five real-world datasets. The
+following three columns represent 10,000 sampled pairs of (stu-
+dent, question) nodes. They include statistics on the maximum and
+average number of times students repeat questions and the aver-
+age number of attempts students make before solving a question
+correctly. Take assist17 as an example, we observe that students
+exhibit a significant amount of repetition in solving questions in
+each dataset, as is shown in figure 7. Additionally, the highly similar
+distributions across the three categories indicate that students often
+go through numerous failures before correctly answering a ques-
+tion. This underscores the significance of defining and identifying
+the behavior of repeating questions for predicting performance.
+A.2
+Descriptions of Baselines
+DKT model is the first knowledge tracing model that utilizes a re-
+current neural network, specifically LSTM, to assess the knowledge
+state of students.
+AKT model employes an attention network to capture the rele-
+vance between the knowledge components (KCs) and the historical
+interactions of students.
+LPKT model directly models students’ learning process to mon-
+itor their knowledge state.
+DIMKT model explicitly incorporates the difficulty level into the
+representation of questions and establish the relationship between
+a student’s knowledge state and the difficulty level of the questions
+during the practice process.
+IEKT model estimates a student’s cognition of a question before
+predicting their response. It also assesses the student’s sensitivity
+to knowledge acquisition on the questions before updating their
+knowledge state.
+QIKT is an interpretable knowledge-tracing model that focuses
+on individual questions. It estimates the variations in a student’s
+knowledge state at a fine-grained level, using question-sensitive
+cognitive representations learned from a question-centric knowl-
+edge acquisition module and a question-centric problem-solving
+module.
+simpleKT is a strong yet simple method for knowledge tracing.
+It models question-specific variations based on the Rasch model and
+utilizes an ordinary dot-product attention function to extract time-
+aware information embedded in a student’s learning interactions.
+CT-NCM model adapts the neural Hawkes process and proposes
+a learning function to model the change of a student’s knowledge
+jointly states at each interaction. It naturally integrates dynamic and
+continuous forgetting behaviors into the modeling of the student’s
+learning process with continuous time.
+TGN model maintains an evolving memory for each node and
+updates this memory when the node is observed in an interaction.
+This is achieved through the message function, message aggregator,
+and memory updater. Additionally, an embedding module is utilized
+to generate temporal representations of nodes.
+TGAT model computes the node representation by aggregating
+features from the temporal-topological neighbors of each node,
+using a self-attention mechanism. It also includes a time encoding
+function to capture temporal patterns.
+DyGFormer model represents nodes with additional structural
+information. It extracts the first hop neighbor sequence of the end
+nodes and computes the neighbor co-occurrence encoding as the
+first-order relative position label.
+The comparison of details of baselines and DyGKT is shown in
+Table 3.
+A.3
+Supplementary to Experiment Results
+The ablation results of EdnetKT1 are revealed in figure 8. DyGKT
+performs the best on the EdNetKT1 dataset, while w/o MI, which
+performs well on the first four datasets, exhibits the poorest perfor-
+mance. Overall, when considering the performance across all five
+datasets, DyGKT emerges as the most stable and reliable model.
+(a) maximum repeating times
+(b) average repeating times
+(c) repeating times before success
+Figure 7: Distribution of repeating times in assist17(Density).
+
+KDD ’24, August 25–29, 2024, Barcelona, Spain.
+Ke Cheng et al.
+Figure 8: AP in transductive and inductive setting for ablation
+study of the DyGKT in EdnetKT1
+Additionally, as is shown in figure 9 comparing inductive exper-
+iments with transductive experiments reveals a consistent perfor-
+mance with a slight decrease of around 0.002. This indicates that
+the model adapts well to inductive scenarios as well.
+Figure 9: AP for inductive ablation study of DyGKT.
+We examine the impact of the Sequence Length parameter on
+the assist17 dataset in an inductive setting. Similar results are ob-
+served under the transductive setting. Figure 10 displays the results
+of the inductive sampling strategy. The original dynamic graph
+model tends to performance degradation as the neighbor sequences
+grow longer. This decline may be attributed to the use of position
+functions for time encoding, which inadequately captures tempo-
+ral features during learning. In classical Knowledge Tracing (KT)
+tasks, longer sequences generally enhance accuracy by providing
+more information to track students’ learning states. In recurrent
+neural network (RNN) tasks, longer sequences typically outperform
+attention-based tasks.
+Figure 10: Sequence length sensitivity in inductive setting.
+A.4
+case study
+We adopt a visualization approach to assess a student’s mastery
+level of a particular question in the future while they are working on
+questions. Specifically, within our well-trained model, for a student
+𝑠and a question 𝑞, we select the historical sequence of exercises
+attempted by the student before timestamp 𝑡. Then, for each mo-
+ment before 𝑡when the student has attempted other questions, we
+predict the probability of the student 𝑠correctly answering question
+𝑞. This process allows us to evaluate the student’s mastery degree
+of question 𝑞during the learning process. We visualize this mastery
+level, displaying information such as correctness, time intervals
+between questions, and whether they belong to the link multiset of
+𝑠and 𝑞, all depicted in figure 11.
+The boxes with different colors in the time interval line represent
+different time interval ranges between the current and next steps;
+the darker colored circles indicate that the attempted question
+belongs to the predicted link multiset.
+(a) assist17 𝑠819 learning process
+(b) assist17 𝑠7776 learning process
+(c) assist12 𝑠62118 learning process
+Figure 11: Visualization of more students’ knowledge mas-
+tery degree of questions over 15 steps.

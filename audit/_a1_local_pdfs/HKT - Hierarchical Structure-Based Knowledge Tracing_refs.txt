@@ -1,0 +1,102 @@
+Q. Li et al.
+CRediT authorship contribution statement
+Qing Li: Supervision, Project administration, Data curation, Conceptualization. Zhijun Huang: Writing – review & editing, 
+Writing – original draft, Visualization, Validation, Software, Resources, Methodology, Investigation, Formal analysis, Data curation. 
+Jianwen Sun: Writing – review & editing, Supervision, Software, Project administration. Xin Yuan: Methodology, Investigation, 
+Formal analysis, Data curation, Conceptualization. Shengyingjie Liu: Writing – review & editing, Visualization, Supervision, 
+Software, Resources, Methodology, Conceptualization. Zhonghua Yan: Supervision, Resources, Methodology.
+Informed consent
+All authors agree to submit this edition and declare that no part of this manuscript has been published or submitted elsewhere. 
+We thank you for your consideration of our manuscript and look forward to receiving comments from the reviewers as soon as 
+possible.
+Funding
+This work was supported by the General Project of the National Social Science Fund of China (grant number BCA220210).
+Declaration of competing interest
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared 
+to influence the work reported in this paper.
+Data availability
+Data sharing not applicable to this article as no datasets were generated or analyzed during the current study.
+References
+Abdelrahman, G., Wang, Q., & Nunes, B. (2023). Knowledge tracing: A survey. ACM Computing Surveys, (11).
+Bengio, Y., Courville, A., & Vincent, P. (2013). Representation learning: A review and new perspectives. IEEE Transactions on Pattern Analysis and Machine 
+Intelligence, (8).
+Bulut, O., Shin, J., Yildirim-Erbasli, S. N., Gorgun, G., & Pardos, Z. A. (2023). An introduction to Bayesian knowledge tracing with pybkt. Psych.
+Casalino, G., Grilli, L., Limone, P., Santoro, D., Schicchi, D., et al. (2021). Deep learning for knowledge tracing in learning analytics: an overview.. TeleXbe.
+Chen, F., Wang, Y.-C., Wang, B., & Kuo, C.-C. J. (2020). Graph representation learning: a survey. APSIPA Transactions on Signal and Information Processing, 9.
+Corbett, A. T., & Anderson, J. R. (1994). Knowledge tracing: Modeling the acquisition of procedural knowledge. User Modeling and User-Adapted Interaction.
+Cui, J., Qian, H., Jiang, B., & Zhang, W. (2024). Leveraging pedagogical theories to understand student learning process with graph-based reasonable knowledge 
+tracing. In Proceedings of the 30th ACM SIGKDD conference on knowledge discovery and data mining.
+Cui, J., Yu, M., Jiang, B., Zhou, A., Wang, J., & Zhang, W. (2024). Interpretable knowledge tracing via response influence-based counterfactual reasoning. In 
+2024 IEEE 40th international conference on data engineering. IEEE.
+Falakmasir, M., Pardos, Z., Gordon, G. J., & Brusilovsky, P. (2013). A spectral learning approach to knowledge tracing.
+Ghosh, A., Heffernan, N., & Lan, A. S. (2020). Context-aware attentive knowledge tracing. In Proceedings of the 26th ACM SIGKDD international conference on 
+knowledge discovery & data mining.
+Grover, A., & Leskovec, J. (2016). Node2vec: Scalable feature learning for networks. In Proceedings of the 22nd ACM SIGKDD international conference on knowledge 
+discovery and data mining.
+Gutmann, M., & Hyvärinen, A. (2010). Noise-contrastive estimation: A new estimation principle for unnormalized statistical models. In Proceedings of the thirteenth 
+international conference on artificial intelligence and statistics. JMLR Workshop and Conference Proceedings.
+Hamilton, W. L. (2020). Graph representation learning. Morgan & Claypool Publishers.
+Huang, Z., Li, K., Jiang, Y., Jia, Z., Lv, L., & Ma, Y. (2024). Graph relearn network: Reducing performance variance and improving prediction accuracy of graph 
+neural networks. Knowledge-Based Systems.
+Jiang, B., Wei, Y., Zhang, T., & Zhang, W. (2024). Improving the performance and explainability of knowledge tracing via Markov blanket. Information Processing 
+& Management, (3).
+Khoshraftar, S., & An, A. (2024). A survey on graph representation learning methods. ACM Transactions on Intelligent Systems and Technology, (1).
+Kingma, D. P., & Ba, J. (2014). Adam: A method for stochastic optimization. arXiv preprint arXiv:1412.6980.
+Lee, J., & Yeung, D.-Y. (2019). Knowledge query network for knowledge tracing: How knowledge interacts with skills. In Proceedings of the 9th international 
+conference on learning analytics & knowledge.
+Li, X., Bai, Y., Guo, T., Liu, Z., Huang, Y., Zhao, X., et al. (2024). Enhancing length generalization for attention based knowledge tracing models with linear 
+biases. In Proceedings of the thirty-third international joint conference on artificial intelligence (IJCAI-24).
+Li, X., Bai, Y., Guo, T., Zheng, Y., Hou, M., Zhan, B., et al. (2024). Extending context window of attention based knowledge tracing models via length extrapolation. 
+In ECAI 2024. IOS Press.
+Li, Z., Jian, Y., Xue, Z., Zheng, Y., Zhang, M., Zhang, Y., et al. (2024). Text-enhanced knowledge graph representation learning with local structure. Information 
+Processing & Management, (5).
+Liu, F., Hu, X., Bu, C., & Yu, K. (2022). Fuzzy Bayesian knowledge tracing. IEEE Transactions on Fuzzy Systems.
+Liu, Z., Liu, Q., Chen, J., Huang, S., & Luo, W. (2023). simpleKT: a simple but tough-to-beat baseline for knowledge tracing. arXiv preprint arXiv:2302.06881.
+Loomis, L. H. (2013). Introduction to abstract harmonic analysis. Courier Corporation.
+Nakagawa, H., Iwasawa, Y., & Matsuo, Y. (2019). Graph-based knowledge tracing: modeling student proficiency using graph neural network. In IEEE/WIC/aCM 
+international conference on web intelligence.
+Oord, A. v. d., Li, Y., & Vinyals, O. (2018). Representation learning with contrastive predictive coding. arXiv preprint arXiv:1807.03748.
+Information Processing and Management 62 (2025) 104206 
+17 
+
+Q. Li et al.
+Perozzi, B., Al-Rfou, R., & Skiena, S. (2014). Deepwalk: Online learning of social representations. In Proceedings of the 20th ACM SIGKDD international conference 
+on knowledge discovery and data mining.
+Piech, C., Bassen, J., Huang, J., Ganguli, S., Sahami, M., Guibas, L. J., et al. (2015). Deep knowledge tracing. Advances in Neural Information Processing Systems.
+Qian, L., Zheng, K., Wang, L., & Li, S. (2024). Student state-aware knowledge tracing based on attention mechanism: A cognitive theory view. Pattern Recognition 
+Letters.
+Shen, S., Liu, Q., Chen, E., Huang, Z., Huang, W., Yin, Y., et al. (2021). Learning process-consistent knowledge tracing. In Proceedings of the 27th ACM SIGKDD 
+conference on knowledge discovery & data mining.
+Shen, X., Yu, F., Liu, Y., Liang, R., Wan, Q., Yang, K., et al. (2024). Revisiting knowledge tracing: A simple and powerful model. In Proceedings of the 32nd ACM 
+international conference on multimedia.
+Sweller, J., Van Merrienboer, J. J., & Paas, F. G. (1998). Cognitive architecture and instructional design. Educational Psychology Review.
+Tong, S., Liu, Q., Huang, W., Hunag, Z., Chen, E., Liu, C., et al. (2020). Structure-based knowledge tracing: An influence propagation view. In 2020 IEEE 
+international conference on data mining. IEEE.
+Veličković, P., Fedus, W., Hamilton, W. L., Liò, P., Bengio, Y., & Hjelm, R. D. (2018). Deep graph infomax. arXiv preprint arXiv:1809.10341.
+Wang, F., Huang, Z., Liu, Q., Chen, E., Yin, Y., Ma, J., et al. (2023). Dynamic cognitive diagnosis: An educational priors-enhanced deep knowledge tracing 
+perspective. IEEE Transactions on Learning Technologies.
+Wang, Y., Lai, Y., & Huang, X. (2024). Innovations in online learning analytics: A review of recent research and emerging trends. IEEE Access, http:
+//dx.doi.org/10.1109/ACCESS.2024.3493621.
+Wang, W., Ma, H., Zhao, Y., & Li, Z. (2024). Pre-training question embeddings for improving knowledge tracing with self-supervised bi-graph co-contrastive 
+learning. ACM Transactions on Knowledge Discovery from Data, (4).
+Wang, C., & Sahebi, S. S. (2023). Continuous personalized knowledge tracing: Modeling long-term learning in online environments. In Proceedings of the 32nd 
+ACM International Conference on Information and Knowledge Management.
+Waswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A., et al. (2017). Attention is all you need. In NIPS.
+Xu, D., Ruan, C., Korpeoglu, E., Kumar, S., & Achan, K. (2019). Self-attention with functional time representation learning. Advances in Neural Information 
+Processing Systems.
+Yang, T., Yu, X., Ma, N., Zhang, Y., & Li, H. (2022). Deep representation-based transfer learning for deep neural networks. Knowledge-Based Systems.
+Yeung, C.-K., & Yeung, D.-Y. (2018). Addressing two problems in deep knowledge tracing via prediction-consistent regularization. In Proceedings of the fifth annual 
+ACM conference on learning at scale.
+Yin, Y., Dai, L., Huang, Z., Shen, S., Wang, F., Liu, Q., et al. (2023). Tracing knowledge instead of patterns: Stable knowledge tracing with diagnostic transformer. 
+In Proceedings of the ACM web conference 2023.
+You, Y., Chen, T., Sui, Y., Chen, T., Wang, Z., & Shen, Y. (2020). Graph contrastive learning with augmentations. Advances in Neural Information Processing 
+Systems.
+Zaremba, W. (2014). Recurrent neural network regularization. arXiv preprint arXiv:1409.2329.
+Zhang, P., Niu, Z., Ma, R., & Zhang, F. (2025). Multi-view graph contrastive representation learning for bundle recommendation. Information Processing & 
+Management, (1).
+Zhang, J., Shi, X., King, I., & Yeung, D.-Y. (2017). Dynamic key-value memory networks for knowledge tracing. In Proceedings of the 26th international conference 
+on world wide web.
+Zhao, W., Xia, J., Jiang, X., & He, T. (2023). A novel framework for deep knowledge tracing via gating-controlled forgetting and learning mechanisms. Information 
+Processing & Management, (1).
+Information Processing and Management 62 (2025) 104206 
+18 

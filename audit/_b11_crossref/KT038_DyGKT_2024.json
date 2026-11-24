@@ -1,0 +1,133 @@
+{
+  "title": [
+    "DyGKT: Dynamic Graph Learning for Knowledge Tracing"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0002-6063-6129",
+      "authenticated-orcid": false,
+      "given": "Ke",
+      "family": "Cheng",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "SKLSDE Lab, Beihang University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0009-0009-9217-967X",
+      "authenticated-orcid": false,
+      "given": "Linzhi",
+      "family": "Peng",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "SKLSDE Lab, Beihang University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-3961-5523",
+      "authenticated-orcid": false,
+      "given": "Pengyang",
+      "family": "Wang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "SKL-IOTSC, Department of Computer and Information Science, University of Macau, Macau, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-2677-0751",
+      "authenticated-orcid": false,
+      "given": "Junchen",
+      "family": "Ye",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Transportation Science and Engineering, Beihang University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-0157-1716",
+      "authenticated-orcid": false,
+      "given": "Leilei",
+      "family": "Sun",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "SKLSDE Lab, Beihang University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-6297-5212",
+      "authenticated-orcid": false,
+      "given": "Bowen",
+      "family": "Du",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Transportation Science and Engineering, Beihang University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2024,
+        8,
+        24
+      ]
+    ]
+  },
+  "container-title": [
+    "Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining"
+  ],
+  "volume": null,
+  "issue": null,
+  "page": "409-420",
+  "publisher": "ACM",
+  "DOI": "10.1145/3637528.3671773",
+  "type": "proceedings-article"
+}

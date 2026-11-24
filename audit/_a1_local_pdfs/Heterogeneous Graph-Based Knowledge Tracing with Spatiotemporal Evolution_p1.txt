@@ -1,0 +1,159 @@
+Expert Systems With Applications 238 (2024) 122249
+Available online 30 October 2023
+0957-4174/© 2023 Elsevier Ltd. All rights reserved.
+Heterogeneous graph-based knowledge tracing with 
+spatiotemporal evolution 
+Huali Yang a, Shengze Hu b,c, Jing Geng b,c, Tao Huang b,c,d,*, Junjie Hu b,c, Hao Zhang b,c, 
+Qiang Zhu a 
+a School of Computer Science and Artificial Intelligence, Wuhan Textile University, Wuhan 430200, China 
+b Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan 430079, China 
+c National Engineering Research Center of Educational Big Data, Central China Normal University, Wuhan 430079, China 
+d Ningxia Normal University, Ningxia 756000, China   
+A R T I C L E  I N F O   
+Keywords: 
+Knowledge tracing 
+Heterogeneous graph 
+Knowledge construction 
+Spatiotemporal evolution 
+A B S T R A C T   
+Knowledge tracing (KT), in which the future performance of students is estimated by tracing their knowledge 
+states based on their responses to exercises, is widely applied in the field of intelligent education. However, 
+existing mainstream KT models explore the importance of knowledge relations but ignore the key role of 
+cognitive factors. According to the knowledge construction theory, the human cognitive system performs both 
+spatial accommodation and temporal assimilation to internalize knowledge. In this paper, we propose an 
+innovative heterogeneous graph-based Knowledge tracing method with spatiotemporal evolution (TSKT), in 
+which knowledge state evolution is traced along both temporal and spatial dimensions. We construct a het­
+erogeneous graph with multiple exercise attributes, including content, concepts, and difficulty, to obtain a 
+knowledge space with richer exercise representations through hierarchical aggregation. We design a spatial 
+updating module in which each interaction updates the current node’s state of the knowledge space and transfers 
+its influence to its neighbors. We also design a temporal updating module to further update the knowledge state 
+through short-term memory enhancing and long-term memory forgetting. Finally, we stack these modules to 
+obtain deeper features by using alternate spatiotemporal updating. Extensive experiments on three datasets 
+reveal the superiority of the proposed method and its variants in terms of future performance prediction.   
+1. Introduction 
+With the current continuous development in information and 
+Internet technology, online education providers such as Khan Academy, 
+Assistment, and Coursera have developed a large body of teaching re­
+sources that can overcome the time and space limitations faced by 
+several students (Zhuang et al., 2022). Therefore, establishing a scien­
+tific measurement method to trace the knowledge status of students is a 
+key issue for appropriate learning material suggestion and personalized 
+learning path recommendation (Hooshyar et al., 2022) in intelligent 
+tutoring systems, and this aspect has been attracting growing attention 
+from the public (Gao et al., 2021; Huang et al., 2021; Liu et al., 2019). 
+Knowledge tracing (KT) (Liu et al., 2021) aims to use time-series data 
+obtained from student answers to exercises in the learning process to 
+model knowledge mastery and predict future performance, as illustrated 
+in Fig. 1(a). For example, deep knowledge tracing (DKT) (Piech et al., 
+2015) and dynamic key-value memory networks (DKVMN) (Zhang et al., 
+2017) use the hidden vectors of a recurrent neural network (RNN) and 
+memory matrix, respectively, to trace the evolution of knowledge in the 
+temporal dimension. Other studies have focused on the impact of 
+forgetting factors on the knowledge state (Ghosh et al., 2020; Nagatani 
+et al., 2019). In addition to the temporal dimension, an increasing 
+number of KT methods (Nakagawa et al., 2019; Tong et al., 2020a, 
+2020b) have emphasized the importance of spatial dimension relation­
+ships between exercises and knowledge concepts. SKT (Tong et al., 
+2020a, 2020b) involved the use of an exercise-knowledge hierarchical 
+graph neural network to describe these relationships. GKT (Nakagawa 
+et al., 2019) required the construction of a homogeneous graph using 
+prerequisite relations to represent the relation between knowledge 
+concepts. JKT (Song et al., 2021) employed a joint graph convolutional 
+* Corresponding author. 
+E-mail addresses: hlyang@wtu.edu.cn (H. Yang), hsz666@mails.ccnu.edu.cn (S. Hu), gengjing@mails.ccnu.edu.cn (J. Geng), tmht@mail.ccnu.edu.cn (T. Huang), 
+jjboy23366@mails.ccnu.edu.cn (J. Hu), zhanghao@mail.ccnu.edu.cn (H. Zhang), qzhu@wtu.edu.cn (Q. Zhu).  
+Contents lists available at ScienceDirect 
+Expert Systems With Applications 
+journal homepage: www.elsevier.com/locate/eswa 
+https://doi.org/10.1016/j.eswa.2023.122249 
+Received 10 October 2022; Received in revised form 18 October 2023; Accepted 18 October 2023   
+
+Expert Systems With Applications 238 (2024) 122249
+2
+network based on the implicit relationships of “exercise-to-exercise” and 
+“concept-to-concept.” Although rich representations of exercises have 
+significantly improved prediction performance, previous studies have 
+ignored the spatiotemporal evolution of the knowledge states of 
+students. 
+According to the knowledge construction theory adopted in the field 
+of education (Kimmerle et al., 2010, 2015; Piaget, 1970, 1977), when 
+students arrive at a new exercise, their cognitive system does not 
+internalize knowledge by simply transferring and integrating the infor­
+mation (Piaget, 1970). Here, knowledge internalization is an active 
+process of adding new content (assimilation) and changing the structure 
+of the knowledge (accommodation) (Kimmerle et al., 2010). Assimila­
+tion and accommodation are natural cognitive laws that cause a stu­
+dent’s knowledge state to change over time and space. Assimilation 
+occurs in the temporal dimension when students arrive at new exercises, 
+ultimately adding new pieces of information to their prior knowledge 
+(Kimmerle et al., 2010). For example, students answering a new exer­
+cise, e2, at time t2 will experience decays in their knowledge state 
+depending on the time interval, the degree of assimilation of their old 
+knowledge (Piaget, 1977), and updating of their current knowledge 
+state in the temporal dimension. Meanwhile, accommodation occurs in 
+the spatial dimension when a student acquires knowledge and transfers 
+it to other associated knowledge. For example, as shown in Fig. 1(c), 
+when a student interacts with exercise e1, the knowledge states of 
+related concepts k2 and k3 are updated, and the effect is transferred to 
+similar knowledge via accommodation (Piaget, 1970). Consequently, 
+according to the knowledge construction process that occurs with ex­
+ercise answering, the modeling of KT must consider accommodation 
+with transfer and assimilation with the reception of knowledge in both 
+the temporal and spatial dimensions. 
+However, two main challenges are associated with this approach. 
+First, the evolution of a student’s knowledge state follows the mecha­
+nism of assimilation and accommodation based on the knowledge con­
+struction theory. As depicted in Fig. 1(c), a student’s knowledge 
+undergoes assimilation over time on the temporal axis, while on the 
+spatial axis the knowledge status is accommodated by neighboring 
+concepts within the knowledge structure. Specifically, for the spatial 
+evolution, the state changes of each knowledge concept within the 
+knowledge space are transferred to adjacent concepts. For instance, 
+when a particular exercise e1 is answered correctly (or incorrectly), the 
+student’s proficiency of k1 increases (or decreases). This effect will be 
+transferred to its neighbors, that is, k2 and k3, as well as to higher-level 
+associated knowledge concepts. Evidently, at time t1, the student’s 
+mastery of knowledge concepts k2 and k3 have both diminished from 
+their initial default value of 1. Moreover, for the temporal evolution, 
+knowledge can only be assimilated and received if it is not forgotten over 
+time. Considerably, at time t2, as time advances, the student’s profi­
+ciency in a specific knowledge concept (i.e., k3 or k4) has decreased, 
+indicating forgetting without being assimilated or absorbed. However, 
+forgetting is influenced by a variety of factors including the frequency of 
+applying the same knowledge, and it is often difficult for a general RNN 
+(Piech et al., 2015) to capture the influence of different time lengths on 
+forgetting. Therefore, it is necessary to portray the assimilation and 
+accommodation processes of knowledge in both the temporal and spatial 
+dimensions. 
+Second, knowledge construction in temporal and spatial evolution is 
+dependent on the relationship between exercises and knowledge con­
+cepts. The knowledge space theory (Doignon & Falmagne, 1985) asserts 
+that an exercise is not isolated; instead, there exist relations between 
+exercises resulting from prerequisite relations between knowledge 
+(Chen et al., 2018). In fact, each exercise contains a variety of hetero­
+geneous characteristics such as content q, knowledge concept c, and 
+difficulty d. The exercise heterogeneous graph network comprises mul­
+tiple heterogeneous nodes, as shown in Fig. 1(b). Consequently, a 
+comprehensive exercise representation necessitates the fusion of diverse 
+exercises and their heterogeneous attributes. Nonetheless, developing 
+methodologies that effectively harness these heterogeneous attributes to 
+create accurate exercise representations and capture their implicit 
+knowledge relationships presents a significant challenge. 
+The primary aim of our research is to calculate students’ knowledge 
+states by tracing the processes of assimilation and accommodation to 
+address the inadequate knowledge construction in traditional models. 
+Consequently, we divide the knowledge modeling process into two di­
+mensions: temporal and spatial. Existing KT methods mainly focus on 
+updating knowledge in the temporal dimension, lacking consideration 
+of spatial influences that result in limited knowledge propagation. To 
+address this challenge, we propose a novel heterogeneous graph-based 
+KT method with temporal–spatial evolution (TSKT) to update and 
+trace students’ knowledge states over time and space. As for the spatial 
+dimension’s accommodation process, we extend the traditional homo­
+geneous graph-based knowledge propagation approach (Tong et al., 
+2020a, 2020b) by employing graph neural networks to aggregate multi- 
+dimensional heterogeneous information from exercises, thereby 
+enriching the knowledge representation of exercises. Additionally, 
+Fig. 1. A toy example. (a) The learning process in KT scenarios. (b) Multiple heterogeneous information of exercises. (c) Knowledge state evolution based on 
+knowledge construction in both temporal and spatial dimensions. The default original knowledge status of each knowledge concept is 1. 
+H. Yang et al.                                                                                                                                                                                                                                    

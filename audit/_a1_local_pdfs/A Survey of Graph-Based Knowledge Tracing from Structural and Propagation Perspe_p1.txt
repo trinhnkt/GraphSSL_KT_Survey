@@ -1,0 +1,78 @@
+A Survey of Graph-Based Knowledge Trac-
+ing from Structural and Propagation Per-
+spectives: Models, Applications, and Fu-
+ture Directions
+Meiling Xu
+University of Turku
+Turku, Finland
+meilxu@utu.fi
+Janne Kujala
+University of Turku
+Turku, Finland
+janne.kujala@utu.fi
+Jari Mets¨amuuronen
+University of Turku
+Turku, Finland
+jari.metsamuuronen@gmail.com
+Mikko-Jussi Laakso
+University of Turku
+Turku, Finland
+milaak@utu.fi
+Knowledge Tracing (KT) is a fundamental task in intelligent education that tracks students’ knowledge
+states through their historical interactions. Early deep learning-based KT mainly relies on sequential
+models, which often find it more challenging to explicitly model the complex many-to-many relation-
+ships between students and knowledge entities, such as exercises and knowledge components. Graph-
+based Knowledge Tracing (GbKT) further leverages graph neural networks to explicitly represent these
+structural relationships, creating new opportunities for learning-state monitoring and personalized inter-
+vention. In this survey, we conduct an in-depth exploration of recent progress in GbKT research. First, we
+introduce a two-dimensional taxonomy that aligns the primary modeling motivations with graph structural
+forms, and we characterize them with unified message-passing equations. Second, focusing on applica-
+tions, such as the discovery of knowledge structures, modeling with educational psychology theories and
+interpretability, and personalized recommendation and path planning, we show how graph semantics en-
+dow the models with new interpretability and intervention capabilities. Third, we systematically evaluate
+17 public datasets, offering researchers guidance on dataset selection. Finally, we outline promising fu-
+ture research directions for GbKT.
+Keywords: knowledge tracing, graph-based knowledge tracing, graph neural networks, student model-
+ing, educational data mining, personalized learning
+1.
+INTRODUCTION
+In AI-driven online learning environments, Knowledge Tracing (KT) (Corbett and Anderson,
+1994) is a key task, aiming to accurately predict students’ performance on the next exercise on
+the basis of their interaction records with previous exercises (Dowling and Hockemeyer, 2001;
+1
+41
+Journal of Educational Data Mining, Volume 18, No 2, 2026
+
+Figure 1: An illustration of the KT scenario.
+Pardos et al., 2013). In recent years, deep learning models—such as Deep Knowledge Tracing
+(DKT) and attention-based KT models—have been shown to significantly outperform traditional
+methods in terms of prediction accuracy (Piech et al., 2015; Choi et al., 2020; Shin et al., 2021).
+Figure 1 illustrates a common approach in traditional KT: a student’s exercise–response se-
+quence is modeled as a time series to incrementally infer knowledge mastery. Student A answers
+four exercises, e1–e4, at time steps t1–t4. Each exercise is linked to knowledge components (KC)
+c1–c4. At t1–t3, the responses are observed as “correct” or “incorrect”, allowing the model to
+update mastery of the related KCs. At t4, the outcome of e4 is still unknown (denoted “?”). The
+model therefore predicts the probability that the student will solve e4 correctly, using the prior
+response sequence and the dependencies among KCs.
+Bayesian Knowledge Tracing (BKT) (Corbett and Anderson, 1994) is the foundational model
+in the knowledge tracing field. BKT is based on a Hidden Markov Model and uses four prob-
+ability parameters—initial mastery probability, learning probability, guess probability, and slip
+probability—to independently model each knowledge component. It updates the mastery proba-
+bility estimate via Bayesian inference after each student response and has been widely deployed
+in intelligent tutoring systems such as Cognitive Tutor and MATHia. Notably, BKT remains an
+active research direction, with recent advances in interpretability (Zhou et al., 2024), parameter
+theory (Shchepakin et al., 2024), and fairness (Barrett et al., 2024).
+Meanwhile, the rise of Deep Learning Knowledge Tracing (DLKT) has opened new di-
+rections for KT research. Compared to BKT’s assumption of independent modeling for each
+KC, DLKT can capture more complex cross-skill learning dynamics and nonlinear temporal
+dependencies. DKT (Piech et al., 2015) pioneered the application of recurrent neural networks
+to KT; Dynamic Key-Value Memory Network (DKVMN) (Zhang et al., 2017) introduced dy-
+namic key-value memory networks to directly output mastery levels for each concept. Subse-
+quently, attention-based models further advanced the field: Self-Attentive KT (SAKT) (Pandey
+and Karypis, 2019) and context-aware Attentive KT (AKT) (Ghosh et al., 2020) introduced self-
+attention mechanisms to model the relevance of historical interactions and forgetting behavior;
+separated Self-Attentive Neural KT+ (SAINT+) (Shin et al., 2021) adopted the Transformer
+architecture to integrate temporal features, achieving notable improvements in modeling long-
+2
+42
+Journal of Educational Data Mining, Volume 18, No 2, 2026

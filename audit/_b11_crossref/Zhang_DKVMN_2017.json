@@ -1,0 +1,89 @@
+{
+  "title": [
+    "Dynamic Key-Value Memory Networks for Knowledge Tracing"
+  ],
+  "author": [
+    {
+      "given": "Jiani",
+      "family": "Zhang",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "The Chinese University of Hong Kong, Hong Kong, Hong Kong"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Xingjian",
+      "family": "Shi",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Hong Kong University of Science and Technology, Hong Kong, Hong Kong"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Irwin",
+      "family": "King",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "The Chinese University of Hong Kong, Hong Kong, Hong Kong"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Dit-Yan",
+      "family": "Yeung",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Hong Kong University of Science and Technology, Hong Kong, Hong Kong"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2017,
+        4,
+        3
+      ]
+    ]
+  },
+  "container-title": [
+    "Proceedings of the 26th International Conference on World Wide Web"
+  ],
+  "volume": null,
+  "issue": null,
+  "page": "765-774",
+  "publisher": "International World Wide Web Conferences Steering Committee",
+  "DOI": "10.1145/3038912.3052580",
+  "type": "proceedings-article"
+}

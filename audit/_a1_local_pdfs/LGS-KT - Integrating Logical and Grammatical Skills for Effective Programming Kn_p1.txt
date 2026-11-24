@@ -1,0 +1,186 @@
+Neural Networks 185 (2025) 107164
+Available online 18 January 2025
+0893-6080/© 2025 Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and similar technologies.
+Contents lists available at ScienceDirect
+Neural Networks
+journal homepage: www.elsevier.com/locate/neunet
+Full Length Article
+LGS-KT: Integrating logical and grammatical skills for effective programming
+knowledge tracing
+Xinjie Sun a,b,d
+, Qi Liu c,d,∗, Kai Zhang b,d, Shuanghong Shen b,d, Yan Zhuang b,d, Yuxiang Guo b,d
+a School of Computer Science, Liupanshui Normal University, Liupanshui, China
+b School of Computer Science and Technology, University of Science and Technology of China, Hefei, China
+c School of Artificial Intelligence and Data Science, University of Science and Technology of China, Hefei, China
+d State Key Laboratory of Cognitive Intelligence, Hefei, China
+A R T I C L E
+I N F O
+Keywords:
+Knowledge tracing
+Data mining
+Logical skill
+Grammatical skill
+Programming education
+A B S T R A C T
+Knowledge tracing (KT) estimates students’ mastery of knowledge concepts or skills by analyzing their historical
+interactions. Although general KT methods have effectively assessed students’ knowledge states, specific
+measurements of students’ programming skills remain insufficient. Existing studies mainly rely on exercise
+outcomes and do not fully utilize behavioral data during the programming process. Therefore, we integrate
+a Logical and Grammar Skills Knowledge Tracing (LGS-KT) model to enhance programming education. This
+model integrates static analysis and dynamic monitoring (such as CPU and memory consumption) to evaluate
+code elements, providing a thorough assessment of code quality. By analyzing students’ multiple iterations
+on the same programming problem, we constructed a reweighted logical skill evolution graph to assess the
+development of students’ logical skills. Additionally, to enhance the interactions among representations with
+similar grammatical skills, we developed a grammatical skills interaction graph based on the similarity of
+knowledge concepts. This approach significantly improves the accuracy of inferring students’ programming
+grammatical skill states. The LGS-KT model has demonstrated superior performance in predicting student
+outcomes. Our research highlights the potential application of a KT model that integrates logical and
+grammatical skills in programming exercises. To support reproducible research, we have published the data
+and code at https://github.com/xinjiesun-ustc/LGS-KT, encouraging further innovation in this field.
+1. Introduction
+Knowledge tracing (KT) refers to the dynamic estimation of stu-
+dents’ mastery of knowledge concepts (KCs) or skills (such as loops)
+based on their responses to problems. These estimations are then used
+to predict their future performance (Pandey & Karypis, 2019; Shen
+et al., 2024), as shown in Fig. 1. The importance of programming skills
+is becoming increasingly prominent, and more people are encouraged
+to engage in programming exercises to enhance their individual pro-
+gramming abilities (Lindberg, Laine, & Haaranen, 2019; Messer, Brown,
+Kölling, & Shi, 2024). In this process, tracking learners’ programming
+skills becomes crucial (Ashurova & Ashurov, 2023; Huang, Brusilovsky,
+Guerra, Koedinger, & Schunn, 2023; Li et al., 2022).
+In recent years, deep learning knowledge tracing (DLKT) mod-
+els have flourished, encompassing autoregressive deep sequential KT
+models (Chen, Liu, Huang, Liu, & Luo, 2023; Minn, Yu, Desmarais,
+Zhu, & Vie, 2018; Wang et al., 2023), attention mechanisms (Ghosh,
+∗Corresponding author.
+E-mail addresses: xinjiesun@mail.ustc.edu.cn (X. Sun), qiliuql@ustc.edu.cn (Q. Liu), kkzhang08@ustc.edu.cn (K. Zhang), closer@mail.ustc.edu.cn (S. Shen),
+zykb@mail.ustc.edu.cn (Y. Zhuang), guoyx18@mail.ustc.edu.cn (Y. Guo).
+Heffernan, & Lan, 2020; Pandey & Karypis, 2019), and graph-based
+KT models (Nakagawa, Iwasawa, & Matsuo, 2019; Yang et al., 2021).
+Recently, programming KT tasks have garnered significant attention
+from researchers. To enhance the ability to predict students’ program-
+ming behaviors and knowledge states (Li et al., 2022; Liu, Wang,
+Baraniuk, & Lan, 2022), various methods have been proposed. For in-
+stance, Code-DKT (Shi, Chi, Barnes, & Price, 2022) integrates Code2Vec
+with the DKT model (Piech et al., 2015) to embed student code and
+model knowledge states; the PTDK model (Zhu et al., 2022), on the
+other hand, employs dual-sequence modeling techniques to accurately
+predict the outcomes of students’ subsequent submissions.
+Although DLKT methods have introduced new perspectives for han-
+dling general KT issues, the programming exercise process (PEP) sig-
+nificantly differs from general exercise processes. In general exercises,
+learners answer questions in sequence, and each question is not at-
+tempted multiple times in a row, as shown in Fig. 1(a). In contrast, PEP
+https://doi.org/10.1016/j.neunet.2025.107164
+Received 7 May 2024; Received in revised form 15 November 2024; Accepted 10 January 2025
+
+Neural Networks 185 (2025) 107164
+2
+X. Sun et al.
+Fig. 1. A toy example demonstrating the process of KT for general KT and program-
+ming exercise KT.
+allows learners to solve problems through an iterative process. In each
+exercise, learners can submit code, receive feedback, and repeatedly
+modify their solutions, as depicted in Fig. 1(b). Unlike general exercises
+(such as multiple-choice math questions), a learner’s proficiency is not
+only reflected in whether they answer questions correctly but is also
+directly manifested in the programming skills embodied in the code
+they submit. This includes the relevance of grammatical skills used
+across different programming questions and the evolution of students’
+programming logical skills during the continuous code iteration process
+within the same question. This process generates richer behavioral
+data for each learner than general exercises, requiring more careful
+consideration when assessing programming skills proficiency.
+To ensure accurate measurement of skill proficiency in program-
+ming education, we must address three major challenges. Firstly, it is
+crucial to perform detailed information extraction, grammatical analy-
+sis, and code quality assessment on students’ submitted code. Although
+students’ code harbors rich information about programming skills, ex-
+isting code embedding technologies (Devlin, Chang, Lee, & Toutanova,
+2018; Feng et al., 2020; Guo et al., 2020; Hinton & Salakhutdinov,
+2006) primarily focus on the structure and semantics of the source
+code, often failing to delve into data directly related to programming
+skills. Secondly, given that the same problem in programming ex-
+ercises often involves continuous code iteration aimed at enhancing
+programming logic, effectively assessing the evolution of students’
+problem-solving approaches and the growth of their programming log-
+ical skills from these continuous changes poses a significant challenge.
+Lastly, uncovering the grammatical knowledge similarities between
+different problems and building interactive representations of gram-
+matical skills based on these similarities are key to enhancing the
+accuracy and practicality of the model. To address these issues, we need
+to adopt a comprehensive approach that not only considers the person-
+alized characteristics of students’ programming logical skills but also
+deeply understands their mastery of grammatical knowledge, to achieve
+a more objective and precise assessment of students’ programming skill
+states.
+To effectively address the challenges mentioned above, we propose
+the logical and Grammatical Skills KT (LGS-KT) model, which inno-
+vates in several key aspects aimed at enhancing the effectiveness and
+interpretability of KT in programming exercises. Firstly, to deeply mine
+the information contained in the code, we use static analysis combined
+with dynamic monitoring (such as CPU and memory consumption) to
+assess code quality and score different programming grammar elements
+within the code. Secondly, to evaluate the development of students’
+logical skills during the programming process, we perform differential
+analysis on multiple submissions of the same problem and, combining
+code quality, grammar scoring, and source code information, we con-
+struct a reweighted logical skills evolution graph. Lastly, to facilitate
+interaction among representations with similar grammatical skills, we
+first establish a similarity graph of knowledge concepts and then, based
+on this graph, extract the grammatical knowledge relationships in-
+volved by different students to build a grammar skill interaction graph,
+enhancing the model’s ability to infer students’ programming grammat-
+ical skill states. These innovations together significantly improve the
+model’s practicality and explanatory power.
+In this study, we propose a new model for KT in programming
+exercises, aimed at more accurately and comprehensively assessing stu-
+dents’ programming skills. Our main contributions can be summarized
+as follows:
+• We propose an innovative assessment method that integrates
+logical and grammatical skills in programming exercises to more
+precisely evaluate students’ proficiency in programming skills.
+• By constructing a reweighted logical Skills evolution graph and a
+grammatical skills interaction graph, our model can meticulously
+track and analyze changes and developments in students’ skills
+during the programming exercise. The introduction of these stu-
+dent profiles provides new perspectives and deep insights into
+how students gradually master complex programming tasks.
+• In experiments comparing our LGS-KT model with existing KT
+models, our model demonstrated superior performance across
+multiple datasets. This result confirms the effectiveness and ed-
+ucational value of our model in practical applications.
+These contributions not only showcase the innovation of our re-
+search but also provide powerful tools for programming education
+practice, helping educators better understand and support students’
+learning processes.
+2. Related works
+Accurately identifying students’ programming skills during coding
+exercises is an extremely valuable task. Subsequently, we will explore
+relevant research from two perspectives: KT and modeling in computer
+science education.
+2.1. Knowledge tracing
+Recently, deep learning technologies have been extensively applied
+to KT tasks, which model students’ historical learning patterns and
+predict future performance. Existing DLKT methods can be categorized
+into two main types based on their application scenarios: academic and
+programming subjects.
+C1: Academic Subjects Modeling the knowledge states of students
+in academic subjects is one of the most important applications of KT
+tasks. These studies not only enhance the performance of the models
+but also provide us with new perspectives and tools to deeply un-
+derstand students’ learning processes. In recent years, the application
+of deep learning technologies in the field of KT has continuously
+driven research progress. Researchers are dedicated to improving the
+foundational structures of models to more accurately trace students’
+knowledge states. By incorporating Long Short-Term Memory (LSTM)
+layers (Piech et al., 2015), memory networks (Abdelrahman & Wang,
+2019; Sun et al., 2021; Zhang, Shi, King, & Yeung, 2017), and at-
+tention mechanisms (Ghosh et al., 2020; Huang et al., 2024; Pandey
+& Karypis, 2019), these methods can better differentiate students’
+mastery of various KCs and improve the accuracy of the models. In
+addition to improvements in model structure, researchers have also
+begun to incorporate problem-solving features to gather more com-
+prehensive information and more accurately understand and predict
+students’ knowledge levels. By encoding predicted responses and actual

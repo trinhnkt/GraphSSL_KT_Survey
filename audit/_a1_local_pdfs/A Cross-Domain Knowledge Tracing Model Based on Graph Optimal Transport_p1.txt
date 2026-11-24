@@ -1,0 +1,74 @@
+World Wide Web (2025) 28:10
+https://doi.org/10.1007/s11280-024-01311-1
+A cross-domain knowledge tracing model based on graph
+optimal transport
+Zhengyang Wu1,2 · Yuqi Liu2 · Jianwei Cen2 · Zetao Zheng3 · Guandong Xu4
+Received: 31 July 2024 / Revised: 10 October 2024 / Accepted: 15 October 2024 /
+Published online: 26 December 2024
+© The Author(s), under exclusive licence to Springer Science+Business Media, LLC, part of Springer Nature 2024
+Abstract
+Knowledge tracing (KT) is an essential technology in intelligent education that predicts stu-
+dents’ performance by analyzing their learning behavior data. Despite signiﬁcant advances
+in KT, most existing research focuses on improving performance within a single domain (i.e.,
+a speciﬁc academic discipline or school), with limited attention to Cross-Domain Knowl-
+edge Tracing (CDKT). CDKT aims to efﬁciently transfer the capabilities of a KT model
+from a source domain to a target domain. The main challenge in CDKT is aligning the
+knowledge state distributions between the two domains to compensate for the lack of inter-
+action data in the target domain. To address this challenge, we propose an Auto-encoder
+Embedding and Graph Optimal Transport based CDKT model (AEGOT-CDKT). In the ini-
+tial pre-training phase, we use an auto-encoder to learn the embedding representations of
+exercises and knowledge concepts in both the source and target domains. Next, we design a
+cross-domainalignmentmodulethatalignstheembeddingrepresentationsofthetwodomains
+using the Graph Optimal Transport (GOT) strategy. This approach effectively supplements
+students’ knowledge state representations acquired from both domains and guides the learn-
+ing process in the target domain. Additionally, intra-domain alignment is conducted through
+a graph decoding objective, bringing node features with similar knowledge concepts or exer-
+cises closer together. Finally, we train an LSTM model using the aligned source domain
+embeddings and use the trained LSTM to predict student responses in the target domain.
+Transfer experiments in different educational contexts demonstrate that our approach suc-
+cessfully accomplishes CDKT task and validates the effectiveness of aligning knowledge
+state distributions across different domains.
+Keywords Knowledge tracing · Graph optimal transport · Cross-domain alignment ·
+Graph attention network
+1 Introduction
+With the rapid global digitalization and integration of intelligent technologies, smart online
+education is increasingly pivotal in shaping the education sector. Educational platforms have
+grown signiﬁcantly due to digital transformation, providing diverse online learning resources
+and convenient pathways. While these platforms have revolutionized traditional education
+Extended author information available on the last page of the article
+123
+
+10
+Page 2 of 25
+World Wide Web (2025) 28 :10
+and optimized resource utilization, they still face challenges in meeting personalized learning
+needs. To address diverse learning demands and vast knowledge, online education platforms
+must accurately trace and understand students’ mastery across various subjects. However,
+traditional knowledge tracing (KT) methods struggle with data discrepancies between dif-
+ferent disciplines and often perform poorly in new subject areas lacking sufﬁcient data. This
+highlights the necessity for cross-domain knowledge tracing (CDKT). Researchers are now
+exploring transfer learning to enhance teaching across domains by leveraging knowledge
+from speciﬁc areas.
+Transfer learning aims to transfer knowledge from one domain to another to enhance
+performance in the target domain [1]. Transfer learning can be applied in various domains
+including computer vision [2], speech recognition [3], equipment fault diagnosis [4–6], and
+recommendation systems [7]. In the ﬁeld of KT, Transfer learning techniques are widely
+applied to address CDKT challenges, aiming to effectively leverage data and knowledge
+from different domains to enhance model generalization and prediction accuracy. To the best
+of our knowledge, existing CDKT methods include kernel methods [8], adversarial learning-
+based methods [9, 10], graph neural network-based methods [11], and domain alignment-
+based methods [12]. We have decided to combine Graph Neural Networks (GNNs) with
+domain alignment to achieve CDKT. This is because the ﬁeld of knowledge tracing involves
+heterogeneous data such as students, knowledge concepts, and exercises, including complex
+relationships like students’ answer histories, associations between exercises and knowledge
+concepts, and dependencies among different knowledge concepts, which can naturally be
+represented using nodes and edges in a graph. We use GNNs to learn features of these nodes.
+Building upon this, we align feature vectors from two different domains using an explicit
+distribution distance metric, aiming to minimize domain discrepancies and achieve maximal
+cross-domain knowledge transfer.
+Figure 1 is an example of CDKT, knowledge concept pairs in the mathematical domain
+(e.g., vector, matrix) and the programming domain (i.e., 1D array, 2D array) are not only
+semantically similar but also have a progressive relationship in terms of their topological
+structures. Therefore, they can be matched for knowledge transfer.
+Figure 1 Illustration of aligning nodes and edges from two domains through graph matching
+123

@@ -1,0 +1,161 @@
+Knowledge-Based Systems 310 (2025) 112958
+Available online 7 January 2025
+0950-7051/© 2025 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies.
+Contents lists available at ScienceDirect
+Knowledge-Based Systems
+journal homepage: www.elsevier.com/locate/knosys
+MAHKT: Knowledge tracing with multi-association heterogeneous graph
+embedding based on knowledge transfer
+Huali Yang a
+, Junjie Hu c
+, Jinjin Chen c, Shengze Hu c
+, Jing Geng d
+, Qiang Zhu a,
+Tao Huang b,c
+,∗
+a School of Computer Science and Artificial Intelligence, Wuhan Textile University, Wuhan, 430200, China
+b Ningxia normal University, Ningxia, 756000, China
+c National Engineering Research Center of Educational Big Data, Central China Normal University, Wuhan, 430079, China
+d School of Education, Jianghan University, Wuhan, 430056, China
+A R T I C L E
+I N F O
+Keywords:
+Knowledge tracing
+User modeling
+Intelligent education
+Knowledge transfer
+Individualized education
+A B S T R A C T
+Knowledge Tracing (KT) is crucial in online education for tracing learners knowledge states and improving
+learning outcomes. However, existing graph-based KT models often focus solely on prerequisite associations
+among concepts or correlations between concepts and questions, neglecting the complex multi-association
+relationships among entities. This oversight causes biased question representations, which in turn affects the
+knowledge transfer propagation process, ultimately leading to inconsistencies between the represented and
+actual knowledge states. To address this, we propose multi-association heterogeneous knowledge transfer
+(MAHKT), a novel KT model that leverages multi-association heterogeneous graph embeddings based on
+knowledge-transfer principles, to better capture the evolution of knowledge states. Five types of associations
+were defined between questions and concepts to construct a multi-association heterogeneous graph, thereby
+proposing a knowledge triplet embedding method to extract the potential value of these associations.
+Grounded in near- and far-transfer theories, MAHKT employs a perception-attention mechanism to calculate
+similarity weights, propagates embeddings from first-order neighbors to capture near-transfer effects, and stacks
+propagation layers to aggregate far-transfer information, thereby comprehensively integrating richer knowledge
+from similar knowledge transfers across various association contexts. Finally, two LSTM modules were utilized
+to track the evolution of learner’s knowledge states across questions and concepts, to predict their future
+performance. The experimental results show that MAHKT significantly outperformed existing KT methods,
+enhancing prediction accuracy and improving model interpretability in the knowledge transfer process.
+1. Introduction
+In recent years, the rapid growth and widespread adoption of online
+education platforms have transformed learning, offering significant
+convenience to teachers and learners [1–3]. With the rise of artificial
+intelligence, these platforms now enable intelligent resource recom-
+mendations [4] and personalized teaching interventions [5], such as
+intelligent tutoring systems and massive open online courses, making
+them a crucial part of modern education [6].
+Knowledge tracing (KT) is a crucial technology that has been widely
+integrated into online education platforms in data-driven intelligent
+education. The primary aim of KT is to effectively monitor learners’
+knowledge states by analyzing the temporal response data from their
+learning processes, enabling the prediction of their future performance,
+∗Corresponding author at: Ningxia normal University, Ningxia, 756000, China.
+E-mail addresses: hlyang@wtu.edu.cn (H. Yang), jjboy23366@mails.ccnu.edu.cn (J. Hu), 897227333@qq.com (J. Chen), hsz666@mails.ccnu.edu.cn
+(S. Hu), gengjing@mails.ccnu.edu.cn (J. Geng), qzhu@wtu.edu.cn (Q. Zhu), tmht@mail.ccnu.edu.cn (T. Huang).
+as illustrated in Fig. 1(a). Researchers have proposed various KT ap-
+proaches, among which Bayesian knowledge tracing (BKT) [7] employs
+a hidden Markov model to trace the evolving knowledge state of each
+concept. Factor analysis [8,9] predefines a delicate model framework
+and assigns the considered factors as model parameters, which are
+learned from the data to generalize the observations. Deep knowledge
+tracing (DKT) [10] uses recurrent neural networks to jointly model the
+states of all concepts. However, these classic KT models overlook the
+knowledge graph structure, leading to loss of entity information.
+Recently, many researchers have recognized the importance of asso-
+ciations between questions and concepts [11]. Graph-based knowledge
+tracing (GKT) utilizes prerequisite associations among concepts to con-
+struct a concept graph. Structure-based knowledge tracing (SKT) [12]
+https://doi.org/10.1016/j.knosys.2025.112958
+Received 26 September 2024; Received in revised form 21 December 2024; Accepted 1 January 2025
+
+Knowledge-Based Systems 310 (2025) 112958
+2
+H. Yang et al.
+Fig. 1. A toy example. (a) Illustrates the knowledge tracing process; (b) Shows the five types of associations between questions and concepts: the left diagram depicts associations
+among questions, including prerequisites and similarities; the middle diagram shows correlations between questions and concepts; and the right diagram depicts associations among
+concepts, including prerequisites and similarities. (c) Illustrates the near and far transfer processes in knowledge propagation.
+utilizes similarity and prerequisite associations within concepts to en-
+rich representation, and multi-relation enhanced graph-based knowl-
+edge tracing (MGKT) [13] explores similarity associations among ques-
+tions through constructing graph structure with hypergraph reconstruc-
+tion. These models are rooted in graph neural networks and have
+undergone substantial improvements and refinements. However, they
+focus solely on prerequisite associations among concepts or correla-
+tions between concepts and questions, neglecting the complex multi-
+association relationships among entities. Such neglect would negatively
+affect the model’s ability to effectively capture necessary relational in-
+formation for accurately representing questions, leading to incomplete
+semantic features. Consequently, knowledge state representations de-
+rived from these question embeddings may become biased. Moreover,
+this oversight complicates the model’s ability to update and aggregate
+knowledge information from related nodes during knowledge transfer.
+As a result, the inconsistency in knowledge state representations during
+transfer further negatively impacts the model’s predictive performance.
+While addressing the inconsistency in knowledge state representa-
+tions is crucial for the KT task, two major challenges must be overcome
+to achieve this goal. On the one hand, the representation of questions
+depends on complex associations with concepts. In fact, as depicted in
+Fig. 1(b), the knowledge structure can be modeled as a heterogeneous
+graph with five types of associations: prerequisite and similarity asso-
+ciations among questions and among concepts, as well as correlation
+associations between questions and concepts. As shown in Fig. 1(b),
+the question 𝑞1(3 + 4 =?) serves as a prerequisite for question 𝑞2((3 +
+4) ∗ 5 =?); 𝑞1 also exhibits similarity to the question 𝑞3(5 − 4 =
+?). Similarly, concept 𝑐1(𝐴𝑑 𝑑 𝑖𝑡𝑖𝑜𝑛) acts as a prerequisite for concept
+𝑐2(𝑀 𝑢𝑙 𝑡𝑖𝑝𝑙 𝑖𝑐 𝑎𝑡𝑖𝑜𝑛); 𝑐1 shows case similarity to concept 𝑐3(𝑆 𝑢𝑏𝑡𝑟𝑎𝑐 𝑡𝑖𝑜𝑛).
+Moreover, a correlation exists between concept 𝑐1 and question 𝑞1.
+Mining these interrelated data can assist with the comprehension of
+association between questions and concepts, improving the perfor-
+mance of the KT model. However, inadequate association capture or
+integration can lead to deviations in the overall semantic features of
+the question representation. For instance, there is the similarity asso-
+ciation between questions 𝑞1 and 𝑞3. When this similarity association
+is ignored, questions 𝑞1 and 𝑞3 may be represented as independent
+representation vectors, failing to reflect their inherent semantic connec-
+tion. Such biased question representations hinder the model’s ability to
+accurately trace knowledge states, particularly when representing sim-
+ilar questions, thereby reducing predictive accuracy. Therefore, mining
+and integrating these complex associations is crucial to improving the
+performance of KT methods.
+On the other hand, knowledge propagation follows near- and far-
+transfer theories [14,15], which depends on the similarity and strength
+of associations between entities. According to the common elements
+theory [16], knowledge transfer is more likely when two entities share
+common features. The more the similarities, the higher is the like-
+lihood of near transfer; when similarities are fewer, far transfer oc-
+curs [17]. Near transfer involves sharing information across similar
+domains through direct associations, such as correlation, similarity, or
+prerequisites. As shown in Fig. 1(c) (left part), concept 𝑐1 is directly
+linked to concepts (𝑐2, 𝑐3, 𝑐4) and questions (𝑞1, 𝑞2), necessitating the
+aggregation of these features. Near transfer is generally more com-
+mon [18] than far transfer although the latter has been validated by
+many scholars [15,19,20]. Far transfer occurs across less related do-
+mains, where indirect associations exert a weaker influence. In Fig. 1(c)
+(right part), concept 𝑐1 is indirectly linked to questions 𝑞3 and 𝑞4,
+indirectly influencing the current concept, which is the example of the
+far transfer. A comprehensive question representation must integrate
+these varied associations; however, developing effective methods for
+this purpose remains a challenge. When complex associations, such as
+prerequisite and similarity associations, are overlooked, the knowledge
+information of related nodes cannot be appropriately updated and
+aggregated during knowledge propagation. For instance, if the prereq-
+uisite association between concepts 𝑐1 and 𝑐4 is ignored, not only the
+direct adjacent prerequisite features cannot be aggregated effectively,
+but also the indirect association between 𝑐1 and question 𝑞4 cannot be
+captured. This will lead to inappropriate updating and aggregation of 𝑐1
+during both the near and far transfer processes, resulting in incomplete
+question representation. As a result, this exacerbates the inconsistencies
+in knowledge state updates and further degrades model performance.
+Our research addresses these gaps by capturing all associations in a
+heterogeneous question graph through near and far transfers, overcom-
+ing the limitations of current models. We categorized these associations
+into five types: prerequisites and similarities among questions, prereq-
+uisites and similarities among concepts, and correlations between ques-
+tions and concepts. Current methods often consider these associations

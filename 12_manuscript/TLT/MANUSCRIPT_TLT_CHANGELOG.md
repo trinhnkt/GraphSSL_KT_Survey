@@ -4,6 +4,203 @@ All notable changes to the IEEE Transactions on Learning Technologies (IEEE TLT)
 
 ---
 
+## [QA7 align + SSL/threats residual fix] - 2026-11-24
+
+- Aligned QA7 to locked cold-start: KT035 HHSKT $=0$, KT023 SGKT $=2$; HIGH IDs swap KT035→KT023; tiers stay 13/31 and mean $0.7472$.
+- SSL section now leads with paradigm × view for $N_S=16$; four exclusive families labeled as pre-expansion historical coding.
+- Threats/deviations updated (DEV-20261124-01). Evidence: `audit/QA7_COLDSTART_ALIGNMENT_2026-11-24.md`.
+
+## [TLT review-recommendation fixes] - 2026-11-24
+
+- Recounted GNN encoder display tallies on $N_G=40$ from locked CSV: GCN/generic 14, heterogeneous 7, Other 6, GAT 6, hypergraph 2, dynamic 2, NONE 3; rebuilt `fig_meta_analysis_charts` and `fig_taxonomy_2d`.
+- Rewrote `COVER_LETTER.tex` to N=44 / 18 pages / screening subset / seven papers integrated (not outside tables).
+- Shortened abstract to ~207 words on the three live tex files; synced body encoder `$n=/40$` claims.
+- Gate residuals updated in `audit/TLT_FINAL_PRE_SUBMISSION_GATE.md`. Submission still NO.
+
+## [N=44 rewrite + pre-submission gate] - 2026-11-24
+
+- Corpus/provenance freezes already YES; manuscript abstract, contributions, methods, cold-start, QA, ECE, discussion, and figures synced to $N=44$, $N_G=40$, $N_S=16$, $N_{G\cap S}=12$, provenance $24/7/9$.
+- Interaction-drop YES is HCMKT (not HHSKT); learner cold-start YES is SGKT + CoSKT; ECE/Brier $0/44$; RMSE $14/44$; QA $13/31/0$, mean $0.7472$.
+- PRISMA stage arithmetic remains $750/140/103$ with original-path $140-103=37$; coded core after gateway update is $N=44$.
+- Anonymous, full, and formatted PDFs rebuild at 18 pages. Gate: `audit/TLT_FINAL_PRE_SUBMISSION_GATE.md` (`READY_FOR_TLT_FINAL_REVIEW=YES`; submission=NO).
+
+## [26 August exports confirmed absent] - 2026-11-23
+
+- A check of all 1,522 files in this project did not find the 16 export files named in the 26 August 2026 search log. Git history contains only `03_search/exports/.gitkeep`. Identification stays 2,017. No recall fraction is reported. The PRISMA figure no longer says the 34-record seed list was used for recall.
+
+## [Reference PDFs opened] - 2026-11-23
+
+- Every PDF in `14_references` was opened. No text layer contains ECE or Brier. KGNN-KT remains image-only. DECKT Figure 4 uses the word calibration for a prediction heatmap and does not report ECE or Brier. HCMKT and DTransformer report RMSE; those reports stay outside the twelve-of-37 count. CoSKT's cold-start discussion is short sequences and few students, not a zero-exposure KC split. Itemized counts stay at 37. Detail: `audit/_a1_evidence/pdf_open_2026-11-23.csv`.
+
+## [Eligibility date moved to 23 November 2026] - 2026-11-23
+
+- Author decision: papers read for this revision are eligible through 23 November 2026. The logged search that produced 2,017 records stays 2015-01-01 to 2026-07-31. The new date is not a completed database boundary. Itemized counts stay at 37. Locked scope text was not edited. Detail: `00_protocol/protocol_deviations.md`, DEV-20261123-01.
+
+## [November rerun files counted] - 2026-11-23
+
+- Twelve export files saved on 14 and 16 November 2026 were counted from the files and written to Supplementary Table S-Search-Rerun. The twelve counts are not added to 2,017. Each of the seven full-text papers is an own record in at least one of those files. ACM and Web of Science still have no file.
+
+## [Missing 26 August exports] - 2026-11-23
+
+- The 16 export files named in the search log were not recovered. The identification total stays the logged sum, 2,017. The November rerun files are not used in its place. No recall fraction for the 34 seed records is reported. Detail: `audit/A1_EXPORTS_NOT_RECOVERED_2026-11-23.md`.
+
+## [Bipartite chapter read] - 2026-11-23
+
+- The ADMA chapter CLBG (DOI 10.1007/978-981-96-0821-8_14) meets both the graph criterion and the self-supervised criterion. It reports AUC and ACC, and it reports no ECE and no zero-exposure KC split. The gateway paragraph now covers seven papers. The itemized tables stay at 37. Entering all seven as rows would make N=44, N_G=40, N_S=16, and N_G∩S=12. Detail: `audit/A1_BIPARTITE_SCREEN_2026-11-23.md`.
+
+## [Threats and agenda aligned with the gateway check] - 2026-11-22
+
+- The scope paragraph, the search-completeness threat, conclusion contribution 4, and agenda items A1 and A2 now point at the six papers in the gateway check. Those papers stay outside the printed 37, the \(0/37\) ECE count, and the \(37/37\) cold-start count. The ten venue-probe candidates remain unread in full.
+
+## [Gateway check in the manuscript] - 2026-11-22
+
+- The three live manuscripts now record the 22 November 2026 full-text gateway check. DECKT, KT-Deeper, and HCMKT meet both criteria. CoSKT, DTransformer, and SP-CLKT meet the self-supervised criterion only. None of the six reports ECE or a zero-exposure KC split. The PRISMA count and the itemized tables stay at 37 because the six are not rows in those tables and were not shown to be among the 2,017 search records. The bipartite chapter remains unread.
+
+## [A1 four supplied PDFs] - 2026-11-22
+
+- CoSKT, DTransformer, and SP-CLKT meet the self-supervised criterion and do not meet the graph criterion. DECKT’s new PDF matches the paper already screened. All four remain outside the printed 37. The bipartite chapter still has no PDF. Detail: `audit/A1_FOUR_PDF_SCREEN_2026-11-22.md`.
+
+## [A1 Han and HCMKT screen] - 2026-11-22
+
+- The publisher PDFs of Han et al. 2024 and HCMKT meet both the graph criterion and the self-supervised criterion. Both are `INCLUDE_PRIMARY_CORE` and are not yet in the printed 37. CoSKT’s PDF is still absent. Live tex files were not edited. Detail: `audit/A1_HAN_HCMKT_SCREEN_2026-11-22.md`.
+
+## [A1 three-paper screen attempt] - 2026-11-22
+
+- HCMKT, CoSKT, and Han et al. 2024 were not added. No open full text was found, ScienceDirect blocked the request, and the three PDFs are not in `14_references`. CoSKT’s own abstract describes a consistency objective, which is not a final graph or SSL code. Detail: `audit/A1_THREE_SCREEN_2026-11-22.md`.
+
+## [A1 reopen, DECKT screen] - 2026-11-22
+
+- The author reopened the primary core. DECKT (10.3390/e27070685) meets KT, the graph criterion, and the self-supervised criterion on the PMC full text. It is not yet added to the printed 37. HCMKT, CoSKT, and Han et al. 2024 remain unscreened. Live tex files were not edited. Detail: `audit/A1_DECKT_SCREEN_2026-11-22.md`.
+
+## [A1 open-source coverage] - 2026-11-22
+
+- Crossref dates for the seven out-of-corpus candidates are all inside 1 January 2015–31 July 2026. OpenAlex citation links from the nine included SSL papers recover DECKT, CoSKT, Han et al. 2024, and HCMKT. The Xu survey’s reference list also contains Han et al. 2024. No paper was added. Printed counts are unchanged, and the live tex files were not edited. Detail: `audit/A1_OPEN_SOURCE_COVERAGE_2026-11-22.md`.
+
+## [B11 recheck] - 2026-11-22
+
+- Opened external records for the five unverified references. The printed pages for Piech, SAKT, and pyKT match those records. DGMN is still only an early-access Crossref record, and the Cursor site was not opened. The bibliography was not edited. `READY_FOR_SUBMISSION` stays NO.
+
+## [Final gate] - 2026-11-22
+
+- Clean-built the three live manuscripts with BibTeX. Anonymous PDF remains 17 pages; full and formatted PDFs remain 18 pages. No sentence was changed. The pre-submission gate is `audit/FINAL_TLT_PRE_SUBMISSION_GATE.md`: `READY_FOR_SUBMISSION = NO` because A1 and A3 do not pass.
+
+## [C1--C3] - 2026-11-22
+
+- Removed the paired provenance and encoder count figure from the main text. The taxonomy figure stays. The provenance-by-encoder table stays and is the encoder display. The encoder bar chart remains a supplementary figure because it repeats that table.
+- Notation: \(N_{\mathrm{rec}}\) is the search-log record count (2,017), \(N\) is the number of primary-core papers, and \(n\) is a stated sample or the prediction count in the ECE sum. Unused symbols were removed from the notation table. The ECE row no longer repeats the 0/37 audit result. Counts are unchanged.
+- Added the QA1--QA8 score distribution (counts of 0, 1, and 2) from the deposited quality-score file. Thresholds are unchanged: 11 HIGH, 26 MODERATE, 0 LIMITED, mean 0.76. Generic data sparsity is YES on all 37 deposited rows and is not used as a synthesis variable.
+
+## [A4] - 2026-11-22
+
+- Re-read the augmentation passages of the eight Graph+SSL papers and replaced the main-text phrases that the PDFs do not use (edge dropout, channel masking, hyperedge masking, three-view perturbation, dual-view masking, hierarchical perturbation). Family codes and the counts \(N_S=9\) and \(N_{G \cap S}=8\) are unchanged. The eight passages do not state that a prerequisite edge is kept or removed. The older token file was not rewritten.
+
+## [A2] - 2026-11-20
+
+- Narrowed the calibration conclusion to the scanned metrics. Manuscript ECE stays 0/37. The text-layer scan still finds no Brier score and one CL4KT calibration plot. A follow-up scan finds RMSE in 12 of the 37 PDFs, each time as an overall prediction error beside AUC or accuracy. T3 no longer treats “no ECE” as a statement that every calibration report is absent. The locked codebook was not given a new field. P0 was not cited.
+
+## [Headings] - 2026-11-18
+
+- Aligned the methodology headings with the existing limitation. The section is now “Review Methodology and PRISMA-Style Flow,” and the flow subsection and figure caption say PRISMA-style. The statement that no screening pair file is deposited, and that no screening κ is claimed, is unchanged. Counts are unchanged.
+
+## [A3] - 2026-11-18
+
+- Screening reliability was audited and not computed. The deposited title/abstract file has 43 rows and the full-text file has 48 rows, every row labeled `AI_ASSISTANT`. The protocol pair files `inter_rater_screening.csv` and `inter_rater_fulltext.csv` are absent. No screening κ was written into the manuscript.
+
+## [Corpus retained] - 2026-11-18
+
+- Author decision: the submitted primary core stays the 37 deposited papers. DECKT, DTransformer, self-paced contrastive KT, Han et al. 2024, HCMKT, the bipartite-graph chapter, and CoSKT are not added. Counts are unchanged. The missing 2026-08-26 exports and the missing screening ledger stay recorded in `audit/A1_CORPUS_FREEZE_2026-11-18.md`. No manuscript sentence was edited.
+
+## [PDF rebuild] - 2026-11-18
+
+- Rebuilt the five figure PDFs and the three live manuscript PDFs. BibTeX now includes Shukurlu, arXiv:2504.15163. The opened PDFs no longer contain the withdrawn DyGKT ECE 0.0361 or Brier 0.1770. DyGKT remains KT038. Manuscript ECE reporting remains 0/37. Each manuscript PDF is 17 pages. Title-named copies and both cover-letter PDFs were refreshed from these sources.
+
+## [B10] - 2026-11-18
+
+- Author decision: submit this survey in parallel with P0. The survey does not cite P0. Agenda A2 stays the current recommendation to report ECE and Brier. The three live tex files, cover letters, and highlights already matched that decision, so no sentence was changed.
+
+## [B7 and B8] - 2026-11-17
+
+- Added one Scope of Claims paragraph at the end of the Introduction and removed repeated disclaimer sentences. The methodological-limitations subsection was removed because Threats to Validity already states those points. Threats itself was not shortened.
+- Added Shukurlu, arXiv:2504.15163, as a column in the prior-survey table, with section locators from the saved full text. Stated that the 0/37 ECE count is inside this Graph/SSL corpus. Xu cell wording was not changed. BibTeX and PDFs were not rebuilt.
+
+## [B1 and B9] - 2026-11-16
+
+- Author decision: remove the DyGKT/ASSIST17 numeric overlay from the main manuscript. DyGKT stays in the 37-paper corpus as KT038. Manuscript ECE reporting stays 0/37. The reproduction manifest and bin table remain a lab record and are marked withdrawn from the main text.
+- Group B was already one paragraph with no hyperbolic, continuous-time, or causal formula. No rewrite.
+- Compiled PDFs were not rebuilt in this pass.
+
+---
+
+## [v1.6.27] - 2026-11-11 (reviewer-response revisions 1-10)
+
+- Sparse/cold-start: new `tables/sparse_coldstart_audit_v1.9.csv` (`sparse_interaction_drop_eval` YES for KT035 only; constant generic-sparsity column dropped; deposited v1 file unchanged). Generic sparsity removed from Contribution 3 and conclusion. One-sentence learner cold-start definition plus decision table.
+- Contribution 4 renamed ECE reporting audit; keyword scan of 36 PDFs (ECE 0, Brier 0, one calibration plot in CL4KT; KGNN-KT has no text layer). Output: `supplementary/calibration_keyword_scan_v1.9.csv`.
+- Provenance: sub-bins of the displayed model-defined code (Q-matrix 3 / log-derived 10 / architecture-defined 6), provenance x encoder cross-tab (35 cells, 15 empty, no outcome per cell), per-paper eight-value records in Appendix A. Disclosed that 24/36 records map to the display, 5 differ with PDF-level adjudication, 7 differ without (sensitivity 16/8/11 + 1 unclassified). Headline 19/8/9 unchanged.
+- T1/T3 verdicts changed from NO-GO to "not enough evidence to GO"; T2 "pedagogical object" claim softened; worked SINKT example added.
+- New subsections: Role of the AI Research Assistant, Venue-Extension Probe, Deviations from the Locked Protocol. Acknowledgment rewritten to match records (41/45 coding files name the AI assistant as coder; screening files list AI_ASSISTANT).
+- DyGKT overlay: convenience choice and transductive setting stated.
+- Venue probe logged in `03_search/search_log_venue_extension_v1.9.csv` and `03_search/venue_extension_candidates_v1.9.csv` (10 candidates, none coded; N=37 unchanged).
+- Rebuilt PDFs: anonymous 17 pages; author-identified 17 pages (cap 18). Sources backed up in `12_manuscript/TLT/_backup_before_v1.9/`.
+
+---
+
+## [v1.6.26] - 2026-11-10 (four remaining Minors)
+
+- SSL section title: Coding and Synthesis (not Taxonomy). Opening sentence drops “crucial paradigm / over-smoothing”.
+- PRISMA figure boxes label 750/140/103 as report arithmetic; identification $N=2{,}017$ as locked search log; footer note that a screening ledger is not deposited.
+- Discussion Graph-KT points to Sec.~III provenance instead of repeating the topology paragraph.
+
+---
+
+## [v1.6.25] - 2026-11-10 (wording 1→2→4→3→5)
+
+- Contribution 1, Table II, abstract, and conclusion now state a locked 37-PDF core and search-log $N=2{,}017$; 750/140/103 remain report arithmetic; the missing screening ledger is in Contribution 1, not only Threats.
+- Internal `DEV-20261106-*` codes removed from the manuscript body (kept in `protocol_deviations.md` and this changelog).
+- Sparse table caption and following paragraph name `tables/sparse_coldstart_audit.csv` as the full 37-row file.
+- SSL presented as a coding table ($N_S=9$; two families $n=1$), not a saturated taxonomy.
+- Provenance synthesis: EXTERNAL supports T2 interpretation; DYNAMIC is a representation mechanism; neither licenses T1. SKT is one paper / one display code; Junyi remains an expert map at the 8-way level.
+- Rebuilt PDFs: anonymous 14 pages; author-identified 15 pages (cap 18). Cover letter page count aligned.
+
+---
+
+## [v1.6.24] - 2026-11-10 (sync `12_manuscript/` to TLT)
+
+- Parent folder now points to the TLT package: `12_manuscript/README.md`.
+- Copied current 14-page full/anonymous PDFs, `COVER_LETTER.tex`/`pdf` (date 10 Nov 2026), and `references.bib` to `12_manuscript/`.
+- `HIGHLIGHTS.md` v1.1 (N=37, provenance 19/8/9); TKDE v1.0 kept as `HIGHLIGHTS_v1.0_TKDE.md`.
+- `SUGGESTED_REVIEWERS.md` venue set to TLT.
+- Historical `Graph_Based_SSL_KT_Sparse_Concept_Survey_2026.tex` and `MANUSCRIPT_EVIDENCE_ALIGNED_DRAFT.tex` marked superseded; do not submit.
+
+---
+
+## [v1.6.23] - 2026-11-06 (score sequence 1--5)
+
+- Screening: identification $N=2{,}017$ tied to `03_search/search_log.csv`; 750/140/103 labelled as search-expansion report arithmetic without a deposited row ledger (DEV-20261106-01). Cover letter aligned.
+- Provenance display collapse documented (DEV-20261106-02). KT036 recoded EXTERNAL→MODEL_DEFINED after PDF check; totals $19/8/9$ (DEV-20261106-03). SKT mixed construction noted; Capsule GNN stays MODEL_DEFINED.
+- `supplementary_quality_scores.csv` rebuilt so raw = QA6-capped component sum (37 rows; HIGH 11 unchanged). Prior file kept as `_v1_as_deposited.csv`.
+- Figures `fig_taxonomy_2d` and `fig_graph_construction_pipeline` updated to 19/8/9.
+- Locked counts: `audit/LOCKED_COUNTS_v1.8.md`.
+
+---
+
+## [v1.6.22] - 2026-11-03 (contribution-score actions; PDFs not rebuilt)
+
+- Group B of the agenda cut to one paragraph (no equations); `W` notation row removed.
+- RQ1 narrowed to provenance/encoder/reporting condition; leakage field not reported (values reviewer-inferred, no locators).
+- "mean 0.76" corrected to corpus mean; QA7 `NA` sensitivity added (31 HIGH / 6 MODERATE / 0 LIMITED); new `supplementary/supplementary_quality_scores_v2_QA7_sensitivity.csv`.
+- Abstract states inclusion was not second-screened.
+- Headline counts unchanged. Open blockers: `audit/SCORE_IMPROVEMENT_ACTIONS_2026-11-03.md` (C1-C5).
+
+---
+
+## [v1.6.21] - 2026-09-20 (IEEE Reference Guide / TLT refs)
+
+- Aligned `references.bib` with IEEE Reference Guide (required by TLT Author Resources): braced model acronyms in titles; abbreviated conference names (`Proc.`/`Int.`/`Conf.`); `Inf. Process. Manag.`; KT069 `Art. no. 10`; Acknowledgment cites `Cursor_AI_2026`.
+- Regenerated 14-page full + anonymous + title-named PDFs.
+- Audit: `audit/REFERENCE_IEEE_STYLE_2026-09-20.md`.
+
+---
+
 ## [v1.6.20] - 2026-09-16 (title-named PDF deliverables)
 
 - Submission PDFs renamed to the article title:

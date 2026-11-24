@@ -1,0 +1,210 @@
+Prerequisite-Driven Deep Knowledge Tracing
+Penghe Chen1, Yu Lu1,2, *, Vincent W. Zheng3, Yang Pian1
+1Advanced Innovation Center for Future Education, Beijing Normal University, Beijing, China
+2School of Educational Technology, Faculty of Education, Beijing Normal University, Beijing, China
+3Advanced Digital Sciences Center, Singapore
+chenpenghe@bnu.edu.cn, vincent.zheng@adsc.com.sg, bianyang@bnu.edu.cn
+*Corresponding Author: Yu Lu, luyu@bnu.edu.cn
+Abstract—Knowledge tracing serves as the key technique in
+the computer supported education environment (e.g., intelligent
+tutoring systems) to model student’s knowledge states. While the
+Bayesian knowledge tracing and deep knowledge tracing models
+have been developed, the sparseness of student’s exercise data
+still limits knowledge tracing’s performance and applications.
+In order to address this issue, we advocate for and propose
+to incorporate the knowledge structure information, especially
+the prerequisite relations between pedagogical concepts, into
+the knowledge tracing model. Speciﬁcally, by considering how
+students master pedagogical concepts and their prerequisites,
+we model prerequisite concept pairs as ordering pairs. With a
+proper mathematical formulation, this property can be utilized as
+constraints in designing knowledge tracing model. As a result, the
+obtained model can have a better performance on student concept
+mastery prediction. In order to evaluate this model, we test it on
+ﬁve different real world datasets, and the experimental results
+show that the proposed model achieves a signiﬁcant performance
+improvement by comparing with three knowledge tracing models.
+Index Terms—Knowledge Tracing, Prerequisite Modeling,
+Deep Learning
+I. INTRODUCTION
+Knowledge tracing aims to model the knowledge states of
+individual students through quantitatively diagnosing a stu-
+dent’s mastery level on each concept [9]. Traditionally, knowl-
+edge tracing is one of the key components and techniques to
+enable both personalized learning and teaching, where students
+can choose what they need to practice more and teachers
+can decide which concepts to teach more to students [2],
+[3], [30]. The rapid developed computer supported education
+environment and online education platforms provide abundant
+students’ exercise data for knowledge tracing. Yet, it also
+comes with a major challenge, which is the sparseness of stu-
+dent’s behaviors. Speciﬁcally, students tend to use the system
+in an irregular time basis, and spend less time to practice for a
+comprehensive assessment of their concept mastery. Thus for
+each student, it is very likely that only a small set of concepts
+in each subject are practiced (by solving quiz problems)
+or learned (by browsing tutorial videos or interacting with
+teachers). The mastery levels of a large portion of concepts
+remain unknown, which makes the knowledge tracing suffer
+from accuracy issue and be restricted for further applications
+(e.g., student performance prediction [15], question difﬁculty
+prediction [14], curricula optimization [22]).
+Our insight of solving the sparseness problem hinges upon
+the idea of fully exploring the interdependencies between
+concepts from the knowledge structure, especially the prereq-
+uisites between pedagogical concepts. The concepts usually
+do not exist alone: some concepts serve as the prerequisites
+of other concepts, thus if we know a student has mastered a
+target concept, then we are sure that she has also mastered its
+prerequisite concepts. Modeling prerequisites for knowledge
+tracing is greatly under-explored. Most existing work that
+studies prerequisites is mainly about mining prerequisites,
+rather than modeling them to assist knowledge tracing [16],
+[17], [20], [29]. Some other work tries to use prerequisites for
+concept map extraction [27], but it still does not consider how
+to use prerequisites for knowledge tracing. There is limited
+attempt to use prerequisites for student modeling [5], [7], but
+they do not speciﬁcally use deep learning for the knowledge
+tracing purpose.
+In this paper, we propose a novel way to model prerequisites
+for knowledge tracing. In a nutshell, our intuition is that
+prerequisites actually represent concept learning dependencies,
+which naturally serves as constraints on the student concept
+mastery prediction. Let us consider an example. Suppose there
+are two concepts k1 and k2, and k1 is the prerequisite of k2.
+In general, it means that if a student has mastered k2, then
+most likely she also masters k1; besides, if the student does
+not master k1, then she unlikely masters k2 [4]. By utilizing
+this property, we propose a knowledge tracing model with pre-
+requisites as constraints, which actually creates links between
+questions. As a result, the exercise data sparseness issue can
+be relieved and we can now achieve a better performance on
+estimating each student’s mastery on the concepts.
+However, even though modeling prerequisites as constraints
+for knowledge tracing model is promising for data sparseness
+issue, there still remains a main challenge on how to model
+prerequisites as constraints. There are many different ways to
+model constraints, but how to express and formulate prerequi-
+sites into a proper mathematical form is not straightforward.
+For example, one can model the constraints as logic [1],
+[23], or boolean functions [6], [11] in regularization, or a
+conditional probability [32] to maximize in the objective
+function. Each such way of constraint modeling, as we shall
+see later in detailed mathematical forms, is not trivial to
+formulate prerequisite relations between pedagogical concepts
+in a deep knowledge tracing setting.
+39
+2018 IEEE International Conference on Data Mining
+978-1-5386-9159-5/18/$31.00 ©2018 IEEE
+DOI 10.1109/ICDM.2018.00019
+
+To address this challenge, by analyzing the characteristics
+of prerequisites, we propose to model each prerequisite as
+an ordering pair between a student’s mastery levels on two
+concepts. That is, suppose concept k1 is the prerequisite of
+concept k2; then we enforce the probability of a student
+mastering k1 as always larger than that of her mastering k2 at
+any time later. As we shall see later in derivation details, such
+an ordering pair has a nice mathematical formulation, which is
+easily explainable and computationally tractable. Finally, we
+put forward an order pair regularized deep knowledge tracing
+framework to incorporate the prerequisite constraints, which
+will have a better performance on students’ knowledge states
+estimation.
+We can summarize our contributions in this work as follows:
+• We study an important problem of how to incorporate
+prerequisites for assisting deep knowledge tracing, which
+essentially introduces the subject concepts and their struc-
+ture information into the knowledge tracing domain;
+• We explore a novel approach to model the prerequisites
+as constraints through a new knowledge tracing model;
+• We evaluate our model on real-world datasets and the
+results show that our model improves the state-of-the-art
+baselines.
+The rest of this paper is organized as follows: Section II
+reviews the existing work and how our model is different
+from those work. Section III gives a clear description on the
+problem deﬁnition and Section IV illustrates how the exercise
+sequence data can be modeled. Details of the proposed model
+are presented in Section V. Section VI presents experimental
+results on ﬁve real world datasets and the whole paper is
+concluded in Section VII.
+II. RELATED WORK
+Researchers have explored different methods to do knowl-
+edge tracing. Earlier work focuses on Bayesian knowledge
+tracing models which deﬁne each student’s knowledge state
+as a binary variable and utilize probabilistic models like
+Hidden Markov Model to estimate students’ concept mas-
+tery [9]. Subsequently, researchers improve the model with
+considering cognitive factors like slipping and guessing [2].
+Prior knowledge of individual students [30] and difﬁculty
+levels of questions [21] are also explored to improve those
+Bayesian knowledge tracing models. In order to handle the
+partially correct responses on subjective problems, a fuzzy
+cognitive diagnosis framework is proposed [28]. Recently, with
+the development of deep learning, deep knowledge tracing
+model is proposed to model the students’ exercise sequences
+[22], and dynamic key-value memory network based model is
+also proposed to better represent question semantics [31]. In
+addition, with the advances of recommender system, matrix
+factorization based method was also proposed to model the
+students’ exercise data [26]. Compared with the these knowl-
+edge tracing models, we are special in both using deep learning
+(especially prerequisite-driven recurrent neural networks) for
+knowledge tracing, and also exploring prerequisites in the deep
+knowledge tracing setting.
+Utilizing prerequisite information to solve the knowledge
+tracing problem is still limited in previous work. With model-
+ing the knowledge tracing problem as a Bayesian network, [5]
+tries to introduce the prerequisites as a new layer in the
+Bayesian network. In addition, one recent work tries to extend
+the idea of Bayesian network modeling of prerequisites to
+jointly discover the prerequisite graph and estimate the student
+concept mastery [7]. Compared with these two methods, we
+consider knowledge tracing in a deep learning setting, and we
+systematically explore prerequisites.
+Another closely related research is constraint learning,
+which has been a popular approach for incorporating domain
+knowledge in prediction. For example, Markov Logic Network
+(MLN) [23] models constraints in the form of ﬁrst-order logic.
+Comparatively, our modeling the student concept mastery in
+an ordering pair form is more ﬂexible than logic to formulate
+the prerequisites. There are also non-logic forms of modeling
+constraints, e.g., Constraint-Driven Learning [6], Generalized
+Expectation [18], Posterior Regularization [11], and Robust
+RegBayes [19], but all these methods do not consider how
+to use constraints in deep learning models. In addition, some
+recent attempts try to use logic rules in knowledge graph em-
+bedding [12], deep neural networks [13], and text embedding
+for relation extraction [24]. However, they are designed for
+different applications other than deep knowledge tracing, and
+they have to model the constraints in a logic form.
+III. PROBLEM FORMULATION
+Knowledge tracing aims to estimate students’ knowledge
+states based on students’ exercise data. As questions of
+exercise also link to different subject concepts, knowledge
+tracing models also consider concept information. Hence,
+the knowledge tracing problem concerns three main entities:
+student, question and concept. In this work, we denote a set
+of students as U, a set of questions of exercise as Q, and a set
+of concepts as C. We further denote a result of student i ∈U
+answering question j ∈Q as yi,j ∈{0, 1}, where yi,j = 1
+indicates a correct answer and yi,j = 0 indicates an incorrect
+answer. In addition, we use following deﬁnitions to denote
+some important terms.
+Deﬁnition 1: An exercise sequence si for student ui is a
+sequence of question-result pairs si = {(π(i, t), yi,π(i,t),t)|t =
+1, ..., ni}, where π(i, t) : U × T →Q returns the question
+that student i answers at time t ∈T , and ni > 0 is the
+sequence length. This kind of data can be easily obtained
+through intelligent tutoring systems or online education plat-
+forms. This exercise sequence data is usually represented as
+a student-question matrix, and a toy example is shown by the
+“Student-Question Matrix” in Figure 1. In this matrix, 1 and
+0 denote students answering questions correctly and wrongly
+respectively. It is not compulsory for all the students to answer
+all the questions, so some students may not answer certain
+questions, which is denoted by “-” in the matrix. This is also
+one of the reasons for the data sparseness issue discussed in
+the Introduction section.
+40

@@ -1,0 +1,164 @@
+.
+.
+Latest updates: hps://dl.acm.org/doi/10.1145/3394486.3403282
+.
+.
+RESEARCH-ARTICLE
+Context-Aware Aentive Knowledge Tracing
+ARITRA GHOSH, University of Massachuses Amherst, Amherst, MA, United States
+.
+NEIL HEFFERNAN, Worcester Polytechnic Institute, Worcester, MA, United States
+.
+ANDREW S. LAN, University of Massachuses Amherst, Amherst, MA, United States
+.
+.
+.
+Open Access Support provided by:
+.
+University of Massachuses Amherst
+.
+Worcester Polytechnic Institute
+.
+PDF Download
+3394486.3403282.pdf
+16 March 2026
+Total Citations: 432
+Total Downloads: 4953
+.
+.
+Published: 20 August 2020
+.
+.
+Citation in BibTeX format
+.
+.
+KDD '20: The 26th ACM SIGKDD
+Conference on Knowledge Discovery and
+Data Mining
+July 6 - 10, 2020
+CA, Virtual Event, USA
+.
+.
+Conference Sponsors:
+SIGMOD
+SIGKDD
+KDD '20: Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining (August 2020)
+hps://doi.org/10.1145/3394486.3403282
+ISBN: 9781450379984
+.
+
+Context-Aware Attentive Knowledge Tracing
+Aritra Ghosh
+University of Massachusetts Amherst
+Amherst, MA
+arighosh@cs.umass.edu
+Neil Heffernan
+Worcester Polytechnic Institute
+Worcester, MA
+nth@wpi.edu
+Andrew S. Lan
+University of Massachusetts Amherst
+Amherst, MA
+andrewlan@cs.umass.edu
+ABSTRACT
+Knowledge tracing (KT) refers to the problem of predicting future
+learner performance given their past performance in educational
+applications. Recent developments in KT using flexible deep neural
+network-based models excel at this task. However, these models of-
+ten offer limited interpretability, thus making them insufficient for
+personalized learning, which requires using interpretable feedback
+and actionable recommendations to help learners achieve better
+learning outcomes. In this paper, we propose attentive knowledge
+tracing (AKT), which couples flexible attention-based neural net-
+work models with a series of novel, interpretable model compo-
+nents inspired by cognitive and psychometric models. AKT uses
+a novel monotonic attention mechanism that relates a learner’s
+future responses to assessment questions to their past responses;
+attention weights are computed using exponential decay and a
+context-aware relative distance measure, in addition to the sim-
+ilarity between questions. Moreover, we use the Rasch model to
+regularize the concept and question embeddings; these embeddings
+are able to capture individual differences among questions on the
+same concept without using an excessive number of parameters.
+We conduct experiments on several real-world benchmark datasets
+and show that AKT outperforms existing KT methods (by up to 6%
+in AUC in some cases) on predicting future learner responses. We
+also conduct several case studies and show that AKT exhibits excel-
+lent interpretability and thus has potential for automated feedback
+and personalization in real-world educational settings.
+ACM Reference Format:
+Aritra Ghosh, Neil Heffernan, and Andrew S. Lan. 2020. Context-Aware
+Attentive Knowledge Tracing. In Proceedings of the 26th ACM SIGKDD
+Conference on Knowledge Discovery and Data Mining USB Stick (KDD ’20),
+August 23–27, 2020, Virtual Event, USA. ACM, New York, NY, USA, 10 pages.
+https://doi.org/10.1145/3394486.3403282
+1
+INTRODUCTION
+Recent advances in data analytics and intelligent tutoring systems
+[32] have enabled the collection and analysis of large-scale learner
+data; these advances hint at the potential of personalized learning
+at large scale, by automatically providing personalized feedback
+[24] and learning activity recommendations [11] to each learner by
+analyzing data from their learning history.
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than ACM
+must be honored. Abstracting with credit is permitted. To copy otherwise, or republish,
+to post on servers or to redistribute to lists, requires prior specific permission and/or a
+fee. Request permissions from permissions@acm.org.
+KDD ’20, August 23–27, 2020, Virtual Event, USA
+© 2020 Association for Computing Machinery.
+ACM ISBN 978-1-4503-7998-4/20/08...$15.00
+https://doi.org/10.1145/3394486.3403282
+A key problem in learner data analysis is to predict future learner
+performance (their responses to assessment questions), given their
+past performance, which is referred to as the knowledge tracing
+(KT) problem [3]. Over the last 30 years, numerous methods for
+solving the KT problem were developed based on two common
+assumptions: i) a learner’s past performance can be summarized
+by a set of variables representing their current latent knowledge
+level on a set of concepts/skills/knowledge components, and ii) a
+learner’s future performance can be predicted using their current
+latent concept knowledge levels. Concretely, let t denote a set of
+discrete time indices, we have the following generic model for a
+learner’s knowledge and performance
+rt ∼f (ht ),
+ht ∼д(ht−1),
+where rt ∈{0, 1} denotes the learner’s graded response to an as-
+sessment question at time step t, which is usually binary-valued
+(1 corresponds to a correct response and 0 corresponds to an in-
+correct one) and is observed. The latent variable ht denotes the
+learner’s current knowledge level and is not observed. f (·) and д(·)
+are functions that characterize how learner knowledge dictate their
+responses and how it evolves; they are sometimes referred to as the
+response model and the knowledge evolution model, respectively.
+Earlier developments in KT methods before 2010 can be divided
+into two classes. The first class centered around the Bayesian knowl-
+edge tracing (BKT) method [19, 35] where knowledge (ht ) is a
+binary-valued scalar that characterizes whether or not a learner
+masters the (single) concept covered by a question. Since the re-
+sponse (rt ) is also binary-valued, the response and knowledge evo-
+lution models are simply noisy binary channels, parameterized by
+the guessing, slipping, learning, and forgetting probabilities. The
+second class centered around item response theory (IRT) models
+[16] and use these models (especially sigmoidal link functions) as
+the response model f (·); learner knowledge level is then modeled as
+real-valued vectors (ht ) for questions that cover multiple concepts.
+Among these methods, the SPARFA-Trace method [13] used a sim-
+ple affine transformation model as the explicit knowledge evolution
+model д(·). Other methods, e.g., additive factor models [1], perfor-
+mance factor analysis [22], the difficulty, ability, and student history
+(DASH) model [15], and a few recent methods including knowledge
+factorization machines [30] and an extension to the DASH model,
+the DAS3H model [2], used hand-crafted features such as the num-
+ber of previous attempts, successes, and failures on each concept
+in their knowledge evolution model. Methods in both classes rely
+on expert labels to associate questions to concepts, resulting in
+excellent interpretability since they can effectively estimate the
+knowledge level of each learner on expert-defined concepts.
+Recent developments in KT centered around using more sophisti-
+cated and flexible models to fully exploit the information contained
+Applied Data Science Track Paper
+KDD '20, August 23–27, 2020, Virtual Event, USA
+2330

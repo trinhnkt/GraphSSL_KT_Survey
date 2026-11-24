@@ -1,0 +1,165 @@
+Bi-CLKT: Bi-Graph Contrastive Learning based Knowledge Tracing
+Xiangyu Songa, Jianxin Lia,∗, Qi Leib, Wei Zhaoc, Yunliang Chend,∗, Ajmal Miane
+aSchool of IT, Faculty of Science, Engineering and Built Environment, Deakin University, Geelong, VIC 3220, Australia
+bSchool of Information Engineering, Chang’an University, Xi’an, China
+cSchool of Computer Science and Technology, Xidian University, Xi’an, China
+dSchool of Computer Science, China University of Geosciences, Wuhan, China
+eDepartment of Computer Science and Software Engineering, The University of Western Australia, Perth, Australia
+Abstract
+The goal of Knowledge Tracing (KT) is to estimate how well students have mastered a concept based on their historical
+learning of related exercises. The beneﬁt of knowledge tracing is that students’ learning plans can be better organised
+and adjusted, and interventions can be made when necessary. With the recent rise of deep learning, Deep Knowledge
+Tracing (DKT) has utilised Recurrent Neural Networks (RNNs) to accomplish this task with some success. Other works
+have attempted to introduce Graph Neural Networks (GNNs) and redeﬁne the task accordingly to achieve signiﬁcant
+improvements. However, these eﬀorts suﬀer from at least one of the following drawbacks: 1) they pay too much
+attention to details of the nodes rather than to high-level semantic information; 2) they struggle to eﬀectively establish
+spatial associations and complex structures of the nodes; and 3) they represent either concepts or exercises only, without
+integrating them. Inspired by recent advances in self-supervised learning, we propose a Bi-Graph Contrastive Learning
+based Knowledge Tracing (Bi-CLKT) to address these limitations. Speciﬁcally, we design a two-layer comparative
+learning scheme based on an “exercise-to-exercise” (E2E) relational subgraph. It involves node-level contrastive
+learning of subgraphs to obtain discriminative representations of exercises, and graph-level contrastive learning to
+obtain discriminative representations of concepts. Moreover, we designed a joint contrastive loss to obtain better
+representations and hence better prediction performance. Also, we explored two diﬀerent variants, using RNN and
+memory-augmented neural networks as the prediction layer for comparison to obtain better representations of exercises
+and concepts respectively. Extensive experiments on four real-world datasets show that the proposed Bi-CLKT and its
+variants outperform other baseline models.
+Keywords:
+Contrastive Learning, Self-supervised Learning, Deep Knowledge Tracing, Graph Neural Network, Intelligent
+Tutoring Systems
+1. Introduction
+With growing developments in online education plat-
+forms, vast amounts of online learning data is available
+to keep accurate and timely trace of students’ learning
+status. To trace students’ mastery of speciﬁc knowledge
+points or concepts, a fundamental task called Knowledge
+Tracing (KT) has been proposed [1], which uses a se-
+ries of student interactions with exercises to predict their
+mastery of the concepts corresponding to those exercises.
+Speciﬁcally, Knowledge Tracing addresses the problem
+of predicting whether students will be able to correctly
+∗Corresponding author.
+Email address: jianxin.li@deakin.edu.au (Jianxin Li)
+answer the next exercise relevant to a concept, given their
+previous learning interactions. In recent years, KT tasks
+have received signiﬁcant attention in academic areas,
+and many scholars have conducted research to propose
+numerous methods that deal with this problem. Conven-
+tional approaches in this domain are mainly divided into
+the Bayesian Knowledge Tracing model using Hidden
+Markov Models [1] and Deep Knowledge Tracing using
+Deep Neural Networks [2] and its derivative methods
+[3, 4, 5, 6].
+Existing KT methods [7, 4, 2] generally target the
+concept to which the exercise belongs rather than dis-
+tinguishing between the exercises themselves to build
+predictive models. Such an approach assumes that the
+ability of a student to solve the relevant exercise cor-
+Preprint submitted to Knowledge-Based Systems
+January 25, 2022
+arXiv:2201.09020v1  [cs.LG]  22 Jan 2022
+
+rectly to a certain extent directly reﬂects that student’s
+mastery of the concept. Therefore, prediction based on
+concepts in such a way is a viable option, however, this
+reduces the diﬃculty of the task itself, given the lim-
+ited performance of the model. Generally, a KT task
+comprises multiple concepts and a large number of ex-
+ercises with an even larger number of situations where
+a concept is associated with many exercises, and a pro-
+portion of situations where an exercise may correspond
+to multiple concepts. Traditional models can only deal
+with the former, while for the latter, they often have to
+resort to dividing these cross-concept exercises into mul-
+tiple single-concept exercises. Such an approach, while
+enhancing the feasibility of these models, nevertheless
+interferes with the accuracy of the overall task.
+Although these concept-based KT methods have been
+somewhat successful, the characteristics of the exercises
+themselves are often overlooked. This can lead to a re-
+duction in the ultimate predictive accuracy of the model
+and a failure to predict speciﬁc exercises. Even if two ex-
+ercises have the same concept, the diﬀerence in their dif-
+ﬁculty level may ultimately lead to a large diﬀerence in
+the probability of them being answered correctly. There-
+fore, some previous works [8, 9, 10, 11, 12, 13] have
+attempted to use exercise features as a supplement to con-
+cept input, achieving success to some extent. However,
+due to the relatively large diﬀerence between the number
+of exercises and the number of exercises students actu-
+ally interact with, each student may only interact with
+a very small fraction of the exercises, leading to prob-
+lems of sparse data. Furthermore, for those exercises that
+span concepts, simply adding features to the exercises
+loses potential inter-exercise and inter-concept informa-
+tion. Therefore, the use of higher-order information such
+as “exercise-to-exercise” (E2E) and “concept-to-concept”
+(C2C) is necessary to address these issues.
+The idea of redeﬁning the Knowledge Tracing prob-
+lem in terms of graphs has recently gained signiﬁcant
+momentum due to the widespread deployment of GNNs
+[14, 10, 15, 16, 17] and breakthroughs in addressing
+the unpredictability of traditional approaches to cross-
+concept exercises. Traditional KT usually takes sequen-
+tial data as input in the form of concepts corresponding
+to the input exercises and their responses. This leads to
+a lack of information between exercises, and only the
+relationship between exercises and concepts is available.
+Recent research in graph theory has opened up the pos-
+sibility of breaking this bottleneck. Unlike sequential
+data, graph data can capture the higher order informa-
+tion of “exercise-to-exercise” (E2E) and “concept-to-
+concept” (C2C) very well due to the multivariate node
+and edge structure of the graph itself. As a result, some
+research [14, 18] has turned to redeﬁning this task in
+terms of graphs. However, these eﬀorts face several
+problems: 1) too much attention to the details of the
+nodes rather than high-level semantic information; 2)
+diﬃculty in eﬀectively establishing spatial associations
+and complex structures of the nodes; and 3) representing
+only concepts or exercises without integrating them.
+Due to the diﬃculty and inaccuracy of data labelling,
+self-supervised learning has become increasingly popu-
+lar, with great success in many areas such as computer
+vision [19, 20, 21] and natural language processing
+[22, 23]. The speciality of self-supervised learning is in
+dealing with low quality or missing labels, which is a
+requirement for supervised learning and uses the input
+data itself for incremental layers as supervised labels
+for the learning model. This can be as powerful as su-
+pervised models with speciﬁcally labelled information
+and eliminates the tedious labelling work required by
+supervised models. Speciﬁcally, self-supervised learning
+eliminates the need to label speciﬁc tasks which is the
+biggest bottleneck in supervised learning. Especially for
+large amounts of network data, obtaining high quality
+labels at scale is often very expensive and time consum-
+ing. Self-supervised learning has been shown to excel
+in tasks with textual and image datasets, but is still in
+its infancy for problems on the graphs such as retrieval,
+recommendation, graph mining, and social network anal-
+ysis.
+In this paper, we address the problems encountered
+by traditional GNN based KT models and propose a
+self-supervised learning framework along with Bi-Graph
+Contrastive Learning based Knowledge Tracing (Bi-
+CLKT) model. Our model employs contrastive learning
+with global-bilayer and local-bilayer structures, where
+they apply graph-level and node-level GCNs to extract
+“exercise-to-exercise” (E2E) and “concept-to-concept”
+(C2C) relational information, respectively. Finally, the
+prediction on students’ performance is carried out by a
+prediction layer based on a deep neural network.
+Our approach has been fully validated using four
+benchmark datasets. In terms of prediction performance,
+our model and its variants outperformed traditional deep
+learning-based methods, showing great potential for
+knowledge-tracing prediction accuracy. Furthermore,
+through a series of ablation studies, we have analysed
+each module separately, making the model more inter-
+pretable. Our proposed model also has some technical
+innovations and improvements. Due to the speciﬁcity of
+this task, which requires separate representation learning
+for two related but independent entities, our two-layer
+comparative learning structure ﬁts well into this. Our
+speciﬁc contributions are described as follows:
+2

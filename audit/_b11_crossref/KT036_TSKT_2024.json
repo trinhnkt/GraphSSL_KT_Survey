@@ -1,0 +1,114 @@
+{
+  "title": [
+    "Heterogeneous graph-based knowledge tracing with spatiotemporal evolution"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0003-3427-6884",
+      "authenticated-orcid": false,
+      "given": "Huali",
+      "family": "Yang",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Shengze",
+      "family": "Hu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Jing",
+      "family": "Geng",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-2339-2118",
+      "authenticated-orcid": false,
+      "given": "Tao",
+      "family": "Huang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-5039-3605",
+      "authenticated-orcid": false,
+      "given": "Junjie",
+      "family": "Hu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Hao",
+      "family": "Zhang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Qiang",
+      "family": "Zhu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2024,
+        3
+      ]
+    ]
+  },
+  "container-title": [
+    "Expert Systems with Applications"
+  ],
+  "volume": "238",
+  "issue": null,
+  "page": "122249",
+  "publisher": "Elsevier BV",
+  "DOI": "10.1016/j.eswa.2023.122249",
+  "type": "journal-article"
+}

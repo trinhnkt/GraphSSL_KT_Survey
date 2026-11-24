@@ -1,0 +1,141 @@
+Table 5: Ablation Study
+Architecture Synthetic
+ASSIST
+2009
+ASSIST
+2015
+ASSIST
+Chall
+STATICS
+Default
+0.832
+0.848
+0.854
+0.734
+0.853
+No PE
+0.827
+0.842
+0.849
+0.715
+0.832
+No RC
+0.823
+0.847
+0.857
+0.709
+0.834
+No Dropout
+0.832
+0.845
+0.851
+0.711
+0.840
+Single head
+0.823
+0.828
+0.845
+0.709
+0.851
+0 block
+0.826
+0.837
+0.822
+0.634
+0.819
+2 blocks
+0.827
+0.840
+0.853
+0.724
+0.845
+the RC do not contribute much to the performance of the
+model. In fact removal of residual connection gives better
+performance than default for the ASSIST2015 dataset.
+No Dropout: Dropout is used in neural network to regular-
+ize the model so that it can generalize better. Overﬁtting
+of the model is more eﬀective for dataset with less number
+of records compared to the number of parameters of model.
+As a result, role of dropout is more eﬀective for ASSIST2009
+dataset and STATICS dataset.
+Single head: Instead of using 5 heads as is the case in de-
+fault architecture, we tried a variant of using only one head.
+Multiple heads help in capturing the attention weights in dif-
+ferent subspaces. Using single head consistently drops the
+performance of SAKT on all the datasets.
+No block: When no self-attention block is used the predic-
+tion of the next exercise depends only on the last interaction.
+It can be seen that without attention block the performance
+is signiﬁcantly worse than that of default architecture.
+2 Blocks: Increasing the number of blocks of self-attention
+increases the number of parameters of the model. However,
+in our case this increase of parameters does not prove to
+be useful in improving the performance. The reason being
+an important aspect of prediction of performance of student
+at an exercise is dependent on his performance on the past
+relevant exercises.
+Adding another block of self-attention
+makes the model more complex.
+Training eﬃciency: Figure 4 demonstrates the eﬃciency
+of various methods based on their run times on GPU during
+the training phase. Comparing the computational eﬃciency,
+SAKT only spends 1.4 seconds in one epoch which is 46.42
+less than the time taken by DKT+ (65 seconds/epoch), 32
+times less than DKT (45 seconds/epoch) and 17.33 times
+less than DKVMN (26 seconds/epoch). We conducted the
+experiments on a single GPU of type NVIDIA Titan V.
+5.
+CONCLUSION AND FUTURE WORK
+In this work, we proposed a self-attention based knowledge
+tracing model, SAKT. It models a student’s interaction his-
+tory (without using any RNN) and predicts his performance
+on the next exercise by considering the relevant exercises
+from his past interactions.
+Extensive experimentation on
+a variety of real-world datasets shows that our model can
+outperform the state-of-the-art methods and is an order of
+magnitude faster than the RNN-based approaches.
+6.
+REFERENCES
+[1] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoﬀrey E
+Hinton. 2016. Layer normalization. arXiv preprint
+Figure 4: Training Eﬃciency on ASSIST2009 dataset.
+arXiv:1607.06450 (2016).
+[2] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian
+Sun. 2016. Deep residual learning for image
+recognition. In Proceedings of the IEEE conference on
+computer vision and pattern recognition. 770–778.
+[3] Wang-Cheng Kang and Julian McAuley. 2018.
+Self-Attentive Sequential Recommendation. CoRR
+abs/1808.09781 (2018).
+[4] Mohammad Khajah, Robert V Lindsey, and
+Michael C Mozer. 2016. How deep is knowledge
+tracing? arXiv preprint arXiv:1604.02416 (2016).
+[5] Diederik P Kingma and Jimmy Ba. 2014. Adam: A
+method for stochastic optimization. arXiv preprint
+arXiv:1412.6980 (2014).
+[6] Chris Piech, Jonathan Bassen, Jonathan Huang,
+Surya Ganguli, Mehran Sahami, Leonidas J Guibas,
+and Jascha Sohl-Dickstein. 2015. Deep knowledge
+tracing. In Advances in Neural Information Processing
+Systems. 505–513.
+[7] Adam Santoro, Sergey Bartunov, Matthew Botvinick,
+Daan Wierstra, and Timothy Lillicrap. 2016. One-shot
+learning with memory-augmented neural networks.
+arXiv preprint arXiv:1605.06065 (2016).
+[8] John Self. 1990. Theoretical foundations for intelligent
+tutoring systems. Journal of Artiﬁcial Intelligence in
+Education 1, 4 (1990), 3–14.
+[9] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob
+Uszkoreit, Llion Jones, Aidan N Gomez,  Lukasz
+Kaiser, and Illia Polosukhin. 2017. Attention is all you
+need. In Advances in Neural Information Processing
+Systems. 5998–6008.
+[10] Chun-Kit Yeung and Dit-Yan Yeung. 2018.
+Addressing two problems in deep knowledge tracing
+via prediction-consistent regularization. arXiv preprint
+arXiv:1806.02180 (2018).
+[11] Jiani Zhang, Xingjian Shi, Irwin King, and Dit-Yan
+Yeung. Dynamic key-value memory networks for
+knowledge tracing. In Proceedings of the 26th
+International Conference on World Wide Web.

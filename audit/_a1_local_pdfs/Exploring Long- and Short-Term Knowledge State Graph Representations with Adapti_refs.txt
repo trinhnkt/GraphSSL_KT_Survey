@@ -1,0 +1,182 @@
+G. Yu et al.
+Acknowledgments
+This work was financially supported by the National Natural Science Foundation of China (No. 62377021), Self-determined
+Research Funds of CCNU from the Colleges’ Basic Research and Operation of MOE (No. CCNU22QN015), and the Natural Science
+Foundation of Hubei Province for Distinguished Young Scholars (No. 2023AFA096). This project was also supported in part by
+NSERC Discovery grant and York Research Chairs (YRC) program in Canada. In addition, we would like to thank all the reviewers
+and senior PC chairs for their excellent comments.
+Data availability
+Data will be made available on request.
+References
+Abdelrahman, G., Wang, Q., & Nunes, B. (2023). Knowledge tracing: A survey. ACM Computing Surveys, 55(11), 1–37. http://dx.doi.org/10.1145/3569576.
+Anderson, J. R., Boyle, C. F., Corbett, A. T., & Lewis, M. W. (1990). Cognitive modeling and intelligent tutoring. Artificial Intelligence, 7–49. http://dx.doi.org/
+10.7551/mitpress/1167.003.0002.
+Baker, R. S. d., Corbett, A. T., & Aleven, V. (2008). More accurate student modeling through contextual estimation of slip and guess probabilities in
+bayesian knowledge tracing. In Proceedings of the intelligent tutoring systems (pp. 406–415). http://dx.doi.org/10.1007/978-3-540-69132-7_44, URL https:
+//link.springer.com/chapter/10.1007/978-3-540-69132-7_44.
+Cen, H., Koedinger, K., & Junker, B. (2006). Learning factors analysis–a general method for cognitive model evaluation and improvement. In Proceedings of the
+international conference on intelligent tutoring systems (pp. 164–175). http://dx.doi.org/10.1007/11774303_17, URL https://link.springer.com/chapter/10.1007/
+11774303_17.
+Chen, Z., Zhu, M., Wang, F., Shen, S., Huang, Z., & Liu, Q. (2023). Long-term and short-term perception in knowledge tracing. In CCF conference on big data
+(pp. 1–15). http://dx.doi.org/10.1007/978-981-99-8979-9_1, URL https://link.springer.com/chapter/10.1007/978-981-99-8979-9_1.
+Choi, Y., Lee, Y., Cho, J., Baek, J., Kim, B., Cha, Y., Shin, D., Bae, C., & Heo, J. (2020). Towards an appropriate query, key, and value computation for knowledge
+tracing. In Proceedings of the seventh ACM conference on learning @ scale. http://dx.doi.org/10.1145/3386527.3405945, URL https://api.semanticscholar.org/
+CorpusID:211133246.
+Cole, C., Beheshti, J., & Abuhimed, D. (2017). A relevance model for middle school students seeking information for an inquiry-based class history project.
+Information Processing & Management, 53(2), 530–546. http://dx.doi.org/10.1016/j.ipm.2016.10.002, URL https://www.sciencedirect.com/science/article/pii/
+S0306457316305234.
+Collier, M., & Beel, J. (2018). Implementing neural turing machines. In Proceedings of the international conference on artificial neural networks (pp. 94–104).
+http://dx.doi.org/10.1007/978-3-030-01424-7_10, URL https://link.springer.com/chapter/10.1007/978-3-030-01424-7_10.
+Corbett, A. (2000). Cognitive mastery learning in the act programming tutor. Vol. 7, In Proceedings of the adaptive user interfaces. URL https://cdn.aaai.org/
+Symposia/Spring/2000/SS-00-01/SS00-01-007.pdf.
+Cui, J., Chen, Z., Zhou, A., Wang, J., & Zhang, W. (2023). Fine-grained interaction modeling with multi-relational transformer for knowledge tracing. ACM
+Transactions on Information Systems, 41(4), 1–26. http://dx.doi.org/10.1145/3580595.
+Cui, C., Yao, Y., Zhang, C., Ma, H., Ma, Y., Ren, Z., Zhang, C., & Ko, J. (2024). DGEKT: A dual graph ensemble learning method for knowledge tracing. ACM
+Transactions on Information Systems, 42(3), 1–24. http://dx.doi.org/10.1145/3638350, URL https://api.semanticscholar.org/CorpusID:253801876.
+Cui, J., Yu, M., Jiang, B., Zhou, A., Wang, J., & Zhang, W. (2023). Interpretable knowledge tracing via response influence-based counterfactual reasoning.
+In Proceedings of the 2024 IEEE 40th international conference on data engineering (pp. 1103–1116). http://dx.doi.org/10.1109/ICDE60146.2024.00090, URL
+https://ieeexplore.ieee.org/abstract/document/10598094.
+Dai, S., Ye, K., Zhao, K., Cui, G., Tang, H., & Zhan, L. (2024). Constrained multiview representation for self-supervised contrastive learning. http://dx.doi.org/
+10.48550/arXiv.2402.03456, arXiv URL https://arxiv.org/abs/2402.03456.
+Deng, W., Zhu, P., Chen, H., Yuan, T., & Wu, J. (2023). Knowledge-aware sequence modeling with deep learning for online course recommendation.
+Information Processing & Management, 60(4), Article 103377. http://dx.doi.org/10.1016/j.ipm.2023.103377, URL https://www.sciencedirect.com/science/
+article/pii/S0306457323001140.
+Domingue, J., Mikroyannidis, A., & Dietze, S. (2014). Online learning and linked data: Lessons learned and best practices. In Proceedings of the international
+conference on world wide web (pp. 191–192). http://dx.doi.org/10.1145/2567948.2577262.
+Feng, Y., You, H., Zhang, Z., Ji, R., & Gao, Y. (2019). Hypergraph neural networks. In Proceedings of the AAAI conference on artificial intelligence (pp. 3558–3565).
+http://dx.doi.org/10.1609/aaai.v33i01.33013558, URL https://ojs.aaai.org/index.php/AAAI/article/view/4235.
+Gan, W., Sun, Y., Peng, X., & Sun, Y. (2020). Modeling learner’s dynamic knowledge construction procedure and cognitive item difficulty for knowledge
+tracing. Applied Intelligence: The International Journal of Artificial Intelligence, Neural Networks, and Complex Problem-Solving Technologies, 3894–3912. http:
+//dx.doi.org/10.1007/s10489-020-01756-7, URL https://link.springer.com/article/10.1007/s10489-020-01756-7.
+Ghosh, A., Heffernan, N., & Lan, A. S. (2020). Context-aware attentive knowledge tracing. In Proceedings of the ACM SIGKDD international conference on knowledge
+discovery & data mining (pp. 2330–2339). http://dx.doi.org/10.1145/3394486.3403282.
+Huang, Z., Liu, Q., Chen, Y., Wu, L., Xiao, K., Chen, E., Ma, H., & Hu, G. (2020). Learning or forgetting? A dynamic approach for tracking the knowledge
+proficiency of students. ACM Transactions on Information Systems, 38(2), 1–33. http://dx.doi.org/10.1145/3379507.
+Käser, T., Klingler, S., Schwing, A. G., & Gross, M. (2017). Dynamic bayesian networks for student modeling. IEEE Transactions on Learning Technologies, 10(4),
+450–462. http://dx.doi.org/10.1109/TLT.2017.2689017, URL https://ieeexplore.ieee.org/abstract/document/7889018.
+Khajah, M. M., Huang, Y., Gonzalez-Brenes, J. P., Mozer, M. C., & Brusilovsky, P. (2014). Integrating knowledge tracing and item response theory: A tale of two
+frameworks. Vol. 1181, In BMJ quality & qafety (pp. 7–15). http://dx.doi.org/10.1136/bmjqs-2015-005093, URL http://d-scholarship.pitt.edu/id/eprint/26044.
+Khajah, M., Wing, R., Lindsey, R. V., & Mozer, M. (2014). Integrating latent-factor and knowledge-tracing models to predict individual differences in learning.
+Educational Data Mining, 99–106. http://dx.doi.org/10.1097/00005110-200012000-00013, URL http://rob-lindsey.com/papers/2014/edm.pdf.
+Kingma, D. P., & Ba, J. (2014). Adam: A method for stochastic optimization. CoRR abs/1412.6980. URL https://api.semanticscholar.org/CorpusID:6628106.
+Kipf, T. N., & Welling, M. (2016). Semi-supervised classification with graph convolutional networks. http://dx.doi.org/10.48550/1609.02907, arXiv URL
+https://api.semanticscholar.org/CorpusID:3144218.
+Krathwohl, D. R. (2002). A revision of bloom’s taxonomy: An overview. Theory Into Practice, 41(4), 212–218, URL http://www.jstor.org/stable/1477405.
+LeCun, Y., Bengio, Y., & Hinton, G. (2015). Deep learning. Nature, 521(7553), 436–444. http://dx.doi.org/10.1038/nature14539, URL https://www.nature.com/
+articles/nature14539#citeas.
+Information Processing and Management 62 (2025) 104074 
+16 
+
+G. Yu et al.
+Liu, F., Bu, C., Zhang, H., Wu, L., Yu, K., & Hu, X. (2024). FDKT: Towards an interpretable deep knowledge tracing via fuzzy reasoning. ACM Transactions on
+Information Systems, 42(5), 1–26. http://dx.doi.org/10.1145/3656167.
+Liu, J., Chen, Y., Huang, X., Li, J., & Min, G. (2023). GNN-based long and short term preference modeling for next-location prediction. Information Sciences, 629,
+1–14. http://dx.doi.org/10.1016/j.ins.2023.01.131, URL https://www.sciencedirect.com/science/article/pii/S0020025523001433.
+Liu, Q., Huang, Z., Yin, Y., Chen, E., Xiong, H., Su, Y., & Hu, G. (2021). EKT: Exercise-aware knowledge tracing for student performance prediction. IEEE
+Transactions on Knowledge and Data Engineering, 33(1), 100–115. http://dx.doi.org/10.1109/TKDE.2019.2924374, URL https://ieeexplore.ieee.org/abstract/
+document/8744302.
+Liu, J., Huang, Z., Zhai, C., & Liu, Q. (2023). Learning by applying: A general framework for mathematical reasoning via enhancing explicit knowledge
+learning. Vol. 37, In Proceedings of the AAAI conference on artificial intelligence (pp. 4497–4506). http://dx.doi.org/10.1609/aaai.v37i4.25571, URL https:
+//ojs.aaai.org/index.php/AAAI/article/view/25571.
+Liu, Z., Liu, Q., Chen, J., Huang, S., Gao, B., Luo, W., & Weng, J. (2023). Enhancing deep knowledge tracing with auxiliary tasks. In Proceedings of the ACM
+web conference 2023 (pp. 4178–4187). http://dx.doi.org/10.1145/3543507.3583866.
+Liu, L., Wen, G., Cao, P., Yang, J., Li, W., & Zaiane, O. R. (2024). Capturing temporal node evolution via self-supervised learning: A new perspective on dynamic
+graph learning. In Proceedings of the 17th ACM international conference on web search and data mining (pp. 443–451). http://dx.doi.org/10.1145/3616855.
+3635765.
+Ma, W., Chen, W., Lu, L., & Fan, X. (2024). Integrating learners’ knowledge background to improve course recommendation fairness: A multi-graph
+recommendation method based on contrastive learning. Information Processing & Management, 61(4), Article 103750. http://dx.doi.org/10.1016/j.ipm.2024.
+103750, URL https://www.sciencedirect.com/science/article/pii/S0306457324001109.
+Minn, S., Vie, J.-J., Takeuchi, K., Kashima, H., & Zhu, F. (2022). Interpretable knowledge tracing: Simple and efficient student modeling with causal
+relations. Vol. 36, In Proceedings of the AAAI conference on artificial intelligence (pp. 12810–12818). http://dx.doi.org/10.1609/aaai.v36i11.21560, URL
+https://ojs.aaai.org/index.php/AAAI/article/view/21560.
+Minn, S., Yu, Y., Desmarais, M. C., Zhu, F., & Vie, J.-J. (2018). Deep knowledge tracing and dynamic student classification for knowledge tracing. In Proceedings
+of the IEEE international conference on data mining (pp. 1182–1187). http://dx.doi.org/10.1109/ICDM.2018.00156, URL https://ieeexplore.ieee.org/abstract/
+document/8594965.
+Mongkhonvanit, K., Kanopka, K., & Lang, D. (2019). Deep knowledge tracing and engagement with moocs. In Proceedings of the 9th international conference on
+learning analytics & knowledge (pp. 340–342). http://dx.doi.org/10.1145/3303772.3303830.
+Nakagawa, H., Iwasawa, Y., & Matsuo, Y. (2019). Graph-based knowledge tracing: Modeling student proficiency using graph neural network. In Proceedings of
+the IEEE/WIC/aCM international conference on web intelligence (pp. 156–163). http://dx.doi.org/10.1145/3350546.3352513.
+Paas, F., Renkl, A., & Sweller, J. (2016). Cognitive load theory and instructional design: Recent developments. Cognitive Load Theory, 1–4. http://dx.doi.org/10.
+1207/S15326985EP3801_1, URL https://www.tandfonline.com/doi/pdf/10.1207/s15326985ep3801_1.
+Pandey, S., & Karypis, G. (2019). A self attentive model for knowledge tracing. http://dx.doi.org/10.48550/arXiv.1907.06837, arXiv abs/1907.06837. URL
+https://api.semanticscholar.org/CorpusID:195891353.
+Pavlik Jr, P. I., Cen, H., & Koedinger, K. R. (2009). Performance factors analysis–a new alternative to knowledge tracing. Proceedings of the International Conference
+on Artificial Intelligence in Education, http://dx.doi.org/10.3233/978-1-60750-028-5-531, URL https://ebooks.iospress.nl/doi/10.3233/978-1-60750-028-5-
+531.
+Piech, C., Bassen, J., Huang, J., Ganguli, S., Sahami, M., Guibas, L. J., & Sohl-Dickstein, J. (2015). Deep knowledge tracing. Advances in Neural Information
+Processing Systems, 28, URL https://proceedings.neurips.cc/paper_files/paper/2015/file/bac9162b47c56fc8a4d2a519803d51b3-Paper.pdf.
+Pu, Y., Liu, F., Shi, R., Yuan, H., Chen, R., Peng, T., & Wu, W. (2024). ELAKT: Enhancing locality for attentive knowledge tracing. ACM Transactions on Information
+Systems, 42(4), 1–27. http://dx.doi.org/10.1145/3652601.
+Rasch, G. (1981). Probabilistic models for some intelligence and attainment tests. The SAGE Encyclopedia of Research Design, URL https://api.semanticscholar.
+org/CorpusID:61203382.
+Scarselli, F., Gori, M., Tsoi, A. C., Hagenbuchner, M., & Monfardini, G. (2008). The graph neural network model. IEEE Transactions on Neural Networks, 20(1),
+61–80. http://dx.doi.org/10.1109/TNN.2008.2005605, URL https://ieeexplore.ieee.org/abstract/document/4700287.
+Schultz, S., & Arroyo, I. (2014). Tracing knowledge and engagement in parallel in an intelligent tutoring system. In Proceedings of the educational data mining
+2014. URL https://educationaldatamining.org/EDM2014/uploads/procs2014/short%20papers/312_EDM-2014-Short.pdf.
+Shen, S., Liu, Q., Chen, E., Huang, Z., Huang, W., Yin, Y., Su, Y., & Wang, S. (2021). Learning process-consistent knowledge tracing. In Proceedings of the 27th
+ACM SIGKDD conference on knowledge discovery & data mining (pp. 1452–1460). http://dx.doi.org/10.1145/3447548.3467237.
+Shen, S., Liu, Q., Huang, Z., Zheng, Y., Yin, M., Wang, M., & Chen, E. (2024). A survey of knowledge tracing: Models, variants, and applications. IEEE Transactions
+on Learning Technologies, 17, 1898–1919. http://dx.doi.org/10.1109/tlt.2024.3383325.
+Shi, L., Zhang, Y., Cheng, J., & Lu, H. (2019). Skeleton-based action recognition with directed graph neural networks. In Proceedings of the IEEE/CVF conference on
+computer vision and pattern recognition (pp. 7912–7921). URL https://openaccess.thecvf.com/content_CVPR_2019/html/Shi_Skeleton-Based_Action_Recognition_
+With_Directed_Graph_Neural_Networks_CVPR_2019_paper.html.
+Sweeney, M., Lester, J., Rangwala, H., & Johri, A. (2016). Next-term student performance prediction: A recommender systems approach. Educational Data Mining,
+http://dx.doi.org/10.48550/arXiv.1604.01840, URL https://api.semanticscholar.org/CorpusID:10521079.
+Tong, S., Liu, Q., Huang, W., Huang, Z., Chen, E., Liu, C., Ma, H., & Wang, S. (2020). Structure-based knowledge tracing: An influence propagation
+view. In Proceedings of 2020 IEEE international conference on data mining (pp. 541–550). http://dx.doi.org/10.1109/ICDM50108.2020.00063, URL https:
+//ieeexplore.ieee.org/abstract/document/9338285.
+Vardi, M. Y. (2012). Will MOOCs destroy academia? Communications of the ACM, 55(11), http://dx.doi.org/10.1145/2366316.2366317, 5–5.
+Veličković, P., Cucurull, G., Casanova, A., Romero, A., Lio, P., & Bengio, Y. (2017). Graph attention networks. http://dx.doi.org/10.48550/1710.10903, arXiv
+URL https://arxiv.org/abs/1710.10903.
+Villano, M. (1992). Probabilistic student models: Bayesian belief networks and knowledge space theory. In Proceedings of the intelligent tutoring systems (pp.
+491–498). http://dx.doi.org/10.1007/3-540-55606-0_58, URL https://link.springer.com/chapter/10.1007/3-540-55606-0_58.
+Wang, Y., & Heffernan, N. T. (2012). Leveraging first response time into the knowledge tracing model.. International Educational Data Mining Society, URL
+https://eric.ed.gov/?id=ED537228.
+Wang, T., Ma, F., & Gao, J. (2019). Deep hierarchical knowledge tracing. Educational Data Mining, URL https://par.nsf.gov/biblio/10157350#cite-bib.
+Wang, X., Ma, W., Guo, L., Jiang, H., Liu, F., & Xu, C. (2022). HGNN: Hyperedge-based graph neural network for MOOC course recommendation. Information
+Processing & Management, 59(3), Article 102938. http://dx.doi.org/10.1016/j.ipm.2022.102938, URL https://www.sciencedirect.com/science/article/pii/
+S0306457322000607.
+Wang, S., Wu, H., Kim, J. H., & Andersen, E. (2019). Adaptive learning material recommendation in online language education. In Proceedings of the international
+conference on artificial intelligence in education (pp. 298–302). http://dx.doi.org/10.1007/978-3-030-23207-8_55, URL https://link.springer.com/chapter/10.
+1007/978-3-030-23207-8_55.
+Wang, C., Zhao, S., & Sahebi, S. (2021). Learning from non-assessed resources: Deep multi-type knowledge tracing.. International Educational Data Mining Society,
+URL https://eric.ed.gov/?id=ED615584.
+Information Processing and Management 62 (2025) 104074 
+17 
+
+G. Yu et al.
+Wilson, K. H., Karklin, Y., Han, B., & Ekanadham, C. (2016). Back to the basics: Bayesian dxtensions of IRT outperform neural networks for proficiency dstimation.
+http://dx.doi.org/10.48550/arXiv.1604.0233, arXiv URL https://arxiv.org/abs/1604.02336.
+Xiong, X., Zhao, S., Van Inwegen, E. G., & Beck, J. E. (2016). Going deeper with deep knowledge tracing. International Educational Data Mining Society, URL
+https://eric.ed.gov/?id=ED592679.
+Xu, B., Huang, Z., Liu, J., Shen, S., Liu, Q., Chen, E., Wu, J., & Wang, S. (2023). Learning behavior-oriented knowledge tracing. In Proceedings of the ACM
+SIGKDD conference on knowledge discovery and data mining (pp. 2789–2800). http://dx.doi.org/10.1145/3580305.3599407, URL https://api.semanticscholar.
+org/CorpusID:260500046.
+Xu, Y., Ou, J., Xu, H., & Fu, L. (2023). Temporal knowledge graph reasoning with historical contrastive learning. Vol. 37, In Proceedings of the AAAI conference
+on artificial intelligence (pp. 4765–4773). http://dx.doi.org/10.1609/aaai.v37i4.25601, URL https://ojs.aaai.org/index.php/AAAI/article/view/25601.
+Xu, L., Wang, G., Guo, L., & Wang, X. (2022). Long- and short-term attention network for knowledge tracing. In 2022 international joint conference on neural
+networks (pp. 1–9). http://dx.doi.org/10.1109/IJCNN55064.2022.9891896, URL https://ieeexplore.ieee.org/abstract/document/9891896.
+Yang, Y., Shen, J., Qu, Y., Liu, Y., Wang, K., Zhu, Y., Zhang, W., & Yu, Y. (2021). GIKT: A graph-based interaction model for knowledge tracing. In Machine learning
+and knowledge discovery in databases (pp. 299–315). http://dx.doi.org/10.1007/978-3-030-67658-2_18, URL https://link.springer.com/chapter/10.1007/978-
+3-030-67658-2_18.
+Yeung, C.-K., & Yeung, D.-Y. (2018). Addressing two problems in deep knowledge tracing via prediction-consistent regularization. In Proceedings of the fifth annual
+ACM conference on learning at scale. http://dx.doi.org/10.1145/3231644.3231647, URL https://api.semanticscholar.org/CorpusID:46941428.
+Yudelson, M. V., Koedinger, K. R., & Gordon, G. J. (2013). Individualized bayesian knowledge tracing models. In Proceedings of the international conference
+on artificial intelligence in education (pp. 171–180). http://dx.doi.org/10.1007/978-3-642-39112-5_18, URL https://link.springer.com/chapter/10.1007/978-3-
+642-39112-5_18.
+Zhang, J., Shi, X., King, I., & Yeung, D.-Y. (2017). Dynamic key-value memory networks for knowledge tracing. In Proceedings of the international conference on
+world wide web (pp. 765–774). http://dx.doi.org/10.1145/3038912.3052580.
+Zhang, M., Xia, Y., Liu, Q., Wu, S., & Wang, L. (2023). Learning long- and short-term representations for temporal knowledge graph reasoning. In Proceedings
+of the ACM web conference 2023 (pp. 2412–2422). http://dx.doi.org/10.1145/3543507.3583242.
+Zhang, L., Xiong, X., Zhao, S., Botelho, A., & Heffernan, N. T. (2017). Incorporating rich features into deep knowledge tracing. In Proceedings of the fourth ACM
+conference on learning (pp. 169–172). http://dx.doi.org/10.1145/3051457.3053976.
+Zhang, Y., Zhou, G., Xie, Z., Ma, J., & Huang, J. X. (2025). A diversity-enhanced knowledge distillation model for practical math word problem solving.
+doi:https://arxiv.org/abs/2501.03670, URL https://arxiv.org/abs/2501.03670. arXiv:2501.03670.
+Zhang, M., Zhu, X., Zhang, C., Pan, F., Qian, W., & Zhao, H. (2023). No length left behind: Enhancing knowledge tracing for modeling sequences of
+excessive or insufficient lengths. In Proceedings of the 32nd ACM international conference on information and knowledge management (pp. 3226–3235).
+http://dx.doi.org/10.1145/3583780.3614988.
+Zhao, W., Xia, J., Jiang, X., & He, T. (2023). A novel framework for deep knowledge tracing via gating-controlled forgetting and learning mechanisms.
+Information Processing & Management, 60(1), Article 103114. http://dx.doi.org/10.1016/j.ipm.2022.103114, URL https://www.sciencedirect.com/science/
+article/pii/S0306457322002151.
+Information Processing and Management 62 (2025) 104074 
+18 

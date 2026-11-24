@@ -1,5 +1,7 @@
 # KT026 — Pre-Training Question Embeddings Coding Record (v0.4 PILOT)
 
+> **Historical artifact — rows retained.** `S_criterion=NO` / `ssl_family=NONE` here are the pilot codes. Current adjudication: `KT026_CODING_v1.1.md` (`S_criterion=YES`). Not a SCOPE / `_LOCKED` change.
+
 **Paper ID:** PAPER_KT026  
 **Legacy ID:** KT026  
 **Title:** Improving Knowledge Tracing via Pre-Training Question Embeddings  

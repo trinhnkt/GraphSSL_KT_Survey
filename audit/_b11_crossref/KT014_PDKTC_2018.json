@@ -1,0 +1,72 @@
+{
+  "title": [
+    "Prerequisite-Driven Deep Knowledge Tracing"
+  ],
+  "author": [
+    {
+      "given": "Penghe",
+      "family": "Chen",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yu",
+      "family": "Lu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Vincent W.",
+      "family": "Zheng",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yang",
+      "family": "Pian",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2018,
+        11
+      ]
+    ]
+  },
+  "container-title": [
+    "2018 IEEE International Conference on Data Mining (ICDM)"
+  ],
+  "volume": null,
+  "issue": null,
+  "page": "39-48",
+  "publisher": "IEEE",
+  "DOI": "10.1109/icdm.2018.00019",
+  "type": "proceedings-article"
+}

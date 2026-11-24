@@ -1,0 +1,125 @@
+14
+Yi-Fei Wen et al.
+formance, with the largest degradation caused by removing the local matching channel
+and the smallest by removing the global difference channel. The relatively minor role
+of the global difference channel may stem from its informational overlap with the local
+matching channel. When the discrepancy between student and question information
+is large, this difference can already be captured by the local matching channel, lead-
+ing to redundancy. Only when the two are close does the global difference channel add
+value, as it captures the subtle sensitivity that the local matching channel alone cannot
+distinguish.
+6
+Conclusion
+We propose STSKT, a spatio-temporal fusion streaming knowledge tracing model de-
+signed for realistic interactive data streams. Instead of retraining on all historical in-
+teractions, STSKT incrementally updates a dynamic heterogeneous graph from the
+current batch and models temporal dependencies within each student’s most recent N
+interactions. In this dynamic heterogeneous graph, question co-occurrence edges, col-
+laborative association edges, and temporal adjacency edges are constructed to enrich
+question representations, capture peer effects, and strengthen the spatial encoding of
+temporal dynamics. Temporal modeling further incorporates time intervals to reflect
+students’ learning rhythms. To integrate these rich features, a gated mechanism pro-
+vides adaptive fusion, dynamically weighing the contributions of a student’s spatial
+topology and their temporal learning rhythm based on individual answering patterns.
+This is followed by a three-channel prediction module that models the student-question
+interaction from global, local, and holistic perspectives. Experimental results show that
+STSKT outperforms all baselines. Moreover, the fusion of spatio-temporal information
+can effectively improve the predictive performance of the model, with temporal in-
+formation playing a more significant role. Furthermore, compared with static graphs,
+our dynamic heterogeneous graph yields greater accuracy and is particularly effec-
+tive for students with discontinuous learning behaviors. In modeling students’ spatial
+structures, question co-occurrence edges contribute the most, followed by collaborative
+association edges. Finally, all three channels of the prediction module are shown to be
+effective, with the local matching channel being the most critical.
+Acknowledgments. This work was partially supported by the National Natural Science
+Foundation of China (Grant Nos. 62507039 and 62576287), Sichuan Science and Technology
+Program (Grant No. 2025ZNSFSC0506), and the Yibin Science and Technology Program (No.
+2023SF004). Carl Yang was not supported by any funds from China.
+References
+1. Amirreza Mehrabi, Jason W. Morphew, Brenda S. Quezada. Enhancing performance factor
+analysis through skill profile and item similarity integration via an attention mechanism of
+artificial intelligence. Frontiers in Education, 2024, 9: 1454319.
+2. Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran Sahami, Leonidas
+Guibas, Jascha SohlDickstein. Deep knowledge tracing. In: Proceedings of the 29th Inter-
+national Conference on Neural In formation Processing Systems, Montreal, Canada, 2015,
+pp. 505–513.
+
+Title Suppressed Due to Excessive Length
+15
+3. Shi Pu, Michael Yudelson, Lu Ou, Yuchi Huang. Deep knowledge tracing with transformers.
+In: Proceedings of the 21th International Conference on Artificial Intelligence in Education,
+Ifrane, Morocco, 2020, pp. 252–256.
+4. Jiajun Cui, Zeyuan Chen, Aimin Zhou, Jianyong Wang, Wei Zhang. Fine-grained interac-
+tion modeling with multi-relational rtansformer for knowledge tracing. ACM Transactions
+on Information Systems, 2023, 41: 1–26.
+5. Shalini Pandey, George Karypis. A self-attentive model for knowledge tracing. In: Proceed-
+ings of the 12th International Conference on Educational Data Mining, Montreal, Canada,
+2019, pp. 384–389.
+6. Jaap MJ Murre, Joeri Dros. Replication and analysis of Ebbinghaus’ forgetting curve. PloS
+One, 2015, 10: 1-23.
+7. Aritra Ghosh, Neil Heffernan, Andrew S Lan. Context-Aware attentive knowledge trac-
+ing. In: Proceedings of the 26th ACM SIGKDD International Conference on Knowledge
+Discovery & Data Mining, Virtual Event, CA, USA, 2020, pp. 2330–2339.
+8. Yi-Fei Wen, Hang Liang, Carl Yang, Tao Zhou, Jia Liu, Yajun Du, Yan-Li Lee. Sequential
+contrastive learning for progressive knowledge tracing. Knowledge-Based Systems, 2025,
+329: 114413.
+9. Hiromi Nakagawa, Yusuke Iwasawa, Yutaka Matsuo. Graph-based knowledge tracing:
+Modeling student proficiency using graph neural network. In: Proceedings of the 18th
+IEEE/WIC/ACM International Conference on Web Intelligence, Thessaloniki, Greece,
+2019, pp. 156–163.
+10. Yang Yang, Jian Shen, Yanru Qu, Yunfei Liu, Kerong Wang, Yaoming Zhu, Weinan
+Zhang, Yong Yu. GIKT: A graph-based interaction model for knowledge tracing. In: Pro-
+ceedings of the Joint European Conference on Machine Learning and Knowledge Discovery
+in Databases, Ghent, Belgium, 2020, pp. 299–315.
+11. Hanshuang Tong, Zhen Wang, Yun Zhou, Shiwei Tong, Wenyuan Han, Qi Liu. Introducing
+problem schema with hierarchical exercise graph for knowledge tracing. In: Proceedings of
+the 45th International ACM SIGIR Conference on Research and Development in Informa-
+tion Retrieval, Madrid, Spain, 2022, pp. 405–415.
+12. Ke Cheng, Linzhi Peng, Pengyang Wang, Junchen Ye, Leilei Sun, Bowen Du. DyGKT:
+Dynamic graph learning for knowledge tracing. In: Proceedings of the 30th ACM SIGKDD
+Conference on Knowledge Discovery and Data Mining, Barcelona, Spain, 2024, pp. 409–420.
+13. Albert T. Corbett, John R. Anderson. Knowledge tracing: Modeling the acquisition of
+procedural knowledge. User Modeling and User-Adapted Interaction, 1994, 4: 253–278.
+14. Jiani Zhang, Xingjian Shi, Irwin King, Dit-Yan Yeung. Dynamic key-value memory net-
+works for knowledge tracing. In: Proceedings of the 26th International Conference on World
+Wide Web, Perth, Australia, 2017, pp. 765–774.
+15. Chang-Qin Huang, Qiong-Hao Huang, Xiaodi Huang, Hua Wang, Ming Li, Kwei-Jay Lin.
+XKT: Towards explainable knowledge tracing model with cognitive learning theories for
+questions of multiple knowledge concepts. IEEE Transactions on Knowledge and Data
+Engineering, 2024, 36: 7308-7325.
+16. Chenyang Wang, Weizhi Ma, Min Zhang, Chuancheng Lv, Fengyuan Wan, Huijie Lin,
+Taoran Tang, Yiqun Liu, Shaoping Ma. Temporal cross-effects in knowledge tracing. In:
+Proceedings of the 14th ACM International Conference on Web Search and Data Mining,
+Virtual Event, Israel, 2021, pp. 517–525.
+17. Shuting Li, Shuanghong Shen, Yu Su, Xinjie Sun, Junyu Lu, Qi Mo, Zhenyi Wu, Qi
+Liu. STHKT: Spatiotemporal knowledge tracing with topological hawkes process. Expert
+Systems with Applications, 2025, 259: 125248.
+18. Le Yu, Leilei Sun, Bowen Du, Weifeng Lv. Towards better dynamic graph learning: New
+architecture and unified library. Advances in Neural Information Processing Systems, 2023,
+36: 67686–67700.
+19. Jiangwei Yang, Tingnian He, Fucai Gao, Yang Yang. Deep knowledge tracing method
+based on enhancing knowledge graph embedding. In: Proceedings of the 7th International
+
+16
+Yi-Fei Wen et al.
+Conference on Computer Information Science and Artificial Intelligence, New York, United
+States, 2024, pp. 576–580.
+20. Hang Liang, Yi-Fei Wen, Yajun Du, Xiaoliang Chen, Tao Zhou, Yan-Li Lee. Interpretable
+knowledge tracing via fine-grained multi-feature attribution. Physica A: Statistical Me-
+chanics and its Applications, 2026, 681: 131068.
+21. Mehmet Diyaddin Yasar, Mustafa Erdogan, Veli Batdi, Ülkü Cinkara. Evaluation of co-
+operative learning in science education: A mixed-meta method study. European Journal of
+Science and Mathematics Education, 2024, 12: 411-427.
+22. Meehyun Yoon, Jungeun Lee, Il-Hyun Jo. Video learning analytics: Investigating behav-
+ioral patterns and learner clusters in video-based online learning. The Internet and Higher
+Education, 2021, 50: 100806.
+23. Ting Long, Yunfei Liu, Jian Shen, Weinan Zhang, Yong Yu. Tracing knowledge state with
+individual cognition and acquisition estimation. In: Proceedings of the 44th International
+ACM SIGIR Conference on Research and Development in Information Retrieval, Virtual
+Event, Canada, 2021, pp. 173–182.
+24. Shuanghong Shen, Zhenya Huang, Qi Liu, Yu Su, Shijin Wang, Enhong Chen. Assessing
+student’s dynamic knowledge state by exploring the question difficulty effect. In: Proceed-
+ings of the 45th International ACM SIGIR Conference on Research and Development in
+Information Retrieval, Madrid, Spain, 2022, pp. 427–437.
+25. Diederik P. Kingma, Jimmy Ba. Adam: A method for stochastic optimization. arXiv
+preprint arXiv: 1412. 6980, 2014.

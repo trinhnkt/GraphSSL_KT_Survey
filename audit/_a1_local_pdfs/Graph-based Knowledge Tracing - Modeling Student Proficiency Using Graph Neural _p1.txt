@@ -1,0 +1,153 @@
+.
+.
+Latest updates: hps://dl.acm.org/doi/10.1145/3350546.3352513
+.
+.
+RESEARCH-ARTICLE
+Graph-based Knowledge Tracing: Modeling Student Proficiency Using
+Graph Neural Network
+HIROMI NAKAGAWA, The University of Tokyo, Tokyo, Japan
+.
+YUSUKE IWASAWA, The University of Tokyo, Tokyo, Japan
+.
+YUTAKA MATSUO, The University of Tokyo, Tokyo, Japan
+.
+.
+.
+Open Access Support provided by:
+.
+The University of Tokyo
+.
+PDF Download
+3350546.3352513.pdf
+16 March 2026
+Total Citations: 258
+Total Downloads: 2617
+.
+.
+.
+.
+Published: 14 October 2019
+.
+.
+Citation in BibTeX format
+.
+.
+WI '19: IEEE/WIC/ACM International
+Conference on Web Intelligence
+October 14 - 17, 2019
+Thessaloniki, Greece
+.
+.
+WI '19: IEEE/WIC/ACM International Conference on Web Intelligence (October 2019)
+hps://doi.org/10.1145/3350546.3352513
+ISBN: 9781450369343
+.
+
+Graph-based Knowledge Tracing:
+Modeling Student Proficiency Using Graph Neural Network
+Hiromi Nakagawa
+nakagawa@weblab.t.u-tokyo.ac.jp
+The University of Tokyo
+Tokyo, Japan
+Yusuke Iwasawa
+iwasawa@weblab.t.u-tokyo.ac.jp
+The University of Tokyo
+Tokyo, Japan
+Yutaka Matsuo
+matsuo@weblab.t.u-tokyo.ac.jp
+The University of Tokyo
+Tokyo, Japan
+ABSTRACT
+Recent advancements in computer-assisted learning systems have
+caused an increase in the research of knowledge tracing, wherein stu-
+dent performance on coursework exercises is predicted over time.
+From the viewpoint of data structure, the coursework can be po-
+tentially structured as a graph. Incorporating this graph-structured
+nature into the knowledge tracing model as a relational inductive
+bias can improve its performance; however, previous methods, such
+as deep knowledge tracing, did not consider such a latent graph
+structure. Inspired by the recent successes of the graph neural net-
+work (GNN), we herein propose a GNN-based knowledge tracing
+method, i.e., graph-based knowledge tracing. Casting the knowl-
+edge structure as a graph enabled us to reformulate the knowledge
+tracing task as a time-series node-level classification problem in the
+GNN. As the knowledge graph structure is not explicitly provided
+in most cases, we propose various implementations of the graph
+structure. Empirical validations on two open datasets indicated that
+our method could potentially improve the prediction of student
+performance and demonstrated more interpretable predictions com-
+pared to those of the previous methods, without the requirement
+of any additional information.
+CCS CONCEPTS
+• Computing methodologies →Neural networks; • Informa-
+tion systems →Data mining; • Applied computing →Learning
+management systems.
+KEYWORDS
+Knowledge tracing, Graph neural network, Educational data mining,
+Learning sciences
+ACM Reference Format:
+Hiromi Nakagawa, Yusuke Iwasawa, and Yutaka Matsuo. 2019. Graph-based
+Knowledge Tracing: Modeling Student Proficiency Using Graph Neural
+Network. In IEEE/WIC/ACM International Conference on Web Intelligence
+(WI ’19), October 14–17, 2019, Thessaloniki, Greece. ACM, New York, NY,
+USA, 8 pages. https://doi.org/10.1145/3350546.3352513
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than ACM
+must be honored. Abstracting with credit is permitted. To copy otherwise, or republish,
+to post on servers or to redistribute to lists, requires prior specific permission and/or a
+fee. Request permissions from permissions@acm.org.
+WI ’19, October 14–17, 2019, Thessaloniki, Greece
+© 2019 Association for Computing Machinery.
+ACM ISBN 978-1-4503-6934-3/19/10...$15.00
+https://doi.org/10.1145/3350546.3352513
+1
+INTRODUCTION
+Recent advancements in computer-assisted learning systems have
+led to an increase in the research of knowledge tracing [5], in which
+student performance on coursework exercises is predicted over time.
+Accurate predictions help students identify contents suitable for
+their individual knowledge level, thereby facilitating more efficient
+learning. This is particularly important for e-learning platforms
+and teachers as they can increase student engagement and also pre-
+vent dropout. Although various knowledge tracing methods have
+been proposed, Piech et al. [17] reported that a method called deep
+knowledge tracing (DKT), which leverages recurrent neural net-
+works (RNNs) [24], performs significantly better than any previous
+method.
+From the viewpoint of data structure, a coursework can be po-
+tentially structured as a graph. The requirements for mastering
+the coursework are divided into knowledge concepts, known as
+nodes, and these concepts share dependency relationships, known
+as edges. Let us consider an example as follows. A coursework
+knowledge is divided into three concepts v = {v1,v2,v3}, and
+understanding of v1 is dependent on understanding of v2. Simulta-
+neously, v2 is dependent on v3 (e.g., v1, v2, and v3 represent solving
+quadratic equations, solving linear equations, and transposition of
+a term, respectively). Here, the concepts and their dependencies
+can be respectively perceived as nodes and edges of a graph, where
+the edges are directed from v3 to v2 and from v2 to v1. It is known
+that incorporating prior knowledge about the graph-structured
+nature of data into models improves their performance and inter-
+pretability [2]. Thus, incorporating the graph-structured nature of
+coursework knowledge can be effective for improving knowledge
+tracing models; however, previous deep learning-based methods
+such as DKT do not consider such a nature. The architectures of
+the previous deep-learning-based methods, such as the RNN, gener-
+ally perform well on sequential data, but cannot effectively handle
+graph-structured data.
+Recently, the research on the graph neural network (GNN) [8],
+which handles graph-structured data by deep learning, is garnering
+attention. Although operating on such irregular domain data has
+been challenging for the existing machine learning approaches,
+various generalization frameworks and important operations have
+been developed [2, 7, 23] with successful results in various research
+areas. Battaglia et al. [2] explained the expressive power of the
+GNN from the perspective of relational inductive biases, which
+improve the sample efficiency of machine learning models by incor-
+porating the human’s prior knowledge about the nature of data. To
+incorporate such benefits into knowledge tracing, we reformulate
+it as a GNN application and propose a novel model that can predict
+156

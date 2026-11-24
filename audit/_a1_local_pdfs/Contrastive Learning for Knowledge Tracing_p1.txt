@@ -1,0 +1,168 @@
+.
+.
+Latest updates: hps://dl.acm.org/doi/10.1145/3485447.3512105
+.
+.
+RESEARCH-ARTICLE
+Contrastive Learning for Knowledge Tracing
+WONSUNG LEE
+.
+JAEYOON CHUN
+.
+YOUNGMIN LEE, Korea Advanced Institute of Science and Technology, Daejeon, South Korea
+.
+KYOUNGSOO PARK
+.
+SUNGRAE PARK
+.
+.
+.
+Open Access Support provided by:
+.
+Korea Advanced Institute of Science and Technology
+.
+PDF Download
+3485447.3512105.pdf
+16 March 2026
+Total Citations: 95
+Total Downloads: 4805
+.
+.
+Published: 25 April 2022
+.
+.
+Citation in BibTeX format
+.
+.
+WWW '22: The ACM Web Conference
+2022
+April 25 - 29, 2022
+Virtual Event, Lyon, France
+.
+.
+Conference Sponsors:
+SIGWEB
+WWW '22: Proceedings of the ACM Web Conference 2022 (April 2022)
+hps://doi.org/10.1145/3485447.3512105
+ISBN: 9781450390965
+.
+
+Contrastive Learning for Knowledge Tracing
+Wonsung Lee
+Upstage
+Republic of Korea
+wonsung.lee@upstage.ai
+Jaeyoon Chun
+i-Scream Edu Co. Ltd
+Republic of Korea
+jaeychun@i-screamedu.co.kr
+Youngmin Lee
+KAIST
+Republic of Korea
+cacaz@kaist.ac.kr
+Kyoungsoo Park
+i-Scream Edu Co. Ltd
+Republic of Korea
+kspark0818@i-screamedu.co.kr
+Sungrae Park
+Upstage
+Republic of Korea
+sungrae.park@upstage.ai
+ABSTRACT
+Knowledge tracing is the task of understanding student’s knowl-
+edge acquisition processes by estimating whether to solve the next
+question correctly or not. Most deep learning-based methods tackle
+this problem by identifying hidden representations of knowledge
+states from learning histories. However, due to the sparse interac-
+tions between students and questions, the hidden representations
+can be easily over-fitted and often fail to capture student’s knowl-
+edge states accurately. This paper introduces a contrastive learning
+framework for knowledge tracing that reveals semantically similar
+or dissimilar examples of a learning history and stimulates to learn
+their relationships. To deal with the complexity of knowledge ac-
+quisition during learning, we carefully design the components of
+contrastive learning, such as architectures, data augmentation meth-
+ods, and hard negatives, taking into account pedagogical rationales.
+Our extensive experiments on six benchmarks show statistically
+significant improvements from the previous methods. Further anal-
+ysis shows how our methods contribute to improving knowledge
+tracing performances.
+CCS CONCEPTS
+• Social and professional topics →Student assessment; • Ap-
+plied computing →Learning management systems.
+KEYWORDS
+knowledge tracing, educational data mining, intelligent tutoring
+system, personalized learning, contrastive learning
+ACM Reference Format:
+Wonsung Lee, Jaeyoon Chun, Youngmin Lee, Kyoungsoo Park, and Sungrae
+Park. 2022. Contrastive Learning for Knowledge Tracing. In Proceedings of
+the ACM Web Conference 2022 (WWW ’22), April 25–29, 2022, Virtual Event,
+Lyon, France. ACM, New York, NY, USA, 9 pages. https://doi.org/10.1145/
+3485447.3512105
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than ACM
+must be honored. Abstracting with credit is permitted. To copy otherwise, or republish,
+to post on servers or to redistribute to lists, requires prior specific permission and/or a
+fee. Request permissions from permissions@acm.org.
+WWW ’22, April 25–29, 2022, Virtual Event, Lyon, France
+© 2022 Association for Computing Machinery.
+ACM ISBN 978-1-4503-9096-5/22/04...$15.00
+https://doi.org/10.1145/3485447.3512105
+(𝑞!, 1)
+(𝑞", 0)
+(𝑞#, 1)
+(𝑞$, 1)
+([𝐦], 1) (𝑞", 0)
+(𝑞#, 1) ([𝐦], 1)
+(𝑞!, 1)
+(*𝒒", 0) (*𝒒#, 1) (*𝒒$, 1)
+(𝑞!, 𝟎)
+(𝑞", 𝟏)
+(𝑞#, 𝟎) (𝑞$, 𝟎)
+Learning History
+Question Mask
+Question Replace
+Response Reverse
+Representation Space
+Hard Negatives
+Data Augmentation
+Representation Vector
+Attract
+Repel
+Semantically 
+similar neighbors
+Non-neighbors
+Figure 1: Conceptual diagram of CL4KT. Once semanti-
+cally similar or dissimilar learning histories are identified
+through data augmentations, CL learns their representa-
+tions to be close to each other for similar samples (blue
+points) and to be far from dissimilar samples (red points).
+1
+INTRODUCTION
+Over the past decades, the use of artificial intelligence (AI) tech-
+niques to improve educational practices has grown exponentially.
+The recent COVID-19 school closures have further accelerated this
+adoption. The introduction of AI for education demands personal-
+ized educational platforms that deliver a tailored curriculum to an
+individual learner. Accordingly, intelligent tutoring systems (ITS)
+have received significant attention in AI for education. The ability
+to recognize each student’s current knowledge states and provide
+appropriate questions to the students through the large-scale learn-
+ing data obtained from the online learning environment is the key
+to the success of ITS.
+Knowledge tracing (KT), one of the fundamental tasks of ITS,
+is to estimate the student’s knowledge states given the previous
+learning interactions consisting of responses to questions over time.
+Previous approaches [5, 28, 32, 45] have tried to capture an effective
+representation of the knowledge state, which enables predicting fu-
+ture responses to questions. While the existing methods of KT have
+had some success in ITS, they still suffer from the sparse nature
+of educational data. In the ITS environment, students are likely to
+interact with only a limited number of questions because they are
+apt to depend on the curriculum provided by the system. As a result,
+the representations learned from the sparse dataset tend to be easily
+biased or over-fitted, which hinders the accurate inference of latent
+knowledge states. To compensate for the issue, recent studies have
+2330

@@ -1,0 +1,62 @@
+{
+  "VX01_zenodo": {
+    "doi": "10.5281/zenodo.6853056",
+    "error": "HTTP Error 404: Not Found"
+  },
+  "VX10_igi": {
+    "doi": "10.4018/ijicte.385130",
+    "title": "Knowledge Tracing Enhanced by Graph Convolutional Networks With Self-Supervised Learning",
+    "issued": [
+      2025,
+      7,
+      14
+    ],
+    "published_print": [
+      2025,
+      7,
+      14
+    ],
+    "published_online": null,
+    "created": [
+      2025,
+      7,
+      15
+    ],
+    "container": "International Journal of Information and Communication Technology Education",
+    "page": "1-22",
+    "author": [
+      "Yanhong Shen",
+      "Yi Chen"
+    ]
+  },
+  "ieee_grkt": [
+    {
+      "line": 8,
+      "text": "\"A Multi-View Graph-Enhanced Knowledge Tracing Model for Adaptive Learning\",\"H. Chen; X. Xiao\",\"Major in Artificial Intelligence and Network Security, Guangzhou International Economics College, Guangzhou, Guangdong, China; Major in Artificial Intelligence, Guangzhou International Economics College, Guangzhou, Guangdong, China\",2026 11th International Conference on Electronic Technology and Informa"
+    },
+    {
+      "line": 58,
+      "text": "\"Domain-Generalizable Relation-Aware Knowledge Tracing for Cold-Start Education System\",\"Y. Xie; S. Peng; W. Yang; M. Yang; Y. Gao\",Nanjing Normal University; Nanjing Normal University; Nanjing Normal University; Nanjing Normal University; Nanjing University,\"ICASSP 2026 - 2026 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)\",\"21 Apr 2026\",\"2026\",\"\",\"\",\"4041\",\"404"
+    }
+  ],
+  "arxiv_grkt": [
+    {
+      "line": 3028,
+      "text": "<title>Leveraging Pedagogical Theories to Understand Student Learning Process with Graph-based Reasonable Knowledge Tracing</title>"
+    },
+    {
+      "line": 3032,
+      "text": "<summary>Knowledge tracing (KT) is a crucial task in intelligent education, focusing on predicting students' performance on given questions to trace their evolving knowledge. The advancement of deep learning in this field has led to deep-learning knowledge tracing (DLKT) models that prioritize high predictive accuracy. However, many existing DLKT methods overlook the fundamental goal of tracking s"
+    }
+  ],
+  "arxiv_transkt": [
+    {
+      "line": 1998,
+      "text": "<title>Contrastive Cross-Course Knowledge Tracing via Concept Graph Guided Knowledge Transfer</title>"
+    },
+    {
+      "line": 2002,
+      "text": "<summary>Knowledge tracing (KT) aims to predict learners' future performance based on historical learning interactions. However, existing KT models predominantly focus on data from a single course, limiting their ability to capture a comprehensive understanding of learners' knowledge states. In this paper, we propose TransKT, a contrastive cross-course knowledge tracing method that leverages conce"
+    }
+  ]
+}

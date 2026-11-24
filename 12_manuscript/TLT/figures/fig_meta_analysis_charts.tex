@@ -17,9 +17,9 @@
 \node[anchor=west, text=white, font=\sffamily\bfseries] at (0.30,8.80)
   {GNN~encoder~distribution};
 \node[anchor=west, text=white!88, font=\sffamily\small] at (0.30,8.40)
-  {Unique papers under the locked survey protocol};
+  {Unique papers under the survey protocol};
 \node[anchor=east, text=white, font=\sffamily\bfseries] at (13.10,8.65)
-  {$N_G=36$};
+  {$N_G=40$};
 
 \begin{axis}[
     at={(0.20,1.35)},
@@ -45,10 +45,10 @@
     major grid style={line width=0.3pt, draw=black!12},
 ]
 \addplot[fill=bar, draw=none] coordinates {
-    (GCN/generic,12)
+    (GCN/generic,14)
     (Heterogeneous,7)
     (Other,6)
-    (GAT,4)
+    (GAT,6)
     (Hypergraph,2)
     (Dynamic,2)
     (NONE,3)
@@ -56,6 +56,6 @@
 \end{axis}
 
 \node[anchor=west, text=muted, font=\sffamily\scriptsize, text width=13.0cm] at (0.20,0.25)
-  {NONE = PDKT-C, CMKT, and PEBG. Other = GGNN, graph memory, capsule, optimal transport, spatiotemporal, Metapath2Vec (one each).};
+  {Locked $N_G=40$ encoder tallies. NONE = PDKT-C, CMKT, PEBG. Other = GGNN, graph memory, capsule, optimal transport, spatiotemporal, Metapath2Vec (one each).};
 \end{tikzpicture}
 \end{document}

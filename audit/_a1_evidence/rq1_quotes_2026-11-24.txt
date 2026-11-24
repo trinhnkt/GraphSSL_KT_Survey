@@ -1,0 +1,11 @@
+KT036 p.5
+s and formulas, a pretrained BERT model ( Devlin et al., 2019 ) is used to encode text features. 2) Meta-path sampling. We start from node V in the heterogeneous graph and randomly select neighbor nodes of the current node as the next walking target according to a certain probability. This cycle is repeated until the walking path reaches a pre-set length. We then divide the nodes along the path into three groups according to their types, count them, and select a certain number of nodes with the highest frequency as the adjacent nodes of the current node. 3) Aggregation. To aggregate the heterogeneous neighbor information of each node, we adopt the hierarchical aggregation method. The de - tails are shown in Fig. 2 (d). We first aggregate the node information of the same type separately, an
+
+KT064 p.6
+J. Wang et al. 𝐀(𝑠𝑚) =𝑠𝑖𝑔 𝑚𝑜𝑖𝑑(𝐈⊤𝐈). (10) Next, based on the obtained similarity matrix 𝐀(𝑠𝑚), we construct the adjacency weight matrix 𝐀(𝑛𝑠) for the dissimilarity interaction graph. 𝐀(𝑛𝑠) = 𝐉 − 𝐀(𝑠𝑚), (11) where 𝐉 represents a matrix where all elements are 1. Dual-Channel Encoding: To comprehensively model the latent cor- relations between interactions and learn the static knowledge state of students from both 
+
+KT056 p.7
+𝑒1 and𝑒2 contain the same concept 𝑐, then create an exercise–exercise connection between them (denote as 𝑟𝑒,𝑒). Likewise, if two concepts 𝑐1 and 𝑐2 share the same exercise 𝑒, a concept–concept relationship is created between them (denote as 𝑟𝑐 ,𝑐). By connecting nodes through three types of relations, the short-term knowledge state graph 𝑠 is constructed. These connections are represented in the adjacency matrix 𝐴 of it, and since all relationships are undirected, 𝐴 is symmetric. Information Processing and Management 62 (2025) 104074 7 
+
+KT076
+pypdf chars 0; pymupdf chars 0; pages 11

@@ -1,7 +1,7 @@
-# Suggested International Reviewers (v1.0 LOCKED)
+# Suggested International Reviewers (v1.1 — IEEE TLT)
 
-**Survey Title:** Graph-Based and Self-Supervised Knowledge Tracing in Sparse-Concept Settings: A Systematic Survey and Research Agenda  
-**Target Venue:** IEEE Transactions on Knowledge and Data Engineering (TKDE)  
+**Survey Title:** Graph-Based and Self-Supervised Knowledge Tracing in Sparse-Concept Settings: A Critical Survey  
+**Target Venue:** IEEE Transactions on Learning Technologies (TLT)  
 
 ---
 

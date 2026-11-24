@@ -1,0 +1,12 @@
+record_id,title,abstract_or_locator,primary_decision_HIDDEN_OR_SEPARATE,human_second_decision,human_exclusion_code,human_screener_name,note
+REC_0001,GKT: Graph-Based Knowledge Tracing,doi:10.1145/3350546.3352513,HIDDEN,INCLUDE_FULLTEXT,,Phương 1,
+REC_0002,GIKT: Graph-Based Interaction Knowledge Tracing,doi:10.1007/978-3-030-67658-2_9,HIDDEN,INCLUDE_FULLTEXT,,Phương 1,
+REC_0004,JKT: Joint Graph Convolutional Network KT,doi:10.1016/j.ins.2021.08.100,HIDDEN,INCLUDE_FULLTEXT,,Phương 1,
+REC_0005,PDKT-C: Prerequisite-Driven Knowledge Tracing,doi:10.1109/ICDM.2018.00021,HIDDEN,INCLUDE_FULLTEXT,,Phương 1,
+REC_0007,SGKT: Session Graph-Based Knowledge Tracing,doi:10.1016/j.eswa.2022.117681,HIDDEN,INCLUDE_FULLTEXT,,Phương 1,
+REC_0009,DGEKT: Dual Graph Ensemble Learning for KT,doi:10.1145/3635303,HIDDEN,INCLUDE_FULLTEXT,,Phương 1,
+REC_0012,HHSKT: Hierarchical Heterogeneous Structure KT,doi:10.1016/j.eswa.2022.119293,HIDDEN,INCLUDE_FULLTEXT,,Phương 1,
+REC_0024,LST-Graph: Long/Short-Term State Graph KT,doi:10.1016/j.ipm.2025.104074,HIDDEN,INCLUDE_FULLTEXT,,Phương 1,
+REC_0030,HyperKT: Dual-Channel Adaptive Hypergraph KT,doi:10.1109/TNNLS.2024.3386810,HIDDEN,INCLUDE_FULLTEXT,,Phương 1,
+REC_0033,AEGOT-CDKT: Graph Optimal Transport Cross-Domain KT,doi:10.1007/s11280-024-01311-1,HIDDEN,INCLUDE_FULLTEXT,,Phương 1,
+REC_0040,Hyperbolic Graph Neural Network for Hierarchical KT,doi:10.24963/ijcai.2025/450,HIDDEN,UNCERTAIN,,Phương 1,"không có bản đúng của bài này: DOI 10.24963/ijcai.2025/450 trỏ sang Discrete Budget Aggregation, không phải bài knowledge tracing."

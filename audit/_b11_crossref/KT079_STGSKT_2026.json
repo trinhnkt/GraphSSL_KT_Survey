@@ -1,0 +1,108 @@
+{
+  "title": [
+    "Spatio-Temporal Fusion in Graph Neural Network for Streaming Knowledge Tracing"
+  ],
+  "author": [
+    {
+      "given": "Yi-Fei",
+      "family": "Wen",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Hang",
+      "family": "Liang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Carl",
+      "family": "Yang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Wen-Bo",
+      "family": "Xie",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yajun",
+      "family": "Du",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Xianyong",
+      "family": "Li",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yan-Li",
+      "family": "Lee",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2026
+      ]
+    ]
+  },
+  "container-title": [
+    "Lecture Notes in Computer Science",
+    "Database Systems for Advanced Applications"
+  ],
+  "volume": null,
+  "issue": null,
+  "page": "136-153",
+  "publisher": "Springer Nature Singapore",
+  "DOI": "10.1007/978-981-92-0375-8_9",
+  "type": "book-chapter"
+}

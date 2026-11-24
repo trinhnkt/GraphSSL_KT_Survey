@@ -1,0 +1,246 @@
+
+===== PAGE 1 =====
+arXiv:2504.15163v1  [cs.LG]  21 Apr 2025
+Survey of Loss Augmented Knowledge Tracing
+Altun Shukurlu ∗
+Abstract
+The training of artiﬁcial neural networks is heavily depend ent on the careful selection of
+an appropriate loss function. While commonly used loss func tions, such as cross-entropy [ 1]
+and mean squared error (MSE) [ 2], generally suﬃce for a broad range of tasks, challenges oft en
+emerge due to limitations in data quality or ineﬃciencies wi thin the learning process. In such
+circumstances, the integration of supplementary terms int o the loss function can serve to address
+these challenges, enhancing both model performance and rob ustness. Two prominent techniques,
+loss regularization and contrastive learning [ 3], have been identiﬁed as eﬀective strategies for
+augmenting the capacity of loss functions in artiﬁcial neur al networks.
+Knowledge tracing is a compelling area of research that leve rages predictive artiﬁcial in-
+telligence to facilitate the automation of personalized an d eﬃcient educational experiences for
+students. In this paper, we provide a comprehensive review o f the deep learning-based knowledge
+tracing (DKT) algorithms trained using advanced loss funct ions and discuss their improvements
+over prior techniques. We discuss contrastive knowledge tr acing algorithms, such as Bi-CLKT
+[4], CL4KT [ 5], SP-CLKT [ 6], CoSKT [ 7], and prediction-consistent DKT [ 8], providing perfor-
+mance benchmarks and insights into real-world deployment c hallenges. The survey concludes
+with future research directions, including hybrid loss str ategies and context-aware modeling.
+1 Introduction
+Knowledge Tracing (KT) has become a foundational concept in modern educational technologies,
+particularly in the development of intelligent tutoring sy stems (ITS) and personalized learning
+platforms. The primary goal of KT is to model a student’s know ledge state over time and predict
+their future performance on unseen tasks or questions [
+9, 10, 11]. This prediction helps tailor the
+learning experience to the individual, providing insights into which concepts need reinforcement
+and guiding the next best action for personalized learning [ 12].
+Traditional KT models, such as Bayesian Knowledge Tracing ( BKT), treat the student’s knowledge
+state as a binary variable (known or unknown) that evolves pr obabilistically with each student
+interaction [ 9]. These early models have been successful in various educat ional applications due
+∗ University of Virginia, as4xa@virginia.edu
+1
+===== PAGE 5 =====
+improved prediction accuracy, though often at the cost of in terpretability.
+Data in Knowledge T racing KT models are trained on sequential interaction data, typic ally
+represented as tuples of: student ID , question ID , response correctness, and timestamp. Additional
+metadata—such as skill tags or question diﬃculty—can enhan ce model eﬀectiveness, particularly
+when applying regularization or contrastive learning tech niques [ 23].
+4 Review of Algorithms
+Deep Knowledge Tracing (DKT) algorithms primarily rely on g ated recurrent neural networks
+(RNNs), which require substantial amounts of data to eﬀecti vely learn generalized representations.
+However, RNNs are particularly sensitive to data-related c hallenges, including sparsity, noise, and
+limited sample sizes—conditions that can signiﬁcantly hin der their ability to model temporal dynam-
+ics accurately. To address these limitations, researchers have proposed augmenting the underlying
+loss functions with additional constraints or regularizat ion terms, aiming to enhance the quality of
+the learned hidden representations and improve the model’s robustness and generalization. We can
+ﬁnd brief view of these augmentations in the table / chart bel ow:
+Table 1: Summary of Loss Functions in Contrastive and Regula rization-Based KT Models, ﬁrst
+four stands for contrasting and last one for smoothness
+Model Loss F unction Description
+Bi-CLKT [4] L = 1
+N
+∑ N
+i=1 log (1 + exp (−yi · ⟨ zi, z j⟩ ))
+Contrastive loss based on student-
+skill bi-graph embeddings.
+SP-CLKT [6] L = 1
+N
+∑ N
+i=1 α i · log (1 + exp (−yi · ⟨ zi, z j⟩ ))
+Self-paced contrastive loss with dy-
+namic weights α i
+CLKT [5]
+L = 1
+N
+N∑
+i=1
+[log (1 + exp (−yi · ⟨ zi, z j⟩ ))
++λ · max (0, γ − ⟨ zi, z j⟩ )]
+Contrastive + triplet loss.
+CoSKT [7]
+L = 1
+N
+N∑
+i=1
+[log (1 + exp (−yi · ⟨ zi, z j⟩ ))
++γ · max (0, ⟨ zi, z j⟩ − θ )]
+Dual contrastive loss with collabo-
+rative component.
+Consistent Reg-
+ularization [
+8]
+L = LDKT + λ ∑ T − 1
+t=1
+⏐
+⏐
+⏐ ˆKt − ˆKt+1
+⏐
+⏐
+⏐
+Adds a temporal smoothness term
+to DKT’s cross-entropy loss
+5
+===== PAGE 7 =====
+additional triplet loss at the end where serves as margin bas ed penalty for dissimilar pairs.
+LCL4KT = 1
+N
+N∑
+i=1
+[log(1 + exp(−yi · ⟨ zi, z j⟩ )) + λ · max(0, γ − ⟨ zi, z j⟩ )]
+where the ﬁrst term is the standard contrastive loss and the s econd term involves a margin γ and
+is used to enforce that responses that are far apart in terms o f knowledge state are pushed farther
+apart in the embedding space, to ensure no two embeddings are very close to each other - λ is a
+hyperparameter that controls the margin penalty.
+CoSKT: Collaborative Self-Supervised Knowledge T racing [
+7] Is very similar to CL4KT,
+but with a main diﬀerence being triplet loss being opposite d irection, where loss function penalizes
+if the distance of two embeddings are larger than θ
+LCoSKT = 1
+N
+N∑
+i=1
+[log(1 + exp(−yi · ⟨ zi, z j ⟩ )) + γ · max(0, ⟨ zi, z j⟩ − θ )]
+where the ﬁrst term is the same as the standard contrastive lo ss used in previous models and the
+second term adds a collaborative penalty that encourages th e model to diﬀerentiate between student
+pairs with similar knowledge states, by making the function in left hand side to be minimized.
+4.2 Prediction-Consistent Regularization for Knowledge T racing [ 8]
+In addition to contrastive-based methods, regularization techniques have also been widely applied
+to Knowledge Tracing to improve the stability and robustnes s of models. Regularization helps
+prevent overﬁtting and ensures that the model generalizes w ell, particularly when data is sparse or
+noisy.
+The core idea behind prediction-consistent regularizatio n is to encourage temporal consistency in
+the predictions of a student’s knowledge state. This approa ch minimizes the diﬀerence in predicted
+knowledge states at diﬀerent time steps, unless there is str ong evidence from the student’s responses
+that their knowledge has changed. This regularization help s the model avoid making sudden, drastic
+changes to a student’s knowledge state based on sparse or noi sy data, improving generalization.
+LP redictionConsistent = LDKT + λ ·
+T − 1∑
+t=1
+⏐
+⏐
+⏐ ˆKt − ˆKt+1
+⏐
+⏐
+⏐
+where: - LDKT is the standard DKT loss function, which typically uses a bin ary cross-entropy loss
+to predict the correct response (correct or incorrect) for a student at each time step. - ˆKt is the
+predicted knowledge state of the student at time step t. - λ is a hyperparameter that controls the
+strength of the regularization. - The second term enforces t hat the predicted knowledge state at
+time t + 1 should not deviate signiﬁcantly from the predicted state at time t, unless a substantial
+7
+===== PAGE 8 =====
+change in the student’s responses occurs.
+5 Comparison and Results
+In this section, we compare the performance of the contrasti ve-based and regularization-based
+Knowledge Tracing (KT) models reviewed in Section 3. The com parison is based on several evalua-
+tion criteria, including accuracy, convergence speed, gen eralizability, and interpretability. We also
+highlight the strengths and weaknesses of each model and pre sent key results that demonstrate the
+impact of the proposed methodologies on KT performance.
+Area Under Curve (AUC) : measures the probability that a randomly chosen positive i nstance
+is ranked higher than a randomly chosen negative instance by the model. Formally, it is deﬁned as:
+AUC = P(ˆypos > ˆyneg)
+where ˆypos and ˆyneg are the predicted scores for a positive and a negative instan ce, respectively.
+Dataset: ASSISTments 2009 is one of the most widely used benchmarks in the knowledge tra cing
+literature. Collected from an intelligent tutoring system , it contains anonymized student interaction
+logs involving questions aligned to various mathematical s kills. Each interaction includes a student
+ID, problem ID, skill tag, timestamp, and correctness label , enabling ﬁne-grained temporal analysis
+of learning behavior. The dataset is characterized by its sp arsity, variable sequence lengths, and a
+large number of students and skills, making it a challenging and realistic testbed for evaluating the
+predictive performance and generalization ability of know ledge tracing models.
+Table 2: AUC Performance on ASSISTments 2009 Across Knowled ge Tracing Models
+Model AUC
+BKT [ 9] 0.648
+DKT [ 10] 0.740
+CL4KT [ 5] 0.762
+CoSKT [ 7] 0.7925
+SPCLKT [ 6] 0.82
+Bi-CLKT [ 4] 0.857
+Regularization [ 8] 0.8227
+5.1 Methodical Similarities
+All ﬁve of the aforementioned studies aim to address the inhe rent ineﬃciencies associated with rep-
+resentational learning in knowledge tracing models. These ineﬃciencies often stem from limitations
+in encoding student knowledge states, particularly under c onditions of noisy, sparse, or imbalanced
+8
+===== PAGE 9 =====
+data. To overcome these challenges, the central focus of the se works is on enhancing the expres-
+siveness and discriminative power of the learned represent ations. A unifying methodological theme
+across these studies is the augmentation of the primary loss function. By incorporating auxiliary
+objectives or regularization terms—such as contrastive lo ss, prediction consistency constraints, or
+co-supervised learning signals—the training process is gu ided toward producing more robust and
+informative latent representations. These enhancements e nable the models to better capture tempo-
+ral dynamics, student-speciﬁc learning patterns, and inte r-concept relationships, thereby improving
+both predictive accuracy and interpretability.
+5.2 Methodical Diﬀerences
+Despite sharing similar goals, these approaches diﬀer in ho w they implement representational learn-
+ing enhancements. Consistency regularization techniques operate primarily at the individual level,
+aiming to stabilize and reﬁne a student’s representation ov er time by enforcing temporal consis-
+tency in model predictions. In contrast, contrastive learn ing adopts a comparative and relational
+framework, emphasizing the structural alignment of repres entations across diﬀerent students. By
+contrasting similar and dissimilar learning trajectories , contrastive methods improve the discrimi-
+native structure of the embedding space and promote general izability.
+While all contrastive methods build upon a similar foundati onal objective—as seen in the Bi-CLKT
+framework—they diverge in their methodological reﬁnement s. SP-CLKT, for instance, introduces
+dynamic weighting mechanisms to increase model capacity an d adaptivity. Meanwhile, CLKT and
+CoSKT focus on reﬁning the selection strategy for positive a nd negative pairs, aiming to contrast
+the most informative representation pairs during training .
+6 Conclusion
+This paper provided an in-depth review of several recent adv ances in Knowledge Tracing (KT), with
+a particular focus on models that incorporate contrastive l earning and regularization techniques.
+By surveying ﬁve key papers in the ﬁeld, we highlighted the di stinctive contributions of contrastive-
+based models such as Bi-CLKT, SP-CLKT, CL4KT, and CoSKT, as w ell as the regularization-based
+approach utilizing prediction-consistent regularizatio n. We explored how these models address
+diﬀerent challenges in KT, such as improving prediction acc uracy, handling noisy or sparse data,
+and stabilizing the learning process.
+While current methodologies have substantially advanced t he state of Knowledge Tracing, several
+promising avenues for future research remain. Notably, the re is signiﬁcant potential in extending
+KT frameworks to multi-modal learning environments, where data from diverse sources—such as
+video, text, or sensor-based interactions—can be integrat ed to form a more holistic representation
+of student learning. Additionally, lifelong learning para digms, which emphasize the continuous
+9
+===== PAGE 10 =====
+and adaptive modeling of student knowledge across extended time horizons and varied contexts,
+present an important frontier. Advancing these directions , particularly with a focus on scalable
+deployment in real-world educational systems, holds the po tential to signiﬁcantly improve the
+robustness, personalization, and applicability of KT mode ls in practical settings.
+References
+[1] Ian Goodfellow, Yoshua Bengio, and Aaron Courville. Deep Learning. MIT Press, 2016.
+[2] F.A. Gers, J. Schmidhuber, and F. Cummins. Learning to fo rget: continual prediction with
+lstm. In 1999 Ninth International Conference on Artiﬁcial Neural Ne tworks ICANN 99. (Conf.
+Publ. No. 470) , volume 2, pages 850–855 vol.2, 1999. doi: 10.1049/cp:1999 1218.
+[3] Ting Chen, Simon Kornblith, Mohammad Norouzi, and Geoﬀr ey E. Hinton. A simple frame-
+work for contrastive learning of visual representations. CoRR, abs/2002.05709, 2020. URL
+https://arxiv.org/abs/2002.05709.
+[4] Xiangyu Song, Jianxin Li, Qi Lei, Wei Zhao, Yunliang Chen , and Ajmal Mian. Bi-clkt:
+Bi-graph contrastive learning based knowledge tracing. CoRR, abs/2201.09020, 2022. URL
+https://arxiv.org/abs/2201.09020.
+[5] Wonsung Lee, Jaeyoon Chun, Youngmin Lee, Kyoungsoo Park , and Sungrae Park.
+Contrastive learning for knowledge tracing. In Proceedings of the ACM Web Confer-
+ence 2022 , WWW ’22, page 2330–2338, New York, NY, USA, 2022. Associati on for
+Computing Machinery. ISBN 9781450390965. doi: 10.1145/34 85447.3512105. URL
+https://doi.org/10.1145/3485447.3512105.
+[6] Huan Dai, Yue Yun, Yupei Zhang, Rui An, Wenxin Zhang, and X uequn Shang. Self-
+paced contrastive learning for knowledge tracing. Neurocomputing, 609:128366, 2024. URL
+https://doi.org/10.1016/j.neucom.2024.128366.
+[7] Chunyun Zhang, Hebo Ma, Chaoran Cui, Yumo Yao, Weiran Xu, Yunfeng Zhang, and Yuling
+Ma. CoSKT: A Collaborative Self-Supervised Learning Metho d for Knowledge Tracing. IEEE
+Transactions on Learning Technologies, 17:1476–1488, 2024. doi: 10.1109/TLT.2024.3386750.
+[8] Chun-Kit Yeung and Dit-Yan Yeung. Addressing two proble ms in deep knowledge
+tracing via prediction-consistent regularization. CoRR, abs/1806.02180, 2018. URL
+http://arxiv.org/abs/1806.02180.
+[9] Albert T Corbett and John R Anderson. Knowledge tracing: Modeling the acquisition of
+procedural knowledge. User modeling and user-adapted interaction , 4:253–278, 1994.
+10

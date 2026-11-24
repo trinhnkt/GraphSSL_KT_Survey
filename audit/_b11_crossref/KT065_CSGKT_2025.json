@@ -1,0 +1,74 @@
+{
+  "title": [
+    "Graph knowledge tracing in cognitive situation: Validation of classic assertions in cognitive psychology"
+  ],
+  "author": [
+    {
+      "given": "Qianxi",
+      "family": "Wu",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0009-0002-1535-5253",
+      "authenticated-orcid": false,
+      "given": "Weidong",
+      "family": "Ji",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Guohui",
+      "family": "Zhou",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Yingchun",
+      "family": "Yang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2025,
+        4
+      ]
+    ]
+  },
+  "container-title": [
+    "Knowledge-Based Systems"
+  ],
+  "volume": "315",
+  "issue": null,
+  "page": "113281",
+  "publisher": "Elsevier BV",
+  "DOI": "10.1016/j.knosys.2025.113281",
+  "type": "journal-article"
+}

@@ -1,0 +1,125 @@
+Contents lists available at ScienceDirect
+Knowledge-Based Systems
+journal homepage: www.elsevier.com/locate/knosys
+Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge
+Tracing
+Jing Wang a, Huifang Ma a
+,∗, Mengyuan Zhang a, Lei Zhang b, Liang Chang c
+a College of Computer Science and Engineering, Northwest Normal University, Lanzhou, Gansu 730070, China
+b College of Information Technology and Communication, Hexi University, Zhangye, Gansu 730040, China
+c School of Computer Science and Information Security, Guilin University of Electronic Technology, Guilin, Guangxi 541004, China
+A R T I C L E
+I N F O
+Keywords:
+Intelligent education
+Knowledge tracing
+Correctness prediction
+Graph Neural Networks
+A B S T R A C T
+Knowledge tracing (KT) is a crucial educational tool that models students’ mastery of various knowledge
+concepts by analyzing their historical learning records. Mainstream studies have turned to Deep Neural
+Networks (DNNs) to effectively trace students’ knowledge states. Nonetheless, these methods may encounter
+performance barriers due to two critical constraints: the treatment of learning records as singular time series
+data and the absence of accounting for interaction correlations. To overcome the limitations, we introduce
+a novel KT model, named Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing
+(MGIGKT). Our model incorporates two modules designed to model students’ knowledge states from the
+perspectives of temporal perception and interaction dependency, respectively. This approach allows for a more
+comprehensive understanding of students’ learning dynamics and the correlations between their interactions.
+We have conducted extensive experiments on four datasets to evaluate the superiority and effectiveness of our
+proposed MGIGKT model. The results of these experiments provide empirical evidence of the model’s enhanced
+ability to trace students’ knowledge states accurately.
+1. Introduction
+In recent years, the demand for intelligent educational services
+among students has surged [1–3]. Consequently, online education sys-
+tems have become increasingly vital in addressing this demand. One
+such critical component that has come to the forefront is KT, which
+provides students with immediate and precise feedback. KT entails
+examining students’ historical learning records to evaluate their com-
+petency in different knowledge areas, with the goal of forecasting their
+academic performance ahead. This not only allows for the delivery of
+varied learning resources but also permits the tailoring of individual-
+ized learning trajectories to suit personal educational needs. Moreover,
+KT underpins adaptive education, streamlining the personalization of
+educational content and its complexity in accordance with students’
+learning advancements and knowledge levels. This encompasses fea-
+tures such as automated test creation and post-lesson tasks, all geared
+towards a more focused and impactful learning journey. By harnessing
+the power of KT through the analysis of students’ historical learning
+records, online education systems can acquire in-depth insights into
+their educational states, significantly enhancing the online learning
+experience for both students and educators.
+∗Corresponding author.
+E-mail addresses: 2022222231@nwnu.edu.cn (J. Wang), mahuifang@yeah.net (H. Ma), 2023222106@nwnu.edu.cn (M. Zhang), zhanglei@hxu.edu.cn
+(L. Zhang), changl@guet.edu.cn (L. Chang).
+Currently, numerous studies have been dedicated to exploring the
+task of KT [4–7]. Due to the powerful feature extraction capabilities
+of DNNs for modeling complex cognitive processes, recent researches
+have predominantly relied on more complex and accurate DNNs ar-
+chitectures. These methods can be broadly categorized into two types:
+conventional KT methods and graph-based KT methods. The first cat-
+egory of conventional KT methods models students’ knowledge states
+from a temporal perspective using deep learning techniques, aiming to
+dynamically capture the evolving proficiency of students. For example,
+DKT [8] is the first work to apply Recurrent Neural Networks (RNNs)
+to the KT task. Due to its simple structure and efficient performance,
+it has been widely adopted as a paradigm by subsequent deep learning
+KT models. Following this, more types of neural network technologies
+have been introduced to improve temporal KT models. For example,
+DKVMN [9] introduces a memory-augmented network that uses mem-
+ory networks to store and update knowledge concepts and students’
+knowledge states. Meanwhile, the SAKT [10] model incorporates an
+attention mechanism, which calculates the correlation between the
+exercise to be predicted and the historical interactions in the student’s
+https://doi.org/10.1016/j.knosys.2024.112834
+Received 18 July 2024; Received in revised form 14 November 2024; Accepted 1 December 2024
+Knowledge-Based Systems 309 (2025) 112834 
+Available online 18 December 2024 
+0950-7051/© 2024 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies. 
+
+J. Wang et al.
+Fig. 1. Distribution histograms of learning records of different students within a week at different granularities: (a) per day; (b) per hour.
+Fig. 2. Example of interaction correlation. (a) illustrates the student’s historical interaction sequence. (b) shows the sequential relationships among knowledge concepts. (c) depicts
+cases where exercises share the same knowledge concept and the knowledge concepts involved have a sequential relationship. (d) presents the final interaction correlations calculated
+using Eq. (9) mentioned in Section 3.2.3.
+learning sequence, thereby capturing changes in the student’s knowl-
+edge state more accurately. These methods primarily focus on the
+temporal relationships within learning sequences. Recently, recogniz-
+ing that knowledge concepts are not completely independent but have
+latent correlations, and considering the rapid theoretical and practical
+development of Graph Neural Networks (GNNs) in recent years, the
+second category of graph-based KT methods has emerged. For example,
+GKT [11] treats students, exercises, and knowledge concepts as nodes
+in a graph, with interactions and correlations between knowledge
+concepts as edges. It uses a GNN to model students’ knowledge states,
+capturing these potential correlations and improving the predictive
+accuracy of the model.
+Despite the significant success of existing KT methods, two major
+limitations still need to be addressed: (1) Single granularity modeling of
+interaction time information: Current KT models often model the dynamic
+changes in students’ knowledge states at only a single granularity.
+However, in reality, students’ learning records usually exhibit different
+distribution patterns at various granularities. As shown in Fig. 1, we
+present the distribution histograms of the learning records of two
+students. It can be observed that different students often have different
+learning patterns. For example, Bob prefers to study on weekday morn-
+ings, while Tom prefers to study extensively on weekend afternoons.
+The complexity of these learning patterns poses a challenge to single-
+granularity modeling of existing methods. Therefore, fully exploring the
+different learning patterns exhibited by students at multiple granular-
+ities is crucial for the success of KT models. (2) Insufficient capture of
+latent correlations between interactions: To achieve good predictions for
+the next exercise, studies have shown that considering the correlations
+between historical interactions is highly beneficial [11–13]. Existing
+models fail to fully uncover the deep connections between historical in-
+teractions, such as knowledge concept relationships between exercises.
+More specifically, these inherent correlations include shared knowledge
+concepts between exercises and the sequential relationships between
+the contained knowledge concepts. Meanwhile, students’ interaction
+sequence not only include the exercises but also their responses to
+these exercises. Therefore, when evaluating the correlation between
+interactions, it is essential to consider both the knowledge concept
+relationships and the correctness of the responses. To illustrate the im-
+portance of knowledge concept relationships and the correctness of the
+responses in calculating interaction correlations, we present in Fig. 2(a)
+Knowledge-Based Systems 309 (2025) 112834 
+2 

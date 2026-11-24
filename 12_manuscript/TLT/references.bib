@@ -1,7 +1,10 @@
 % Graph-Based and Self-Supervised Knowledge Tracing Bibliography
-% TLT / IEEE Reference Guide alignment (IEEEtran.bst 1.14)
+% IEEE TLT requires IEEE Reference Guide compliance (IEEEtran.bst 1.14)
 % - Journal titles abbreviated per IEEE style
-% - doi field kept for audit; url=https://doi.org/... so IEEEtran prints the locator
+% - Conference names abbreviated (Proc./Int./Conf./...)
+% - Model acronyms braced in titles so IEEEtran sentence-case keeps casing
+% - Article-ID journals keep pages={ID} (IEEEtran.bst prints p. ID); Art. no. via note when needed
+% - doi kept for audit; url=https://doi.org/... prints IEEE [Online] locator
 % - IEEEtranBSTCTL: list up to 6 authors, then first author et al.
 % - file= points at 14_references/ (IEEEtran ignores this field)
 
@@ -21,7 +24,7 @@
 @inproceedings{KT004_GKT_2019,
   author    = {Hiromi Nakagawa and Yusuke Iwasawa and Yutaka Matsuo},
   title     = {Graph-based Knowledge Tracing: Modeling Student Proficiency Using Graph Neural Network},
-  booktitle = {Proceedings of the IEEE/WIC/ACM International Conference on Web Intelligence (WI)},
+  booktitle = {Proc. IEEE/WIC/ACM Int. Conf. Web Intell. (WI)},
   pages     = {156--163},
   year      = {2019},
   doi       = {10.1145/3350546.3352513},
@@ -31,8 +34,8 @@
 
 @inproceedings{KT010_GIKT_2021,
   author    = {Yang Yang and Jian Shen and Yanru Qu and Yunfei Liu and Kerong Wang and Yaoming Zhu and Weinan Zhang and Yong Yu},
-  title     = {GIKT: A Graph-Based Interaction Model for Knowledge Tracing},
-  booktitle = {Proceedings of the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD)},
+  title     = {{GIKT}: A Graph-Based Interaction Model for Knowledge Tracing},
+  booktitle = {Proc. Eur. Conf. Mach. Learn. Knowl. Discovery Databases (ECML-PKDD)},
   pages     = {299--315},
   year      = {2021},
   doi       = {10.1007/978-3-030-67658-2_18},
@@ -42,7 +45,7 @@
 
 @article{KT011_BiCLKT_2022,
   author    = {Xiangyu Song and Jianxin Li and Qi Lei and Wei Zhao and Yunliang Chen and Ajmal Mian},
-  title     = {Bi-CLKT: Bi-Graph Contrastive Learning Based Knowledge Tracing},
+  title     = {{Bi-CLKT}: Bi-Graph Contrastive Learning Based Knowledge Tracing},
   journal   = {Knowl.-Based Syst.},
   volume    = {241},
   pages     = {108274},
@@ -54,7 +57,7 @@
 
 @article{KT012_JKT_2021,
   author    = {Xiangyu Song and Jianxin Li and Yifu Tang and Taige Zhao and Yunliang Chen and Ziyu Guan},
-  title     = {JKT: A Joint Graph Convolutional Network Based Deep Knowledge Tracing},
+  title     = {{JKT}: A Joint Graph Convolutional Network Based Deep Knowledge Tracing},
   journal   = {Inf. Sci.},
   volume    = {580},
   pages     = {510--523},
@@ -67,7 +70,7 @@
 @inproceedings{KT014_PDKTC_2018,
   author    = {Penghe Chen and Yu Lu and Vincent W. Zheng and Yang Pian},
   title     = {Prerequisite-Driven Deep Knowledge Tracing},
-  booktitle = {Proceedings of the IEEE International Conference on Data Mining (ICDM)},
+  booktitle = {Proc. IEEE Int. Conf. Data Mining (ICDM)},
   pages     = {39--48},
   year      = {2018},
   doi       = {10.1109/ICDM.2018.00019},
@@ -78,7 +81,7 @@
 @inproceedings{KT016_SKT_2020,
   author    = {Shiwei Tong and Qi Liu and Wei Huang and Zhenya Huang and Enhong Chen and Chuanren Liu and Haiping Ma and Shijin Wang},
   title     = {Structure-Based Knowledge Tracing: An Influence Propagation View},
-  booktitle = {Proceedings of the IEEE International Conference on Data Mining (ICDM)},
+  booktitle = {Proc. IEEE Int. Conf. Data Mining (ICDM)},
   pages     = {541--550},
   year      = {2020},
   doi       = {10.1109/ICDM50108.2020.00063},
@@ -88,7 +91,7 @@
 
 @article{KT023_SGKT_2022,
   author    = {Zhengyang Wu and Li Huang and Qionghao Huang and Changqin Huang and Yong Tang},
-  title     = {SGKT: Session Graph-Based Knowledge Tracing for Student Performance Prediction},
+  title     = {{SGKT}: Session Graph-Based Knowledge Tracing for Student Performance Prediction},
   journal   = {Expert Syst. Appl.},
   volume    = {206},
   pages     = {117681},
@@ -101,7 +104,7 @@
 @inproceedings{KT026_PretrainQ_2020,
   author    = {Yunfei Liu and Yang Yang and Xianyu Chen and Jian Shen and Haifeng Zhang and Yong Yu},
   title     = {Improving Knowledge Tracing via Pre-training Question Embeddings},
-  booktitle = {Proceedings of the International Joint Conference on Artificial Intelligence (IJCAI)},
+  booktitle = {Proc. Int. Joint Conf. Artif. Intell. (IJCAI)},
   pages     = {1577--1583},
   year      = {2020},
   doi       = {10.24963/ijcai.2020/219},
@@ -111,7 +114,7 @@
 
 @article{KT029_DGEKT_2024,
   author    = {Chaoran Cui and Yumo Yao and Chunyun Zhang and Hebo Ma and Yuling Ma and Zhaochun Ren and Chen Zhang and James Ko},
-  title     = {DGEKT: A Dual Graph Ensemble Learning Method for Knowledge Tracing},
+  title     = {{DGEKT}: A Dual Graph Ensemble Learning Method for Knowledge Tracing},
   journal   = {ACM Trans. Inf. Syst.},
   volume    = {42},
   number    = {3},
@@ -150,7 +153,7 @@
 
 @article{KT035_HHSKT_2023,
   author    = {Qin Ni and Tingjiang Wei and Jiabao Zhao and Liang He and Chanjin Zheng},
-  title     = {HHSKT: A Learner--Question Interactions Based Heterogeneous Graph Neural Network Model for Knowledge Tracing},
+  title     = {{HHSKT}: A Learner--Question Interactions Based Heterogeneous Graph Neural Network Model for Knowledge Tracing},
   journal   = {Expert Syst. Appl.},
   volume    = {215},
   pages     = {119334},
@@ -174,7 +177,7 @@
 
 @article{KT037_CMKT_2022,
   author    = {Yu Lu and Penghe Chen and Yang Pian and Vincent W. Zheng},
-  title     = {CMKT: Concept Map Driven Knowledge Tracing},
+  title     = {{CMKT}: Concept Map Driven Knowledge Tracing},
   journal   = {IEEE Trans. Learn. Technol.},
   volume    = {15},
   number    = {4},
@@ -187,8 +190,8 @@
 
 @inproceedings{KT038_DyGKT_2024,
   author    = {Ke Cheng and Linzhi Peng and Pengyang Wang and Junchen Ye and Leilei Sun and Bowen Du},
-  title     = {DyGKT: Dynamic Graph Learning for Knowledge Tracing},
-  booktitle = {Proceedings of the ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)},
+  title     = {{DyGKT}: Dynamic Graph Learning for Knowledge Tracing},
+  booktitle = {Proc. ACM SIGKDD Conf. Knowl. Discovery Data Mining (KDD)},
   pages     = {409--420},
   year      = {2024},
   doi       = {10.1145/3637528.3671773},
@@ -199,7 +202,7 @@
 @inproceedings{KT039_CL4KT_2022,
   author    = {Wonsung Lee and Jaeyoon Chun and Youngmin Lee and Kyoungsoo Park and Sungrae Park},
   title     = {Contrastive Learning for Knowledge Tracing},
-  booktitle = {Proceedings of the ACM Web Conference (WWW)},
+  booktitle = {Proc. ACM Web Conf. (WWW)},
   pages     = {2330--2338},
   year      = {2022},
   doi       = {10.1145/3485447.3512105},
@@ -235,7 +238,7 @@
 @inproceedings{KT044_SINKT_2024,
   author    = {Lingyue Fu and Hao Guan and Kounianhua Du and Jianghao Lin and Wei Xia and Weinan Zhang and Ruiming Tang and Yasheng Wang and Yong Yu},
   title     = {{SINKT}: A Structure-Aware Inductive Knowledge Tracing Model with Large Language Model},
-  booktitle = {Proceedings of the ACM International Conference on Information and Knowledge Management (CIKM)},
+  booktitle = {Proc. ACM Int. Conf. Inf. Knowl. Manage. (CIKM)},
   pages     = {632--642},
   year      = {2024},
   doi       = {10.1145/3627673.3679760},
@@ -257,7 +260,7 @@
 
 @article{KT050_GraphCA_2023,
   author    = {Xinhua Wang and Shasha Zhao and Lei Guo and Lei Zhu and Chaoran Cui and Liancheng Xu},
-  title     = {GraphCA: Learning From Graph Counterfactual Augmentation for Knowledge Tracing},
+  title     = {{GraphCA}: Learning From Graph Counterfactual Augmentation for Knowledge Tracing},
   journal   = {IEEE/CAA J. Autom. Sinica},
   volume    = {10},
   number    = {11},
@@ -283,8 +286,8 @@
 
 @inproceedings{KT053_GASKT_2021,
   author    = {Mengdan Wang and Chao Peng and Rui Yang and Chenchao Wang and Yao Chen and Xiaohua Yu},
-  title     = {GASKT: A Graph-Based Attentive Knowledge-Search Model for Knowledge Tracing},
-  booktitle = {Proceedings of the International Conference on Knowledge Science, Engineering and Management (KSEM)},
+  title     = {{GASKT}: A Graph-Based Attentive Knowledge-Search Model for Knowledge Tracing},
+  booktitle = {Proc. Int. Conf. Knowl. Sci. Eng. Manage. (KSEM)},
   pages     = {268--279},
   year      = {2021},
   doi       = {10.1007/978-3-030-82136-4_22},
@@ -295,7 +298,7 @@
 @article{KT056_LSTGraph_2025,
   author    = {Ganfeng Yu and Zhiwen Xie and Guangyou Zhou and Zhuo Zhao and Jimmy Xiangji Huang},
   title     = {Exploring Long- and Short-Term Knowledge State Graph Representations with Adaptive Fusion for Knowledge Tracing},
-  journal   = {Inf. Process. Manage.},
+  journal   = {Inf. Process. Manag.},
   volume    = {62},
   number    = {3},
   pages     = {104074},
@@ -307,7 +310,7 @@
 
 @article{KT060_STHKT_2025,
   author    = {Shuting Li and Shuanghong Shen and Yu Su and Xinjie Sun and Junyu Lu and Qi Mo and Zhenyi Wu and Qi Liu},
-  title     = {STHKT: Spatiotemporal Knowledge Tracing with Topological Hawkes Process},
+  title     = {{STHKT}: Spatiotemporal Knowledge Tracing with Topological Hawkes Process},
   journal   = {Expert Syst. Appl.},
   volume    = {259},
   pages     = {125248},
@@ -319,7 +322,7 @@
 
 @article{KT062_LGSKT_2025,
   author    = {Xinjie Sun and Qi Liu and Kai Zhang and Shuanghong Shen and Yan Zhuang and Yuxiang Guo},
-  title     = {LGS-KT: Integrating Logical and Grammatical Skills for Effective Programming Knowledge Tracing},
+  title     = {{LGS-KT}: Integrating Logical and Grammatical Skills for Effective Programming Knowledge Tracing},
   journal   = {Neural Netw.},
   volume    = {185},
   pages     = {107164},
@@ -331,7 +334,7 @@
 
 @article{KT063_MAHKT_2025,
   author    = {Huali Yang and Junjie Hu and Jinjin Chen and Shengze Hu and Jing Geng and Qiang Zhu and Tao Huang},
-  title     = {MAHKT: Knowledge Tracing with Multi-Association Heterogeneous Graph Embedding Based on Knowledge Transfer},
+  title     = {{MAHKT}: Knowledge Tracing with Multi-Association Heterogeneous Graph Embedding Based on Knowledge Transfer},
   journal   = {Knowl.-Based Syst.},
   volume    = {310},
   pages     = {112958},
@@ -381,8 +384,8 @@
 
 @article{KT068_HKT_2025,
   author    = {Qing Li and Zhijun Huang and Jianwen Sun and Xin Yuan and Shengyingjie Liu and Zhonghua Yan},
-  title     = {HKT: Hierarchical Structure-Based Knowledge Tracing},
-  journal   = {Inf. Process. Manage.},
+  title     = {{HKT}: Hierarchical Structure-Based Knowledge Tracing},
+  journal   = {Inf. Process. Manag.},
   volume    = {62},
   number    = {5},
   pages     = {104206},
@@ -398,8 +401,8 @@
   journal   = {World Wide Web},
   volume    = {28},
   number    = {1},
-  pages     = {10},
   year      = {2025},
+  note      = {{Art. no.} 10},
   doi       = {10.1007/s11280-024-01311-1},
   url       = {https://doi.org/10.1007/s11280-024-01311-1},
   file      = {14_references/A Cross-Domain Knowledge Tracing Model Based on Graph Optimal Transport.pdf}
@@ -408,7 +411,7 @@
 @inproceedings{KT070_Coda_2025,
   author    = {Weibo Gao and Qi Liu and Rui Li and Yuze Zhao and Hao Wang and Linan Yue and Fangzhou Yao and Zheng Zhang},
   title     = {Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor},
-  booktitle = {Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)},
+  booktitle = {Proc. 31st ACM SIGKDD Conf. Knowl. Discovery Data Mining (KDD)},
   pages     = {354--365},
   year      = {2025},
   doi       = {10.1145/3690624.3709172},
@@ -418,8 +421,8 @@
 
 @inproceedings{KT076_KGNNKT_2025,
   author    = {Di Zhang and Qiang Niu and Tianshi Wang and Yuntian Hou and Jinheng Wu and Chao Zhang and Angelos Stefanidis},
-  title     = {KGNN-KT: Enhancing Knowledge Tracing in Programming Education Through LLM-Extracted Knowledge Graphs},
-  booktitle = {Proceedings of the 21st International Conference on Intelligent Computing (ICIC)},
+  title     = {{KGNN-KT}: Enhancing Knowledge Tracing in Programming Education Through LLM-Extracted Knowledge Graphs},
+  booktitle = {Proc. 21st Int. Conf. Intell. Comput. (ICIC)},
   pages     = {137--147},
   year      = {2025},
   doi       = {10.1007/978-981-96-9986-5_12},
@@ -429,7 +432,7 @@
 
 @article{KT077_R2GCurL_2026,
   author    = {Tianhao Peng and Yanjun Pu and Yongqi Zhang and Yuchen Li and Jian Ren and Jie Luo and Kui Zhang and Haitao Yuan and Shuaiqiang Wang and Dawei Yin and Wenjun Wu},
-  title     = {R{\texttwosuperior}GCurL: Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning},
+  title     = {{R\textsuperscript{2}GCurL}: Reinforced Robust Knowledge Tracing via Dynamic Graph Curriculum Learning},
   journal   = {ACM Trans. Inf. Syst.},
   volume    = {44},
   number    = {6},
@@ -455,7 +458,7 @@
 @inproceedings{KT079_STGSKT_2026,
   author    = {Yi-Fei Wen and Hang Liang and Carl Yang and Wen-Bo Xie and Yajun Du and Xianyong Li and Yan-Li Lee},
   title     = {Spatio-Temporal Fusion in Graph Neural Network for Streaming Knowledge Tracing},
-  booktitle = {Proceedings of the International Conference on Database Systems for Advanced Applications (DASFAA)},
+  booktitle = {Proc. Int. Conf. Database Syst. Adv. Appl. (DASFAA)},
   pages     = {136--153},
   year      = {2026},
   doi       = {10.1007/978-981-92-0375-8_9},
@@ -468,7 +471,7 @@
 @inproceedings{Piech_DKT_2015,
   author    = {Chris Piech and Jonathan Bassen and Jonathan Huang and Surya Ganguli and Mehran Sahami and Leonidas Guibas and Jascha Sohl-Dickstein},
   title     = {Deep Knowledge Tracing},
-  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  booktitle = {Adv. Neural Inf. Process. Syst. (NeurIPS)},
   volume    = {28},
   pages     = {505--513},
   year      = {2015},
@@ -479,7 +482,7 @@
 @inproceedings{Pandey_SAKT_2019,
   author    = {Shalini Pandey and George Karypis},
   title     = {A Self-Attentive Model for Knowledge Tracing},
-  booktitle = {Proceedings of the 12th International Conference on Educational Data Mining (EDM)},
+  booktitle = {Proc. 12th Int. Conf. Educ. Data Mining (EDM)},
   pages     = {384--389},
   year      = {2019},
   url       = {https://educationaldatamining.org/edm2019/proceedings/},
@@ -489,7 +492,7 @@
 @inproceedings{Ghosh_AKT_2020,
   author    = {Aritra Ghosh and Neil Heffernan and Andrew S. Lan},
   title     = {Context-Aware Attentive Knowledge Tracing},
-  booktitle = {Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD)},
+  booktitle = {Proc. 26th ACM SIGKDD Int. Conf. Knowl. Discovery Data Mining (KDD)},
   pages     = {2330--2339},
   year      = {2020},
   doi       = {10.1145/3394486.3403282},
@@ -500,7 +503,7 @@
 @inproceedings{Zhang_DKVMN_2017,
   author    = {Jiani Zhang and Xingjian Shi and Irwin King and Dit-Yan Yeung},
   title     = {Dynamic Key-Value Memory Networks for Knowledge Tracing},
-  booktitle = {Proceedings of the 26th International Conference on World Wide Web (WWW)},
+  booktitle = {Proc. 26th Int. Conf. World Wide Web (WWW)},
   pages     = {765--774},
   year      = {2017},
   doi       = {10.1145/3038912.3052580},
@@ -525,7 +528,7 @@
 @inproceedings{Liu_pyKT_2022,
   author    = {Zitao Liu and Qiongqiong Liu and Jiahao Chen and Shuyan Huang and Jiliang Tang and Weiqi Luo},
   title     = {{pyKT}: A {Python} Library to Benchmark Deep Learning based Knowledge Tracing Models},
-  booktitle = {Advances in Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track},
+  booktitle = {Adv. Neural Inf. Process. Syst. (NeurIPS) Datasets Benchmarks Track},
   volume    = {35},
   pages     = {18542--18555},
   year      = {2022},
@@ -546,6 +549,15 @@
   file      = {14_references/Deep Learning Based Knowledge Tracing A Review, a Tool and Empirical Studies.pdf}
 }
 
+@misc{Shukurlu_LossKT_2025,
+  author       = {Altun Shukurlu},
+  title        = {Survey of Loss Augmented Knowledge Tracing},
+  year         = {2025},
+  howpublished = {arXiv:2504.15163},
+  url          = {https://arxiv.org/abs/2504.15163},
+  file         = {14_references/Survey of Loss Augmented Knowledge Tracing.pdf}
+}
+
 @article{Xu_GbKT_2026,
   author    = {Meiling Xu and Janne Kujala and Jari Mets{\"{a}}muuronen and Mikko-Jussi Laakso},
   title     = {A Survey of Graph-Based Knowledge Tracing from Structural and Propagation Perspectives: Models, Applications, and Future Directions},
@@ -554,8 +566,8 @@
   number    = {2},
   pages     = {41--87},
   year      = {2026},
-  doi       = {10.5281/zenodo.21443288},
   url       = {https://jedm.educationaldatamining.org/index.php/JEDM/article/view/1089},
+  note      = {No Crossref DOI registered; publisher landing page used},
   file      = {14_references/A Survey of Graph-Based Knowledge Tracing from Structural and Propagation Perspectives - Models, Applications, and Future Directions.pdf}
 }
 
@@ -571,10 +583,96 @@
   file      = {14_references/A Survey of Knowledge Tracing - Models, Variants, and Applications.pdf}
 }
 
+@article{DECKT_2025,
+  author    = {Yanhong Bai and Xingjiao Wu and Tingjiang Wei and Liang He},
+  title     = {A Dual-Encoder Contrastive Learning Model for Knowledge Tracing},
+  journal   = {Entropy},
+  volume    = {27},
+  number    = {7},
+  pages     = {685},
+  year      = {2025},
+  doi       = {10.3390/e27070685},
+  url       = {https://doi.org/10.3390/e27070685},
+  file      = {14_references/A Dual-Encoder Contrastive Learning Model for Knowledge Tracing (DECKT).pdf}
+}
+
+@article{Han_KTDeeper_2024,
+  author    = {Yehong Han and Hailiang Tang and Wenxiao Zhang and Lin Du and Jun Zhao and Minglai Shao},
+  title     = {Dynamic Heterogeneous Graph Contrastive Networks for Knowledge Tracing},
+  journal   = {Appl. Soft Comput.},
+  volume    = {166},
+  pages     = {112194},
+  year      = {2024},
+  doi       = {10.1016/j.asoc.2024.112194},
+  url       = {https://doi.org/10.1016/j.asoc.2024.112194},
+  file      = {14_references/Dynamic heterogeneous graph contrastive networks for knowledge tracing.pdf}
+}
+
+@article{HCMKT_2026,
+  author    = {Jie Liu and Zheng Guan and Xue Wang and Zhijun Yang},
+  title     = {Heterogeneous Graph Knowledge Tracing with Novel Contrastive View and Meta-Path Contexts},
+  journal   = {Expert Syst. Appl.},
+  volume    = {295},
+  pages     = {128840},
+  year      = {2026},
+  doi       = {10.1016/j.eswa.2025.128840},
+  url       = {https://doi.org/10.1016/j.eswa.2025.128840},
+  file      = {14_references/Heterogeneous graph knowledge tracing with novel contrastive view and meta-path contexts.pdf}
+}
+
+@article{CoSKT_2024,
+  author    = {Chunyun Zhang and Hebo Ma and Chaoran Cui and Yumo Yao and Weiran Xu and Yunfeng Zhang and Yuling Ma},
+  title     = {{CoSKT}: A Collaborative Self-Supervised Learning Method for Knowledge Tracing},
+  journal   = {IEEE Trans. Learn. Technol.},
+  volume    = {17},
+  pages     = {1476--1488},
+  year      = {2024},
+  doi       = {10.1109/TLT.2024.3386750},
+  url       = {https://doi.org/10.1109/TLT.2024.3386750},
+  file      = {14_references/CoSKT A Collaborative Self-Supervised Learning Method for Knowledge Tracing.pdf}
+}
+
+@inproceedings{DTransformer_2023,
+  author    = {Yu Yin and Le Dai and Zhenya Huang and Shuanghong Shen and Fei Wang and Qi Liu and Enhong Chen and Xin Li},
+  title     = {Tracing Knowledge Instead of Patterns: Stable Knowledge Tracing with Diagnostic Transformer},
+  booktitle = {Proc. ACM Web Conf. (WWW)},
+  pages     = {855--864},
+  year      = {2023},
+  doi       = {10.1145/3543507.3583255},
+  url       = {https://doi.org/10.1145/3543507.3583255},
+  file      = {14_references/Tracing Knowledge Instead of Patterns Stable Knowledge Tracing with Diagnostic Transformer.pdf}
+}
+
+@article{SPCLKT_2024,
+  author    = {Huan Dai and Yue Yun and Yupei Zhang and Rui An and Wenxin Zhang and Xuequn Shang},
+  title     = {Self-Paced Contrastive Learning for Knowledge Tracing},
+  journal   = {Neurocomputing},
+  volume    = {609},
+  pages     = {128366},
+  year      = {2024},
+  doi       = {10.1016/j.neucom.2024.128366},
+  url       = {https://doi.org/10.1016/j.neucom.2024.128366},
+  file      = {14_references/Self-paced contrastive learning for knowledge tracing.pdf}
+}
+
+@inproceedings{CLBG_2025,
+  author    = {Kai Chen and Shun Mao and Qiwen Zheng and Yuncheng Jiang},
+  title     = {Contrastive Learning Based on Bipartite Graphs for Interpretable Knowledge Tracing},
+  booktitle = {Adv. Data Mining Appl. (ADMA)},
+  series    = {Lecture Notes in Artificial Intelligence},
+  volume    = {15389},
+  pages     = {206--220},
+  year      = {2025},
+  doi       = {10.1007/978-981-96-0821-8_14},
+  url       = {https://doi.org/10.1007/978-981-96-0821-8_14},
+  file      = {14_references/Contrastive Learning Based on Bipartite Graphs for Interpretable Knowledge Tracing.pdf}
+}
+
 @misc{Cursor_AI_2026,
   author       = {{Anysphere}},
   title        = {{Cursor} {AI} Coding Assistant},
   year         = {2026},
-  howpublished = {[Online]. Available: \url{https://cursor.com}}
+  howpublished = {[Online]. Available: https://cursor.com},
+  note         = {Accessed: Sep. 13, 2026}
 }
 

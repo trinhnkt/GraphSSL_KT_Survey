@@ -1,0 +1,232 @@
+Structure-based Knowledge Tracing:
+An Inﬂuence Propagation View
+Shiwei Tong1, Qi Liu1,∗, Wei Huang1, Zhenya Huang1, Enhong Chen1, Chuanren Liu2, Haiping Ma3, Shijin Wang4,5
+1Anhui Province Key Laboratory of Big Data Analysis and Application, School of Data Science &
+School of Computer Science and Technology, University of Science and Technology of China
+2Business Analytics and Statistics, University of Tennessee, 3Anhui University,
+4iFLYTEK Research, iFLYTEK CO., LTD., 5State Key Laboratory of Cognitive Intelligence,
+{tongsw, ustc0411}@mail.ustc.edu.cn, {qiliuql, huangzhy, cheneh}@ustc.edu.cn
+cliu89@utk.edu, hpma@ahu.edu.cn, sjwang3@iﬂytek.com
+Abstract—Knowledge Tracing (KT) is a fundamental but
+challenging task in online education that traces learners’ evolving
+knowledge states. Much attention has been drawn to this area
+and several works such as Bayesian and Deep Knowledge Tracing
+have been proposed. Recent works have explored the value of
+relations among concepts and proposed to introduce knowledge
+structure into KT tasks. However, the propagated inﬂuence
+among concepts, which has been shown to be a key factor
+in human learning by the educational theories, is still under-
+explored. In this paper, we propose a new framework called
+Structure-based Knowledge Tracing (SKT), which exploits the
+multiple relations in knowledge structure to model the inﬂuence
+propagation among concepts. In the SKT framework, we consider
+both the temporal effect on the exercising sequence and the
+spatial effect on the knowledge structure. We take advantages
+of two novel formulations in modeling the inﬂuence propagation
+on the knowledge structure with multiple relations. For undi-
+rected relations such as similarity relations, the synchronization
+propagation method is adopted, where the inﬂuence propagates
+bidirectionally between neighbor concepts. For directed relations
+such as prerequisite relations, the partial propagation method is
+applied, where the inﬂuence can only unidirectionally propagate
+from a predecessor to a successor. Meanwhile, we employ the
+gated functions to update the states of concepts temporally and
+spatially. We demonstrate the effectiveness and interpretability
+of SKT with extensive experiments.
+Index Terms—Transfer of Knowledge, Knowledge Tracing,
+Inﬂuence Propagation, Recurrent Neural Network
+I. INTRODUCTION
+Recent years have witnessed the booming of online ed-
+ucation systems, such as KhanAcademy.org and Junyia-
+cademy.org. These systems can not only assist tutors to give
+proper instruction based on the individual characteristics, e.g.,
+strengths and weaknesses, of learners, but also help learners be
+aware of their learning progress. The conveniences and rapid
+developments have attracted increasing attention of educators
+and public [13], [19]. A key issue in the online education sys-
+tems is Knowledge Tracing, the goal of which is to precisely
+trace the evolving knowledge states of learners on the concepts
+based on their past exercising performance.
+∗Corresponding Author.
+Traditional Knowledge Tracing models [7], [25], [41]
+mainly leverage the temporal information (i.e., learners’ se-
+quential performance on the exercises). For example, Bayesian
+Knowledge Tracing (BKT) [7] employs a hidden markov
+model to respectively trace the evolving knowledge state of
+each concept while Deep Knowledge Tracing (DKT) [25]
+uses the recurrent neural networks to jointly model the states
+of all concepts. Recently, more and more works [23], [34],
+[35] have noticed the value of the knowledge structure, which
+contains abundant domain knowledge. Chen et al. [4] used the
+prerequisite relations in knowledge structure to reformulate
+knowledge tracing as a constraint problem and Nakagawa et
+al. [23] utilized graph neural networks on a homogeneous
+graph knowledge structure to enhance knowledge tracing.
+Although with signiﬁcant improvement by utilizing knowledge
+structure, previous works ignore the propagated inﬂuence
+among concepts.
+According to one of education theories, transfer of knowl-
+edge [8], [31], [36], not only the proﬁciency of the current
+learning concept but also some relevant concepts will be
+changed when a learner learns a concept. As illustrated in the
+middle part of Figure 1, a learner practices several exercises
+on concepts B, D, ..., C, D sequentially and correctness (right
+or wrong) of the answer given by learner is shown under
+the concepts. The concept and correctness of the answer at
+each time step are called an exercise-performance pair. The
+bottom part shows the knowledge structure. The vertexes are
+the pedagogical concepts and are linked by multiple relations.
+The multiple relations include not only directed relations but
+also undirected relations. Without loss of generality, here we
+use two typical relations as a toy example. In Figure 1, the
+black directed lines represent prerequisite relations1 and blue
+undirected lines stand for similarity relations2. At the most
+beginning, after the learner ﬁnishes the learning on concept
+B, her proﬁciency on concept B increases, which can be seen
+1A concept points to another concept with prerequisite relation means the
+former one is considered as the foundation of the later one.
+2Concepts linked by similarity relations is somehow similar in the content.
+541
+2020 IEEE International Conference on Data Mining (ICDM)
+2374-8486/20/$31.00 ©2020 IEEE
+DOI 10.1109/ICDM50108.2020.00063
+Authorized licensed use limited to: University of Science & Technology of China. Downloaded on February 14,2021 at 06:18:30 UTC from IEEE Xplore.  Restrictions apply. 
+
+A
+B
+D
+C
+E
+F
+A
+B
+D
+C
+E
+F
+A
+B
+D
+C
+E
+F
+A
+B
+D
+C
+E
+F
+
+
+Knowledge 
+Tracing
+Knowledge 
+Structure
+Learning
+Process
+
+
+
+
+
+ID
+Concept Name
+A
+C
+B
+D
+E
+one digit addition
+two digit addition
+count number within 100
+one digit multiplication
+two digit multiplication
+F
+decimal multiplication
+Legend
+
+Correct Response
+
+Wrong Response
+Prerequisite
+Similarity
+Learning
+Inuenced
+Fig. 1: Illustration of Knowledge Tracing. B →D →... →C →D is an exercises sequence where each exercise corresponds
+to one concept. The knowledge structures showed in the bottom contain two types of relations (i.e., prerequisite and similarity).
+Radar graphs in the top show the evolving proﬁciency on each concepts during learning. Graphs in the bottom indicate the
+knowledge structure where current-learning concepts are highlighted in green and inﬂuenced concepts in red.
+from the radar graphs on the top of Figure 1. Meanwhile,
+the proﬁciency of concepts linked by multiple relations is
+also inﬂuenced. For instance, the proﬁciency on concept D (a
+successor of B) and concept A (a concept similar with B) also
+increase. The reason why the learning on concept B inﬂuences
+the proﬁciency on concept A, D is that the knowledge can
+be transferred among concepts. In other words, the learning
+inﬂuence can be propagated along the multiple relations in
+the knowledge structure. Thus, it is essential to consider the
+inﬂuence propagation when utilizing the knowledge structure
+for knowledge tracing.
+However, there are two major challenges along this line.
+First, the knowledge state of each concept is determined by
+two types of effects. One is the temporal effect from the
+exercise sequence and the other one is the spatial effect
+from the knowledge structure. As shown in Figure 1, at
+each time step, when a learner practices an exercise, the
+learning behaviour results in a temporal effect on the learning
+concept, which changes the state of the concept (e.g., the
+state on concept B is changed by the learning at the ﬁrst
+step); Then, the variation of states of the learning concept
+will furthermore inﬂuence its neighbors and successors in
+the knowledge structure through different relations, which
+is called spatial effect. Thus, there are two dimensions of
+learning effects which we need to simultaneously model. How
+to jointly model the temporal and spatial effect is a challenging
+problem. Second, it is not easy to model the spatial effect
+on a knowledge structure with multiple relations. Because the
+inﬂuence can be propagated along different relations, a key
+issue is to consider the different inﬂuence propagation ways
+on different types of relations. As shown in Figure 1, there
+are multiple relations in the knowledge structure, including
+directed relations and undirected relations. Therefore, when we
+model the spatial effect, the inﬂuence propagation on different
+types of relations needs to be respectively considered.
+To address the challenges above, we propose a new frame-
+work called Structure-based Knowledge Tracing (SKT), which
+can concurrently model the temporal and spatial effects.
+Speciﬁcally, at each time step, we ﬁrst extract the temporal
+effect from the exercise-performance pair and update the state
+of the practiced concept via a gated function. Then, to model
+the inﬂuence propagation in the knowledge structure caused
+by the temporal effect, we apply the synchronization and
+partial propagation methods to characterize the undirected and
+directed relations among knowledge structure, respectively.
+Finally, for those inﬂuenced concepts, the same gated function
+as mentioned above will be used to update the states based
+on the inﬂuence propagated to them. In this way, we model
+the inﬂuence propagation in the knowledge structure and
+furthermore jointly model the temporal and spatial effect.
+Extensive experiments on real-world datasets show that SKT
+not only signiﬁcantly outperforms several baselines, but also
+effectively provides interpretable insights for understanding
+the evolving states of learners.
+II. RELATED WORK
+Generally, the related works of this study are grouped into
+the following two categories.
+A. Knowledge Tracing
+Knowledge tracing is a task of modeling learners’ knowl-
+edge states over time so that we are able to accurately
+predict how learners will perform on future exercises [13].
+One of the classical knowledge tracing models is Bayesian
+Knowledge Tracing (BKT) [7]. BKT-based approach models
+learner’s knowledge in a Hidden Markov Model (HMM) as a
+set of binary variables, which represents whether the learner
+has mastered a skill or not (e.g., 0 indicates no while 1
+indicates mastered). As deep learning models outperform the
+conventional models in a range of domains such as pattern
+recognition and natural language processing, Piech et al. [25]
+used RNN to model the evolving proﬁciency on concepts
+and proposes the Deep Knowledge Tracing (DKT) model.
+Different from BKT using the binary variables to represent
+542
+Authorized licensed use limited to: University of Science & Technology of China. Downloaded on February 14,2021 at 06:18:30 UTC from IEEE Xplore.  Restrictions apply. 

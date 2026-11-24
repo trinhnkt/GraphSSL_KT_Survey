@@ -1,0 +1,119 @@
+Proceedings of the Twenty-Ninth International Joint Conference on Artiﬁcial Intelligence (IJCAI-20)
+1562
+References
+[Abdelrahman and Wang, 2019] Ghodai Abdelrahman and
+Qing Wang. Knowledge tracing with sequential key-value
+memory networks. In the 42nd International ACM SIGIR
+Conference, 2019.
+[Cen et al., 2006] Hao Cen, Kenneth Koedinger, and Brian
+Junker.
+Learning factors analysis–a general method for
+cognitive model evaluation and improvement. In Interna-
+tional Conference on Intelligent Tutoring Systems, pages
+164–175. Springer, 2006.
+[Chen et al., 2018] Penghe Chen, Yu Lu, Vincent W Zheng,
+and Yang Pian. Prerequisite-driven deep knowledge trac-
+ing. In 2018 IEEE International Conference on Data Min-
+ing (ICDM), pages 39–48. IEEE, 2018.
+[Choi et al., 2019] Youngduck Choi, Youngnam Lee, Dong-
+min Shin, Junghyun Cho, Seoyon Park, Seewoo Lee, Ji-
+neon Baek, Byungsoo Kim, and Youngjun Jang.
+Ed-
+net: A large-scale hierarchical dataset in education. arXiv
+preprint arXiv:1912.03072, 2019.
+[Cingi, 2013] Can Cemal Cingi. Computer aided education.
+Procedia-Social and Behavioral Sciences, 103:220–229,
+2013.
+[Corbett and Anderson, 1994] Albert T Corbett and John R
+Anderson.
+Knowledge tracing: Modeling the acquisi-
+tion of procedural knowledge. User modeling and user-
+adapted interaction, 4(4):253–278, 1994.
+[Feng et al., 2009] Mingyu Feng, Neil Heffernan, and Ken-
+neth Koedinger. Addressing the assessment challenge with
+an online system that tutors as it assesses. User Modeling
+and User-Adapted Interaction, 19(3):243–266, 2009.
+[Gao et al., 2018] Ming Gao, Leihui Chen, Xiangnan He,
+and Aoying Zhou. Bine: Bipartite network embedding.
+In The 41st International ACM SIGIR Conference on Re-
+search & Development in Information Retrieval, pages
+715–724. ACM, 2018.
+[Huang et al., 2019] Zhenya Huang, Yu Yin, Enhong Chen,
+Hui Xiong, Yu Su, Guoping Hu, et al.
+Ekt: Exercise-
+aware knowledge tracing for student performance predic-
+tion. IEEE Transactions on Knowledge and Data Engi-
+neering, 2019.
+[Maaten and Hinton, 2008] Laurens van der Maaten and Ge-
+offrey Hinton. Visualizing data using t-sne. Journal of
+machine learning research, 9(Nov):2579–2605, 2008.
+[Minn et al., 2019] Sein Minn, Michel C Desmarais, Feida
+Zhu, Jing Xiao, and Jianzong Wang.
+Dynamic student
+classifﬁcation on memory networks for knowledge trac-
+ing. In Paciﬁc-Asia Conference on Knowledge Discovery
+and Data Mining, pages 163–174. Springer, 2019.
+[Nakagawa et al., 2019] Hiromi Nakagawa,
+Yusuke Iwa-
+sawa, and Yutaka Matsuo. Graph-based knowledge trac-
+ing: Modeling student proﬁciency using graph neural net-
+work.
+In IEEE/WIC/ACM International Conference on
+Web Intelligence, pages 156–163. ACM, 2019.
+[Pavlik Jr et al., 2009] Philip I Pavlik Jr, Hao Cen, and Ken-
+neth R Koedinger. Performance factors analysis–a new al-
+ternative to knowledge tracing. Online Submission, 2009.
+[Piech et al., 2015] Chris Piech, Jonathan Bassen, Jonathan
+Huang, Surya Ganguli, Mehran Sahami, Leonidas J
+Guibas, and Jascha Sohl-Dickstein. Deep knowledge trac-
+ing. In Advances in neural information processing sys-
+tems, pages 505–513, 2015.
+[Qu et al., 2016] Yanru Qu, Han Cai, Kan Ren, Weinan
+Zhang, Yong Yu, Ying Wen, and Jun Wang.
+Product-
+based neural networks for user response prediction.
+In
+2016 IEEE 16th International Conference on Data Min-
+ing (ICDM), pages 1149–1154. IEEE, 2016.
+[Rendle, 2010] Steffen Rendle. Factorization machines. In
+2010 IEEE International Conference on Data Mining,
+pages 995–1000. IEEE, 2010.
+[Su et al., 2018] Yu Su, Qingwen Liu, Qi Liu, Zhenya
+Huang, Yu Yin, Enhong Chen, Chris Ding, Si Wei, and
+Guoping Hu. Exercise-enhanced sequential modeling for
+student performance prediction. In Thirty-Second AAAI
+Conference on Artiﬁcial Intelligence, 2018.
+[Tang et al., 2015] Jian Tang, Meng Qu, Mingzhe Wang,
+Ming Zhang, Jun Yan, and Qiaozhu Mei. Line: Large-
+scale information network embedding.
+In Proceedings
+of the 24th international conference on world wide web,
+pages 1067–1077. International World Wide Web Confer-
+ences Steering Committee, 2015.
+[Vie and Kashima, 2019] Jill-Jˆenn Vie and Hisashi Kashima.
+Knowledge tracing machines: Factorization machines for
+knowledge tracing. In Proceedings of the AAAI Confer-
+ence on Artiﬁcial Intelligence, volume 33, pages 750–757,
+2019.
+[Wang et al., 2019] Tianqi Wang, Fenglong Ma, and Jing
+Gao. Deep hierarchical knowledge tracing. In Proceedings
+of the 12th International Conference on Educational Data
+Mining, EDM 2019, Montr´eal, Canada, July 2-5, 2019,
+2019.
+[Wilson et al., 2016] Kevin H Wilson, Yan Karklin, Bojian
+Han, and Chaitanya Ekanadham.
+Back to the basics:
+Bayesian extensions of irt outperform neural networks for
+proﬁciency estimation. arXiv preprint arXiv:1604.02336,
+2016.
+[Zhang et al., 2017] Jiani Zhang, Xingjian Shi, Irwin King,
+and Dit-Yan Yeung. Dynamic key-value memory networks
+for knowledge tracing. In Proceedings of the 26th interna-
+tional conference on World Wide Web, pages 765–774. In-
+ternational World Wide Web Conferences Steering Com-
+mittee, 2017.
+[Zhu et al., 2018] Junhu Zhu, Yichao Zang, Han Qiu, and
+Tianyang Zhou.
+Integrating temporal information into
+knowledge tracing: A temporal difference approach. IEEE
+Access, 6:27302–27312, 2018.

@@ -1,0 +1,63 @@
+REFERENCES
+[1] Z. Xie, I. Sato, and M. Sugiyama, “A diffusion theory for deep learning
+dynamics: Stochastic gradient descent exponentially favors ﬂat minima,”
+type: article. [Online]. Available: http://arxiv.org/abs/2002.03495
+[2] S. Jastrz˛ebski, Z. Kenton, D. Arpit, N. Ballas, A. Fischer, Y. Bengio,
+and A. Storkey, “Finding ﬂatter minima with SGD.” [Online]. Available:
+https://openreview.net/forum?id=r1VF9dCUG
+[3] P. Foret, A. Kleiner, H. Mobahi, and B. Neyshabur, “Sharpness-
+aware minimization for efﬁciently improving generalization.” [Online].
+Available: http://arxiv.org/abs/2010.01412
+[4] J. Kwon, J. Kim, H. Park, and I. K. Choi, “ASAM: Adaptive
+sharpness-aware minimization for scale-invariant learning of deep
+neural networks,” in Proceedings of the 38th International Conference
+on Machine Learning.
+PMLR, pp. 5905–5914, ISSN: 2640-3498.
+[Online]. Available: https://proceedings.mlr.press/v139/kwon21b.html
+[5] M. Andriushchenko and N. Flammarion, “Understanding sharpness-
+aware minimization.” [Online]. Available: https://openreview.net/forum?
+id=qXa0nhTRZGV
+[6] “Towards generalization of medical imaging AI models: Sharpness-
+aware minimizers and beyond.”
+[7] C. Na, S. V. Mehta, and E. Strubell, “Train ﬂat, then compress:
+Sharpness-aware minimization learns more compressible models,” type:
+article. [Online]. Available: http://arxiv.org/abs/2205.12694
+[8] D. Bahri, H. Mobahi, and Y. Tay, “Sharpness-aware minimization
+improves
+language
+model
+generalization,”
+arXiv
+preprint
+arXiv:2110.08529, 2021.
+[9] L. Dinh, R. Pascanu, S. Bengio, and Y. Bengio, “Sharp minima
+can generalize for deep nets,” 2017. [Online]. Available: https:
+//arxiv.org/abs/1703.04933
+[10] S. Ioffe and C. Szegedy, “Batch normalization: Accelerating deep
+network training by reducing internal covariate shift,” 2015. [Online].
+Available: https://arxiv.org/abs/1502.03167
+[11] I. Loshchilov and F. Hutter, “Sgdr: Stochastic gradient descent with
+warm restarts,” 2016. [Online]. Available: https://arxiv.org/abs/1608.
+03983
+APPENDIX
+0
+25
+50
+75
+100
+125
+150
+175
+200
+Epochs
+0.3
+0.4
+0.5
+0.6
+0.7
+Test Accuracy
+Testing Accuracy on CIFAR-10 w.r.t Training Epochs (3 seeds)
+sam 
+asam 
+Fig. 5. Testing accuracy on CIFAR-10 with SAM/ASAM for different initial
+weights.

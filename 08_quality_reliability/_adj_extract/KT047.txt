@@ -1,0 +1,968 @@
+                                                          Expert Systems With Applications 225 (2023) 120212
+
+
+                                                                Contents lists available at ScienceDirect
+
+
+                                                     Expert Systems With Applications
+                                                       journal homepage: www.elsevier.com/locate/eswa
+
+
+
+
+Fusing hybrid attentive network with self-supervised dual-channel
+heterogeneous graph for knowledge tracing
+Tangjie Wu, Qiang Ling ∗
+University of Science and Technology of China, 440 Huangshan Road, Hefei, 230027, Anhui, China
+
+
+
+ARTICLE              INFO                              ABSTRACT
+
+Keywords:                                              Recently the large-scale influence of Covid-19 promoted the fast development of intelligent tutoring systems
+Heterogeneous graph neural network                     (ITS). As a major task of ITS, Knowledge Tracing (KT) aims to capture a student’s dynamic knowledge state
+Contrastive learning                                   based on his historical response sequences and provide personalized learning assistance to him. However,
+Self-supervised learning
+                                                       most existing KT methods have encountered the data sparsity problem. In real scenarios, an online tutoring
+Attention mechanism
+                                                       system usually has an extensive collection of questions while each student can only interact with a limited
+Knowledge tracing
+                                                       number of questions. As a result, the records of some questions could be extremely sparse, which degrades the
+                                                       performance of traditional KT models. To resolve this issue, we propose a Dual-channel Heterogeneous Graph
+                                                       Network (DHGN) to learn informative representations of questions from students’ records by capturing both the
+                                                       high-order heterogeneous and local relations. As the supervised learning manner applied in previous methods
+                                                       is incapable of exploiting unobserved relations between questions, we innovatively integrate a self-supervised
+                                                       framework into the KT task and employ contrastive learning via the two channels of DHGN, supplementing
+                                                       as an auxiliary task to improve the KT performance. Moreover, we adopt the attention mechanism, which
+                                                       has achieved impressive performance in natural language processing tasks, to effectively capture students’
+                                                       knowledge state. But the standard attention network is inapplicable to the KT task because the current
+                                                       knowledge state of a student usually shows strong dependency on his recently interactive questions, unlike
+                                                       the situation of language processing tasks, which focus more on the long-term dependency. To avoid the
+                                                       inefficiency of standard attention networks in the KT task, we further devise a novel Hybrid Attentive Network
+                                                       (HAN), which produces both the global attention and the hierarchical local attention to model the long-
+                                                       term and short-term intents, respectively. Then, by the gating network, a student’s long-term and short-term
+                                                       intents are combined for efficient prediction. We conduct extensive experiments on several real-world datasets.
+                                                       Experimental results demonstrate that our proposed methods achieve significant performance improvement
+                                                       compared to existing state-of-the-art baselines, which validates the effectiveness of the proposed dual-channel
+                                                       heterogeneous graph framework and hybrid attentive network.
+
+
+
+1. Introduction                                                                                KT research can be dated back to the late 1960s. At the early stage,
+                                                                                           some novel Bayesian modeling methods (Pozna et al., 2010; Yudelson
+    With the rapid development of adaptive learning, intelligent tutor-                    et al., 2013) were developed to make great progress in the heuristic
+ing systems (ITS) have found more and more applications. ITS may                           modeling. Bayesian Knowledge Tracing (BKT) (Kasurinen & Nikula,
+not require the knowledge and experience of education experts as                           2009) is a typical class of methods. BKT represents a student’s knowl-
+before. By analyzing a student’s historical records, ITS can effectively                   edge acquisition level with a binary number (1 for mastery and 0 for
+track the dynamic change of his knowledge state. Nowadays knowledge                        not mastery). Later, multiple factors are taken to construct a student’s
+tracing (KT) (Corbett & Anderson, 1994) has become a hot research                          knowledge state. The Difficulty, Ability, and Student History (DASH)
+topic of ITS, which aims to analyze a student’s knowledge state and                        model (Lindsey et al., 2014) considers the impact of additional factors,
+predict his response to a new question. According to the prediction                        such as question difficulty, error rate, response time, on students’ final
+results, teachers can adjust the teaching plans and develop personalized
+                                                                                           response. However, the above models strongly depend on the statistical
+strategies (Adesope et al., 2017) for each student in online education
+                                                                                           estimation of parameters and are not robust enough.
+systems.
+
+
+  ∗ Corresponding author.
+     E-mail addresses: wtj1999@mail.ustc.edu.cn (T. Wu), qling@ustc.edu.cn (Q. Ling).
+
+https://doi.org/10.1016/j.eswa.2023.120212
+Received 6 July 2022; Received in revised form 16 April 2023; Accepted 16 April 2023
+Available online 21 April 2023
+0957-4174/© 2023 Elsevier Ltd. All rights reserved.
+T. Wu and Q. Ling                                                                                              Expert Systems With Applications 225 (2023) 120212
+
+
+    Over the past decade, there has emerged some attempts to construct              3. Traditional attention-based methods often yield poor perfor-
+nonlinear modeling approaches (Fersini et al., 2014; Hedrea & Petriu,                  mance in long sequence prediction (Pandey & Karypis, 2019). In
+2021), which achieved superior performance in diverse fields. Along                    fact, memory decays over time, i.e., the knowledge, which was
+this trend, neural network-based approaches were applied to knowl-                     well mastered before, may be forgotten now (Carpenter et al.,
+edge tracing. Due to their strong robustness and portability, neural                   2008; Nagatani et al., 2019). It is non-trivial to balance the
+network-based methods generally perform better than traditional ones.                  effects of short-term and long-term memory in student modeling.
+For example, Deep Knowledge Tracing (DKT) (Piech et al., 2015) first
+utilizes the long short term memory (LSTM) network (Hochreiter &                     To address the above limitations, we propose a novel knowledge
+Schmidhuber, 1997) to track a student’s state evolution process. Ensem-          tracing model, a Hybrid Attentive Network fused with Dual-channel
+ble Knowledge Tracing (EKT) (Sun et al., 2022) introduces an ensemble            Heterogeneous Graph Network (HAN-DHGN). First, we introduce a
+learning into KT, which fuses BKT and DKT, and extends AdaBoost to               dual-channel heterogeneous graph network (DHGN) and then learn
+deal with KT sequential data. But this recurrent network architecture is         question embeddings via the network schema and meta-path chan-
+insufficient to capture long-term dependencies and is easy to lose early         nels of DHGN, which can effectively exploit the local and high-order
+semantic details. Then some memory-based methods (Abdelrahman                    relations between questions. As most KT methods are based on a
+& Wang, 2019; Liu et al., 2021; Zhang et al., 2017), like Dynamic                supervised learning paradigm, which is limited by the data sparsity
+Key-Value Memory Networks for Knowledge Tracing (DKVMN) (Zhang                   in real scenarios, making it incapable to learn quality representa-
+et al., 2017), were proposed to resolve the above issues by introducing          tions, we introduce self-supervised learning into DHGN, aiming to
+an external memory matrix.                                                       exploit unobserved relations and reinforce the question representations.
+    Later, attention-based methods (Vaswani et al., 2017) have made              Specifically, we utilize the question representations learned by the two
+great advances in handling sequential data, which can automatically              channels of DHGN to conduct contrastive learning, which maximizes
+study different weights for each interaction to capture the related              the similarity between positive pairs while minimizing the similarity
+information in the historical sequences. The Self-Attentive Knowledge            between negative-sampled counterparts. To the best of our knowledge,
+Tracing (SAKT) (Pandey & Karypis, 2019) first utilizes the attention             the potential of contrastive learning for heterogeneous graph repre-
+mechanism to focus on the historical interactions that are highly rel-           sentation learning and KT has not yet been explored. Therefore, our
+evant to the target question. However, due to the long recording                 work aims to fill this research gap and investigate the effectiveness of
+cycle of KT, the traditional attention mechanism does not perform                contrastive learning in the KT field.
+well. Context-Aware Attentive Knowledge Tracing (AKT) (Ghosh et al.,                 Moreover, to improve the efficiency of traditional attention-based
+2020) introduces a monotonic attention mechanism that integrates the             models and perceive the dynamics of memory, we propose a novel
+exponential decay and characterizes the importance of memory decay               hybrid attentive network (HAN), including both global attention and
+in KT.                                                                           hierarchical local attention, to track a student’s intents in the long
+    Recently, graph neural network (GNN) (Dong et al., 2023, 2022;               and short terms, respectively. In HAN, the global attention deals with
+Kipf & Welling, 2016; Schlichtkrull et al., 2018; Wang et al., 2019)             the whole interactive sequences to capture the long-term intent. To
+shows superior performance on the relation network and graph-                    characterize the memory decay in the long sequence, we add an ex-
+structured data, and can encode rich context information by aggre-               ponential decay to the standard attention network. The local attention
+gating graph attributive and structural features. Some GNN-based                 focuses on the recent interactive details by a cluster of hierarchical
+methods (Ni et al., 2023; Song et al., 2021; Wang et al., 2022; Wu               attention windows. As the window size increases with the number
+et al., 2022; Yang et al., 2020) have been leveraged in the KT field, like       of layers, our model can perceive the relevance in longer scope and
+A Graph-based Interaction Model for Knowledge Tracing (GIKT) (Yang               extract multi-scale semantics features. The hierarchical construction
+et al., 2020), which combines the latent relations between questions             greatly optimizes the short-term intent modeling. Then the two intents
+and skills by utilizing the graph convolutional network (GCN) (Kipf              are adaptively integrated via a gating network for the prediction task.
+& Welling, 2016). A joint graph convolutional network based Deep                 Finally, we unify the prediction task and the self-supervised task, and
+Knowledge Tracing (JKT) (Song et al., 2021) models the multi-                    leverage the multi-task training strategy to jointly optimize the two
+dimensional relationships of ‘‘exercise-to-exercise’’ and ‘‘concept-to-          tasks. Our contributions can be summarized as follows.
+concept’’ via two graph networks.                                                    ∙ We propose a novel dual-channel heterogeneous graph network
+    Although existing methods have achieved significant improvement              (DHGN) for representation learning. The dual-channel framework can
+in knowledge tracing, they still suffer from the following limitations.          effectively exploit the local and high-order relations between questions,
+                                                                                 helping the model build expressive question representations for the
+    1. The performance of those methods mainly relies on the scale of            downstream prediction task. Although the existing GNN-based meth-
+       historical interactions. However, due to the sparsity of records          ods demonstrate their superiority in the KT field, most of them are
+       in KT, the visiting frequency of some questions is extremely              built upon a simple homogeneous graph, which neglects the complex
+       low. To avoid over-fitting and over-parameterization, previous            heterogeneity between questions and may consequently fail to learn
+       methods (Ghosh et al., 2020; Piech et al., 2015; Zhang et al.,            expressive representations for questions.
+       2017) usually select the skill records, instead of the question               ∙ We devise a novel hybrid attentive network (HAN) to capture a
+       records (the number of questions is generally much larger than            student’s long-term and short-term intents simultaneously. The conven-
+       that of skills), to model a student’s knowledge state. But this           tional attention mechanism, which focuses on long-term dependencies,
+       usually leads to the loss of semantic details being contained in          is incapable of modeling memory decay in real scenarios and often
+       historical interactions .                                                 yields poor performance. Compared with the conventional attention
+    2. Some graph-based methods (Song et al., 2021; Tong et al., 2020;           mechanism, our HAN fuses global attention and hierarchical local
+       Yang et al., 2020) do improve the representations of questions by         attention, aiming to model a student’s state in a more effective manner,
+       fusing the graph-structured information, but may mostly over-             and achieves decent gains.
+       look the heterogeneity of nodes. In KT, these recorded questions              ∙ We innovatively integrate a self-supervised task into the training
+       usually attach diverse attributes, like question type, difficulty         of our DHGN to enhance heterogeneous graph modeling and further
+       coefficient, involved skill, etc. Obviously, simple homogeneous           improve the KT prediction performance. Existing KT methods are usu-
+       graphs (question-skill pair) are incapable of characterizing het-         ally built on a supervised learning paradigm and their performances
+       erogeneous relations and building expressive representations for          are constrained by the data sparsity problem. So it is difficult for
+       questions.                                                                these methods to learn high-quality representations. Conversely, the
+
+                                                                             2
+T. Wu and Q. Ling                                                                                                    Expert Systems With Applications 225 (2023) 120212
+
+
+self-supervised learning adopted in this paper can find supervised                 a homogeneous graph. For example, HAN (Wang et al., 2019) utilizes
+signals from the input data itself and exploit unobserved relations                hierarchical attention to capture the node-level and semantic-level
+spontaneously to reinforce the question representation.                            semantics. Based on this fact, DisenHAN (Wang et al., 2020) proposes a
+    ∙ We conduct extensive experiments on several real-world datasets              disentangled heterogeneous graph attention network for recommenda-
+and the results demonstrate the performance superiority of our HAN-                tion, which considers the entanglement of latent factors stemming from
+DHGN against some state-of-the-art KT methods.                                     different meta-paths. HGT (Hu et al., 2020) proposes a heterogeneous
+    The rest of this paper is organized as follows. Section 2 briefly              graph transformer architecture for modeling Web-scale heterogeneous
+reviews the related work. Section 3 formulates the concerned KT task               graphs. HetGNN (Zhang et al., 2019) uses LSTM networks to aggre-
+and presents the proposed HAN-DHGN in detail. We conduct extensive                 gate feature information of sampled neighboring nodes to obtain the
+experiments on four real-world datasets and comprehensively compare                ultimate node embedding. MetaHIN (Lu et al., 2020) develops a meta-
+HAN-DHGN with some state-of-the-art methods in Section 4. Finally,                 learning paradigm based on HIN to resolve the cold-start problem
+Section 5 concludes the paper and comments on the limitation of the                of recommendation systems. Generally, the performance of GNNs is
+proposed HAN-DHGN and the future work.                                             vulnerable to noisy information. To resolve this issue, DNAG (Dong
+                                                                                   et al., 2023) presents a novel de-noising aggregator, which utilizes
+2. Related work                                                                    Principal Component Analysis (PCA) to preserve the aggregated real
+                                                                                   signals and simultaneously filter out the Gaussian noise in GNNs. Dong
+2.1. Knowledge tracing                                                             et al. (2022) innovatively introduces an injective aggregation function
+                                                                                   to improve the representation capability of GNNs. Unfortunately, there
+    In recent years, the development of neural network (NN) promotes               is still a gap between heterogeneous graph neural network and KT.
+considerable advances of knowledge tracing (KT). KT aims to capture                We want to fill this gap by constructing the heterogeneous graph
+a student’s knowledge state according to his interactive questions and             between questions and then propose a dual-channel heterogeneous
+predict his response to a new question. DKT (Piech et al., 2015), the              graph network to aggregate neighbors’ information and enhance the
+first attempt to employ RNN-based methods in KT, utilizes the LSTM                 question representation.
+network to model the interactive question sequences. DKVMN (Zhang
+et al., 2017), DSCMN (Minn et al., 2019) and SKVMN (Abdelrahman &                  2.3. Contrastive learning
+Wang, 2019) leverage the memory-based network to capture long-term
+dependencies of historical records. HMN (Liu et al., 2021) devises a                   As an emerging paradigm in self-supervised learning, contrastive
+hierarchical memory network to well fit human memory mechanism                     learning aims to learn discriminative representations by contrasting
+in KT. Additionally, the attention-based methods (Ghosh et al., 2020;              positive and negative pairs. It was firstly used in visual representa-
+Jiang et al., 2023; Pandey & Karypis, 2019; Wei et al., 2022), like                tion learning, in which negative samples are generated by cropping,
+SAKT (Pandey & Karypis, 2019), AKT (Ghosh et al., 2020), intro-                    resizing, rotation, etc. Later, the contrastive framework is extended
+duce attention mechanisms to emphasize the historical interactions                 to enhance graph representation learning via self-discrimination. DGI
+that are highly relevant to the target question. TISAKT (Wei et al.,               (Velickovic et al., 2019) is the first to introduce the InfoMax prin-
+2022) integrates the time interval between two consecutive interactions            ciple into GNN and augment the original graph by simply shuffling
+into self-attention mechanisms. HawkesKT (Wang, Ma et al., 2021)                   node features. InfoGraph (Sun et al., 2019) extends deep InfoMax to
+investigates fine-grained temporal cross-effects between different skills          learn graph-level representations. GMI (Peng et al., 2020) measures
+in KT and explicitly models these cross-effects by the point process.              MI between a center node and its local patch from node-level and
+To enrich question representations, additional attributes are consid-              topology-level features. MVGRL (Hassani & Khasahmadi, 2020) applies
+ered. EERNNA (Su et al., 2018) encodes question embeddings with                    a graph diffusion network (GDN) to generate additional structural
+the content of questions. But it is impractical to collect the content             views. GCA (Zhu et al., 2021) optimizes the uniform data augmentation
+information in real scenarios. GIKT (Yang et al., 2020) builds a relation          schemes with the adaptive mechanism. Although contrastive learning
+graph to extract the underlying relations between questions and skills.            has been widely implemented in diverse fields, its potential for the KT
+Along this line, CQKT (Wang et al., 2022) proposes a calibrated Q-                 task has not been explored. So we plan to integrate contrastive learning
+matrix-based framework to track knowledge proficiency of students                  into the scenarios of KT and heterogeneous graph modeling.
+dynamically. HHN (Wu & Ling, 2023) develops a hypergraph network
+to capture the complex beyond-pairwise semantic relations among                    3. Methodology
+questions. SGKT (Wu et al., 2022) constructs an exercise session graph
+to model a student’s answering process and takes the self-attention with              In this section, we formulate the concerned KT problem and intro-
+a forgetting mechanism to model exercises and skills. Although these               duce the proposed model in detail.
+recurrent and attentive methods have demonstrated their superiority in
+the KT field, they are limited by the data sparsity problem, making it             3.1. Problem statement
+difficult to learn high-quality representations for students’ historical in-
+teractions. Although Graph Neural Network (GNN)-based methods can                      In the KT task, each student’s historical records consist of a sequence
+alleviate the aforementioned issue to some extent, they fail to capture            of questions and responses. Denote the set of questions as 𝑄. Define the
+the complex and higher-order correlations between questions. To this               sequence of records of a student as 𝑺 𝒕 = {(𝑞1 , 𝑟1 ), (𝑞2 , 𝑟2 ), ⋯ (𝑞𝑡 , 𝑟𝑡 )} in
+end, we propose a novel graph structure to model the heterogeneity                 the chronological order. 𝑞𝑡 ∈ 𝑄 records the 𝑡th question interacted by
+omitted by previous methods.                                                       the student and 𝑟𝑡 ∈ {0, 1} is the corresponding response (1 stands for
+                                                                                   correct and 0 for incorrect).
+2.2. Heterogeneous graph neural network
+                                                                                   Definition 3.1.1 (Heterogeneous Graph Shi et al., 2016; Sun & Han,
+    Recently, the heterogeneous graph has caught much research atten-              2013). A heterogeneous graph is defined as  = (, ), where  is the
+tion, and shown its great capability of modeling various types of nodes            node set and  is the edge set. There are two mapping functions in the
+and relations. The meta-paths of Heterogeneous Information Network                 heterogeneous graph, including node type mapping function 𝜙 ∶  → 
+(HIN) are usually described as semantic relations between nodes pairs.             and edge type mapping function 𝜓 ∶  → , where  and  represent
+By aggregating features from different meta-paths, the heterogeneous               the node type set and the edge type set, respectively, and satisfy || +
+structure can learn more comprehensive presentations for nodes than                || > 2.
+
+                                                                               3
+T. Wu and Q. Ling                                                                                                                    Expert Systems With Applications 225 (2023) 120212
+
+
+                                                                                            target node 𝑖, denoted as {𝛷1 , 𝛷2 , … 𝛷𝐾 }, and its neighbors based on
+                                                                                                                            𝛷
+                                                                                            meta-path 𝛷𝑘 are tagged as 𝑖 𝑘 . For example, as shown in Fig. 1(1),
+                                                                                            for meta-path Q-T-Q, the question node 𝑞1 consists of two neighbors,
+                                                                                            𝑞2 and 𝑞3 .
+                                                                                                The initial node embeddings are denoted as {𝐡01 , 𝐡02 , … , 𝐡0|| } ∈
+                                                                                            R||×𝐷 , where 𝐷 is the dimension of embeddings. Each of them is a
+                                                                                            trainable embedding associated with the question ID. Then we utilize
+                                                                                            the attention mechanism to capture the relevance within the single
+                                                                                                                                                        𝛷
+                                                                                            meta-path 𝛷𝑘 . The importance of neighbor node 𝑗 ∈ 𝑖 𝑘 to target
+                                                                                            node 𝑖 (Veličković et al., 2017) is calculated as
+                                                                                             𝛷                                             𝛷            𝛷
+                                                                                            𝜂𝑖𝑗 𝑘 = Att(𝐡𝑙−1  𝑙−1           𝑇    𝑘 𝑙−1
+                                                                                                         𝑖 , 𝐡𝑗 , 𝛷𝑘 ) = 𝜓(𝐚𝛷 [𝐖𝑖 𝐡𝑖   ∥ 𝐖𝑗 𝑘 𝐡𝑙−1
+                                                                                                                                               𝑗 ]),                               (2)
+                                                                                                                                      𝑘
+                                                                                                            𝛷      𝛷
+                                                                                            where    𝐚𝑇𝛷 , 𝐖𝑖 𝑘 , 𝐖𝑗 𝑘
+                                                                                                                    represent the path-specific weight vector and
+                                                                                                        𝑘
+                                                                                            projection matrices for meta-path 𝛷𝑘 . These parameters are shared at
+                                                                                            each layer to avoid over-fitting. 𝐡𝑙−1
+                                                                                                                                𝑖  denotes the refined embedding of
+Fig. 1. An illustration of the heterogeneous graph for KT, which includes three types       node 𝑖 after 𝑙 − 1 layers propagation. 𝜓 is the LeakyReLU activation
+of nodes and two types of meta-paths. For simplicity, we only show two additional           function and | ⋅ | stands for the concatenation operation.
+attributes, including skill and template.
+                                                                                                Usually, those attention weights are normalized via softmax func-
+                                                                                            tion, which returns positive values and dense output probabilities.
+                                                                                            However, this nonzero probabilities may assign weights to some useless
+Definition 3.1.2 (Meta-path Shang et al., 2016; Sun et al., 2011). In                       features and lead to the incapability of finding relevant nodes. To ad-
+the heterogeneous graph, the meta-path 𝛷 is usually defined in the                          dress this limitation, we introduce the following novel transformation
+               1      2      𝑙−1
+form of 1 → 2 → ⋯ → 𝑙 . The two node type sets 1 and 𝑙                                 function, 𝛼-entmax (Peters et al., 2019), to replace the softmax,
+are connected by the composite relation  = 1 ◦2 ⋯ 𝑙−1 , where ◦
+                                                                                            𝛼−entmax = argmax 𝑝𝑇 𝒙 + 𝐻𝛼𝑇 (𝑝),                                                      (3)
+represents the composition operator on relations.                                                               𝑝∈△𝑑
+                                                                                                        {      1   ∑          𝛼        𝛼≠1
+                                                                                                                     𝑗 (𝑝𝑗 − 𝑝𝑗 ),
+Definition 3.1.3 (Network Schema Wang, Liu et al., 2021). The network                       𝐻𝛼𝑇 (𝑝) =       𝛼(𝛼−1)                                                                 (4)
+schema is usually defined as 𝑇 = (, ), which depicts a directed                                          𝐻 𝑆 (𝑝),                   𝛼=1
+graph defined over the node type set , with edges being relations from
+                                                                                            where 𝐻𝛼𝑇 (𝑝) is Tsallis 𝛼-entropies (Tsallis, 1988), which is a family of
+.
+                                                                                            entropies parametrized by a scalar 𝛼 > 1. Tsallis entropies interpolate
+       Based on the above definitions, we embody the heterogeneous graph                    between the Shannon and Gini entropies. Based on the above equation,
+upon the KT task. As shown in Fig. 1(1), the heterogeneous graph                            we can find that 1-entamx ≡ softmax and 2-entmax ≡ sparsemax. For
+consists of different node types (template (T), question (Q), skill (S))                    1 < 𝛼 < 2, entmax yields a function family continuously interpolating
+and relation types (Q → S means the question involves this skill and                        between softmax and sparsemax, which inherits the desirable sparsity
+Q → T means the question belongs to this template). From Fig. 1(2),                         of sparsemax, and shows smoother corners.
+we can distinctly find that two questions are connected by different                            In this paper, we adopt the 𝛼-entmax in the attention mechanism
+meta-paths, where Q-T-Q, Q-S-Q represent that two different questions                       to eliminate the impact of unrelated neighbor nodes. Then the weight
+cover the same template and skill. The multiple meta-paths in HIN                           coefficient is calculated as
+indicate multifaceted semantics, which represent high-order heteroge-                        𝛷                      𝛷
+                                                                                            𝛽𝑖𝑗 𝑘 = 𝛼−entmax(𝜂𝑖𝑗 𝑘 ).                                                              (5)
+neous relations between nodes. In Fig. 1(3), the network schema shows
+question 𝑞1 involves skill 𝑠1 and belongs to template 𝑡1 simultaneously.                        To reflect the discrepancy of meta-paths in the feature transforma-
+The direct connections between different types of nodes depicted in the                     tion, we propose a method to learn 𝛼 adaptively based on those con-
+network schema are usually viewed as the local relations.                                   nected nodes in the current meta-path. Specifically, we utilize a pooling
+       Based on the above notation, the task of knowledge tracing can be                    function, which averages all node embeddings within meta-path 𝛷𝑘 , to
+formulated as follows.                                                                      generate its 𝛼 as
+       Given a student’s interactive sequence 𝑺 𝒕 ={(𝑞1 , 𝑟1 ), (𝑞2 , 𝑟2 ),
+                                                                                                ⎧                                   ⎫
+. . . ...(𝑞𝑡 , 𝑟𝑡 )} and the pre-defined heterogeneous graph between ques-                      ⎪ 1         ∑                       ⎪
+                                                                                                                         𝑙−1
+tions , our task is to learn 𝑓 (⋅) to predict his next response 𝑟𝑡+1 to a                  𝛼 =𝜎⎨                (𝐖𝛷𝑘 ⋅ 𝐡𝑗,𝛷 + 𝐛𝛷𝑘 )⎬ + 1,                                         (6)
+                                                                                                ⎪ | 𝛷𝑘 |                   𝑘
+                                                                                                                                    ⎪
+                                                                                                          𝑗∈ 𝛷𝑘
+new question 𝑞𝑡+1 , which is formulated as                                                      ⎩                                   ⎭
+                𝑓                                                                           where  𝛷𝑘 represents the set of nodes in meta-path 𝛷𝑘 . 𝐖𝛷𝑘 and 𝐛𝛷𝑘
+[𝑺 𝒕 , , 𝑞𝑡+1 ] ⟹ 𝑟𝑡+1 .                                                        (1)
+                                                                                            are the path-specific weight matrix and the bias vector, respectively. 𝜎
+                                                                                            denotes the sigmoid activation function and the value of 𝛼 is mapped
+3.2. Dual-channel heterogeneous graph network
+                                                                                            into the interval of [1, 2]. Note that 𝐡0𝑗,𝛷 = 𝐡0𝑗 when 𝑙 = 1 (see Fig. 3).
+                                                                                                                                        𝑘
+                                                                                                 Next, we utilize the above weight coefficient to fuse the features of
+   This section introduces the proposed Dual-channel Heterogeneous
+                                                                                            neighbor nodes in meta-path 𝛷𝑘 as
+Graph Network (DHGN), which aims to capture both the high-order and
+                                                                                                      ∑     𝛷
+local relations via the meta-path and network schema channels, and                          𝐡𝑙𝑖,𝛷 =       (𝛽𝑖𝑗 𝑘 ⋅ 𝐡𝑙−1                                             (7)
+                                                                                                 𝑘                  𝑗 ).
+then learn an informative representation for the question (see Fig. 2).                                  𝛷
+                                                                                                     𝑗∈𝑖 𝑘
+
+3.2.1. Meta-path channel                                                                       After separately aggregating the information from neighbors based
+   Here we encode the high-order relations in the meta-path channel.                        on different meta-paths, we can obtain the heterogeneous semantics
+Generally, multiple meta-paths of HIN reflect the semantics details from                    representations {𝐡𝑙𝑖,𝛷 , 𝐡𝑙𝑖,𝛷 ⋯ 𝐡𝑙𝑖,𝛷 } for target node 𝑖. Furthermore, we
+                                                                                                                  1       2       𝐾
+diverse aspects. To explicitly perceive the discrepancy of semantics,                       combine them to form the node embedding at 𝑙th layer as
+we implement the information aggregation independently for different                                        𝐾
+meta-paths. Suppose there are K types of meta-paths starting from                           𝐡𝑙𝑖 = 𝐖𝐾 ⋅ [ ∥ 𝐡𝑙𝑖,𝛷 ],                                                                (8)
+                                                                                                         𝑘=1        𝑘
+
+
+
+                                                                                        4
+T. Wu and Q. Ling                                                                                                                 Expert Systems With Applications 225 (2023) 120212
+
+
+
+
+Fig. 2. The architecture of DHGN. The question embedding is learned through the meta-path and network schema channels. Then the two representations are utilized to perform
+self-supervised learning and are fed into the downstream network.
+
+
+                                                                                         question 𝑖 as
+
+                                                                                         𝐡𝑖 = 𝐡𝛹    𝛷
+                                                                                               𝑖 + 𝐡𝑖 .                                                                            (12)
+
+
+                                                                                         3.3. Contrastive learning
+
+                                                                                             The two presentations to be obtained in the meta-path and network
+                                                                                         schema channels encode the high-order and local structural informa-
+                                                                                         tion, respectively. They know little about each other, but can mutually
+                                                                                         complement. Following Ren et al. (2019) and Velickovic et al. (2019),
+                                                                                         the two channels of DHGN are treated as two views, which can be
+                                                                                         the ground-truth of each other for contrastive learning. we treat the
+                                                                                         views of the same node as the positive pairs and the views of any
+                                                                                         different nodes as the negative pairs naturally. Formally, we utilize
+            Fig. 3. Illustration of entmax in the two-dimensional case.
+                                                                                         InfoNCE objective (Van den Oord et al., 2018) as the contrastive loss
+                                                                                         to contrast node representations from different views. The objective of
+                                                                                         the meta-path channel of node 𝑖 is defined as
+
+where 𝐖𝐾 is the weight matrix. Last, we average the node embeddings                                                                 exp (𝑠(𝐡𝛷
+                                                                                                                                            𝑖
+                                                                                                                                              , 𝐡𝛹𝑖 )∕𝑟)
+                                                                                         𝛷
+                                                                                          𝑖
+                                                                                            = − log                           ∑                                ∑                         ,
+obtained at each layer to get the final representation of node 𝑖 in the                               exp (𝑠(𝐡𝛷    𝛹
+                                                                                                              𝑖 , 𝐡𝑖 )∕𝑟) +
+                                                                                                                                         𝛷    𝛷
+                                                                                                                              𝑗≠𝑖 exp(𝑠(𝐡𝑖 , 𝐡𝑗 )∕𝑟)       +               𝛷    𝛹
+                                                                                                                                                               𝑗≠𝑖 exp (𝑠(𝐡𝑖 , 𝐡𝑗 )∕𝑟)
+meta-path channel as
+                                                                                                                                                                                   (13)
+          𝐿𝛷
+       1  ∑
+𝐡𝛷            𝐡𝑙𝑖 .                                                            (9)        where 𝑠(⋅) is the cosine similarity function to measure the similarity be-
+ 𝑖 = 𝐿 +1
+      𝛷   𝑙=0                                                                            tween two vectors and 𝑟 denotes a temperature parameter, and 𝐡𝛷            𝛹
+                                                                                                                                                               𝑖 , 𝐡𝑖
+                                                                                         represent the embeddings of question 𝑖 obtained in the meta-path and
+3.2.2. Network schema channel
+                                                                                         network schema channels, respectively.
+   Here we aim to extract the intrinsic dependencies from the network
+                                                                                            Considering the symmetry of the two views, we can define the
+schema to learn the local representation of nodes. Due to the hetero-
+                                                                                         contrastive loss of network schema channel 𝛹    𝑖 analogously. Combining
+geneity of nodes, the target node usually contains various neighbors.
+                                                                                         these two losses yields the overall objective of the self-supervised task,
+Obviously, different types of neighbors are of different importance to
+the target node. Just equally treating them may not be reasonable. So
+we introduce the relational GCN (RGCN) (Schlichtkrull et al., 2018) to                             1 ∑ 𝛷
+                                                                                         𝑠𝑠𝑙 =          ( + 𝛹
+                                                                                                               𝑖 ).                                                                (14)
+capture the local relations in the network schema channel. Similar to                             || 𝑖∈ 𝑖
+the above, we assume that there are 𝑀 types of neighbors for target
+                                                                  𝛹
+node 𝑖, as {𝛹1 , 𝛹2 , … 𝛹𝑀 } and its neighbors can be tagged as 𝑖 𝑚 with                3.4. State extractor network
+type 𝛹𝑚 . An example is illustrated in Fig. 1(2), where question node
+𝑞1 contains two types of neighbors, 𝑡1 and 𝑠1 , based on the network                         Here we utilize the RNN with Gated Recurrent Units (GRU) (Chung
+schema. The RGCN is then defined as                                                      et al., 2014), which has shown its remarkable capability in capturing
+        ⎧                                              ⎫                                 sequential intents, to trace a student’s knowledge state according to his
+        ⎪                     ∑ ∑
+                   1   1                           𝑙−1 ⎪                                 historical sequence. The dependencies between interactive questions
+𝐡𝑙𝑖 = 𝜓 ⎨𝐖𝑖 𝐡𝑙−1
+             𝑖   +   ⋅                   (𝐖𝛹   ⋅ 𝐡 𝑗  )⎬,                    (10)
+        ⎪          𝑀 | 𝛹𝑚 | 𝑚∈𝑀      𝛹𝑚
+                                             𝑚
+                                                       ⎪                                 and the dynamics of students’ response are tracked by a parallel GRU
+                       𝑖
+        ⎩                        𝑗∈ 𝑖                 ⎭
+                                                                                         independently as
+where 𝐖𝑖 , 𝐖𝛹𝑚 are the weight matrices and 𝜓 is the LeakyReLU acti-
+vation function. Likewise, we obtain the representation of node 𝑖 in the
+network schema channel as                                                                𝐱𝑞𝑡 = GRU𝑞 (𝐡𝑞1 , 𝐡𝑞2 , … , 𝐡𝑞𝑡 ), 𝐱𝑞𝑡 ∈ R𝐷𝑟 ,                                            (15)
+               𝐿𝛹
+         1    ∑                                                                          𝐱𝑟𝑡 = GRU𝑟 (𝐡𝑟1 , 𝐡𝑟2 , … , 𝐡𝑟𝑡 ), 𝐱𝑟𝑡 ∈ R ,  𝐷𝑟
+                                                                                                                                                                                   (16)
+𝐡𝛹
+ 𝑖 =             𝐡𝑙 .                                                        (11)
+       𝐿𝛹 + 1 𝑙=0 𝑖
+                                                                                         where 𝐷𝑟 denotes the size of the hidden layer of GRU, 𝐡𝑞𝑡 is the
+   Last, we sum the question node embeddings obtained in the meta-                       obtained embedding of question 𝑞𝑡 that the student interacts with at the
+path and network schema channels to get the final representation of                      𝑡th step, and 𝐡𝑟𝑡 is the corresponding response embedding, indicating
+
+                                                                                     5
+T. Wu and Q. Ling                                                                                                             Expert Systems With Applications 225 (2023) 120212
+
+
+
+
+Fig. 4. An overall view of HAN-DHGN and the construction of the hierarchical local attention network. Pa-GRU means the proposed parallel GRU of the state extractor network.
+
+
+
+
+correct or incorrect. The knowledge state 𝐱𝑡 at the 𝑡th step is produced                 account when calculating the correlation between two interactions. The
+by the summation of two hidden states as                                                 decay coefficient 𝛿𝑡,𝜏 is computed as
+
+𝐱𝑡 = 𝐱𝑞𝑡 + 𝐱𝑟𝑡 .                                                              (17)       𝛿𝑡,𝜏 = exp(−𝛽|𝑡 − 𝜏|),                                                           (19)
+
+The parallel mode alleviates the semantic blending caused by the cou-                    where 𝛽 is the decay rate. As mentioned above, the input of the
+pling between the question and response embeddings under previous                        attention network comes from the output of the extractor network.
+methods (Piech et al., 2015), and can better extract a student’s unbiased                Although the parallel GRU can effectively extract the dependencies,
+state for prediction to some extent (see Fig. 4).                                        this recursive structure tends to cause the loss of semantic details.
+                                                                                         Additionally, to retain the details, we add the following semantic-aware
+3.5. Hybrid attention network                                                            coefficient 𝜂𝑡,𝜏 , which encodes the low-layer embedding features (Ji
+                                                                                         et al., 2020) as
+    To improve the inefficiency of traditional attention networks over                   𝜂𝑡,𝜏 = 𝜎(𝐡𝑞𝑡+1 𝐖𝜂 𝐡𝑇𝑞 + 𝐛𝜂 ),                                                    (20)
+                                                                                                                  𝜏
+long sequences, we propose a novel Hybrid Attention Network (HAN),
+including global attention for long-term intent modeling and hierarchi-                  where 𝐖𝜂 is the weight matrix and 𝐛𝜂 is the biased vector, 𝜎 represents
+                                                                                         the sigmoid activation function. The refined coefficient 𝜁𝑡,𝜏 is calculated
+cal local attention for short-term intent modeling, which can effectively
+                                                                                         as
+capture the dynamics over time. Finally, the two intents are adaptively
+integrated via a neural gating network for prediction.                                   𝜁𝑡,𝜏 = 𝛿𝑡,𝜏 ⋅ 𝜂𝑡,𝜏 ⋅ 𝛼𝑡,𝜏 .                                                      (21)
+
+                                                                                            Finally, we generate the global intent representation 𝐇𝑙 based on
+3.5.1. Global attention network
+                                                                                         the entire historical sequences as
+    To focus on the interactions being strongly related to the target
+question and retain the long-range dependencies that may be lost in                             ∑
+                                                                                                𝑡
+                                                                                         𝐇𝑙 =         𝜁𝑡,𝜏 𝒗𝜏 .                                                           (22)
+the recurrent network iterations, we apply a standard attention network
+                                                                                                𝜏=1
+on the whole sequence and learn the long-term intent representation.
+Suppose the query is given as 𝒒 𝑡 = 𝐱𝑞𝑡+1 , the key as 𝒌𝜏 = 𝐱𝑞𝜏 and the                  3.5.2. Hierarchical local attention network
+value as 𝒗𝜏 = 𝐱𝜏 , 𝜏 ≤ 𝑡.                                                                    To encode the short-term intent, an intuitive way is to only consider
+    The importance of the interaction at the 𝜏th step to target question                 a couple of recent interactions within a fixed window. However, it is
+𝑞𝑡+1 is calculated via the softmax function as                                           difficult to balance the impact of interactive details and the scope. To
+                                                                                         address this limitation, we propose a hierarchical local attention net-
+                                     𝒒 𝒌𝑇
+                 𝒒 𝑡 𝒌𝑇      exp ( √𝑡 𝜏 )                                                work, and generate the multi-scale short-term representation. Similarly
+                                     𝐷𝑟
+𝛼𝑡,𝑟 = Sof tmax( √ 𝜏 ) =                       ,                              (18)       we calculate the attention scores at the 𝑙th layer as
+                     𝐷𝑟  ∑𝑡            𝒒 𝑡 𝒌𝑇′
+                                exp  ( √ 𝜏 )
+                            ′
+                          𝜏 =1              𝐷𝑟                                                           𝒒 𝑡 𝒌𝑙−1,𝑇
+                       √
+                                                                                          𝑙
+                                                                                         𝛼𝑡,𝜏 = Sof tmax( √𝜏        ), 𝜏 ∈ [𝑡 − 𝑤0 ⋅ 𝛾 𝑙−1 , 𝑡],                          (23)
+where the scale factor 𝐷𝑟 is used to normalize the inner product.                                             𝐷𝑟
+Considering the long learning cycle of KT, the knowledge, which was                      where 𝑤0 is the initial window size at the first layer and 𝛾 is the
+well mastered before, may be forgotten now. The memory decay has                         dilated coefficient. Note that the attention window size increases layer
+a significant impact on students’ knowledge state. To emphasize the                      by layer. At lower layers, smaller windows produce more interactive
+importance of memory decay in modeling long interaction sequences,                       details while at higher layers, larger windows enable wider receptive
+we introduce an exponential decay, which takes the time interval into                    fields for interactions and help model perceive the relevance in the
+
+                                                                                     6
+T. Wu and Q. Ling                                                                                                    Expert Systems With Applications 225 (2023) 120212
+
+
+longer scope. Given 𝒒 𝑡 = 𝐱𝑞𝑡+1 , 𝒌0𝑡 = 𝐱𝑞𝑡 and 𝒗0𝑡 = 𝐱𝑡 , key and value          Algorithm 1: The modeling steps of our method
+are updated as                                                                         Input : The heterogeneous graph  = (, ),
+            ∑
+            𝑡                                                                                  The meta-path and {𝛷1 , 𝛷2 , ⋯ 𝛷𝐾 },
+𝒌𝑙𝑡 =                    𝑙
+                        𝛼𝑡,𝜏 𝒌𝑙−1
+                              𝜏 ,                                     (24)                     The layer of meta-path channel 𝐿𝛷 ,
+        𝜏=𝑡−𝑤0 ⋅𝛾 𝑙−1                                                                          The layer of network schema channel 𝐿𝛹 ,
+            ∑
+            𝑡                                                                                  The observed sequence 𝑺𝒕 ={(𝑞1 ,𝑟1 ), (𝑞2 ,𝑟2 ),......(𝑞𝑡 ,𝑟𝑡 )},
+𝒗𝑙𝑡 =                    𝑙
+                        𝛼𝑡,𝜏 𝒗𝑙−1
+                              𝜏 .                                     (25)                     The target question 𝑞𝑡+1 .
+        𝜏=𝑡−𝑤0 ⋅𝛾 𝑙−1
+                                                                                       Output: The predicted response 𝑟′𝑡+1 corresponding to 𝑞𝑡+1 .
+   Finally, we generate the local intent representation 𝐇𝑠 by combining            1 for 𝑖 ∈  do
+the multi-scale semantics in different layers as                                   2     for 𝑙 ∈ 𝐿𝛷 do
+                 𝐿𝑎                                                                3         for 𝛷𝑘 ∈ {𝛷1 , 𝛷2 , ⋯ 𝛷𝐾 } do
+𝐇𝑠 = 𝐖𝑠 ⋅ [ ∥ 𝒗𝑙𝑡 ],                                                  (26)                                                            𝛷
+                𝑙=0                                                                4             Find the meta-path based neighbors 𝑖 𝑘 ;
+                                                                                                               𝛷
+where 𝐖𝑠 is the weight matrix and 𝐿𝑎 is the number of layers in the                5                for 𝑗 ∈ 𝑖 𝑘 do
+                                                                                                                                   𝛽
+local attention.                                                                   6                    Calculate the coefficient 𝜂𝑖𝑗𝑘 via Equ.(5) ;
+                                                                                   7                    Generate the node representation 𝐡𝑙𝑖,𝛷 via
+                                                                                                                                                    𝑘
+
+3.5.3. Neural gating network                                                                             Equ.(7) ;
+    As the long-term and short-term intents may contribute differently             8             end
+to the response prediction corresponding to target question 𝑞𝑡+1 , we              9         end
+utilize a neural gating network to combine them adaptively as                     10         Combine the learned representations from all
+                                                                                               meta-paths via Equ.(8) ;
+𝐺𝑡 = 𝜎(𝐖𝑙 [𝐇𝑙 ‖𝐡𝑞𝑡+1 ] + 𝐖𝑠 [𝐇𝑠 ‖𝐡𝑞𝑡+1 ]),                            (27)        11     end
+𝐕𝑡 = 𝐺𝑡 ⋅ 𝐇𝑙 + (1 − 𝐺𝑡 ) ⋅ 𝐇𝑠 ,                                       (28)        12     Fuse the representations from all layers to generate 𝐡𝛷
+                                                                                                                                               𝑖 via
+                                                                                          Equ.(9) ;
+where 𝐺𝑡 is the gate vector obtained by the long-term and short-term              13     for 𝑙 ∈ 𝐿𝛹 do
+intent embeddings, 𝜎 indicates the sigmoid activation function, and               14         Generate the node representation in the network
+𝐖𝑙 , 𝐖𝑠 is the weight matrix. The final state embedding 𝐕𝑡 can well                            schema channel via Equ.(11) ;
+balance the long-term and short-term incentives                                   15     end
+                                                                                  16     Fuse the representations from all layers to generate 𝐡𝛹
+                                                                                                                                               𝑖 via
+3.6. Prediction network                                                                   Equ.(12) ;
+                                                                                  17 end
+                                                                                  18 Extract the student’s knowledge state via Equ.(15) ;
+    To leverage the low-layer semantics explicitly, we concatenate the
+                                                                                  19 Capture the global intent representation 𝐇𝑙 via Equ.(22) ;
+final state and the target question embedding (Ghosh et al., 2020).
+                                                                                  20 Capture the local intent representation 𝐇𝑠 via Equ.(26) ;
+Next, we utilize a fully-connected network (FCN) to generate the pre-
+                                                                                  21 Fuse the global and local intents to generate 𝐕𝑡 via Equ.(28) ;
+dicted probability 𝑟′𝑡+1 ∈ [0, 1] according to which the student can                                        ′
+                                                                                  22 Predict the response 𝑟     via Equ.(29) ;
+correctly answer the target question. For training these learnable pa-                                      𝑡+1
+                                                                                  23   return 𝑟′𝑡+1 .
+rameters, we adopt the following binary cross-entropy loss as the
+objective function of prediction task,
+
+𝑟′𝑡+1 = 𝜎(FCN([𝐕𝑡 ∥ 𝐡𝑞𝑡+1 ])),                                        (29)
+           ∑                                                                      4.1. Datasets
+𝑚𝑎𝑖𝑛 = − (𝑟𝑡+1 log(𝑟′𝑡+1 ) + (1 − 𝑟𝑡+1 ) log(1 − 𝑟′𝑡+1 )),           (30)
+
+where 𝑟′𝑡+1 ∈ [0, 1] and 𝑟𝑡+1 ∈ {0, 1} denote the predicted and true                  We evaluate different models on several typical knowledge trac-
+response at step 𝑡 + 1, respectively, 𝜎 is the sigmoid activation function.       ing datasets, including ASSISTments2009,1 ASSISTments2017,2 EdNet,3
+   Finally, we unify the main prediction task and the self-supervised             and JunyiAcademy4 which have been widely used in the educational
+task, and optimize the two tasks with a multi-task training strat-                data mining field for students’ performance prediction.
+egy (Collobert & Weston, 2008). Formally, the joint objective is defined              ASSISTments2009 This dataset was collected from ASSISTments
+as                                                                                online education platform during the school year 2009–2010, which
+                                                                                  has two versions: Skill-builder and Non-Skill Builder. we select the
+ = 𝑚𝑎𝑖𝑛 + 𝜆𝑠𝑠𝑙 ,                                                   (31)
+                                                                                  updated Skill-builder version to conduct our experiments and remove
+where 𝜆 is the hyperparameter to control the contribution of the self-            duplicated records as the previous methods. Besides, we remove those
+supervised task. The overall process and modeling steps of our method             students whose length of historical records is less than 3.
+are presented in Algorithm 1.                                                         ASSISTments2017 This dataset was collected from the same tu-
+                                                                                  toring platform as ASSISTments2009 and was used in Data Mining
+                                                                                  Competition 2017. It includes an 11-year data spanning from middle
+4. Results and validation
+                                                                                  schools for mathematics. We remove the data recorded as ‘𝑛𝑜𝑠𝑘𝑖𝑙𝑙’ in
+                                                                                  the skill column.
+   In this section, we take several public datasets to evaluate the
+performance of our proposed model and some state-of-the-art models.
+Particularly, two versions of the proposed DHGN are investigated in the             1
+                                                                                      https://sites.google.com/site/assistmentsdata/home/assistment-2009-
+experiments, where DHGN represents the vanilla version and 𝑆 2 -DHGN              2010-data.
+represents the self-supervised version. Furthermore, we conduct some                2
+                                                                                      https://sites.google.com/view/assistmentsdatamining/dataset.
+ablation studies to verify the effectiveness and superiority of different           3
+                                                                                      https://github.com/riiid/ednet.
+                                                                                    4
+components of our model.                                                              https://pslcdatashop.web.cmu.edu/Files?datasetId=1198.
+
+
+                                                                              7
+T. Wu and Q. Ling                                                                                               Expert Systems With Applications 225 (2023) 120212
+
+                Table 1
+                Dataset statistics.
+                    Dataset           Question      Attribute             Student          Record          Network schema           Meta-path
+                                                    Skill:123                                              Q-S: 21 246              Q-S-Q
+                    ASSISTments2009   17 751        Template:658          4151             325 637         Q-T: 17 751              Q-T-Q
+                                                    Skill:101                                              Q-S: 2803                Q-S-Q
+                    ASSISTments2017   2210          Assign:236            1709             942 816         Q-A: 16 820              Q-A-Q
+                                                    Skill:189                                              Q-S: 28 758              Q-S-Q
+                    EdNet             12 120        Bundle:8853           5000             6 212 117       Q-B: 13 169              Q-B-Q
+                                                    Topic:39                                               Q-T: 509                 Q-T-Q
+                    JunyiAcademy      509           Area:9                5000             346 918         Q-A: 509                 Q-A-Q
+
+
+
+    EdNet This dataset was collected from multi-platform AI tutoring             impact on the results, we conduct the ablation study to pursue the
+records over 2 years with more than 780 k users in Korea, which                  optimal performance. The dimension of embeddings 𝐷 is searched from
+contains various features of a student’s actions, e.g., which learning           {64, 128, 256, 320, 512}, the number of propagation layers in the meta-
+material he has consumed, how much time he has spent on solving                  path channel 𝐿𝛷 from {1, 2, 4, 6, 8} and the number of layers in local
+a given question or reading through experts’ commentary. It should               attention 𝐿𝑎 from {1, 2, 3, 4, 6} and the initial window size 𝑤0 from
+be noted that EdNet consists of over 130 million interactions collected          {2, 4, 6, 8, 10}. The temperature parameter 𝑟 is tuned within the range
+from 784,309 students, making it too extensive for training purposes.            of {0.1, 0.2, 0.5, 1.0, 2.0} and the hyperparameter 𝜆 is searched from
+Therefore, we randomly selected a sample of 5000 students and their              the range of {0.01, 0.1, 0.5, 1, 10}. Each dataset is divided based
+corresponding interactive records to conduct our experiments.                    on students, among which 80% of students are used for training and
+    JunyiAcademy This dataset includes problem logs and exercise-                validating, and the rest 20% for testing. The Adam optimizer (Kingma
+related information from Junyi Academy, along with exercise rela-                & Ba, 2014) is applied to optimize the learnable parameters in the
+tionship annotations used for building models. Due to the size of the            network with the learning rate and the batch size being tuned among
+dataset, which includes over 25 million interactions from 247,606                {1𝑒−3 , 5𝑒−4 , 1𝑒−4 } and {64, 128, 256}, respectively.
+students, we randomly selected a subset of 5000 students and their
+corresponding interactive records for our experiments.                           4.4. Results
+    The statistics of those datasets are listed in Table 1.
+    ∙ Skill(S). The skill associated with the question. A question may               To follow the previous methods, we also evaluate the performance
+cover multiple skills.                                                           by the Area Under Curve (AUC). We compare our method with different
+    ∙ Template(T). The template of the ASSISTments, ASSISTments with             baselines across all datasets. As shown in Table 2, HAN+𝑆 2 -DHGN
+the same template ID have similar questions.                                     consistently outperforms other baselines and achieves state-of-the-art
+    ∙ Assign(A). A unique record is used for identifying an assignment           performance, which improves about 2.40%, 2.22%, 1.33%, 3.01% AUC
+with questions.                                                                  scores over AKT and 4.31%, 3.72%, 2.42%, 2.69% over GIKT (60%
+    ∙ Bundle (B). The expert-annotated bundle for each question, Each            training). When removing DHGN module (the initial question embed-
+bundle can contain from 1 to 5 questions.                                        ding ℎ0𝑖 is directly fed into the state extractor network), our model
+    ∙ Topic (T). The topic of each question represents a predominant             (HAN) still achieves performance comparable to AKT and improves
+concept in the knowledge map.                                                    about 4.36%, 9.97%, 8.70%, 7.03% over SAKT. When removing HAN
+    ∙ Area (A). The knowledge area that question covers. Each area may           module (the knowledge state 𝑥𝑡 is directly fed into prediction network),
+contain several topics.                                                          our model (𝑆 2 -DHGN) outperforms GIKT about 3.49%, 2.64%, 1.75%,
+                                                                                 1.94%. Even without self-supervised learning, our proposed DHGN still
+4.2. Baseline methods                                                            performs best in most cases. The performance advantages confirm the
+                                                                                 superiority of the proposed DHGN in dealing with graph structure infor-
+    To verify the effectiveness of our method, we implement some                 mation. As the ratio of the training set decreases, the superiority of our
+state-of-the-art methods as baselines for evaluation.                            model becomes more prominent, which also confirms the rationality
+    ∙𝐷𝐾𝑇 (Piech et al., 2015) uses the long short term memory (LSTM)             and effectiveness of DHGN in handling the sparse data problem.
+to model the evolution of student state.                                             ∙ Compared with traditional graph-based methods, the significant
+    ∙𝐷𝐾𝑉 𝑀𝑁 (Zhang et al., 2017) uses the dynamic memory network                 performance improvement of the proposed method indicates that fus-
+to store student’s mastery of each skill.                                        ing heterogeneous information is necessary to build representations
+    ∙𝐺𝐼𝐾𝑇 (Yang et al., 2020) generates question embeddings through              for nodes, especially when the records are sparse. By capturing the
+fusing question-skill relations by GCN and applies a LSTM to update              high-order and local relations in the meta-path and network schema
+the student’s latent knowledge state.                                            channels, respectively, our proposed method can learn richer semantics
+    ∙𝑆𝐴𝐾𝑇 (Pandey & Karypis, 2019) uses the attention mechanism to               for the representations of questions.
+activate related historical interaction.                                             Meanwhile, the self-supervised learning has great potential to fur-
+    ∙𝐴𝐾𝑇 (Ghosh et al., 2020) uses the two-layer monotonic attention             ther improve DHGN. Compared with the vanilla version, the self-
+with rasch embeddings to model sequential interaction and activate               supervised version shows decent improvements in all cases. When we
+related interaction.                                                             reduce the percentage of training set to 20%, the improvement of 𝑆 2 -
+                                                                                 DHGN increases from 1.69%, 1.04%, 0.34%, 0.92% to 2.60%, 2.18%,
+4.3. Experimental settings                                                       0.76%, 1.07% compared with DHGN, which is in line with our analysis
+                                                                                 that the sparsity of records might limit the learning of representation,
+    In our experiments, we set the input sequence length as 200. If a            and introducing the self-supervised task could alleviate the sparse data
+student has more than 200 records, we truncate the whole sequence                problem to some extent.
+into several sub-sequences. We choose the size of the hidden layer of                ∙ Compared with traditional attention-based methods, the improve-
+RNN as 𝐷𝑟 = 320 and the dilated coefficient as 𝛾 = 2. For the network            ment of the proposed method demonstrates the necessity of integrating
+schema channel of DHGN, we apply one-layer RGCN to aggregate the                 the long-term and short-term intents adaptively for student modeling.
+one-hop neighbors. As the variations of some parameters have great               Through experiments, we find that the traditional attention mechanism,
+
+                                                                           8
+T. Wu and Q. Ling                                                                                                 Expert Systems With Applications 225 (2023) 120212
+
+Table 2
+Performance (AUC) of various methods.
+ Dataset               ASSISTments 2009               ASSISTments 2017                     Ednet                                 JunyiAcademy
+ Training              20%         40%      60%       20%        40%           60%         20%           40%        60%          20%          40%          60%
+ DKT                   0.7738      0.7920   0.8012    0.6904     0.7238        0.7473      0.7088        0.7229     0.7445       0.7105       0.7227       0.7443
+ DKVMN                 0.7780      0.7924   0.8114    0.6753     0.7080        0.7406      0.6983        0.7198     0.7492       0.7083       0.7170       0.7349
+ GIKT                  0.7962      0.8089   0.8145    0.7189     0.7395        0.7581      0.7356        0.7490     0.7523       0.7300       0.7456       0.7611
+ SAKT                  0.7402      0.7701   0.7932    0.6204     0.6531        0.7009      0.6534        0.6678     0.6989       0.6371       0.6833       0.7102
+ AKT                   0.7830      0.8071   0.8297    0.7049     0.7438        0.7692      0.7164        0.7382     0.7604       0.7157       0.7402       0.7588
+ HAN                   0.7846      0.8032   0.8278    0.7117     0.7481        0.7708      0.7203        0.7388     0.7597       0.7182       0.7416       0.7601
+ DHGN                  0.8063      0.8205   0.8289    0.7291     0.7516        0.7701      0.7382        0.7533     0.7629       0.7487       0.7602       0.7688
+ 𝑆 2 -DHGN             0.8273      0.8352   0.8429    0.7450     0.7562        0.7781      0.7438        0.7610     0.7655       0.7567       0.7653       0.7759
+ HAN + DHGN            0.8174      0.8277   0.8423    0.7382     0.7594        0.7805      0.7458        0.7629     0.7671       0.7563       0.7668       0.7770
+ HAN + 𝑆 2 -DHGN       0.8321      0.8391   0.8496    0.7538     0.7689        0.7863      0.7490        0.7682     0.7705       0.7631       0.7708       0.7816
+
+
+
+like SAKT, may not perform well in KT. Due to the long learning                Table 3
+                                                                               Ablation study of DHGN.
+cycle, the forgetting behavior has a significant impact on a student’s
+knowledge state. Attending relative interactions simply over long se-            Methods                             ASSISTments2009            ASSISTments2017
+
+quence is adverse to prediction. By equipping the attention network              DHGN-M                              0.8266                     0.7673
+                                                                                 GCN-M                               0.8175                     0.7631
+with decay coefficient and hierarchical local structure, our model can
+                                                                                 GraphSAGE(mean/pooling)-M           0.8181                     0.7629
+effectively track the student’s intent in different terms and outperform         GAT-M                               0.8207                     0.7634
+those attention-based methods.                                                   GIN-M                               0.8152                     0.7625
+                                                                                 HAN-M                               0.8228                     0.7650
+4.5. Ablation study                                                              DHGN-S                              0.8221                     0.7640
+                                                                                 GCN-S                               0.8203                     0.7623
+                                                                                 GraphSAGE(mean/pooling)-S           0.8205                     0.7622
+    Here we conduct some ablation studies to demonstrate the contribu-
+                                                                                 GAT-S                               0.8195                     0.7615
+tions of each component of the proposed method. As the superiority of            GIN-S                               0.8179                     0.7607
+our model results from the joint effect of DHGN and HAN, we develop              HAN-S                               0.8214                     0.7628
+several variants for them and analyze their impact.                              DHGN                                0.8289                     0.7701
+    Analysis of DHGN. To investigate the effects of components of
+the proposed DHGN, we design several variants of DHGN with similar
+model complexity and design specifications as follows.
+    ∙ DHGN-M: only uses the meta-path channel and aggregates hetero-               ∙ GIN (Xu et al., 2018)-S: applies a graph isomorphism network to
+geneous neighbors’ information by the proposed attention mechanism.            aggregate all types of neighbors’ information in the network schema
+    ∙ GCN (Kipf & Welling, 2016)-M: adopts a graph convolutional               channel. The parameter 𝜖 of GIN is fixed at 0.
+network to aggregate neighbors’ information in the meta-path channel.              ∙ HAN (Wang et al., 2019)-S: employs node-level and semantic-level
+As it is designed for homogeneous graphs, we test all the meta-paths           attentions simultaneously to aggregate different types of neighbors’
+for GCN and show the optimal performance.                                      information in the network schema channel.
+    ∙ GraphSAGE(mean/pooling) (Hamilton et al., 2017)-M: utilizes a                As shown in Table 3, DHGN outperforms other variants under
+modified mean/pooling-based aggregator to aggregate neighbors’ infor-          similar model complexity and design specifications. Besides, the dual-
+mation in the meta-path channel. We test both the mean variant and             channel structure improves model performance consistently on both
+the pooling variant of GraphSAGE and report the optimal performance            datasets, which indicates the necessity of fusing the high-order and
+in the table.                                                                  local relations to complement the representation of questions. When
+    ∙ GAT (Veličković et al., 2017)-M: adopts a graph attention net-           only using the meta-path channel, DHGN-M is still competitive, which
+work to aggregate neighbors’ information in the meta-path channel.             demonstrates the effectiveness of modeling the heterogeneous corre-
+Similarly, we test all the meta-paths for GAT and show the optimal             lations in the meta-path channel. Moreover, the decent gains also
+performance.                                                                   demonstrate the superiority of our proposed graph structure against
+    ∙ GIN (Xu et al., 2018)-M: applies a graph isomorphism network to          those less powerful GNN variants in representation modeling.
+aggregate neighbors’ information in the meta-path channel. Note that               Analysis of transformation functions. To investigate the positive
+the parameter 𝜖 of GIN is fixed at 0 in our experiments.                       contribution of 𝛼-entmax, we conduct experiments with the adaptive
+    ∙ HAN (Wang et al., 2019)-M: employs node-level and semantic-              𝛼 and fixed 𝛼 and compare their performance. The fixed 𝛼 is chosen
+level attentions simultaneously on the heterogeneous graph, and as-            among {1, 1.2, 1.4, 1.6, 1.8, 2} and its value is the same for different
+signs different importance to each meta-path.                                  meta-paths of DHGN. As shown in Table 4, the softmax function
+    ∙ DHGN-S: only uses the network schema channel and aggregates              performs poor. A possible reason is that an excess of neighbors in the
+neighbors’ information by the relational graph convolutional network.          meta-path channel would lead to the semantic blending. The sparse
+    ∙ GCN (Kipf & Welling, 2016)-S: adopts a graph convolutional               transformation can alleviate the impact of unrelated nodes in the in-
+network to aggregate neighbors’ information in the network schema              formation aggregation and enforce the representation to focus on those
+channel. We ignore the types of nodes and assign the same importance           highly correlated nodes. But the sparsemax does not always achieve
+to different types of neighbors.                                               optimal performance, which indicates that each meta-path may have its
+    ∙ GraphSAGE(mean/pooling) (Hamilton et al., 2017)-S: utilizes a            own best 𝛼. For different meta-paths, the concerned semantic relations
+modified mean/pooling-based aggregator to aggregate neighbors’ infor-          are discrepant. We infer that the correlations between nodes might be
+mation in the network schema channel. This configuration is the same           affected by the intrinsic patterns in the meta-path. Just setting a fixed
+as that of the meta-path channel.                                              𝛼 for them disable it to reflect the discrepancy and learn informative
+    ∙ GAT (Veličković et al., 2017)-S: adopts a graph attention network        representations for nodes. So we introduce the adaptive method to learn
+to aggregate all types of neighbors’ information in the network schema         𝛼 based on the context in each meta-path. The superior performance of
+channel.                                                                       the adaptive method has further validated our analysis.
+
+                                                                           9
+T. Wu and Q. Ling                                                                                                       Expert Systems With Applications 225 (2023) 120212
+
+
+
+
+Fig. 5. Question 563’s neighbors and corresponding attention values in DHGN. Softmax and sparsemax fix 𝛼 at 1 and 2, respectively. 𝛼-entmax means applying the proposed
+adaptive 𝛼.
+
+
+Table 4                                                                                that they are complementary for each other. The hybrid structure,
+Ablation study of transformation functions.
+                                                                                       which fuses a student’s long-term and short-term intents adaptively,
+ Methods                          ASSISTments2009             ASSISTments2017          is indispensable for modeling the knowledge state accurately. It is
+ 𝛼 = 1(softmax)                   0.8205                      0.7608                   worth noting that the local attention shows better performance than
+ 𝛼 = 1.2                          0.8198                      0.7623
+                                                                                       the global attention in most cases. Based on this fact, we infer that
+ 𝛼 = 1.4                          0.8211                      0.7619
+ 𝛼 = 1.6                          0.8247                      0.7623                   modeling a student’s knowledge state mainly relies on those questions
+ 𝛼 = 1.8                          0.8238                      0.7650                   that he recently interacted with. Focusing on those earlier interactions
+ 𝛼 = 2(sparsemax)                 0.8234                      0.7669                   excessively may be adverse to prediction.
+ adap 𝛼                           0.8289                      0.7701                       Moreover, the improvement of Localℎ over Local𝑠 confirms that
+                                                                                       the proposed hierarchical structure is more effective than simple-layer
+Table 5                                                                                structure in perceiving a student’s short-term intent. Besides, Global𝜁
+Ablation study of HAN.                                                                 outperforms other variants, which also verifies the importance of re-
+ Methods                         ASSISTments2009              ASSISTments2017          taining the low-level details and modeling the memory decay in the
+ Local𝑠                          0.8356                       0.7758                   long-term intent.
+ Localℎ                          0.8401                       0.7786                       In Fig. 6, we visualize the attention weights in the global attention
+ Global                          0.8295                       0.7683                   and hierarchical local attention. Compared with the standard attention
+ Global𝜂                         0.8302                       0.7718
+                                                                                       in Fig. 6(a), we can see that the proposed Global𝜁 assigns lower weights
+ Global𝛿                         0.8370                       0.7762
+ Global𝜁                         0.8392                       0.7781                   to early interactions, which emphasizes the impact of memory decay on
+ Localℎ + Global                 0.8417                       0.7805                   student’s knowledge state and alleviates the negative effect of attending
+ Ours                            0.8496                       0.7863                   early interactions to some extent. Besides, we also can find that Localℎ
+                                                                                       has smaller receptive fields than Global, which helps the model to focus
+                                                                                       on the recent interactive details and capture the student’s short-term
+                                                                                       intent more precisely.
+    Here we take question 563 of ASSISTments2009 dataset as an
+                                                                                           Analysis of hyper-parameters. To explore the stability of the
+illustrative example. Given the meta-path Q-S-Q, which means that two
+different questions cover the same skill (‘Probability of a Single Event’).            proposed method, we further study the impact of some critical hyper-
+We calculate the attention value of each neighbor under different                      parameters and report the results in Fig. 7.
+transformation functions and show the results in Fig. 5(b). By the                         ∙ Dimension of node embeddings. The results are shown in Fig. 7(a).
+results, we can find that the proposed adaptive transformation tends to                When the dimension of ℎ is set at 256, the model achieves the best
+produce sparser weight distribution than softmax, which alleviates the                 performance. The performance trend of rising first and then dropping
+semantic blending and helps improve representation quality to some                     indicates that a smaller dimension may be inadequate to encode the
+extent.                                                                                semantic information while a larger dimension may cause additional
+    Analysis of HAN. To verify the effects of each module of HAN, we                   redundancy for representation.
+consider several methods for comparison.                                                   ∙ Number of layers in the meta-path channel. The results are shown
+    ∙ Global, Local indicate only retaining global or local attention net-             in Fig. 7(b). We can find that the performance grows with the number
+work in HAN, which demonstrates the different contributions of these                   of layers when 𝐿𝛷 is less than 2. After that, the performance starts to
+two modules in state modeling.                                                         drop due to over-smoothing
+    ∙ The subscripts of #𝜂, #𝛿 and #𝜁 denote reserving the semantic-                       ∙ Number of layers in the local attention. We fix the size of the initial
+aware coefficient 𝜂, decay coefficient 𝛿, refined coefficient 𝜁 in the                 window 𝑤0 at 4 and show the results with different numbers of layers
+global attention network, respectively. No subscript indicates applying                in Fig. 7(c). A 3-layer setting achieves the best performance. As the
+the standard attention without the above coefficients.                                 number of layers is stacked (when 𝐿𝑎 is larger than 3), the performance
+    ∙ The subscripts of #ℎ and #𝑠 mean applying the proposed hi-                       drops. A larger window does capture the relevance in a longer scope,
+erarchical and simple-layer structure in the local attention network,                  but may introduce more unrelated interactions simultaneously and lead
+respectively. For fairness, we try the window size at each layer of hier-              to suboptimal results.
+archical structure to conduct experiments for the simple-layer structure                   ∙ Size of the initial window in the local attention. Similar to the
+and select the optimal performance for comparison.                                     above, we fix the number of layers in the local attention 𝐿𝑎 at 3 and
+    From Table 5, we observe that either removing global attention                     show the results with different sizes of the initial window in Fig. 7(d). It
+or local attention degrades the prediction performance, which proves                   can be observed that the best result is achieved when the size is 4. After
+
+                                                                                  10
+T. Wu and Q. Ling                                                                                                            Expert Systems With Applications 225 (2023) 120212
+
+
+
+
+                                 Fig. 6. Visualizations of attention weights in the global attention and the hierarchical local attention.
+
+
+
+
+                                     Fig. 7. AUC comparisons of each component with different parameters on ASSISTments2009.
+
+
+that, the performance drops significantly, which indicates the local                     skills. However, for those multi-skill questions, AKT tends to form
+attention needs a suitable initial window to encode those interactions in                isolated spots, which is adverse to building representations. In GIKT,
+the short term and a larger window may make it incapable of capturing                    those questions covering different attributes are still mixed with each
+the semantics details.                                                                   other to some extent. For the proposed DHGN, the distribution of nodes
+    ∙ Magnitude of the self-supervised task. The results are shown in                    is more even and the boundaries of nodes with different attributes
+Fig. 7(e). Note that the self-supervised task is removed when 𝜆 is set to                are relatively clearer, which demonstrates its effectiveness in keeping
+0. According to the results, we can find that the prediction task achieves               intra-class similarity.
+decent gains with the self-supervised task when 𝜆 is less than 1. A
+larger 𝜆 would result in performance degradation. The possible reason                    5. Conclusion
+is that a large weight would enforce the model to focus on auxiliary task
+excessively and the benefits brought by the self-supervised framework                        In this paper, we propose a novel method, named fusing hybrid at-
+could be easily neutralized.                                                             tentive network with self-supervised dual-channel heterogeneous
+                                                                                         graph, for student modeling and response prediction. We first pro-
+4.6. Visualization                                                                       pose a dual-channel heterogeneous graph network to capture the
+                                                                                         high-order and local relations in the meta-path and network schema
+    For a more intuitive comparison, we apply t-SNE (Van der Maaten                      channels, learning an informative representation for questions. To
+& Hinton, 2008) to visualize the question embeddings. We randomly                        further enhance the representation, we supplement the network with
+select five pairs of ‘skill’ and ‘assign’ attributes, and those corresponding            a self-supervised task and contrast the views learned via the two
+questions covering one pair of them in ASSISTments2017. The results                      channels. Then, in accordance with the historical interactive questions,
+are shown in Fig. 8, where each point represents one question. Note                      we extract a student’s knowledge state by the parallel GRU. Last, in the
+that, DKT, AKT, and GIKT (Fig. 8(a)–(c)), only consider the ‘skill’ as                   proposed hybrid attention network, the student’s long-term and short-
+a single attribute of questions, and the color means the skill covered                   term intents, which are relative to the target question, are explicitly
+in this question. In our model, the color means one pair of attributes                   captured by the global and hierarchical local attention. Empirical
+with this question. We can see that DKT does not perform well. Due                       results on several real-world datasets verify the effectiveness of our
+to Rasch embeddings, AKT forms a curve for questions with the same                       method.
+
+                                                                                    11
+T. Wu and Q. Ling                                                                                                           Expert Systems With Applications 225 (2023) 120212
+
+
+
+
+                      Fig. 8. Embedding visualization. Each point represents one question and its color stands for the attribute of the question.
+
+
+   However, there are still some limitations in our method. On one                     References
+hand, the proposed graph network cannot effectively construct the
+representation of the newly updated questions in online systems. On                    Abdelrahman, G., & Wang, Q. (2019). Knowledge tracing with sequential key-value
+the other hand, we capture a student’s long-term and short-term intents                     memory networks. In Proceedings of the 42nd international ACM SIGIR conference on
+                                                                                            research and development in information retrieval (pp. 175–184).
+in historical sequences by the proposed hybrid attention network, but
+                                                                                       Adesope, O. O., Trevisan, D. A., & Sundararajan, N. (2017). Rethinking the use of tests:
+ignore the differences of initial knowledge states of students. In the                      A meta-analysis of practice testing. Review of Educational Research, 87(3), 659–701.
+future, we plan to introduce a meta-learning paradigm to address the                   Carpenter, S. K., Pashler, H., Wixted, J. T., & Vul, E. (2008). The effects of tests on
+above limitations in the KT field, and exploit meta-learning at the KT                      learning and forgetting. Memory & Cognition, 36(2), 438–448.
+model level and HIN at the data level simultaneously.                                  Chung, J., Gulcehre, C., Cho, K., & Bengio, Y. (2014). Empirical evaluation of gated
+                                                                                            recurrent neural networks on sequence modeling. arXiv preprint arXiv:1412.3555.
+CRediT authorship contribution statement                                               Collobert, R., & Weston, J. (2008). A unified architecture for natural language
+                                                                                            processing: Deep neural networks with multitask learning. In Proceedings of the
+                                                                                            25th international conference on machine learning (pp. 160–167).
+   Tangjie Wu: Conceptualization, Data curation, Software, Method-                     Corbett, A. T., & Anderson, J. R. (1994). Knowledge tracing: Modeling the acquisition of
+ology, Formal analysis, Validation. Qiang Ling: Investigation, Project                      procedural knowledge. User Modeling and User-Adapted Interaction, 4(4), 253–278.
+administration, Writing – review, Funding acquisition, Resources.                      Dong, W., Woźniak, M., Wu, J., Li, W., & Bai, Z. (2023). De-noising aggregation of
+                                                                                            graph neural networks by using principal component analysis. IEEE Transactions on
+Declaration of competing interest                                                           Industrial Informatics, 19(3), 2385–2394.
+                                                                                       Dong, W., Wu, J., Zhang, X., Bai, Z., Wang, P., & Woźniak, M. (2022). Improving
+                                                                                            performance and efficiency of Graph Neural Networks by injective aggregation.
+    The authors declare that they have no known competing finan-                            Knowledge-Based Systems, 254, Article 109616.
+cial interests or personal relationships that could have appeared to                   Fersini, E., Messina, E., & Archetti, F. (2014). A p-median approach for predicting drug
+influence the work reported in this paper.                                                  response in tumour cells. BMC Bioinformatics, 15(1), 1–19.
+                                                                                       Ghosh, A., Heffernan, N., & Lan, A. S. (2020). Context-aware attentive knowledge
+Data availability                                                                           tracing. In Proceedings of the 26th ACM SIGKDD international conference on knowledge
+                                                                                            discovery & data mining (pp. 2330–2339).
+                                                                                       Hamilton, W., Ying, Z., & Leskovec, J. (2017). Inductive representation learning on
+   Data will be made available on request.
+                                                                                            large graphs. Advances in Neural Information Processing Systems, 30.
+                                                                                       Hassani, K., & Khasahmadi, A. H. (2020). Contrastive multi-view representation learning
+Acknowledgments                                                                             on graphs. In International conference on machine learning (pp. 4116–4126). PMLR.
+                                                                                       Hedrea, R.-C. R., & Petriu, E. M. (2021). Evolving fuzzy models of shape memory alloy
+    This work was supported in part by Provincial Quality Program                           wire actuators. Science and Technology, 24(4), 353–365.
+of High Education Schools of Anhui Province, China under Grant                         Hochreiter, S., & Schmidhuber, J. (1997). Long short-term memory. Neural Computation,
+2021jyxm1743, in part by the Key Science and Technology Program of                          9(8), 1735–1780.
+                                                                                       Hu, Z., Dong, Y., Wang, K., & Sun, Y. (2020). Heterogeneous graph transformer. In
+Anhui, China under Grants 202203f07020002 and 202203a05020012,
+                                                                                            Proceedings of the web conference 2020 (pp. 2704–2710).
+and in part by the Applied Science and Technology Achievement Cul-                     Ji, W., Wang, K., Wang, X., Chen, T., & Cristea, A. (2020). Sequential recommender via
+tivation Project of Institute of Advanced Technology, University of                         time-aware attentive memory network. In Proceedings of the 29th ACM international
+Science and Technology of China.                                                            conference on information & knowledge management (pp. 565–574).
+
+
+                                                                                  12
+T. Wu and Q. Ling                                                                                                                        Expert Systems With Applications 225 (2023) 120212
+
+
+Jiang, H., Xiao, B., Luo, Y., & Ma, J. (2023). A self-attentive model for tracing                   Sun, Y., Han, J., Yan, X., Yu, P. S., & Wu, T. (2011). Pathsim: Meta path-based top-k
+     knowledge and engagement in parallel. Pattern Recognition Letters, 165, 25–32.                     similarity search in heterogeneous information networks. Proceedings of the VLDB
+Kasurinen, J., & Nikula, U. (2009). Estimating programming knowledge with Bayesian                      Endowment, 4(11), 992–1003.
+     knowledge tracing. ACM SIGCSE Bulletin, 41(3), 313–317.                                        Sun, F.-Y., Hoffmann, J., Verma, V., & Tang, J. (2019). Infograph: Unsupervised
+Kingma, D. P., & Ba, J. (2014). Adam: A method for stochastic optimization. arXiv                       and semi-supervised graph-level representation learning via mutual information
+     preprint arXiv:1412.6980.                                                                          maximization. arXiv preprint arXiv:1908.01000.
+Kipf, T. N., & Welling, M. (2016). Semi-supervised classification with graph                        Sun, J., Zou, R., Liang, R., Gao, L., Liu, S., Li, Q., Zhang, K., & Jiang, L. (2022).
+     convolutional networks. arXiv preprint arXiv:1609.02907.                                           Ensemble knowledge tracing: Modeling interactions in learning process. Expert
+Lindsey, R. V., Shroyer, J. D., Pashler, H., & Mozer, M. C. (2014). Improving students’                 Systems with Applications, Article 117680.
+     long-term knowledge retention through personalized review. Psychological Science,              Tong, H., Wang, Z., Liu, Q., Zhou, Y., & Han, W. (2020). HGKT: Introducing hierarchical
+     25(3), 639–647.                                                                                    exercise graph for knowledge tracing. arXiv preprint arXiv:2006.16915.
+Liu, S., Zou, R., Sun, J., Zhang, K., Jiang, L., Zhou, D., & Yang, J. (2021). A hierarchical
+                                                                                                    Tsallis, C. (1988). Possible generalization of Boltzmann-Gibbs statistics. Journal of
+     memory network for knowledge tracing. Expert Systems with Applications, 177,
+                                                                                                        Statistical Physics, 52(1), 479–487.
+     Article 114935.
+                                                                                                    Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł.,
+Lu, Y., Fang, Y., & Shi, C. (2020). Meta-learning on heterogeneous information networks
+                                                                                                        & Polosukhin, I. (2017). Attention is all you need. In Advances in neural information
+     for cold-start recommendation. In Proceedings of the 26th ACM SIGKDD international
+                                                                                                        processing systems (pp. 5998–6008).
+     conference on knowledge discovery & data mining (pp. 1563–1573).
+                                                                                                    Veličković, P., Cucurull, G., Casanova, A., Romero, A., Lio, P., & Bengio, Y. (2017).
+Van der Maaten, L., & Hinton, G. (2008). Visualizing data using t-SNE. Journal of
+                                                                                                        Graph attention networks. arXiv preprint arXiv:1710.10903.
+     Machine Learning Research, 9(11), 2579–2605.
+Minn, S., Desmarais, M. C., Zhu, F., Xiao, J., & Wang, J. (2019). Dynamic student                   Velickovic, P., Fedus, W., Hamilton, W. L., Liò, P., Bengio, Y., & Hjelm, R. D. (2019).
+     classiffication on memory networks for knowledge tracing. In Pacific-Asia conference               Deep graph infomax. ICLR (Poster), 2(3), 4.
+     on knowledge discovery and data mining (pp. 163–174). Springer.                                Wang, X., Ji, H., Shi, C., Wang, B., Ye, Y., Cui, P., & Yu, P. S. (2019). Heterogeneous
+Nagatani, K., Zhang, Q., Sato, M., Chen, Y.-Y., Chen, F., & Ohkuma, T. (2019).                          graph attention network. In The world wide web conference (pp. 2022–2032).
+     Augmenting knowledge tracing by considering forgetting behavior. In The world                  Wang, X., Liu, N., Han, H., & Shi, C. (2021). Self-supervised heterogeneous graph
+     wide web conference (pp. 3101–3107).                                                               neural network with co-contrastive learning. In Proceedings of the 27th ACM SIGKDD
+Ni, Q., Wei, T., Zhao, J., He, L., & Zheng, C. (2023). HHSKT: A learner–question                        conference on knowledge discovery & data mining (pp. 1726–1736).
+     interactions based heterogeneous graph neural network model for knowledge                      Wang, C., Ma, W., Zhang, M., Lv, C., Wan, F., Lin, H., Tang, T., Liu, Y., & Ma, S.
+     tracing. Expert Systems with Applications, 215, Article 119334.                                    (2021). Temporal cross-effects in knowledge tracing. In Proceedings of the 14th ACM
+Van den Oord, A., Li, Y., & Vinyals, O. (2018). Representation learning with contrastive                international conference on web search and data mining (pp. 517–525).
+     predictive coding. arXiv e-prints, arXiv–1807.                                                 Wang, W., Ma, H., Zhao, Y., Li, Z., & He, X. (2022). Tracking knowledge proficiency
+Pandey, S., & Karypis, G. (2019). A self-attentive model for knowledge tracing. arXiv                   of students with calibrated Q-matrix. Expert Systems with Applications, 192, Article
+     preprint arXiv:1907.06837.                                                                         116454.
+Peng, Z., Huang, W., Luo, M., Zheng, Q., Rong, Y., Xu, T., & Huang, J. (2020).                      Wang, Y., Tang, S., Lei, Y., Song, W., Wang, S., & Zhang, M. (2020). DisenHAN: Disen-
+     Graph representation learning via graphical mutual information maximization. In                    tangled heterogeneous graph attention network for recommendation. In Proceedings
+     Proceedings of the web conference 2020 (pp. 259–270).                                              of the 29th ACM international conference on information & knowledge management (pp.
+Peters, B., Niculae, V., & Martins, A. F. (2019). Sparse sequence-to-sequence models.                   1605–1614).
+     arXiv preprint arXiv:1905.05702.                                                               Wei, L., Li, B., Li, Y., & Zhu, Y. (2022). Time interval aware self-attention approach
+Piech, C., Spencer, J., Huang, J., Ganguli, S., Sahami, M., Guibas, L., & Sohl-Dickstein, J.            for knowledge tracing. Computers & Electrical Engineering, 102, Article 108179.
+     (2015). Deep knowledge tracing. arXiv preprint arXiv:1506.05908.                               Wu, Z., Huang, L., Huang, Q., Huang, C., & Tang, Y. (2022). SGKT: Session graph-
+Pozna, C., Precup, R.-E., Tar, J. K., Škrjanc, I., & Preitl, S. (2010). New results                     based knowledge tracing for student performance prediction. Expert Systems with
+     in modelling derived from Bayesian filtering. Knowledge-Based Systems, 23(2),                      Applications, 206, Article 117681.
+     182–194.
+                                                                                                    Wu, T., & Ling, Q. (2023). Self-supervised heterogeneous hypergraph network for
+Ren, Y., Liu, B., Huang, C., Dai, P., Bo, L., & Zhang, J. (2019). Heterogeneous deep
+                                                                                                        knowledge tracing. Information Sciences, 624, 200–216.
+     graph infomax. arXiv preprint arXiv:1911.08538.
+                                                                                                    Xu, K., Hu, W., Leskovec, J., & Jegelka, S. (2018). How powerful are graph neural
+Schlichtkrull, M., Kipf, T. N., Bloem, P., Berg, R. v. d., Titov, I., & Welling, M. (2018).
+                                                                                                        networks? arXiv preprint arXiv:1810.00826.
+     Modeling relational data with graph convolutional networks. In European semantic
+                                                                                                    Yang, Y., Shen, J., Qu, Y., Liu, Y., Wang, K., Zhu, Y., Zhang, W., & Yu, Y. (2020).
+     web conference (pp. 593–607). Springer.
+                                                                                                        GIKT: a graph-based interaction model for knowledge tracing. arXiv preprint arXiv:
+Shang, J., Qu, M., Liu, J., Kaplan, L. M., Han, J., & Peng, J. (2016). Meta-path guided
+                                                                                                        2009.05991.
+     embedding for similarity search in large-scale heterogeneous information networks.
+     arXiv preprint arXiv:1610.09769.                                                               Yudelson, M. V., Koedinger, K. R., & Gordon, G. J. (2013). Individualized bayesian
+Shi, C., Li, Y., Zhang, J., Sun, Y., & Philip, S. Y. (2016). A survey of heterogeneous                  knowledge tracing models. In International conference on artificial intelligence in
+     information network analysis. IEEE Transactions on Knowledge and Data Engineering,                 education (pp. 171–180). Springer.
+     29(1), 17–37.                                                                                  Zhang, J., Shi, X., King, I., & Yeung, D.-Y. (2017). Dynamic key-value memory networks
+Song, X., Li, J., Tang, Y., Zhao, T., Chen, Y., & Guan, Z. (2021). Jkt: A joint graph                   for knowledge tracing. In Proceedings of the 26th international conference on world
+     convolutional network based deep knowledge tracing. Information Sciences, 580,                     wide web (pp. 765–774).
+     510–523.                                                                                       Zhang, C., Song, D., Huang, C., Swami, A., & Chawla, N. V. (2019). Heterogeneous
+Su, Y., Liu, Q., Liu, Q., Huang, Z., Yin, Y., Chen, E., Ding, C., Wei, S., & Hu, G.                     graph neural network. In Proceedings of the 25th ACM SIGKDD international
+     (2018). Exercise-enhanced sequential modeling for student performance prediction.                  conference on knowledge discovery & data mining (pp. 793–803).
+     In Proceedings of the AAAI conference on artificial intelligence, Vol. 32.                     Zhu, Y., Xu, Y., Yu, F., Liu, Q., Wu, S., & Wang, L. (2021). Graph contrastive
+Sun, Y., & Han, J. (2013). Mining heterogeneous information networks: a structural                      learning with adaptive augmentation. In Proceedings of the web conference 2021
+     analysis approach. Acm Sigkdd Explorations Newsletter, 14(2), 20–28.                               (pp. 2069–2080).
+
+
+
+
+                                                                                               13
+

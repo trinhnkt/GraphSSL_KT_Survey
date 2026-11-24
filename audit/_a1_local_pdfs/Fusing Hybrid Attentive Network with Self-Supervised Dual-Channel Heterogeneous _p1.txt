@@ -1,0 +1,204 @@
+Expert Systems With Applications 225 (2023) 120212
+Available online 21 April 2023
+0957-4174/© 2023 Elsevier Ltd. All rights reserved.
+Contents lists available at ScienceDirect
+Expert Systems With Applications
+journal homepage: www.elsevier.com/locate/eswa
+Fusing hybrid attentive network with self-supervised dual-channel
+heterogeneous graph for knowledge tracing
+Tangjie Wu, Qiang Ling ∗
+University of Science and Technology of China, 440 Huangshan Road, Hefei, 230027, Anhui, China
+A R T I C L E
+I N F O
+Keywords:
+Heterogeneous graph neural network
+Contrastive learning
+Self-supervised learning
+Attention mechanism
+Knowledge tracing
+A B S T R A C T
+Recently the large-scale influence of Covid-19 promoted the fast development of intelligent tutoring systems
+(ITS). As a major task of ITS, Knowledge Tracing (KT) aims to capture a student’s dynamic knowledge state
+based on his historical response sequences and provide personalized learning assistance to him. However,
+most existing KT methods have encountered the data sparsity problem. In real scenarios, an online tutoring
+system usually has an extensive collection of questions while each student can only interact with a limited
+number of questions. As a result, the records of some questions could be extremely sparse, which degrades the
+performance of traditional KT models. To resolve this issue, we propose a Dual-channel Heterogeneous Graph
+Network (DHGN) to learn informative representations of questions from students’ records by capturing both the
+high-order heterogeneous and local relations. As the supervised learning manner applied in previous methods
+is incapable of exploiting unobserved relations between questions, we innovatively integrate a self-supervised
+framework into the KT task and employ contrastive learning via the two channels of DHGN, supplementing
+as an auxiliary task to improve the KT performance. Moreover, we adopt the attention mechanism, which
+has achieved impressive performance in natural language processing tasks, to effectively capture students’
+knowledge state. But the standard attention network is inapplicable to the KT task because the current
+knowledge state of a student usually shows strong dependency on his recently interactive questions, unlike
+the situation of language processing tasks, which focus more on the long-term dependency. To avoid the
+inefficiency of standard attention networks in the KT task, we further devise a novel Hybrid Attentive Network
+(HAN), which produces both the global attention and the hierarchical local attention to model the long-
+term and short-term intents, respectively. Then, by the gating network, a student’s long-term and short-term
+intents are combined for efficient prediction. We conduct extensive experiments on several real-world datasets.
+Experimental results demonstrate that our proposed methods achieve significant performance improvement
+compared to existing state-of-the-art baselines, which validates the effectiveness of the proposed dual-channel
+heterogeneous graph framework and hybrid attentive network.
+1. Introduction
+With the rapid development of adaptive learning, intelligent tutor-
+ing systems (ITS) have found more and more applications. ITS may
+not require the knowledge and experience of education experts as
+before. By analyzing a student’s historical records, ITS can effectively
+track the dynamic change of his knowledge state. Nowadays knowledge
+tracing (KT) (Corbett & Anderson, 1994) has become a hot research
+topic of ITS, which aims to analyze a student’s knowledge state and
+predict his response to a new question. According to the prediction
+results, teachers can adjust the teaching plans and develop personalized
+strategies (Adesope et al., 2017) for each student in online education
+systems.
+∗Corresponding author.
+E-mail addresses: wtj1999@mail.ustc.edu.cn (T. Wu), qling@ustc.edu.cn (Q. Ling).
+KT research can be dated back to the late 1960s. At the early stage,
+some novel Bayesian modeling methods (Pozna et al., 2010; Yudelson
+et al., 2013) were developed to make great progress in the heuristic
+modeling. Bayesian Knowledge Tracing (BKT) (Kasurinen & Nikula,
+2009) is a typical class of methods. BKT represents a student’s knowl-
+edge acquisition level with a binary number (1 for mastery and 0 for
+not mastery). Later, multiple factors are taken to construct a student’s
+knowledge state. The Difficulty, Ability, and Student History (DASH)
+model (Lindsey et al., 2014) considers the impact of additional factors,
+such as question difficulty, error rate, response time, on students’ final
+response. However, the above models strongly depend on the statistical
+estimation of parameters and are not robust enough.
+https://doi.org/10.1016/j.eswa.2023.120212
+Received 6 July 2022; Received in revised form 16 April 2023; Accepted 16 April 2023
+
+Expert Systems With Applications 225 (2023) 120212
+2
+T. Wu and Q. Ling
+Over the past decade, there has emerged some attempts to construct
+nonlinear modeling approaches (Fersini et al., 2014; Hedrea & Petriu,
+2021), which achieved superior performance in diverse fields. Along
+this trend, neural network-based approaches were applied to knowl-
+edge tracing. Due to their strong robustness and portability, neural
+network-based methods generally perform better than traditional ones.
+For example, Deep Knowledge Tracing (DKT) (Piech et al., 2015) first
+utilizes the long short term memory (LSTM) network (Hochreiter &
+Schmidhuber, 1997) to track a student’s state evolution process. Ensem-
+ble Knowledge Tracing (EKT) (Sun et al., 2022) introduces an ensemble
+learning into KT, which fuses BKT and DKT, and extends AdaBoost to
+deal with KT sequential data. But this recurrent network architecture is
+insufficient to capture long-term dependencies and is easy to lose early
+semantic details. Then some memory-based methods (Abdelrahman
+& Wang, 2019; Liu et al., 2021; Zhang et al., 2017), like Dynamic
+Key-Value Memory Networks for Knowledge Tracing (DKVMN) (Zhang
+et al., 2017), were proposed to resolve the above issues by introducing
+an external memory matrix.
+Later, attention-based methods (Vaswani et al., 2017) have made
+great advances in handling sequential data, which can automatically
+study different weights for each interaction to capture the related
+information in the historical sequences. The Self-Attentive Knowledge
+Tracing (SAKT) (Pandey & Karypis, 2019) first utilizes the attention
+mechanism to focus on the historical interactions that are highly rel-
+evant to the target question. However, due to the long recording
+cycle of KT, the traditional attention mechanism does not perform
+well. Context-Aware Attentive Knowledge Tracing (AKT) (Ghosh et al.,
+2020) introduces a monotonic attention mechanism that integrates the
+exponential decay and characterizes the importance of memory decay
+in KT.
+Recently, graph neural network (GNN) (Dong et al., 2023, 2022;
+Kipf & Welling, 2016; Schlichtkrull et al., 2018; Wang et al., 2019)
+shows superior performance on the relation network and graph-
+structured data, and can encode rich context information by aggre-
+gating graph attributive and structural features. Some GNN-based
+methods (Ni et al., 2023; Song et al., 2021; Wang et al., 2022; Wu
+et al., 2022; Yang et al., 2020) have been leveraged in the KT field, like
+A Graph-based Interaction Model for Knowledge Tracing (GIKT) (Yang
+et al., 2020), which combines the latent relations between questions
+and skills by utilizing the graph convolutional network (GCN) (Kipf
+& Welling, 2016). A joint graph convolutional network based Deep
+Knowledge Tracing (JKT) (Song et al., 2021) models the multi-
+dimensional relationships of ‘‘exercise-to-exercise’’ and ‘‘concept-to-
+concept’’ via two graph networks.
+Although existing methods have achieved significant improvement
+in knowledge tracing, they still suffer from the following limitations.
+1. The performance of those methods mainly relies on the scale of
+historical interactions. However, due to the sparsity of records
+in KT, the visiting frequency of some questions is extremely
+low. To avoid over-fitting and over-parameterization, previous
+methods (Ghosh et al., 2020; Piech et al., 2015; Zhang et al.,
+2017) usually select the skill records, instead of the question
+records (the number of questions is generally much larger than
+that of skills), to model a student’s knowledge state. But this
+usually leads to the loss of semantic details being contained in
+historical interactions .
+2. Some graph-based methods (Song et al., 2021; Tong et al., 2020;
+Yang et al., 2020) do improve the representations of questions by
+fusing the graph-structured information, but may mostly over-
+look the heterogeneity of nodes. In KT, these recorded questions
+usually attach diverse attributes, like question type, difficulty
+coefficient, involved skill, etc. Obviously, simple homogeneous
+graphs (question-skill pair) are incapable of characterizing het-
+erogeneous relations and building expressive representations for
+questions.
+3. Traditional attention-based methods often yield poor perfor-
+mance in long sequence prediction (Pandey & Karypis, 2019). In
+fact, memory decays over time, i.e., the knowledge, which was
+well mastered before, may be forgotten now (Carpenter et al.,
+2008; Nagatani et al., 2019). It is non-trivial to balance the
+effects of short-term and long-term memory in student modeling.
+To address the above limitations, we propose a novel knowledge
+tracing model, a Hybrid Attentive Network fused with Dual-channel
+Heterogeneous Graph Network (HAN-DHGN). First, we introduce a
+dual-channel heterogeneous graph network (DHGN) and then learn
+question embeddings via the network schema and meta-path chan-
+nels of DHGN, which can effectively exploit the local and high-order
+relations between questions. As most KT methods are based on a
+supervised learning paradigm, which is limited by the data sparsity
+in real scenarios, making it incapable to learn quality representa-
+tions, we introduce self-supervised learning into DHGN, aiming to
+exploit unobserved relations and reinforce the question representations.
+Specifically, we utilize the question representations learned by the two
+channels of DHGN to conduct contrastive learning, which maximizes
+the similarity between positive pairs while minimizing the similarity
+between negative-sampled counterparts. To the best of our knowledge,
+the potential of contrastive learning for heterogeneous graph repre-
+sentation learning and KT has not yet been explored. Therefore, our
+work aims to fill this research gap and investigate the effectiveness of
+contrastive learning in the KT field.
+Moreover, to improve the efficiency of traditional attention-based
+models and perceive the dynamics of memory, we propose a novel
+hybrid attentive network (HAN), including both global attention and
+hierarchical local attention, to track a student’s intents in the long
+and short terms, respectively. In HAN, the global attention deals with
+the whole interactive sequences to capture the long-term intent. To
+characterize the memory decay in the long sequence, we add an ex-
+ponential decay to the standard attention network. The local attention
+focuses on the recent interactive details by a cluster of hierarchical
+attention windows. As the window size increases with the number
+of layers, our model can perceive the relevance in longer scope and
+extract multi-scale semantics features. The hierarchical construction
+greatly optimizes the short-term intent modeling. Then the two intents
+are adaptively integrated via a gating network for the prediction task.
+Finally, we unify the prediction task and the self-supervised task, and
+leverage the multi-task training strategy to jointly optimize the two
+tasks. Our contributions can be summarized as follows.
+∙We propose a novel dual-channel heterogeneous graph network
+(DHGN) for representation learning. The dual-channel framework can
+effectively exploit the local and high-order relations between questions,
+helping the model build expressive question representations for the
+downstream prediction task. Although the existing GNN-based meth-
+ods demonstrate their superiority in the KT field, most of them are
+built upon a simple homogeneous graph, which neglects the complex
+heterogeneity between questions and may consequently fail to learn
+expressive representations for questions.
+∙We devise a novel hybrid attentive network (HAN) to capture a
+student’s long-term and short-term intents simultaneously. The conven-
+tional attention mechanism, which focuses on long-term dependencies,
+is incapable of modeling memory decay in real scenarios and often
+yields poor performance. Compared with the conventional attention
+mechanism, our HAN fuses global attention and hierarchical local
+attention, aiming to model a student’s state in a more effective manner,
+and achieves decent gains.
+∙We innovatively integrate a self-supervised task into the training
+of our DHGN to enhance heterogeneous graph modeling and further
+improve the KT prediction performance. Existing KT methods are usu-
+ally built on a supervised learning paradigm and their performances
+are constrained by the data sparsity problem. So it is difficult for
+these methods to learn high-quality representations. Conversely, the

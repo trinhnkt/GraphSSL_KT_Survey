@@ -1,0 +1,153 @@
+Expert Systems With Applications 206 (2022) 117681
+11
+Z. Wu et al.
+Fig. 13. Comparison of the impact of knowledge states of differing hidden sizes.
+exercise-answer record and the embedding representation of all exer-
+cises and skills. Next, we use the self-attention network with a forget-
+ting mechanism to capture the global dependencies between distant
+locations. Finally, we combine short-term dynamics (the most recently
+answered exercise) and the dependence of global self-attention to ex-
+press the exercise answer sequence in a linear mechanism. We validate
+the advantages of SGKT on several real-world datasets used in knowl-
+edge tracing, compared to some existing methods in terms of AUC,
+knowledge state evolution description and cold start. Furthermore, we
+conduct an ablation study.
+Knowledge tracing is a research hotspot in the field of educational
+data mining. Traditional knowledge tracing methods take exercise an-
+swer history as a sequence, ignoring the relationships between the
+exercises formed during the answering process. In this work, we im-
+proved the knowledge tracing model to understand the knowledge
+state from the exercise session graph node information. Cold start is
+a new problem in current knowledge tracing research. Although this
+work considers the cold start issue in the experiments, our model did
+not perform any optimization and more analysis is needed. We will
+continue to work on this problem in the future.
+CRediT authorship contribution statement
+Zhengyang Wu: Conceptualization, Methodology, Writing. Li
+Huang: Software, Writing – original draft. Qionghao Huang: Re-
+viewing and editing. Changqin Huang: Data planning, Visualization.
+Yong Tang: Investigation.
+Acknowledgments
+This research was supported by the National Natural Science
+Foundation
+of
+China
+(NSFC)
+under
+the
+Grant
+No.
+U1811263,
+62037001, and 61877020. We would like to thank the anonymous
+reviewers for their constructive advice.
+References
+Baker, R. S. J. D., Corbett, A. T., & Aleven, V. (2008). More accurate student modeling
+through contextual estimation of slip and guess probabilities in Bayesian knowledge
+tracing. In International conference on intelligent tutoring systems (pp. 406–415).
+Springer.
+Battaglia, P. W., Hamrick, J. B., Bapst, V., Sanchez-Gonzalez, A., Zambaldi, V. F.,
+Malinowski, M., Tacchetti, A., Raposo, D., Santoro, A., Faulkner, R., Gülçehre, Ç.,
+Song, H. F., Ballard, A. J., Gilmer, J., Dahl, G. E., Vaswani, A., Allen, K. R., Nash, C.,
+Langston, V., .... Pascanu, R. (2018). Relational inductive biases, deep learning, and
+graph networks. CoRR, abs/1806.01261.
+Chanaa, A., & Faddouli, N. E. (2020). Predicting learners need for recommendation
+using dynamic graph-based knowledge tracing. In I. I. Bittencourt, M. Cukurova,
+K. Muldner, R. Luckin, & E. Millán (Eds.), Lecture notes in computer science: vol.
+12164, Artificial intelligence in education - 21st international conference, AIED 2020,
+Ifrane, Morocco, July 6-10, 2020, proceedings, part II (pp. 49–53). Springer.
+Chen, J., Lu, Y., Shang, F., & Wang, Y. (2021). A fuzzy matrix factor recommendation
+method with forgetting function and user features. Applied Soft Computing, 100,
+Article 106910.
+Choi, Y., Lee, Y., Shin, D., Cho, J., Park, S., Lee, S., Baek, J., Bae, C., Kim, B., & Heo, J.
+(2020). Ednet: A large-scale hierarchical dataset in education. In International
+conference on artificial intelligence in education (pp. 69–73). Springer.
+Corbett, A. T., & Anderson, J. R. (1994). Knowledge tracing: Modeling the acquisition
+of procedural knowledge. User Model. User-Adapt. Interact., 4(4), 253–278.
+Graves, A., Mohamed, A.-r., & Hinton, G. (2013). Speech recognition with deep
+recurrent neural networks. In 2013 IEEE international conference on acoustics, speech
+and signal processing (pp. 6645–6649). IEEE.
+Kipf, T. N., & Welling, M. (2017). Semi-supervised classification with graph convolu-
+tional networks. In 5th international conference on learning representations, ICLR 2017,
+Toulon, France, April 24-26, 2017, conference track proceedings. OpenReview.net.
+Li, Y., Tarlow, D., Brockschmidt, M., & Zemel, R. S. (2016). Gated graph sequence
+neural networks. In Y. Bengio, & Y. LeCun (Eds.), 4th international conference on
+learning representations, ICLR 2016, San Juan, Puerto Rico, May 2-4, 2016, conference
+track proceedings.
+Lin, C., & Chi, M. (2016). Intervention-bkt: incorporating instructional interventions
+into Bayesian knowledge tracing. In International conference on intelligent tutoring
+systems (pp. 208–218). Springer.
+Liu, Q., Huang, Z., Yin, Y., Chen, E., Xiong, H., Su, Y., & Hu, G. (2021). EKT: exercise-
+aware knowledge tracing for student performance prediction. IEEE Transactions on
+Knowledge and Data Engineering, 33(1), 100–115.
+Liu, Q., Shen, S., Huang, Z., Chen, E., & Zheng, Y. (2021). A survey of knowledge
+tracing. CoRR, abs/2105.15106.
+Liu, Y., Yang, Y., Chen, X., Shen, J., Zhang, H., & Yu, Y. (2020). Improving knowledge
+tracing via pre-training question embeddings. In C. Bessiere (Ed.), Proceedings of
+the twenty-ninth international joint conference on artificial intelligence, IJCAI 2020 (pp.
+1577–1583). ijcai.org.
+Liu, S., Zou, R., Sun, J., Zhang, K., Jiang, L., Zhou, D., & Yang, J. (2021). A hierarchical
+memory network for knowledge tracing. Expert Systems with Applications, 177,
+Article 114935.
+McGill, T. J., & Klobas, J. E. (2009). A task-technology fit view of learning management
+system impact. Computer and Education, 52(2), 496–508.
+Miah, S. J., Miah, M., & Shen, J. (2020). Editorial note: Learning management
+systems and big data technologies for higher education. Education and Information
+Technologies, 25(2), 725–730.
+
+Expert Systems With Applications 206 (2022) 117681
+12
+Z. Wu et al.
+Minn, S., Yu, Y., Desmarais, M. C., Zhu, F., & Vie, J.-J. (2018). Deep knowledge tracing
+and dynamic student classification for knowledge tracing. In 2018 IEEE international
+conference on data mining (ICDM) (pp. 1182–1187). IEEE.
+Mongkhonvanit, K., Kanopka, K., & Lang, D. (2019). Deep knowledge tracing and
+engagement with MOOCs. In Proceedings of the 9th international conference on
+learning analytics & knowledge (pp. 340–342).
+Nakagawa, H., Iwasawa, Y., & Matsuo, Y. (2019). Graph-based knowledge tracing: mod-
+eling student proficiency using graph neural net. In Proceedings of the international
+conference on learning representations (ICLR) (pp. 1–8).
+Piech, C., Bassen, J., Huang, J., Ganguli, S., Sahami, M., Guibas, L. J., & Sohl-
+Dickstein, J. (2015). Deep knowledge tracing. In Advances in neural information
+processing systems 28: Annual conference on neural information processing systems
+2015, December 7-12, 2015, Montreal, Quebec, Canada (pp. 505–513).
+Scarselli, F., Gori, M., Tsoi, A. C., Hagenbuchner, M., & Monfardini, G. (2009). The
+graph neural network model. IEEE Transactions on Neural Networks and Learning
+Systems, 20(1), 61–80.
+Song, X., Li, J., Lei, Q., Zhao, W., Chen, Y., & Mian, A. (2022). Bi-CLKT: Bi-graph
+contrastive learning based knowledge tracing. Knowledge Based Systems, 241, Article
+108274.
+Song, X., Li, J., Tang, Y., Zhao, T., Chen, Y., & Guan, Z. (2021). JKT: a joint graph
+convolutional network based deep knowledge tracing. Information Sciences, 580,
+510–523.
+Sweeney, M., Lester, J., Rangwala, H., & Johri, A. (2016). Next-term student per-
+formance prediction: A recommender systems approach. In T. Barnes, M. Chi, &
+M. Feng (Eds.), Proceedings of the 9th international conference on educational data
+mining, EDM 2016, Raleigh, North Carolina, USA, June 29 - July 2, 2016 (p. 7).
+International Educational Data Mining Society (IEDMS).
+Tomasevic, N., Gvozdenovic, N., & Vranes, S. (2020). An overview and comparison
+of supervised data mining techniques for student exam performance prediction.
+Computer and Education, 143.
+Vie, J.-J., & Kashima, H. (2019). Knowledge tracing machines: Factorization machines
+for knowledge tracing. In Proceedings of the AAAI conference on artificial intelligence,
+Vol. 33 (pp. 750–757).
+Wang, L., Sy, A., Liu, L., & Piech, C. (2017). Deep knowledge tracing on programming
+exercises. In Proceedings of the fourth (2017) ACM conference on learning@ scale (pp.
+201–204).
+Xiong, X., Zhao, S., Inwegen, E. V., & Beck, J. (2016). Going deeper with deep
+knowledge tracing. In Proceedings of the 9th international conference on educational
+data mining (pp. 545–550). IEDMS.
+Yang, Y., Shen, J., Qu, Y., Liu, Y., Wang, K., Zhu, Y., Zhang, W., & Yu, Y. (2020).
+GIKT: a graph-based interaction model for knowledge tracing. In Lecture notes in
+computer science: vol. 12457, Machine learning and knowledge discovery in databases
+- European conference (pp. 299–315). Springer.
+Yeung, C.-K., & Yeung, D.-Y. (2018). Addressing two problems in deep knowledge
+tracing via prediction-consistent regularization. In Proceedings of the fifth annual
+ACM conference on learning at scale (pp. 1–10). ACM.
+Zhang, J., Shi, X., King, I., & Yeung, D.-Y. (2017). Dynamic key-value memory networks
+for knowledge tracing. In Proceedings of the 26th international conference on world
+wide web (pp. 765–774).
+Zhang, K., & Yao, Y. (2018). A three learning states Bayesian knowledge tracing model.
+Knowledge-Based Systems, 148, 189–201.
+Zhao, J., Bhatt, S. P., Thille, C., Gattani, N., & Zimmaro, D. (2020). Cold start
+knowledge tracing with attentive neural turing machine. In Proceedings of the 7th
+ACM conference on learning @ scale, virtual event (pp. 333–336). ACM.

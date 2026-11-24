@@ -1,0 +1,50 @@
+{
+  "title": [
+    "Fusing hybrid attentive network with self-supervised dual-channel heterogeneous graph for knowledge tracing"
+  ],
+  "author": [
+    {
+      "given": "Tangjie",
+      "family": "Wu",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-5688-4130",
+      "authenticated-orcid": false,
+      "given": "Qiang",
+      "family": "Ling",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2023,
+        9
+      ]
+    ]
+  },
+  "container-title": [
+    "Expert Systems with Applications"
+  ],
+  "volume": "225",
+  "issue": null,
+  "page": "120212",
+  "publisher": "Elsevier BV",
+  "DOI": "10.1016/j.eswa.2023.120212",
+  "type": "journal-article"
+}

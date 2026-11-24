@@ -24,11 +24,11 @@
 
 \fill[head, rounded corners=4pt] (0,0) rectangle (15.6,1.15);
 \node[anchor=west, text=white, font=\sffamily\bfseries\large] at (0.35,0.72)
-    {SSL-KT~codebook~families};
+    {SSL-KT pretext families};
 \node[anchor=west, text=white!90, font=\sffamily\small] at (0.35,0.32)
-    {$N_S=9$ under the locked S-criterion  $\cdot$  $N_{G\cap S}=8$  $\cdot$  CL4KT is sequence-only};
+    {$N_S=16$  $\cdot$  $N_{G\cap S}=12$  $\cdot$  sequence-only $=4$};
 \node[anchor=east, text=white, font=\sffamily\bfseries] at (15.25,0.58)
-    {4 locked families};
+    {families below: pre-exp.};
 
 % Left column
 \node[cell] (a) at (3.90,-0.90) {%
@@ -42,16 +42,10 @@
     {\scriptsize\color{muted}PEBG / Pre-train Q-Emb; bipartite Q--S}};
 \node[cell, below=0.18cm of c] (d) {%
     {\small\bfseries Sequence contrastive  $n=1$}\\[-1pt]
-    {\scriptsize\color{muted}CL4KT; \texttt{graph\_source=NONE}}};
+    {\scriptsize\color{muted}CL4KT; graph source = none}};
 % Right column
-\node[cell] (g) at (11.70,-0.90) {%
-    {\small\bfseries Locked codebook Sec.\ 14 tokens only}\\[-1pt]
-    {\scriptsize\color{muted}No hypergraph / cross-view / hierarchical family codes}};
-\node[cell, below=0.18cm of g] (h) {%
-    {\small\bfseries Mechanism notes are not families}\\[-1pt]
-    {\scriptsize\color{muted}Hypergraph views, line-graph, hierarchy stay in Table IV notes}};
-\node[cell, below=0.18cm of h] (note) {%
-    {\small\bfseries Not SSL under S-criterion}\\[-1pt]
+\node[cell] (note) at (11.70,-0.90) {%
+    {\small\bfseries Not SSL under the S-criterion}\\[-1pt]
     {\scriptsize\color{muted}SINKT, Coda, KGNN-KT, R$^2$GCurL, STSKT remain Graph-KT only}};
 
 \end{tikzpicture}

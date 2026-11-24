@@ -1,0 +1,222 @@
+2838
+IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 70, NO. 1, FEBRUARY 2024
+Weighted Heterogeneous Graph-Based Three-View
+Contrastive Learning for Knowledge Tracing
+in Personalized e-Learning Systems
+Jianwen Sun
+, Shangheng Du
+, Zhi Liu
+, Fenghua Yu, Sannyuya Liu
+, and Xiaoxuan Shen
+Abstract—Personalized e-learning systems are applications of
+consumer electronics in the ﬁeld of education that provide indi-
+vidualized and adaptive services for users. Knowledge tracing
+(KT), as a key technology, aims to model learners’ knowledge
+states through the interactions between learners and learning
+resources, and predicts their future performance. However, the
+problem of interaction sparsity in educational resources leads
+to the fact that simple representations of questions usually
+fail to accurately capture students’ knowledge states. In this
+paper, inspired by the data-driven paradigm, we propose a
+novel knowledge tracing method named weighted heterogeneous
+graph-based Three-view Contrastive Learning framework for
+Knowledge Tracing (TCL4KT). Technically, three different view
+encoders in TCL4KT complement each other to obtain ques-
+tion embeddings with rich information. Speciﬁcally, TCL4KT
+considers the semantic information of higher-order, heteroge-
+neous and the downstream task on a weighted heterogeneous
+graph of KT to learn high-quality representations. Besides, a
+meta-path-based positive sample selection strategy and joint con-
+trastive loss are employed to gain better prediction performance.
+Experimental results on four datasets demonstrate the superi-
+ority of TCL4KT over baseline models, and further analysis
+veriﬁes the effectiveness of our three-view contrastive learning
+framework.
+Index
+Terms—Heterogeneous
+graph,
+contrastive
+learning,
+knowledge tracing, personalized e-learning systems.
+I. INTRODUCTION
+W
+ITH the rise of digital technology, the electronic
+industry has produced many applications and consumer
+electronics in the ﬁeld of education [1], [2] that have gar-
+nered signiﬁcant engagement from consumers and offer them
+various personalized services. Personalized learning has long
+been a dream pursued by education, which was rated by the
+National Academy of Engineering as one of the 14 grand
+Manuscript received 1 January 2023; revised 21 February 2023; accepted
+6 July 2023. Date of publication 11 July 2023; date of current version
+26 April 2024. This work was supported in part by the National Natural
+Science Foundation of China under Grant 62077021, Grant 62077017, Grant
+62107017, and Grant 62293554; in part by the Hubei Provincial Natural
+Science Foundation of China under Grant 2022CFB414; in part by the China
+Postdoctoral Science Foundation under Grant 2020M682454; and in part by
+the Fundamental Research Funds for the Central Universities under Grant
+CCNU22LJ005. (Corresponding authors: Zhi Liu; Xiaoxuan Shen.)
+The authors are with the National Engineering Research Center of
+Educational Big Data and the Faculty of Artiﬁcial Intelligence in Education,
+Central China Normal University, Wuhan 430079, China (e-mail: sunjw@
+ccnu.edu.cn;
+dsh@mails.ccnu.edu.cn;
+zhiliu@ccnu.edu.cn;
+ayu2anqi@
+mails.ccnu.edu.cn; liusy5918@outlook.com; shenxiaoxuan@ccnu.edu.cn).
+Digital Object Identiﬁer 10.1109/TCE.2023.3293953
+Fig. 1.
+A toy example of knowledge tracing task. q1 →q2 →· · · →q6 →
+q7 is a question sequence, in which q1 −q3 examine skill1, q4 −q7 examine
+skill2, the answer interactions of three different students are recorded in the
+bottom black box.
+challenges to ensure human continuity [3]. Personalized e-
+learning system [4] is an application that combines mobile
+technology with online education to deliver tailored and adap-
+tive intelligent educational services to consumers. A key
+aspect of personalized e-learning systems lies in their abil-
+ity to accurately analyze the knowledge states of learners.
+Knowledge tracing (KT), as a modeling technology for learn-
+ers, has become an important research content in this ﬁeld [5].
+KT, shown in Fig. 1, aims to estimate the current mastery
+states of learners through their historical learning records so
+as to predict the future performance, provide more targeted
+guidance, or make more personalized recommendations [6].
+The existing KT models can be categorized into the tra-
+ditional KT models [6], [7] and deep learning-based KT
+models [8], [9], [10], [11], [12], [13], [14], [15]. In most
+early KT models [6], [8], [9], researchers only utilized skill
+information to represent each question and evaluate students’
+mastery of skills. These skill-level KT models often overlook
+the rich information contained in the questions themselves,
+such as difﬁculty and discrimination, resulting in an inability to
+distinguish different questions with the same skill. Therefore,
+in some follow-up related approaches, researchers learn the
+representations by incorporating various kinds of information
+from the questions [16], [17]. However, due to the excessive
+number of questions compared to the number of skills, there
+is a sparsity issue in the interaction between students and
+questions (i.e., many questions have few records of attempts),
+which ultimately limits the performance of the model [18].
+Graph structures have proven to be highly ﬂexible and effec-
+tive in solving various complex problems, including mining
+potential information of data [19], [20], optimizing thread
+1558-4127 c⃝2023 IEEE. Personal use is permitted, but republication/redistribution requires IEEE permission.
+See https://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: NASATI. Downloaded on September 01,2026 at 07:00:58 UTC from IEEE Xplore.  Restrictions apply. 
+
+SUN et al.: WEIGHTED HETEROGENEOUS GRAPH-BASED THREE-VIEW CL FOR KT
+2839
+allocation and scheduling [21], addressing feature redun-
+dancy [22], etc. Consequently, researchers began to introduce
+graph structure to alleviate the problem of data sparsity by
+mining the corresponding relations between questions and
+skills (or other entities) on graphs [23], [24], [25], [26], [27].
+In these graph structures, multiple questions are often asso-
+ciated with a single skill, while a question can belong to
+multiple skills simultaneously. These relations on graphs cap-
+ture the similarity information of questions (e.g., the questions
+with the same skills may be similar), allowing the model to
+leverage the interaction history of similar questions and make
+more accurate predictions for the current question. Although
+these KT methods using graph structure have achieved some
+results, most of them only consider relations between ques-
+tions and skills, and ignore the interaction between students
+and questions. Since the core of KT is to solve human-related
+problems, it is necessary to consider the information of learn-
+ers in representations, so our paper constructs a heterogeneous
+graph containing three entities: questions, skills, and students.
+Different from other KT studies that introduce student enti-
+ties [28], [29], due to the different types of three entities and
+inconsistent interaction modes, we expand the heterogeneous
+graph to a weighted heterogeneous graph, and employ the
+contrastive learning method to mine the weight information
+on different edges to capture higher-order semantics between
+questions.
+Self-supervised learning technology [30] uses pretext tasks
+to extract supervision information from large-scale unsuper-
+vised data, and trains the network through the constructed
+supervision information, so as to learn valuable representations
+for downstream tasks. Recently, the contrastive learning (CL)
+method under the self-supervised framework has also been
+applied to the ﬁeld of KT [31], [32], [33], optimizing KT tasks
+through joint comparative loss functions. However, these meth-
+ods are only simply combined the traditional self-supervision
+framework and KT, and their contrastive mechanisms often
+ignore the characteristics of KT task itself (e.g., the hetero-
+geneity of KT scenario, the relations between questions and
+skills, and the similarity of students, etc.), and even less can
+they consider the different relations of heterogeneous graph of
+KT in various perspectives.
+In our paper, we propose a weighted heterogeneous
+graph-based three-view contrastive learning framework for
+knowledge tracing (TCL4KT), which exploits and integrates
+information of three views (meta-path, network schema
+and knowledge tracing) to gain question representations.
+Then, a special positive sample selection strategy and con-
+trastive mechanisms are applied to maximize the mutual
+information between different views of the same question.
+Finally, we combine the encoded question embeddings and
+answer records to predict the future performance of stu-
+dents through a recurrent neural network (RNN). Compared
+with other baseline models, our method shows the best
+prediction accuracy and generalization ability on 4 com-
+mon datasets. The effectiveness of our three-view contrastive
+learning framework is also veriﬁed through a series of
+analytical experiments. Our contributions are summarized
+as follows:
+• To the best of our knowledge, this is the ﬁrst time
+to propose a weighted heterogeneous graph-based CL
+framework in KT ﬁeld which use three complementary
+view encoders integrating multiple relational information
+to learn more high-quality question embeddings for the
+prediction task.
+• For GCL, we break the tradition of separating the CL
+framework from the downstream task during training,
+and propose a novel heterogeneous graph-based three-
+view contrastive learning framework, which uses network
+schema view and downstream task view to assist the
+meta-path view to learn node embedding, and a positive
+sample selection strategy and contrastive mechanism are
+designed to achieve better application and generalization
+capabilities for downstream tasks.
+• We perform experiments on 4 public datasets, and the
+results show that the prediction performance of TC4KT
+is signiﬁcantly improved. In addition, ablation researches
+verify the effectiveness of each module.
+The rest of this paper is organized as follows: Section II
+summarizes the related work. Section III introduces TCL4KT.
+Section IV gives the details and results of the experiment, and
+Section V concludes the paper.
+II. RELATED WORKS
+In this part, we introduce technologies of KT including tra-
+ditional KT, deep KT and the recent popular graph-based KT,
+and the related works of graph contrastive learning.
+A. Knowledge Tracing
+There are two kinds of existing knowledge tracing meth-
+ods: traditional machine learning methods and deep learning
+methods. This paper mainly studies on the deep KT methods.
+In 1994, Corbett and Anderson [6] ﬁrst applied knowledge
+tracing technology into the ﬁeld of intelligent education
+and proposed Bayesian knowledge tracing based on hidden
+Markov model.
+With the development of deep learning technology, deep
+learning-based KT models [8], [9], [11] have shown supe-
+rior performance over traditional machine learning models [6].
+Song et al. [34] categorize various deep KT models into DKT
+and its variants, memory network-based models, attention
+mechanism-based models, and graph-based models based on
+speciﬁc technologies. Piech et al. [8] employs deep learning to
+KT and proposes Deep Knowledge Tracing (DKT). Dynamic
+Key-Value Memory Networks (DKVMN) [9] utilizes a static
+key matrix and a dynamic value matrix to store latent knowl-
+edge skills and update the mastery of corresponding skills.
+Self-Attentive Knowledge Tracing (SAKT) [11] applies the
+self-attention mechanism [35] in KT to solve the problem of
+sparsity in learning interactions. Recently, the potential graph
+structure of KT has been explored to mine rich information,
+which mainly achieved by the question-skill relation to con-
+struct bipartite graphs or heterogeneous graphs [23], [24], [25],
+[26], [27]. In [36], a heterogeneous graph with difﬁculty, ques-
+tions, and discrimination is constructed to capture question
+Authorized licensed use limited to: NASATI. Downloaded on September 01,2026 at 07:00:58 UTC from IEEE Xplore.  Restrictions apply. 

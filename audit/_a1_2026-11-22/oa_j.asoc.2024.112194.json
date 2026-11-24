@@ -1,0 +1,28 @@
+{
+  "doi": "10.1016/j.asoc.2024.112194",
+  "title": "Dynamic heterogeneous graph contrastive networks for knowledge tracing",
+  "date": "2024-09-06",
+  "authors": [
+    "Yehong Han",
+    "Hailiang Tang",
+    "Wenxiao Zhang",
+    "Lin Du",
+    "Jungong Zhao",
+    "Minglai Shao"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "best_oa": null,
+  "locations": [
+    {
+      "landing": "https://doi.org/10.1016/j.asoc.2024.112194",
+      "pdf": null,
+      "version": "publishedVersion",
+      "source": "Applied Soft Computing"
+    }
+  ]
+}

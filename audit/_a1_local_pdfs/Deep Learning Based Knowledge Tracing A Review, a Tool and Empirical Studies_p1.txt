@@ -1,0 +1,223 @@
+4512
+IEEE TRANSACTIONS ON KNOWLEDGE AND DATA ENGINEERING, VOL. 37, NO. 8, AUGUST 2025
+Deep Learning Based Knowledge Tracing: A Review,
+a Tool and Empirical Studies
+Zitao Liu
+, Member, IEEE, Teng Guo
+, Qianru Liang
+, Mingliang Hou
+, Bojun Zhan, Jiliang Tang
+,
+Weiqi Luo
+, and Jian Weng
+(Survey Paper)
+Abstract—Knowledge tracing (KT) involves utilizing historical
+data from students’ learning interactions to model their mastery
+of knowledge over time, with the aim of predicting their future
+performance in interactions. Recently, signiﬁcant advancements
+havebeenachievedthroughtheapplicationofvariousdeeplearning
+methodologies to address the KT challenge. However, a consider-
+able proportion of deep learning-based knowledge tracing (DLKT)
+approaches exhibit striking similarities in their methodologies,
+and model designs, and even the outcomes demonstrate minimal
+divergence. In addition, the evaluation procedures employed in
+current DLKT studies are not standardized, resulting in substan-
+tial inconsistencies in the reported area under the curve (AUC)
+outcomes, despite analyzing the same model on identical datasets.
+To address the two aforementioned problems, this paper pro-
+poses a generalized DLKT framework and represents the existing
+DLKT models with ﬁve components, i.e., multimodal data encoder,
+student knowledge memory, auxiliary knowledge base, learning
+outcome objective, and computational efﬁciency and scalability.
+Furthermore, we develop and open source a standardized DLKT
+benchmark platform named PYKT,1 that consists of a standard-
+ized set of integrated data preprocessing procedures on 9 popular
+datasets across different domains, and 21 frequently compared
+DLKT model implementations. With PYKT, we conduct empirical
+and reproducible research to assess the performance of prevalent
+DLKT algorithms in an unbiased and clear setting over multiple
+data sources. Finally, we discuss the applications of KT techniques
+in the educational sector and their future development directions.
+Index
+Terms—Knowledge
+tracing,
+personalized
+learning,
+assessment, AI in education.
+I. INTRODUCTION
+P
+ERSONALIZED learning refers to an educational ap-
+proach that tailors educational experiences to the unique
+Received 24 April 2024; revised 17 January 2025; accepted 25 February
+2025. Date of publication 19 March 2025; date of current version 7 July 2025.
+This work was supported in part by National Key R&D Program of China,
+under Grant 2022YFC3303600 and in part by the Key Laboratory of Smart
+Education of Guangdong Higher Education Institutes, Jinan University under
+Grant 2022LSYS003. Recommended for acceptance by Z. Guan. (Correspond-
+ing authors: Teng Guo; Qianru Liang.)
+Zitao
+Liu,
+Teng
+Guo,
+Qianru
+Liang,
+Bojun
+Zhan,
+Weiqi
+Luo,
+and
+Jian
+Weng
+are
+with
+the
+Jinan
+University,
+Guangzhou
+510632,
+China (e-mail: liuzitao@jnu.edu.cn; tengguo@jnu.edu.cn; liangqr@jnu.edu.cn;
+zbj0613@stu2022.jnu.edu.cn; lwq@jnu.edu.cn; cryptjweng@gmail.com).
+Mingliang Hou is with TAL Education Group, Beijing 100080, China (e-mail:
+houmingliang@tal.com).
+Jiliang Tang is with the Data Science and Engineering Lab, Michigan State
+University, East Lansing, MI 48824 USA (e-mail: tangjili@msu.edu).
+https://pykt.org/.
+Digital Object Identiﬁer 10.1109/TKDE.2025.3552759
+needs, interests, and abilities of individual learners [1], [2],
+[3], [4]. Personalized learning is a broad educational paradigm,
+and knowledge tracing (KT) plays a critical role within this
+framework by providing the tools necessary for dynamically
+measuring and tracking students’ knowledge states.
+Essentially, KT is a sequential prediction task that models
+students’ knowledge states from their historical interactions with
+platforms such as Massive Open Online Courses (MOOCs) and
+Intelligent Tutoring Systems (ITS). Fig. 1 presents a typical
+KT framework pipeline. For instance, consider a student, Jack,
+who has attempted ﬁve questions covering ﬁve knowledge com-
+ponents (KCs): multiplication, addition, division, subtraction,
+and equations. Each KC represents an independent cognitive
+structure or process utilized by learners to perform task steps
+or solve problems. We model Jack’s knowledge states based on
+his responses to these questions, and changes in his knowledge
+states are illustrated through a radar chart at the bottom of
+the ﬁgure. The objective of KT is to model these states based
+on Jack’s initial performance to predict his success in future
+interactions, such as correctly answering a subsequent division
+question, ‘16 ÷ 4 =’.
+Corbett and Anderson, as early as 1994, pioneered the quan-
+tiﬁcation of student knowledge at KC level [5]. Subsequent
+efforts expanded on this foundation, addressing the complexities
+of knowledge changing through probabilistic graphical models
+and factor analysis techniques. However, education operates
+as a dynamic and interconnected system, including a series
+of factors such as student’s learning abilities, difﬁculties of
+questions and connections among KCs. These elements form a
+complex, evolving system that signiﬁcantly affects the students’
+learning outcomes, challenging traditional machine learning
+algorithms based on statistical theory. Recently, with the swift
+progress of deep neural networks, models for KT based on deep
+learning (DLKT) have emerged as the predominant framework
+for analyzing students’ understanding of KCs. DLKT models
+have achieved promising results due to their ability to capture
+nonlinear complex patterns, scalability to process large-scale
+data, and generalization capability for unseen data.
+To provide a clear scope for this study, our research primarily
+focuses on digital learning platforms, including MOOCs and
+ITS, which generate extensive student interaction data. The
+datasets analyzed are selected based on their relevance to these
+platforms, encompassing both question-level and KC-level data.
+1041-4347 © 2025 IEEE. All rights reserved, including rights for text and data mining, and training of artiﬁcial intelligence and similar technologies.
+Personal use is permitted, but republication/redistribution requires IEEE permission. See https://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: NASATI. Downloaded on September 13,2026 at 08:53:56 UTC from IEEE Xplore.  Restrictions apply. 
+
+LIU et al.: DEEP LEARNING BASED KNOWLEDGE TRACING: A REVIEW, A TOOL AND EMPIRICAL STUDIES
+4513
+Fig. 1.
+The illustration of KT task.
+This scope ensures that our ﬁndings could be applicable to
+personalized learning environments that require large scale data
+processing and the ability to model complex student learning
+behaviors. By deﬁning these research boundaries, we aim to
+provide a more focused analysis of DLKT models in the context
+of personalized education.
+DespitetheinnovationsofDLKTinaddressingKTchallenges
+and achievingpromising outcomes [6], [7], [8], [9], [10], two
+primary issues continue to impede progress. First, a notable
+homogeneity exists in methodological approaches [8], [11],
+[12], necessitating a comprehensive review to discern trends
+and variations. Second, a lack of standardized evaluation in
+DLKT studies leads to inconsistent area under the curve (AUC)
+results, highlighting the need for benchmarking against an array
+of methods and a universal platform for fair comparison and
+real-world application assessment.
+In recent years, many scholars have published review papers
+that analyze and summarize the current status and development
+trends in the ﬁeld of KT. For example, Dai et al. [13] provided
+a comprehensive review of various KT models and techniques,
+assessingtheir effectiveness inpredictingandunderstandingstu-
+dent learning behaviors. This survey classiﬁed the existing liter-
+ature based on methodological approaches, including statistical,
+probabilistic, and deep learning models, highlighting how each
+contributes differently to the understanding and advancement of
+personalized education. Song et al. [14] provided a survey on
+the evolution and categorization of DLKT models, focusing on
+historical and technological advancements. They systematically
+classiﬁed the models into four primary categories: deep KT
+(DKT) and its variants, memory network-based KT, attention
+mechanism-based KT, and graph structural DLKT models. Ab-
+delrahman et al. [15] conducted a review on KT, delineating
+the ﬁeld’s evolution from Bayesian inference and factor anal-
+ysis to modern deep learning techniques. They classiﬁed KT
+approaches into traditional models and deep learning models,
+further subdividing the latter into sequence modeling, memory-
+augmented, attentive, and graph-based models. Although these
+surveys have provided detailed reviews of DLKT methods from
+various perspectives, they have not evaluated speciﬁc works.
+This leads to a problem: the factors contributing to the success of
+DLKT architectures in KT tasks and the performance of DLKT
+models in real-world educational contexts remain somewhat
+unknown. Therefore, there is a pressing need for a standardized
+DLKT benchmark platform to ensure methods can be compared
+fairly and transparently. Researchers need to be able to evaluate
+their proposed methods against a wide range of state of the art
+methods on both publicly available and private datasets, and
+practitioners need to be capable of discerning the advantages and
+disadvantages of DLKT algorithms in real-world educational
+contexts. To this end, Liu et al. [16] introduced an algorithm
+library named EduKTM, which contains a series of mainstream
+algorithmic models. However, EduKTM does not provide em-
+pirical studies based on its algorithm library to demonstrate its
+performance and effectiveness. Furthermore, due to differences
+in data preprocessing, training, and testing architectures among
+various KT studies, constructing an extensive and readily ex-
+pandable algorithm library that covers the current mainstream
+KT algorithms is exceedingly challenging (EduKTM includes
+eight mainstream architectures). Therefore, we argue that for
+the current KT research community, conducting a thorough
+and detailed review of existing KT to facilitate readers’ quick
+understanding of the current DLKT development trajectory,
+and constructing a high quality, standardized DLKT benchmark
+platform are two critically important issues.
+Unlike existing DLKT surveys, we have not categorized the
+literature according to methods or technologies. Instead, we
+offer a novel perspective for examining the existing literature,
+presentingauniﬁedapproachtosurveythecurrent DLKTframe-
+worksfromaproceduralstandpoint.WeobservethatexistingKT
+frameworks essentially comprise four parts: 1) data feature ex-
+traction or representation, 2) neural network framework design,
+3) KT data or information, and 4) loss function design. Based
+on this, we propose a uniﬁed, conceptual framework in this
+survey, named GenKT (generalized KT), which encompasses
+the following components: 1) multimodal data representations,
+2) student knowledge memory, 3) auxiliary knowledge base, and
+4) learning outcome objective, and 5) computational efﬁciency
+and scalability. Note that we have added ‘computational efﬁ-
+ciency and scalability’ so that the reader can better understand
+the efﬁciency of the various algorithms. GenKT not only lowers
+the threshold for understanding complex models but also opens
+new directions for in-depth research in KT. Moreover, we de-
+velop PYKT, an easy-to-use and end-to-end PyTorch benchmark
+library,topromotereproducibilityandencouragefutureresearch
+in KT community. PYKT includes necessary data preprocessing
+for 9 mainstream KT datasets, standardized dataset splitting
+Authorized licensed use limited to: NASATI. Downloaded on September 13,2026 at 08:53:56 UTC from IEEE Xplore.  Restrictions apply. 

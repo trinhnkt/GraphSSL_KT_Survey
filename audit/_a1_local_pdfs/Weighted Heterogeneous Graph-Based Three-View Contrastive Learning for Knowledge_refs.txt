@@ -1,0 +1,235 @@
+2846
+IEEE TRANSACTIONS ON CONSUMER ELECTRONICS, VOL. 70, NO. 1, FEBRUARY 2024
+be further expand and improve. Speciﬁcally, we can introduce
+additional node attribute or employ betweenness centrality
+to quantify the global signiﬁcance of different vertices [50].
+Furthermore, clustering the entities on graphs [51] as alterna-
+tives to data statistical approaches may enhance the precision
+of edge weights. Besides, with the development of KT models,
+we could incorporate more novel structures into the student
+state module to better estimate learners’ states, leading to
+improved predictions and interpretability.
+REFERENCES
+[1] L. C. Costa, A. G. Correa, D. L. Dalmon, M. K. Zuffo, and
+R. D. Lopes, “Accessible educational digital book on tablets for people
+with visual impairment,” IEEE Trans. Consum. Electron., vol. 61, no. 3,
+pp. 271–278, Aug. 2015.
+[2] M. C. Su, C. T. Cheng, M. C. Chang, and Y. Z. Hsieh, “A video analytic
+in-class student concentration monitoring system,” IEEE Trans. Consum.
+Electron., vol. 67, no. 4, pp. 294–304, Nov. 2021.
+[3] C. D. Mote Jr, D. A. Dowling, and J. Zhou, “The power of an idea:
+The international impacts of the grand challenges for engineering,”
+Engineering, vol. 2, no. 1, pp. 4–7, 2016.
+[4] C. M. Chen, H. M. Lee, and Y. H. Chen, “Personalized e-learning system
+using item response theory,” Comput. Educ., vol. 44, no. 3, pp. 237–255,
+2005.
+[5] Q. Liu, S. Shen, Z. Huang, E. Chen, and Y. Zheng, “A survey of
+knowledge tracing,” 2021, arXiv:2105.15106.
+[6] A. T. Corbett and J. R. Anderson, “Knowledge tracing: Modeling
+the acquisition of procedural knowledge,” User Model. User-Adapt.
+Interact., vol. 4, no. 4, pp. 253–278, 1994.
+[7] M. V. Yudelson, K. R. Koedinger, and G. J. Gordon, “Individualized
+Bayesian knowledge tracing models,” in Proc. Int. Conf. Artif. Intell.
+Educ. (AIED), 2013, pp. 171–180.
+[8] C. Piech et al., “Deep knowledge tracing,” in Proc. Adv. Neural Inf.
+Process. Syst. (NIPS), 2015, pp. 505–513.
+[9] J. Zhang, X. Shi, I. King, and D. Y. Yeung, “Dynamic key-value memory
+networks for knowledge tracing,” in Proc. 26th Int. Conf. World Wide
+Web (WWW), 2017, pp. 765–774.
+[10] C. K. Yeung and D. Y. Yeung, “Addressing two problems in deep knowl-
+edge tracing via prediction-consistent regularization,” in Proc. 5th Annu.
+ACM Conf. Learn. Scale (L@S), 2018, pp. 1–10.
+[11] S. Pandey and G. Karypis, “A self-attentive model for knowledge
+tracing,” in Proc. 12th Int. Conf. Educ. Data Min. (EDM), 2019,
+pp. 384–389.
+[12] Q. Liu et al., “EKT: Exercise-aware knowledge tracing for student
+performance prediction,” IEEE Trans. Knowl. Data Eng., vol. 33, no. 1,
+pp. 100–115, Jan. 2021.
+[13] A. Ghosh, N. Heffernan, and A. S. Lan, “Context-aware attentive knowl-
+edge tracing,” in Proc. 26th ACM SIGKDD Int. Conf. Knowl. Discov.
+Data Min. (SIGKDD), 2020, pp. 2330–2339.
+[14] S. Liu et al., “A hierarchical memory network for knowledge tracing,”
+Expert Syst. Appl., vol. 177, Sep. 2021, Art. no. 114935.
+[15] S. Liu et al., “Ability boosted knowledge tracing,” Inf. Sci., vol. 596,
+pp. 567–587, Jun. 2022.
+[16] L. Zhang, X. Xiong, S. Zhao, A. Botelho, and N. T. Heffernan,
+“Incorporating rich features into deep knowledge tracing,” in Proc. 4th
+ACM Conf. Learn. @ Scale (L@S), 2017, pp. 169–172.
+[17] Q. Liu et al., “Exploiting cognitive structure for adaptive learning,”
+in Proc. 25th ACM SIGKDD Int. Conf. Knowl. Discov. Data Min.
+(SIGKDD), 2019, pp. 627–635.
+[18] S. Sonkar, A. E. Waters, A. S. Lan, P. J. Grimaldi, and R. G. Baraniuk,
+“qDKT: Question-centric deep knowledge tracing,” in Proc. 13th Int.
+Conf. Educ. Data Min. (EDM), 2020, pp. 677–681.
+[19] T. Washio and H. Motoda, “State of the art of graph-based data mining,”
+ACM SIGKDD Explor. Newslett., vol. 5, no. 1, pp. 59–68, 2003.
+[20] Z. Zheng, X. Shi, and H. Jin, “Parallel overlapping community detection
+algorithm on GPU,” IEEE Trans. Big Data, vol. 9, no. 2, pp. 677–687,
+Apr. 2023.
+[21] Z. Zheng et al., “Feluca: A two-stage graph coloring algorithm with
+color-centric paradigm on GPU,” IEEE Trans. Parallel Distrib. Syst.,
+vol. 32, no. 1, pp. 160–173, Jan. 2021.
+[22] Z. Li, F. Nie, X. Chang, L. Nie, H. Zhang, and Y. Yang, “Rank-
+constrained spectral clustering with ﬂexible embedding,” IEEE Trans.
+Neural Netw. Learn. Syst., vol. 29, no. 12, pp. 6073–6082, Dec. 2018.
+[23] Y. Yang et al., “GIKT: A graph-based interaction model for knowl-
+edge tracing,” in Proc. Joint Eur. Conf. Mach. Learn. Knowl. Discov.
+Databases (ECML-PKDD), 2020, pp. 299–315.
+[24] Y. Liu, Y. Yang, X. Chen, J. Shen, H. Zhang, and Y. Yu, “Improving
+knowledge tracing via pre-training question embeddings,” in Proc. 29th
+Int. Joint Conf. Artif. Intell. (IJCAI), 2020, pp. 1577–1583.
+[25] M. Wang, C. Peng, R. Yang, C. Wang, Y. Chen, and X. Yu, “GASKT:
+A graph-based attentive knowledge-search model for knowledge trac-
+ing,” in Proc. Int. Conf. Knowl. Sci. Eng. Manage. (KSEM), 2021,
+pp. 268–279.
+[26] C. Jiang, W. Gan, G. Su, Y. Sun, and Y. Sun, “Improving knowledge
+tracing through embedding based on metapath,” in Proc. 29th Int. Conf.
+Comput. Educ. (ICCE), 2021, pp. 11–20.
+[27] W. Gan, Y. Sun, and Y. Sun, “Knowledge structure enhanced graph rep-
+resentation learning model for attentive knowledge tracing,” Int. J. Intell.
+Syst., vol. 37, no. 3, pp. 2012–2045, 2022.
+[28] J. Sun, J. Zhou, K. Zhang, Q. Li, and Z. Lu, “Collaborative embedding
+for knowledge tracing,” in Proc. Int. Conf. Knowl. Sci. Eng. Manage.
+(KSEM), 2021, pp. 333–342.
+[29] W. Gao et al., “RCD: Relation map driven cognitive diagnosis for intel-
+ligent education systems,” in Proc. 44th Int. ACM SIGIR Conf. Res.
+Develop. Inf. Retrieval (SIGIR), 2021, pp. 501–510.
+[30] S. Becker and G. E. Hinton, “Self-organizing neural network that dis-
+covers surfaces in random-dot stereograms,” Nature, vol. 355, no. 6356,
+pp. 161–163, 1992.
+[31] W. Lee, J. Chun, Y. Lee, K. Park, and S. Park, “Contrastive learn-
+ing for knowledge tracing,” in Proc. ACM Web Conf. (WWW), 2022,
+pp. 2330–2338.
+[32] X. Song, J. Li, Q. Lei, W. Zhao, Y. Chen, and A. Mian, “Bi-CLKT:
+Bi-graph contrastive learning based knowledge tracing,” Knowl.-Based
+Syst., vol. 241, Apr. 2022, Art. no. 108274.
+[33] H. Dai, Y. Yun, Y. Zhang, W. Zhang, and X. Shang, “Contrastive deep
+knowledge tracing,” in Proc. Int. Conf. Artif. Intell. Educ. (AIED), 2022,
+pp. 289–292.
+[34] X. Song, J. Li, T. Cai, S. Yang, T. Yang, and C. Liu, “A survey on
+deep learning based knowledge tracing,” Knowl.-Based Syst., vol. 258,
+Dec. 2022, Art. no. 110036.
+[35] H. Ji, C. Shi, and B. Wang, “Attention based meta path fusion for hetero-
+geneous information network embedding,” in Proc. Pac. RIM Int. Conf.
+Artif. Intell. (PRICAI), 2018, pp. 348–360.
+[36] N. Zhang, Y. Du, K. Deng, L. Li, J. Shen, and G. Sun, “Attention-based
+knowledge tracing with heterogeneous information network embedding,”
+in Proc. 13th Int. Conf. Knowl. Sci. Eng. Manage. (KSEM), 2020,
+pp. 95–103.
+[37] X. Song, J. Li, Y. Tang, T. Zhao, Y. Chen, and Z. Guan, “JKT: A joint
+graph convolutional network based deep knowledge tracing,” Inf. Sci.,
+vol. 580, pp. 510–523, Nov. 2021.
+[38] X. Liu et al., “Self-supervised learning: Generative or contrastive,” IEEE
+Trans. Knowl. Data Eng., vol. 35, no. 1, pp. 857–876, Jan. 2023.
+[39] M. Ye, X. Zhang, P. C. Yuen, and S. F. Chang, “Unsupervised
+embedding learning via invariant and spreading instance feature,” in
+Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), 2019,
+pp. 6210–6219.
+[40] F. Sun, J. Hoffmann, V. Verma, and J. Tang, “InfoGraph: Unsupervised
+and semi-supervised graph-level representation learning via mutual
+information maximization,” in Proc. 8th Int. Conf. Learn. Represent.
+(ICLR), 2020, pp. 1–16.
+[41] X. Wang, N. Liu, H. Han, and C. Shi, “Self-supervised heterogeneous
+graph neural network with co-contrastive learning,” in Proc. 27th ACM
+SIGKDD Conf. Knowl. Discov. Data Min. (KDD), 2021, pp. 1726–1736.
+[42] Q. Xie, L. Wang, P. Song, and X. Lin, “SQKT: A student attention-based
+and question-aware model for knowledge tracing,” in Proc. Asia-Pac.
+Web (APWeb) Web-Age Inf. Manage. (WAIM) Joint Int. Conf. Web Big
+Data (APWeb-WAIM), 2021, pp. 221–236.
+[43] H. Nakagawa, Y. Iwasawa, and Y. Matsuo, “Graph-based knowledge
+tracing: Modeling student proﬁciency using graph neural network,” in
+Proc. IEEE/WIC/ACM Int. Conf. Web Intell. (WI), 2019, pp. 156–163.
+[44] C. Shi, Z. Zhang, P. Luo, P. S. Yu, Y. Yue, and B. Wu, “Semantic
+path based personalized recommendation on weighted heterogeneous
+information networks,” in Proc. 24th ACM Int. Conf. Inf. Knowl.
+Manage. (CIKM), 2015, pp. 453–462.
+[45] C. Shi, B. Hu, W. X. Zhao, and S. Y. Philip, “Heterogeneous information
+network embedding for recommendation,” IEEE Trans. Knowl. Data
+Eng., vol. 31, no. 2, pp. 357–370, Feb. 2019.
+[46] Y. Sun, J. Han, X. Yan, P. S. Yu, and T. Wu, “Pathsim: Meta path-based
+top-k similarity search in heterogeneous information networks,” Proc.
+VLDB Endow., vol. 4, no. 11, pp. 992–1003, 2011.
+Authorized licensed use limited to: NASATI. Downloaded on September 01,2026 at 07:00:58 UTC from IEEE Xplore.  Restrictions apply. 
+
+SUN et al.: WEIGHTED HETEROGENEOUS GRAPH-BASED THREE-VIEW CL FOR KT
+2847
+[47] T. N. Kipf and M. Welling, “Semi-supervised classiﬁcation with graph
+convolutional networks,” 2016, arXiv:1609.02907.
+[48] Y. Tian, D. Krishnan, and P. Isola, “Contrastive multiview coding,” in
+Proc. Eur. Conf. Comput. Vis. (ECCV), 2020, pp. 776–794.
+[49] X. Xiong, S. Zhao, E. G. Van Inwegen, and J. E. Beck, “Going deeper
+with deep knowledge tracing,” in Proc. 9th Int. Conf. Educ. Data Mining
+(EDM), 2016, pp. 545–550.
+[50] Z. Zheng, C. Zhao, P. Xie, and B. Du, “Galliot: Path merging based
+betweenness centrality algorithm on GPU,” in Proc. IEEE Int. Conf.
+Comput. Commun. (INFOCOM), 2023, pp.1–10.
+[51] Z. Li, F. Nie, X. Chang, Y. Yang, C. Zhang, and N. Sebe, “Dynamic
+afﬁnity graph construction for spectral clustering using multiple fea-
+tures,” IEEE Trans. Neural Netw. Learn. Syst., vol. 29, no. 12,
+pp. 6323–6332, Dec. 2018.
+Jianwen Sun received the Ph.D. degree in edu-
+cational technology from Central China Normal
+University, Wuhan, China, in 2011.
+He is currently an Associate Professor and a Ph.D.
+Supervisor with the National Engineering Research
+Center of Educational Big Data, Central China
+Normal University. His research interests include
+educational data mining, explainable artiﬁcial intel-
+ligence, and intelligent tutoring system. He is a
+member of the China Computer Federation.
+Shangheng Du is currently pursuing the M.S.
+degree in computer science with the National
+Engineering Research Center of Educational Big
+Data, Central China Normal University, Wuhan,
+China.
+His research interests include deep learning,
+explainable artiﬁcial intelligence, and knowledge
+tracing. He is a student member of the China
+Computer Federation.
+Zhi Liu received the Ph.D. degree in educational
+technology from Central China Normal University,
+Wuhan, China, in 2014.
+He is currently an Associate Professor and a Ph.D.
+Supervisor with the National Engineering Research
+Center of Educational Big Data, Central China
+Normal University. His research interests include
+learning analytics, educational data mining, and
+intelligent tutoring system.
+Fenghua Yu is currently pursuing the M.S. degree in
+software engineering with the National Engineering
+Research Center of Educational Big Data, Central
+China Normal University, Wuhan, China.
+His research interests include deep learning, edu-
+cational data mining, and knowledge tracing.
+Sannyuya
+Liu
+received
+the
+Ph.D.
+degree
+in
+systems engineering from the Huazhong University
+of Science and Technology, Wuhan, China, in 2003.
+He is currently a Professor and a Ph.D. Supervisor
+with the National Engineering Research Center
+of Educational Big Data, Central China Normal
+University, Wuhan. His research interests include
+computer application, artiﬁcial intelligence, and edu-
+cational information technology. He is a member of
+the Institute of Electrical and Electronics Engineers.
+Xiaoxuan Shen received the Ph.D. degree in edu-
+cational information technology from Central China
+Normal University, Wuhan, China, in 2020.
+He
+currently
+holds
+a
+Postdoctoral
+position
+with the National Engineering Research Center
+of Educational Big Data, Central China Normal
+University. His research interests include deep learn-
+ing, representation learning, and their applications in
+recommendation systems and intelligent e-learning
+environments.
+Authorized licensed use limited to: NASATI. Downloaded on September 01,2026 at 07:00:58 UTC from IEEE Xplore.  Restrictions apply. 

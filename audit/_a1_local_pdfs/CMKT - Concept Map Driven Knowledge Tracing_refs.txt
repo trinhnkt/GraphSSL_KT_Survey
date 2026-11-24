@@ -1,0 +1,292 @@
+which would eventually advance the development of ITSs as
+well as other intelligent platforms for the education domain.
+REFERENCES
+[1] A. T. Corbett and J. R. Anderson, “Knowledge tracing: Modeling the
+acquisition of procedural knowledge,” User Model. User-Adapted Inter-
+act., vol. 4, no. 4, pp. 253–278, 1994.
+[2] R. Pelanek, “Bayesian knowledge tracing, logistic models, and beyond:
+An overview of learner modeling techniques,” User Model. User-
+Adapted Interact., vol. 27, no. 3–5, pp. 313–350, 2017.
+[3] A. M. Kaplan and M. Haenlein, “Higher education and the digital revo-
+lution: About MOOCs, SPOCs, social media, and the cookie monster,”
+Bus. Horiz., vol. 59, no. 4, pp. 441–450, 2016.
+[4] Z. A. Pardos, Y. Bergner, D. T. Seaton, and D. E. Pritchard, “Adapting
+Bayesian knowledge tracing to a massive open online course in EDX,”
+Educ. Data Mining, vol. 13, pp. 137–144, 2013.
+[5] L. Rai and D. Chunrao, “Inﬂuencing factors of success and failure in
+MOOC and general analysis of learner behavior,” Int. J. Inf. Educ. Tech-
+nol., vol. 6, no. 4, 2016, Art. no. 262.
+[6] M. Khajah, R. Wing, R. Lindsey, and M. Mozer, “Integrating latent-fac-
+tor and knowledge-tracing models to predict individual differences in
+learning,” Educ. Data Mining, vol. 2014, pp. 1–8, 2014.
+[7] Z. Huang et al., “Question difﬁculty prediction for reading problems
+in standard tests,” in Proc. 31st AAAI Conf. Artif. Intell., 2017,
+pp. 1352–1359.
+[8] A. Muhammad, Q. Zhou, G. Beydoun, D. Xu, and J. Shen, “Learning
+path adaptation in online learning systems,” in Proc. IEEE 20th Int.
+Conf. Comput. Supported Cooperative Work Des., 2016, pp. 421–426.
+[9] S. C. Wong, A. Gatt, V. Stamatescu, and M. D. McDonnell,
+“Understanding data augmentation for classiﬁcation: When to warp?,”
+in Proc. Int. Conf. Digit. Image Comput.: Techn. Appl., 2016, pp. 1–6.
+[10] S. J. Pan and Q. Yang, “A survey on transfer learning,” IEEE Trans.
+Knowl. Data Eng., vol. 22, no. 10, pp. 1345–1359, Oct. 2010.
+[11] J. D. Novak and D. B. Gowin, Learning How to Learn. Cambridge, U.K.:
+Cambridge Univ. Press, 1984.
+[12] J.-P. Doignon and J.-C. Falmagne, “Spaces for the assessment of knowl-
+edge,” Int. J. Man- Mach. Stud., vol. 23, no. 2, pp. 175–196, 1985.
+[13] H. Cai, V. W. Zheng, and K. C. Chang, “A comprehensive survey of
+graph embedding: Problems, techniques and applications,” IEEE Trans.
+Knowl. Data Eng., vol. 30, no. 9, pp. 1616–1637, Sep. 2018.
+[14] C. Piech et al., “Deep knowledge tracing,” in Proc. Adv. Neural Inf. Pro-
+cess. Syst., 2015, pp. 505–513.
+[15] K. Cho et al., “Learning phrase representations using RNN encoder-
+decoder for statistical machine translation,” in Proc. EMNLP, 2014,
+pp. 1724–1734.
+[16] H. F. Gallego, “All our children learning. a primer for parents, teachers
+and other educators,” Revista de la Universidad de La Salle, vol. 3,
+no. 8, pp. 98–98, 1983.
+[17] M. Richardson and P. Domingos, “Markov logic networks,” Mach.
+Learn., vol. 62, no. 1/2, pp. 107–136, 2006.
+[18] S. H. Bach, M. Broecheler, B. Huang, and L. Getoor, “Hinge-loss Mar-
+kov random ﬁelds and probabilistic soft logic,” J. Mach. Learn. Res.,
+vol. 18, no. 1, pp. 3846–3912, 2017.
+[19] M.-W. Chang, L. Ratinov, and D. Roth, “Structured learning with con-
+strained conditional models,” Mach. Learn., vol. 88, no. 3, pp. 399–431,
+Sep. 2012.
+[20] K. Ganchev, J. Grac¸a, J. Gillenwater, and B. Taskar, “Posterior regulari-
+zation for structured latent variable models,” J. Mach. Learn. Res.,
+vol. 11, pp. 2001–2049, Aug. 2010.
+[21] V. W. Zheng and K. C. Chang, “Regularizing structured classiﬁer with
+conditional probabilistic constraints for semi-supervised learning,” in
+Proc. 25th ACM Int. Conf. Inf. Knowl. Manage., 2016, pp. 1029–1038.
+[22] J. Qiu, Y. Dong, H. Ma, J. Li, K. Wang, and J. Tang, “Network embed-
+ding as matrix factorization: Unifying DeepWalk, LINE, PTE, and
+node2vec,” in Proc. 11th ACM Int. Conf. Web Search Data Mining,
+2018, pp. 459–467.
+[23] M. C. Cieslak, A. M. Castelfranco, V. Roncalli, P. H. Lenz, and
+D. K. Hartline, “t-distributed stochastic neighbor embedding (t-SNE): A
+tool for eco-physiological transcriptomic analysis,” Mar. Genomic.,
+vol. 51, 2020, Art. no. 100723.
+[24] B. Perozzi, R. Al-Rfou, and S. Skiena, “Deepwalk: Online learning of
+social representations,” in Proc. 20th ACM SIGKDD Int. Conf. Knowl.
+Discov. Data Mining, 2014, pp. 701–710.
+[25] J. Tang, M. Qu, M. Wang, M. Zhang, J. Yan, and Q. Mei, “LINE: Large-
+scale information network embedding,” in Proc. 24th Int. Conf. World
+Wide Web, 2015, pp. 1067–1077.
+[26] B. Shuai, Z. Zuo, B. Wang, and G. Wang, “DAG-recurrent neural net-
+works for scene labeling,” in Proc. IEEE Conf. Comput. Vis. Pattern
+Recognit., 2016, pp. 3620–3629.
+[27] Z. Liu et al., “Distance-aware DAG embedding for proximity search
+on heterogeneous graphs,” in Proc. AAAI Conf. Artif. Intell., 2018,
+pp. 2355–2362.
+[28] Q. Liu et al., “EKT: Exercise-aware knowledge tracing for student per-
+formance prediction,” IEEE Trans. Knowl. Data Eng., vol. 33, no. 1,
+pp. 100–115, Jan. 2019.
+[29] D. P. Kingma and J. Ba, “Adam: A method for stochastic optimization,”
+2014, arXiv:1412.6980.
+[30] M. Feng, N. Heffernan, and K. Koedinger, “Addressing the assessment
+challenge with an online system that tutors as it assesses,” User Model.
+User-Adapted Interact., vol. 19, no. 3, pp. 243–266, 2009.
+[31] S. Aslan et al., “Human expert labeling process (HELP): Towards a reli-
+able higher-order user state labeling process and tool to assess student
+engagement,” Educ. Technol., vol. 57, no. 1, pp. 53–59, 2017.
+[32] M. L. McHugh, “Interrater reliability: The Kappa statistic,” Biochemia
+Medica, vol. 22, no. 3, pp. 276–282, 2012.
+[33] R. S. Baker, A. T. Corbett, and V. Aleven, “More accurate student
+modeling through contextual estimation of slip and guess probabilities
+in Bayesian knowledge tracing,” in Proc. Int. Conf. Intell. Tutoring
+Syst., 2008, pp. 406–415.
+[34] N. Thai-Nghe, L. Drumond, T. Horvath, A. Krohn-Grimberghe,
+A. Nanopoulos, and L. Schmidt-Thieme, “Factorization techniques for
+predicting student performance,” in Educational Recommender Systems
+and Technologies: Practices and Challenges. Hershey, PA, USA: IGI
+Global, 2012, pp. 129–153.
+[35] H. Nakagawa, Y. Iwasawa, and Y. Matsuo, “Graph-based knowledge
+tracing: Modeling student proﬁciency using graph neural network,” in
+Proc. IEEE/WIC/ACM Int. Conf. Web Intell., 2019, pp. 156–163.
+[36] M. V. Yudelson, K. R. Koedinger, and G. J. Gordon, “Individualized
+Bayesian knowledge tracing models,” in Proc. Int. Conf. Artif. Intell.
+Educ., 2013, pp. 171–180.
+[37] R. Liu and K. R. Koedinger, “Towards reliable and valid measurement
+of individualized student parameters,” in Proc. 10th Int. Conf. Educ.
+Data Mining, 2017, pp. 135–142.
+[38] Z. A. Pardos and N. T. Heffernan, “KT-idem: Introducing item difﬁculty
+to the knowledge tracing model,” in Proc. Int. Conf. User Model.,
+Adapt., Personalization, 2011, pp. 243–254.
+[39] Y. Chen et al., “Tracking knowledge proﬁciency of students with educational
+priors,” in Proc. ACM Conf. Inf. Knowl. Manage., 2017, pp. 989–998.
+[40] R. S. Baker, A. B. Goldstein, and N. T. Heffernan, “Detecting learning
+moment-by-moment,” Int. J. Artif. Intell. Educ., vol. 21, no. 1–2, pp. 5–25,
+2011.
+[41] R. Wu et al., “Cognitive modelling for predicting examinee perform-
+ance,” in Proc. Int. Joint Conf. Artif. Intell., 2015, pp. 1017–1024.
+[42] X. Xiong, S. Zhao, E. Van Inwegen, and J. Beck, “Going deeper with
+deep knowledge tracing,” in Proc. Int. Educ. Data Mining Soc., 2016,
+pp. 545–550.
+[43] C.-K. Yeung and D.-Y. Yeung, “Addressing two problems in deep
+knowledge tracing via prediction-consistent regularization,” in Proc. 5th
+Annu. ACM Conf. Learn. Scale, 2018, Art. no. 5.
+[44] J. Zhang, X. Shi, I. King, and D.-Y. Yeung, “Dynamic key-value mem-
+ory networks for knowledge tracing,” in Proc. 26th Int. Conf. World
+Wide Web, 2017, pp. 765–774.
+[45] D. Halpern et al., “Knowledge tracing using the brain,” in Proc. Educ.
+Data Mining, 2018, pp. 219–228.
+[46] S. Tong et al., “Structure-based knowledge tracing: An inﬂuence propa-
+gation view,” in Proc. IEEE Int. Conf. Data Mining, 2020, pp. 541–550.
+[47] Y. Yang, H. Liu, J. Carbonell, and W. Ma, “Concept graph learning
+from educational data,” in Proc. 8th ACM Int. Conf. Web Search Data
+Mining, 2015, pp. 159–168.
+[48] C. Liang, Z. Wu, W. Huang, and C. L. Giles, “Measuring prerequisite
+relations among concepts,” in Proc. Conf. Empirical Methods Natural
+Lang. Process., 2015, pp. 1668–1674.
+[49] C. Liang, J. Ye, Z. Wu, B. Pursel, and C. L. Giles, “Recovering concept
+prerequisite relations from university course dependencies,” in Proc.
+AAAI Conf. Artif. Intell., 2017, pp. 4786–4791.
+[50] L. Pan, C. Li, J. Li, and J. Tang, “Prerequisite relation learning for con-
+cepts in MOOCs,” in Proc. 55th Annu. Meeting Assoc. Comput. Linguis-
+tics, 2017, pp. 1447–1456.
+LU et al.: CMKT: CONCEPT MAP DRIVEN KNOWLEDGE TRACING
+479
+Authorized licensed use limited to: NASATI. Downloaded on September 01,2026 at 07:00:11 UTC from IEEE Xplore.  Restrictions apply. 
+
+[51] S.-Y. Teng, J. Li, L. P.-Y. Ting, K.-T. Chuang, and H. Liu, “Interactive
+unknowns recommendation in e-learning systems,” in Proc. IEEE Int.
+Conf. Data Mining, 2018, pp. 497–506.
+[52] Y. Chen, J. P. Gonzalez-Brenes, and J. Tian, “Joint discovery of skill
+prerequisite graphs and student models,” in Proc. 9th Int. Conf. Educ.
+Data Mining, 2016, pp. 46–53.
+[53] C. Carmona, E. Millan, J. Perez-de-la-Cruz, M. Trella, and R. Conejo,
+“Introducing prerequisite relations in a multi-layered Bayesian student
+model,” in Proc. 10th Int. Conf. User Model., 2005, pp. 347–356.
+[54] P. Chen, Y. Lu, V. W. Zheng, and Y. Pian, “Prerequisite-driven deep knowl-
+edge tracing,” in Proc. IEEE Int. Conf. Data Mining, 2018, pp. 39–48.
+[55] J. D. Novak, Learning, Creating, and Using Knowledge: Concept Maps
+as Facilitative Tools in Schools and Corporations. Evanston, IL, USA:
+Routledge, 2010.
+[56] S. Y. Kwon and L. Cifuentes, “The comparative effect of individually-
+constructed vs. collaboratively-constructed computer-based concept
+maps,” Comput. Educ., vol. 52, no. 2, pp. 365–375, 2009.
+[57] R. Hartmeyer, M. P. Stevenson, and P. Bentsen, “A systematic review of
+concept mapping-based formative assessment processes in primary and
+secondary science education,” Assessment Educ.: Principles, Policy,
+Pract., vol. 25, no. 6, pp. 598–619, 2018.
+[58] R. E. Bennett, “Formative assessment: A critical review,” Assessment
+Educ.: Principles, Policy, Pract., vol. 18, no. 1, pp. 5–25, 2011.
+[59] P.-H. Wu, G.-J. Hwang, M. Milrad, H.-R. Ke, and Y.-M. Huang, “An
+innovative concept map approach for improving students’ learning per-
+formance with an instant feedback mechanism,” Brit. J. Educ. Technol.,
+vol. 43, no. 2, pp. 217–232, 2012.
+[60] J. G. Jardine, “Automatically generating reading lists,” Comput. Lab., Univ.
+Cambridge, Cambridge, U.K., Tech. Rep. UCAM-CL-TR-848, 2014.
+[61] J. Ding, Y. Wang, W. Hu, L. Shi, and Y. Qu, “Answering multiple-
+choice questions in geographical Gaokao with a concept graph,” in
+Proc. Eur. Semantic Web Conf., 2018, pp. 161–176.
+[62] J. D. Novak and A. J. Ca~nas, “The theory underlying concept maps and
+how to construct them,” Florida Inst. Hum. Mach. Cogn., vol. 1,
+pp. 2006–2001, 2006.
+[63] N.-S. Chen et al., “Mining e-learning domain concept map from aca-
+demic articles,” Comput. Educ., vol. 50, no. 3, pp. 1009–1021, 2008.
+[64] S. Wang et al., “Using prerequisites to extract concept maps from textbooks,”
+in Proc. 25th ACM Int. Conf. Inf. Knowl. Manage., 2016, pp. 317–326.
+[65] P. Chen, Y. Lu, V. W. Zheng, X. Chen, and B. Yang, “KnowEdu: A sys-
+tem to construct knowledge graph for education,” IEEE Access, vol. 6,
+pp. 31 553–31 563, 2018.
+[66] D. S. Chaplot, Y. Yang, J. G. Carbonell, and K. R. Koedinger, “Data-
+driven automated induction of prerequisite structure graphs,” in Proc.
+Int. Educ. Data Mining Soc., 2016, pp. 318–323.
+[67] H. Liu, W. Ma, Y. Yang, and J. Carbonell, “Learning concept graphs from
+online educational data,” J. Artif. Intell. Res., vol. 55, pp. 1059–1090, 2016.
+[68] G. S. Mann and A. McCallum, “Generalized expectation criteria for
+semi-supervised learning with weakly labeled data,” J. Mach. Learn.
+Res., vol. 11, pp. 955–984, 2010.
+[69] S. Mei, J. Zhu, and J. Zhu, “Robust RegBayes: Selectively incorporating
+ﬁrst-order logic domain knowledge into Bayesian models,” in Proc. Int.
+Conf. Mach. Learn., 2014, pp. 253–261.
+[70] S. Guo, Q. Wang, L. Wang, B. Wang, and L. Guo, “Knowledge graph
+embedding with iterative guidance from soft rules,” in Proc. AAAI Conf.
+Artif. Intell., 2018, pp. 4816–4823.
+[71] Z. Hu, X. Ma, Z. Liu, E. H. Hovy, and E. P. Xing, “Harnessing deep neu-
+ral networks with logic rules,” in Proc. 54th Annu. Meeting Assoc. Com-
+put. Linguistics, 2016, pp. 2410–2420.
+[72] T. Rockt€aschel, S. Singh, and S. Riedel, “Injecting logical background
+knowledge into embeddings for relation extraction,” in Proc. Conf.
+North Amer. Chapter Assoc. Comput. Linguistics - Hum. Lang. Technol.,
+2015, pp. 1119–1129.
+[73] P. Cui, X. Wang, J. Pei, and W. Zhu, “A survey on network embedding,”
+IEEE Trans. Knowl. Data Eng., vol. 31, no. 5, pp. 833–852, May 2018.
+[74] P. Goyal and E. Ferrara, “Graph embedding techniques, applications, and
+performance: A survey,” Knowl.-Based Syst., vol. 151, pp. 78–94, 2018.
+[75] A. Grover and J. Leskovec, “node2vec: Scalable feature learning for
+networks,” in Proc. 22nd ACM SIGKDD Int. Conf. Knowl. Discov. Data
+Mining, 2016, pp. 855–864.
+[76] Y. Dong, N. V. Chawla, and A. Swami, “metapath2vec: Scalable repre-
+sentation learning for heterogeneous networks,” in Proc. 23rd ACM
+SIGKDD Int. Conf. Knowl. Discov. Data Mining, 2017, pp. 135–144.
+[77] A. Tsitsulin, D. Mottin, P. Karras, and E. M€uller, “Verse: Versatile
+graph embeddings from similarity measures,” in Proc. World Wide Web
+Conf., 2018, pp. 539–548.
+[78] S. Cao, W. Lu, and Q. Xu, “GraRep: Learning graph representations
+with global structural information,” in Proc. 24th ACM Int. Conf. Inf.
+Knowl. Manage., 2015, pp. 891–900.
+[79] J. Qiu et al., “NetSMF: Large-scale network embedding as sparse matrix
+factorization,” in Proc. World Wide Web Conf., 2019, pp. 1509–1520.
+[80] W. Hamilton, Z. Ying, and J. Leskovec, “Inductive representation learning on
+large graphs,” in Proc. Adv. Neural Inf. Process. Syst., 2017, pp. 1024–1034.
+[81] M. Ding, J. Tang, and J. Zhang, “Semi-supervised learning on graphs
+with generative adversarial nets,” in Proc. 27th ACM Int. Conf. Inf.
+Knowl. Manage., 2018, pp. 913–922.
+[82] P. Baldi and G. Pollastri, “The principled design of large-scale recursive
+neural network architectures-DAG-RNNs and the protein structure pre-
+diction problem,” J. Mach. Learn. Res., vol. 4, pp. 575–602, 2003.
+[83] X.-D. Zhu, P. Sobhani, and H. Guo, “DAG-structured long short-term
+memory for semantic compositionality,” in Proc. Conf. North Amer. Chap-
+ter Assoc. Comput. Linguistics: Hum. Lang. Technol., 2016, pp. 917–926.
+[84] Z. Liu et al., “Distance-aware DAG embedding for proximity search on
+heterogeneous graphs,” in Proc. 32nd AAAI Conf. Artif. Intell., 2018,
+pp. 2355–2362.
+Yu Lu received the Ph.D. degree in computer engi-
+neering from the National University of Singapore,
+Singapore, in 2012.
+He is currently an Associate Professor with the
+School of Educational Technology, Faculty of Educa-
+tion, Beijing Normal University (BNU), Beijing,
+China, where he is also the Director of the Artiﬁcial
+Intelligence Lab, Advanced Innovation Center for
+Future Education (AICFE). He has authored or coau-
+thored more than 60 academic papers in the prestigious
+journals and conferences (e.g., IEEE TKDE, TLT,
+ICDM, AIED, and AAAI) and currently serves as the PC member for multiple
+international conferences (e.g., AAAI, AIED, and EMNLP). Before joining
+BNU, he was a Research Scientist and Principle Investigator with the Institute for
+Infocomm Research (I2R), A*STAR, Singapore. His current research interests
+mainly lie at the intersection ﬁeld of artiﬁcial intelligence and education.
+Penghe Chen received the Ph.D. degree in computer
+engineering from the National University of Singapore,
+Singapore, in 2015.
+He was with the Advanced Digital Sciences Center,
+Singapore. He is currently the Principle Researcher
+with the Advanced Innovation Center for Future Edu-
+cation, Beijing Normal University, Beijing, China. His
+research interests include knowledge graph, educa-
+tional data mining, and learning analytics.
+Yang Pian received the master’s degree major in com-
+puter science from the Hong Kong University of Sci-
+ence and Technology, Hong Kong, in 2017. She is
+currently working toward the Ph.D. degree in educa-
+tional technology with Beijing Normal University, Bei-
+jing, China.
+Her research interests include educational data min-
+ing, AI in education, and data visualization.
+Vincent W. Zheng received the Ph.D. degree in
+computer science from the Hong Kong University of
+Science and Technology, Hong Kong, in 2011.
+He is currently a Senior Research Scientist with
+Advanced Digital Sciences Center, Singapore, and
+a Research Afﬁliate with the University of Illinois
+at Urbana-Champaign, Champaign, IL, USA. His
+research interests include graph mining, informa-
+tion extraction, ubiquitous computing, and machine
+learning.
+480
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, VOL. 15, NO. 4, AUGUST 2022
+Authorized licensed use limited to: NASATI. Downloaded on September 01,2026 at 07:00:11 UTC from IEEE Xplore.  Restrictions apply. 

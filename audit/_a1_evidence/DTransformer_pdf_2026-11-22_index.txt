@@ -1,0 +1,11 @@
+pages_read 10 of 10 chars 66465
+p1: contrastive, ece
+p2: contrastive, gat, ece
+p3: contrastive, consistency, graph, bipartite, ece
+p4: gat
+p5: contrastive, consistency, gat
+p6: contrastive, consistency, gat
+p7: contrastive, auc, rmse
+p8: contrastive, ece
+p9: contrastive, graph, gat
+p10: contrastive, consistency, gat

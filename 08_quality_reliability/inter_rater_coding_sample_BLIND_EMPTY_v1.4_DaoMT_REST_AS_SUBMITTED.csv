@@ -1,0 +1,11 @@
+paper_id,model,coderB_id,coderB_S_criterion,coderB_ssl_family,coderB_graph_provenance,coderB_gnn_encoder,coderB_strict_kc_cold_start,coderB_item_cold_start,coderB_learner_cold_start,coderB_ece_reported,coderB_locator,coderB_note
+KT031,KSG-AKT,DaoMT,N,NONE,EXTERNAL_FIXED,OTHER,NO,NO,NO,NO,"Abstract p.1","KS graph with prerequisite edges; sparse question-level data; no SSL pretext; no strict cold-start or ECE"
+KT035,HHSKT,DaoMT,N,NONE,MODEL_DEFINED_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,"Abstract p.1; full-text sparsity experiment","Heterogeneous learner-question graph; interaction-drop sparsity not strict KC/item/learner CS; no SSL pretext; no ECE"
+KT037,CMKT,DaoMT,N,NONE,EXTERNAL_FIXED,NONE,NO,NO,NO,NO,"Abstract & Introduction p.1","Educational concept map external; embedded into recurrent KT; no SSL; no GNN; no strict cold-start or ECE"
+KT038,DyGKT,DaoMT,N,NONE,DYNAMIC_LEARNED,DYNAMIC_GNN,NO,NO,NO,NO,"Abstract p.1","Dynamic QA graph + dual-time encoder; no SSL pretext; no strict cold-start or ECE on this page"
+KT042,S2-HHN,DaoMT,Y,MULTIVIEW_CONTRASTIVE,MODEL_DEFINED_FIXED,HYPERGRAPH_GNN,NO,NO,NO,NO,"Abstract p.1","Hypergraph + SSL auxiliary via augmented view contrastive learning; no strict cold-start or ECE on this page"
+KT043,3V-CLKT,DaoMT,Y,MULTIVIEW_CONTRASTIVE,MODEL_DEFINED_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,"Abstract & Fig.1 p.1","Three-view contrastive learning on weighted heterogeneous graph; no strict cold-start or ECE on this page"
+KT050,GraphCA,DaoMT,Y,GRAPH_CONTRASTIVE,MODEL_DEFINED_FIXED,HETEROGENEOUS_GNN,NO,NO,NO,NO,"Abstract p.1","Counterfactual graph augmentation + contrastive framework on hetero graph; no strict cold-start or ECE on this page"
+KT066,HyperKT,DaoMT,Y,MULTIVIEW_CONTRASTIVE,MODEL_DEFINED_FIXED,HYPERGRAPH_GNN,NO,NO,NO,NO,"Abstract p.1","Dual-channel hypergraph + cross-view contrastive on line-graph views; no strict cold-start or ECE on this page"
+KT077,R2GCurL,DaoMT,N,NONE,DYNAMIC_LEARNED,DYNAMIC_GNN,NO,NO,NO,NO,"Abstract p.1","Dynamic graph from responses; graph-entropy curriculum + RL batch scheduler; no SSL pretext; no strict cold-start or ECE"
+KT079,STG-SKT,DaoMT,N,NONE,DYNAMIC_LEARNED,SPATIOTEMPORAL_GNN,NO,NO,NO,NO,"Abstract p.1","Incremental spatio-temporal streaming KT; dynamic student-question graph; no SSL pretext; no strict cold-start or ECE"

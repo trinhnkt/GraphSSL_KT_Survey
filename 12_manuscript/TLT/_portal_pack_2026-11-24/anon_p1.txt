@@ -1,0 +1,80 @@
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES                                                                                                      1
+
+
+
+
+              Graph-Based and Self-Supervised Knowledge Tracing in
+                             Sparse-Concept Settings: A Critical Survey
+                                                              Anonymous Authors
+
+
+
+   Abstract—Knowledge Tracing (KT) estimates mastery over                     psychometric models such as Bayesian Knowledge Tracing
+Knowledge Components (KCs) from interaction logs and un-                      (BKT) and Item Response Theory (IRT).
+derpins Intelligent Tutoring Systems (ITS), adaptive platforms,
+and Educational Data Mining (EDM). Graph-Based KT (Graph-
+KT) and Self-Supervised KT (SSL-KT) have grown rapidly,
+                                                                              A. Learning-Technology Motivation: Data Sparsity & Cold-
+yet sparse-concept, cold-start, and calibration evaluation remain             Start
+unstandardized. This critical survey codes 44 primary-core PDFs                  Despite recent empirical progress, traditional deep KT archi-
+(2018–2026) after a search-log identification total of Nrec = 2,017           tectures treat exercise and concept identifiers as independent
+and a supplementary full-text update, yielding NG = 40,
+NS = 16, and NG∩S = 12. Strict zero-exposure KC cold-                         categorical tokens, ignoring explicit domain structures and
+start is absent (0/44); item cold-start is YES for SINKT only;                educational relationships. This formulation faces two recurring
+learner cold-start is YES for SGKT and CoSKT; interaction-drop                challenges in real-world intelligent tutoring systems:
+evaluation is YES for HCMKT only. None of the 44 manuscripts                     1) Sparse-interaction representations: In realistic edu-
+report Expected Calibration Error or Brier score; 14 report
+RMSE as overall prediction error, not calibration. Relative to
+                                                                                    cational platforms, interaction matrices are extremely
+prior TLT-scoped KT maps, the deliverable is a provenance–                          sparse. Most students attempt only a tiny fraction of the
+encoder and SSL audit plus a go/not-enough-evidence checklist                       overall item repository, and long-tail concepts receive
+for new-KC onboarding, log-derived skill maps, and mastery                          minimal interaction logs. Sequence models that treat IDs
+actions from raw P (r = 1). Screening agreement is reported for                     as isolated tokens therefore have little evidence from
+a deposited double-screened subset only. The agenda prioritizes
+zero-exposure benchmarks, calibration reporting, and train-only
+                                                                                    which to estimate embeddings for those concepts—a
+graph construction.                                                                 motivation widely stated in the Graph-KT and SSL-KT
+                                                                                    literature, not a collapse statistic measured in this survey.
+  Index Terms—Knowledge Tracing, Educational Data Mining,
+Graph Neural Networks, Self-Supervised Learning, Intelligent                     2) Strict Concept Cold-Start: When new concepts or
+Tutoring Systems.                                                                   exercises are introduced into a curriculum without prior
+                                                                                    historical interaction logs, conventional deep KT mod-
+                                                                                    els cannot infer student mastery from interaction IDs
+                         I. I NTRODUCTION
+                                                                                    alone. Handling zero-exposure concepts during curricu-
+       NOWLEDGE Tracing (KT) is the fundamental task
+K      of sequentially modeling student mastery over educa-
+tional Knowledge Components (KCs, e.g., concepts, skills,
+                                                                                    lum adaptation requires incorporating external structural,
+                                                                                    pedagogical, or semantic knowledge graph priors.
+
+rules) based on historical learning interaction logs. In mod-                 B. Scope & Gateway Criteria
+ern Intelligent Tutoring Systems (ITS), Educational Data
+                                                                                To address these fundamental limitations, two primary
+Mining (EDM), and adaptive learning environments, Knowl-
+                                                                              methodological paradigms have rapidly expanded:
+edge Tracing serves as the algorithmic engine for personal-
+                                                                                • Graph-Based Knowledge Tracing (Graph-KT): Incor-
+ized learning pathways, learner-state estimation, step-based
+scaffolding, and automated curriculum adaptation. Formally,                        porating explicit graph or graph-structured relations (e.g.,
+given a sequence of T student interaction tuples X1:T =                            concept prerequisite trees, question-KC bipartite maps,
+{(x1 , r1 ), (x2 , r2 ), . . . , (xT , rT )}, where xt ∈ E represents              or dynamic co-occurrence graphs) as a central structural
+the exercise or concept attempted at time t, and rt ∈ {0, 1}                       mechanism, including but not limited to Graph Neural
+indicates the binary response accuracy (0 for incorrect, 1 for                     Network (GNN) message passing. A Graph-KT paper
+correct), the goal of Knowledge Tracing is to predict the                          need not use a GNN.
+                                                                                • Self-Supervised Knowledge Tracing (SSL-KT): For-
+response probability P (rT +1 = 1 | xT +1 , X1:T ) on a target
+exercise xT +1 . Table I summarizes the principal mathematical                     mulating an auxiliary pretext objective on sequences or
+notations used throughout this survey. Since the seminal Deep                      graphs (e.g., multi-view contrast, bipartite graph recon-
+Knowledge Tracing (DKT) model [1] introduced Recurrent                             struction, or sequence contrast) to regularize student-state
+Neural Networks (RNNs) to sequence modeling in education,                          representations. Exclusive family codes are the coding
+deep sequence models—including Attention-based KT (SAKT                            protocol tokens; PEBG is graph reconstruction, not a
+[2], AKT [3]) and Memory Network KT (DKVMN [4])—                                   masked auto-encoder.
+have become the standard predictive baselines over classic                    Our systematic survey enforces a strict, frozen primary-corpus
+                                                                              gateway rule:
+  Manuscript submitted to IEEE Transactions on Learning Technologies. Au-
+thor names, affiliations, emails, and ORCIDs are omitted for this anonymous          PRIMARY_CORE = KT ∧ (GRAPH_BASED
+copy.
+                                                                                                                                             (1)
+                                                                                                              ∨ SELF_SUPERVISED)
+

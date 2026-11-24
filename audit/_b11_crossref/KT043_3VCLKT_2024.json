@@ -1,0 +1,130 @@
+{
+  "title": [
+    "Weighted Heterogeneous Graph-Based Three-View Contrastive Learning for Knowledge Tracing in Personalized e-Learning Systems"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0002-0951-1072",
+      "authenticated-orcid": false,
+      "given": "Jianwen",
+      "family": "Sun",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "National Engineering Research Center of Educational Big Data and the Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-5792-631X",
+      "authenticated-orcid": false,
+      "given": "Shangheng",
+      "family": "Du",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "National Engineering Research Center of Educational Big Data and the Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-5024-9056",
+      "authenticated-orcid": false,
+      "given": "Zhi",
+      "family": "Liu",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "National Engineering Research Center of Educational Big Data and the Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Fenghua",
+      "family": "Yu",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "National Engineering Research Center of Educational Big Data and the Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-4926-3720",
+      "authenticated-orcid": false,
+      "given": "Sannyuya",
+      "family": "Liu",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "National Engineering Research Center of Educational Big Data and the Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-6663-5821",
+      "authenticated-orcid": false,
+      "given": "Xiaoxuan",
+      "family": "Shen",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "National Engineering Research Center of Educational Big Data and the Faculty of Artificial Intelligence in Education, Central China Normal University, Wuhan, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2024,
+        2
+      ]
+    ]
+  },
+  "container-title": [
+    "IEEE Transactions on Consumer Electronics"
+  ],
+  "volume": "70",
+  "issue": "1",
+  "page": "2838-2847",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "DOI": "10.1109/tce.2023.3293953",
+  "type": "journal-article"
+}

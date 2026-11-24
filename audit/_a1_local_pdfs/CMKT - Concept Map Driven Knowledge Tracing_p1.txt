@@ -1,0 +1,224 @@
+CMKT: Concept Map Driven Knowledge Tracing
+Yu Lu
+, Penghe Chen
+, Yang Pian
+, and Vincent W. Zheng
+Abstract—In this article, we advocate for and propose a novel
+concept map driven knowledge tracing (CMKT) model, which
+utilizes educational concept map for learner modeling. This article
+particularly addresses the issue of learner data sparseness caused by
+the unwillingness to practice and irregular learning behaviors on the
+learner side. CMKT considers the concept map as a new information
+source and explicitly exploits its inherent information to help the
+estimation of the learner’s knowledge state. Speciﬁcally, the pairwise
+educational relations in the concept map are formulated as the
+ordering pairs and are used as mathematical constraints for model
+construction. The topology information in the concept map is
+extracted and used as the model input by employing the network
+embedding
+techniques.
+Integrating
+both
+educational
+relation
+information and topology information in the concept map, CMKT
+adopts the recurrent neural network to perform knowledge tracing
+tasks.
+Comprehensive
+evaluations
+conducted
+on
+ﬁve
+public
+educational datasets of four different subjects (more than 8000
+learners and their 300 000 records) demonstrate the promise and
+effectiveness of CMKT: The average area under ROC curve (AUC)
+and overall prediction accuracy (ACC) achieve 0.82 and 0.75,
+respectively, and CMKT outperforms all the baselines by at least
+12.2% and 9.2% in terms of AUC and ACC.
+Index Terms—Concept map, constraint learning, knowledge
+tracing, learner modeling, network embedding.
+I. INTRODUCTION
+I
+N the education realm, knowledge tracing (KT) refers to
+modeling the knowledge states of learners through diag-
+nosing their mastery level quantitatively on the individual
+pedagogical concept (e.g., “fraction” or “linear equation” in
+mathematics) [1]. The results of KT can be directly used to
+estimate a learner’s current knowledge strength and weak-
+ness, which has been serving a variety of intelligent tutoring
+systems (ITS) and computer-supported education environ-
+ments [2]. In addition, KT and its analytic results have been
+used in today’s online learning platforms, including massive
+open online courses (MOOCs) [3], to provide personalized
+recommendations of learning resources and modules [4].
+Traditionally, KT primarily uses learner’s exercise and
+learning activity data to construct models and estimates a
+learner’s knowledge state accordingly. The rapid development
+of ITS and MOOCs provides good platforms for collecting
+these data in a practical and inexpensive manner. However, it
+also encounters a major challenge: the sparseness of learner’s
+exercise and learning activity data. Speciﬁcally, learners tend
+to use the online educational systems on an irregular time
+basis and spend less time to practice or review individual con-
+cepts as well as the comprehensive assessment [5]. For each
+individual learner, it is likely that only a small set of concepts
+in the target subject or course are practiced (i.e., by solving
+quiz questions) or reviewed (i.e., by browsing tutorial videos
+or interacting with tutors). As a result, such learners’ mastery
+information most likely remains unknown on a large portion
+of concepts, which makes KT models suffer from poor perfor-
+mance and be restricted in other applications, including
+learner academic performance prediction [6], question difﬁ-
+culty estimation [7], and learning path adaptation [8].
+However, it is impractical and unfair to impose any strict
+learning or exercise routines on the learner side for collecting
+necessary and adequate KT information. Other strategies for
+handling data spareness, such as data augmentation [9] and
+transfer learning [10], are also difﬁcult to be applied in KT due
+to the complexity of the human’s cognitive process in the
+knowledge domain. Thus, our insight into solving this data
+sparseness problem hinges upon the information from the
+knowledge domain itself. Speciﬁcally, we propose and advo-
+cate the use of a concept map [11] by fully exploiting its inher-
+ent information to help the KT model construction. Brieﬂy
+speaking, a concept map refers to a graphic representation of
+pedagogical concepts that illustrate different educational rela-
+tions between concepts through linking connections. The well-
+established knowledge space theory [12] in education reveals a
+natural dependence between pedagogical concepts in the objec-
+tive domain knowledge and subjective learner cognitive pro-
+cess. In accordance with the knowledge space theory, human’s
+learning process modeling could leverage the information
+derived from the concept map. Fig. 1 illustrates a simpliﬁed
+concept map that consists of six concepts (i.e., from C1 to C6)
+with the prerequisite relations. Introducing concept map infor-
+mation into knowledge state estimation provides a data source
+for KT model construction and helps to mitigate the data
+sparseness. In the education realm, particularly for K-12 educa-
+tion, concept maps for most subjects and courses have been
+constructed by domain experts or experienced teachers, which
+can be directly used for either teaching or research purposes.
+Manuscript received 9 March 2020; revised 8 June 2022 and 29 July 2022;
+accepted 1 August 2022. Date of publication 4 August 2022; date of current
+version 16 September 2022. This work was supported in part by the National
+Natural Science Foundation of China under Grants 62077006 and 62177009
+and in part by the Fundamental Research Funds for the Central Universities.
+(Corresponding author: Penghe Chen.)
+Yu Lu and Penghe Chen are with the Advanced Innovation Center for
+Future Education, School of Educational Technology, Faculty of Education,
+Beijing Normal University, Beijing 100875, China (e-mail: luyu@bnu.edu.cn;
+chenpenghe@bnu.edu.cn).
+Yang Pian is with the School of Educational Technology, Faculty of Education,
+Beijing Normal University, Beijing 100875, China (e-mail: bianyang@mail.bnu.
+edu.cn).
+Vincent W. Zheng is with Advanced Digital Sciences Center, Singapore
+138602 (e-mail: vincent.zheng@adsc.com.sg).
+Digital Object Identiﬁer 10.1109/TLT.2022.3196355
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, VOL. 15, NO. 4, AUGUST 2022
+467
+1939-1382 © 2022 IEEE. Personal use is permitted, but republication/redistribution requires IEEE permission.
+See ht_tps://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: NASATI. Downloaded on September 01,2026 at 07:00:11 UTC from IEEE Xplore.  Restrictions apply. 
+
+In general, two types of information from the concept map
+can aid the knowledge state estimation and be used by KT
+models: 1) educational relation information and 2) topology
+information. The educational relations in concept maps pri-
+marily specify the implicit but educationally signiﬁcant
+dependencies between pedagogical concepts, which are com-
+monly used to optimize the learning and teaching processes.
+Take one type of educational relation called prerequisite rela-
+tion as an example. Given some concepts serve as the prereq-
+uisites of another concept (e.g., “adding” and “multiplication”
+are the prerequisites of “factorization” in math), if a learner
+has mastered the latter concept (i.e., “factorization”), it can be
+inferred that the learner likely has mastered its prerequisite
+ones (i.e., “adding” and “multiplication”). In addition to the
+prerequisite relation, many other relation types, such as inclu-
+sion, causal, and progressive relations, also appear in different
+concept maps. On the other hand, the topology information
+mainly refers to the physical structure of the concept map,
+which indicates how each concept is linked with others and
+how it is positioned in the entire map structure. For example, as
+shown in Fig. 1, given a concept that occupies a central position
+in a concept map (e.g., “adding” and “multiplication” serve
+as the prerequisites for the concept “factorization,” and
+“factorization” serves as the prerequisites for concepts “linear
+equation” and “square root”), this concept (e.g., “factorization”)
+would be more critical and important than other concepts that
+are located at the map edges. Both the educational relation infor-
+mation and the topology information from a concept map can be
+integrated into KT models for better knowledge state estimation.
+This article addresses these issues by introducing concept
+map information into the KT model design. In particular, we
+design a novel KT model that explicitly integrates the educa-
+tional relation information and the topology information
+derived from a concept map. There are several critical techni-
+cal challenges in building the desired KT model. For example,
+how to properly formulate the qualitative pairwise educational
+relations as quantitative mathematical form and then integrate
+with the KT model is not straightforward. Also, a concept
+map naturally forms a directed acyclic graph (DAG), which
+makes the common network embedding approaches targeting
+generic graphs unsuitable [13]. Therefore, it is not a trivial
+task to effectively extract the topology information from a
+concept map and integrate it with the KT model. To solve
+such challenges, we consider converting the pairwise educa-
+tional relations to the speciﬁc mathematical constraints to reg-
+ularize the learner state estimation. We also explore the new
+embedding method to learn the topology information of a con-
+cept map, which can be used as an additional input for the
+new KT model.
+Therefore, this article principally makes the following key
+contributions.
+1) New KT Model Design: To alleviate the issue of learner
+data sparseness and better modeling learners, we pro-
+pose a new KT model by leveraging on the inherent
+information from a concept map.
+2) Educational Relation Modeling: To properly use the
+educational relations from a concept map, we model its
+pairwise relations, typically the prerequisite ones, as the
+ordering pairs, and then use them as mathematical con-
+straints for the new KT model construction.
+3) Topology Information Embedding: To directly use the
+topology information from a concept map, we employ
+network embedding techniques to extract the desired
+information. The embedding results serve as the new
+input for the proposed KT model.
+4) Multidatasets and Comprehensive Evaluation: Using ﬁve
+public educational datasets of four subjects (more than
+8000 learners and their 300 000 records), we conduct
+comprehensive experiments to evaluate the proposed
+model, and the results show that the new KT model out-
+performs all the baselines by at least 12.2% and 9.2% in
+terms of average area under ROC curve (AUC) and over-
+all prediction accuracy (ACC), respectively.
+While the proposed new model is novel and effective, we
+believe that the key impact of this article is to highlight a
+broader possibility of learner modeling using the domain
+knowledge and its inherent information, and eventually ena-
+bles learners and their learning process to be better modeled,
+analyzed, and predicted.
+The remained of this article is organized as follows.
+Section II describes the basics of KT and how it works.
+Section III formulates the problem and deﬁnes the important
+mathematical notations. Section IV presents the proposed KT
+model. We show the evaluation results in Section V. The dis-
+cussion and the related work are given in Sections VI and VII,
+respectively. Finally, we conclude in Section VIII.
+II. KT AND LEARNER MODEL
+KT mainly aims to estimate the knowledge state of individ-
+ual learners. Existing KT models often treat the knowledge
+state on a speciﬁc concept or skill as a latent variable and
+attempt to estimate the mastery probability based on the
+observed consecutive exercise performance collected from
+learners. We take the established Bayesian KT (BKT) [1] as an
+illustrative example. Given a number of questions on the same
+learning unit (either concept or skill) and a learner’s exercise
+performance on such questions (either correctly answer it or
+Fig. 1.
+Simpliﬁed concept map for math subject.
+468
+IEEE TRANSACTIONS ON LEARNING TECHNOLOGIES, VOL. 15, NO. 4, AUGUST 2022
+Authorized licensed use limited to: NASATI. Downloaded on September 01,2026 at 07:00:11 UTC from IEEE Xplore.  Restrictions apply. 

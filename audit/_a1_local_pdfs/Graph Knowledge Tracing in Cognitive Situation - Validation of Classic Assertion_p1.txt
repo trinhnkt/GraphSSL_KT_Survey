@@ -1,0 +1,168 @@
+Knowledge-Based Systems 315 (2025) 113281
+Available online 8 March 2025
+0950-7051/© 2025 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies.
+ 
+Contents lists available at ScienceDirect
+Knowledge-Based Systems
+journal homepage: www.elsevier.com/locate/knosys
+ 
+Graph knowledge tracing in cognitive situation: Validation of classic 
+assertions in cognitive psychology
+Qianxi Wu a, Weidong Ji a,b
+,∗, Guohui Zhou a,b, Yingchun Yang c
+a College of Computer Information Engineering, Harbin Normal University, Harbin, 150025, China
+b Future Teachers Teaching and Intelligent Development Laboratory, Harbin Normal University, Harbin, 150025, China
+c College of Literature and History and Culture, Qiqihar University, Qiqihar, 161000, China
+A R T I C L E  I N F O
+Keywords:
+Knowledge Tracing
+Cognitive situation
+Hyper-Graph Neural Network
+Directed Graph Convolutional Neural Network
+Cognitive psychology
+ 
+A B S T R A C T
+Knowledge Tracing (KT) is a fundamental and challenging task in intelligent education, aiming to trace 
+learners’ knowledge states and learning processes, providing better support and guidance for teaching and 
+addressing mental factors. Previous KT tasks have focused on considering learners’ exposure to extrinsic 
+environmental factors while ignoring the influence of intrinsic psychological factors. Moreover, previous 
+methods have adopted a single perspective in modeling learners’ knowledge states, ignoring the diversity 
+of states in the learning process. To address these issues, we define the concept of cognitive situation through 
+the guidance of cognitive psychology theory to help to explain the extrinsic influence and intrinsic cognition 
+of learners within complex learning environments. Moreover, we design a Cognitive Situation-based Graph 
+KT (CSGKT) model to quantify learners’ influences in the cognitive process by modeling schemas capturing 
+intrinsic characteristics and extrinsic factors through Hyper-Graph Neural Networks (HGNN). Second, we utilize 
+a Directed Graph Convolutional Neural Network (DGCNN) to capture the correlation information between 
+knowledge concepts and structure the learner’s cognitive activities and knowledge states, adding a detailed 
+representation of multiple states of the learning process. In addition, we use the Erase-add Gate to filter out 
+the knowledge states that do not match the learner’s current cognitive activities to stabilize the learner’s 
+due cognition. In our experiments, we selected nine baseline models from three mainstream approaches, 
+including sequence-based approaches, Transformer-based approaches, and complex structure-based approaches. 
+The experimental results show that our models outperform these baseline models. At the same time, we also 
+verify two classic assertions in cognitive psychology, namely, the ‘‘short-term memory forgetting of knowledge 
+concepts is mainly caused by interference rather than memory trace fading" and the ‘‘cognitive imagery and 
+perceptual function play an equivalent role in the cognitive process", which further support the feasibility of 
+the model.
+1. Introduction
+The rapid development of artificial intelligence and big data tech-
+nologies has made intelligent education a key innovation in the ed-
+ucational field. Technologies [1] such as Knowledge Tracing (KT) 
+provide personalized learning [2,3] support through real-time analysis 
+of learners’ behaviors and knowledge states, aiming to improve learning 
+efficiency and educational quality by optimizing resource allocation. 
+However, a major challenge in achieving intelligent education is accu-
+rately understanding learners’ cognitive processes in complex learning 
+environments. Learning is a social process embedded in specific con-
+texts, influenced by external factors and individual characteristics. 
+Ignoring this complexity hinders a comprehensive understanding of 
+learners’ cognitive states and impairs personalized support.
+∗Corresponding author.
+E-mail address: kingjwd@126.com (W. Ji).
+Education is inherently a complex system [4], encompassing nu-
+merous intricate factors such as interactions between individuals and 
+groups, mutual shaping of environment and cognition, and the inte-
+gration and analysis of multi-source heterogeneous data. A holistic 
+understanding of learning environments necessitates interdisciplinary 
+theoretical exploration and methodological innovation. Cognitive psy-
+chology provides a crucial theoretical foundation for comprehending 
+cognitive processes in learning. According to cognitive psychologist 
+Beck [5], human cognitive activities invariably unfold within specific 
+situations, with situational factors such as learning environment, pre-
+sentation of learning materials, and types of learning tasks influencing 
+cognitive processing, including attention, memory, and thinking. In 
+other words, learners are embodied, contextualized cognitive subjects. 
+https://doi.org/10.1016/j.knosys.2025.113281
+Received 15 December 2023; Received in revised form 5 September 2024; Accepted 26 February 2025
+
+Knowledge-Based Systems 315 (2025) 113281
+2
+Q. Wu et al.
+Fig. 1. Learners’ cognitive activities and knowledge states at each time step are influenced by extrinsic factors and intrinsic characteristics, respectively.
+Consequently, neglecting that situation precludes an accurate grasp of 
+the essence of the learning process.
+In recent years, the field of cognitive psychology has witnessed a 
+proliferation of studies exploring cognitive engagement and cognitive 
+states, offering new perspectives for understanding cognitive dynamics 
+in learning processes. Liu et al. [6] employed deep learning methods to 
+identify learners’ cognitive states, revealing e-learning patterns under 
+different cognitive engagement modes. Some studies focus on analyzing 
+the associations between cognitive factors and learning outcomes, such 
+as predicting academic performance based on emotions and cogni-
+tive engagement [7], and the impact of cognitive interference and 
+emotional patterns on academic achievement [8]. Additionally, some 
+scholars have proposed novel approaches like semi-supervised learn-
+ing for identifying cognitive patterns in online learning discussions, 
+achieving favorable results [9]. These studies expand the application 
+of cognitive modeling in intelligent education; however, they still lack 
+a systematic consideration of the multi-dimensional influencing factors 
+in complex learning environments.
+To overcome the limitations of existing KT methods, this paper 
+introduces the concept of cognitive situation. A cognitive situation specif-
+ically refers to a learner’s cognitive processing in a particular spatiotem-
+poral situation, emphasizing the dynamic associations among extrinsic 
+factors, intrinsic characteristics, cognitive activities, and knowledge 
+states, thereby establishing a contextualized learner cognitive model. 
+This concept provides a theoretical framework for analyzing key ele-
+ments and their interaction patterns in learning environments. Within 
+a cognitive situation, it is posited that a learner’s knowledge state not 
+only updates but also be influenced by intrinsic characteristics such as 
+individual differences, perceptions of task difficulty, knowledge recep-
+tion capacity, and adaptation to teaching methods, leading to variations 
+in knowledge states. Fig. 1 illustrates that at each time step, both 
+knowledge states and cognitive activities change to varying degrees due 
+to the influence of extrinsic factors and intrinsic characteristics. By fo-
+cusing on cognitive situations, a more comprehensive understanding of 
+learners’ cognitive change patterns in complex learning environments 
+can be achieved. This approach supports the design of personalized 
+and effective learning strategies, thereby enhancing learners’ learning 
+outcomes and mastery levels.
+Our specific contributions are described as follows:
+• By leveraging insights from cognitive psychology and typical 
+application scenarios, we propose defining the cognitive situation 
+and developing a correlation analysis model based on ‘‘extrin-
+sic factors-cognitive process-intrinsic characteristics’’. This model 
+aims to enhance the alignment of KT tasks with real-world situa-
+tions.
+• CSGKT captures the schema of intrinsic features and extrinsic 
+factors through HGNN modeling, and DGCNN is modeled to 
+capture the correlation information between knowledge concepts 
+and Erase-add Gate to rationalize learners’ cognition.
+• Extensive experiments were conducted on four benchmark datasets 
+and compared with nine baseline models from three mainstream 
+approaches. The experimental results show that CSGKT achieves 
+the most advanced prediction performance.
+• Two major experiments in cognitive psychology were simulated 
+to validate the two classic assertions: ‘‘short-term memory for-
+getting of knowledge concepts is mainly caused by interference 
+rather than memory trace fading’’ and ‘‘cognitive imagery and 
+perceptual functions play an equivalent role in the cognitive 
+process’’.
+Organizational Structure: The organizational structure for the 
+rest of this article is as follows. Section 2 presents the background 
+information, while Section 3 elaborates on the KT problem and 
+introduces the proposed CSGKT model. Section 4 explains the 
+experimental setup, and Section 5 presents the experimental re-
+sults and analysis. Based on the KT results, Section 6 discusses 
+the results of two simulation verification experiments for our 
+approach. Section 7 is the conclusion. The paper ends with the 
+discussion in Section 8.
+2. Related work
+In this section, we begin with an extensive review of the three 
+dominant approaches. We then outline the specific definitions that give 
+cognitive situations, as they are closely related to the work in this 
+paper.
+2.1. Knowledge tracing
+KT [10,11] as a fundamental task in intelligent education, possesses 
+a wide range of potential and has come to prominence in recent 
+decades. It involves continuous monitoring, assessment of learners’ 
+knowledge and skills, and tracing of the knowledge state. This tracing 
+not only helps to understand the individual needs and development 
+of learners but can also be used to adjust educational strategies to 
+better meet the learning needs of learners. When it comes to the 
+high performance and timeliness of KT research, it can usually be 
+categorized into three main types of approaches: sequence-based ap-
+proaches, Transformer-based approaches, and complex structure-based 
+approaches. Each of these approaches has different advantages and 
+applicability, and the appropriate model can be selected to improve 
+the performance and efficiency of KT based on specific research and 
+educational scenarios.

@@ -1,0 +1,112 @@
+PYKT: A Python Library to Benchmark Deep
+Learning based Knowledge Tracing Models
+Zitao Liu
+Guangdong Institute of Smart Education
+Jinan University
+Guangzhou, Guangdong, China
+liuzitao@jnu.edu.cn
+Qiongqiong Liu
+Think Academy International Education
+TAL Education Group
+Beijing, China
+liuqiongqiong1@tal.com
+Jiahao Chen
+Think Academy International Education
+TAL Education Group
+Beijing, China
+chenjiahao@tal.com
+Shuyan Huang⇤
+Think Academy International Education
+TAL Education Group
+Beijing, China
+huangshuyan@tal.com
+Jiliang Tang
+Computer Science and Engineering Department
+Michigan State University
+East Lansing, MI, United States
+tangjili@msu.edu
+Weiqi Luo
+Guangdong Institute of Smart Education
+Jinan University
+Guangzhou, Guangdong, China
+lwq@jnu.edu.cn
+Abstract
+Knowledge tracing (KT) is the task of using students’ historical learning interaction
+data to model their knowledge mastery over time so as to make predictions on their
+future interaction performance. Recently, remarkable progress has been made of
+using various deep learning techniques to solve the KT problem. However, the
+success behind deep learning based knowledge tracing (DLKT) approaches is still
+left somewhat unknown and proper measurement and analysis of these DLKT
+approaches remain a challenge. First, data preprocessing procedures in existing
+works are often private and custom, which limits experimental standardization.
+Furthermore, existing DLKT studies often differ in terms of the evaluation protocol
+and are far away real-world educational contexts. To address these problems, we
+introduce a comprehensive python based benchmark platform, PYKT, to guarantee
+valid comparisons across DLKT methods via thorough evaluations. The PYKT
+library consists of a standardized set of integrated data preprocessing procedures
+on 7 popular datasets across different domains, and 10 frequently compared DLKT
+model implementations for transparent experiments. Results from our ﬁne-grained
+and rigorous empirical KT studies yield a set of observations and suggestions for ef-
+fective DLKT, e.g., wrong evaluation setting may cause label leakage that generally
+leads to performance inﬂation; and the improvement of many DLKT approaches is
+minimal compared to the very ﬁrst DLKT model proposed by Piech et al. [25]. We
+have open sourced PYKT and our experimental results at https://pykt.org/.
+We welcome contributions from other research groups and practitioners.
+⇤The corresponding author: Shuyan Huang.
+36th Conference on Neural Information Processing Systems (NeurIPS 2022) Track on Datasets and Benchmarks.
+
+1
+Introduction
+The increasingly digitalized education tools and the popularity of online learning have produced
+an unprecedented amount of data that provides us with invaluable opportunities for applying AI in
+education. Knowledge tracing (KT) is the task of using students’ historical learning interaction data
+to model their knowledge mastery over time so as to make predictions on their future interaction
+performance. Such predictive capabilities can potentially help students learn better and faster
+when paired with high-quality learning materials and instructions, which is crucial for building
+next-generation smart and personalized education.
+The KT related research has been studied since 1990s where Corbett and Anderson, to the best of
+our knowledge, were the ﬁrst to estimate students’ current knowledge with regard to each individual
+knowledge component (KC) [8]. A KC is a description of a mental structure or process that a learner
+uses, alone or in combination with other KCs, to accomplish steps in a task or a problem2. Since
+then, many attempts have been made to solve the KT problem, such as probabilistic graphical models
+[13] and factor analysis based models [3, 14, 35]. Recently, due to the rapid advances of deep neural
+networks, deep learning based knowledge tracing (DLKT) models have become the de facto KT
+framework for modeling students’ mastery of KCs [1, 7, 10, 12, 15, 16, 19, 21, 22, 23, 24, 25, 29, 30,
+31, 36, 37, 44, 45, 46, 47].
+Although DLKT approaches have constituted new paradigms of the KT problem [10, 22, 25, 30, 46]
+and achieved promising results, recent studies [15, 16, 25, 34] seem to resemble each other with
+very limited nuances from the methodological perspective. Most existing work only provides coarse
+evaluation and both the contributing factors leading to the success of DLKT and how the DLKT
+models perform in the real-world educational contexts still remain somewhat unknown. Furthermore,
+evaluations of existing DLKT work are not standardized and reported AUC results of the same
+approach on the same dataset vary surprisingly from 0.709 to 0.86 [2] (details discussed in Section
+3.3). Therefore, there is a substantial need for a standardized DLKT benchmark platform, which
+ensures that methods can be compared in a fair and transparent manner. Researchers need to be able
+to evaluate their proposed approaches against a wide range of state-of-the-art (SOTA) methods on
+both publicly available and private datasets and practitioners need to be capable of differentiating
+advantages and disadvantages of the DLKT algorithms in real-world educational contexts.
+In order to accelerate research in building advanced KT approaches, we systematically design PYKT,
+a ﬁne-grained python based benchmark library that brings us closer to the requirements of real-world
+KT applications in educational contexts. Overall this paper makes the following contributions:
+• We carefully and comprehensively assess the progress of recently developed DLKT algorithms
+through the lens of empirical evaluation of critical experimental setup and design considerations on
+a variety of public datasets. Through the empirical studies, we attempt to provide answers to the
+following research questions:
+– RQ1: What is a reasonable, reliable and realistic evaluation process for DLKT algorithms?
+– RQ2: How do different characteristics of student data, model design and prediction scenario
+affect the model performance?
+• To ensure reproducibility and foster future research, we develop PYKT, an easy-to-use and end-
+to-end PyTorch benchmark library that includes critical data preprocessing, standardized dataset
+splitting, SOTA DLKT implementations, and real-world evaluation protocols in educational con-
+texts. We hope the use of PYKT will greatly relieve the burden of comparing existing baselines and
+developing new algorithms. The PYKT library is open-sourced at https://pykt.org/.
+Please note that there have been several KT related survey papers [2, 17, 27, 28]. However, to the
+best of our knowledge, none of the existing work provides rigorous empirical evidence of DLKT
+approaches on the standardized experimental evaluation in real-world educational contexts.
+2
+Problem Statement
+Let Q, and C be the sets of questions, and KCs respectively. Let each student s be a chronologically
+ordered collection of historical learning interactions, i.e., s = {ej}n
+j=1 where ej is the jth interaction
+2A KC is a generalization of everyday terms like concept, principle, fact, or skill.
+2

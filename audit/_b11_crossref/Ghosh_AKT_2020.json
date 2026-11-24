@@ -1,0 +1,73 @@
+{
+  "title": [
+    "Context-Aware Attentive Knowledge Tracing"
+  ],
+  "author": [
+    {
+      "given": "Aritra",
+      "family": "Ghosh",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "University of Massachusetts Amherst, Amherst, MA, USA"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Neil",
+      "family": "Heffernan",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Worcester Polytechnic Institute, Worcester, MA, USA"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Andrew S.",
+      "family": "Lan",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "University of Massachusetts Amherst, Amherst, MA, USA"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2020,
+        8,
+        20
+      ]
+    ]
+  },
+  "container-title": [
+    "Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining"
+  ],
+  "volume": null,
+  "issue": null,
+  "page": "2330-2339",
+  "publisher": "ACM",
+  "DOI": "10.1145/3394486.3403282",
+  "type": "proceedings-article"
+}

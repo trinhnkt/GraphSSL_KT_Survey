@@ -1,0 +1,94 @@
+R2GCurL: Reinforced Robust Knowledge Tracing via
+Dynamic Graph Curriculum Learning
+TIANHAO PENG, Beihang University, Beijing, China and Nanyang Technological University,
+Singapore, Singapore
+YANJUN PU, Beihang University, Beijing, China
+YONGQI ZHANG, Hong Kong University of Science and Technology (Guangzhou), Guangzhou, China
+YUCHEN LI, Baidu Inc., Beijing, China
+JIAN REN, JIE LUO, and KUI ZHANG, Beihang University, Beijing, China
+HAITAO YUAN, Tsinghua University, Beijing, China
+SHUAIQIANG WANG and DAWEI YIN, Baidu Inc., Beijing, China
+WENJUN WU, Beihang University, Beijing, China
+With the rise of AI in education, knowledge tracing (KT) has become important for modeling students’
+knowledge from interaction data. However, existing methods still face three major challenges, including limited
+modeling of personalized exercise–concept relations, low robustness to noisy interactions, and inefficient
+training due to suboptimal data selection. To address these issues, we propose R2GCurL, a novel KT framework
+with two key designs. First, we recast KT as a graph classification problem and construct dynamic graphs
+from student responses, enabling the model to capture structural relations between exercises and concepts for
+more personalized KT. Second, we introduce a data-centric curriculum learning strategy based on dynamic
+graph entropy. Under our definition, pairwise dynamic graph entropy measures graph-transition continuity,
+where larger values indicate stronger structural similarity. Its sequence-level aggregation is used to derive a
+structure-aware difficulty signal for sample scheduling. On top of this, an RL-based scheduler further adapts
+batch selection based on model feedback and is especially beneficial under noisier and more unstable training
+regimes. Theoretical analysis shows that R2GCurL has lower computational complexity than existing graph-
+based KT models. Extensive experiments on five real-world datasets confirm its effectiveness, robustness, and
+generalizability, including as a plug-and-play enhancement for sequence-based KT models.
+This work is supported in part by the National Natural Science Foundation of China under Grant Nos. 62441617 and
+62276014. Y. Zhang’s work is supported by Guangdong Provincial Natural Science Foundation 2025A1515010304, Guangdong
+Province Project 2024QN11X088, Guangzhou Science and Technology Planning Project 2025A03J4491.
+The majority of this work was completed while Tianhao Peng was at Beihang University. He is currently affiliated with
+Nanyang Technological University.
+Authors’ Contact Information: Tianhao Peng, Beihang University, Beijing, China and Nanyang Technological University,
+Singapore, Singapore; e-mail: pengtianhao@buaa.edu.cn; Yanjun Pu, Beihang University, Beijing, China; e-mail:
+buaapyj@buaa.edu.cn; Yongqi Zhang, Hong Kong University of Science and Technology (Guangzhou), Guangzhou,
+China; e-mail: yongqizhang@hkust-gz.edu.cn; Yuchen Li, Baidu Inc, Shanghai, China; e-mail: yuchenli1230@gmail.com;
+Jian Ren, Beihang University, Beijing, China; e-mail: renjian@buaa.edu.cn; Jie Luo, Beihang University, Beijing, China;
+e-mail: luojie@buaa.edu.cn; Kui Zhang, Beihang University, Beijing, China; e-mail: zhangkui@buaa.edu.cn; Haitao Yuan,
+Tsinghua University, Beijing, China; e-mail: yhaitao45@163.com; Shuaiqiang Wang, Baidu Inc., Beijing, China; e-mail:
+shqiang.wang@gmail.com; Dawei Yin, Baidu Inc., Beijing, China; e-mail: yindawei@acm.org; Wenjun Wu (corresponding
+author), Beihang University, Beijing, China; e-mail: wwj09315@buaa.edu.cn.
+*For correspondence, please contact Wenjun Wu, Jie Luo, and Haitao Yuan.
+This work is licensed under Creative Commons Attribution International 4.0.
+© 2026 Copyright held by the owner/author(s).
+ACM 1558-2868/2026/7-ART129
+https://doi.org/10.1145/3818614
+ACM Transactions on Information Systems, Vol. 44, No. 6, Article 129. Publication date: July 2026.
+
+129:2
+T. Peng et al.
+CCS Concepts: • Applied computing →Education; • Information systems →Data mining; • Computing
+methodologies →Neural networks;
+Additional Key Words and Phrases: Knowledge Tracing, Dynamic Graph, Curriculum Learning, Reinforcement
+Learning
+ACM Reference format:
+Tianhao Peng, Yanjun Pu, Yongqi Zhang, Yuchen Li, Jian Ren, Jie Luo, Kui Zhang, Haitao Yuan, Shuaiqiang
+Wang, Dawei Yin, and Wenjun Wu. 2026. R2GCurL: Reinforced Robust Knowledge Tracing via Dynamic Graph
+Curriculum Learning. ACM Trans. Inf. Syst. 44, 6, Article 129 (July 2026), 32 pages.
+https://doi.org/10.1145/3818614
+1
+Introduction
+Intelligent Tutoring Systems (ITS) support personalized practice, feedback, and recommenda-
+tion, and they now underpin many online learning platforms [3, 46, 48]. Within ITS, Knowledge
+Tracing (KT) estimates a learner’s evolving knowledge state from historical interactions and
+supports downstream tasks such as exercise recommendation, performance prediction, and per-
+sonalized intervention [18, 23, 24, 27, 40, 58, 62]. As shown in Figure 1, each column represents an
+exercise at a particular timestamp, the colored circles in the concept rows indicate the concepts
+associated with that exercise, and the bottom row records whether the student answered correctly
+[9, 12, 48].
+Traditional KT models, including Bayesian KT [36] and Item Response Theory-based methods
+[7, 29], are rooted in cognitive and educational theory, but they often make simplified assumptions
+about the learner state [46, 48]. As large-scale educational logs have become available, deep KT
+methods have emerged as the dominant way to model students’ evolving knowledge states from
+response sequences. Broadly, these methods fall into two groups: sequence-based and graph-based
+approaches. Sequence-based models use recurrent networks or self-attention to capture temporal
+dependencies [11, 35, 41, 43, 47, 52, 57, 61], but they usually encode exercise–concept structure
+only implicitly. Graph-based models instead represent structural dependencies among exercises
+and concepts explicitly [10, 46, 48], yet many rely on global or static structures that are not well
+suited to student-specific structural evolution over time. This gap motivates our focus on a method
+that preserves both temporal order and personalized exercise–concept structure. However, three
+data-related challenges remain central in current KT research.
+—Data structure limitations in modeling personalized concept relationships. Most sequence-based
+KT models focus solely on modeling at the exercise or concept level, without explicitly
+capturing the relationships between exercises and concepts. In contrast, graph-based KT
+models are capable of representing such complex relationships, but they typically disregard
+student-specific interaction sequences and treat all learners as homogeneous. As a result,
+they fail to capture the dynamic interplay between (1) the structural dependencies among
+knowledge concepts and (2) individual learners’ evolving response histories. This limitation
+undermines the models’ ability to infer personalized knowledge states, ultimately reducing
+prediction accuracy in real-world educational scenarios.
+—Low robustness to noisy data. Real-world online learning systems often encounter data quality
+issues, particularly inconsistent or misleading student interactions. Noisy interactions arise
+from various sources, including non-cognitive factors (e.g., disengagement) or suboptimal ITS
+recommendations that misalign exercise difficulty with a student’s proficiency, either being
+too simple to promote the student’s learning or too complex to be effective [4, 17, 30, 66]. These
+ACM Transactions on Information Systems, Vol. 44, No. 6, Article 129. Publication date: July 2026.

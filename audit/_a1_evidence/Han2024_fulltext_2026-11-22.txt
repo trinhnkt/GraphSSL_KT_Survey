@@ -1,0 +1,1459 @@
+
+
+===== PAGE 1 =====
+Contents lists available at ScienceDirect
+Applied Soft Computing
+journal homepage: www.elsevier.com/locate/asoc
+Dynamic heterogeneous graph contrastive networks for knowledge tracing
+Yehong Han a, Hailiang Tanga,b,∗, Wenxiao Zhangb,c, Lin Dua, Jun Zhaod, Minglai Shaoe
+a School of Information Science and Engineering, Qilu Normal University, Jinan, China
+b School of Software, Kunsan National University, Gunsan, Republic of Korea
+c School of Finance and Economics, Shandong University of Engineering and Vocational Technology, Jinan, China
+d School of Information Science and Engineering, Shandong Normal University, Jinan, China
+e School of New Media and Communication, Tianjin University, Tianjin, China
+A R T I C L E I N F O
+Keywords:
+Cognitive evolution
+Knowledge tracing
+Reinforcement learning
+Temporal heterogeneous graph
+A B S T R A C T
+Knowledge tracing (KT) is a crucial task in online education that traces students’ evolving cognition changes
+over time. However, it is a challenging task due to the heterogeneity of knowledge and incomplete cognition
+evolution sequences. This paper proposes KT-Deeper, a long-term Knowledge Tracing framework based on
+Dynamic reinforced heterogeneous graph contrastive networks, to predict students’ cognitive states on specific
+skills. Particularly, KT-Deeper initially employs temporal heterogeneous graphs to model the interconnections
+between different types of knowledge entities ( e.g., students, exercises, and skills). Subsequently, KT-Deeper
+formalizes knowledge tracing as a dynamic link prediction task on the temporal heterogeneous graph sequence
+and proposes a reinforced graph generation approach to refine the incomplete graph sequence for supporting
+long-term knowledge tracing. KT-Deeper further presents a self-supervised heterogeneous graph embedding
+method to extract the structural features of knowledge evolution. Finally, KT-Deeper leverages recurrent neural
+networks to learn the temporal features of students’ cognitive evolution and predict whether a student will
+master a specific skill. Experimental results confirm that KT-Deeper exhibits superior performance compared
+to existing cutting-edge techniques, showcasing its promising accuracy and robustness in incomplete long-term
+knowledge tracing tasks.
+1. Introduction
+Teaching plays a central role in the dissemination of knowledge,
+with teachers able to monitor and assess the learning progress of their
+students, allowing them to adapt their teaching pace, materials, and
+methodology to optimize each student’s knowledge gain [ 1]. With
+the rapid advancement of the Internet, students have increasingly
+accessible opportunities to pursue knowledge through various online
+platforms such as MOOC, Coursera, and Udacity. Although online
+education has made remarkable progress in recent decades, it still faces
+numerous challenges, the most serious of which is how to effectively
+trace a student’s cognitive progress based on their question–answer in-
+teraction and exercise quality [2], namely knowledge tracing (KT) task
+in this paper. Generally, the objective of knowledge tracing is to trace
+and assess students’ cognition changes in specific skills by analyzing
+their performance in exercise over some time, it is of great significance
+for providing individualized guidance and adaptive learning to students
+on online tutoring platforms.
+Knowledge tracing has been extensively studied for several decades,
+leading to the development of numerous knowledge tracing approaches
+∗ Correspondence to: School of Information Science and Engineering, Qilu Normal University, 2 Wenbo Road, Zhangqiu District, Jinan, 250200, China
+E-mail address: 20170333@qilu.edu.cn (H. Tang).
+[3]. In the initial phases, researchers employed the Hidden Markov
+model to capture changes in students’ cognitive processes and Bayesian
+knowledge tracing (BKT) gained significant popularity as a preferred
+approach [4]. With the advent of deep learning, deep knowledge trac-
+ing (DKT) achieved a promising performance due to recurrent neural
+networks (RNN) can effectively capture long dependencies between
+learning interactions [5]. Subsequently, more neural networks such as
+memory-augmented neural networks [6] and transformer networks [7,
+8] have been cultivated to enhance the performance of knowledge
+tracing. Recently, owing to the remarkable achievements of graph
+neural networks (GNNs) [ 9] in various fields such as recommendation
+systems [ 10] and anomaly detection [ 11], an increasing number of
+GNN-based knowledge tracing approaches have been proposed [ 12].
+These methods typically model exercises as nodes and their intercon-
+nection as edges in a graph, with the influence of exercises being
+established through information aggregation between nodes.
+Despite the GNN-based knowledge tracing achieves encouraging
+progress, there are still some limitations that need to be addressed.
+Limitation 1: The primary limitation of current GNN-based methods
+https://doi.org/10.1016/j.asoc.2024.112194
+Received 5 February 2024; Received in revised form 30 June 2024; Accepted 27 August 2024
+Applied Soft Computing Journal 166 (2024) 112194 
+Available online 5 September 2024 
+1568-4946/© 2024 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies. 
+
+===== PAGE 2 =====
+Y. Han et al.
+Fig. 1. The illustration of incomplete data in long-term knowledge tracing. If the data is incomplete or even missing at time 𝑡, it would result in generating incomplete evolution
+sequences during [(t+n-1)-T, t+n-1] and [(t+n)-T, t+n].
+lies in their narrow focus on a singular type of interactive relationship,
+disregarding the heterogeneous connections among students, exercises,
+and skills. The benefits of heterogeneous interactive relationships for
+knowledge tracing remain underexplored. Limitation 2: Students’ cog-
+nitive progress is continuously evolving over time. However, most
+existing methods model knowledge tracing as a static graph and in-
+vestigate the static interactive relationships among knowledge objects,
+which restricts their ability to learn dynamic cognitive evolution and
+degrades their performance as they fail to capture the dynamic changes
+in students’ cognition. Limitation 3: Few studies equipped with the
+capability of long-term knowledge tracing with incomplete data. As
+depicted in Fig. 1, the incomplete or missing data at time step 𝑡 would
+generate incomplete temporal graph sequences within a long-term
+interval𝑛. If we directly leverage these incomplete graph sequences, it
+would inevitably lead to significant deviations in long-term knowledge
+tracing.
+To overcome the aforementioned limitations, we are highly mo-
+tivated to present KT-Deeper, a novel long-term knowledge tracing
+framework based on a dynamic reinforced heterogeneous graph con-
+trastive network. Different from the existing graph-based knowledge
+tracing methods [ 13–17], our proposed KT-Deeper offers the follow-
+ing advantages: (i) KT-Deeper first leverages temporal heterogeneous
+graphs to model the complex knowledge tracing relationships over
+time, which can precisely characterize the heterogeneous interactive
+patterns among knowledge objects (e.g., students, exercises, and skills).
+(ii) The KT-Deeper framework implements an effective method for mea-
+suring node similarity and proposes a novel temporal heterogeneous
+graph embedding method based on contrastive learning, which can
+effectively learn the temporal–spatial features of knowledge objects and
+capture the knowledge evolution patterns from both temporal and spa-
+tial dimensions. (iii) Most importantly, to mitigate the impact of incom-
+plete data on knowledge tracing, KT-Deeper effectively addresses the
+incompleteness of knowledge evolution by incorporating reinforcement
+learning technology to refine the sequence of incomplete knowledge
+evolution. This approach comprehensively compensates for the per-
+formance degradation caused by incomplete sequences of knowledge
+tracking.
+The proposed KT-Deeper incorporates heterogeneous graphs and
+recurrent neural networks to enhance knowledge tracing, driven by
+the following rationales. Firstly, the process of students’ knowledge
+acquisition is a complex interactive system that involves the interre-
+lationship between three types of entities: students, skills, and exer-
+cises. For example, when students learn a new skill, it often relies
+on other skills, showing a knowledge dependence relationship 𝑠𝑘𝑖𝑙𝑙𝑖 −
+𝑟𝑒𝑙𝑖𝑒𝑠 𝑜𝑛−𝑠𝑘𝑖𝑙𝑙𝑗. Students usually reinforce knowledge understanding
+by doing exercises, with a significant 𝑠𝑡𝑢𝑑𝑒𝑛𝑡 −𝑑𝑜 −𝑒𝑥𝑒𝑟𝑐𝑖𝑠𝑒 relation-
+ship, etc. Undoubtedly, there exists substantial interdependence among
+students, skills, and exercises. The heterogeneous graph serves as an
+effective tool for modeling the interaction relationship across different
+kinds of entities, which possess the ability to capture intricate and
+high-order semantic interconnections. Henceforth, this paper naturally
+adopts heterogeneous graphs to model the interaction relationship
+between students, skills and exercises, which can effectively depict their
+interdependent landscape. Moreover, students’ cognitive process is con-
+tinuously evolving over time, showing significant temporal dynamic
+evolution characteristics. How to capture students’ cognitive evolution
+patterns is crucial for knowledge tracking. Recently, an increasing
+body of research has demonstrated the efficacy of recurrent neural
+networks as a robust mechanism for learning temporal dependencies
+and their evolution over time [ 18]. Therefore, this paper introduce
+recurrent neural networks to learn the dynamic evolution patterns of
+students’ knowledge cognition. The integration of a temporal heteroge-
+neous graph and recurrent neural network enables effective exploration
+of the interactive relationships among students, skills, and exercises.
+Simultaneously, it facilitates the acquisition of students’ knowledge
+cognitive process from both temporal and spatial ( i.e., topological
+structure in heterogeneous graphs) dimensions, thereby significantly
+enhancing knowledge tracking performance. The key contributions of
+this work are highlighted as follows.
+• This paper proposes KT-Deeper, a long-term knowledge trac-
+ing model that employs reinforcement heterogeneous graph con-
+trastive learning to capture the dynamic heterogeneous inter-
+dependent relationships among students, exercises, and skills.
+KT-Deeper can effectively learn the structural features between
+knowledge objects while accurately tracing the temporal evo-
+lution features of students’ cognitive changes in specific skills,
+thereby enabling it to achieve promising performances in long-
+term knowledge tracing.
+• This paper presents an effective dynamic graph generation
+method based on reinforcement learning to refine incomplete
+graph evolution sequence, which can effectively alleviate the
+degradation of KT-Deeper caused by incomplete cognitive evo-
+lution data.
+• This work proposes a novel heterogeneous graph embedding
+method with self-supervision, which enhances the representation
+of nodes by maximizing the mutual information of local and
+global graph features between positive and negative instance
+pairs.
+• We conduct a comprehensive performance assessment on three
+real-world online education datasets. Experimental results indi-
+cate that the cognition evolution patterns of students can be
+effectively captured by KT-Deeper, demonstrating promising ef-
+fectiveness and robustness in long-term knowledge tracing with
+incomplete evolutionary sequences.
+Applied Soft Computing 166 (2024) 112194 
+2 
+
+===== PAGE 3 =====
+Y. Han et al.
+2. Related work
+2.1. Knowledge tracing
+Machine Learning-Based Knowledge Tracing. As a pioneering
+work of knowledge tracing, Albert et al. proposed BKT [4], which
+used Bayesian networks and hidden Markov models to estimate a
+student’s cognition level on a specific skill. Similarly, Michael et al. [19]
+developed an individualized Bayesian knowledge tracing model by
+incorporating more student features into BKT to boost the prediction
+performance on unseen students. Afterward, some variants based on
+BKT have emerged, such as introducing students’ learning ability [20],
+the effect of exercise difficulty [21], and prior knowledge and relations
+among skills [22]. Meanwhile, the logistic model [23] is developed
+for knowledge tracing, which utilizes logistic functions to measure
+the probability that a student correctly answering exercises. Jill et al.
+proposed KTM [24], an extensible knowledge tracing model based on
+factorization machines, to quickly trace students’ knowledge evolution
+patterns. Although these initial approaches create the breakthrough
+in knowledge tracing, they over-rely on narrow linear models with
+limited capability in learning students’ cognition evolution [5], which
+inevitably results in inefficient performance of knowledge tracing.
+Deep Learning-Based Knowledge Tracing. With the significant
+surge in deep learning, various types of neural networks have been
+cultivated to model students’ cognition patterns for knowledge trac-
+ing [3]. Jill et al. proposed DKT [5], the path-breaking knowledge
+tracing framework using recurrent neural networks (RNNs). DKT as-
+sumed that students have the same learning ability and utilized hidden
+neural units to capture students’ cognitive state over time and predicted
+their capability to master specific skills. To relax their assumption, Jill
+et al. further presented Deep-DKT [25], a deeper DKT incorporated
+dynamic student classification based on their different learning abili-
+ties. Different from DKT and Deep-DKT, dynamic key–value memory
+networks (DKVMN [26]) and sequential key–value memory networks
+(STVMN [6]) were proposed to incorporate the strengths from recurrent
+neural networks and memory networks for capturing dynamic knowl-
+edge evolution patterns. As attention mechanism [27] has achieved
+remarkable success in deep learning, it has been introduced into the
+knowledge tracing field. Particularly, Ghosh et al. proposed a context-
+aware attention knowledge tracing method (AKT [7]), using monotonic
+attention to obtain better prediction results and improve interpretabil-
+ity. Afterward, Pandey et al. proposed SAKT [8], a knowledge trac-
+ing framework based on a self-attention mechanism, which utilized
+self-attention to learn knowledge concepts from students’ historical
+interactions to address data sparsity in knowledge tracing. Further-
+more, several studies incorporated deep sequence models to boost the
+performance of knowledge tracing, including the text content of exer-
+cises [28,29], temporal dependence between skills [30], and students’
+individual learning ability and knowledge acquisition behaviors [31].
+These methods can effectively obtain isolated deep features, but the
+interdependent relationships among knowledge objects ( e.g., students,
+exercises, skills) are ignored, making their performance limited.
+Graph-Based Knowledge Tracing. Recently, with the impressive
+achievements of graph neural networks (GNNs) in mining interconnect
+data, some graph-based knowledge tracing approaches have been pro-
+posed. More specifically, Nakagawa et al. presented GKT [13], a knowl-
+edge tracing framework based on graph neural networks, which mod-
+eled the knowledge concepts with a graph and transformed knowledge
+tracing as temporal node classification task on the graph. Tong et al.
+presented a structure-based knowledge tracing model named SKT [14],
+which simultaneously investigated temporal features from exercise se-
+quence and spatial features from graph structures to evaluate students’
+learning abilities. To effectively grasp the long-term dependency be-
+tween students’ exercises, GIKT [15] is presented, which utilizes a
+message propagation mechanism and historical exercise sequences to
+trace the long-term knowledge states of students. Liu et al. devel-
+oped PEBG [16], a pre-training knowledge tracing framework, which
+pre-trained question embeddings and explored four side information
+including exercise-skill connection, exercise similarities, skill similar-
+ities, and difficulty constraint to improve gains of knowledge tracing.
+Cui et al. presented a dual graph ensemble learning framework called
+DGEKT [17], to explore the heterogeneous exercise-concept relation-
+ships and predict students’ next cognition state by hypergraph learn-
+ing. Despite these methods having achieved impressive progress, the
+strengths of incorporating heterogeneous knowledge objects ( e.g., stu-
+dents, exercises, skills) and dynamic cognition evolution analysis are
+under-explored. Moreover, existing works do not notice the problem
+of data incompleteness in long-term knowledge tracing, which severely
+degrades the prediction performance. By contrast, we construct tem-
+poral dynamic heterogeneous graphs to capture the interconnectedness
+between students, exercises, and skills, and propose a dynamic graph
+generation method to address data incompleteness, effectively boosting
+the performance in long-term knowledge tracing.
+2.2. Dynamic graph generation
+Graph generation is a crucial problem in the field of graph data
+mining, which learns the underlying distributions of given graphs and
+generates novel ones. The sequential graph generation method repre-
+sents a dominant paradigm for this task, treating graph generation as a
+sequential decision-making process to generate nodes and edges. More
+specifically, the MPNN [32] is proposed, a graph generation method
+based on hierarchical recurrent neural networks (RNN), wherein the
+outer RNN generates the nodes and the inner RNN infers the associated
+edges between nodes. You et al. proposed GraphRNN [18], a deep au-
+toregressive model that approximates the distribution of graphs without
+assuming their underlying structure, which learns to generate graphs by
+training on prior graphs and decomposes the graph generation process
+into a sequential formation of node and edges. After, Liu et al. enhanced
+the diversity of GraphRNN in generating graphs by introducing novel
+evaluation functions [33]. Bacciu et al. designed a sequential process-
+based graph generation method relying on a node ordering procedure,
+it utilized two RNNs to learn and predict the potential edges between
+nodes [34]. Sequential generation exhibits the capability to make local
+decisions, yet it encounters challenges in preserving long-term depen-
+dencies. To mitigate the limitations, reinforcement learning has been
+incorporated into graph generation. Particularly, GAM [35] focused
+on processing noisy graph-structured data and employed the Partially
+Observable Markov Decision Process (POMDP) for training models,
+enabling selective information extraction from the graph to generate
+novel topological structures. Moreover, NetRL [36] further enhances
+graph generation capability by utilizing MDP to identify erroneous links
+and predict absent links. Sun et al. presented Surge [37], a framework
+for hierarchical subgraph-level selection and generating more discrim-
+inative subgraph representations by utilizing MDP to control sampling
+strategies.
+Moreover, MDP-based graph generation (or representation) ap-
+proaches have been used in various fields. Particularly, Dou et al.
+proposed the CARE-GNN model for detecting camouflaged fraudsters,
+which leverages MDP to select top-k similarity nodes and effectively
+filter out the camouflaged nodes in information aggregation [38]. To
+unveil subtle vulnerabilities in graph-based rumor detection models,
+Lyu et al. [39] employed MDP to simulate attack behaviors of cam-
+ouflage rumors for enhancing the robustness of their model. IG-RL
+model [40] is implemented for massive-scale traffic signal control,
+wherein an MDP mechanism is employed to generate vehicle trajec-
+tories on the road network and acquire a transferable adaptive policy
+for traffic signal control. Fang et al. proposed QADD model for drug
+design, which adopts a multi-objective MDP to generate molecules with
+multiple desired properties [41]. In the field of traffic control, Nie and
+Xing et al. integrated reinforcement learning algorithms with MDP to
+formulate the optimal strategy for traffic management based on the
+predicted traffic flow [42,43].
+Applied Soft Computing 166 (2024) 112194 
+3 
+
+===== PAGE 4 =====
+Y. Han et al.
+Fig. 2. The metapaths in KT-Deeper.
+3. Preliminaries
+To clarify our work clearly, we introduce the preliminaries and
+provide related problem definitions as below.
+Definition 1 (Heterogeneous Graph of Knowledge Tracing (HGKT) ). In
+knowledge tracing, the interactive relationships among students, ex-
+ercises, skills, and their temporal dependencies at time step 𝑡 can be
+depicted as a temporal heterogeneous graph 𝑡 = ( 𝑡, 𝑡), where each
+node 𝑣 ∈ 𝑡 associated with a specific entity type in the node type set
+ ∶𝛹 (𝑣) ∈  , and each edge𝑒 ∈ 𝑡 belongs to a specific link type from
+the edge type set  ∶ 𝜓(𝑒) ∈ . It is worth noting that the graph is
+heterogeneous when | | +||> 2.
+Definition 2 (Long-term Knowledge Tracing Based on Dynamic Rein-
+forcement Heterogeneous Graph Contrastive Learning ). Given students’
+cognitive change sequence  = ( 1, 2, ⋯, 𝑡), the long-term knowl-
+edge tracing task is to predict the relationships between students and
+skills at time step 𝑡 + 𝑛 (n> 14 days). Its primary steps include: ( 𝑖)
+KT-Deeper first utilizes the reinforced dynamic graph generation strat-
+egy to generate a short-term graph sequence for refining incomplete
+data during [𝑡 + 1,𝑡 +𝑛 − 1]. (𝑖𝑖) KT-Deeper then employs contrastive
+learning mechanism to learn the representations of graphs  = ( 1,
+2, ⋯, 𝑡, … 𝑡+𝑛−1), and obtains the corresponding representation se-
+quence 𝐻 = { ℎ1,ℎ 2, …,ℎ𝑡, …,ℎ𝑡+𝑛−1}. (𝑖𝑖𝑖) KT-Deeper utilizes LSTM
+to capture the dynamic trends of knowledge evolution using historical
+embedding sequence 𝐻 = {ℎ1,ℎ 2, …,ℎ𝑡, …,ℎ𝑡+𝑛−1}, and forecast the
+possible connections of 𝑡+𝑛 at time step 𝑡 +𝑛. The emergence of new
+links (i.e., edges) between students and skills in 𝑡+𝑛 hints that students
+will master the corresponding skills.
+Definition 3 (Meta-path). A meta-path [44] is a template that specifies
+relationships between two entities 𝑣1
+𝑅1
+← ← ← ← ← ← ← ← ← ← ← ← →𝑣2
+𝑅2
+← ← ← ← ← ← ← ← ← ← ← ← →⋯
+𝑅𝑖
+← ← ← ← ← ← ← ← ← ← ← →𝑣𝑛, which
+defines a commuting relation𝑅 =𝑅1⋄𝑅2⋄⋯⋄ 𝑅𝑛, where ⋄represents
+the composition operation between node 𝑣1 and 𝑣𝑛.
+As demonstrated in Fig. 2, this paper considers 6 types of metapaths
+to investigate the interdependent relationships among students, exer-
+cises, and skills. These metapaths are assembled into a metapath set
+𝑃 = {𝑝1,𝑝 2, …,𝑝𝑚, …,𝑝𝑀 }, where 𝑝𝑚 denotes the 𝑚 type of metapath
+schema. Distinct metapaths embody diverse semantic knowledge. For
+example, metapath 𝑝1 ∶ 𝑠𝑡𝑢𝑑𝑒𝑛𝑡
+𝐷
+← ← ← ← ← ← ← ← →𝑒𝑥𝑒𝑟𝑐𝑖𝑠𝑒
+𝐷𝑇
+← ← ← ← ← ← ← ← ← ← ← ← ← ← →𝑠𝑡𝑢𝑑𝑒𝑛𝑡 depicts the
+semantic that ‘‘two students answer the same exercises’’ and metapath
+𝑝3 ∶ 𝑒𝑥𝑒𝑟𝑐𝑖𝑠𝑒
+𝐶
+← ← ← ← ← ← ← ← →𝑠𝑘𝑖𝑙𝑙
+𝐶𝑇
+← ← ← ← ← ← ← ← ← ← ← ← ← →𝑒𝑥𝑒𝑟𝑐𝑖𝑠𝑒 indicates the semantic that ‘‘two
+exercises contain the same skill’’. We further utilize the adjacent matrix
+to model the cross-connection between nodes under different types of
+metapaths.
+Definition 4 (Meta-path Based Adjacent Matrix ). If there exists a link
+between node 𝑣𝑖 ∈ 𝑡 and 𝑣𝑗 ∈ 𝑡 under meta-path 𝑝𝑚 at time step 𝑡,
+their link relation is represented in a adjacent matrix 𝐶𝑝𝑚
+𝑖,𝑗 ∈ R|𝑡|×|𝑡|,
+where 𝐶𝑝𝑚
+𝑖,𝑗 = 𝐶𝑝𝑚
+𝑗,𝑖 = 1 if nodes 𝑣𝑖 and 𝑣𝑗 are connected through the
+metapath 𝑝𝑚, and 𝐶𝑝𝑚
+𝑖,𝑗 =𝐶𝑝𝑚
+𝑗,𝑖 = 0 otherwise.
+This paper constructs five types of adjacent matrices to depict the
+interdependent relationships among knowledge-tracing objects.
+• : A skill often belongs to a specific type of exercise. We build
+skill-belong-exercise matrix  to depict the interaction between
+skills and exercises, where each instance 𝑖,𝑗 ∈ {0 , 1}, 𝑖,𝑗=1
+indicates a skill 𝑖 belongs to exercise 𝑗.
+• : A exercise often contains a specific skill. To explore whether an
+exercise contains a specific skill, we create the exercise-contain-
+skill matrix , where each element is represented as 𝑖,𝑗 = 1 when
+exercise 𝑖 includes a particular skill 𝑗.
+• : To represent a student’s accurate response to a specific exer-
+cise, we construct the student-do-exercise matrix , where each
+element is assigned 𝑖,𝑗=1 if student 𝑖 correctly answers the
+exercise 𝑗, and 𝑖,𝑗=0 otherwise.
+• : To depict the relation between students and skills that they
+have mastered, we build the student-master-skill matrix . For
+each element 𝑖,𝑗 ∈ {0, 1}, where 𝑖,𝑗=1 denotes student 𝑖 has
+mastered skill 𝑗, and 𝑖,𝑗 = 0 otherwise.
+• : A skill often dependent on another skills. We establish the
+skill-related-skill adjacent matrix  to investigate the relation
+between skills, where each element 𝑖,𝑗 ∈ {0, 1}, and 𝑖,𝑗 = 1
+means that skill 𝑖 related to skill 𝑗.
+Based on the five kinds of fundamental adjacent matrices, we can easily
+investigate the complex interactive relationships between objects. For
+example, considering the metapath𝑝5 in Fig. 2, its commuting relation-
+ship is calculated by𝐶𝑝5
+𝑖,𝑗 = ⊙⊙𝑇⊙𝑇 ,⊙ denotes the element-wise
+product.
+4. Methodology
+We propose KT-Deeper to demystify students’ cognitive patterns
+in knowledge acquisition and implement knowledge tracing for long-
+term sequences with incomplete data. Fig. 3 depicts the framework
+of KT-Deeper, comprising three components: (a) Dynamic graph gen-
+eration module utilizes reinforcement learning to automatically gen-
+erate short-term graph sequence to complete the missing data during
+time [𝑡 + 1,𝑡 + 𝑛 − 1] . (b) Heterogeneous graph embedding mod-
+ule learns the high-level representations of different graph snapshots
+ = { 1, 2, …, 𝑡, …, 𝑡+𝑛−1} by maximizing the global–local mutual
+information of each graph to obtain temporal embedding sequence
+𝐻 = { ℎ1,ℎ 2, …,ℎ𝑡, …,ℎ𝑡+𝑛−1}, which carries the evolutionary pat-
+terns of knowledge cognition. (c) The learned temporal graph em-
+bedding sequences are fed into LSTM networks to capture the spa-
+tiotemporal evolution patterns based on historical graph sequences  =
+{1, 2, …, 𝑡, …, 𝑡+𝑛−1} and infer the newly emerged links in 𝑡+𝑛 to
+predict whether students will master specific skills at time𝑡 +𝑛. Table 1
+records the primary symbols utilized in KT-Deeper.
+4.1. Dynamic graph generation
+In this section, we elucidate the necessity of dynamic graph gen-
+eration for KT-deeper and present its implementation details. First,
+students’ knowledge cognition is changing over time. Compared with
+static graphs, dynamic graphs can effectively capture temporal evolu-
+tion patterns. Unfortunately, when it comes to real-world knowledge
+tracing tasks, it is hard to obtain up-to-date and completed data due
+to potential data gaps and even data missing. The incomplete data will
+degrade the performance of long-term knowledge tracing. As shown in
+Fig. 1, the graph data is absent within the time interval [𝑡 + 1,𝑡 +𝑛 − 1],
+and disregarding the missing data would undermine the prediction
+Applied Soft Computing 166 (2024) 112194 
+4 
+
+===== PAGE 5 =====
+Y. Han et al.
+Fig. 3. The overview of KT-Deeper, which consists of three components: (a) dynamic graph generation utilizes reinforcement learning to generate graphs for completing the graph
+sequence during time step [ 𝑡 + 1,𝑡 +𝑛 − 1]. (b) Heterogeneous graph embedding aims to learn the low-dimensional graph representation vectors of 𝑡 at different time steps 𝑡.
+(c) Knowledge tracing leverages LSTM networks to learn the cognition evolutionary patterns based on the learned graph sequence 𝑆 = {𝑠1,𝑠 2, …,𝑠𝑡, …,𝑠𝑡+𝑛−1} and infers the newly
+evolved edge ̂𝑡+𝑛 at the time step 𝑡 +𝑛.
+Table 1
+The primary notations utilized in KT-Deeper.
+Notation Description
+, 𝑡 graph sequence {1, …, 𝑡, …, 𝑡+𝑛−1}, graph at time step 𝑡.
+𝑃,𝑝 𝑚 metapath set {𝑝1, …,𝑝𝑚, …,𝑝𝑀 }, 𝑚th meta-path in 𝑃 .
+𝐻,ℎ 𝑡 graph embedding sequence {ℎ1, …,ℎ𝑡+𝑛−1}, graph embedding of 𝑡.
+𝑁𝑡,𝑋𝑡 number of node and corresponding feature matrix of 𝑡.
+𝑑,𝐹 attribute features dimension, and node embedding dimension.
+𝑒𝑝𝑚
+𝑡 local graph embedding of 𝑡 following meta-path 𝑝𝑚.
+𝛽𝑝𝑚
+𝑡 attention weight of meta-paths 𝑝𝑚.
+𝜂 weight matrix for punishing incorrect edge reconstruction.
+𝑦(𝑘)
+𝑡 evolutionary representation at 𝑘𝑡ℎ layer in LSTM networks
+̂𝑡+𝑛 predicted long-term graph structure at time step 𝑡 +𝑛
+results of the long-term knowledge tracing at time 𝑡 + 𝑛. Therefore,
+we propose a novel dynamic graph generation method to complete the
+missing data, wherein we employ reinforcement learning techniques
+to iteratively update edges of {𝑡, 𝑡+1, …, 𝑡+𝑛−1} within a dynamic
+environment.
+In this section, we formulate the dynamic graph generation as
+a Markov Decision Process (MDP) ⟨𝑆,𝐴,𝑃,𝑅,𝛾 ⟩, where 𝑆 = { 𝑠𝑖}
+represents the states set encompassing all possible graph states. 𝐴 =
+{𝑎𝑖} denotes the action set that describes the update at each time 𝑖,
+𝑃 is the transition operator, which specifies the potential outcomes
+resulting from executing an action 𝑝(𝑠𝑡+1|𝑠𝑡, …,𝑠 0,𝑎𝑡). 𝑅(𝑠𝑡) indicates
+a reward function that determines the reward upon reaching state
+𝑠𝑡, while 𝛾 denotes the discount factor. The process of graph gener-
+ation is modeled as a sequence change (𝑠0,𝑎 0,𝑟 0, …,𝑠𝑛,𝑎𝑛,𝑟𝑛), where
+𝑠𝑛 represents the final generated graph. Meanwhile, each update at
+each time is perceived as a transition between states: 𝑝(𝑠𝑡+1|𝑠𝑡, …,𝑠 0) =∑
+𝑎𝑡𝑝(𝑎𝑡|𝑠𝑡, …,𝑠 0)𝑝(𝑠𝑡+1|𝑠𝑡, …,𝑠 0,𝑎𝑡), where policy network 𝜋𝜃 is de-
+noted by 𝑝(𝑎𝑡|𝑠𝑡, …,𝑠 0).
+State space. The state of 𝑠𝑡 refers to the intermediately generated
+graph 𝑡 at time 𝑡, and its current state is updated based on the
+predicted action, whereby an action of type 1 results in the addition
+of a new edge between two corresponding nodes, while an action of
+type 0 leaves the existing edge unchanged.
+Action space. The establishment or elimination of links in the
+knowledge transfer graph corresponds to the creation or termination of
+an interactive relationship between corresponding nodes. We represent
+the action as a quaternion 𝑎𝑡 = { 𝑣1,𝑣 2,𝑡𝑦𝑝𝑒,𝑠𝑡𝑜𝑝 }, where 𝑣1 and 𝑣2
+represent any two nodes, and 𝑡𝑦𝑝𝑒 ∈ {0, 1} corresponds to the presence
+or absence of a link, where o indicates its disappearance and 1 denotes
+its addition. Additionally, the binary variable 𝑠𝑡𝑜𝑝 ∈ {0 , 1} indicates
+whether the current action can stop or not. If 𝑠𝑡𝑜𝑝 = 1 denotes that the
+learning process can be terminated, otherwise, it continues.
+State transition. The knowledge cognition transition graph 𝑡 at
+time 𝑡 is the state 𝑠𝑡 in the graph generation environment. The rein-
+forcement learning agent comprehensively observes the entire graph.
+In the dynamic graph generation process, we assume that the sequence
+of graphs from the beginning up to time 𝑡 is complete ( i.e., without
+data missing), and utilizing these complete graph sequences as histor-
+ical data to update the state transition to generate graph sequences
+{𝑡+1, 𝑡+2, …, 𝑡+𝑛−1} during time [𝑡 + 1,𝑡 +𝑛 − 1].
+Reward function. The reward function guides the behavior of the
+reinforcement learning agent, which consists of both intermediate and
+final rewards. The overall rewards are determined by integrating both
+the structural and adversarial rewards, which are impacted by the dis-
+parity between the intermediate state graph and the desired graph. The
+transferred state is rewarded with a small positive value if it reduces the
+disparity from the target graph, while a small negative value is assigned
+otherwise. Here, we quantify the dissimilarity between the current state
+𝑠𝑡 and its corresponding ultimate target state 𝑠𝑓 by comparing their
+embedding vector, and the similarity can be formulated as below.
+𝑠𝑖𝑚(𝑠𝑡,𝑠𝑓 ) =
+⃗ 𝑠𝑡⋅ ⃗ 𝑠𝑓
+|⃗ 𝑠𝑡|⋅|⃗ 𝑠𝑓|, (1)
+where 𝑠𝑡 and 𝑠𝑓 are the flattened vectors of graph embedding corre-
+sponding to the current state and the ultimate state. Subsequently, the
+structural reward function can be formulated in the following manner.
+𝛾(𝑡) =
+{ 𝛽, 𝑠𝑖𝑚 (𝑠𝑡,𝑠𝑓 ) ≤𝜖
+𝜆⋅(𝑠𝑖𝑚(𝑠𝑡,𝑠𝑓 ) −𝑠𝑖𝑚(𝑠𝑡−1,𝑠𝑓 )), 𝑜𝑡ℎ𝑒𝑟𝑤𝑖𝑠𝑒 , (2)
+𝜆 represents the reward coefficient, 𝛽 indicates the final reward with a
+higher value than the intermediate reward, and 𝜖 determines whether
+an action is ended. Moreover, we utilize the GAN [ 10] to calculate the
+adversarial rewards:
+𝑚𝑖𝑛
+𝜃
+𝑚𝑎𝑥
+𝜙
+𝑉 (𝜋𝜃, 𝜙) = E𝑥∼𝑃𝑑𝑎𝑡𝑎
+[𝑙𝑜𝑔𝜙(𝑥)] + E𝑥∼𝜋𝜃
+[𝑙𝑜𝑔𝜙(1 −𝑥)], (3)
+Applied Soft Computing 166 (2024) 112194 
+5 
+
+===== PAGE 6 =====
+Y. Han et al.
+where𝜋𝜃 is a policy network, 𝜙 represents the discriminator network,
+𝑥 denotes the representation of an input graph, and 𝑃𝑑𝑎𝑡𝑎 signifies
+the data distribution. This distribution can be defined as either fi-
+nal rewards or intermediate rewards. After establishing the gener-
+ating environment of the graphs, we can use the historical graph
+sequence {1, 2, …, 𝑡} as the input and generated the graph sequence
+{𝑡+1, …, 𝑡+𝑛−1} during time step [𝑡 + 1,𝑡 +𝑛 − 1]. The generated graph
+sequence can effectively simulate the real evolution process of the
+graph during [𝑡+1,𝑡 +𝑛−1] for supporting long-term knowledge tracing.
+4.2. Graph embedding learning
+This paper leverages mutual information mechanism to learn the
+low-dimensional representations of graph {1, 2, …, 𝑡, …, 𝑡+𝑛−1},
+whose objective function is expressed as follows.
+𝑀𝐼 = 1
+𝑁 +𝑀
+( 𝑁∑
+𝑖=1
+E(𝑋,𝐴)
+[𝑙𝑜𝑔(⃗ 𝑒𝑖,⃗ 𝑠)] −
+𝑀∑
+𝑗=1
+E(̃𝑋,̃𝐴)
+[𝑙𝑜𝑔(⃗̃ 𝑒𝑖,⃗ 𝑠)])
+, (4)
+where 𝑁 and 𝑀 correspond to the number of positive and negative
+instances. We define the mathematical expectation for a positive in-
+stance (𝑋,𝐴 ) and its corresponding negative instance (̃𝑋, ̃𝐴) as E(𝑋,𝐴)
+and E(̃𝑋,̃𝐴), respectively. Additionally, we use (⃗ 𝑒𝑖,⃗ 𝑠) to represent the
+mutual information for positive instances while (⃗̃ 𝑒𝑖,⃗ 𝑠) for their re-
+spective negatives. (̃𝑋, ̃𝐴) = 𝜏(𝑋,𝐴 ), 𝜏 is employed for generation of
+negative instances. As shown in Eq (4), the key step to contrastive
+learning is to calculate the local representation vector ⃗ 𝑒𝑖 and the global
+representation vector ⃗ 𝑠of the current graph 𝑡. Obviously, different
+types of nodes and metapaths contribute differently to capturing feature
+representations. Therefore, we incorporate an attention mechanism into
+the local representation learning and global representation aggregation
+processes to learn the local and global representation of graphs at
+different time steps.
+4.2.1. Local representation learning
+Embedding heterogeneous graphs presents a greater challenge com-
+pared to homogeneous graphs, as it involves dealing with intricate
+heterogeneity arising from varying types of nodes and relationships.
+In this subsection, we propose a technique for assessing the similar-
+ity between nodes by incorporating relation attention, which enables
+heterogeneous graphs into multiple homogeneous graphs (or bipartite
+graphs) using diverse metapaths.
+Definition 5 (Node Similarity Measuring ). Given a heterogeneous graph
+𝑡 ∈  at the time step 𝑡, the metapath set 𝑃 = {𝑝1,𝑝 2, …,𝑝𝑀 } and
+their corresponding adjacent matrix set {, , , , }, the similarity
+between any two nodes 𝑣𝑖 and 𝑣𝑗 can be defined as below:
+𝑠𝑖𝑚(𝑣𝑖,𝑣𝑗 ) =
+𝑀∑
+𝑚=1
+𝛽𝑚
+2× ∣ {𝑣𝑖→𝑗 ∈𝑝𝑚} ∣
+∣ {𝑣𝑖→𝑖 ∈𝑝𝑚} ∣ + ∣ {𝑣𝑗→𝑗 ∈𝑝𝑚} ∣, (5)
+where𝑣𝑖→𝑗 ∈𝑝𝑚 is a meta-path instance between nodes𝑣𝑖 and𝑣𝑗 under
+meta-path 𝑝𝑚, |{𝑣𝑖→𝑗 ∈ 𝑝𝑚}| = 𝑀𝑝𝑚 (𝑖,𝑗 ), ∣ {𝑣𝑖→𝑖 ∈ 𝑝𝑚} ∣= 𝑀𝑝𝑚 (𝑖,𝑖 ),
+∣ { 𝑣𝑗→𝑗 ∈ 𝑝𝑚} ∣= 𝑀𝑝𝑚 (𝑗,𝑗 ). 𝛽𝑚 represents the attention weight of
+metapaths𝑝𝑚,𝑀 is the amount of all metapaths. Then utilizing Eq. (5)
+to transform the heterogeneous graph 𝑡 into homogeneous graphs (or
+bipartite graphs) 𝐴𝑝𝑚 ∈ R𝑁×𝑁 based on different metapath schemes
+𝑝𝑚(1 ≪ 𝑚 ≪ 𝑀), where each element 𝑎𝑝𝑚
+𝑖,𝑗 = 𝑎𝑝𝑚
+𝑗,𝑖 = 𝑠𝑖𝑚(𝑣𝑖,𝑣𝑗 ). Let us
+take 𝑡 as an example to show the process of obtaining the local feature
+representation of the graph. With the learned adjacent matrix 𝐴𝑝𝑚
+𝑡
+under metapath𝑝𝑚 and feature matrix𝑋𝑡, we employ GCN [9] to learn
+the node representations. Particularly, the propagation mechanism of
+GCN is formalized as follows.
+𝐻 (𝑙+1) =𝑅𝑒𝐿𝑢(̃𝐷𝑝
+− 1
+2𝑚 ̃𝐴𝑝𝑚 ̃𝐷𝑝
+− 1
+2𝑚 𝐻 (𝑙)𝑊 (𝑙)), (6)
+where, ̃𝐴𝑝𝑚 = 𝐴𝑝𝑚 + 𝐼𝑁 is the adjacency matrix of decomposed
+homogeneous graph with self-connections, 𝐼𝑁 is the identify matrix,
+̃𝐷𝑖𝑖 = ∑
+𝑗 ̃𝐴𝑖𝑗, and 𝑊 (𝑙) is a 𝑙th layer trainable weight matrix. 𝐻 (𝑙) ∈
+R𝑁×𝑑 represents the hidden features in the 𝑙th layer, and 𝐻 (0) = 𝑋 is
+the original feature matrix. In this section, we train a two-layer GCN to
+learn the node representation 𝑒𝑝𝑚.
+𝑒𝑝𝑚 =𝜎
+(
+̃𝐴𝑝𝑚 ⋅𝑅𝑒𝐿𝑈( ̃𝐴𝑝𝑚𝑋𝑊 (0))𝑊 (1)
+)
+, (7)
+where 𝑊 (0) ∈ R𝑑×𝐻 represents the weight matrix that connects the
+input to the hidden layer containing𝐻 feature maps. Similarly,𝑊 (1) ∈
+R𝐻×𝐹 denotes the weight matrix responsible for connecting the hidden
+layer to output. 𝑋𝑡 ∈ R𝑁×𝑑 is the feature matrix of nodes, 𝑁 signifies
+the count of nodes while𝑑 refers to their respective feature dimensions.
+Here, 𝜎 adopts 𝑠𝑖𝑔𝑚𝑜𝑖𝑑 function.
+4.2.2. Global representation aggregation
+Based on Eq. (7), we acquire the node-level local representation of
+graph 𝑡 under a specific metapath 𝑝𝑚. Next, we need to aggregate the
+local representation under different metapaths{𝑝1,𝑝 2, …,𝑝𝑚, …,𝑝𝑀 } to
+obtain the global representation of graph 𝑡. However, different types
+of metapaths play varying roles in modeling global representation.
+Thus, we incorporate an attention mechanism to delve deeper into the
+significance of various metapaths, and the attention learning process is
+formulated as Eq. (8).
+(𝛽𝑝1,𝛽𝑝2, …,𝛽𝑝𝑀
+) =𝜎𝑝𝑎𝑡ℎ
+(
+𝑒𝑝1,𝑒𝑝2, …,𝑒𝑝𝑚, …,𝑒𝑝𝑀
+)
+, (8)
+where𝛽𝑝𝑚 represents the weight of metapath𝑝𝑚 for representing graph
+𝑡. (𝑒𝑝1,𝑒𝑝2, …,𝑒𝑝𝑚, …,𝑒𝑝𝑀 ) is the set of node-level local representation,
+and 𝜎𝑝𝑎𝑡ℎ is an activation function. To explore the significance of each
+metapath𝑝𝑚, we first develop an MLP to obtain its local representation
+under specific metapath 𝑝𝑚, and then assess its signification using
+Eq. (9).
+𝑤𝑝𝑚 = 1
+||
+∑
+𝑖∈
+𝑞⋅𝑡𝑎𝑛ℎ(𝑤⋅𝑒𝑝𝑚 +𝑏), (9)
+where 𝑤 represents a weight matrix, 𝑏 indicates the bias vector, and 𝑞
+is the attention matrix,  is the neighbor nodes connecting to node 𝑖.
+The normalized form of Eq. (9) is rewritten as below.
+𝛽𝑝𝑚 = 𝑒𝑥𝑝(𝑤𝑝𝑚 )
+∑𝑀
+𝑚=1𝑒𝑥𝑝(𝑤𝑝𝑚 )
+, (10)
+where𝛽𝑝𝑚 indicates the signification of the metapath𝑝𝑚 in representing
+the global graph embedding of 𝑡. With the learned weights, we can
+aggregate the local representations (𝑒𝑝1,𝑒𝑝2, …,𝑒𝑝𝑀 ) under different
+metapaths to learn the global representation 𝑠𝑡 from graph 𝑡 ∈ 𝐺 at
+the time 𝑡.
+ℎ𝑡 =
+𝑀∑
+𝑚=1
+𝛽𝑝𝑚 ⋅𝑒𝑝𝑚. (11)
+Up to now, we have acquired the aggregated global graph repre-
+sentation for each graph 𝑡 ∈ 𝐺. The obtained graph representa-
+tions at different times are gathered into a temporal sequence 𝐻 =
+{ℎ1,ℎ 2, …,ℎ𝑡, …,ℎ𝑡+𝑛−1}, andℎ𝑡 represents the graph representation of
+graph 𝑡 at the time step 𝑡.
+4.3. Cognition evolutionary pattern learning
+Based on the aggregated graph representation sequence𝐻 = {ℎ1,ℎ 2,
+…,ℎ𝑡, …,ℎ𝑡+𝑛−1}, we employ LSTM networks [45] to uncover the
+evolving cognition patterns of students and forecast their capability of
+mastering specific skills at time 𝑡 +𝑛. Typically, the temporal learning
+process of LSTM is formulated as follows:
+𝑖(1)
+𝑡 =𝜎
+(
+𝑤(1)
+𝑖 ⋅[ℎ𝑡 ∥𝑦(1)
+𝑡−1
+] +𝑏(1)
+𝑖
+)
+, (12a)
+𝑜(1)
+𝑡 =𝜎𝑡
+(
+𝑤(1)
+𝑜 ⋅[ℎ𝑡 ∥𝑦(1)
+𝑡−1
+] +𝑏(1)
+𝑜
+)
+, (12b)
+𝑓 (1)
+𝑡 =𝜎
+(
+𝑤(1)
+𝑓 ⋅[ℎ𝑡 ∥𝑦(1)
+𝑡−1
+] +𝑏(1)
+𝑓
+)
+, (12c)
+Applied Soft Computing 166 (2024) 112194 
+6 
+
+===== PAGE 7 =====
+Y. Han et al.
+̃ 𝑐(1)
+𝑡 =𝑡𝑎𝑛ℎ
+(
+𝑤(1)
+𝑐 ⋅[ℎ𝑡 ∥𝑦(1)
+𝑡−1
+] +𝑏(1)
+𝑐
+)
+, (12d)
+𝑐(1)
+𝑡 =𝑓 (1)
+𝑡 ⊙𝑐 (1)
+𝑡−1 +𝑖(1)
+𝑡 ⊙ ̃ 𝑐(1)
+𝑡 , (12e)
+𝑦(1)
+𝑡 =𝑜(1)
+𝑡 ⊙𝑡𝑎𝑛ℎ(𝑐(1)
+𝑡
+). (12f)
+where𝑐𝑡 represents the unit states of the LSTM,𝑓𝑡,𝑜𝑡, and𝑖𝑡 denote the
+values of trigger forget gate, output gate and update gate, respectively.
+The ̃ 𝑐𝑡 is a new candidate state, 𝑏(1)
+𝑖 ,𝑏 (1)
+𝑜 ,𝑏 (1)
+𝑓 and 𝑏(1)
+𝑐 represent the bias
+vector. ∥ denotes the concatenation operation, and ⊙ is the matrix
+product operation. The LSTM structure consists of𝑘 units in every layer,
+where the hidden states are sequentially transmitted from unit 𝑘 − 1 to
+𝑘 within the same sequence. The hidden features of the 𝑘th layer can
+be characterized as follows.
+𝑜(𝑘)
+𝑡 =𝜎𝑡
+(
+𝑤(𝑘)⋅[𝑦(𝑘)
+𝑡−1 ∥𝑦(𝑘−1)
+𝑡
+] +𝑏(𝑘)
+𝑜
+)
+, (13a)
+𝑦(𝑘)
+𝑡 =𝑜(𝑘)
+𝑡 ⊙𝑡𝑎𝑛ℎ(𝑐(𝑘)
+𝑡
+). (13b)
+Next, we obtain the predicted graph ̂𝑡+𝑛 at time step 𝑡 +𝑛.
+̂𝑡+𝑛 =𝜎𝑑
+(𝑤𝑑
+𝑡+𝑛−1⋅𝑦(𝑘)
+𝑡+𝑛−1 +𝑏𝑑
+𝑡+𝑛−1
+), (14)
+where, 𝜎𝑑 is ReLU function. 𝑤𝑑
+𝑡 and 𝑏𝑑
+𝑡 are learnable weight matrices
+and bias vectors, respectively.
+Algorithm 1: The Major Computation Steps of KT-Deeper
+Input: A sequence of graph snapshots 𝐺 = {1, 2, …, 𝑡}, a set of
+meta-paths 𝑃 = {𝑝1,𝑝 2, …,𝑝𝑀 }, and a set of commuting
+matrix {, , , , }
+Output: Predicted Graph Structure ̂𝑡+𝑛
+for previous complete graph sequence {1, 2, …, 𝑡} do
+for each time step ∈ [𝑡 + 1,𝑡 +𝑛 − 1] do
+calculate structure reward using Eq. (2).
+calculate adversarial reward using Eq. (3).
+generate short-term dynamic graph sequence
+{𝑡+1, …, 𝑡+𝑛−1}
+for each graph 𝑡 ∈ {1, 2 …, 𝑡, 𝑡+1, …, 𝑡+𝑛−1} do
+for each meta-path schema 𝑝𝑚,𝑚 ∈ [1, 2, …,𝑀 ] do
+compute the similarity between any two nodes using
+Eq. (5).
+compute node-level local representation ℎ𝛷𝑚
+𝑡 using Eq. (7).
+compute metapath-level global representation 𝛽𝛷𝑚
+𝑡 using
+Eq. (10).
+obtain the aggregated global graph embedding 𝑠𝑡 using
+Eq. (11).
+aggregate the graph embedding of all graphs into a temporal
+sequence 𝑆 = {𝑠1,𝑠 2, …,𝑠𝑡, …,𝑠𝑡+𝑛−1}.
+for each epoch 𝑛 ∈ [1, 2, …,𝑁 ] do
+for each LSTM layer 𝑘 ∈ [1, 2, …,𝐾 ] do
+fine-tune the weight vector 𝑤(𝑘)
+𝑡+𝑛−1 using Eq. (13a);
+compute the representation of LSTM 𝑦(𝑘)
+𝑡+𝑛−1 using Eq. (13b);
+compute the predicted graph structure ̂𝑡+𝑛 using Eq. (14);
+optimize the predicted graph structure ̂𝑡+𝑛 by minimizing
+Eq. (15);
+obtain the predicted graph ̂𝑡+𝑛 at time step 𝑡 +𝑛.
+return ̂𝑡+𝑛;
+4.4. Knowledge tracing
+In KT-Deeper, the input consists of the aggregated temporal embed-
+ding sequence 𝐻 = {ℎ1,ℎ 2, …,ℎ𝑡, …,ℎ𝑡+𝑛−1} obtained from historical
+graph sequence (1, 2, …, 𝑡, …, 𝑡+𝑛−1), and it generates the predicted
+graph ̂𝐺𝑡+𝑛 at the time step 𝑡 +𝑛. The temporal embedding sequence
+𝐻 captures the evolving cognition patterns of students, enabling the
+prediction between students and skills. KT-Deeper can be optimized by
+minimizing Eq. (15).
+ = ‖‖‖(𝑡+𝑛 − ̂𝑡+𝑛)⊙𝜂 ‖‖‖
+2
+𝐹
+, (15)
+where 𝑡+𝑛 and ̂𝑡+𝑛 represent the real edges and predicted edges of
+ at time step 𝑡 +𝑛, respectively. KT-Deeper penalizes the incorrectly
+predicted edges in ̂𝑡+𝑛 by examining its historical graph embedding
+sequence 𝐻 = { ℎ1,ℎ 2, …,ℎ𝑡, …,ℎ𝑡+𝑛−1} and introducing a penalty
+matrix 𝜂, which enables KT-deeper to effectively capture the dynamic
+evolutionary trends between nodes and forecast possible edges at time
+step𝑡 +𝑛. The main computational steps of KT-Deeper are illustrated in
+algorithm 1.
+5. Experimental evaluation
+We perform comprehensive experiments to evaluate the efficacy of
+KT-Deeper and endeavor to answer the following research questions.
+• Q1: How does the overall performance compare with other base-
+line methods including deep sequence learning-based, and GNN-
+based models? (𝜉 Section 5.2)
+• Q2: What is the impact of dynamic graph generation on long-
+term knowledge tracing when graph sequence is incomplete?
+(𝜉 Section 5.3)
+• Q3: How do different combinations of modules ( e.g., dynamic
+graph generation) or tricks ( e.g., attention mechanism,
+contrastive learning) affect KT-Deeper? (𝜉 Section 5.4)
+• Q4: What are the effects of different model hyperparameters (e.g.,
+embedding size, positive–negative sampling ratio, and number of
+layers) on KT-Deeper? (𝜉 Section 6.1)
+• Q5: What are the scalability and interpretability of KT-Deeper?
+(𝜉 Section 6.2 and Section 6.3)
+5.1. Datasets
+We evaluate the knowledge tracing performance of KT-Deeper
+on ASSIST09, 1 ASSIST17,2 and EdNet 3 datasets. ASSIST09 and AS-
+SIST17 are collected from the ASSISTments platform at 2009 ∼2010
+and 2017∼2018 school year. EdNet is contributed by [46], it collected
+131,417,236 interaction records from 784,309 students spanning over
+two years. For the ASSIST09 and ASSIST17 datasets, we filter out
+the records missing user_id, problem_id, skill_id, and time_tag. For
+the EdNet dataset, we randomly selected 5000 students and their
+corresponded 10,795 exercises and 188 skills. Additionally, to assess
+the generalization ability of the KT-Deeper across diverse educational
+contexts, exercise types, and student demographics, we further col-
+lected experimental data from the Chaoxing platform4 and Yuketang5 at
+Shandong Normal University and Shandong Vocational and Technical
+University, named SDNU and SVTU. The SDNU and SVTU datasets
+represent different educational backgrounds ( e.g., undergraduate and
+junior college students) as well as distinct course exercises (e.g., higher
+mathematics and data structure), respectively. The statistics of datasets
+are demonstrated in Table 2.
+1 https://sites.google.com/site/assistmentsdata/home/2009-2010-
+assistment-data
+2 https://sites.google.com/view/assistmentsdatamining/data-mining-
+competition-2017
+3 https://github.com/riiid/ednet
+4 https://v8.chaoxing.com/
+5 https://www.yuketang.cn/
+Applied Soft Computing 166 (2024) 112194 
+7 
+
+===== PAGE 8 =====
+Y. Han et al.
+Table 2
+The statistics of datasets.
+Dataset ASSIST09 ASSIST17 EdNet SDNU SVTU
+# Students 4,151 1,709 5000 432 315
+# Exercises 16,891 3,162 10,795 6674 4215
+# Skills 101 102 188 56 44
+Correct answering exercises 66.16% 37.26% 58.99% 71.55% 64.38%
+Incorrect answering exercises 33.84% 62.74% 41.01% 28.45% 35.62%
+Table 3
+The performance comparison between KT-Deeper and baseline methods in long-term knowledge tracing (%).
+Method ASSIST09 ASSIST17 EdNet SDNU SVTU
+AUROC Recall AUROC Recall AUROC Recall AUROC Recall AUROC Recall
+DKT [5] 70.36 71.33 70.27 68.14 67.22 66.73 62.18 63.10 65.25 64.51
+DKVMN [26] 71.16 72.21 67.27 73.52 66.82 68.73 63.71 62.84 66.13 65.91
+STVMN [6] 71.58 70.81 66.87 64.50 67.12 65.73 66.65 65.70 65.88 64.15
+AKT [7] 73.27 71.25 70.52 67.68 68.75 70.73 68.27 66.44 69.50 68.43
+SAKT [8] 72.36 70.26 69.57 63.19 66.80 62.73 65.70 64.29 68.60 68.47
+Line [47] 71.15 69.43 70.28 68.21 64.34 66.75 67.50 66.85 70.16 70.54
+Esim [48] 69.75 67.43 67.18 66.21 65.78 66.75 67.47 66.75 68.77 67.16
+HAN [49] 71.74 71.67 69.20 71.31 67.50 70.47 70.22 70.98 71.63 70.30
+VGAE [50] 67.21 68.02 67.96 67.57 65.36 67.35 67.48 67.33 69.38 68.94
+ARVGE [51] 70.16 69.45 69.80 68.54 63.85 70.29 65.69 64.60 69.46 67.11
+GKT [13] 75.48 72.65 73.97 70.63 70.31 72.74 70.16 71.64 71.31 72.55
+SKT [14] 75.61 71.18 73.05 70.65 71.47 68.26 71.15 70.61 72.54 73.21
+GIKT [15] 76.21 72.15 74.68 73.36 69.84 71.64 71.52 72.19 73.80 72.74
+PEBG [16] 73.53 72.47 69.82 67.36 66.71 70.32 69.87 70.10 70.45 69.92
+DGEKT [17] 79.33 80.55 78.82 77.67 73.25 74.75 73.21 73.45 73.55 74.19
+KT-Deeper 83.81 80.41 82.68 81.64 78.31 76.17 79.24 80.36 81.52 82.25
+5.2. Overall experiment analysis
+To verify the efficacy of our proposed KT-Deeper in long-term
+knowledge tracing, we conduct a comparative analysis against state-
+of-the-art methods and record their 5-fold cross-validation results in-
+cluding AUROC and Recall, as presented in Table 3. The experimental
+outcomes demonstrate that our proposed KT-Deeper surpasses the con-
+ventional approaches, and its performance gains can be ascribed to the
+subsequent characteristics.
+(1) It is widely acknowledged that knowledge objects (e.g., students,
+exercises, skills) are not isolated but rather interconnected [52]. How-
+ever, traditional deep learning-based methods (e.g., DKT, DKVMN, AKT,
+and SAKT) typically focus on extracting the temporal features from
+exercises to predict students’ knowledge states. Despite these methods
+can capture shallow cognition evolutionary patterns based on isolated
+exercise sequences, the intricate ones behind interdependent relation-
+ships among heterogeneous knowledge objects cannot be captured,
+which inevitably undermines the performances of knowledge tracing.
+In contrast, our proposed KT-Deeper leverages temporal heterogeneous
+graphs to model interactive relationships among students, exercises,
+and skills, which can effectively uncover their inherent interconnect-
+edness and capture the intricate temporal evolutionary patterns to
+improve prediction performance. As a result, compared with tradi-
+tional deep learning-based approaches, KT-Deeper achieves more than
+11.54%, 12.16%, 9.56%, 10.93%, and 12.02% performance gains in
+terms of AUROC on ASSIST09, ASSIST17, EdNet, SDNU, and SVTU
+datasets, respectively.
+(2) Static graph-based methods such as Line, Esim, HAN, VGAE, and
+ARVGE only concentrate on students’ cognition states at specific time
+𝑡 and employ it to predict students’ next cognitive state at time 𝑡 + 1.
+Different from static graph-based approaches, our proposed KT-Deeper
+focuses on students’ long-term historical cognitive process. KT-Deeper
+utilizes temporal heterogeneous graphs to model students’ dynamic
+cognition evolution information over time, and the temporal hetero-
+geneous graph sequence  = { 1, 2, …, 𝑡} contains the historical
+cognition evolution information of each student. Meanwhile, LSTM
+as an efficient RNN framework for capturing long-term dependency
+can effectively learn students’ cognition evolution patterns using LSTM
+hidden units to aggregate students’ historical evolution information.
+Obviously, this historical evolution information enhances the perfor-
+mance of long-term knowledge tracing. Thus, the proposed KT-Deeper
+obtains more than 12.07%, 12.40%, 10.81%, 8.98%, and 9.89% im-
+provement against static graph-based methods in terms of AUROC on
+ASSIST09, ASSIST17, EdNet, SDNU, and SVTU, respectively.
+(3) Current dynamic graph-based models ( e.g., GKT, SKT, GIKT,
+PEBG, DGEKT) construct a temporal graph sequence  = {1, 2, …, 𝑡}
+to capture the evolving patterns of knowledge cognition and predict
+students’ cognition state at time 𝑡 + 1 . These methods assume that
+students’ cognition evolutionary data is complete. However, in real-
+world knowledge tracing scenarios, the temporal data is difficult to
+collect in real-time or even missing, which hurts the performance of
+long-term knowledge tracing. To address the limitation, KT-Deeper
+proposes a dynamic graph generation method to refine the incomplete
+data sequence during time [𝑡+1,𝑡 +𝑛−1], which effectively supports the
+long-term knowledge tracing at 𝑡 +𝑛. By utilizing the dynamic graph
+generation, KT-Deeper boosts the AUROC performances with 4.48%,
+3.86%, 5.06%, 6.03%, and 7.72% gains against dynamic graph-based
+approaches on ASSIST09, ASSIST17, EdNet, SDNU, and SVTU, respec-
+tively. Overall, the experimental results demonstrate that our proposed
+KT-Deeper model exhibits promising performance in knowledge tracing
+across diverse educational backgrounds and various exercise types.
+5.3. Dynamic graph generation analysis
+As mentioned above, the collected evolutionary data often is incom-
+plete, if we do not deal with these incomplete data before knowledge
+tracing, it will affect the performance of the model. In this subsection,
+we aim to investigate the effect of dynamic graph generation on long-
+term knowledge tracing. Here, we randomly remove some graphs from
+the temporal graph sequence  = { 1, 2, …, 𝑡} according to differ-
+ent removal ratios, and compare the performance of KT-Deeper with
+dynamic graph-based methods including GKT, SKT, GIKT, PEBG, and
+DGEKT on the ASSIST09, ASSIST17, and EdNet datasets. As shown
+in Fig. 4, with the gradual increase of incomplete data, the overall
+performance of long-term knowledge tracing gradually decreases. More
+specifically, as shown in Fig. 4(a) and (b), the performance of baseline
+Applied Soft Computing 166 (2024) 112194 
+8 
+
+===== PAGE 9 =====
+Y. Han et al.
+Fig. 4. The performance comparison in terms of AUROC (upper) and Recall (lower) on three datasets.
+methods degrade sharply when the graph removal ratio reaches 15%.
+We argue that the reason is probably because the baseline method
+cannot accurately capture the student’s cognition evolution patterns
+from the incomplete graph sequence.
+Different from the baseline methods, our proposed KT-Deeper de-
+velops a dynamic graph generation method to optimize the incomplete
+graph sequence using reinforcement learning. The proposed dynamic
+graph generation method can leverage reinforcement learning to opti-
+mize the missing data and generate graph sequence during[𝑡+1,𝑡 +𝑛−1]
+based on historical graph sequence before time step 𝑡. The optimized
+and generated graph sequences can effectively help KT-Deeper capture
+nearly complete students’ cognition evolution patterns and strongly
+support long-term knowledge tracing. Therefore, the overall perfor-
+mance of KT-Deeper poses a more slight and gentle decline compared
+with the baseline approaches. Specifically, as demonstrated in Fig. 4(c),
+the AUROC metric of KT-Deeper climbs the peak on the EdNet dataset
+when the graph removal ratio reaches 10%. Similarly, KT-Deeper shows
+a rebound in the Recall metric when the data missing ratio is 15% on
+ASSIST09 and EdNet datasets, respectively.
+In this subsection, we further evaluate the efficacy of dynamic
+graph generation through probability distribution visualization and
+uncertainty measurement techniques, including Kullback–Leibler (KL)
+divergence and negative log-likelihood (NLL) [ 18]. We first examine
+the probability distribution of graph generation between KT-Deeper
+and the comparable models. Fig. 5 illustrates the visualization of their
+probability distribution concerning average degree and cluster coeffi-
+cient, comparing real graphs with generated ones. The distribution of
+KT-Deeper is evidently the closest to the real distribution, indicating
+that KT-Deeper can effectively capture the graph statistics and learn
+the underlying data distribution. Consequently, the graphs generated
+by KT-Deeper closely align with the ground-truth distribution from test
+data ( i.e., real graphs). This indicates that the generated graph can
+accurately reflect realistic scenarios in knowledge tracing.
+Moreover, KL divergence is a key indicator for measuring the con-
+sistency of two data distributions. Here, we use KL divergence to
+assess the probability distribution consistency between the generated
+graphs and real graphs. The KL divergence between the true probability
+distribution𝑝 (the observed samples) and the approximate distribution
+𝑞 (the output of the graph generation model) is computed as follows.
+𝐾𝐿(𝑝 ∥𝑞) =
+𝑁∑
+𝑖=1
+𝑝(𝑥𝑖)⋅𝑙𝑜𝑔𝑝(𝑥𝑖)
+𝑞(𝑥𝑖). (16)
+Evidently, a smaller KL divergence indicates a closer similarity
+between the two data distributions. As presented in Table 4 , the KT-
+Deeper exhibits lower KL divergences compared to the baseline models,
+indicating its superior capability in generating realistic graphs. Addi-
+tionally, we employ NNL to evaluate the generalization and robustness
+of the KT-Deeper model by measuring the NNL gap between train-
+ing data and test data. As demonstrated in Table 5 , the KT-Deeper
+demonstrates excellent generalization with the smallest average NLL
+gap.
+Furthermore, we evaluate the accuracy of graph generation by in-
+vestigating the Precision@K (P@K) and Mean Average Precision (MAP)
+metrics. Precision@K quantifies the proportion of correctly generated
+edges among the top-K generated edges, which is formulated as follows.
+𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 @𝐾 =
+|𝐸𝑝𝑟𝑒𝑑 (𝐾) ∩𝐸𝑟𝑒𝑎𝑙|
+𝐾 , (17)
+where 𝐸𝑝𝑟𝑒𝑑 and 𝐸𝑟𝑒𝑎𝑙 represent the generated edges and real edges,
+respectively. The MAP metric quantifies the average accuracy of our
+graph generation model generating edges over all nodes, formalized as
+follows.
+𝑀𝐴𝑃 = 1
+𝑁
+∑ ∑
+𝐾𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 @𝐾(𝑖){𝐸𝑝𝑟𝑒𝑑𝑖 ∈𝐸𝑟𝑒𝑎𝑙𝑖 }
+|{𝐾 ∶𝐸𝑝𝑟𝑒𝑑𝑖 (𝐾) ∈ 𝐸𝑟𝑒𝑎𝑙𝑖 }| , (18)
+where variable 𝑁 denotes the number of nodes, while 𝐾 represents
+the number of selected generated edges. Here, considering a tempo-
+ral graph 𝐺𝑡, we randomly select 5%, 10%, 15%, 20%, and 25% of
+the nodes and remove their edges to create ground-truth datasets.
+Subsequently, we use KT-Deeper and baseline models to generate the
+removed edges and evaluate their performance by measuring the Pre-
+cision@K and MAP. As shown in Table 6 , our proposed KT-Deeper
+achieves the highest performance in terms of P@K and MAP. Partic-
+ularly, when the edge missing ratio is 25%, our approach exhibits
+minimal impact compared to baseline models. Overall, through a com-
+prehensive comparison between KT-Deeper and the baseline meth-
+ods, we have observed that our dynamic graph generation approach
+Applied Soft Computing 166 (2024) 112194 
+9 
+
+===== PAGE 10 =====
+Y. Han et al.
+Fig. 5. Probability distribution visualization on average degree (a) and clustering coefficient (b).
+Table 4
+The KL divergence comparison between KT-Deeper and baseline models for graph generation.
+Method ASSIST09 ASSIST17 EdNet SDNU SVTU
+Deg. Clus. Deg. Clus. Deg. Clus. Deg. Clus. Deg. Clus.
+MPNN [32] 0.027 1.242 0.545 1.633 0.796 1.895 1.021 1.425 0.923 1.550
+GAM [35] 0.025 0.718 0.416 1.582 0.611 0.760 0.851 0.924 0.855 0.732
+NETRL [36] 0.056 0.795 0.755 1.020 0.658 1.233 0.785 1.104 0.796 1.014
+IG-RL [40] 0.029 0.703 0.685 1.055 0.821 1.411 0.812 0.716 0.887 1.204
+QADD [41] 0.051 0.797 0.894 1.013 0.954 1.036 0.773 0.711 0.236 0.563
+KT-Deeper 0.012 0.002 0.001 0.052 0.004 0.020 0.000 0.015 0.016 0.033
+Table 5
+The NNL comparison between KT-Deeper and baseline graph generation models.
+Method ASSIST09 ASSIST17 EdNet SDNU SVTU
+Train Test Train Test Train Test Train Test Train Test
+MPNN [32] 12.53 25.46 12.75 20.86 18.31 27.36 16.52 21.84 11.55 23.04
+GAM [35] 24.56 32.41 18.55 24.66 15.88 21.46 11.15 16.61 13.44 18.79
+NETRL [36] 28.41 35.23 24.38 32.16 29.24 36.55 31.32 38.77 23.87 29.30
+IG-RL [40] 31.50 35.16 19.11 24.54 16.55 20.73 25.38 30.66 20.75 25.42
+QADD [41] 13.33 16.20 15.60 17.85 23.25 25.48 17.50 21.41 23.15 26.79
+KT-Deeper 17.45 19.22 11.48 12.66 22.31 25.17 9.68 10.46 11.92 12.75
+Table 6
+The accuracy comparison of graph generation models under different proportions of missing edges on SDNU dataset.
+Method 5% 10% 15% 20% 25%
+P@K MAP P@K MAP P@K MAP P@K MAP P@K MAP
+MPNN [32] 85.44 81.36 82.75 79.50 78.11 75.36 72.50 68.54 65.37 61.08
+GAM [35] 86.31 82.45 83.75 80.26 80.30 78.44 75.15 73.41 70.15 68.33
+NETRL [36] 90.49 86.23 86.39 84.16 82.64 81.55 77.96 73.77 71.87 67.80
+IG-RL [40] 94.50 90.16 91.85 86.54 88.71 84.11 76.18 72.66 70.75 68.42
+QADD [41] 96.13 94.20 92.30 90.15 87.45 85.48 80.50 78.41 73.15 70.79
+KT-Deeper 97.86 95.27 96.78 93.66 94.81 92.17 92.68 90.46 90.85 88.74
+effectively addresses the issue of incomplete graph sequences and
+significantly enhances the performance gains in long-term knowledge
+tracing.
+5.4. Ablation experiments
+In this paper, we propose the KT-Deeper incorporated dynamic
+graph generation, attention mechanism, and augmented learning to
+achieve long-term knowledge tracing. To investigate their significance
+on KT-Deeper, we develop KT-Deeper −𝑑𝑔𝑔 , KT-Deeper −𝑎𝑡𝑡, and KT-
+Deeper−𝑎𝑢𝑔, discarding dynamic graph generation, attention mecha-
+nism, and augment learning modules, respectively. The experimental
+results are demonstrated in Fig. 6 . Based on Fig. 6 , we can make the
+following observations. (i) The overall performance of KT-Deeper is
+superior to that of its variants in terms of AUROC and Recall, which
+demonstrates the superiority of KT-Deeper for simultaneously integrat-
+ing dynamic graph generation, feature augmentation, and attention
+mechanisms. (ii) KT-Deeper −𝑎𝑡𝑡 and KT-Deeper−𝑎𝑢𝑔 remarkably outper-
+form KT-Deeper−𝑑𝑔𝑔 in AUROC and Recall metrics, which confirms that
+dynamic graph generation is the most important factor in KT-Deeper for
+resisting incomplete data and supporting long-term knowledge tracing.
+(iii) When the data missing rate (graph removal ratio) is less than 10%,
+the performance of KT-Deeper −𝑎𝑢𝑔 is better than that of KT-Deeper −𝑎𝑡𝑡
+overall, but when it is more than 10%, an inversion occurs, which
+means that the attention mechanism gradually fails with the increase of
+incomplete data. Different from KT-Deeper −𝑎𝑢𝑔, KT-Deeper −𝑎𝑡𝑡 utilizes
+relation augmentation to add or delete links between students and
+skills for simulating students’ forgetting behaviors [ 53] to improve the
+accuracy and robustness of long-term tracing.
+6. Scalability and interpretability evaluation
+6.1. Parameters sensitivity analysis
+In this section, we conduct extensive experiments to examine the
+impact of different parameters on KT-Deeper. We primarily emphasize
+the parameters including feature embedding size, positive–negative
+Applied Soft Computing 166 (2024) 112194 
+10 
+
+===== PAGE 11 =====
+Y. Han et al.
+Fig. 6. The performance comparison between KT-Deeper and its variants on three datasets.
+Fig. 7. Parameter sensitivity analysis of KT-Deeper on three datasets.
+Applied Soft Computing 166 (2024) 112194 
+11 
+
+===== PAGE 12 =====
+Y. Han et al.
+sampling ratio, and the number of graph neural network layers in
+KT-Deeper. Feature embedding size depicts the vector dimension of
+feature representation, which plays a crucial role in the occurrence
+of overfitting or underfitting in KT-Deeper. In this section, we restrict
+other parameters to fine-tune feature embedding size in (16, 32, 64, 128).
+As depicted in Fig. 7(a), (b), and (c), KT-Deeper obtains superior
+performances when the feature embedding sizes are set to 32 and 64 on
+ASSISTs (i.e., ASSIST09, ASSIST17) and EdNet datasets, respectively.
+positive–negative sampling ratio is another crucial element in KT-
+Deeper, which determines whether contrastive learning can correctly
+capture the high-order features of knowledge. Here, we optimize the
+positive–negative sampling ratio from the combination (1 ∶ 0 .2, 1 ∶
+0.5, 1 ∶ 1 , 1 ∶ 2) , and the experimental results on three datasets are
+illustrated in Fig. 7(d), (e) and (f). Obviously, KT-Deeper achieves the
+best performance when the positive–negative sampling ratio is assigned
+to 1 ∶ 0.5 on ASSIST09 and ASSIST17 datasets. Similarly, for the Ednet
+dataset, the performance of KT-Deeper is superior to that of others
+when the positive–negative ratio is set to 1:1.
+The layer number of graph neural networks determines the sampling
+distance of relationships and the number of neighbor nodes in a graph.
+We fine-tune the layer number in (1, 2, 3, 4) while constraining other
+parameters to be constant. As shown in Fig. 7(g), (h), and (i), KT-
+Deeper achieves promising performance when the layer numbers are
+set 3 and 2 on ASSISTs ( i.e., ASSIST09, ASSIST17) and EdNet datasets,
+respectively.
+6.2. Computational complexity analysis
+The computational complexity of KT-Deeper is mainly composed
+of two parts: 𝑂 = 𝑇 + 𝑄, where 𝑇 denotes the time complexity in-
+volved in graph generation in reinforcement learning, and𝑄 represents
+the computational complexity associated with graph embedding. More
+specifically, considering the heterogeneous graph  = ( , ), a meta-
+path set 𝑃 = { 𝑝1, …,𝑝𝑚, …,𝑝𝑀 }, and the Markov decision process
+𝐵 = ( 𝐴,𝑆,𝑅,𝑇 ). The time complexity of graph generation is 𝑃 =
+𝑂(|𝑆|3 + |𝑆|2 ⋅ |𝐴|), where 𝑆 denotes the state space, while 𝐴 signi-
+fies its corresponding action space. The computational complexity of
+heterogeneous graph embedding is represented by 𝑄 =𝑂(|𝜉|𝑀𝑁𝑁𝐷 ),
+where 𝑁 and 𝑀 indicate the number of nodes and metapaths in ,
+𝐷 is the feature dimension of nodes, and ‖𝜉‖ represents the number of
+edges across all metapaths. Thus, the overall computational complexity
+of KT-Deeper can be denoted 𝑂 = |𝑆|3 +|𝑆|2⋅|𝐴| +|𝜉|𝑀𝑁𝑁𝐷 .
+Consequently, we compare the runtime cost between KT-Deeper and
+the graph-based approaches on 21,765 edges involving 2856 nodes. To
+ensure fairness, all experiments are conducted on an Intel(R) Core(TM)
+i7-6700 CPU@3.40 GHz processor with 16 cores, 128 GB RAM, and 2×
+NVIDIA Tesla K80 GPUs. The codes are implemented in Python 3.7 and
+PyTorch framework on the Ubuntu 16.0.4 operating system. As shown
+in Fig. 8, the runtime of KT-Deeper is longer than that of conventional
+methods. By analyzing program timing, we have identified that the
+extra time spent by KT-deeper primarily pertains to graph genera-
+tion in reinforcement learning. Integrating reinforcement learning into
+KT-Deeper may lead to increased computational requirements, but it
+enhances the precision of knowledge tracing. It is justifiable to trade
+off a small amount of time consumption for improved accuracy in
+non-real-time knowledge tracing tasks.
+6.3. Interpretability analysis
+The proposed KT-Deeper surpasses existing deep learning-based
+knowledge tracing models in terms of interpretability, manifesting itself
+in two distinct aspects. Firstly, in contrast to graph methods based
+on random walking, KT-Deeper incorporates metapaths (see Fig. 2)
+that have real-world applicability for exploring interactive relationships
+among students, exercises, and skills. Compared to random walking,
+metapaths capture real-world semantic relationships ( e.g., the meta-
+path 𝑝1 in Fig. 2 depicts the semantic template that two students
+correctly answer exercises), thereby it offers enhanced interpretability
+than random walking mechanism lacking such real-world semantic
+significance.
+Secondly, the KT-Deeper leverages temporal heterogeneous graphs
+to depict the sequential correlation among knowledge, while incorpo-
+rating weight learning and principles of students’ knowledge cognition
+to enhance its interpretability. Specifically, we showcase the inter-
+pretability of the KT-Deeper model through weight visualization and
+analysis of knowledge causality. As illustrated in Fig. 9, consider-
+ing skill node 0 ( i.e., triple integral), it is represented with nodes
+1∼4. According to the principles of advanced mathematics, it is well-
+established that when aggregating information for embedding node
+0 (i.e., triple integral), the definite integral (i.e., node 2) and double inte-
+gral (i.e., node 4) are more effective in characterizing the triple integral
+than function limit (i.e., node 1) and differential coefficient (i.e., node3).
+Evidently, within the KT-Deeper framework, higher weights are as-
+signed to the definite integral (0.355) and double integral (0.432),
+respectively. Meanwhile, we further analyze the predicted results from
+the perspective of knowledge causality. We found the KT-Deeper pre-
+dicted that 94.68% of students who mastered the double integral
+would also be capable of learning triple integral. Conversely, the model
+predicted that only 1.02% of students who did not mastered the double
+integral would achieve proficiency in triple integral. These prediction
+results align with the reality of knowledge causality, which brings
+promising interpretability to a certain extent.
+7. Conclusion
+To improve the performance gains of long-term knowledge tracing,
+we propose a robust knowledge tracing model based on dynamic rein-
+forced heterogeneous graph contrastive networks, namely KT-Deeper.
+KT-Deeper effectively addresses the challenge of long-term knowledge
+tracing with incomplete data. Firstly, to demystify the evolving rela-
+tionships among different types of knowledge objects ( e.g., students,
+exercises, and skills), we leverage temporal heterogeneous graphs to
+model heterogeneous objects and design real-world metapaths to ex-
+plore their interactive relationships. Secondly, we devise a dynamic
+graph generation approach based on reinforcement learning to renovate
+the incomplete graph sequence during [𝑡 + 1,𝑡 +𝑛 − 1] for obtaining the
+completed graph sequence  = {1, 2, …, 𝑡, …, 𝑡+𝑛−1}, which is com-
+petent for the long-term knowledge tracing at time step 𝑡 +𝑛. Thirdly,
+we propose a self-supervised heterogeneous graph embedding method
+to learn the structure features of𝑡 at different time steps and obtain the
+graph representation sequence 𝐻 = {ℎ1,ℎ 2, …,ℎ𝑡, …,ℎ𝑡+𝑛−1}. Finally,
+the graph representation sequence is fed into LSTM networks to capture
+students’ cognition evolutionary trends and predict whether a student
+will master a specific skill. Our proposed KT-Deeper demonstrates
+superior performance compared to existing state-of-the-art methods in
+long-term knowledge tracing with incomplete temporal data.
+Despite KT-Deeper achieving promising performance in knowledge
+tracing, it still has certain limitations that need to be addressed in
+the future. Firstly, the generalization of the model requires additional
+verification across diverse educational scenarios encompassing differ-
+ent educational contexts, exercise types, and student demographics.
+In the further, we intend to collect a more comprehensive set of
+experiment data to refine our model and enhance its performance in
+knowledge tracing. Moreover, in the process of real-world knowledge
+acquisition, students frequently encounter memory decay and forget a
+portion of what they have learned. Incorporating students’ knowledge
+forgetting law into our model to accurately capture their cognitive
+processes remains an unresolved challenge. In future research, we aim
+to employ multi-agent reinforcement learning techniques to simulate
+students’ knowledge decay behavior, thereby enhancing the accuracy
+and generalization capabilities of KT-Deeper.
+Applied Soft Computing 166 (2024) 112194 
+12 
+
+===== PAGE 13 =====
+Y. Han et al.
+Fig. 8. Runtime comparison of graph-based knowledge tracing models.
+Fig. 9. Weights visualization between KT-Deeper and SOTA graph-based models.
+CRediT authorship contribution statement
+Yehong Han: Writing – original draft. Hailiang Tang: Project
+administration, Conceptualization. Wenxiao Zhang: Data curation. Lin
+Du: Formal analysis. Jun Zhao: Methodology. Minglai Shao: Formal
+analysis.
+Declaration of competing interest
+The authors declare that they have no known competing finan-
+cial interests or personal relationships that could have appeared to
+influence the work reported in this paper.
+Data availability
+Data will be made available on request.
+Acknowledgement
+This work is supported by the Youth Science Foundation Project of
+Shandong Province under grant ZR2022QF022.
+References
+[1] Z. Li, S. Yu, Y. Lu, P. Chen, Plastic gating network: Adapting to personal
+development and individual differences in knowledge tracing, Inform. Sci. 624
+(2023) 761–776.
+[2] W. Wang, H. Ma, Y. Zhao, F. Yang, L. Chang, SEEP: Semantic-enhanced question
+embeddings pre-training for improving knowledge tracing, Inform. Sci. 614
+(2022) 153–169.
+[3] G. Abdelrahman, Q. Wang, B. Nunes, Knowledge tracing: A survey, ACM Comput.
+Surv. 55 (11) (2023) 1–37.
+[4] A.T. Corbett, J.R. Anderson, Knowledge tracing: Modeling the acquisition of
+procedural knowledge, User Model. User-Adapt. Interact. 4 (1994) 253–278.
+[5] C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami, L.J. Guibas, J.
+Sohl-Dickstein, Deep knowledge tracing, Adv. Neural Inf. Process. Syst. 28
+(2015).
+[6] G. Abdelrahman, Q. Wang, Knowledge tracing with sequential key-value memory
+networks, in: Proceedings of the 42nd International ACM SIGIR Conference on
+Research and Development in Information Retrieval, 2019, pp. 175–184.
+[7] A. Ghosh, N. Heffernan, A.S. Lan, Context-aware attentive knowledge tracing, in:
+Proceedings of the 26th ACM SIGKDD International Conference on Knowledge
+Discovery & Data Mining, 2020, pp. 2330–2339.
+[8] S. Pandey, G. Karypis, A self-attentive model for knowledge tracing, 2019, arXiv
+preprint arXiv:1907.06837.
+[9] T. Kipf, M. Welling, Semi-supervised classification with graph convolutional
+networks, Learning (2016) arXiv.
+[10] M. Gan, H. Zhang, VIGA: A variational graph autoencoder model to infer user
+interest representations for recommendation, Inform. Sci. 640 (2023) 119039.
+[11] L.-H. Chen, H. Li, W. Zhang, J. Huang, X. Ma, J. Cui, N. Li, J. Yoo, AnomMAN:
+Detect anomalies on multi-view attributed networks, Inform. Sci. 628 (2023)
+1–21.
+[12] X. Song, J. Li, Y. Tang, T. Zhao, Y. Chen, Z. Guan, Jkt: A joint graph
+convolutional network based deep knowledge tracing, Inform. Sci. 580 (2021)
+510–523.
+[13] H. Nakagawa, Y. Iwasawa, Y. Matsuo, Graph-based knowledge tracing: modeling
+student proficiency using graph neural network, in: IEEE/WIC/ACM International
+Conference on Web Intelligence, 2019, pp. 156–163.
+[14] S. Tong, Q. Liu, W. Huang, Z. Hunag, E. Chen, C. Liu, H. Ma, S. Wang,
+Structure-based knowledge tracing: An influence propagation view, in: 2020 IEEE
+International Conference on Data Mining, ICDM, IEEE, 2020, pp. 541–550.
+[15] Y. Yang, J. Shen, Y. Qu, Y. Liu, K. Wang, Y. Zhu, W. Zhang, Y. Yu, GIKT: a
+graph-based interaction model for knowledge tracing, in: Machine Learning and
+Knowledge Discovery in Databases: European Conference, ECML PKDD 2020,
+Ghent, Belgium, September 14–18, 2020, Proceedings, Part I, Springer, 2021,
+pp. 299–315.
+[16] Y. Liu, Y. Yang, X. Chen, J. Shen, H. Zhang, Y. Yu, Improving knowledge tracing
+via pre-training question embeddings, 2020, arXiv preprint arXiv:2012.05031 .
+[17] C. Cui, Y. Yao, C. Zhang, H. Ma, Y. Ma, Z. Ren, C. Zhang, J. Ko, DGEKT: A dual
+graph ensemble learning method for knowledge tracing, 2022, arXiv preprint
+arXiv:2211.12881.
+[18] J. You, R. Ying, X. Ren, W. Hamilton, J. Leskovec, Graphrnn: Generating
+realistic graphs with deep auto-regressive models, in: International Conference
+on Machine Learning, PMLR, 2018, pp. 5708–5717.
+[19] M.V. Yudelson, K.R. Koedinger, G.J. Gordon, Individualized bayesian knowledge
+tracing models, in: Artificial Intelligence in Education: 16th International Confer-
+ence, AIED 2013, Memphis, TN, USA, July 9-13, 2013. Proceedings 16, Springer,
+2013, pp. 171–180.
+[20] M. Khajah, R.V. Lindsey, M.C. Mozer, How deep is knowledge tracing? 2016,
+arXiv preprint arXiv:1604.02416.
+[21] S. Shen, Z. Huang, Q. Liu, Y. Su, S. Wang, E. Chen, Assessing student’s dynamic
+knowledge state by exploring the question difficulty effect, in: Proceedings of
+the 45th International ACM SIGIR Conference on Research and Development in
+Information Retrieval, 2022, pp. 427–437.
+Applied Soft Computing 166 (2024) 112194 
+13 
+
+===== PAGE 14 =====
+Y. Han et al.
+[22] T. Käser, S. Klingler, A.G. Schwing, M. Gross, Dynamic Bayesian networks for
+student modeling, IEEE Trans. Learn. Technol. 10 (4) (2017) 450–462.
+[23] P.I. Pavlik Jr., H. Cen, K.R. Koedinger, Performance factors analysis–A new
+alternative to knowledge tracing, 2009, Online Submission.
+[24] J.J. Vie, H. Kashima, Knowledge tracing machines: Factorization machines
+for knowledge tracing, in: Proceedings of the AAAI Conference on Artificial
+Intelligence, Vol. 33, 2019, pp. 750–757.
+[25] S. Minn, Y. Yu, M.C. Desmarais, F. Zhu, J.-J. Vie, Deep knowledge tracing and
+dynamic student classification for knowledge tracing, in: 2018 IEEE International
+Conference on Data Mining, ICDM, IEEE, 2018, pp. 1182–1187.
+[26] J. Zhang, X. Shi, I. King, D.-Y. Yeung, Dynamic key-value memory networks
+for knowledge tracing, in: Proceedings of the 26th International Conference on
+World Wide Web, 2017, pp. 765–774.
+[27] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A.N. Gomez, Ł. Kaiser,
+I. Polosukhin, Attention is all you need, Adv. Neural Inf. Process. Syst. 30 (2017).
+[28] Q. Liu, Z. Huang, Y. Yin, E. Chen, H. Xiong, Y. Su, G. Hu, Ekt: Exercise-aware
+knowledge tracing for student performance prediction, IEEE Trans. Knowl. Data
+Eng. 33 (1) (2019) 100–115.
+[29] Y. Yin, Q. Liu, Z. Huang, E. Chen, W. Tong, S. Wang, Y. Su, Quesnet: A unified
+representation for heterogeneous test questions, in: Proceedings of the 25th Acm
+Sigkdd International Conference on Knowledge Discovery & Data Mining, 2019,
+pp. 1328–1336.
+[30] C. Wang, W. Ma, M. Zhang, C. Lv, F. Wan, H. Lin, T. Tang, Y. Liu, S. Ma,
+Temporal cross-effects in knowledge tracing, in: Proceedings of the 14th ACM
+International Conference on Web Search and Data Mining, 2021, pp. 517–525.
+[31] T. Long, Y. Liu, J. Shen, W. Zhang, Y. Yu, Tracing knowledge state with individ-
+ual cognition and acquisition estimation, in: Proceedings of the 44th International
+ACM SIGIR Conference on Research and Development in Information Retrieval,
+2021, pp. 173–182.
+[32] J. Gilmer, S.S. Schoenholz, P.F. Riley, O. Vinyals, G.E. Dahl, Neural message pass-
+ing for quantum chemistry, in: International Conference on Machine Learning,
+PMLR, 2017, pp. 1263–1272.
+[33] C.-C. Liu, H. Chan, K. Luk, A. Borealis, Auto-regressive graph generation
+modeling with improved evaluation methods, in: 33rd Conference on Neural
+Information Processing Systems, Vancouver, Canada, 2019.
+[34] D. Bacciu, A. Micheli, M. Podda, Edge-based sequential graph generation with
+recurrent neural networks, Neurocomputing 416 (2020) 177–189.
+[35] J.B. Lee, R. Rossi, X. Kong, Graph classification using structural attention, in:
+Proceedings of the 24th ACM SIGKDD International Conference on Knowledge
+Discovery & Data Mining, 2018, pp. 1666–1674.
+[36] J. Xu, Y. Yang, S. Pu, Y. Fu, J. Feng, W. Jiang, J. Lu, C. Wang, Netrl: Task-aware
+network denoising via deep reinforcement learning, IEEE Trans. Knowl. Data Eng.
+35 (1) (2023) 810–823.
+[37] Q. Sun, J. Li, H. Peng, J. Wu, Y. Ning, P.S. Yu, L. He, Sugar: Subgraph neural
+network with reinforcement pooling and self-supervised mutual information
+mechanism, in: Proceedings of the Web Conference 2021, 2021, pp. 2081–2091.
+[38] Y. Dou, Z. Liu, L. Sun, Y. Deng, H. Peng, P.S. Yu, Enhancing graph neural
+network-based fraud detectors against camouflaged fraudsters, in: Proceed-
+ings of the 29th ACM International Conference on Information & Knowledge
+Management, 2020, pp. 315–324.
+[39] Y. Lyu, X. Yang, J. Liu, S. Xie, P. Yu, X. Zhang, Interpretable and effective
+reinforcement learning for attacking against graph-based rumor detection, in:
+2023 International Joint Conference on Neural Networks, IJCNN, IEEE, 2023,
+pp. 1–9.
+[40] F.-X. Devailly, D. Larocque, L. Charlin, IG-RL: Inductive graph reinforcement
+learning for massive-scale traffic signal control, IEEE Trans. Intell. Transp. Syst.
+23 (7) (2021) 7496–7507.
+[41] Y. Fang, X. Pan, H.-B. Shen, De novo drug design by iterative multiobjective
+deep reinforcement learning with graph-based molecular quality assessment,
+Bioinformatics 39 (4) (2023) btad157.
+[42] L. Nie, X. Wang, Q. Zhao, Z. Shang, L. Feng, G. Li, Digital twin for transportation
+big data: A reinforcement learning-based network traffic prediction approach,
+IEEE Trans. Intell. Transp. Syst. (2023).
+[43] H. Xing, A. Chen, X. Zhang, RL-GCN: Traffic flow prediction based on graph
+convolution and reinforcement learning for smart cities, Displays 80 (2023)
+102513.
+[44] Y. Sun, J. Han, X. Yan, P.S. Yu, T. Wu, Pathsim: Meta path-based top-k similarity
+search in heterogeneous information networks, Proc. VLDB Endow. 4 (11) (2011)
+992–1003.
+[45] S. Hochreiter, J. Schmidhuber, Long short-term memory, Neural Comput. 9 (8)
+(1997) 1735–1780.
+[46] Y. Choi, Y. Lee, D. Shin, J. Cho, S. Park, S. Lee, J. Baek, C. Bae, B. Kim, J. Heo,
+Ednet: A large-scale hierarchical dataset in education, in: Artificial Intelligence
+in Education: 21st International Conference, AIED 2020, Ifrane, Morocco, July
+6–10, 2020, Proceedings, Part II 21, Springer, 2020, pp. 69–73.
+[47] L. Cai, J. Li, J. Wang, S. Ji, Line graph neural networks for link prediction, IEEE
+Trans. Pattern Anal. Mach. Intell. (2021).
+[48] J. Shang, M. Qu, J. Liu, L.M. Kaplan, J. Han, J. Peng, Meta-path guided em-
+bedding for similarity search in large-scale heterogeneous information networks,
+2016, arXiv preprint arXiv:1610.09769.
+[49] X. Wang, H. Ji, C. Shi, B. Wang, Y. Ye, P. Cui, P.S. Yu, Heterogeneous graph
+attention network, in: The World Wide Web Conference, 2019, pp. 2022–2032.
+[50] T.N. Kipf, M. Welling, Variational graph auto-encoders, 2016, arXiv preprint
+arXiv:1611.07308.
+[51] S. Pan, R. Hu, G. Long, J. Jiang, L. Yao, C. Zhang, Adversarially regularized graph
+autoencoder for graph embedding, 2018, arXiv preprint arXiv:1802.04407.
+[52] H. Nakagawa, Y. Iwasawa, Y. Matsuo, Graph-based knowledge tracing: modeling
+student proficiency using graph neural network, in: IEEE/WIC/ACM International
+Conference on Web Intelligence, 2019, pp. 156–163.
+[53] K. Nagatani, Q. Zhang, M. Sato, Y.-Y. Chen, F. Chen, T. Ohkuma, Augmenting
+knowledge tracing by considering forgetting behavior, in: The World Wide Web
+Conference, 2019, pp. 3101–3107.
+Applied Soft Computing 166 (2024) 112194 
+14 

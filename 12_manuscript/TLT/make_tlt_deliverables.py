@@ -18,12 +18,12 @@ T.~Dao Minh (ORCID: 0009-0009-1641-6813),
 D.~Nguyen Tien (ORCID: 0009-0007-1104-7129),
 and V.-H. Nguyen (ORCID: 0000-0002-3256-5626)
 are with the Faculty of Information Technology,
-Hung Yen University of Technology and Education, Hung Yen 160000, Vietnam
-(e-mail: trinhnk@utehy.edu.vn; tuandm@utehy.edu.vn;
+Hung Yen University of Technology and Engineering, Hung Yen 160000, Vietnam
+(e-mail: trinhnk@utehy.edu.vn; tuanymc@utehy.edu.vn;
 duongnt@utehy.edu.vn; haunv@utehy.edu.vn).}%
 \thanks{C.~T. Nguyen (ORCID: 0000-0003-4335-7002)
 is with the Academy of Military Science and Technology, Ha Noi 100000, Vietnam
-(e-mail: thanhnc@amst.edu.vn).}%
+(e-mail: thanhnc@ioit.ai.vn).}%
 \thanks{$^{*}$Corresponding author: Van-Hau Nguyen.}%
 }"""
 

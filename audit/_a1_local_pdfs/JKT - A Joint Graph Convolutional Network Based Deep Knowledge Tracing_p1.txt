@@ -1,0 +1,112 @@
+JKT: A joint graph convolutional network based Deep
+Knowledge Tracing
+Xiangyu Song a, Jianxin Li a,⇑, Yifu Tang a, Taige Zhao a, Yunliang Chen b, Ziyu Guan c
+a School of IT, Faculty of Science, Engineering and Built Environment, Deakin University, Geelong, VIC 3220, Australia
+b China University of Geosciences, China
+c State Key Lab of ISN, School of Computer Science and Technology, Xidian University, Xi’an, China
+a r t i c l e
+i n f o
+Article history:
+Received 8 June 2021
+Received in revised form 12 August 2021
+Accepted 29 August 2021
+Available online 2 September 2021
+Keywords:
+Knowledge Tracing
+Graph neural network
+Learning analytics
+Intelligent tutoring systems
+Network representation learning
+a b s t r a c t
+Knowledge Tracing (KT) aims to trace the student’s state of evolutionary mastery for a par-
+ticular knowledge or concept based on the student’s historical learning interactions with
+the corresponding exercises. Taking the ‘‘exercise-to-concept” relationships as input, several
+existing methods have been developed to trace and model students’ mastery states.
+However, these studies face two major shortcomings in KT: 1) they only consider
+‘‘exercise-to-concept” relationships; 2) the multi-hot embeddings lack interpretability. In
+order to address the above issues, we propose a Joint graph convolutional network based
+deep Knowledge Tracing (JKT) framework to model the multi-dimensional relationships
+of
+‘‘exercise-to-exercise”,
+and
+‘‘concept-to-concept”
+into
+graph
+and
+fuse
+them
+with
+‘‘exercise-to-concept” relationships. In JKT, it is not only possible to establish connections
+between exercises under cross-concepts, but also to help capture high-level semantic
+information and increase the model’s interpretability. In addition, sufﬁcient experiments
+conducted on four real-world datasets have demonstrated that JKT performs better than
+the other baseline models. We further illustrate a case study to demonstrate its inter-
+pretability for learning analysis
+ 2021 Elsevier Inc. All rights reserved.
+1. Introduction
+As a cognitive model with the goal of mastery-based learning, Knowledge Tracing (KT) is ﬁrst introduced into the ﬁeld of
+intelligent tutoring systems in [6]. It seeks to monitor the evolving state of students’ mastery of a speciﬁc learning concept or
+knowledge when they interact with several corresponding exercises. The intent of this task is to personalise the sequence of
+practice to enable efﬁcient mastery of the concepts, and to accurately predict student performance. With the rise of the inter-
+net and online education, knowledge tracing is being used more and more widely on various educational platforms, and is
+becoming a popular research topic.
+Various approaches have been proposed to solve the KT problems. There are two most representative models: Bayesian
+Knowledge Tracking (BKT) and Deep Knowledge Tracing (DKT). BKT [6] models a student’s potential knowledge state as a set
+of binary variables, each representing whether the student understands the corresponding concept.[26] applies RNNs [28] to
+the ﬁeld of knowledge tracing, denoted as DKT. Compared to BKT, DKT takes the advantage of multiple free parameters and
+https://doi.org/10.1016/j.ins.2021.08.100
+0020-0255/ 2021 Elsevier Inc. All rights reserved.
+⇑Corresponding author.
+E-mail addresses: xiangyu.song@deakin.edu.au (X. Song), jianxin.li@deakin.edu.au (J. Li), tangyif@deakin.edu.au (Y. Tang), chris.zhao@research.deakin.
+edu.au (T. Zhao), cyl_king@hotmail.com (Y. Chen), zyguan@xidian.edu.cn (Z. Guan).
+Information Sciences 580 (2021) 510–523
+Contents lists available at ScienceDirect
+Information Sciences
+journal homepage: www.elsevier.com/locate/ins
+
+cross-input of multiple concepts, resulting in better results. Following the mainstream approach of DKT, there are many
+other developed methods. Inspired by memory-enhanced neural networks, dynamic Key-Value Memory Networks (DKVMN)
+[41] creates a static matrix as well as a dynamic matrix to store all the concepts and maintain the student’s knowledge learn-
+ing state, respectively. SAKT [24] uses self-attentive mechanisms [33] to assign weights to previously answered exercises in
+order to predict student performance on the speciﬁc exercises. EERNN [31] uses the textual content of exercises and stu-
+dents’ practice records to predict student performance. Even though all these models can make good use of the explicit rela-
+tionship between exercises and concepts to predict the student’s mastery state of a certain concept, such models often fail to
+make accurate prediction when a student is confronted with a concept that has not been previously covered, and are also
+hard to capture the high-level semantic information.
+To ﬁll in these gaps, we propose a Joint graph convolutional network based deep Knowledge Tracing (JKT) framework that
+focuses on improving prediction accuracy as well as the interpretability of the method by exploring the implicit relationships
+of ‘‘exercise-to-exercise” and ‘‘concept-to-concept”. As shown in Fig. 1, We ﬁrst take one student’s historical interactions as a
+sample and count all the co-occurred exercise pairs that he answers correctly. We then consider a student to have mastered a
+concept when he obtains an above-average accuracy rate for that concept. Similarly, we count all co-occurring pairs of con-
+cepts that he has mastered and then calculate the ratio of the number of these co-occurring concepts that he has mastered to
+the number of occurrences of these co-occurring concepts, indicating the co-mastery rate.
+We can then establish the exercise inﬂuence sub-graph and the concept inﬂuence sub-graph based on the accumulated
+co-correctness rate of each pair of co-occurred exercises and co-mastery rate of each pair of co-occurred concepts, respec-
+tively. Given the established sub-graphs, we can learn the embeddings of each exercise and its corresponding concept
+through a two-layer Graph convolutional network. Finally, we input these dense embeddings instead of traditional one-
+hot or multi-hot vector representations into a RNN-based prediction layer to make prediction.
+Compared to the existing methods, our proposed graph structure representation and the exploration of the relationships
+of ‘‘exercise-to-exercise” and ‘‘concept-to-concept” allow for better and multi-dimensional establishment of connections
+between exercises under different concepts. Furthermore, with powerful graph embeddings and graph convolution, we
+can transform long and sparse one-hot or multi-hot vector representations into dense ones. At the same time, due to involv-
+ing the co-correctness rate and co-mastery rate, the embeddings with higher co-correctness rate and co-mastery rate are
+more likely to have higher similarity in the vector expressions. This feature can help to improve the prediction accuracy
+as well as the interpretability of the method.
+The contributions of our work are summarized as follows:
+ As far as we know, this is the ﬁrst attempt to study the ‘‘exercise-to-exercise”, and ‘‘concept-to-concept” relationships in the
+joint attributed KT graph structure. Our work can learn the reliable connections between exercises under different con-
+cepts, further promoting the accuracy of student performance prediction and enhancing the interpretability of KT-based
+applications.
+ We propose a novel framework called Joint graph convolutional network deep Knowledge Tracing (JKT), which includes
+both the exercise inﬂuence sub-graph and the concept inﬂuence sub-graph. Beneﬁting from this multidimensional sub-
+graph fusion, the proposed JKT can take into account the importance of all ‘‘exercise-to-concept”, ‘‘exercise-to-exercise” and
+‘‘concept-to-concept” relationships. Furthermore, another merit of JKT is able to capture the semantic information of stu-
+dents’ learning states at higher levels in the knowledge tracing process.
+ Sufﬁcient experiments and the corresponding ablation study on four real-world datasets have been conducted to demon-
+strate that JKT perform better than other baseline models. More importantly, through an in-depth analysis of the
+‘‘exercise-to-exercise”, and ‘‘concept-to-concept” relationships, the proposed JKT demonstrates its strong interpretability
+in learning analysis.
+Fig. 1. An illustrative example of the transformation from the original sequential representation to a multi-dimensional graphical representation.
+X. Song, J. Li, Y. Tang et al.
+Information Sciences 580 (2021) 510–523
+511

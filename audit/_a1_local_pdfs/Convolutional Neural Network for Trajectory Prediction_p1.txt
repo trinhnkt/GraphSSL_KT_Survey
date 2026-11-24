@@ -1,0 +1,86 @@
+Convolutional Neural Network
+for Trajectory Prediction
+Nishant Nikhil1,2 and Brendan Tran Morris2[0000−0002−8592−8806]
+1 Indian Institute of Technology Kharagpur
+nishantnikhil@iitkgp.ac.in
+2 University of Nevada, Las Vegas
+brendan.morris@unlv.edu
+Abstract. Predicting trajectories of pedestrians is quintessential for au-
+tonomous robots which share the same environment with humans. In
+order to eﬀectively and safely interact with humans, trajectory predic-
+tion needs to be both precise and computationally eﬃcient. In this work,
+we propose a convolutional neural network (CNN) based human trajec-
+tory prediction approach. Unlike more recent LSTM-based moles which
+attend sequentially to each frame, our model supports increased paral-
+lelism and eﬀective temporal representation. The proposed compact CNN
+model is faster than the current approaches yet still yields competitive
+results.
+Keywords: Convolutional Neural Network, Trajectory Prediction, An-
+ticipating Human Behavior
+1
+Introduction
+Autonomous robots like self-driving cars on a road or a food-delivery robot in a
+restaurant must share the same space with humans. In order to do so in a safe
+and acceptable manner, these robots must be able to understand and cooperate
+with humans. One task of paramount importance for avoiding collisions and for
+smooth maneuvering is to accurately predict the future trajectories of humans
+in their shared space. Further, given the wide diversity of platforms and envi-
+ronments for which prediction may be required (e.g. small robots with limited
+computing capabilities or without connectivity to cloud computing resources),
+simple models with better time complexity are desired.
+Traditionally, hand-crafted features were used for trajectory prediction and
+modeling motion of pedestrians’ trajectory with respect to others surrounding
+them. [1] propose a discrete choice framework for pedestrian dynamics, mod-
+eling short-term behavior of individuals as a response to the presence of other
+pedestrians. The Social Force model [2] incorporates two interactive forces for
+microsimulation of crowds. Attractive forces guiding the pedestrians towards
+their goal and repulsive forces for encouraging collision avoidance in-between
+the pedestrians and in-between a pedestrian and environmental obstacles. Ya-
+maguchi et al. [3] solves the same problem as an energy minimization problem.
+arXiv:1809.00696v2  [cs.CV]  26 Nov 2018
+
+2
+N. Nikhil and B. T. Morris
+While successful, hand-crafted features are hard to scale since inﬂuencing factors
+must be described explicitly.
+In recent years, Deep Neural Networks (DNN) have been utilized for the
+trajectory prediction task since they utilize a data-driven approach to tease out
+relationships and inﬂuences which may not have been apparent. These DNN-
+based approaches [4–7] have demonstrated impressive results. Almost all of these
+approaches are based on Recurrent Neural Networks (RNNs) [8] since a trajec-
+tory is a temporal sequence. As RNNs share parameters across time, they are
+capable of conditioning the model on all previous positions of a trajectory. Al-
+though theoretically, RNNs can retain information from all previous words of a
+sentence, practically they fail at handling long-term dependencies. Also, RNNs
+are prone to the vanishing and exploding gradient problems when dealing with
+long sequences.
+Long Short-Term Memory (LSTM) networks [9], a special kind of RNN ar-
+chitecture, were designed to address these problems. Although LSTMs have been
+found to address the sequence based problems eﬀectively but they need quite a
+bit of task-speciﬁc engineering like clipping gradients. Also in RNNs, predictions
+for later time-steps must wait for the predictions from preceding time-steps and
+hence can’t be parallelized during training or inference time.
+Recently, Convolutional Neural Network (CNN) based architectures have
+provided encouraging results in sequence-to-sequence tasks [10] like machine
+translation [11,12], image generation [13] and Image Captioning [14]. Inspired by
+these, we study CNNs for the task of trajectory prediction. This is the ﬁrst work
+we are aware of to use an end-to-end convolutional architecture for trajectory
+prediction (Deo and Trivedi [15] used convolutional pooling for incorporating
+social context from hidden states of the LSTM network). We believe the CNN
+is superior to LSTM for temporal modeling since trajectories are continuous
+in nature, do not have complicated “state”, and have high spatial and tempo-
+ral correlation which can be exploited by computationally eﬃcient convolution
+operations.
+The major contribution of the work can be summarized as proposing a fast
+CNN-based model for trajectory prediction that is competitive with more com-
+plicated state-of-the-art LSTM-based techniques which require more contextual
+information. We discuss our CNN architecture in Section 2. Section 3 provides an
+experimental evaluation to highlight the eﬃcacy of our approach and value due
+to simplicity. Finally, in Section 4, we conclude the paper with closing remarks.
+2
+Trajectory Prediction Method
+Recent work in prediction has utilized recurrent networks to model temporal
+dependencies and sequence-like nature of trajectories using LSTMs. Most eﬀorts
+in this area look to augment position input with social [4, 5] or scene [6, 16]
+context resulting in more complicated architectures. In contrast, our work seeks
+to simplify the network architecture and make more direct use of trajectory

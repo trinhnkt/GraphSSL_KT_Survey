@@ -24,34 +24,32 @@
 
 \bibitem{Piech_DKT_2015}
 \BIBentryALTinterwordspacing
-C.~Piech \emph{et~al.}, ``Deep knowledge tracing,'' in \emph{Advances in Neural
-  Information Processing Systems (NeurIPS)}, vol.~28, 2015, pp. 505--513.
-  [Online]. Available:
+C.~Piech \emph{et~al.}, ``Deep knowledge tracing,'' in \emph{Adv. Neural Inf.
+  Process. Syst. (NeurIPS)}, vol.~28, 2015, pp. 505--513. [Online]. Available:
   \url{https://proceedings.neurips.cc/paper/2015/hash/bac9162b47c56fc8a4d2a519803d51b3-Abstract.html}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Pandey_SAKT_2019}
 \BIBentryALTinterwordspacing
 S.~Pandey and G.~Karypis, ``A self-attentive model for knowledge tracing,'' in
-  \emph{Proceedings of the 12th International Conference on Educational Data
-  Mining (EDM)}, 2019, pp. 384--389. [Online]. Available:
+  \emph{Proc. 12th Int. Conf. Educ. Data Mining (EDM)}, 2019, pp. 384--389.
+  [Online]. Available:
   \url{https://educationaldatamining.org/edm2019/proceedings/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Ghosh_AKT_2020}
 \BIBentryALTinterwordspacing
 A.~Ghosh, N.~Heffernan, and A.~S. Lan, ``Context-aware attentive knowledge
-  tracing,'' in \emph{Proceedings of the 26th ACM SIGKDD International
-  Conference on Knowledge Discovery and Data Mining (KDD)}, 2020, pp.
-  2330--2339. [Online]. Available:
+  tracing,'' in \emph{Proc. 26th ACM SIGKDD Int. Conf. Knowl. Discovery Data
+  Mining (KDD)}, 2020, pp. 2330--2339. [Online]. Available:
   \url{https://doi.org/10.1145/3394486.3403282}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Zhang_DKVMN_2017}
 \BIBentryALTinterwordspacing
 J.~Zhang, X.~Shi, I.~King, and D.-Y. Yeung, ``Dynamic key-value memory networks
-  for knowledge tracing,'' in \emph{Proceedings of the 26th International
-  Conference on World Wide Web (WWW)}, 2017, pp. 765--774. [Online]. Available:
+  for knowledge tracing,'' in \emph{Proc. 26th Int. Conf. World Wide Web
+  (WWW)}, 2017, pp. 765--774. [Online]. Available:
   \url{https://doi.org/10.1145/3038912.3052580}
 \BIBentrySTDinterwordspacing
 
@@ -73,9 +71,8 @@ S.~Shen \emph{et~al.}, ``A survey of knowledge tracing: Models, variants, and
 \BIBentryALTinterwordspacing
 Z.~Liu, Q.~Liu, J.~Chen, S.~Huang, J.~Tang, and W.~Luo, ``{pyKT}: A {Python}
   library to benchmark deep learning based knowledge tracing models,'' in
-  \emph{Advances in Neural Information Processing Systems (NeurIPS) Datasets
-  and Benchmarks Track}, vol.~35, 2022, pp. 18\,542--18\,555. [Online].
-  Available:
+  \emph{Adv. Neural Inf. Process. Syst. (NeurIPS) Datasets Benchmarks Track},
+  vol.~35, 2022, pp. 18\,542--18\,555. [Online]. Available:
   \url{https://proceedings.neurips.cc/paper_files/paper/2022/hash/75ca2b23d9794f02a92449af65a57556-Abstract-Datasets_and_Benchmarks.html}
 \BIBentrySTDinterwordspacing
 
@@ -92,31 +89,92 @@ Z.~Liu \emph{et~al.}, ``Deep learning based knowledge tracing: A review, a tool
 M.~Xu, J.~Kujala, J.~Mets{\"{a}}muuronen, and M.-J. Laakso, ``A survey of
   graph-based knowledge tracing from structural and propagation perspectives:
   Models, applications, and future directions,'' \emph{J. Educ. Data Min.},
-  vol.~18, no.~2, pp. 41--87, 2026. [Online]. Available:
+  vol.~18, no.~2, pp. 41--87, 2026, no Crossref DOI registered; publisher
+  landing page used. [Online]. Available:
   \url{https://jedm.educationaldatamining.org/index.php/JEDM/article/view/1089}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Shukurlu_LossKT_2025}
+\BIBentryALTinterwordspacing
+A.~Shukurlu, ``Survey of loss augmented knowledge tracing,'' arXiv:2504.15163,
+  2025. [Online]. Available: \url{https://arxiv.org/abs/2504.15163}
+\BIBentrySTDinterwordspacing
+
+\bibitem{DECKT_2025}
+\BIBentryALTinterwordspacing
+Y.~Bai, X.~Wu, T.~Wei, and L.~He, ``A dual-encoder contrastive learning model
+  for knowledge tracing,'' \emph{Entropy}, vol.~27, no.~7, p. 685, 2025.
+  [Online]. Available: \url{https://doi.org/10.3390/e27070685}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Han_KTDeeper_2024}
+\BIBentryALTinterwordspacing
+Y.~Han, H.~Tang, W.~Zhang, L.~Du, J.~Zhao, and M.~Shao, ``Dynamic heterogeneous
+  graph contrastive networks for knowledge tracing,'' \emph{Appl. Soft
+  Comput.}, vol. 166, p. 112194, 2024. [Online]. Available:
+  \url{https://doi.org/10.1016/j.asoc.2024.112194}
+\BIBentrySTDinterwordspacing
+
+\bibitem{HCMKT_2026}
+\BIBentryALTinterwordspacing
+J.~Liu, Z.~Guan, X.~Wang, and Z.~Yang, ``Heterogeneous graph knowledge tracing
+  with novel contrastive view and meta-path contexts,'' \emph{Expert Syst.
+  Appl.}, vol. 295, p. 128840, 2026. [Online]. Available:
+  \url{https://doi.org/10.1016/j.eswa.2025.128840}
+\BIBentrySTDinterwordspacing
+
+\bibitem{CLBG_2025}
+\BIBentryALTinterwordspacing
+K.~Chen, S.~Mao, Q.~Zheng, and Y.~Jiang, ``Contrastive learning based on
+  bipartite graphs for interpretable knowledge tracing,'' in \emph{Adv. Data
+  Mining Appl. (ADMA)}, ser. Lecture Notes in Artificial Intelligence, vol.
+  15389, 2025, pp. 206--220. [Online]. Available:
+  \url{https://doi.org/10.1007/978-981-96-0821-8_14}
+\BIBentrySTDinterwordspacing
+
+\bibitem{CoSKT_2024}
+\BIBentryALTinterwordspacing
+C.~Zhang \emph{et~al.}, ``{CoSKT}: A collaborative self-supervised learning
+  method for knowledge tracing,'' \emph{IEEE Trans. Learn. Technol.}, vol.~17,
+  pp. 1476--1488, 2024. [Online]. Available:
+  \url{https://doi.org/10.1109/TLT.2024.3386750}
+\BIBentrySTDinterwordspacing
+
+\bibitem{DTransformer_2023}
+\BIBentryALTinterwordspacing
+Y.~Yin \emph{et~al.}, ``Tracing knowledge instead of patterns: Stable knowledge
+  tracing with diagnostic transformer,'' in \emph{Proc. ACM Web Conf. (WWW)},
+  2023, pp. 855--864. [Online]. Available:
+  \url{https://doi.org/10.1145/3543507.3583255}
+\BIBentrySTDinterwordspacing
+
+\bibitem{SPCLKT_2024}
+\BIBentryALTinterwordspacing
+H.~Dai, Y.~Yun, Y.~Zhang, R.~An, W.~Zhang, and X.~Shang, ``Self-paced
+  contrastive learning for knowledge tracing,'' \emph{Neurocomputing}, vol.
+  609, p. 128366, 2024. [Online]. Available:
+  \url{https://doi.org/10.1016/j.neucom.2024.128366}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT004_GKT_2019}
 \BIBentryALTinterwordspacing
 H.~Nakagawa, Y.~Iwasawa, and Y.~Matsuo, ``Graph-based knowledge tracing:
-  Modeling student proficiency using graph neural network,'' in
-  \emph{Proceedings of the IEEE/WIC/ACM International Conference on Web
-  Intelligence (WI)}, 2019, pp. 156--163. [Online]. Available:
-  \url{https://doi.org/10.1145/3350546.3352513}
+  Modeling student proficiency using graph neural network,'' in \emph{Proc.
+  IEEE/WIC/ACM Int. Conf. Web Intell. (WI)}, 2019, pp. 156--163. [Online].
+  Available: \url{https://doi.org/10.1145/3350546.3352513}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT010_GIKT_2021}
 \BIBentryALTinterwordspacing
-Y.~Yang \emph{et~al.}, ``Gikt: A graph-based interaction model for knowledge
-  tracing,'' in \emph{Proceedings of the European Conference on Machine
-  Learning and Principles and Practice of Knowledge Discovery in Databases
+Y.~Yang \emph{et~al.}, ``{GIKT}: A graph-based interaction model for knowledge
+  tracing,'' in \emph{Proc. Eur. Conf. Mach. Learn. Knowl. Discovery Databases
   (ECML-PKDD)}, 2021, pp. 299--315. [Online]. Available:
   \url{https://doi.org/10.1007/978-3-030-67658-2_18}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT011_BiCLKT_2022}
 \BIBentryALTinterwordspacing
-X.~Song, J.~Li, Q.~Lei, W.~Zhao, Y.~Chen, and A.~Mian, ``Bi-clkt: Bi-graph
+X.~Song, J.~Li, Q.~Lei, W.~Zhao, Y.~Chen, and A.~Mian, ``{Bi-CLKT}: Bi-graph
   contrastive learning based knowledge tracing,'' \emph{Knowl.-Based Syst.},
   vol. 241, p. 108274, 2022. [Online]. Available:
   \url{https://doi.org/10.1016/j.knosys.2022.108274}
@@ -124,7 +182,7 @@ X.~Song, J.~Li, Q.~Lei, W.~Zhao, Y.~Chen, and A.~Mian, ``Bi-clkt: Bi-graph
 
 \bibitem{KT012_JKT_2021}
 \BIBentryALTinterwordspacing
-X.~Song, J.~Li, Y.~Tang, T.~Zhao, Y.~Chen, and Z.~Guan, ``Jkt: A joint graph
+X.~Song, J.~Li, Y.~Tang, T.~Zhao, Y.~Chen, and Z.~Guan, ``{JKT}: A joint graph
   convolutional network based deep knowledge tracing,'' \emph{Inf. Sci.}, vol.
   580, pp. 510--523, 2021. [Online]. Available:
   \url{https://doi.org/10.1016/j.ins.2021.08.100}
@@ -133,22 +191,21 @@ X.~Song, J.~Li, Y.~Tang, T.~Zhao, Y.~Chen, and Z.~Guan, ``Jkt: A joint graph
 \bibitem{KT014_PDKTC_2018}
 \BIBentryALTinterwordspacing
 P.~Chen, Y.~Lu, V.~W. Zheng, and Y.~Pian, ``Prerequisite-driven deep knowledge
-  tracing,'' in \emph{Proceedings of the IEEE International Conference on Data
-  Mining (ICDM)}, 2018, pp. 39--48. [Online]. Available:
-  \url{https://doi.org/10.1109/ICDM.2018.00019}
+  tracing,'' in \emph{Proc. IEEE Int. Conf. Data Mining (ICDM)}, 2018, pp.
+  39--48. [Online]. Available: \url{https://doi.org/10.1109/ICDM.2018.00019}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT016_SKT_2020}
 \BIBentryALTinterwordspacing
 S.~Tong \emph{et~al.}, ``Structure-based knowledge tracing: An influence
-  propagation view,'' in \emph{Proceedings of the IEEE International Conference
-  on Data Mining (ICDM)}, 2020, pp. 541--550. [Online]. Available:
+  propagation view,'' in \emph{Proc. IEEE Int. Conf. Data Mining (ICDM)}, 2020,
+  pp. 541--550. [Online]. Available:
   \url{https://doi.org/10.1109/ICDM50108.2020.00063}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT023_SGKT_2022}
 \BIBentryALTinterwordspacing
-Z.~Wu, L.~Huang, Q.~Huang, C.~Huang, and Y.~Tang, ``Sgkt: Session graph-based
+Z.~Wu, L.~Huang, Q.~Huang, C.~Huang, and Y.~Tang, ``{SGKT}: Session graph-based
   knowledge tracing for student performance prediction,'' \emph{Expert Syst.
   Appl.}, vol. 206, p. 117681, 2022. [Online]. Available:
   \url{https://doi.org/10.1016/j.eswa.2022.117681}
@@ -157,15 +214,14 @@ Z.~Wu, L.~Huang, Q.~Huang, C.~Huang, and Y.~Tang, ``Sgkt: Session graph-based
 \bibitem{KT026_PretrainQ_2020}
 \BIBentryALTinterwordspacing
 Y.~Liu, Y.~Yang, X.~Chen, J.~Shen, H.~Zhang, and Y.~Yu, ``Improving knowledge
-  tracing via pre-training question embeddings,'' in \emph{Proceedings of the
-  International Joint Conference on Artificial Intelligence (IJCAI)}, 2020, pp.
-  1577--1583. [Online]. Available:
+  tracing via pre-training question embeddings,'' in \emph{Proc. Int. Joint
+  Conf. Artif. Intell. (IJCAI)}, 2020, pp. 1577--1583. [Online]. Available:
   \url{https://doi.org/10.24963/ijcai.2020/219}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT029_DGEKT_2024}
 \BIBentryALTinterwordspacing
-C.~Cui \emph{et~al.}, ``Dgekt: A dual graph ensemble learning method for
+C.~Cui \emph{et~al.}, ``{DGEKT}: A dual graph ensemble learning method for
   knowledge tracing,'' \emph{ACM Trans. Inf. Syst.}, vol.~42, no.~3, pp.
   78:1--78:24, 2024. [Online]. Available: \url{https://doi.org/10.1145/3638350}
 \BIBentrySTDinterwordspacing
@@ -188,7 +244,7 @@ G.~Abdelrahman and Q.~Wang, ``Deep graph memory networks for forgetting-robust
 
 \bibitem{KT035_HHSKT_2023}
 \BIBentryALTinterwordspacing
-Q.~Ni, T.~Wei, J.~Zhao, L.~He, and C.~Zheng, ``Hhskt: A learner--question
+Q.~Ni, T.~Wei, J.~Zhao, L.~He, and C.~Zheng, ``{HHSKT}: A learner--question
   interactions based heterogeneous graph neural network model for knowledge
   tracing,'' \emph{Expert Syst. Appl.}, vol. 215, p. 119334, 2023. [Online].
   Available: \url{https://doi.org/10.1016/j.eswa.2022.119334}
@@ -203,17 +259,18 @@ H.~Yang \emph{et~al.}, ``Heterogeneous graph-based knowledge tracing with
 
 \bibitem{KT037_CMKT_2022}
 \BIBentryALTinterwordspacing
-Y.~Lu, P.~Chen, Y.~Pian, and V.~W. Zheng, ``Cmkt: Concept map driven knowledge
-  tracing,'' \emph{IEEE Trans. Learn. Technol.}, vol.~15, no.~4, pp. 467--480,
-  2022. [Online]. Available: \url{https://doi.org/10.1109/TLT.2022.3196355}
+Y.~Lu, P.~Chen, Y.~Pian, and V.~W. Zheng, ``{CMKT}: Concept map driven
+  knowledge tracing,'' \emph{IEEE Trans. Learn. Technol.}, vol.~15, no.~4, pp.
+  467--480, 2022. [Online]. Available:
+  \url{https://doi.org/10.1109/TLT.2022.3196355}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT038_DyGKT_2024}
 \BIBentryALTinterwordspacing
-K.~Cheng, L.~Peng, P.~Wang, J.~Ye, L.~Sun, and B.~Du, ``Dygkt: Dynamic graph
-  learning for knowledge tracing,'' in \emph{Proceedings of the ACM SIGKDD
-  Conference on Knowledge Discovery and Data Mining (KDD)}, 2024, pp. 409--420.
-  [Online]. Available: \url{https://doi.org/10.1145/3637528.3671773}
+K.~Cheng, L.~Peng, P.~Wang, J.~Ye, L.~Sun, and B.~Du, ``{DyGKT}: Dynamic graph
+  learning for knowledge tracing,'' in \emph{Proc. ACM SIGKDD Conf. Knowl.
+  Discovery Data Mining (KDD)}, 2024, pp. 409--420. [Online]. Available:
+  \url{https://doi.org/10.1145/3637528.3671773}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT042_S2HHN_2023}
@@ -235,9 +292,8 @@ J.~Sun, S.~Du, Z.~Liu, F.~Yu, S.~Liu, and X.~Shen, ``Weighted heterogeneous
 \bibitem{KT044_SINKT_2024}
 \BIBentryALTinterwordspacing
 L.~Fu \emph{et~al.}, ``{SINKT}: A structure-aware inductive knowledge tracing
-  model with large language model,'' in \emph{Proceedings of the ACM
-  International Conference on Information and Knowledge Management (CIKM)},
-  2024, pp. 632--642. [Online]. Available:
+  model with large language model,'' in \emph{Proc. ACM Int. Conf. Inf. Knowl.
+  Manage. (CIKM)}, 2024, pp. 632--642. [Online]. Available:
   \url{https://doi.org/10.1145/3627673.3679760}
 \BIBentrySTDinterwordspacing
 
@@ -251,7 +307,7 @@ T.~Wu and Q.~Ling, ``Fusing hybrid attentive network with self-supervised
 
 \bibitem{KT050_GraphCA_2023}
 \BIBentryALTinterwordspacing
-X.~Wang, S.~Zhao, L.~Guo, L.~Zhu, C.~Cui, and L.~Xu, ``Graphca: Learning from
+X.~Wang, S.~Zhao, L.~Guo, L.~Zhu, C.~Cui, and L.~Xu, ``{GraphCA}: Learning from
   graph counterfactual augmentation for knowledge tracing,'' \emph{IEEE/CAA J.
   Autom. Sinica}, vol.~10, no.~11, pp. 2108--2123, 2023. [Online]. Available:
   \url{https://doi.org/10.1109/JAS.2023.123678}
@@ -267,39 +323,38 @@ Z.~He, W.~Li, and Y.~Yan, ``Modeling knowledge proficiency using
 
 \bibitem{KT053_GASKT_2021}
 \BIBentryALTinterwordspacing
-M.~Wang, C.~Peng, R.~Yang, C.~Wang, Y.~Chen, and X.~Yu, ``Gaskt: A graph-based
-  attentive knowledge-search model for knowledge tracing,'' in
-  \emph{Proceedings of the International Conference on Knowledge Science,
-  Engineering and Management (KSEM)}, 2021, pp. 268--279. [Online]. Available:
-  \url{https://doi.org/10.1007/978-3-030-82136-4_22}
+M.~Wang, C.~Peng, R.~Yang, C.~Wang, Y.~Chen, and X.~Yu, ``{GASKT}: A
+  graph-based attentive knowledge-search model for knowledge tracing,'' in
+  \emph{Proc. Int. Conf. Knowl. Sci. Eng. Manage. (KSEM)}, 2021, pp. 268--279.
+  [Online]. Available: \url{https://doi.org/10.1007/978-3-030-82136-4_22}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT056_LSTGraph_2025}
 \BIBentryALTinterwordspacing
 G.~Yu, Z.~Xie, G.~Zhou, Z.~Zhao, and J.~X. Huang, ``Exploring long- and
   short-term knowledge state graph representations with adaptive fusion for
-  knowledge tracing,'' \emph{Inf. Process. Manage.}, vol.~62, no.~3, p. 104074,
+  knowledge tracing,'' \emph{Inf. Process. Manag.}, vol.~62, no.~3, p. 104074,
   2025. [Online]. Available: \url{https://doi.org/10.1016/j.ipm.2025.104074}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT060_STHKT_2025}
 \BIBentryALTinterwordspacing
-S.~Li \emph{et~al.}, ``Sthkt: Spatiotemporal knowledge tracing with topological
-  hawkes process,'' \emph{Expert Syst. Appl.}, vol. 259, p. 125248, 2025.
-  [Online]. Available: \url{https://doi.org/10.1016/j.eswa.2024.125248}
+S.~Li \emph{et~al.}, ``{STHKT}: Spatiotemporal knowledge tracing with
+  topological hawkes process,'' \emph{Expert Syst. Appl.}, vol. 259, p. 125248,
+  2025. [Online]. Available: \url{https://doi.org/10.1016/j.eswa.2024.125248}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT062_LGSKT_2025}
 \BIBentryALTinterwordspacing
-X.~Sun, Q.~Liu, K.~Zhang, S.~Shen, Y.~Zhuang, and Y.~Guo, ``Lgs-kt: Integrating
-  logical and grammatical skills for effective programming knowledge tracing,''
-  \emph{Neural Netw.}, vol. 185, p. 107164, 2025. [Online]. Available:
-  \url{https://doi.org/10.1016/j.neunet.2025.107164}
+X.~Sun, Q.~Liu, K.~Zhang, S.~Shen, Y.~Zhuang, and Y.~Guo, ``{LGS-KT}:
+  Integrating logical and grammatical skills for effective programming
+  knowledge tracing,'' \emph{Neural Netw.}, vol. 185, p. 107164, 2025.
+  [Online]. Available: \url{https://doi.org/10.1016/j.neunet.2025.107164}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT063_MAHKT_2025}
 \BIBentryALTinterwordspacing
-H.~Yang \emph{et~al.}, ``Mahkt: Knowledge tracing with multi-association
+H.~Yang \emph{et~al.}, ``{MAHKT}: Knowledge tracing with multi-association
   heterogeneous graph embedding based on knowledge transfer,''
   \emph{Knowl.-Based Syst.}, vol. 310, p. 112958, 2025. [Online]. Available:
   \url{https://doi.org/10.1016/j.knosys.2025.112958}
@@ -340,8 +395,8 @@ Z.~Yang, J.~Hu, S.~Zhong, L.~Yang, and G.~Min, ``Graph-based effective
 
 \bibitem{KT068_HKT_2025}
 \BIBentryALTinterwordspacing
-Q.~Li, Z.~Huang, J.~Sun, X.~Yuan, S.~Liu, and Z.~Yan, ``Hkt: Hierarchical
-  structure-based knowledge tracing,'' \emph{Inf. Process. Manage.}, vol.~62,
+Q.~Li, Z.~Huang, J.~Sun, X.~Yuan, S.~Liu, and Z.~Yan, ``{HKT}: Hierarchical
+  structure-based knowledge tracing,'' \emph{Inf. Process. Manag.}, vol.~62,
   no.~5, p. 104206, 2025. [Online]. Available:
   \url{https://doi.org/10.1016/j.ipm.2025.104206}
 \BIBentrySTDinterwordspacing
@@ -350,50 +405,52 @@ Q.~Li, Z.~Huang, J.~Sun, X.~Yuan, S.~Liu, and Z.~Yan, ``Hkt: Hierarchical
 \BIBentryALTinterwordspacing
 Z.~Wu, Y.~Liu, J.~Cen, Z.~Zheng, and G.~Xu, ``A cross-domain knowledge tracing
   model based on graph optimal transport,'' \emph{World Wide Web}, vol.~28,
-  no.~1, p.~10, 2025. [Online]. Available:
+  no.~1, 2025, {Art. no.} 10. [Online]. Available:
   \url{https://doi.org/10.1007/s11280-024-01311-1}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT070_Coda_2025}
 \BIBentryALTinterwordspacing
 W.~Gao \emph{et~al.}, ``Denoising programming knowledge tracing with a code
-  graph-based tuning adaptor,'' in \emph{Proceedings of the 31st ACM SIGKDD
-  Conference on Knowledge Discovery and Data Mining (KDD)}, 2025, pp. 354--365.
-  [Online]. Available: \url{https://doi.org/10.1145/3690624.3709172}
+  graph-based tuning adaptor,'' in \emph{Proc. 31st ACM SIGKDD Conf. Knowl.
+  Discovery Data Mining (KDD)}, 2025, pp. 354--365. [Online]. Available:
+  \url{https://doi.org/10.1145/3690624.3709172}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT076_KGNNKT_2025}
 \BIBentryALTinterwordspacing
-D.~Zhang \emph{et~al.}, ``Kgnn-kt: Enhancing knowledge tracing in programming
-  education through llm-extracted knowledge graphs,'' in \emph{Proceedings of
-  the 21st International Conference on Intelligent Computing (ICIC)}, 2025, pp.
-  137--147. [Online]. Available:
+D.~Zhang \emph{et~al.}, ``{KGNN-KT}: Enhancing knowledge tracing in programming
+  education through llm-extracted knowledge graphs,'' in \emph{Proc. 21st Int.
+  Conf. Intell. Comput. (ICIC)}, 2025, pp. 137--147. [Online]. Available:
   \url{https://doi.org/10.1007/978-981-96-9986-5_12}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT077_R2GCurL_2026}
 \BIBentryALTinterwordspacing
-T.~Peng \emph{et~al.}, ``R{\texttwosuperior}gcurl: Reinforced robust knowledge
-  tracing via dynamic graph curriculum learning,'' \emph{ACM Trans. Inf.
-  Syst.}, vol.~44, no.~6, pp. 1--32, 2026. [Online]. Available:
+T.~Peng \emph{et~al.}, ``{R\textsuperscript{2}GCurL}: Reinforced robust
+  knowledge tracing via dynamic graph curriculum learning,'' \emph{ACM Trans.
+  Inf. Syst.}, vol.~44, no.~6, pp. 1--32, 2026. [Online]. Available:
   \url{https://doi.org/10.1145/3818614}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT079_STGSKT_2026}
 \BIBentryALTinterwordspacing
 Y.-F. Wen \emph{et~al.}, ``Spatio-temporal fusion in graph neural network for
-  streaming knowledge tracing,'' in \emph{Proceedings of the International
-  Conference on Database Systems for Advanced Applications (DASFAA)}, 2026, pp.
-  136--153. [Online]. Available:
+  streaming knowledge tracing,'' in \emph{Proc. Int. Conf. Database Syst. Adv.
+  Appl. (DASFAA)}, 2026, pp. 136--153. [Online]. Available:
   \url{https://doi.org/10.1007/978-981-92-0375-8_9}
 \BIBentrySTDinterwordspacing
 
 \bibitem{KT039_CL4KT_2022}
 \BIBentryALTinterwordspacing
 W.~Lee, J.~Chun, Y.~Lee, K.~Park, and S.~Park, ``Contrastive learning for
-  knowledge tracing,'' in \emph{Proceedings of the ACM Web Conference (WWW)},
-  2022, pp. 2330--2338. [Online]. Available:
+  knowledge tracing,'' in \emph{Proc. ACM Web Conf. (WWW)}, 2022, pp.
+  2330--2338. [Online]. Available:
   \url{https://doi.org/10.1145/3485447.3512105}
 \BIBentrySTDinterwordspacing
+
+\bibitem{Cursor_AI_2026}
+{Anysphere}, ``{Cursor} {AI} coding assistant,'' [Online]. Available:
+  https://cursor.com, 2026, accessed: Sep. 13, 2026.
 
 \end{thebibliography}

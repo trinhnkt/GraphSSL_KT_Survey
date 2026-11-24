@@ -1,0 +1,120 @@
+
+######## KT004 ########
+HITS 0 CHARS 45640
+
+######## KT010 ########
+HITS 0 CHARS 42451
+
+######## KT011 ########
+HITS 0 CHARS 54457
+
+######## KT012 ########
+HITS 0 CHARS 56958
+
+######## KT016 ########
+HITS 0 CHARS 56178
+
+######## KT023 ########
+HITS 0 CHARS 54373
+
+######## KT026 ########
+p.3: ceedings of the Twenty-Ninth International Joint Conference on Artiﬁcial Intelligence (IJCAI-20) 1558 answered computed from the training dataset. All the ques- tion difﬁculties form a vectorddd = [di]2 RjQj. 4 Method In t
+HITS 1 CHARS 34575
+
+######## KT029 ########
+HITS 0 CHARS 78189
+
+######## KT031 ########
+HITS 0 CHARS 101611
+
+######## KT033 ########
+p.2: me. Previously, several graph-based KT approaches have been suggested [15], [16]. However, these approaches assume that graphs for latent concepts are pre- deﬁned based on the ground truth in training data, thereby failing to capture the dynamics of a student’s knowledge states in ter
+HITS 1 CHARS 55836
+
+######## KT035 ########
+HITS 0 CHARS 80344
+
+######## KT036 ########
+p.9:  exercise indexes and random embedding vectors as exercise texts. As shown in Table 6 , the baseline with heterogeneous graph embedding (KT + H) outperforms their own original versions on AUC metrics on all datasets ( “ GKT + H ” > “ GKT, ” “ DKVMN + F + H ” > “ DKVMN + F, ” “ DKT + H ” > “
+HITS 1 CHARS 80178
+
+######## KT038 ########
+p.6: ore various methods in the Knowledge Tracing (KT) field and translate the sequence model into a continuous time dynamic graph framework to predict unlimited training data. Baselines include classic models based on recurrent neural net- works with the
+HITS 1 CHARS 65903
+
+######## KT042 ########
+HITS 0 CHARS 72308
+
+######## KT043 ########
+p.4: Heterogeneous Graph: Since there are different types of nodes and interactions in the KT ﬁeld, a weighted heterogeneous graph is constructed accord- ing to our training data, including three entity types: student (u), question (q), skill (k) and two wei
+HITS 1 CHARS 52796
+
+######## KT044 ########
+p.7: into the model does not guarantee beneficial results across all datasets. For example, GKT, which extracts a transition graph from training data to train concept embeddings, shows significant performance im- provement on the
+HITS 1 CHARS 58023
+
+######## KT047 ########
+HITS 0 CHARS 74673
+
+######## KT050 ########
+p.12: set d = 100. C. Training Efficiency and Scalability (RQ4) To investigate the training efficiency and scalability of our GraphCA, we measure the time required for different propor- tions of training data on three real-world datasets. Specifi- cally, we vary the ratio of training dat
+HITS 1 CHARS 93959
+
+######## KT052 ########
+HITS 0 CHARS 69224
+
+######## KT056 ########
+HITS 0 CHARS 88511
+
+######## KT060 ########
+HITS 0 CHARS 70990
+
+######## KT062 ########
+p.7: artitioned into an 80% training set and a 20% testing set. In terms of hyperparameter tuning, we split a validation set from the training data to optimize model performance and ensure fair comparison. For the LGS-KT model,
+HITS 1 CHARS 82393
+
+######## KT063 ########
+HITS 0 CHARS 80172
+
+######## KT064 ########
+HITS 0 CHARS 74596
+
+######## KT065 ########
+HITS 0 CHARS 137208
+
+######## KT066 ########
+HITS 0 CHARS 78193
+
+######## KT067 ########
+HITS 0 CHARS 73678
+
+######## KT068 ########
+HITS 0 CHARS 74351
+
+######## KT069 ########
+HITS 0 CHARS 69127
+
+######## KT070 ########
+HITS 0 CHARS 72190
+
+######## KT076 ########
+HITS 0 CHARS 0
+
+######## KT077 ########
+p.15: scheduler are trained together in an end-to-end manner (lines 8–15). At each step C, the RL agent selects a subset Rsub from the training dataset for training the KT model. The KT model is then evaluated on the validation 
+HITS 1 CHARS 111861
+
+######## KT079 ########
+HITS 0 CHARS 47963
+
+######## KT084 ########
+HITS 0 CHARS 76306
+
+######## KT085 ########
+HITS 0 CHARS 79577
+
+######## KT086 ########
+HITS 0 CHARS 68840
+
+######## KT089 ########
+HITS 0 CHARS 38859

@@ -1,0 +1,29 @@
+{
+  "doi": "10.1109/TLT.2024.3386750",
+  "title": "CoSKT: A Collaborative Self-Supervised Learning Method for Knowledge Tracing",
+  "date": "2024-01-01",
+  "authors": [
+    "Chunyun Zhang",
+    "Hebo Ma",
+    "Chaoran Cui",
+    "Yumo Yao",
+    "Weiran Xu",
+    "Yunfeng Zhang",
+    "Yuling Ma"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "best_oa": null,
+  "locations": [
+    {
+      "landing": "https://doi.org/10.1109/tlt.2024.3386750",
+      "pdf": null,
+      "version": "publishedVersion",
+      "source": "IEEE Transactions on Learning Technologies"
+    }
+  ]
+}

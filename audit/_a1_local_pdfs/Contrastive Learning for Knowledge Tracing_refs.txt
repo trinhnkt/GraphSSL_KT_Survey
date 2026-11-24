@@ -1,0 +1,154 @@
+Contrastive Learning for Knowledge Tracing
+WWW ’22, April 25–29, 2022, Virtual Event, Lyon, France
+REFERENCES
+[1] Hao Cen, Kenneth Koedinger, and Brian Junker. 2006. Learning factors analysis–a
+general method for cognitive model evaluation and improvement. In International
+Conference on Intelligent Tutoring Systems. Springer, 164–175.
+[2] Ting Chen, Simon Kornblith, Mohammad Norouzi, and Geoffrey Hinton. 2020. A
+simple framework for contrastive learning of visual representations. In Interna-
+tional conference on machine learning. PMLR, 1597–1607.
+[3] Youngduck Choi, Youngnam Lee, Junghyun Cho, Jineon Baek, Byungsoo Kim,
+Yeongmin Cha, Dongmin Shin, Chan Bae, and Jaewe Heo. 2020. Towards an ap-
+propriate query, key, and value computation for knowledge tracing. In Proceedings
+of the Seventh ACM Conference on Learning@ Scale. 341–344.
+[4] Kevin Clark, Minh-Thang Luong, Quoc V Le, and Christopher D Manning. 2020.
+Electra: Pre-training text encoders as discriminators rather than generators. arXiv
+preprint arXiv:2003.10555 (2020).
+[5] Albert T Corbett and John R Anderson. 1994. Knowledge tracing: Modeling the
+acquisition of procedural knowledge. User modeling and user-adapted interaction
+4, 4 (1994), 253–278.
+[6] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2018. Bert:
+Pre-training of deep bidirectional transformers for language understanding. arXiv
+preprint arXiv:1810.04805 (2018).
+[7] Jean-Paul Doignon and Jean-Claude Falmagne. 2012. Knowledge spaces. Springer
+Science & Business Media.
+[8] Mingyu Feng, Neil Heffernan, and Kenneth Koedinger. 2009. Addressing the
+assessment challenge with an online system that tutors as it assesses. User
+modeling and user-adapted interaction 19, 3 (2009), 243–266.
+[9] Tianyu Gao, Xingcheng Yao, and Danqi Chen. 2021. SimCSE: Simple Contrastive
+Learning of Sentence Embeddings. arXiv preprint arXiv:2104.08821 (2021).
+[10] Theophile Gervet, Ken Koedinger, Jeff Schneider, Tom Mitchell, et al. 2020. When
+is Deep Learning the Best Approach to Knowledge Tracing? JEDM| Journal of
+Educational Data Mining 12, 3 (2020), 31–54.
+[11] Aritra Ghosh, Neil Heffernan, and Andrew S Lan. 2020. Context-aware atten-
+tive knowledge tracing. In Proceedings of the 26th ACM SIGKDD International
+Conference on Knowledge Discovery & Data Mining. 2330–2339.
+[12] Kaiming He, Haoqi Fan, Yuxin Wu, Saining Xie, and Ross Girshick. 2020. Momen-
+tum contrast for unsupervised visual representation learning. In Proceedings of
+the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 9729–9738.
+[13] Sumyea Helal, Jiuyong Li, Lin Liu, Esmaeil Ebrahimie, Shane Dawson, Duncan J
+Murray, and Qi Long. 2018. Predicting academic performance by considering
+student heterogeneity. Knowledge-Based Systems 161 (2018), 134–146.
+[14] Ángel Hernández-García and Miguel Ángel Conde. 2014. Dealing with complex-
+ity: educational data and tools for learning analytics. In Proceedings of the Second
+International Conference on Technological Ecosystems for Enhancing Multicultural-
+ity. 263–268.
+[15] Wayne Holmes, Maya Bialik, and Charles Fadel. 2019. Artificial intelligence in
+education. Boston: Center for Curriculum Redesign (2019).
+[16] Yannis Kalantidis, Mert Bülent Sariyildiz, Noé Pion, Philippe Weinzaepfel, and
+Diane Larlus. 2020. Hard Negative Mixing for Contrastive Learning. In Advances
+in Neural Information Processing Systems 33: Annual Conference on Neural In-
+formation Processing Systems 2020, NeurIPS 2020, December 6-12, 2020, virtual,
+Hugo Larochelle, Marc’Aurelio Ranzato, Raia Hadsell, Maria-Florina Balcan, and
+Hsuan-Tien Lin (Eds.).
+[17] Mohammad M Khajah, Yun Huang, José P González-Brenes, Michael C Mozer,
+and Peter Brusilovsky. 2014. Integrating knowledge tracing and item response
+theory: A tale of two frameworks. In CEUR Workshop proceedings, Vol. 1181.
+University of Pittsburgh, 7–15.
+[18] Diederik P. Kingma and Jimmy Ba. 2015. Adam: A Method for Stochastic Opti-
+mization. In 3rd International Conference on Learning Representations, ICLR 2015,
+San Diego, CA, USA, May 7-9, 2015, Conference Track Proceedings, Yoshua Bengio
+and Yann LeCun (Eds.). http://arxiv.org/abs/1412.6980
+[19] Sosuke Kobayashi. 2018. Contextual augmentation: Data augmentation by words
+with paradigmatic relations. arXiv preprint arXiv:1805.06201 (2018).
+[20] Kenneth R Koedinger, Ryan SJd Baker, Kyle Cunningham, Alida Skogsholm, Brett
+Leber, and John Stamper. 2010. A data repository for the EDM community: The
+PSLC DataShop. Handbook of educational data mining 43 (2010), 43–56.
+[21] Seewoo Lee, Youngduck Choi, Juneyoung Park, Byungsoo Kim, and Jinwoo
+Shin. 2021. Consistency and Monotonicity Regularization for Neural Knowledge
+Tracing. arXiv preprint arXiv:2105.00607 (2021).
+[22] Robert V Lindsey, Mohammad Khajah, and Michael C Mozer. 2014. Automatic
+discovery of cognitive skills to improve the prediction of student learning. In
+Advances in neural information processing systems. 1386–1394.
+[23] Xiao Liu, Fanjin Zhang, Zhenyu Hou, Li Mian, Zhaoyu Wang, Jing Zhang, and Jie
+Tang. 2021. Self-supervised learning: Generative or contrastive. IEEE Transactions
+on Knowledge and Data Engineering (2021).
+[24] Yunfei Liu, Yang Yang, Xianyu Chen, Jian Shen, Haifeng Zhang, and Yong Yu.
+2020. Improving Knowledge Tracing via Pre-training Question Embeddings.
+In Proceedings of the Twenty-Ninth International Joint Conference on Artificial
+Intelligence, IJCAI 2020, Christian Bessiere (Ed.). ijcai.org, 1577–1583.
+https:
+//doi.org/10.24963/ijcai.2020/219
+[25] Ting Long, Yunfei Liu, Jian Shen, Weinan Zhang, and Yong Yu. 2021. Trac-
+ing Knowledge State with Individual Cognition and Acquisition Estimation. In
+Proceedings of the 44th International ACM SIGIR Conference on Research and
+Development in Information Retrieval. 173–182.
+[26] Koki Nagatani, Qian Zhang, Masahiro Sato, Yan-Ying Chen, Francine Chen,
+and Tomoko Ohkuma. 2019. Augmenting knowledge tracing by considering
+forgetting behavior. In The world wide web conference. 3101–3107.
+[27] Hiromi Nakagawa, Yusuke Iwasawa, and Yutaka Matsuo. 2019. Graph-based
+knowledge tracing: modeling student proficiency using graph neural network.
+In 2019 IEEE/WIC/ACM International Conference on Web Intelligence (WI). IEEE,
+156–163.
+[28] Shalini Pandey and George Karypis. 2019. A self-attentive model for knowledge
+tracing. arXiv preprint arXiv:1907.06837 (2019).
+[29] Shalini Pandey and Jaideep Srivastava. 2020. Rkt: Relation-aware self-attention
+for knowledge tracing. In Proceedings of the 29th ACM International Conference
+on Information & Knowledge Management. 1205–1214.
+[30] Jan Papoušek, Radek Pelánek, and Vít Stanislav. 2016. Adaptive geography
+practice data set. Journal of Learning Analytics 3, 2 (2016), 317–321.
+[31] Philip I Pavlik Jr, Hao Cen, and Kenneth R Koedinger. 2009. Performance Factors
+Analysis–A New Alternative to Knowledge Tracing. Online Submission (2009).
+[32] Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran Sahami,
+Leonidas J Guibas, and Jascha Sohl-Dickstein. 2015. Deep Knowledge Tracing.
+Advances in Neural Information Processing Systems 28 (2015), 505–513.
+[33] Joshua David Robinson, Ching-Yao Chuang, Suvrit Sra, and Stefanie Jegelka.
+2021. Contrastive Learning with Hard Negative Samples. In 9th International
+Conference on Learning Representations, ICLR 2021, Virtual Event, Austria, May
+3-7, 2021. OpenReview.net. https://openreview.net/forum?id=CR1XOQ0UTh-
+[34] Dongmin Shin, Yugeun Shim, Hangyeol Yu, Seewoo Lee, Byungsoo Kim, and
+Youngduck Choi. 2021. Saint+: Integrating temporal features for ednet correct-
+ness prediction. In LAK21: 11th International Learning Analytics and Knowledge
+Conference. 490–496.
+[35] J Stamper, A Niculescu-Mizil, S Ritter, G Gordon, and K Koedinger. 2010. Algebra
+I 2005-2006 and Bridge to Algebra 2006-2007. Development data sets from KDD
+Cup 2010 Educational Data Mining Challenge.
+[36] Yu Su, Qingwen Liu, Qi Liu, Zhenya Huang, Yu Yin, Enhong Chen, Chris Ding,
+Si Wei, and Guoping Hu. 2018. Exercise-enhanced sequential modeling for stu-
+dent performance prediction. In Proceedings of the AAAI Conference on Artificial
+Intelligence, Vol. 32.
+[37] Fei Sun, Jun Liu, Jian Wu, Changhua Pei, Xiao Lin, Wenwu Ou, and Peng Jiang.
+2019. BERT4Rec: Sequential recommendation with bidirectional encoder rep-
+resentations from transformer. In Proceedings of the 28th ACM international
+conference on information and knowledge management. 1441–1450.
+[38] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. Attention is all
+you need. In Advances in neural information processing systems. 5998–6008.
+[39] Chenyang Wang, Weizhi Ma, Min Zhang, Chuancheng Lv, Fengyuan Wan, Huijie
+Lin, Taoran Tang, Yiqun Liu, and Shaoping Ma. 2021. Temporal Cross-Effects in
+Knowledge Tracing. In Proceedings of the 14th ACM International Conference on
+Web Search and Data Mining. 517–525.
+[40] Fei Wang, Qi Liu, Enhong Chen, Zhenya Huang, Yuying Chen, Yu Yin, Zai Huang,
+and Shijin Wang. 2020. Neural cognitive diagnosis for intelligent education
+systems. In Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 34.
+6153–6161.
+[41] Tongzhou Wang and Phillip Isola. 2020. Understanding contrastive representation
+learning through alignment and uniformity on the hypersphere. In International
+Conference on Machine Learning. PMLR, 9929–9939.
+[42] Zhirong Wu, Yuanjun Xiong, Stella X. Yu, and Dahua Lin. 2018. Unsupervised
+Feature Learning via Non-Parametric Instance Discrimination. In Proceedings of
+the IEEE Conference on Computer Vision and Pattern Recognition (CVPR).
+[43] Xu Xie, Fei Sun, Zhaoyang Liu, Shiwen Wu, Jinyang Gao, Bolin Ding, and Bin
+Cui. 2020. Contrastive Learning for Sequential Recommendation. arXiv preprint
+arXiv:2010.14395 (2020).
+[44] Tiansheng Yao, Xinyang Yi, Derek Zhiyuan Cheng, Felix Yu, Ting Chen, Aditya
+Menon, Lichan Hong, Ed H Chi, Steve Tjoa, Jieqi Kang, et al. 2020. Self-supervised
+Learning for Large-scale Item Recommendations. arXiv preprint arXiv:2007.12865
+(2020).
+[45] Jiani Zhang, Xingjian Shi, Irwin King, and Dit-Yan Yeung. 2017. Dynamic key-
+value memory networks for knowledge tracing. In Proceedings of the 26th inter-
+national conference on World Wide Web. 765–774.
+[46] Xiang Zhang, Junbo Zhao, and Yann LeCun. 2015. Character-level convolutional
+networks for text classification. Advances in neural information processing systems
+28 (2015), 649–657.
+2338

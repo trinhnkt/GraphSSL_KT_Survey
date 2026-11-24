@@ -1,0 +1,38 @@
+paper_id,model_name,venue_year,sparse_interaction_drop_eval,strict_kc_cold_start,item_cold_start,learner_cold_start,sparse_protocol_category,drop_eval_basis
+KT004,GKT,WI 2019,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT010,GIKT,ECML-PKDD 2021,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT011,Bi-CLKT,KBS 2022,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT012,JKT,InfoSci 2021,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT014,PDKT-C,ICDM 2018,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT016,SKT,ICDM 2020,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT023,SGKT,ESWA 2022,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT026,Pretrain Q-Emb,IJCAI 2020,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT029,DGEKT,TOIS 2024,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT031,KSG-AKT,IJIS 2022,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT033,DGMN,IEEE TKDE 2023,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT035,HHSKT,ESWA 2023,YES,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: HHSKT documented interaction-drop exception; not re-read from PDF
+KT036,TSKT,ESWA 2024,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT037,CMKT,IEEE TLT 2022,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT038,DyGKT,KDD 2024,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT039,CL4KT,WWW 2022,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT042,S2-HHN,InfoSci 2023,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT043,3V-CLKT,IEEE TCE 2024,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT044,SINKT,CIKM 2024,NO,NO,YES,NO,ITEM_COLD_START,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT047,DC-SSL,ESWA 2023,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT050,GraphCA,JAS 2023,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT052,Capsule GNN,Appl Intell 2022,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT053,GASKT,KSEM 2021,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT056,LST-Graph,IP&M 2025,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT060,STHKT,ESWA 2025,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT062,LGS-KT,Neural Net 2025,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT063,MAHKT,KBS 2025,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT064,MG-Ensemble,KBS 2025,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT065,CS-GKT,KBS 2025,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT066,HyperKT,IEEE TNNLS 2025,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT067,SKM-GKT,EAIT 2025,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT068,HKT,IP&M 2025,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT069,AEGOT-CDKT,WWW 2025,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT070,Coda,KDD 2025,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT076,KGNN-KT,ICIC 2025,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT077,R2GCurL,IEEE TKDE 2026,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF
+KT079,STSKT,DASFAA 2026,NO,NO,NO,NO,SPARSE_INTERACTION_ONLY,H2 overlay: not a drop evaluation (generic split or item hold-out); v1 constant-YES value overwritten; not re-read from PDF

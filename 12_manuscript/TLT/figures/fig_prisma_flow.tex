@@ -6,23 +6,26 @@
 \begin{tikzpicture}[
     node distance=1.2cm,
     font=\sffamily\small,
-    stage/.style={rectangle, draw=blue!70!black, fill=blue!8, thick, rounded corners=4pt, align=center, minimum width=6cm, minimum height=1.0cm, drop shadow},
-    excl/.style={rectangle, draw=red!70!black, fill=red!8, thick, rounded corners=4pt, align=center, minimum width=4.5cm, minimum height=1.0cm, drop shadow},
-    arrow/.style={-{Stealth[length=6pt]}, thick, draw=gray!80}
+    stage/.style={rectangle, draw=blue!70!black, fill=blue!8, thick, rounded corners=4pt, align=center, minimum width=6.4cm, minimum height=1.15cm, drop shadow},
+    excl/.style={rectangle, draw=red!70!black, fill=red!8, thick, rounded corners=4pt, align=center, minimum width=4.7cm, minimum height=1.15cm, drop shadow},
+    arrow/.style={-{Stealth[length=6pt]}, thick, draw=gray!80},
+    note/.style={align=center, font=\sffamily\footnotesize, text width=14.2cm}
 ]
 
 % Nodes
-\node[stage] (ident) {\textbf{Identification: Records Retrieved (N = 2,017)}\\Scopus: 531, WoS: 344, ScienceDirect: 257, SpringerLink: 255,\\IEEE Xplore: 232, ACM DL: 200, arXiv: 198};
+\node[stage] (ident) {\textbf{Identification (search log)}\\Records retrieved $N_{\mathrm{rec}} = 2{,}017$\\Scopus: 531, WoS: 344, ScienceDirect: 257, SpringerLink: 255,\\IEEE Xplore: 232, ACM DL: 200, arXiv: 198};
 
-\node[stage, below=1.0cm of ident] (dedup) {\textbf{Deduplication Stage}\\1,267 Duplicates Removed $\rightarrow$ \textbf{750 Unique Records}};
+\node[stage, below=1.0cm of ident] (dedup) {\textbf{Deduplication (report arithmetic)}\\1,267 duplicates removed $\rightarrow$ \textbf{750 unique records}};
 
-\node[stage, below=1.0cm of dedup] (screen) {\textbf{Stage 1 Title / Abstract Screening}\\750 Records Screened $\rightarrow$ \textbf{140 Articles Passed}};
-\node[excl, right=1.2cm of screen] (excl_screen) {\textbf{Excluded (n = 610)}\\Topic Irrelevant};
+\node[stage, below=1.0cm of dedup] (screen) {\textbf{Title / abstract (report arithmetic)}\\750 records screened $\rightarrow$ \textbf{140 full-text}};
+\node[excl, right=1.2cm of screen] (excl_screen) {\textbf{Excluded (n = 610)}\\report arithmetic};
 
-\node[stage, below=1.0cm of screen] (fulltext) {\textbf{Stage 2 Full-Text Eligibility Assessment}\\140 Full-Text Articles Assessed};
-\node[excl, right=1.2cm of fulltext] (excl_full) {\textbf{Excluded Full-Text (n = 103)}\\98 with EC1--EC7 + 5 unverified\\in corpus audit; $140-103=37$};
+\node[stage, below=1.0cm of screen] (fulltext) {\textbf{Full-text eligibility (report arithmetic)}\\140 articles assessed};
+\node[excl, right=1.2cm of fulltext] (excl_full) {\textbf{Excluded full-text (n = 103)}\\report arithmetic; $140-103=37$};
 
-\node[stage, fill=green!15, draw=green!60!black, below=1.0cm of fulltext] (final) {\textbf{Final Primary Core Corpus}\\\textbf{37 PRIMARY\_CORE Papers}\\(seed list of 34 used only for recall)};
+\node[stage, fill=green!15, draw=green!60!black, below=1.0cm of fulltext] (final) {\textbf{Original-path inclusion arithmetic}\\\textbf{$140-103=37$}\\(coded core after full-text update: $N=44$)};
+
+\node[note, below=0.55cm of final] (note) {Stage counts 750 / 140 / 103 are search-expansion report arithmetic.\\A record-level screening ledger is not deposited. Identification $N_{\mathrm{rec}}=2{,}017$ is the search-log sum.\\Coded synthesis corpus after Sec.~gateway update: $N=44$ ($N_G=40$, $N_S=16$).};
 
 % Arrows
 \draw[arrow] (ident) -- (dedup);

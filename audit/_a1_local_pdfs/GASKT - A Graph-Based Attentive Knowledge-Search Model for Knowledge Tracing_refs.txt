@@ -1,0 +1,97 @@
+278
+M. Wang et al.
+the performance is 0.8301, with a signiﬁcant improvement of 2.17%. However, the
+model performance improves marginally by 0.52% on the ASSISTChall. Based
+on phenomenon mentioned above, it can be inferred that it is because ASSIST09
+contains the most number of problems and skills in these datasets and has multi-
+skilled problems, which allows the graph neural network to outperform the ran-
+dom initialization in learning node embedding.
+Eﬀect of the Modiﬁed Attention. To verify the eﬀectiveness of the two
+forgetting factors, we perform the following experiments. The detailed results of
+the experiment can be found in Table 4.
+– GASKT-O Based on the original attention formula, which fails to consider
+the forgetting mechanism.
+– GASKT-D The eﬀect of the time distance is added to the original attention
+function.
+– GASKT-N The inﬂuence of the past trial counts is added to the original
+attention function.
+– GASKT Taking the forgetting mechanism into consideration, adding two
+elements: time distance and the past trial counts.
+From the table, it can be found that GASKT-D and GASKT-N show greater
+improvement over GASKT-O, verifying that the forgetting factors facilitate the
+model performance, which is consistent with the pattern of memory mechanisms.
+Furthermore, taking GASKT-O as reference, the AUC performance of GASKT-
+D has considerably improved by an average of 1.18% over three datasets, while
+the performance of GASKT-N has slightly increased by an average of 0.25%,
+signifying that time distance has a greater impact on the current knowledge
+state compared to the past trial counts.
+6
+Conclusion
+In this paper, we proposed the GASKT model, which focused on predicting
+the learner’s mastery of the current exercise. Our method extracted high-order
+information between questions and skills via R-GCN, and combined the atten-
+tion mechanism with the LSTM to deeply explore the dependencies between
+the current exercise and the previous exercises. Furthermore, to take forgetting
+mechanisms into account, we incorporated two forgetting factors, time distance
+and past trial counts. The experimental results demonstrated that our method
+outperformed the most previous KT models on three benchmark datasets, and
+exhibited outstanding interpretability.
+References
+1. Piech, C., et al.: Deep knowledge tracing. In: Advances in Neural Information
+Processing Systems, vol. 28, pp. 505–513 (2015)
+2. Hochreiter, S., Schmidhuber, J.: Long short-term memory. Neural Comput. 9(8),
+1735–1780 (1997)
+
+GASKT: A Graph-Based Attentive Knowledge-Search Model for KT
+279
+3. Zhang, J., Shi, X., King, I., Yeung, D.-Y.: Dynamic key-value memory networks for
+knowledge tracing. In: Proceedings of the 26th International Conference on World
+Wide Web, pp. 765–774 (2017)
+4. Nagatani, K., Zhang, Q., Sato, M., Chen, Y.-Y., Chen, F., Ohkuma, T.: Augment-
+ing knowledge tracing by considering forgetting behavior. In: The World Wide Web
+Conference, pp. 3101–3107 (2019)
+5. Su, Y., et al.: Exercise-enhanced sequential modeling for student performance pre-
+diction. In Proceedings of the AAAI Conference on Artiﬁcial Intelligence, vol. 32,
+no. 1 (2018)
+6. Yang, Y., et al.: Gikt: a graph-based interaction model for knowledge tracing.
+In: Joint European Conference on Machine Learning and Knowledge Discovery in
+Databases (2020)
+7. Kipf, T.N., Welling, M.: Semi-supervised classiﬁcation with graph convolutional
+networks. arXiv preprint arXiv:1609.02907 (2016)
+8. Schlichtkrull, M., Kipf, T.N., Bloem, P., van den Berg, R., Titov, I., Welling,
+M.: Modeling relational data with graph convolutional networks. In: Gangemi, A.,
+et al. (eds.) ESWC 2018. LNCS, vol. 10843, pp. 593–607. Springer, Cham (2018).
+https://doi.org/10.1007/978-3-319-93417-4 38
+9. Corbett, A.T., Anderson, J.R.: Knowledge tracing: modeling the acquisition of pro-
+cedural knowledge. User Model. User-Adap. Inter. 4(4), 253–278 (1994). https://
+doi.org/10.1007/BF01099821
+10. Pardos, Z.A., Heﬀernan, N.T.: Modeling individualization in a Bayesian networks
+implementation of knowledge tracing. In: De Bra, P., Kobsa, A., Chin, D. (eds.)
+UMAP 2010. LNCS, vol. 6075, pp. 255–266. Springer, Heidelberg (2010). https://
+doi.org/10.1007/978-3-642-13470-8 24
+11. Baker, R.S.J., Corbett, A.T., Aleven, V.: More accurate student modeling through
+contextual estimation of slip and guess probabilities in Bayesian knowledge tracing.
+In: Woolf, B.P., A¨ımeur, E., Nkambou, R., Lajoie, S. (eds.) ITS 2008. LNCS,
+vol. 5091, pp. 406–415. Springer, Heidelberg (2008). https://doi.org/10.1007/978-
+3-540-69132-7 44
+12. Pardos, Z.A., Heﬀernan, N.T.: KT-IDEM: introducing item diﬃculty to the knowl-
+edge tracing model. In: Konstan, J.A., Conejo, R., Marzo, J.L., Oliver, N. (eds.)
+UMAP 2011. LNCS, vol. 6787, pp. 243–254. Springer, Heidelberg (2011). https://
+doi.org/10.1007/978-3-642-22362-4 21
+13. Cen, H., Koedinger, K., Junker, B.: Learning factors analysis – a general method for
+cognitive model evaluation and improvement. In: Ikeda, M., Ashley, K.D., Chan,
+T.-W. (eds.) ITS 2006. LNCS, vol. 4053, pp. 164–175. Springer, Heidelberg (2006).
+https://doi.org/10.1007/11774303 17
+14. Pavlik Jr, P.I., Cen, H., Koedinger, K.R.: Performance factors analysis-a new alter-
+native to knowledge tracing. Online Submission (2009)
+15. Yeung, C.-K., Yeung, D.-Y.: Addressing two problems in deep knowledge tracing
+via prediction-consistent regularization. In: Proceedings of the Fifth Annual ACM
+Conference on Learning at Scale, pp. 1–10 (2018)
+16. Williams, R.J., Zipser, D.: A learning algorithm for continually running fully recur-
+rent neural networks. Neural Comput. 1(2), 270–280 (1989)
+17. Pandey, S., Karypis, G.: A self-attentive model for knowledge tracing. arXiv
+preprint arXiv:1907.06837 (2019)
+18. Ebbinghaus, H.: Memory: a contribution to experimental psychology. Ann. Neu-
+rosci. 20(4), 155 (2013)
+19. Xiong, X., Zhao, S., Van Inwegen, E.G., Beck, J.E.: Going deeper with deep knowl-
+edge tracing. International Educational Data Mining Society (2016)

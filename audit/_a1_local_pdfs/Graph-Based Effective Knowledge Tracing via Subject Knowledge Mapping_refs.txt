@@ -1,0 +1,202 @@
+9837
+Education and Information Technologies (2025) 30:9813–9840	
+5  Conclusion
+In this paper, we proposed the SGKT model, an innovative fusion of subject knowl-
+edge mapping that enriches the dynamics among knowledge concepts while also tak-
+ing into account the complexity and interrelations of problems for an intricate scru-
+tiny of student learning interactions. By weaving together knowledge concepts and 
+question attributes within a graph-based knowledge tracing architecture, the SGKT 
+model not only amplifies prediction accuracy and bolsters interpretability but also 
+distinctly outperforms established methods, as evidenced through rigorous validation 
+using the real-world ASSISTments dataset. This method not only yields deep insights 
+into students’ knowledge states, but also serves as an efficacious instrument for 
+detecting learning hurdles and crafting tailored intervention strategies. The deploy-
+ment of the SGKT model illuminates its vast potential within the educational tech-
+nology sphere, heralding its positive implications for curriculum design and resource 
+distribution. The ultimate goal is to provide every student with a personalized learn-
+ing journey, thus enhancing learning efficacy and fostering educational fairness.
+Funding  This work was supported by 2023 National Social Science Foundation Education General Pro-
+ject (Project Number: BCA230270).
+Data availability  The application as well, the data that were utilized and/or analyzed throughout the 
+course of the current study can be obtained from the corresponding author upon making a reasonable 
+request.
+Declarations 
+Competing interests  This manuscript has not been submitted to any other journal or other publishing 
+venue, nor is it currently being reviewed by any other publication. Regarding the subject matter that is 
+discussed in the manuscript, the authors do not have any connection with any organization that has a direct 
+or indirect financial interest in the matter.
+Conflict of interests  The author declares no conflict of interest.
+References
+Abdelrahman, G., Wang, Q., & Nunes, B. (2023). Knowledge tracing: A survey. ACM Computing Sur-
+veys, 55(11), 1–37.
+Ackerman, T. A. (2014). Multidimensional item response theory models. Wiley StatsRef: Statistics Ref-
+erence Online.
+Alam, M. M., et al. (2022). Language model guided knowledge graph embeddings. IEEE Access, 10, 
+76008–76020.
+Anderson, L. W., & Krathwohl, D. R. (2001). A taxonomy for learning, teaching, and assessing: A revi-
+sion of bloom’s taxonomy of educational objectives (Complete). Addison Wesley Longman, Inc.
+Anzanello, M. J., & Fogliatto, F. S. (2011). Learning curve models and applications: Literature review 
+and research directions. International Journal of Industrial Ergonomics, 41(5), 573–583.
+Ausubel, D. P., Novak, J. D., & Hanesian, H. (1978). Educational psychology: A cognitive view (2nd ed.). 
+Holt, Rinehart & Winston.
+
+9838
+	
+Education and Information Technologies (2025) 30:9813–9840
+Battaglia, P. W., Hamrick, J. B., Bapst, V., et al. (2018). Relational inductive biases, deep learning, 
+and graph networks. arXiv preprint arXiv:1806.01261.
+Cen, H., Koedinger, K., & Junker, B. (2006). Learning factors analysis–a general method for cognitive 
+model evaluation and improvement. In International conference on intelligent tutoring systems 
+(pp. 164–175). Springer Berlin Heidelberg.
+Chen, C. M. (2008). Intelligent web-based learning system with personalized learning path guidance. 
+Computers & Education, 51(2), 787–814.
+Corbett, A. T., & Anderson, J. R. (1994). Knowledge tracing: Modeling the acquisition of procedural 
+knowledge. User Modeling and User-Adapted Interaction, 4, 253–278.
+Eke, C. I., Norman, A. A., & Shuib, L. (2021). Context-based feature technique for sarcasm identifica-
+tion in benchmark datasets using deep learning and bert model. IEEE Access, 9, 48501–48518.
+Gierl, M. J., Zheng, Y., & Cui, Y. (2008). Using the attribute hierarchy method to identify and interpret 
+cognitive skills that produce group differences. Journal of Educational Measurement, 45(1), 65–89.
+Gori, M., Monfardini, G., & Scarselli, F. (2005). A new model for learning in graph domains. In 
+Proceedings of the 2005 IEEE international joint conference on neural networks (pp. 729–734). 
+https://​doi.​org/​10.​1109/​IJCNN.​2005.​15559​42
+Gulliksen, H. (2013). Theory of mental tests. Routledge.
+Hanewald, R., & Ifenthaler, D. (2014). Digital knowledge mapping in educational contexts. Springer 
+New York.
+Hooshyar, D. (2024). Temporal learner modelling through integration of neural and symbolic archi-
+tectures. Education and Information Technologies, 29(1), 1119–1146.
+Hubalovsky, S., Hubalovska, M., & Musilek, M. (2019). Assessment of the influence of adaptive 
+e-learning on learning effectiveness of primary school pupils. Computers in Human Behavior, 
+92, 691–705.
+Jacobs, H. H. (2004). Getting results with curriculum mapping. ASCD.
+Jameson, F. (1988). Cognitive mapping (pp. 348).
+Ke, Q., & Lin, J. (2022). Dynamic generation of knowledge graph supporting steam learning theme 
+design. Applied Sciences, 12(21), 11001.
+Lei, Y., Uren, V., & Motta, E. (2006). Semsearch: A search engine for the semantic web. In Manag-
+ing knowledge in a world of networks: 15th international conference, EKAW 2006, Podˇebrady, 
+Czech Republic (pp. 238–245). Springer Berlin Heidelberg.
+Li, Z., Li, J., Yuan, Y., & Lei, M. (2019). Research on knowledge map educational application in 
+Japan. In 2019 Eighth International Conference on Educational Innovation through Technology 
+(EITT) (pp. 190–193). https://​doi.​org/​10.​1109/​EITT.​2019.​00044
+Lin, J., Zhao, Y., Liu, C., & Pu, H. (2020). Personalized learning service based on big data for educa-
+tion. In IEEE 2nd International Conference on Computer Science and Educational Informatiza-
+tion (CSEI) (pp. 235–238). https://​doi.​org/​10.​1109/​CSEI5​0228.​2020.​91425​11
+Liu, H., Gao, P., & Xiao, Y. (2018). New words discovery method based on word segmentation result. 
+In IEEE/ACIS 17th International Conference on Computer and Information Science (ICIS) (pp. 
+645–648). https://​doi.​org/​10.​1109/​ICIS.​2018.​84664​90
+Liu, H., Zhang, T., Li, F., et al. (2021). Tracing knowledge structures and proficiencies of students 
+with learning transfer. IEEE Access, 9, 55413–55421.
+Liu, Q., Huang, Z., Yin, Y., et al. (2019). Ekt: Exercise-aware knowledge tracing for student perfor-
+mance prediction. IEEE Transactions on Knowledge and Data Engineering, 33(1), 100–115.
+Lubis, B. S., & Yus, A. (2024). Mapping knowledge and research trend on technology adoption in 
+higher education: A bibliometric analysis. Education and Information Technologies, 1–44. 
+https://​doi.​org/​10.​1007/​s10639-​024-​12801-0
+Ma, H., et al. (2023). Predicting student performance in future exams via neutrosophic cognitive diag-
+nosis in personalized e-learning environment. IEEE Transactions on Learning Technologies, 
+16(5), 680–693.
+Maghsudi, S., Lan, A., Xu, J., et al. (2021). Personalized education in the artificial intelligence era: 
+What to expect next. IEEE Signal Processing Magazine, 38(3), 37–50.
+Mao, S., Zhan, J., Wang, Y., & Jiang, Y. (2023). Improving knowledge tracing via considering two 
+types of actual differences from exercises and prior knowledge. IEEE Transactions on Learning 
+Technologies, 16(3), 324–338.
+Melnick, A. (2001). Categories, logical functions, and schemata in kant. The Review of Metaphysics, 
+54(3), 615–639.
+
+9839
+Education and Information Technologies (2025) 30:9813–9840	
+Mundial. (2016). Education 2030: Incheon declaration and framework for action: towards inclusive 
+and equitable quality education and lifelong learning for all.
+Murtaza, M., Ahmed, Y., Shamsi, J. A., et  al. (2022). Ai-based personalized e-learning systems: 
+Issues, challenges, and solutions. IEEE Access, 10, 81323–81342.
+Nakagawa, H., Iwasawa, Y., & Matsuo, Y. (2019). Graph-based knowledge tracing: modeling student 
+proficiency using graph neural network. In IEEE/WIC/ACM international conference on web 
+intelligence (pp. 156–163). https://​doi.​org/​10.​1145/​33505​46.​33525​13
+Odonnell, A. M., Dansereau, D. F., & Hall, R. H. (2002). Knowledge maps as scaffolds for cognitive 
+processing. Educational Psychology Review, 71–86. https://​doi.​org/​10.​1023/A:​10131​32527​007
+Piech, C., Bassen, J., Huang, J., et al. (2015). Deep knowledge tracing. Advances in Neural Informa-
+tion Processing Systems, 28, 505–513.
+Qiu, L., Zhu, M., & Zhou, J. (2024). Opkt: Enhancing knowledge tracing with optimized pretraining 
+mechanisms in intelligent tutoring. IEEE Transactions on Learning Technologies, 17, 841–855.
+Schwendimann, B. A., et al. (2017). Perceiving learning at a glance: A systematic literature review of 
+learning dashboard research. IEEE Transactions on Learning Technologies, 10(1), 30–41.
+Shi, Y., Zheng, Y., Guo, K., et  al. (2018). Intrinsic or extrinsic evaluation: An overview of word 
+embedding evaluation. In IEEE International Conference on Data Mining Workshops (ICDMW) 
+(pp. 1255–1262). https://​doi.​org/​10.​1109/​ICDMW.​2018.​00179
+Song, X., Li, J., Cai, T., et al. (2022). A survey on deep learning based knowledge tracing. Knowl-
+edge-Based Systems, 258, 110036.
+Song, X., Li, J., Tang, Y., et al. (2021). Jkt: A joint graph convolutional network based deep knowl-
+edge tracing. Information Sciences, 580, 510–523.
+Traub, R. E. (1981). Book review: Applications of item response theory to practical testing problems. 
+Applied Psychological Measurement, 5(4), 539–543.
+Williams, R. J., & Zipser, D. (1989). A learning algorithm for continually running fully recurrent neu-
+ral networks. Neural Computation, 1(2), 270–280.
+Woolley, K. E., Huang, T., & Rabinowitz, M. (2019). The effects of knowledge, strategies, and the 
+interaction between the two in verbal analogy problem solving. Contemporary Educational Psy-
+chology, 56, 91–105.
+Wu, M., & Wang, Z. (2023). The construction of subject knowledge mapping in the background of 
+smart education. In 2023 IEEE 12th International Conference on Educational and Information 
+Technology (ICEIT) (pp. 317–320). IEEE.
+Yang, Y., Shen, J., Qu, Y., et al. (2020). Gikt: A graph-based interaction model for knowledge trac-
+ing. In Machine learning and knowledge discovery in databases: European conference, ECML 
+PKDD 2020 (pp. 299–315). Springer International Publishing. https://​doi.​org/​10.​48550/​arXiv.​
+2009.​05991
+Yeung, C. K., et al. (2018). Addressing two problems in deep knowledge tracing via prediction-con-
+sistent regularization. In Proceedings of the fifth annual ACM conference on learning at scale 
+(L@S) (pp. 5:1–5:10). ACM.
+Zanellati, A., Di Mitri, D. D., Gabbrielli, M., et al. (2024). Hybrid models for knowledge tracing: A 
+systematic literature review. IEEE Transactions on Learning Technologies, 17, 1021–1036.
+Zhang, J., Shi, X., King, I., et al. (2017). Dynamic key-value memory networks for knowledge tracing. 
+In Proceedings of the 26th international conference on world wide web (pp. 765–774). https://​
+doi.​org/​10.​48550/​arXiv.​1611.​08108
+Zhang, Q., Wang, K., & Zhou, S. (2020). Application and practice of vr virtual education platform in 
+improving the quality and ability of college students. IEEE Access, 8, 162830–162837.
+Zhang, W., Hu, S., & Qu, K. (2023). Graph attention neural network model with behavior features for 
+knowledge tracking. IEEE Access, 11, 88329–88338.
+Zhao, Y., Huang, T., Wang, H., et al. (2023). Personalized teaching questioning strategies study based 
+on learners’ cognitive structure diagnosis. Behavioral Sciences, 13(8), 660.
+Zhou, K., Ethayarajh, K., Card, D., et al. (2022). Problems with cosine as a measure of embedding 
+similarity for high frequency words. arXiv preprint arXiv:2205.05092.
+Zhou, L., Zhang, F., Zhang, S., et al. (2021). Study on the personalized learning model of learner 
+learning resource matching. International Journal of Information and Education Technology, 
+11(3), 143–147.
+Zhu, M., Zhao, D., & Yang, J. (2016). Computational modeling of the individualized knowledge 
+building in a constructivist way. In 12th International Conference on Semantics, Knowledge and 
+Grids (SKG) (pp. 25–31). https://​doi.​org/​10.​1109/​SKG.​2016.​012
+
+9840
+	
+Education and Information Technologies (2025) 30:9813–9840
+Zhu, J., Yu, W., Zheng, Z., et al. 2020. Learning from interpretable analysis: Attention-based knowl-
+edge tracing. In International conference on artificial intelligence in education (pp. 364–368). 
+Springer International Publishing.
+Publisher’s Note  Springer Nature remains neutral with regard to jurisdictional claims in published maps 
+and institutional affiliations.
+Springer Nature or its licensor (e.g. a society or other partner) holds exclusive rights to this article under 
+a publishing agreement with the author(s) or other rightsholder(s); author self-archiving of the accepted 
+manuscript version of this article is solely governed by the terms of such publishing agreement and 
+applicable law.
+Authors and Affiliations
+Ziyan Yang1   · Jia Hu2 · Shaochun Zhong1 · Lan Yang1 · Geyong Min2
+ *	 Shaochun Zhong 
+	
+sczhong@sina.com
+	
+Ziyan Yang 
+	
+yangzy389@nenu.edu.cn
+	
+Jia Hu 
+	
+j.hu@exeter.ac.uk
+	
+Lan Yang 
+	
+yangl013@nenu.edu.cn
+	
+Geyong Min 
+	
+g.min@exeter.ac.uk
+1	
+School of Information Science and Technology, Northeast Normal University, 
+Changchun 130117, China
+2	
+School of Computer Science, University of Exeter, Exeter EX4 4QF, U.K.

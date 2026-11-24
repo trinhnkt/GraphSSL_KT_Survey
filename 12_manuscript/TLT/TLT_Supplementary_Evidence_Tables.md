@@ -87,7 +87,7 @@ ECE reporting is a corpus-level audit ($0/37$); there is no per-paper ECE locato
 | KT031 | KT031_KSGAKT_2022 | 2022 | IJIS 2022 | YES | NO | EXTERNAL_FIXED | OTHER | SPARSE_INTERACTION_ONLY | NO |
 | KT033 | KT033_DGMN_2023 | 2023 | IEEE TKDE 2023 | YES | NO | DYNAMIC_LEARNED | GRAPH_MEMORY | SPARSE_INTERACTION_ONLY | NO |
 | KT035 | KT035_HHSKT_2023 | 2023 | ESWA 2023 | YES | NO | MODEL_DEFINED_FIXED | HETEROGENEOUS_GNN | SPARSE_INTERACTION_ONLY | NO |
-| KT036 | KT036_TSKT_2024 | 2024 | ESWA 2024 | YES | NO | EXTERNAL_FIXED | HETEROGENEOUS_GNN | SPARSE_INTERACTION_ONLY | NO |
+| KT036 | KT036_TSKT_2024 | 2024 | ESWA 2024 | YES | NO | MODEL_DEFINED_FIXED | HETEROGENEOUS_GNN | SPARSE_INTERACTION_ONLY | NO |
 | KT037 | KT037_CMKT_2022 | 2022 | IEEE TLT 2022 | YES | NO | EXTERNAL_FIXED | NONE | SPARSE_INTERACTION_ONLY | NO |
 | KT038 | KT038_DyGKT_2024 | 2024 | KDD 2024 | YES | NO | DYNAMIC_LEARNED | DYNAMIC_GNN | SPARSE_INTERACTION_ONLY | NO |
 | KT039 | KT039_CL4KT_2022 | 2022 | WWW 2022 | NO | YES | NA | NONE | SPARSE_INTERACTION_ONLY | NO |
@@ -130,7 +130,9 @@ All other primary-core rows are NO / NO / NO for those three fields (see the sam
 Locked statement in `audit/LOCKED_COUNTS_v1.5.md`. No manuscript in the 37-paper set is coded as reporting ECE.
 That **manuscript-reporting** claim is unchanged.
 
-### Survey-computed REPRODUCED ECE overlay (Path A; not a corpus count)
+### Survey-computed REPRODUCED ECE overlay (Path A; lab record, not a reported result)
+
+Withdrawn from the main manuscript on 2026-11-16. The author decision is to keep DyGKT in the 37-paper corpus and not to report these run numbers in the paper. The rows below stay as the lab record. They are not cited from the main text, and they do not change manuscript ECE reporting \(0/37\).
 
 Source: `09_benchmark/path_a_ece/results/dygkt_assist17_ece.json` and `RUN_LOG_DyGKT_assist17.md`.
 Author code: DyGKT (`KT038`); dataset ASSIST17; seed 0; equal-width $M=10$ on the transductive test split.
@@ -245,7 +247,26 @@ These five expansion IDs were previously screened `INCLUDE_FULLTEXT` / coded as 
 | KT082 | Generative Masked Graph Auto-Encoder for Knowledge Tracing | DOI `10.1145/3627673.3679900` resolves to a different paper | Corpus verification failure — DOI identity mismatch |
 | KT083 | Dual-View Heterogeneous Graph Contrastive Learning for Knowledge Tracing | DOI `10.1016/j.neunet.2026.107500` → Crossref 404 | Corpus verification failure — DOI does not resolve |
 
+## 8b. Supplementary Table S-Search (16 logged searches)
+
+**Upload-facing filename:** `supplementary/Table_S-Search.csv`
+
+Copied from `03_search/search_log.csv` on 2026-11-13. Sixteen rows, SRCH_001–SRCH_016. Logged record counts sum to 2,017. Run date for every row is 2026-08-26. On 23 November 2026 a check of all 1,522 project files did not find the 16 named export files. These counts were not re-counted from raw records.
+
+The `notes` column records two construction facts already in `audit/A1_QUERY_GAP_ANALYSIS.md`: the Q-G and Q-S term lists differ across databases, and the two arXiv strings use `OR`, so a title containing "knowledge tracing" matches without a graph or self-supervised term.
+
+## 8c. Supplementary Table S-Search-Rerun (files saved 14–16 November 2026)
+
+**Upload-facing filename:** `supplementary/Table_S-Search-Rerun_2026-11-16.csv`
+
+Counted on 23 November 2026 from the twelve files in `03_search/exports`. IEEE 112 and 27; ScienceDirect 66 and 25 BibTeX entries; Springer 558 and 546; Scopus 381, 192, 85 and 38; arXiv 273 and 199 entry elements. ACM SRCH_001, ACM SRCH_002, Web of Science SRCH_011 and SRCH_012 have no file. These counts are not added to \(N_{\mathrm{rec}}=2{,}017\).
+
+Own-record matches, by title or DOI, for the seven papers read by 23 November 2026: every one of the seven appears in at least one saved file. Scopus Q-S contains all seven. The arXiv files contain none of the seven as an own title. A publication-year value of 2026 in a saved file is not a 31 July cutoff.
+
+
 ## 9. Path A REPRODUCED ECE (DyGKT/ASSIST17)
+
+Withdrawn from the main manuscript on 2026-11-16. This section is a lab record, not a result reported in the paper. DyGKT remains in the 37-paper corpus. Manuscript ECE reporting stays \(0/37\).
 
 Manifest: `supplementary/DYGKT_ASSIST17_REPRODUCTION_MANIFEST.md`.  
 Bins: `supplementary/dygkt_assist17_ece_bins.csv`.  

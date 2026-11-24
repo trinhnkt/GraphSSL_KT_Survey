@@ -1,5 +1,7 @@
 # DyGKT / ASSIST17 REPRODUCTION MANIFEST
 
+**Main-text status (2026-11-16):** withdrawn. These values stay in this lab record. They are not reported in the main manuscript. DyGKT remains paper KT038 in the 37-paper corpus.
+
 **Evidence class:** `REPRODUCED` (CASE A — artifacts present)  
 **Date:** 2026-09-15  
 **Does not change:** manuscript-reported ECE \(0/37\).

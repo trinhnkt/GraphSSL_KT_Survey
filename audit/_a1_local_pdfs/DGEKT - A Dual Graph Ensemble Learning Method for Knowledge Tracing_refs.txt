@@ -1,0 +1,194 @@
+DGEKT: A Dual Graph Ensemble Learning Method for Knowledge Tracing
+78:21
+5
+CONCLUSION
+In this article, we investigate the dual graph structure of students’ learning interactions that
+encodes the heterogeneous exercise–concept associations and interaction transitions. In partic-
+ular, we propose a dual graph ensemble learning method, named DGEKT, for knowledge trac-
+ing. DGEKT integrates the two types of relationship information with hypergraph and directed
+graph convolutional networks. To ensemble the dual graph models, we introduce the technique
+of online knowledge distillation rather than the straightforward concatenation- or adding-based
+fusion. DGEKT leverages online knowledge distillation to form an ensemble teacher model from
+the dual graph models, which offers its predictions on all exercises as extra supervision for more
+powerful modeling capacity. We performed a comparative study with eight previous methods on
+three benchmark datasets and verified the effectiveness of DGEKT for knowledge tracing. We also
+demonstrated that the modules of dual graph learning and online knowledge distillation indeed
+benefit the performance of knowledge tracing. A sensitivity analysis was performed to show that
+DGEKT has good model stability, and a visualization study was conducted to provide more insights
+into DGEKT.
+Building upon the current study, our future work will be carried out in four directions. First, we
+intend to explore more elaborate network architectures instead of vanilla DKT to better model stu-
+dents’ learning sequences. In the experiments, we have noticed that the attention-based sequential
+modeling methods have no significant advantage over DKT. It is an important issue to study
+how to make the attention mechanism play a more effective role in modeling learning sequences.
+Also, it is worth exploring neural network search to design suitable network architectures or
+embeddings for KT [4]. Second, most exiting knowledge tracing methods only estimate the binary
+response (i.e., correctness or incorrectness) of students to exercises, but not all incorrect responses
+are equal: There can be numerous incorrect ways to answer an exercise caused by different un-
+derlying errors [11]. Based on the recently released dataset [46] that contains the specific options
+students select on multiple choice exercises, we plan to extend our method beyond correctness
+prediction to the task of predicting students’ option selections. Third, due to the limitation in
+data availability, we only consider two types of relationship information in our current study,
+namely, the exercise–concept associations and interaction transitions. When additional types of
+relationship information become available, we aim to build more graph models accordingly and
+combine the diverse models to form a more powerful ensemble model with online knowledge
+distillation. For example, we shall establish a concept dependency graph by extracting the
+prerequisite relationships among knowledge concepts [9, 37]. Apart from CAHG and DTG, other
+popular graph neural networks could be tried to capture various relationship information. Last, as
+pointed out in Reference [27], students may have close knowledge states if they behave similarly
+in learning. Therefore, we will investigate how to measure the similarity between students’
+learning behaviors and explicitly leverage the inter-student information to enhance knowledge
+tracing.
+REFERENCES
+[1] Ghodai Abdelrahman and Qing Wang. 2019. Knowledge tracing with sequential key-value memory networks. In
+Proceedings of the 42nd International ACM SIGIR Conference on Research and Development in Information Retrieval.
+175–184.
+[2] Rohan Anil, Gabriel Pereyra, Alexandre Passos, Robert Ormandi, George E Dahl, and Geoffrey E Hinton. 2018. Large
+scale distributed neural network training through online distillation. In Proceedings of the 6th International Conference
+on Learning Representations.
+[3] Chong Chen, Min Zhang, Yongfeng Zhang, Yiqun Liu, and Shaoping Ma. 2020. Efficient neural matrix factorization
+without sampling for recommendation. ACM Trans. Inf. Syst. 38, 2, Article 14 (2020), 28 pages.
+ACM Transactions on Information Systems, Vol. 42, No. 3, Article 78. Publication date: January 2024.
+
+78:22
+C. Cui et al.
+[4] Tong Chen, Hongzhi Yin, Yujia Zheng, Zi Huang, Yang Wang, and Meng Wang. 2021. Learning elastic embeddings for
+customizing on-device recommenders. In Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery &
+Data Mining. 138–147.
+[5] Xu Chen, Kun Xiong, Yongfeng Zhang, Long Xia, Dawei Yin, and Jimmy Xiangji Huang. 2020. Neural feature-aware
+recommendation with signed hypergraph convolutional network. ACM Trans. Inf. Syst. 39, 1, Article 8 (2020), 22 pages.
+[6] Youngduck Choi, Youngnam Lee, Dongmin Shin, Junghyun Cho, Seoyon Park, Seewoo Lee, Jineon Baek, Chan Bae,
+Byungsoo Kim, and Jaewe Heo. 2020. Ednet: A large-scale hierarchical dataset in education. In Proceedings of the 21st
+International Conference on Artificial Intelligence in Education. 69–73.
+[7] Albert T. Corbett and John R. Anderson. 1994. Knowledge tracing: Modeling the acquisition of procedural knowledge.
+User Model. User-Adapt. Interact. 4 (1994), 253–278.
+[8] Yifan Feng, Haoxuan You, Zizhao Zhang, Rongrong Ji, and Yue Gao. 2019. Hypergraph neural networks. In Proceedings
+of the AAAI Conference on Artificial Intelligence. 3558–3565.
+[9] Weibo Gao, Qi Liu, Zhenya Huang, Yu Yin, Haoyang Bi, Mu-Chun Wang, Jianhui Ma, Shijin Wang, and Yu Su. 2021.
+RCD: Relation map driven cognitive diagnosis for intelligent education systems. In Proceedings of the 44th International
+ACM SIGIR Conference on Research and Development in Information Retrieval. 501–510.
+[10] Aritra Ghosh, Neil Heffernan, and Andrew S. Lan. 2020. Context-aware attentive knowledge tracing. In Proceedings
+of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining. 2330–2339.
+[11] Aritra Ghosh, Jay Raspat, and Andrew Lan. 2021. Option tracing: Beyond correctness analysis in knowledge tracing.
+In Proceedings of the International Conference on Artificial Intelligence in Education. 137–149.
+[12] Jianping Gou, Baosheng Yu, Stephen J Maybank, and Dacheng Tao. 2021. Knowledge distillation: A survey. Int. J.
+Comput. Vis. 129, 6 (2021), 1789–1819.
+[13] Will Hamilton, Zhitao Ying, and Jure Leskovec. 2017. Inductive representation learning on large graphs. In Proceedings
+of the 31st International Conference on Neural Information Processing Systems. 1025–1035.
+[14] Geoffrey Hinton, Oriol Vinyals, and Jeff Dean. 2015. Distilling the knowledge in a neural network. Retrieved from
+http://arxiv.org/abs/1503.02531
+[15] Zhenya Huang, Qi Liu, Yuying Chen, Le Wu, Keli Xiao, Enhong Chen, Haiping Ma, and Guoping Hu. 2020. Learning
+or forgetting? A dynamic approach for tracking the knowledge proficiency of students. ACM Trans. Inf. Syst. 38,
+2 (2020), 1–33.
+[16] Tanja Käser, Severin Klingler, Alexander G. Schwing, and Markus Gross. 2017. Dynamic bayesian networks for student
+modeling. IEEE Trans. Learn. Technol. 10, 4 (2017), 450–462.
+[17] Mohammad Khajah, Robert V. Lindsey, and Michael C. Mozer. 2016. How deep is knowledge tracing? In Proceedings
+of the 9th International Conference on Educational Data Mining, 94–101.
+[18] Diederik P. Kingma and Jimmy Ba. 2014. Adam: A method for stochastic optimization. In Proceedings of the 3rd Inter-
+national Conference on Learning Representations.
+[19] Thomas N. Kipf and Max Welling. 2017. Semi-supervised classification with graph convolutional networks. In Pro-
+ceedings of the 5th International Conference on Learning Representations.
+[20] Xu Lan, Xiatian Zhu, and Shaogang Gong. 2018. Knowledge distillation by on-the-fly native ensemble. In Proceedings
+of the 32nd International Conference on Neural Information Processing Systems. 7528–7538.
+[21] Jing Li, Pengjie Ren, Zhumin Chen, Zhaochun Ren, Tao Lian, and Jun Ma. 2017. Neural attentive session-based rec-
+ommendation. In Proceedings of the ACM on Conference on Information and Knowledge Management. 1419–1428.
+[22] Qimai Li, Zhichao Han, and Xiao-Ming Wu. 2018. Deeper insights into graph convolutional networks for semi-
+supervised learning. In Proceedings of the 32nd AAAI Conference on Artificial Intelligence. 3538–3545.
+[23] Qi Liu, Zhenya Huang, Yu Yin, Enhong Chen, Hui Xiong, Yu Su, and Guoping Hu. 2019. Ekt: Exercise-aware knowledge
+tracing for student performance prediction. IEEE Trans. Knowl. Data Eng. 33, 1 (2019), 100–115.
+[24] Qi Liu, Shuanghong Shen, Zhenya Huang, Enhong Chen, and Yonghe Zheng. 2021. A survey of knowledge tracing.
+arXiv:2105.15106. Retrieved from https://arxiv.org/abs/2105.15106
+[25] Yunfei Liu, Yang Yang, Xianyu Chen, Jian Shen, Haifeng Zhang, and Yong Yu. 2021. Improving knowledge tracing via
+pre-training question embeddings. In Proceedings of the 29th International Joint Conference on Artificial Intelligence.
+1556–1662.
+[26] Ting Long, Yunfei Liu, Jian Shen, Weinan Zhang, and Yong Yu. 2021. Tracing knowledge state with individual cog-
+nition and acquisition estimation. In Proceedings of the 44th International ACM SIGIR Conference on Research and
+Development in Information Retrieval. 173–182.
+[27] Ting Long, Jiarui Qin, Jian Shen, Weinan Zhang, Wei Xia, Ruiming Tang, Xiuqiang He, and Yong Yu. 2022. Improving
+knowledge tracing with collaborative information. In Proceedings of the 15th ACM International Conference on Web
+Search and Data Mining. 599–607.
+[28] Andrew L. Maas, Awni Y. Hannun, Andrew Y. Ng, et al. 2013. Rectifier nonlinearities improve neural network acoustic
+models. In Proceedings of the 30th International Conference on Machine Learning, 30, 1 (2013), 3.
+ACM Transactions on Information Systems, Vol. 42, No. 3, Article 78. Publication date: January 2024.
+
+DGEKT: A Dual Graph Ensemble Learning Method for Knowledge Tracing
+78:23
+[29] Rafael Müller, Simon Kornblith, and Geoffrey E Hinton. 2019. When does label smoothing help? In Proceedings of the
+33rd International Conference on Neural Information Processing Systems. 4694–4703.
+[30] Hiromi Nakagawa, Yusuke Iwasawa, and Yutaka Matsuo. 2019. Graph-based knowledge tracing: Modeling student
+proficiency using graph neural network. In Proceedings of the IEEE/WIC/ACM International Conference on Web Intelli-
+gence. 156–163.
+[31] Shalini Pandey and George Karypis. 2019. A self-attentive model for knowledge tracing. In Proceedings of the 12th
+International Conference on Educational Data Mining. 384–389.
+[32] Philip I. Pavlik, Hao Cen, and Kenneth R. Koedinger. 2009. Performance factors analysis –a new alternative to knowl-
+edge tracing. In Proceedings of the Conference on Artificial Intelligence in Education. 531–538.
+[33] Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran Sahami, Leonidas J Guibas, and Jascha Sohl-
+Dickstein. 2015. Deep knowledge tracing. In Advances in Neural Information Processing Systems, Vol. 28, 505–513.
+[34] Shuanghong Shen, Zhenya Huang, Qi Liu, Yu Su, Shijin Wang, and Enhong Chen. 2022. Assessing student’s dynamic
+knowledge state by exploring the question difficulty effect. In Proceedings of the 45th International ACM SIGIR Confer-
+ence on Research and Development in Information Retrieval. 427–437.
+[35] Lei Shi, Yifan Zhang, Jian Cheng, and Hanqing Lu. 2019. Skeleton-based action recognition with directed graph neural
+networks. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 7912–7921.
+[36] Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jon Shlens, and Zbigniew Wojna. 2016. Rethinking the inception
+architecture for computer vision. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition.
+2818–2826.
+[37] Shiwei Tong, Qi Liu, Wei Huang, Zhenya Huang, Enhong Chen, Chuanren Liu, Haiping Ma, and Shijin Wang. 2020.
+Structure-based knowledge tracing: An influence propagation view. In Proceedings of the 36th International Conference
+on Data Mining. 541–550.
+[38] Laurens Van der Maaten and Geoffrey Hinton. 2008. Visualizing data using t-SNE. J. Mach. Learn. Res. 9, 11 (2008),
+2579–2605.
+[39] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, and Illia
+Polosukhin. 2017. Attention is all you need. In Proceedings of the 31st International Conference on Neural Information
+Processing Systems. 6000–6010.
+[40] Jill-Jênn Vie and Hisashi Kashima. 2019. Knowledge tracing machines: Factorization machines for knowledge tracing.
+In Proceedings of the AAAI Conference on Artificial Intelligence. 750–757.
+[41] Chenyang Wang, Weizhi Ma, Min Zhang, Chuancheng Lv, Fengyuan Wan, Huijie Lin, Taoran Tang, Yiqun Liu, and
+Shaoping Ma. 2021. Temporal cross-effects in knowledge tracing. In Proceedings of the 14th ACM International Confer-
+ence on Web Search and Data Mining. 517–525.
+[42] Chao Wang, Hengshu Zhu, Peng Wang, Chen Zhu, Xi Zhang, Enhong Chen, and Hui Xiong. 2021. Personalized and
+explainable employee training course recommendations: A bayesian variational approach. ACM Trans. Inf. Syst. 40, 4,
+Article 70 (2021), 32 pages.
+[43] Jing Wang, Xin Geng, and Hui Xue. 2022. Re-weighting large margin label distribution learning for classification. IEEE
+Trans. Pattern Anal. Mach. Intell. 44, 9 (2022), 5445–5459.
+[44] Lin Wang and Kuk-Jin Yoon. 2022. Knowledge distillation and student-teacher learning for visual intelligence: A
+review and new outlooks. IEEE Trans. Pattern Anal. Mach. Intell. 44, 6 (2022), 3048–3068.
+[45] Tianqi Wang, Fenglong Ma, and Jing Gao. 2019. Deep hierarchical knowledge tracing. In Proceedings of the 12th Inter-
+national Conference on Educational Data Mining. 671–674.
+[46] Zichao Wang, Angus Lamb, Evgeny Saveliev, Pashmina Cameron, Jordan Zaykov, Jose Miguel Hernandez-Lobato,
+Richard E. Turner, Richard G. Baraniuk, Eedi Craig Barton, Simon Peyton Jones, Simon Woodhead, and Cheng Zhang.
+2021. Results and insights from diagnostic questions: The neurips 2020 education challenge. In NeurIPS 2020 Compe-
+tition and Demonstration Track, Vol. 133. 191–205.
+[47] Michael M. Wolf, Alicia M. Klinvex, and Daniel M. Dunlavy. 2016. Advantages to modeling relational data using
+hypergraphs versus graphs. In Proceedings of the IEEE High Performance Extreme Computing Conference. 1–7.
+[48] Xin Xia, Hongzhi Yin, Junliang Yu, Qinyong Wang, Lizhen Cui, and Xiangliang Zhang. 2021. Self-supervised hyper-
+graph convolutional networks for session-based recommendation. In Proceedings of the AAAI Conference on Artificial
+Intelligence. 4503–4511.
+[49] Junliang Yu, Hongzhi Yin, Jundong Li, Qinyong Wang, Nguyen Quoc Viet Hung, and Xiangliang Zhang. 2021. Self-
+supervised multi-channel hypergraph convolutional network for social recommendation. In Proceedings of the Web
+Conference. 413–424.
+[50] Li Yuan, Francis E. H. Tay, Guilin Li, Tao Wang, and Jiashi Feng. 2020. Revisiting knowledge distillation via la-
+bel smoothing regularization. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition.
+3903–3911.
+ACM Transactions on Information Systems, Vol. 42, No. 3, Article 78. Publication date: January 2024.
+
+78:24
+C. Cui et al.
+[51] Chengyuan Zhang, Yang Wang, Lei Zhu, Jiayu Song, and Hongzhi Yin. 2021. Multi-graph heterogeneous interaction
+fusion for social recommendation. ACM Trans. Inf. Syst. 40, 2 (2021), 1–26.
+[52] Jiani Zhang, Xingjian Shi, Irwin King, and Dit-Yan Yeung. 2017. Dynamic key-value memory networks for knowledge
+tracing. In Proceedings of the 26th International Conference on World Wide Web. 765–774.
+[53] Xitong Zhang, Yixuan He, Nathan Brugnone, Michael Perlmutter, and Matthew Hirn. 2021. Magnet: A neural net-
+work for directed graphs. In Proceedings of the 35th International Conference on Neural Information Processing Systems.
+27003–27015.
+[54] Ying Zhang, Tao Xiang, Timothy M Hospedales, and Huchuan Lu. 2018. Deep mutual learning. In Proceedings of the
+IEEE Conference on Computer Vision and Pattern Recognition. 4320–4328.
+[55] Minghao Zhao, Qilin Deng, Kai Wang, Runze Wu, Jianrong Tao, Changjie Fan, Liang Chen, and Peng Cui. 2021.
+Bilateral filtering graph convolutional network for multi-relational social recommendation in the power-law networks.
+ACM Trans. Inf. Syst. 40, 2, Article 31 (2021), 24 pages.
+[56] Wayne Xin Zhao, Wenhui Zhang, Yulan He, Xing Xie, and Ji-Rong Wen. 2018. Automatically learning topics and
+difficulty levels of problems in online judge systems. ACM Trans. Inf. Syst. 36, 3, Article 27 (2018), 33 pages.
+[57] Jian Zong, Chaoran Cui, Yuling Ma, Li Yao, Meng Chen, and Yilong Yin. 2020. Behavior-driven student performance
+prediction with tri-branch convolutional neural network. In Proceedings of the 29th ACM International Conference on
+Information & Knowledge Management. 2353–2356.
+Received 11 November 2022; revised 14 December 2023; accepted 18 December 2023
+ACM Transactions on Information Systems, Vol. 42, No. 3, Article 78. Publication date: January 2024.

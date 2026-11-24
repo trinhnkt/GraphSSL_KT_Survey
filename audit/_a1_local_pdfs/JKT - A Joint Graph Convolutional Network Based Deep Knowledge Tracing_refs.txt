@@ -1,0 +1,91 @@
+Declaration of Competing Interest
+The authors declare that they have no known competing ﬁnancial interests or personal relationships that could have
+appeared to inﬂuence the work reported in this paper.
+References
+[1] G. Abdelrahman, Q. Wang, Knowledge tracing with sequential key-value memory networks, in: Proceedings of the 42nd International ACM SIGIR
+Conference on Research and Development in Information Retrieval, 2019, pp. 175–184.
+[2] J.R. Anderson, C.F. Boyle, B.J. Reiser, Intelligent tutoring systems, Science 228 (4698) (1985) 456–462.
+[3] L.E. Baum, T. Petrie, Statistical inference for probabilistic functions of ﬁnite state markov chains, Ann. Math. Stat. 37 (6) (1966) 1554–1563.
+[4] J. Bruna, W. Zaremba, A. Szlam, Y. LeCun, Spectral networks and locally connected networks on graphs, in: 2nd International Conference on Learning
+Representations, ICLR, 2014.
+[5] S. Cao, W. Lu, Q. Xu, Grarep: Learning graph representations with global structural information, in: Proceedings of the 24th ACM International on
+Conference on Information and Knowledge Management, 2015, pp. 891–900.
+[6] A.T. Corbett, J.R. Anderson, Knowledge tracing: Modelling the acquisition of procedural knowledge, User Model. User Adapt. Interact. 4 (4) (1995) 253–
+278.
+[7] C. de Bodt, D. Mulders, M. Verleysen, J.A. Lee, Nonlinear dimensionality reduction with missing data using parametric multiple imputations, IEEE Trans.
+Neural Networks Learn. Syst. 30 (4) (2019) 1166–1179.
+[8] C.B. Do, S. Batzoglou, What is the expectation maximization algorithm?, Nat Biotechnol. 26 (8) (2008) 897–899.
+[9] A. Ghosh, N. Heffernan, A.S. Lan, Context-aware attentive knowledge tracing, in: KDD’20: Proceedings of the 26th ACM SIGKDD International
+Conference on Knowledge Discovery & Data Mining, 2020.
+[10] A. Grover, J. Leskovec, node2vec: Scalable feature learning for networks, in: Proceedings of the 22nd ACM SIGKDD International Conference on
+Knowledge Discovery and Data Mining, 2016, pp. 855–864.
+[11] W. Hamilton, Z. Ying, J. Leskovec, Inductive representation learning on large graphs, in: Advances in Neural Information Processing Systems, 2017, pp.
+1024–1034. .
+[12] S. Hochreiter, J. Schmidhuber, Long short-term memory, Neural Comput. 9 (8) (1997) 1735–1780.
+[13] X. Huang, J. Li, X. Hu, Accelerated attributed network embedding, in: Proceedings of the 2017 SIAM International Conference on Data Mining, SIAM,
+2017, pp. 633–641.
+[14] D.P. Kingma, J. Ba, Adam: A method for stochastic optimization, in: 3rd International Conference on Learning Representations, ICLR 2015, San Diego,
+CA, USA, May 7–9, 2015, Conference Track Proceedings, 2015. .
+[15] D.P. Kingma, M. Welling, Auto-encoding variational bayes, in: 2nd International Conference on Learning Representations, ICLR 2014, Banff, AB, Canada,
+April 14–16, 2014, Conference Track Proceedings, 2014. .
+[16] T.N. Kipf, M. Welling, Semi-supervised classiﬁcation with graph convolutional networks, in: 5th International Conference on Learning Representations,
+ICLR 2017, Toulon, France, April 24–26, 2017, Conference Track Proceedings, OpenReview.net, 2017. .
+[17] J. Li, H. Dani, X. Hu, J. Tang, Y. Chang, H. Liu, Attributed network embedding for learning in a dynamic environment, in: Proceedings of the 2017 ACM on
+Conference on Information and Knowledge Management, CIKM 2017, Singapore, November 06–10, 2017, ACM, 2017, pp. 387–396. .
+[18] Y. Liang, C. Huang, X. Bao, K. Xu, Sequential dynamic event recommendation in event-based social networks: An upper conﬁdence bound approach, Inf.
+Sci. 542 (2021) 1–23.
+[19] Q. Liu, Z. Huang, Y. Yin, E. Chen, H. Xiong, Y. Su, G. Hu, Ekt: Exercise-aware knowledge tracing for student performance prediction, IEEE Trans. Knowl.
+Data Eng. 33 (1) (2019) 100–115.
+[20] S. Minn, M.C. Desmarais, F. Zhu, J. Xiao, J. Wang, Dynamic student classifﬁcation on memory networks for knowledge tracing, in: Advances in
+Knowledge Discovery and Data Mining - 23rd Paciﬁc-Asia Conference, PAKDD 2019, Macau, China, April 14–17, 2019, Proceedings, Part II, Vol. 11440
+of Lecture Notes in Computer Science, Springer, 2019, pp. 163–174. .
+[21] S. Montero, A. Arora, S. Kelly, B. Milne, M. Mozer, Does deep knowledge tracing model interactions among skills?, in: Proceedings of the 11th
+International Conference on Educational Data Mining, EDM 2018, International Educational Data Mining Society (IEDMS), 2018
+[22] A.B. Morton, I.M. Mareels, An efﬁcient brute-force solution to the network reconﬁguration problem, IEEE Trans. Power Delivery 15 (3) (2000) 996–
+1000.
+[23] H. Nakagawa, Y. Iwasawa, Y. Matsuo, Graph-based knowledge tracing: Modeling student proﬁciency using graph neural network, in: 2019 IEEE/WIC/
+ACM International Conference on Web Intelligence, WI 2019, Thessaloniki, Greece, October 14–17, 2019, ACM, 2019, pp. 156–163. .
+[24] S. Pandey, G. Karypis, A self attentive model for knowledge tracing, in: Proceedings of the 12th International Conference on Educational Data Mining,
+EDM 2019, International Educational Data Mining Society (IEDMS), 2019.
+[25] B. Perozzi, R. Al-Rfou, S. Skiena, Deepwalk: online learning of social representations, in: The 20th ACM SIGKDD International Conference on Knowledge
+Discovery and Data Mining, KDD ’14, New York, NY, USA - August 24–27, 2014, ACM, 2014, pp. 701–710. .
+[26] C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami, L.J. Guibas, J. Sohl-Dickstein, Deep knowledge tracing, in: Advances in Neural Information Processing
+Systems 28: Annual Conference on Neural Information Processing Systems 2015, December 7–12, 2015, Montreal, Quebec, Canada, 2015, pp. 505–513.
+.
+[27] J. Qiu, Y. Dong, H. Ma, J. Li, K. Wang, J. Tang, Network embedding as matrix factorization: Unifying deepwalk, line, pte, and node2vec, in: Proceedings of
+the Eleventh ACM International Conference on Web Search and Data Mining, WSDM 2018, Marina Del Rey, CA, USA, February 5–9, 2018, ACM, 2018,
+pp. 459–467. .
+[28] D.E. Rumelhart, G.E. Hinton, R.J. Williams, Learning representations by back-propagating errors, Nature 323 (6088) (1986) 533–536.
+[29] J. Self, Theoretical foundations for intelligent tutoring systems, J. Artif. Intell. Edu. 1 (4) (1990) 3–14.
+[30] D. Shin, Y. Shim, H. Yu, S. Lee, B. Kim, Y. Choi, SAINT+: integrating temporal features for ednet correctness prediction, in: LAK’21: 11th International
+Learning Analytics and Knowledge Conference, Irvine, CA, USA, April 12–16, 2021, ACM, 2021, pp. 490–496. .
+[31] Y. Su, Q. Liu, Q. Liu, Z. Huang, Y. Yin, E. Chen, C.H.Q. Ding, S. Wei, G. Hu, Exercise-enhanced sequential modeling for student performance prediction, in:
+Proceedings of the Thirty-Second AAAI Conference on Artiﬁcial Intelligence, AAAI Press, 2018, pp. 2435–2443.
+[32] J. Tang, M. Qu, M. Wang, M. Zhang, J. Yan, Q. Mei, LINE: large-scale information network embedding, in: Proceedings of the 24th International
+Conference on World Wide Web, WWW 2015, Florence, Italy, May 18–22, 2015, ACM, 2015, pp. 1067–1077. .
+[33] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A.N. Gomez, L. Kaiser, I. Polosukhin, Attention is all you need, in: Advances in Neural
+Information Processing Systems 30: Annual Conference on Neural Information Processing Systems 2017, December 4–9, 2017, Long Beach, CA, USA,
+2017, pp. 5998–6008. .
+[34] C. Wang, B. Samari, K. Siddiqi, Local spectral graph convolution for point set feature learning, in: Computer Vision - ECCV 2018–15th European
+Conference, Munich, Germany, September 8–14, 2018, Proceedings, Part IV, Vol. 11208 of Lecture Notes in Computer Science, Springer, 2018, pp. 56–
+71. .
+[35] D. Wang, P. Cui, W. Zhu, Structural deep network embedding, in: Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge
+Discovery and Data Mining, 2016, pp. 1225–1234.
+X. Song, J. Li, Y. Tang et al.
+Information Sciences 580 (2021) 510–523
+522
+
+[36] T. Wang, F. Ma, J. Gao, Deep hierarchical knowledge tracing, in: Proceedings of the 12th International Conference on Educational Data Mining, EDM
+2019, International Educational Data Mining Society (IEDMS), 2019.
+[37] Y. Wang, Y. Yuan, G. Wang, Y. Ma, Graph cells: Top-k structural-textual aggregated query over information networks, Inf. Sci. 547 (2021) 354–366.
+[38] C. Yang, Z. Liu, D. Zhao, M. Sun, E.Y. Chang, Network representation learning with rich text information, in: Proceedings of the Twenty-Fourth
+International Joint Conference on Artiﬁcial Intelligence, IJCAI 2015, Buenos Aires, Argentina, July 25–31, 2015, AAAI Press, 2015, pp. 2111–2117. .
+[39] J.W. Young, A ﬁrst order approximation to the optimum checkpoint interval, Commun. ACM 17 (9) (1974) 530–531.
+[40] Q. Zeng, M. Zhong, Y. Zhu, T. Qian, J. Li, Business location planning based on a novel geo-social inﬂuence diffusion model, Inf. Sci. 559 (2021) 61–74.
+[41] J. Zhang, X. Shi, I. King, D. Yeung, Dynamic key-value memory networks for knowledge tracing, in: Proceedings of the 26th International Conference on
+World Wide Web, WWW 2017, Perth, Australia, April 3–7, 2017, ACM, 2017, pp. 765–774. .
+[42] M. Zinkevich, Online convex programming and generalized inﬁnitesimal gradient ascent, in: Machine Learning, Proceedings of the Twentieth
+International Conference (ICML 2003), August 21–24, 2003, Washington, DC, USA, AAAI Press, 2003, pp. 928–936. .
+X. Song, J. Li, Y. Tang et al.
+Information Sciences 580 (2021) 510–523
+523

@@ -1,0 +1,136 @@
+{
+  "title": [
+    "STHKT: Spatiotemporal Knowledge Tracing with Topological Hawkes Process"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0009-0002-1498-7910",
+      "authenticated-orcid": false,
+      "given": "Shuting",
+      "family": "Li",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-3905-9352",
+      "authenticated-orcid": false,
+      "given": "Shuanghong",
+      "family": "Shen",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-7950-4919",
+      "authenticated-orcid": false,
+      "given": "Yu",
+      "family": "Su",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0009-0003-4147-8094",
+      "authenticated-orcid": false,
+      "given": "Xinjie",
+      "family": "Sun",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0009-0008-0574-9519",
+      "authenticated-orcid": false,
+      "given": "Junyu",
+      "family": "Lu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0009-0001-3464-511X",
+      "authenticated-orcid": false,
+      "given": "Qi",
+      "family": "Mo",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0009-0006-0626-5175",
+      "authenticated-orcid": false,
+      "given": "Zhenyi",
+      "family": "Wu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-6956-5550",
+      "authenticated-orcid": false,
+      "given": "Qi",
+      "family": "Liu",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2025,
+        1
+      ]
+    ]
+  },
+  "container-title": [
+    "Expert Systems with Applications"
+  ],
+  "volume": "259",
+  "issue": null,
+  "page": "125248",
+  "publisher": "Elsevier BV",
+  "DOI": "10.1016/j.eswa.2024.125248",
+  "type": "journal-article"
+}

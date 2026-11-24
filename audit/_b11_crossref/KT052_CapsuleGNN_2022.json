@@ -1,0 +1,63 @@
+{
+  "title": [
+    "Modeling knowledge proficiency using multi-hierarchical capsule graph neural network"
+  ],
+  "author": [
+    {
+      "given": "Zeyu",
+      "family": "He",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "role": "author",
+          "vocabulary": "crossref"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-7712-4613",
+      "authenticated-orcid": false,
+      "given": "Wang",
+      "family": "Li",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "role": "author",
+          "vocabulary": "crossref"
+        }
+      ]
+    },
+    {
+      "given": "Yonghong",
+      "family": "Yan",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "role": "author",
+          "vocabulary": "crossref"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2021,
+        9,
+        22
+      ]
+    ]
+  },
+  "container-title": [
+    "Applied Intelligence"
+  ],
+  "volume": "52",
+  "issue": "7",
+  "page": "7230-7247",
+  "publisher": "Springer Science and Business Media LLC",
+  "DOI": "10.1007/s10489-021-02765-w",
+  "type": "journal-article"
+}

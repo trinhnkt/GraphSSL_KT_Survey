@@ -1,0 +1,114 @@
+{
+  "title": [
+    "Dual-Channel Adaptive Scale Hypergraph Encoders With Cross-View Contrastive Learning for Knowledge Tracing"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0002-4018-0830",
+      "authenticated-orcid": false,
+      "given": "Jiawei",
+      "family": "Li",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "School of Computer Science, South China Normal University, Guangzhou, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-3912-6383",
+      "authenticated-orcid": false,
+      "given": "Yuanfei",
+      "family": "Deng",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Computer Science, South China Normal University, Guangzhou, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-8306-4194",
+      "authenticated-orcid": false,
+      "given": "Yixiu",
+      "family": "Qin",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Computer Science, South China Normal University, Guangzhou, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0001-6625-2348",
+      "authenticated-orcid": false,
+      "given": "Shun",
+      "family": "Mao",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Computer Science, South China Normal University, Guangzhou, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-0402-5382",
+      "authenticated-orcid": false,
+      "given": "Yuncheng",
+      "family": "Jiang",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Computer Science, South China Normal University, Guangzhou, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2025,
+        4
+      ]
+    ]
+  },
+  "container-title": [
+    "IEEE Transactions on Neural Networks and Learning Systems"
+  ],
+  "volume": "36",
+  "issue": "4",
+  "page": "6752-6766",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "DOI": "10.1109/tnnls.2024.3386810",
+  "type": "journal-article"
+}

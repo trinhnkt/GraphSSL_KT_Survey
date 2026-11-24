@@ -1,0 +1,97 @@
+{
+  "title": [
+    "CMKT: Concept Map Driven Knowledge Tracing"
+  ],
+  "author": [
+    {
+      "ORCID": "https://orcid.org/0000-0003-2378-4971",
+      "authenticated-orcid": false,
+      "given": "Yu",
+      "family": "Lu",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "Advanced Innovation Center for Future Education, School of Educational Technology, Faculty of Education, Beijing Normal University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-1894-3552",
+      "authenticated-orcid": false,
+      "given": "Penghe",
+      "family": "Chen",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Advanced Innovation Center for Future Education, School of Educational Technology, Faculty of Education, Beijing Normal University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-1196-6743",
+      "authenticated-orcid": false,
+      "given": "Yang",
+      "family": "Pian",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "School of Educational Technology, Faculty of Education, Beijing Normal University, Beijing, China"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-0904-3184",
+      "authenticated-orcid": false,
+      "given": "Vincent W.",
+      "family": "Zheng",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Advanced Digital Sciences Center, Singapore"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2022,
+        8,
+        1
+      ]
+    ]
+  },
+  "container-title": [
+    "IEEE Transactions on Learning Technologies"
+  ],
+  "volume": "15",
+  "issue": "4",
+  "page": "467-480",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "DOI": "10.1109/tlt.2022.3196355",
+  "type": "journal-article"
+}

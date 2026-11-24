@@ -1,0 +1,88 @@
+{
+  "title": [
+    "Exploring long- and short-term knowledge state graph representations with adaptive fusion for knowledge tracing"
+  ],
+  "author": [
+    {
+      "given": "Ganfeng",
+      "family": "Yu",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Zhiwen",
+      "family": "Xie",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0002-7675-6619",
+      "authenticated-orcid": false,
+      "given": "Guangyou",
+      "family": "Zhou",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Zhuo",
+      "family": "Zhao",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "ORCID": "https://orcid.org/0000-0003-1292-1491",
+      "authenticated-orcid": false,
+      "given": "Jimmy Xiangji",
+      "family": "Huang",
+      "sequence": "additional",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "issued": {
+    "date-parts": [
+      [
+        2025,
+        5
+      ]
+    ]
+  },
+  "container-title": [
+    "Information Processing &amp; Management"
+  ],
+  "volume": "62",
+  "issue": "3",
+  "page": "104074",
+  "publisher": "Elsevier BV",
+  "DOI": "10.1016/j.ipm.2025.104074",
+  "type": "journal-article"
+}

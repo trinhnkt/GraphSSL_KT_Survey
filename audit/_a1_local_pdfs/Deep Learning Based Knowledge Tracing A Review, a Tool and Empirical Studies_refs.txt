@@ -1,0 +1,459 @@
+LIU et al.: DEEP LEARNING BASED KNOWLEDGE TRACING: A REVIEW, A TOOL AND EMPIRICAL STUDIES
+4533
+guarantee that various methods are compared equitably and
+transparently. With this platform, we conduct empirical studies
+to evaluate the performance of the current mainstream DLKT
+algorithms in a fair and transparent environment. Finally, we
+outline the applications of KT techniques in the education as
+well as their future development directions.
+REFERENCES
+[1] L. Tetzlaff, F. Schmiedek, and G. Brod, “Developing personalized educa-
+tion: A dynamic framework,” Educ. Psychol. Rev., vol. 33, pp. 863–882,
+2021.
+[2] R. Reber, E. A. Canning, and J. M. Harackiewicz, “Personalized educa-
+tion to increase interest,” Curr. Directions Psychol. Sci., vol. 27, no. 6,
+pp. 449–454, 2018.
+[3] J.-J. Vie and H. Kashima, “Knowledge tracing machines: Factorization
+machines for knowledge tracing,” in Proc. AAAI Conf. Artif. Intell., 2019,
+pp. 750–757.
+[4] Y. Qiu, Y. Qi, H. Lu, Z. A. Pardos, and N. T. Heffernan, “Does time
+matter? modeling the effect of time with Bayesian knowledge tracing,”
+in Proc. 4th Int. Conf. Educ. Data Mining, 2011, pp. 139–148.
+[5] A. T. Corbett and J. R. Anderson, “Knowledge tracing: Modeling the ac-
+quisition of procedural knowledge,” User Model. User-Adapted Interact.,
+vol. 4, pp. 253–278, 1994.
+[6] A. Ghosh, N. Heffernan, and A. S. Lan, “Context-aware attentive knowl-
+edge tracing,” in Proc. 26th ACM SIGKDD Int. Conf. Knowl. Discov.
+Data Mining, 2020, pp. 2330–2339.
+[7] S. Pandey and G. Karypis, “A self-attentive model for knowledge trac-
+ing,” 2019, arXiv: 1907.06837.
+[8] C. Piech et al., “Deep knowledge tracing,” in Proc. Int. Conf. Neural Inf.
+Process. Syst., 2015, pp. 505–513.
+[9] S. Shen et al., “Convolutional knowledge tracing: Modeling individual-
+ization in student learning process,” in Proc. 43rd Int. ACM SIGIR Conf.
+Res. Develop. Inf. Retrieval, 2020, pp. 1857–1860.
+[10] J. Zhang, X. Shi, I. King, and D.-Y. Yeung, “Dynamic key-value memory
+networks for knowledge tracing,” in Proc. 26th Int. Conf. World Wide
+Web, 2017, pp. 765–774.
+[11] J. Lee and D.-Y. Yeung, “Knowledge query network for knowledge
+tracing: How knowledge interacts with skills,” in Proc. 9th Int. Conf.
+Learn. Analytics Knowl., 2019, pp. 491–500.
+[12] Q. Liu et al., “EKT: Exercise-aware knowledge tracing for student
+performance prediction,” IEEE Trans. Knowl. Data Eng., vol. 33, no. 1,
+pp. 100–115, Jan. 2021.
+[13] M. Dai, J.-L. Hung, X. Du, H. Tang, and H. Li, “Knowledge tracing: A
+review of available techniques,” J. Educ. Technol. Develop. Exchange,
+vol. 14, no. 2, pp. 1–20, 2021.
+[14] X. Song, J. Li, T. Cai, S. Yang, T. Yang, and C. Liu, “A survey on deep
+learning based knowledge tracing,” Knowl. Based Syst., vol. 258, 2022,
+Art. no. 110036.
+[15] G. Abdelrahman, Q. Wang, and B. Nunes, “Knowledge tracing: A sur-
+vey,” ACM Comput. Surv., vol. 55, no. 11, pp. 1–37, 2023.
+[16] Q. Liu, S. Shen, Z. Huang, E. Chen, and Y. Zheng, “A survey of
+knowledge tracing,” 2021, arXiv:2105.15106.
+[17] F. B. Baker, The Basics of Item Response Theory. Bloomington, IN, USA:
+ERIC, 2001.
+[18] G. Rasch, Probabilistic Models for Some Intelligence and Attainment
+Tests. Copenhagen, Denmark: Danish Inst. Educ. Res., 1960.
+[19] F. Lord and M. Novick, Statistical Theories of Mental Test Scores.
+Addison-Wesley: Addison-Wesley, 1968.
+[20] F. Samejima, “Estimation of latent ability using a response pattern of
+graded scores,” Psychometrika Monograph Suppl., vol. 34, pp. 1–97,
+1969.
+[21] E. Muraki, “A generalized partial credit model: Application of an EM
+algorithm,” Appl. Psychol. Meas., vol. 16, no. 2, pp. 159–176, 1992.
+[22] J. P. Leighton and M. J. Gierl, Cognitive Diagnostic Assessment for
+Education: Theory and Applications. Cambridge, U.K.: Cambridge Univ.
+Press, 2007.
+[23] K. K. Tatsuoka, “Rule space: An approach for dealing with misconcep-
+tionsbasedonitemresponsetheory,”J.Educ.Meas.,vol.20,pp.345–354,
+1983.
+[24] K. K. Tatsuoka, Cognitive Assessment: An Introduction to the Rule Space
+Method. Evanston, IL, USA: Routledge, 2009.
+[25] L. V. DiBello, L. A. Roussos, and W. Stout, “Review of cogni-
+tively diagnostic assessment and a summary of psychometric mod-
+els,” in Handbook of Statistics: Psychometrics, vol. 26, R. Rao
+and S. Sinharay, Eds. Amsterdam, The Netherlands: Elsevier, 2007,
+pp. 970–1030.
+[26] A. A. Rupp and J. Templin, “Unique characteristics of diagnostic classi-
+ﬁcation models: A comprehensive review of the current state-of-the-art,”
+Measurement, vol. 6, pp. 219–262, 2008.
+[27] J. de la Torre, “DINA model and parameter estimation: A didactic,” J.
+Educ. Behav. Statist., vol. 34, pp. 115–130, 2009.
+[28] B. W. Junker and K. Sijtsma, “Cognitive assessment models with few
+assumptions, and connections with nonparametric item response theory,”
+Appl. Psychol. Meas., vol. 25, pp. 258–272, 2001.
+[29] J. L. Templin and R. A. Henson, “Measurement of psychological disor-
+ders using cognitive diagnosis models,” Psychol. Methods, vol. 11, 2006,
+Art. no. 287.
+[30] J.delaTorre,“ThegeneralizedDINAmodelframework,”Psychometrika,
+vol. 76, pp. 179–199, 2011.
+[31] R. A. Henson, J. L. Templin, and J. T. Willse, “Deﬁning a family of
+cognitive diagnosis models using log-linear models with latent variables,”
+Psychometrika, vol. 74, 2009, Art. no. 191.
+[32] S. Shen, Z. Huang, Q. Liu, Y. Su, S. Wang, and E. Chen, “Assessing
+student’s dynamic knowledge state by exploring the question difﬁculty
+effect,” in Proc. 45th Int. ACM SIGIR Conf. Res. Develop. Inf. Retrieval,
+2022, pp. 427–437.
+[33] S. Sonkar, A. E. Waters, A. S. Lan, P. J. Grimaldi, and R. G. Bara-
+niuk, “qDKT: Question-centric deep knowledge tracing,” 2020, arXiv:
+2005.12442.
+[34] C.-K. Yeung, “Deep-IRT: Make deep learning based knowledge tracing
+explainable using item response theory,” 2019, arXiv: 1904.11738.
+[35] Z. Liu, Q. Liu, J. Chen, S. Huang, and W. Luo, “simpleKT: A simple but
+tough-to-beat baseline for knowledge tracing,” 2023, arXiv:2302.06881.
+[36] S. Huang, Z. Liu, X. Zhao, W. Luo, and J. Weng, “Towards robust
+knowledge tracing models via K-sparse attention,” in Proc. 46th Int. ACM
+SIGIR Conf. Res. Develop. Inf. Retrieval, 2023, pp. 2441–2445.
+[37] P. I. Pavlik, H. Cen, and K. R. Koedinger, “Performance factors analysis
+–A new alternative to knowledge tracing,” in Proc. 2009 Conf. Artif.
+Intell. Educ.: Building Learn. Syst. Care: Knowl. Representation Affect.
+Modelling, 2009, pp. 531–538.
+[38] S. Shen et al., “Learning process-consistent knowledge tracing,” in
+Proc. 27th ACM SIGKDD Conf. Knowl. Discov. Data Mining, 2021,
+pp. 1452–1460.
+[39] T. Guo et al., “Graduate employment prediction with bias,” in Proc. AAAI
+Conf. Artif. Intell., 2020, pp. 670–677.
+[40] P. Rodríguez, M. A. Bautista, J. Gonzalez, and S. Escalera, “Beyond
+one-hot encoding: Lower dimensional target embedding,” Image Vis.
+Comput., vol. 75, pp. 21–31, 2018.
+[41] A. Paszke et al., “PyTorch: An imperative style, high-performance deep
+learning library,” in Proc. Int. Conf. Neural Inf. Process. Syst., 2019,
+Art. no. 721.
+[42] S. Tong et al., “Structure-based knowledge tracing: An inﬂuence prop-
+agation view,” in Proc. 2020 IEEE Int. Conf. Data Mining, 2020,
+pp. 541–550.
+[43] H. Nakagawa, Y. Iwasawa, and Y. Matsuo, “Graph-based knowl-
+edge tracing: Modeling student proﬁciency using graph neural net-
+work,”
+in Proc. IEEE/WIC/ACM Int. Conf. Web Intell.,
+2019,
+pp. 156–163.
+[44] X. Song, J. Li, Q. Lei, W. Zhao, Y. Chen, and A. Mian, “Bi-CLKT:
+Bi-graph contrastive learning based knowledge tracing,” Knowl. Based
+Syst., vol. 241, 2022, Art. no. 108274.
+[45] X. Song, J. Li, Y. Tang, T. Zhao, Y. Chen, and Z. Guan, “JKT: A joint
+graph convolutional network based deep knowledge tracing,” Inf. Sci.,
+vol. 580, pp. 510–523, 2021.
+[46] S. Pu, M. Yudelson, L. Ou, and Y. Huang, “Deep knowledge tracing with
+transformers,” in Proc. 21st Int. Conf. Artif. Intell. Educ., Springer, 2020,
+pp. 252–256.
+[47] X. Guo, Z. Huang, J. Gao, M. Shang, M. Shu, and J. Sun, “Enhancing
+knowledge tracing via adversarial training,” in Proc. 29th ACM Int. Conf.
+Multimedia, 2021, pp. 367–375.
+[48] Y. Choi et al., “Towards an appropriate query, key, and value computation
+for knowledge tracing,” in Proc. 7th ACM Conf. Learn. Scale, 2020,
+pp. 341–344.
+[49] D. Shin, Y. Shim, H. Yu, S. Lee, B. Kim, and Y. Choi, “SAINT+:
+Integrating temporal features for EdNet correctness prediction,” in Proc.
+11th Int. Learn. Analytics Knowl. Conf., 2021, pp. 490–496.
+Authorized licensed use limited to: NASATI. Downloaded on September 13,2026 at 08:53:56 UTC from IEEE Xplore.  Restrictions apply. 
+
+4534
+IEEE TRANSACTIONS ON KNOWLEDGE AND DATA ENGINEERING, VOL. 37, NO. 8, AUGUST 2025
+[50] Y. Yang et al., “GIKT: A graph-based interaction model for knowledge
+tracing,” in Proc. Eur. Conf. Mach. Learn. Knowl. Discov. Databases,
+Springer, 2021, pp. 299–315.
+[51] W.-L. Chan and D.-Y. Yeung, “Clickstream knowledge tracing: Modeling
+how students answer interactive online questions,” in Proc. 11th Int.
+Learn. Analytics Knowl. Conf., 2021, pp. 99–109.
+[52] M. Zhang, X. Zhu, C. Zhang, Y. Ji, F. Pan, and C. Yin, “Multi-factors
+aware dual-attentional knowledge tracing,” in Proc. 30th ACM Int. Conf.
+Inf. Knowl. Manage., 2021, pp. 2588–2597.
+[53] K. Nagatani, Q. Zhang, M. Sato, Y.-Y. Chen, F. Chen, and T. Ohkuma,
+“Augmenting knowledge tracing by considering forgetting behavior,” in
+Proc. World Wide Web Conf., 2019, pp. 3101–3107.
+[54] Y. Liu, Y. Yang, X. Chen, J. Shen, H. Zhang, and Y. Yu, “Improving
+knowledge tracing via pre-training question embeddings,” 2020, arXiv:
+2012.05031.
+[55] T. Long, Y. Liu, J. Shen, W. Zhang, and Y. Yu, “Tracing knowledge state
+with individual cognition and acquisition estimation,” in Proc. 44th Int.
+ACM SIGIR Conf. Res. Develop. Inf. Retrieval, 2021, pp. 173–182.
+[56] T. Mikolov, K. Chen, G. Corrado, and J. Dean, “Efﬁcient estimation of
+word representations in vector space,” 2013, arXiv:1301.3781.
+[57] J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, “BERT: Pre-
+training of deep bidirectional transformers for language understanding,”
+2018, arXiv: 1810.04805.
+[58] Y. Su et al., “Exercise-enhanced sequential modeling for student perfor-
+mance prediction,” in Proc. AAAI Conf. Artif. Intell., 2018, Art. no. 297.
+[59] S. Siami-Namini, N. Tavakoli, and A. S. Namin, “The performance of
+LSTM and BiLSTM in forecasting time series,” in Proc. 2019 IEEE Int.
+Conf. Big Data, 2019, pp. 3285–3292.
+[60] S. Cheng et al., “AdaptKT: A domain adaptable method for knowledge
+tracing,” in Proc. 15th ACM Int. Conf. Web Search Data Mining, 2022,
+pp. 123–131.
+[61] P. Bojanowski, E. Grave, A. Joulin, and T. Mikolov, “Enriching word
+vectors with subword information,” Trans. Assoc. Comput. Linguistics,
+vol. 5, pp. 135–146, 2017.
+[62] H. Tong, Y. Zhou, and Z. Wang, “Exercise hierarchical feature enhanced
+knowledge tracing,” in Proc. 21st Int. Conf. Artif. Intell. Educ., Springer,
+2020, pp. 324–328.
+[63] S. Arora, Y. Liang, and T. Ma, “A simple but tough-to-beat baseline for
+sentence embeddings,” in Proc. Int. Conf. Learn. Representations, 2017,
+pp. 1–16.
+[64] Y. Yin et al., “QuesNet: A uniﬁed representation for heterogeneous test
+questions,” in Proc. 25th ACM SIGKDD Int. Conf. Knowl. Discov. Data
+Mining, 2019, pp. 1328–1336.
+[65] T. Huang, M. Liang, H. Yang, Z. Li, T. Yu, and S. Hu, “Context-aware
+knowledge tracing integrated with the exercise representation and asso-
+ciation in mathematics,” Int. Educ. Data Mining Soc, 2021 pp. 360–366.
+[66] Z. Wang, X. Feng, J. Tang, G. Y. Huang, and Z. Liu, “Deep knowledge
+tracing with side information,” in Proc. 20th Int. Conf. Artif. Intell. Educ.,
+Springer, 2019, pp. 303–308.
+[67] J. Tang, M. Qu, M. Wang, M. Zhang, J. Yan, and Q. Mei, “LINE: Large-
+scale information network embedding,” in Proc. 24th Int. Conf. World
+Wide Web, 2015, pp. 1067–1077.
+[68] A. Grover and J. Leskovec, “node2vec: Scalable feature learning for
+networks,” in Proc. 22nd ACM SIGKDD Int. Conf. Knowl. Discov. Data
+Mining, 2016, pp. 855–864.
+[69] H. Tong, Z. Wang, Y. Zhou, S. Tong, W. Han, and Q. Liu, “HGKT: Intro-
+ducing hierarchical exercise graph for knowledge tracing,” 2020, arXiv:
+2006.16915.
+[70] Y. LeCun, Y. Bengio, and G. Hinton, “Deep learning,” Nature, vol. 521,
+no. 7553, pp. 436–444, 2015.
+[71] J. Schmidhuber, “Deep learning in neural networks: An overview,”
+Neural Netw., vol. 61, pp. 85–117, 2015.
+[72] Z. C. Lipton, J. Berkowitz, and C. Elkan, “A critical review of recurrent
+neural networks for sequence learning,” 2015, arXiv:1506.00019.
+[73] A. Graves and A. Graves, “Long short-term memory,” in Supervised
+Sequence Labelling With Recurrent Neural Networks. Berlin, Germany:
+Springer, 2012, pp. 37–45.
+[74] C.-K. Yeung and D.-Y. Yeung, “Addressing two problems in deep knowl-
+edge tracing via prediction-consistent regularization,” in Proc. 5th Annu.
+ACM Conf. Learn. Scale, 2018, pp. 1–10.
+[75] Z. Huang et al., “Learning or forgetting? A dynamic approach for tracking
+the knowledge proﬁciency of students,” ACM Trans. Inf. Syst., vol. 38,
+no. 2, pp. 1–33, 2020.
+[76] B. Ma, G. P. Hettiarachchi, S. Fukui, and Y. Ando, “Each encounter
+counts: Modeling language learning and forgetting,” in Proc. 13th Int.
+Learn. Analytics Knowl. Conf., 2023, pp. 79–88.
+[77] B. Chofﬁn, F. Popineau, Y. Bourda, and J.-J. Vie, “DAS3H: Modeling stu-
+dent learning and forgetting for optimally scheduling distributed practice
+of skills,” in Proc. Int. Conf. Educ. Data Mining, 2019, pp. 1–10.
+[78] X. Xiong, S. Zhao, E. G. Van Inwegen, and J. E. Beck, “Going deeper with
+deep knowledge tracing,” Int. Educ. Data Mining Soc., 2016 pp. 545–550.
+[79] Y. Lu, D. Wang, Q. Meng, and P. Chen, “Towards interpretable deep
+learning models for knowledge tracing,” in Proc. 21st Int. Conf. Artif.
+Intell. Educ., Springer, 2020, pp. 185–190.
+[80] S. Minn, Y. Yu, M. C. Desmarais, F. Zhu, and J.-J. Vie, “Deep
+knowledge tracing and dynamic student classiﬁcation for knowl-
+edge tracing,” in Proc. 2018 IEEE Int. Conf. Data Mining, 2018,
+pp. 1182–1187.
+[81] J. Chen, Z. Liu, S. Huang, Q. Liu, and W. Luo, “Improving interpretabil-
+ity of deep sequential knowledge tracing models with question-centric
+cognitive representations,” 2023, arXiv:2302.06885.
+[82] A. Miller, A. Fisch, J. Dodge, A.-H. Karimi, A. Bordes, and J. We-
+ston, “Key-value memory networks for directly reading documents,”
+2016, arXiv:1606.03126.
+[83] G. Abdelrahman and Q. Wang, “Knowledge tracing with sequential
+key-value memory networks,” in Proc. 42nd Int. ACM SIGIR Conf. Res.
+Develop. Inf. Retrieval, 2019, pp. 175–184.
+[84] F. Ai et al., “Concept-aware deep knowledge tracing and exercise recom-
+mendation in an online learning system,” Int. Educ. Data Mining Soc.,
+2019, pp. 175–184.
+[85] J. Zhao, S. Bhatt, C. Thille, N. Gattani, and D. Zimmaro, “Cold start
+knowledge tracing with attentive neural turing machine,” in Proc. 7th
+ACM Conf. Learn. Scale, 2020, pp. 333–336.
+[86] A. Vaswani et al., “Attention is all you need,” in Proc. Int. Conf. Neural
+Inf. Process. Syst., 2017, pp. 5998–6008.
+[87] S. Pandey and J. Srivastava, “RKT: Relation-aware self-attention for
+knowledge tracing,” in Proc. 29th ACM Int. Conf. Inf. Knowl. Manage.,
+2020, pp. 1205–1214.
+[88] Y. Zhou, X. Li, Y. Cao, X. Zhao, Q. Ye, and J. Lv, “LANA: Towards
+personalized deep knowledge tracing through distinguishable interactive
+sequences,” 2021, arXiv:2105.06266.
+[89] T. Long et al., “Improving knowledge tracing with collaborative infor-
+mation,” in Proc. 15th ACM Int. Conf. Web Search Data Mining, 2022,
+pp. 599–607.
+[90] A. G. Hawkes, “Spectra of some self-exciting and mutually exciting point
+processes,” Biometrika, vol. 58, no. 1, pp. 83–90, 1971.
+[91] C. Wang et al., “Temporal cross-effects in knowledge tracing,” in Proc.
+14th ACM Int. Conf. Web Search Data Mining, 2021, pp. 517–525.
+[92] G. Abdelrahman and Q. Wang, “Deep graph memory networks for
+forgetting-robust knowledge tracing,” IEEE Trans. Knowl. Data Eng.,
+vol. 35, no. 8, pp. 7844–7855, Aug. 2023.
+[93] L. Zhang, X. Xiong, S. Zhao, A. Botelho, and N. T. Heffernan, “Incor-
+porating rich features into deep knowledge tracing,” in Proc. 4th ACM
+Conf. Learn. Scale, 2017, pp. 169–172.
+[94] P. Chen, Y. Lu, V. W. Zheng, and Y. Pian, “Prerequisite-driven deep
+knowledge tracing,” in Proc. 2018 IEEE Int. Conf. Data Mining, 2018,
+pp. 39–48.
+[95] E. Jang, S. Gu, and B. Poole, “Categorical reparameterization with
+gumbel-softmax,” in Proc. Int. Conf. Learn. Representations, 2016,
+pp. 1–13.
+[96] A. Ghosh, J. Raspat, and A. Lan, “Option tracing: Beyond correctness
+analysis in knowledge tracing,” in Proc. Int. Conf. Artif. Intell. Educ.,
+Springer, 2021, pp. 137–149.
+[97] Z. Liu, Q. Liu, J. Chen, S. Huang, J. Tang, and W. Luo, “pyKT: A python
+library to benchmark deep learning based knowledge tracing models,” in
+Proc. Int. Conf. Neural Inf. Process. Syst., 2022, pp. 18542–18555.
+[98] W. Lee, J. Chun, Y. Lee, K. Park, and S. Park, “Contrastive learning for
+knowledge tracing,” in Proc. ACM Web Conf., 2022, pp. 2330–2338.
+[99] Y. Zhao, H. Ma, J. Wang, X. He, and L. Chang, “Question-response rep-
+resentation with dual-level contrastive learning for improving knowledge
+tracing,” Inf. Sci., vol. 658, 2024, Art. no. 120032.
+[100] Y. Yin et al., “Tracing knowledge instead of patterns: Stable knowledge
+tracing with diagnostic transformer,” in Proc. ACM Web Conf., 2023,
+pp. 855–864.
+[101] Z. Liu et al., “Enhancing deep knowledge tracing with auxiliary tasks,”
+in Proc. World Wide Web Conf., 2023, pp. 4178–4187.
+[102] S. Oxman, W. Wong, and D. Innovations, “White paper: Adaptive learn-
+ing systems,” 2014.
+[103] S. Shehata, D. S. Calonge, P. Purnell, and M. Thompson, “Enhancing
+video-based learning using knowledge tracing: Personalizing students’
+learning experience with orbits,” in Proc. 18th Workshop Innov. Use NLP
+Building Educ. Appl., 2023, pp. 100–107.
+Authorized licensed use limited to: NASATI. Downloaded on September 13,2026 at 08:53:56 UTC from IEEE Xplore.  Restrictions apply. 
+
+LIU et al.: DEEP LEARNING BASED KNOWLEDGE TRACING: A REVIEW, A TOOL AND EMPIRICAL STUDIES
+4535
+[104] Wikipedia contributors, “Intelligent tutoring system — Wikipedia, the
+free encyclopedia,” 2025. Accessed: Jan. 14, 2025. [Online]. Available:
+https://en.wikipedia.org/wiki/Intelligent_tutoring_system
+[105] V. J. Shute, M. Ventura, and Y. J. Kim, “Assessment and learning of
+qualitative physics in Newton’s playground,” J. Educ. Res., vol. 106,
+no. 6, pp. 423–430, 2013.
+[106] Y. Cui, M.-W. Chu, and F. Chen, “Analyzing student process data in
+game-based assessments with Bayesian knowledge tracing and dynamic
+Bayesian networks,” J. Educ. Data Mining, vol. 11, no. 1, pp. 80–100,
+Jun. 2019.
+[107] P. Kantharaju, K. Alderfer, J. Zhu, B. Char, B. Smith, and S. Ontanon,
+“Tracing player knowledge in a parallel programming educational game,”
+in Proc. AAAI Conf. Artif. Intell. Interactive Digit. Entertainment, 2018,
+pp. 173–179. [Online]. Available: https://ojs.aaai.org/index.php/AIIDE/
+article/view/13038
+[108] W. Ma, O. O. Adesope, J. C. Nesbit, and Q. Liu, “Intelligent tutoring
+systems and learning outcomes: A meta-analysis,” J. Educ. Psychol.,
+vol. 106, no. 4, 2014, Art. no. 901.
+[109] R. S. D. Baker et al., “Contextual slip and prediction of student perfor-
+mance after use of an intelligent tutor,” in Proc. 18th Int. Conf. User
+Model. Adapt. Personalization, Springer, 2010, pp. 52–63.
+[110] Y. Mao, “Deep learning vs. Bayesian knowledge tracing: Student models
+for interventions,” J. Educ. Data Mining, vol. 10, no. 2, pp. 28–54, 2018.
+[111] J. A. Marsh and C. C. Farrell, “How leaders can support teachers with
+data-driven decision making: A framework for understanding capacity
+building,” Educ. Manage. Admin. Leadership, vol. 43, no. 2, pp. 269–289,
+2015.
+[112] C. Fischer et al., “Mining big data in education: Affordances and chal-
+lenges,” Rev. Res. Educ., vol. 44, no. 1, pp. 130–160, 2020.
+[113] C. Romero and S. Ventura, “Data mining in education,” WIREs Data
+Mining Knowl. Discov., vol. 3, no. 1, pp. 12–27, 2013.
+[114] Y. Lu, D. Wang, Q. Meng, and P. Chen, “Towards interpretable deep
+learning models for knowledge tracing,” in Proc. 21st Int. Conf. Artif.
+Intell. Educ., 2020, pp. 185–190.
+[115] X. Ding and E. C. Larson, “On the interpretability of deep learning based
+models for knowledge tracing,” 2021, arXiv:2101.11335.
+[116] H. Zhang, Z. Liu, C. Shang, D. Li, and Y. Jiang, “A question-centric
+multi-experts contrastive learning framework for improving the accu-
+racy and interpretability of deep sequential knowledge tracing models,”
+2024, arXiv:2403.07322.
+[117] J. Chen, Z. Liu, S. Huang, Q. Liu, and W. Luo, “Improving interpretabil-
+ity of deep sequential knowledge tracing models with question-centric
+cognitive representations,” in Proc. AAAI Conf. Artif. Intell., 2023,
+pp. 14196–14204.
+[118] W. Contributors, “Intelligent tutoring system — Wikipedia, the free
+Encyclopedia,” 2025. Accessed: Jan. 14, 2025. [Online]. Available:
+https://en.wikipedia.org/wiki/Intelligent_tutoring_system
+Zitao Liu (Member, IEEE) is the dean with the
+Guangdong Institute of Smart Education, Jinan Uni-
+versity, Guangzhou, China. His research is in the area
+of machine learning, and includes contributions in
+the areas of artiﬁcial intelligence in education and
+educational data mining. He has published more than
+80 papers in highly ranked conference proceedings,
+such as NeurIPS, CVPR, AAAI, WWW, etc. and his
+applied research has resulted in more than 40 technol-
+ogy transfer and patents. He serves as the Executive
+Committee of the International AI in Education Soci-
+ety and the program co-chairs of the 25th International Conference on Artiﬁcial
+Intelligence in Education (AIED 2024).
+Teng Guo received the PhD degree from the Dalian
+University of Technology. He is an assistant professor
+with the Guangdong Institute of Smart Education,
+Jinan University, Guangzhou, China. His research
+interests include data mining, smart education, and
+large language models. He has published more than
+20 papers in highly-ranked conference proceedings
+and journals, including AAAI, NeurIPS, and WWW,
+etc. He serves as the Vitual Experience co-chairs of
+the 25th International Conference on Artiﬁcial Intel-
+ligence in Education (AIED 2024).
+Qianru Liang is an assistant professor with the
+Guangdong Institute of Smart Education, Jinan Uni-
+versity, Guangzhou, China. Her research interests in-
+clude educational assessment, psychometric models,
+cognitive diagnosis models, digital literacy, 21st cen-
+tury skills, and student well-being. She has published
+papers in educational journals and conferences such
+as the Computers in Human Behavior, Journal of
+Educational and Behavioral Statistics, AERA, and
+NCME. Notable projects in her portfolio include as-
+sessing students’ digital literacy learning trajectories
+and exploring strategies/interventions to enhance students’ well-being in real-
+world and digital environments.
+Mingliang Hou received the MSc degree from Shan-
+dong University, and the PhD degree from the Dalian
+University of Technology, China. He is currently a
+joint training postdoctoral researcher with the Guang-
+dong Institute of Smart Education, Jinan University
+and the TAL Education Group. His research interests
+include smart education, social computing, and large
+language models.
+Bojun Zhan is currently working toward the master’s
+degree with the School of Cyberspace Security, Jinan
+University, Guangzhou, China. His research interests
+include artiﬁcial intelligence in education, knowledge
+tracing, and natural language processing.
+Jiliang Tang received the PhD degree from Arizona
+State University, in 2015. He is an associate professor
+with the Computer Science and Engineering Depart-
+ment,MichiganStateUniversity.Beforethat,hewasa
+research scientist with Yahoo Research. His research
+focuses on data mining, machine learning and their
+applications on social, web, and education domains.
+He was the recipient of the 2021 ACSIC Rising Star
+Award, 2021 IEEE Big Data Security Junior Research
+Award,2020ACMSIGKDDRisingStarAward,2020
+Distinguished Withrow Research Award, 2019 NSF
+Career Award and 7 best paper (or runner up) awards including KDD2015 and
+WSDM2018. His dissertation won the 2015 KDD Best Dissertation runner-up
+and Dean’s Dissertation Award. He has served as the editors and the organizers
+in prestigious journals (e.g., the ACM Transactions on Knowledge Discovery
+from Data) and conferences (e.g., KDD, WSDM, and SDM). He has ﬁled more
+than 10 US patents and has published his research in highly ranked journals and
+top conference proceedings, which received more than 30,000 citations with
+h-index 88 and extensive media coverage. More details about him can be found
+at https://www.cse.msu.edu/∼tangjili/.
+Authorized licensed use limited to: NASATI. Downloaded on September 13,2026 at 08:53:56 UTC from IEEE Xplore.  Restrictions apply. 
+
+4536
+IEEE TRANSACTIONS ON KNOWLEDGE AND DATA ENGINEERING, VOL. 37, NO. 8, AUGUST 2025
+Weiqi Luo received the BS degree from Jinan Uni-
+versity, Guangzhou, in 1982, and the PhD degree
+from the South China University of Technology, in
+2000. Currently, he is a professor with the School
+of Information Science and Technology, Guangdong
+Institute of Smart Education, Jinan University. His
+research interests include network security, artiﬁcial
+intelligence, smart education, and Big Data. He has
+published more than 100 high-quality papers in inter-
+national journals and conferences.
+Jian Weng received the BS and MS degrees from the
+South China University of Technology, in 2001 and
+2004,respectively,andthePhDdegreefromShanghai
+Jiao Tong University, in 2008. He is a professor and
+the executive dean with the College of Information
+Science and Technology, Jinan University. His re-
+search areas include public key cryptography, cloud
+security, blockchain, etc. He has published 80 pa-
+pers in international conferences and journals such as
+CRYPTO, EUROCRYPT, ASIACRYPT, TCC, PKC,
+CT-RSA, IEEE Transactions on Pattern Analysis and
+Machine Intelligence, IEEE Transactions on Dependable and Secure Comput-
+ing, etc. He also serves as associate editor of IEEE Transactions on Vehicular
+Technology. He received the Ding Ying Science and Technology Award from
+Guangdong Province in 2023. He received the Young Scientists Fund of the
+National Natural Science Foundation of China in 2018, and the Cryptography
+Innovation Award from Chinese Association for Cryptologic Research (CACR)
+in 2015.
+Authorized licensed use limited to: NASATI. Downloaded on September 13,2026 at 08:53:56 UTC from IEEE Xplore.  Restrictions apply. 

@@ -1,0 +1,212 @@
+Neural Networks 185 (2025) 107164
+12
+X. Sun et al.
+more accurate assessment of students’ programming skills. Addition-
+ally, this study does not delve into advanced mechanisms for grammar
+and code quality scoring. The model’s performance might be influ-
+enced by student backgrounds and teaching environments, affecting
+its reliability. The choice of datasets is another limitation, as it only
+includes a few popular programming languages, potentially limiting
+the model’s generalizability. Future research should explore diverse
+datasets, cross-dataset validation, and contextual factors to enhance the
+model’s robustness.
+CRediT authorship contribution statement
+Xinjie Sun: Writing – review & editing, Writing – original draft,
+Visualization, Methodology, Formal analysis. Qi Liu: Writing – original
+draft, Resources, Funding acquisition. Kai Zhang: Software, Fund-
+ing acquisition. Shuanghong Shen: Visualization, Software, Methodol-
+ogy. Yan Zhuang: Supervision, Software. Yuxiang Guo: Visualization,
+Supervision.
+Declaration of competing interest
+The authors declare that they have no known competing finan-
+cial interests or personal relationships that could have appeared to
+influence the work reported in this paper.
+Acknowledgments
+This work was supported by Guizhou Provincial Science and Tech-
+nology Projects (QKHJC[2024]youth012); Guizhou Provincial Higher
+Education Undergraduate Teaching Content and Curriculum System
+Reform Project under Grants GZJG2024331 and GZJG2024323; the
+National Natural Science Foundation of China under Grants 62337001,
+62406303, 62261034, and 62177031; Guizhou Province First-Class
+Undergraduate Course under Grant GZSy1kc202229; Anhui Provincial
+Natural Science Foundation under Grant 2308085QF229; Anhui Sci-
+ence and Technology Innovation Plan under Grant 202423k09020010;
+the Fundamental Research Funds for the Central Universities under
+Grant WK2150110034; Humanities and Social Sciences Research Project
+of Guizhou Provincial Universities under Grant 2024RW171; and
+Guizhou Provincial Philosophy and Social Science Research Special
+Fund (Research on the Spirit of the National Education Conference).
+Data availability
+Data will be made available on request.
+References
+Abdelrahman, Ghodai, & Wang, Qing (2019). Knowledge tracing with sequential
+key-value memory networks. In Proceedings of the 42nd international ACM SIGIR
+conference on research and development in information retrieval (pp. 175–184).
+Alon, Uri, Zilberstein, Meital, Levy, Omer, & Yahav, Eran (2019). Code2vec: Learn-
+ing distributed representations of code. Proceedings of the ACM on Programming
+Languages, 3(POPL), 1–29.
+Ashurova, M. M., & Ashurov, M. U. (2023). The role and significance of the concepts
+of hard skill and soft skill in teaching it and programming languages. Journal of
+Pedagogical Inventions and Practices, 18, 68–70.
+Brown, Neil C. C., Kölling, Michael, Kyfonidis, Charalampos, & Weill-Tessier, Pierre
+(2022). Getting started with source code analysis for programming education
+research. In Proceedings of the 53rd ACM technical symposium on computer science
+education v. 2 (pp. 1195–1195).
+Castro-Wunsch, Karo, Ahadi, Alireza, & Petersen, Andrew (2017). Evaluating neural
+networks as a method for identifying students in need of assistance. In Proceedings
+of the 2017 ACM SIGCSE technical symposium on computer science education (pp.
+111–116).
+Chen, Jiahao, Liu, Zitao, Huang, Shuyan, Liu, Qiongqiong, & Luo, Weiqi (2023).
+Improving interpretability of deep sequential knowledge tracing models with
+question-centric cognitive representations. arXiv preprint arXiv:2302.06885.
+Cheung, Lap Pong, & Yang, Haiqin (2017). Heterogeneous features integration in deep
+knowledge tracing. In Neural information processing: 24th international conference,
+ICONIP 2017, Guangzhou, China, November 14-18, 2017, proceedings, part II 24 (pp.
+653–662). Springer.
+Choi, Wan-Chong, Lam, Chan-Tong, & Mendes, António José (2023). A systematic liter-
+ature review on performance prediction in learning programming using educational
+data mining. In 2023 IEEE frontiers in education conference (pp. 1–9). IEEE.
+Corbett, Albert T., & Anderson, John R. (1994). Knowledge tracing: Modeling the
+acquisition of procedural knowledge. User Modeling and User-Adapted Interaction,
+4, 253–278.
+Cox, David R. (1958). The regression analysis of binary sequences. Journal of the Royal
+Statistical Society. Series B. Statistical Methodology, 20(2), 215–232.
+Devlin, Jacob, Chang, Ming-Wei, Lee, Kenton, & Toutanova, Kristina (2018). Bert:
+Pre-training of deep bidirectional transformers for language understanding. arXiv
+preprint arXiv:1810.04805.
+Feng, Zhangyin, Guo, Daya, Tang, Duyu, Duan, Nan, Feng, Xiaocheng, Gong, Ming, et
+al. (2020). Codebert: A pre-trained model for programming and natural languages.
+arXiv preprint arXiv:2002.08155.
+Gao, Ge, Marwan, Samiha, & Price, Thomas W. (2021). Early performance prediction
+using interpretable patterns in programming process data. In Proceedings of the 52nd
+ACM technical symposium on computer science education (pp. 342–348).
+Ghosh, Aritra, Heffernan, Neil, & Lan, Andrew S. (2020). Context-aware attentive
+knowledge tracing. In Proceedings of the 26th ACM SIGKDD international conference
+on knowledge discovery & data mining (pp. 2330–2339).
+Guo, Daya, Ren, Shuo, Lu, Shuai, Feng, Zhangyin, Tang, Duyu, Liu, Shujie, et al. (2020).
+Graphcodebert: Pre-training code representations with data flow. arXiv preprint
+arXiv:2009.08366.
+Hermans, Felienne (2020). Hedy: a gradual language for programming education. In
+Proceedings of the 2020 ACM conference on international computing education research
+(pp. 259–270).
+Hinton, Geoffrey E., & Salakhutdinov, Ruslan R. (2006). Reducing the dimensionality
+of data with neural networks. Science, 313(5786), 504–507.
+Hinton, G., & Van Der Maaten, L. (2008). Visualizing data using t-sne journal of
+machine learning research. Journal of Machine Learning Research, 9, 2579–2605.
+Huang, Yun, Brusilovsky, Peter, Guerra, Julio, Koedinger, Kenneth, & Schunn, Christian
+(2023). Supporting skill integration in an intelligent tutoring system for code
+tracing. Journal of Computer Assisted Learning, 39(2), 477–500.
+Huang, Changqin, Wei, Hangjie, Huang, Qionghao, Jiang, Fan, Han, Zhongmei, &
+Huang, Xiaodi (2024). Learning consistent representations with temporal and
+causal enhancement for knowledge tracing. Expert Systems with Applications, Article
+123128.
+Iyer, Srinivasan, Konstas, Ioannis, Cheung, Alvin, & Zettlemoyer, Luke (2016). Sum-
+marizing source code using a neural attention model. In 54th annual meeting of
+the association for computational linguistics 2016 (pp. 2073–2083). Association for
+Computational Linguistics.
+Kasurinen, Jussi, & Nikula, Uolevi (2009). Estimating programming knowledge with
+Bayesian knowledge tracing. ACM SIGCSE Bulletin, 41(3), 313–317.
+Keuning, Hieke, Jeuring, Johan, & Heeren, Bastiaan (2023). A systematic mapping study
+of code quality in education. In Proceedings of the 2023 conference on innovation and
+technology in computer science education v. 1 (pp. 5–11).
+Li, Ruixin, Yin, Yu, Dai, Le, Shen, Shuanghong, Lin, Xin, Su, Yu, et al. (2022). PST:
+measuring skill proficiency in programming exercise process via programming skill
+tracing. In Proceedings of the 45th international ACM SIGIR conference on research
+and development in information retrieval (pp. 2601–2606).
+Lindberg, Renny S. N., Laine, Teemu H., & Haaranen, Lassi (2019). Gamifying
+programming education in K-12: A review of programming curricula in seven
+countries and programming games. British Journal of Educational Technology, 50(4),
+1979–1995.
+Liu, Qi, Huang, Zhenya, Yin, Yu, Chen, Enhong, Xiong, Hui, Su, Yu, et al. (2019).
+Ekt: Exercise-aware knowledge tracing for student performance prediction. IEEE
+Transactions on Knowledge and Data Engineering, 33(1), 100–115.
+Liu, Naiming, Wang, Zichao, Baraniuk, Richard, & Lan, Andrew (2022). Open-ended
+knowledge tracing for computer science education. In Proceedings of the 2022
+conference on empirical methods in natural language processing.
+Marjan, Md Abu, Uddin, Md Palash, & Ibn Afjal, Masud (2023). An educational data
+mining system for predicting and enhancing tertiary students’ programming skill.
+The Computer Journal, 66(5), 1083–1101.
+Messer, Marcus, Brown, Neil C. C., Kölling, Michael, & Shi, Miaojing (2024). Automated
+grading and feedback tools for programming education: A systematic review. ACM
+Transactions on Computing Education, 24(1), 1–43.
+Minn, Sein, Yu, Yi, Desmarais, Michel C., Zhu, Feida, & Vie, Jill-Jenn (2018). Deep
+knowledge tracing and dynamic student classification for knowledge tracing. In
+2018 IEEE international conference on data mining (pp. 1182–1187). IEEE.
+Nakagawa, Hiromi, Iwasawa, Yusuke, & Matsuo, Yutaka (2019). Graph-based knowl-
+edge tracing: modeling student proficiency using graph neural network. In
+IEEE/WIC/ACM international conference on web intelligence (pp. 156–163).
+Pandey, Shalini, & Karypis, George (2019). A self-attentive model for knowledge
+tracing. arXiv preprint arXiv:1907.06837.
+Piech, Chris, Bassen, Jonathan, Huang, Jonathan, Ganguli, Surya, Sahami, Mehran,
+Guibas, Leonidas J., et al. (2015). Deep knowledge tracing. Advances in Neural
+Information Processing Systems, 28.
+
+Neural Networks 185 (2025) 107164
+13
+X. Sun et al.
+Qureshi, Muhammad Aasim, Asif, Muhammad, & Anwar, Saira (2023). NewBee:
+Context-free grammar (CFG) of a new programming language for novice
+programmers. Intelligent Automation and Soft Computing, 37(1), 439–453.
+Rivers, Kelly, Harpstead, Erik, & Koedinger, Kenneth R. (2016). Learning curve analysis
+for programming: Which concepts do students struggle with? In ICER: vol. 16, (pp.
+143–151). ACM.
+Shen, Shuanghong, Chen, Enhong, Liu, Qi, Huang, Zhenya, Huang, Wei, Yin, Yu, et
+al. (2022). Monitoring student progress for learning process-consistent knowledge
+tracing. IEEE Transactions on Knowledge and Data Engineering.
+Shen, Shuanghong, Huang, Zhenya, Liu, Qi, Su, Yu, Wang, Shijin, & Chen, Enhong
+(2022). Assessing student’s dynamic knowledge state by exploring the question
+difficulty effect. In Proceedings of the 45th international ACM SIGIR conference on
+research and development in information retrieval (pp. 427–437).
+Shen, Shuanghong, Liu, Qi, Huang, Zhenya, Zheng, Yonghe, Yin, Minghao, Wang, Min-
+juan, et al. (2024). A survey of knowledge tracing: Models, variants, and
+applications. IEEE Transactions on Learning Technologies.
+Shi, Yang, Chi, Min, Barnes, Tiffany, & Price, Thomas (2022). Code-DKT: A code-based
+knowledge tracing model for programming tasks. arXiv preprint arXiv:2206.03545.
+Shi, Yang, Schmucker, Robin, Chi, Min, Barnes, Tiffany, & Price, Thomas (2023). KC-
+finder: Automated knowledge component discovery for programming problems.
+International Educational Data Mining Society.
+Sonkar, Shashank, Waters, Andrew E., Lan, Andrew S., Grimaldi, Phillip J., & Bara-
+niuk, Richard G. (2020). Qdkt: Question-centric deep knowledge tracing. arXiv
+preprint arXiv:2005.12442.
+Sun, Xinjie, Zhang, Kai, Shen, Shuanghong, Wang, Fei, Guo, Yuxiang, & Liu, Qi (2024).
+Target hierarchy-guided knowledge tracing: Fine-grained knowledge state modeling.
+Expert Systems with Applications, Article 123898.
+Sun, Xia, Zhao, Xu, Li, Bo, Ma, Yuan, Sutcliffe, Richard, & Feng, Jun (2021).
+Dynamic key-value memory networks with rich features for knowledge tracing.
+IEEE Transactions on Cybernetics, 52(8), 8239–8245.
+Svyatkovskiy, Alexey, Deng, Shao Kun, Fu, Shengyu, & Sundaresan, Neel (2020).
+Intellicode compose: Code generation using transformer. In Proceedings of the 28th
+ACM joint meeting on European software engineering conference and symposium on the
+foundations of software engineering (pp. 1433–1443).
+Wang, Fei, Huang, Zhenya, Liu, Qi, Chen, Enhong, Yin, Yu, Ma, Jianhui, et al. (2023).
+Dynamic cognitive diagnosis: An educational priors-enhanced deep knowledge
+tracing perspective. IEEE Transactions on Learning Technologies.
+Wang, Fei, Liu, Qi, Chen, Enhong, Huang, Zhenya, Yin, Yu, Wang, Shijin, et al.
+(2022). NeuralCD: a general framework for cognitive diagnosis. IEEE Transactions
+on Knowledge and Data Engineering.
+Wang, Lisa, Sy, Angela, Liu, Larry, & Piech, Chris (2017). Deep knowledge tracing
+on programming exercises. In Proceedings of the fourth (2017) ACM conference on
+learning@ scale (pp. 201–204).
+Yang, Yang, Shen, Jian, Qu, Yanru, Liu, Yunfei, Wang, Kerong, Zhu, Yaoming, et al.
+(2021). GIKT: a graph-based interaction model for knowledge tracing. In Machine
+learning and knowledge discovery in databases: European conference, ECML PKDD 2020,
+Ghent, Belgium, September 14–18, 2020, proceedings, part I (pp. 299–315). Springer.
+Zaremba, Wojciech, & Sutskever, Ilya (2014). Learning to execute. arXiv preprint
+arXiv:1410.4615.
+Zhang, Kaizhong, & Shasha, Dennis (1989). Simple fast algorithms for the editing
+distance between trees and related problems. SIAM Journal on Computing, 18(6),
+1245–1262.
+Zhang, Jiani, Shi, Xingjian, King, Irwin, & Yeung, Dit-Yan (2017). Dynamic key-value
+memory networks for knowledge tracing. In Proceedings of the 26th international
+conference on world wide web (pp. 765–774).
+Zhang, Jian, Wang, Xu, Zhang, Hongyu, Sun, Hailong, Wang, Kaixuan, & Liu, Xudong
+(2019). A novel neural source code representation based on abstract syntax tree. In
+2019 IEEE/ACM 41st international conference on software engineering (pp. 783–794).
+IEEE.
+Zhang, Zheng, Wu, Le, Liu, Qi, Liu, Jiayu, Huang, Zhenya, Yin, Yu, et al. (2023). Un-
+derstanding and improving fairness in cognitive diagnosis. Science China Information
+Sciences.
+Zhu, Renyu, Zhang, Dongxiang, Han, Chengcheng, Gaol, Ming, Lu, Xuesong,
+Qian, Weining, et al. (2022). Programming knowledge tracing: A comprehensive
+dataset and a new model. In 2022 IEEE international conference on data mining
+workshops (pp. 298–307). IEEE.
