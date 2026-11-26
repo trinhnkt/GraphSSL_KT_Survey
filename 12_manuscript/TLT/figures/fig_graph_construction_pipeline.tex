@@ -35,18 +35,18 @@
   {Graph~provenance~pipeline};
 \node[anchor=west, text=white!88, font=\sffamily\small] at (0.35,0.30)
   {Three mutually exclusive provenance codes under the survey protocol};
-\node[anchor=east, text=white, font=\sffamily\bfseries] at (15.85,0.52) {$N_G=40$};
+\node[anchor=east, text=white, font=\sffamily\bfseries] at (15.85,0.52) {$N_G=49$};
 
 \node[pcard] (c1) at (2.70,-2.10) {%
-  {\color{prov}\fontsize{16}{18}\selectfont\bfseries 19}\\[2pt]
+  {\color{prov}\fontsize{16}{18}\selectfont\bfseries 31}\\[2pt]
   {\small\bfseries Model-defined fixed}\\[3pt]
   {\scriptsize Author-specified topology}\\[1pt]
   {\scriptsize\color{muted}e.g.\ GKT, GIKT, Bi-CLKT}};
 \node[pcard] (c2) at (8.10,-2.10) {%
-  {\color{prov}\fontsize{16}{18}\selectfont\bfseries 8}\\[2pt]
+  {\color{prov}\fontsize{16}{18}\selectfont\bfseries 9}\\[2pt]
   {\small\bfseries External fixed}\\[3pt]
   {\scriptsize Expert, map, or LLM graph}\\[1pt]
-  {\scriptsize\color{muted}e.g.\ PDKT-C, CMKT, SINKT}};
+  {\scriptsize\color{muted}e.g.\ PDKT-C, ExpertGraphs, TransKT}};
 \node[pcard] (c3) at (13.50,-2.10) {%
   {\color{prov}\fontsize{16}{18}\selectfont\bfseries 9}\\[2pt]
   {\small\bfseries Dynamically learned}\\[3pt]
@@ -55,11 +55,11 @@
 
 \node[ecard] (enc) at (4.00,-4.35) {%
   {\small\bfseries Coded encoder}\\[3pt]
-  {\scriptsize GCN/generic 12 \quad Heterogeneous 7 \quad Other 6}\\[1pt]
-  {\scriptsize GAT 4 \quad Hypergraph 2 \quad Dynamic 2 \quad NONE 3}};
+  {\scriptsize GCN/generic 19 \quad Heterogeneous 9 \quad Other 7}\\[1pt]
+  {\scriptsize GAT 7 \quad Hypergraph 2 \quad Dynamic 2 \quad NONE 3}};
 \node[ocard] (out) at (12.20,-4.35) {%
   {\small\bfseries Graph-KT corpus}\\[3pt]
-  {\scriptsize $N_G=40$ papers; CL4KT excluded}\\[1pt]
+  {\scriptsize $N_G=49$ papers; sequence-only SSL excluded}\\[1pt]
   {\scriptsize\color{muted}One paper, one provenance code}};
 
 \end{tikzpicture}

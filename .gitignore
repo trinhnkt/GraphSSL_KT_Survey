@@ -24,9 +24,37 @@ Thumbs.db
 **/_bibtex_*.txt
 12_manuscript/TLT/_backup_before_v1.9/
 backup_before_TLT_major_revision/
+_local_archive/
+
+# One-shot agent apply/probe scripts (kept locally; not submission source)
+12_manuscript/TLT/_*.py
+12_manuscript/TLT/_scratch*/
+audit/_*.py
+audit/_*.txt
+audit/*_run.txt
 
 # Search exports and fulltext PDFs kept locally
 03_search/exports/*
 !03_search/exports/.gitkeep
 06_fulltext/papers/*
 !06_fulltext/papers/.gitkeep
+
+# Local reference PDF library (not for GitHub)
+14_references/**/*.pdf
+14_references/KHONG LIEN QUAN/
+14_references/tam/
+
+# Vendor IEEE/Word templates (download from IEEE when needed)
+15. Check list/Conference-Templates-Word/
+15. Check list/IEEE-Transactions-LaTeX2e-templates-and-instructions/
+15. Check list/**/*.docx
+15. Check list/**/*.zip
+
+# Empty / disposable downloads
+IEEEtran_latest.zip
+tmp_ieeetran/
+
+# OS / editor
+.vscode/
+.idea/
+*.swp

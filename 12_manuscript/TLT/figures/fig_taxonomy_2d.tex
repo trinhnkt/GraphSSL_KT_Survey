@@ -48,51 +48,51 @@
   {Graph-Based~and~Self-Supervised~Knowledge~Tracing};
 \node[anchor=west, text=white!88, font=\sffamily\small] at (0.35,0.32)
   {Counts coded under the survey protocol};
-\node[anchor=east, text=white, font=\sffamily\bfseries] at (15.85,0.58) {$N=44$};
+\node[anchor=east, text=white, font=\sffamily\bfseries] at (15.85,0.58) {$N=53$};
 
-\node[colh, fill=prov] (h1) at (2.55,-0.55) {Graph provenance  $N_G=40$};
-\node[colh, fill=enc]  (h2) at (8.10,-0.55) {GNN encoder  $N_G=40$};
-\node[colh, fill=ssl]  (h3) at (13.65,-0.55) {Self-supervised KT  $N_S=16$};
+\node[colh, fill=prov] (h1) at (2.55,-0.55) {Graph provenance  $N_G=49$};
+\node[colh, fill=enc]  (h2) at (8.10,-0.55) {GNN encoder  $N_G=49$};
+\node[colh, fill=ssl]  (h3) at (13.65,-0.55) {Self-supervised KT  $N_S=22$};
 
 \node[pcard, below=0.28cm of h1] (p1) {%
-  {\fontsize{13}{15}\selectfont\bfseries 24}\\[-1pt]
+  {\fontsize{13}{15}\selectfont\bfseries 31}\\[-1pt]
   {\small Model-defined fixed}\\[-1pt]
-  {\scriptsize\color{muted}model-defined fixed graph  60.0\%}};
+  {\scriptsize\color{muted}model-defined fixed graph  63.3\%}};
 \node[pcard, below=0.22cm of p1] (p2) {%
-  {\fontsize{13}{15}\selectfont\bfseries 7}\\[-1pt]
+  {\fontsize{13}{15}\selectfont\bfseries 9}\\[-1pt]
   {\small External fixed}\\[-1pt]
-  {\scriptsize\color{muted}external fixed graph  17.5\%}};
+  {\scriptsize\color{muted}external fixed graph  18.4\%}};
 \node[pcard, below=0.22cm of p2] (p3) {%
   {\fontsize{13}{15}\selectfont\bfseries 9}\\[-1pt]
   {\small Dynamically learned}\\[-1pt]
-  {\scriptsize\color{muted}dynamically learned graph  22.5\%}};
+  {\scriptsize\color{muted}dynamically learned graph  18.4\%}};
 \node[pnote, below=0.22cm of p3] (p4) {%
   {\small Three codes, mutually exclusive}\\[-1pt]
   {\scriptsize\color{muted}One paper $\rightarrow$ one provenance}};
 
-\node[echip, below left=0.28cm and -2.42cm of h2] (e1) {{\bfseries 14}\\[-2pt]{\scriptsize GCN / generic}};
-\node[echip, right=0.21cm of e1] (e2) {{\bfseries 7}\\[-2pt]{\scriptsize Heterogeneous}};
-\node[echip, below=0.20cm of e1] (e3) {{\bfseries 6}\\[-2pt]{\scriptsize Other}};
-\node[echip, right=0.21cm of e3] (e4) {{\bfseries 6}\\[-2pt]{\scriptsize GAT}};
+\node[echip, below left=0.28cm and -2.42cm of h2] (e1) {{\bfseries 19}\\[-2pt]{\scriptsize GCN / generic}};
+\node[echip, right=0.21cm of e1] (e2) {{\bfseries 9}\\[-2pt]{\scriptsize Heterogeneous}};
+\node[echip, below=0.20cm of e1] (e3) {{\bfseries 7}\\[-2pt]{\scriptsize Other}};
+\node[echip, right=0.21cm of e3] (e4) {{\bfseries 7}\\[-2pt]{\scriptsize GAT}};
 \node[echip, below=0.20cm of e3] (e5) {{\bfseries 2}\\[-2pt]{\scriptsize Hypergraph}};
 \node[echip, right=0.21cm of e5] (e6) {{\bfseries 2}\\[-2pt]{\scriptsize Dynamic}};
 \node[ecard, below=0.20cm of e5, xshift=1.265cm] (e7) {%
   {\bfseries 3}\quad{\small NONE}\\[-1pt]
   {\scriptsize\color{muted}PDKT-C, CMKT, PEBG; no GNN encoder}};
 
-\node[schip, below left=0.28cm and -2.42cm of h3] (s1) {{\bfseries 16}\\[-2pt]{\scriptsize SSL papers}};
-\node[schip, right=0.21cm of s1] (s2) {{\bfseries 12}\\[-2pt]{\scriptsize Graph $\cap$ SSL}};
+\node[schip, below left=0.28cm and -2.42cm of h3] (s1) {{\bfseries 22}\\[-2pt]{\scriptsize SSL papers}};
+\node[schip, right=0.21cm of s1] (s2) {{\bfseries 18}\\[-2pt]{\scriptsize Graph $\cap$ SSL}};
 \node[scard, minimum height=1.05cm, below=0.20cm of s1, xshift=1.265cm] (s3) {%
   {\small Sequence-only SSL: 4 papers}\\[-1pt]
   {\scriptsize\color{muted}CL4KT, DTransformer, CoSKT, SP-CLKT}};
 \node[scard, minimum height=2.15cm, below=0.20cm of s3] (s4) {%
-  {\scriptsize\bfseries Expanded SSL note}\\[2pt]
-  {\scriptsize 15 contrastive / consistency; 1 reconstruction}\\[1pt]
-  {\scriptsize Body lists pre-expansion exclusive families}\\[1pt]
-  {\scriptsize\color{muted}Expanded axes: paradigm $\times$ view source}};
+  {\scriptsize\bfseries Final SSL taxonomy ($N_S=22$)}\\[2pt]
+  {\scriptsize Paradigm: contrastive 20 / reconstruction 2}\\[1pt]
+  {\scriptsize View: multi 8, graph 7, seq 3, hyper 2, hier 1, bip 1}\\[1pt]
+  {\scriptsize\color{muted}Legacy exclusive families: Supplementary only}};
 
 \node[anchor=west, text=muted, font=\sffamily\scriptsize] at (0.05,-7.15)
-  {One row per paper. Locked provenance $24/7/9$ and encoder tallies on $N_G=40$. SSL $N_S=16$, $N_{G\cap S}=12$.};
+  {One row per paper. Provenance $31/9/9$ and encoder tallies $19/9/7/7/2/2/3$ on $N_G=49$. SSL $N_S=22$, $N_{G\cap S}=18$.};
 
 \end{tikzpicture}
 \end{document}

@@ -1,1 +1,0 @@
-https://link.springer.com/search?query=%28%22knowledge+tracing%22+OR+%22student+knowledge+tracing%22%29+AND+%28graph+OR+%22graph+neural+network%22+OR+GNN+OR+GCN+OR+GAT+OR+hypergraph%29&date-facet-mode=between&facet-start-year=2015&facet-end-year=2026

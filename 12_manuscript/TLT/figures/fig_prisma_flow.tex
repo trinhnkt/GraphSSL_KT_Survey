@@ -1,39 +1,44 @@
 \documentclass[tikz,border=5pt]{standalone}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows, fit}
 
 \begin{document}
 \begin{tikzpicture}[
-    node distance=1.2cm,
-    font=\sffamily\small,
-    stage/.style={rectangle, draw=blue!70!black, fill=blue!8, thick, rounded corners=4pt, align=center, minimum width=6.4cm, minimum height=1.15cm, drop shadow},
-    excl/.style={rectangle, draw=red!70!black, fill=red!8, thick, rounded corners=4pt, align=center, minimum width=4.7cm, minimum height=1.15cm, drop shadow},
-    arrow/.style={-{Stealth[length=6pt]}, thick, draw=gray!80},
-    note/.style={align=center, font=\sffamily\footnotesize, text width=14.2cm}
+    font=\sffamily\footnotesize,
+    stage/.style={rectangle, draw=blue!70!black, fill=blue!8, thick, rounded corners=3pt, align=center, minimum width=5.6cm, minimum height=0.95cm, drop shadow},
+    excl/.style={rectangle, draw=red!70!black, fill=red!8, thick, rounded corners=3pt, align=center, minimum width=3.9cm, minimum height=0.95cm, drop shadow},
+    branch/.style={rectangle, draw=green!60!black, fill=green!12, thick, rounded corners=3pt, align=center, minimum width=5.6cm, minimum height=0.95cm, drop shadow},
+    arrow/.style={-{Stealth[length=5pt]}, thick, draw=gray!80},
+    note/.style={align=left, font=\sffamily\scriptsize, text width=13.8cm}
 ]
 
-% Nodes
-\node[stage] (ident) {\textbf{Identification (search log)}\\Records retrieved $N_{\mathrm{rec}} = 2{,}017$\\Scopus: 531, WoS: 344, ScienceDirect: 257, SpringerLink: 255,\\IEEE Xplore: 232, ACM DL: 200, arXiv: 198};
+\node[font=\sffamily\bfseries\small, anchor=west] at (-0.2,0.35) {Branch A --- Historical search-expansion arithmetic};
 
-\node[stage, below=1.0cm of ident] (dedup) {\textbf{Deduplication (report arithmetic)}\\1,267 duplicates removed $\rightarrow$ \textbf{750 unique records}};
+\node[stage] (ident) at (2.8,-0.7) {\textbf{Identification (search log)}\\$N_{\mathrm{rec}} = 2{,}017$ (closed 31 Jul 2026)};
+\node[stage, below=0.55cm of ident] (dedup) {\textbf{Deduplication (report arithmetic)}\\$\rightarrow$ \textbf{750} unique records};
+\node[stage, below=0.55cm of dedup] (screen) {\textbf{Title/abstract (report arithmetic)}\\750 screened $\rightarrow$ \textbf{140} full-text};
+\node[excl, right=0.9cm of screen] (excl_screen) {\textbf{Excluded $n=610$}\\report arithmetic};
+\node[stage, below=0.55cm of screen] (fulltext) {\textbf{Full-text eligibility}\\140 assessed};
+\node[excl, right=0.9cm of fulltext] (excl_full) {\textbf{Excluded $n=103$}\\$140-103=37$};
+\node[stage, fill=orange!12, draw=orange!70!black, below=0.55cm of fulltext] (orig) {\textbf{Original-path included}\\\textbf{$140-103=37$}};
 
-\node[stage, below=1.0cm of dedup] (screen) {\textbf{Title / abstract (report arithmetic)}\\750 records screened $\rightarrow$ \textbf{140 full-text}};
-\node[excl, right=1.2cm of screen] (excl_screen) {\textbf{Excluded (n = 610)}\\report arithmetic};
+\node[font=\sffamily\bfseries\small, anchor=west] at (-0.2,-6.05) {Branch B --- Supplementary corpus update (not $140-103$)};
 
-\node[stage, below=1.0cm of screen] (fulltext) {\textbf{Full-text eligibility (report arithmetic)}\\140 articles assessed};
-\node[excl, right=1.2cm of fulltext] (excl_full) {\textbf{Excluded full-text (n = 103)}\\report arithmetic; $140-103=37$};
+\node[branch] (b0) at (2.8,-6.9) {\textbf{Expanded freeze path} includes gateway seven\\(already inside $N=44$ coded path)};
+\node[branch, below=0.45cm of b0] (b1) {\textbf{Venue-probe unique additions}\\KT090--KT098 ($+9$; HCMKT already present)};
+\node[branch, fill=green!25, below=0.45cm of b1] (final) {\textbf{Final coded synthesis core}\\$\mathbf{N=53}$ ($N_G=49$, $N_S=22$, $N_{G\cap S}=18$)};
 
-\node[stage, fill=green!15, draw=green!60!black, below=1.0cm of fulltext] (final) {\textbf{Original-path inclusion arithmetic}\\\textbf{$140-103=37$}\\(coded core after full-text update: $N=44$)};
+\node[note] at (6.9,-10.0) {Historical stage counts 750/140/103 are search-expansion report arithmetic; a complete row-level screening ledger is not deposited.\\The final coded synthesis corpus is the historical original-path core plus separately documented supplementary full-text additions; it is \textbf{not} the direct result of $140-103$.};
 
-\node[note, below=0.55cm of final] (note) {Stage counts 750 / 140 / 103 are search-expansion report arithmetic.\\A record-level screening ledger is not deposited. Identification $N_{\mathrm{rec}}=2{,}017$ is the search-log sum.\\Coded synthesis corpus after Sec.~gateway update: $N=44$ ($N_G=40$, $N_S=16$).};
-
-% Arrows
 \draw[arrow] (ident) -- (dedup);
 \draw[arrow] (dedup) -- (screen);
 \draw[arrow] (screen) -- (excl_screen);
 \draw[arrow] (screen) -- (fulltext);
 \draw[arrow] (fulltext) -- (excl_full);
-\draw[arrow] (fulltext) -- (final);
+\draw[arrow] (fulltext) -- (orig);
+\draw[arrow, dashed] (orig.south) -- ++(0,-0.35) -| (b0.north);
+\draw[arrow] (b0) -- (b1);
+\draw[arrow] (b1) -- (final);
 
 \end{tikzpicture}
 \end{document}

@@ -1,0 +1,10 @@
+record_id,title,correct_pdf_verified,gateway_verified,graph_code_verified,ssl_code_verified,cold_start_fields_verified,calibration_fields_verified,human_verifier,verification_date,status,note
+KT090,AGKT,YES,YES,YES,NA,YES,YES,Nguyen Khanh Trinh,2026-11-26,HUMAN_VERIFIED,wet-ink session; S=NO; encoder OTHER kept
+KT091,ExpertGraphs,YES,YES,YES,NA,YES,YES,Nguyen Khanh Trinh,2026-11-26,HUMAN_VERIFIED,wet-ink; EXTERNAL_FIXED confirmed
+KT092,GRKT,YES,YES,YES,NA,YES,YES,Nguyen Khanh Trinh,2026-11-26,HUMAN_VERIFIED,wet-ink; S=NO (contrastive related-work only)
+KT093,BiCo,YES,YES,YES,YES,YES,YES,Nguyen Khanh Trinh,2026-11-26,HUMAN_VERIFIED,wet-ink; RMSE YES prediction error
+KT094,GCLFKT,YES,YES,YES,YES,YES,YES,Nguyen Khanh Trinh,2026-11-26,HUMAN_VERIFIED,wet-ink; own GCL
+KT095,TransKT,YES,YES,YES,YES,YES,YES,Nguyen Khanh Trinh,2026-11-26,HUMAN_VERIFIED,wet-ink; EXTERNAL_FIXED LLM graph; S=YES
+KT096,SCDI,YES,YES,YES,YES,YES,YES,Nguyen Khanh Trinh,2026-11-26,HUMAN_VERIFIED,wet-ink; MAGNN+GATC
+KT097,MSCL,YES,YES,YES,YES,YES,YES,Nguyen Khanh Trinh,2026-11-26,HUMAN_VERIFIED,wet-ink; MAGNN+DGCN; distinct SCDI
+KT098,KGS-KT,YES,YES,YES,YES,YES,YES,Nguyen Khanh Trinh,2026-11-26,HUMAN_VERIFIED,wet-ink; RECONSTRUCTION NAP/ERP; OA extract

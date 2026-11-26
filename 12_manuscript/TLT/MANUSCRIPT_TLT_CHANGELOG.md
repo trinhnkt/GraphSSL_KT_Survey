@@ -4,6 +4,45 @@ All notable changes to the IEEE Transactions on Learning Technologies (IEEE TLT)
 
 ---
 
+## [Full quality pass: facts + style] - 2026-11-25
+
+- Fixed provenance percentages ($63.3/18.4/18.4$), venue-probe/gateway $N=53$ narrative, 49/22-row captions, sparse overlay $49+1+1+2$, appendix KT090–098.
+- Clarified ICR: principal κ human–human; 0.97/0.96 Supplementary AI–human only.
+- Light scientific style rewrite (Intro/sparse/synthesis). Report: `TLT/audit/MS_QUALITY_PASS_2026-11-25.md`. Still 16 pp.
+
+## [AI disclosure align] - 2026-11-25
+
+- `sec:ai_role`: principal coding $\kappa$ stated as human--human NguyenKT↔DaoMT; removed “κ vs AI-generated reference” wording.
+- Documented step (vi) KT090–KT098 locator-backed verify; Acknowledgment clarified AI-locator ± author countersign.
+- Cover letter: explicit AI primary screening/coding sentence. PDFs still 16+2 pp.
+
+## [N=53 figure rebuild] - 2026-11-25
+
+- Rebuilt five TikZ figures to locked N=53 counts: taxonomy, SSL framework, meta encoder bars, PRISMA, provenance pipeline ($31/9/9$; encoder $19/9/7/7/2/2/3$; $N_S=22$, $∩=18$).
+- Live PDFs recompiled 16 pp; root `12_manuscript/` copies refreshed.
+
+## [N=53 QA residual fix] - 2026-11-25
+
+- Cleared post-promote N=44 wording: Graph-KT opener, agenda $53/53$, Acknowledgment 53 PDFs.
+- QA tiers recomputed on FINAL_v2: HIGH/MOD/LIM $13/39/1$ (KT091 LIMITED), mean $0.73$; table counts synced (QA1--QA8 histograms).
+- Live PDFs rebuilt 16 pp; portal pack PDFs refreshed.
+
+## [Promote N=53 vNext to live] - 2026-11-25
+
+- Locator verify KT090–KT098 complete (`HUMAN_VERIFY_SIGNOFF_KT090-098_v1.md`); freeze `YES_VERIFIED_AI_LOCATOR`.
+- Promoted `Graph_SSL_KT_TLT_REVISED_vNext_{anonymous,full}` → live `main_tlt_*` and `manuscript_TLT_FORMATTED_v1.3`.
+- Cover letter rewritten to $N=53$, $N_G=49$, $N_S=22$, $N_{G\cap S}=18$, provenance $31/9/9$, principal NguyenKT↔DaoMT κ, Zanellati complementary.
+- N=44 live files archived under `_pre_promote_N44_2026-11-25/`. Portal pack: `_portal_pack_2026-11-25_N53/`. Submission still NO.
+
+## [N=53 revised vNext MS] - 2026-11-25
+
+- Built versioned revised package from live N=44 body: `Graph_SSL_KT_TLT_REVISED_vNext_{anonymous,full}.{tex,pdf}` (16 pp each).
+- Counts synced to provisional freeze: $N=53$, $N_G=49$, $N_S=22$, $N_{G\cap S}=18$, provenance $31/9/9$.
+- Related work + survey-comparison table now include Zanellati hybrid/informed KT (complementary scope).
+- SSL Coding section uses final $N_S=22$ paradigm × view taxonomy; legacy 9-paper exclusive families stay Supplementary-only.
+- Principal coding reliability stated as NguyenKT ↔ DaoMT (macro $\kappa\approx0.93$); AI–human kept Supplementary.
+- Live `main_tlt_*` / cover / portal pack remain N=44 until author promotes vNext. Freeze: `audit/CORPUS_FINAL_FREEZE_v2.md` (`YES_PROVISIONAL_AI`).
+
 ## [QA7 align + SSL/threats residual fix] - 2026-11-24
 
 - Aligned QA7 to locked cold-start: KT035 HHSKT $=0$, KT023 SGKT $=2$; HIGH IDs swap KT035→KT023; tiers stay 13/31 and mean $0.7472$.

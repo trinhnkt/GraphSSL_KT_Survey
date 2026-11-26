@@ -1,0 +1,161 @@
+record_id,field_name,field_label,NguyenKT,DaoMT,agree_pre_adjudication
+KT004,S_criterion,S-criterion,N,N,YES
+KT011,S_criterion,S-criterion,Y,Y,YES
+KT014,S_criterion,S-criterion,N,N,YES
+KT026,S_criterion,S-criterion,Y,Y,YES
+KT031,S_criterion,S-criterion,N,N,YES
+KT035,S_criterion,S-criterion,N,N,YES
+KT037,S_criterion,S-criterion,N,N,YES
+KT038,S_criterion,S-criterion,N,N,YES
+KT039,S_criterion,S-criterion,Y,Y,YES
+KT042,S_criterion,S-criterion,Y,Y,YES
+KT043,S_criterion,S-criterion,Y,Y,YES
+KT044,S_criterion,S-criterion,N,N,YES
+KT047,S_criterion,S-criterion,Y,Y,YES
+KT050,S_criterion,S-criterion,Y,Y,YES
+KT066,S_criterion,S-criterion,Y,Y,YES
+KT068,S_criterion,S-criterion,Y,Y,YES
+KT070,S_criterion,S-criterion,N,N,YES
+KT076,S_criterion,S-criterion,N,N,YES
+KT077,S_criterion,S-criterion,N,N,YES
+KT079,S_criterion,S-criterion,N,N,YES
+KT004,ssl_family,pretext family,NONE,NONE,YES
+KT011,ssl_family,pretext family,GRAPH_CONTRASTIVE,MULTIVIEW_CONTRASTIVE,NO
+KT014,ssl_family,pretext family,NONE,NONE,YES
+KT026,ssl_family,pretext family,GRAPH_RECONSTRUCTION,GRAPH_RECONSTRUCTION,YES
+KT031,ssl_family,pretext family,NONE,NONE,YES
+KT035,ssl_family,pretext family,NONE,NONE,YES
+KT037,ssl_family,pretext family,NONE,NONE,YES
+KT038,ssl_family,pretext family,NONE,NONE,YES
+KT039,ssl_family,pretext family,SEQUENCE_CONTRASTIVE,SEQUENCE_CONTRASTIVE,YES
+KT042,ssl_family,pretext family,MULTIVIEW_CONTRASTIVE,MULTIVIEW_CONTRASTIVE,YES
+KT043,ssl_family,pretext family,MULTIVIEW_CONTRASTIVE,MULTIVIEW_CONTRASTIVE,YES
+KT044,ssl_family,pretext family,NONE,NONE,YES
+KT047,ssl_family,pretext family,MULTIVIEW_CONTRASTIVE,GRAPH_CONTRASTIVE,NO
+KT050,ssl_family,pretext family,GRAPH_CONTRASTIVE,GRAPH_CONTRASTIVE,YES
+KT066,ssl_family,pretext family,MULTIVIEW_CONTRASTIVE,MULTIVIEW_CONTRASTIVE,YES
+KT068,ssl_family,pretext family,GRAPH_CONTRASTIVE,GRAPH_CONTRASTIVE,YES
+KT070,ssl_family,pretext family,NONE,NONE,YES
+KT076,ssl_family,pretext family,NONE,NONE,YES
+KT077,ssl_family,pretext family,NONE,NONE,YES
+KT079,ssl_family,pretext family,NONE,NONE,YES
+KT004,graph_provenance,graph provenance,MODEL_DEFINED_FIXED,MODEL_DEFINED_FIXED,YES
+KT011,graph_provenance,graph provenance,MODEL_DEFINED_FIXED,MODEL_DEFINED_FIXED,YES
+KT014,graph_provenance,graph provenance,EXTERNAL_FIXED,EXTERNAL_FIXED,YES
+KT026,graph_provenance,graph provenance,EXTERNAL_FIXED,MODEL_DEFINED_FIXED,NO
+KT031,graph_provenance,graph provenance,EXTERNAL_FIXED,EXTERNAL_FIXED,YES
+KT035,graph_provenance,graph provenance,MODEL_DEFINED_FIXED,MODEL_DEFINED_FIXED,YES
+KT037,graph_provenance,graph provenance,EXTERNAL_FIXED,EXTERNAL_FIXED,YES
+KT038,graph_provenance,graph provenance,DYNAMIC_LEARNED,DYNAMIC_LEARNED,YES
+KT039,graph_provenance,graph provenance,NA,NA,YES
+KT042,graph_provenance,graph provenance,MODEL_DEFINED_FIXED,MODEL_DEFINED_FIXED,YES
+KT043,graph_provenance,graph provenance,MODEL_DEFINED_FIXED,MODEL_DEFINED_FIXED,YES
+KT044,graph_provenance,graph provenance,EXTERNAL_FIXED,EXTERNAL_FIXED,YES
+KT047,graph_provenance,graph provenance,MODEL_DEFINED_FIXED,MODEL_DEFINED_FIXED,YES
+KT050,graph_provenance,graph provenance,MODEL_DEFINED_FIXED,MODEL_DEFINED_FIXED,YES
+KT066,graph_provenance,graph provenance,MODEL_DEFINED_FIXED,MODEL_DEFINED_FIXED,YES
+KT068,graph_provenance,graph provenance,EXTERNAL_FIXED,EXTERNAL_FIXED,YES
+KT070,graph_provenance,graph provenance,DYNAMIC_LEARNED,MODEL_DEFINED_FIXED,NO
+KT076,graph_provenance,graph provenance,EXTERNAL_FIXED,EXTERNAL_FIXED,YES
+KT077,graph_provenance,graph provenance,DYNAMIC_LEARNED,DYNAMIC_LEARNED,YES
+KT079,graph_provenance,graph provenance,DYNAMIC_LEARNED,DYNAMIC_LEARNED,YES
+KT004,gnn_encoder,GNN encoder,GNN_GENERIC,GNN_GENERIC,YES
+KT011,gnn_encoder,GNN encoder,GCN,GCN,YES
+KT014,gnn_encoder,GNN encoder,NONE,NONE,YES
+KT026,gnn_encoder,GNN encoder,NONE,NONE,YES
+KT031,gnn_encoder,GNN encoder,OTHER,OTHER,YES
+KT035,gnn_encoder,GNN encoder,HETEROGENEOUS_GNN,HETEROGENEOUS_GNN,YES
+KT037,gnn_encoder,GNN encoder,NONE,NONE,YES
+KT038,gnn_encoder,GNN encoder,DYNAMIC_GNN,DYNAMIC_GNN,YES
+KT039,gnn_encoder,GNN encoder,NONE,NONE,YES
+KT042,gnn_encoder,GNN encoder,HYPERGRAPH_GNN,HYPERGRAPH_GNN,YES
+KT043,gnn_encoder,GNN encoder,HETEROGENEOUS_GNN,HETEROGENEOUS_GNN,YES
+KT044,gnn_encoder,GNN encoder,GAT,GAT,YES
+KT047,gnn_encoder,GNN encoder,HETEROGENEOUS_GNN,HETEROGENEOUS_GNN,YES
+KT050,gnn_encoder,GNN encoder,HETEROGENEOUS_GNN,HETEROGENEOUS_GNN,YES
+KT066,gnn_encoder,GNN encoder,HYPERGRAPH_GNN,HYPERGRAPH_GNN,YES
+KT068,gnn_encoder,GNN encoder,GNN_GENERIC,HETEROGENEOUS_GNN,NO
+KT070,gnn_encoder,GNN encoder,GCN,GCN,YES
+KT076,gnn_encoder,GNN encoder,HETEROGENEOUS_GNN,HETEROGENEOUS_GNN,YES
+KT077,gnn_encoder,GNN encoder,DYNAMIC_GNN,DYNAMIC_GNN,YES
+KT079,gnn_encoder,GNN encoder,SPATIOTEMPORAL_GNN,SPATIOTEMPORAL_GNN,YES
+KT004,item_cold_start,item cold-start,NO,NO,YES
+KT011,item_cold_start,item cold-start,NO,NO,YES
+KT014,item_cold_start,item cold-start,NO,NO,YES
+KT026,item_cold_start,item cold-start,NO,NO,YES
+KT031,item_cold_start,item cold-start,NO,NO,YES
+KT035,item_cold_start,item cold-start,NO,NO,YES
+KT037,item_cold_start,item cold-start,NO,NO,YES
+KT038,item_cold_start,item cold-start,NO,NO,YES
+KT039,item_cold_start,item cold-start,NO,NO,YES
+KT042,item_cold_start,item cold-start,NO,NO,YES
+KT043,item_cold_start,item cold-start,NO,NO,YES
+KT044,item_cold_start,item cold-start,YES,YES,YES
+KT047,item_cold_start,item cold-start,NO,NO,YES
+KT050,item_cold_start,item cold-start,NO,NO,YES
+KT066,item_cold_start,item cold-start,NO,NO,YES
+KT068,item_cold_start,item cold-start,NO,NO,YES
+KT070,item_cold_start,item cold-start,NO,NO,YES
+KT076,item_cold_start,item cold-start,NO,NO,YES
+KT077,item_cold_start,item cold-start,NO,NO,YES
+KT079,item_cold_start,item cold-start,NO,NO,YES
+KT004,learner_cold_start,learner cold-start,NO,NO,YES
+KT011,learner_cold_start,learner cold-start,NO,NO,YES
+KT014,learner_cold_start,learner cold-start,NO,NO,YES
+KT026,learner_cold_start,learner cold-start,NO,NO,YES
+KT031,learner_cold_start,learner cold-start,NO,NO,YES
+KT035,learner_cold_start,learner cold-start,NO,NO,YES
+KT037,learner_cold_start,learner cold-start,NO,NO,YES
+KT038,learner_cold_start,learner cold-start,NO,NO,YES
+KT039,learner_cold_start,learner cold-start,NO,NO,YES
+KT042,learner_cold_start,learner cold-start,NO,NO,YES
+KT043,learner_cold_start,learner cold-start,NO,NO,YES
+KT044,learner_cold_start,learner cold-start,NO,NO,YES
+KT047,learner_cold_start,learner cold-start,NO,NO,YES
+KT050,learner_cold_start,learner cold-start,NO,NO,YES
+KT066,learner_cold_start,learner cold-start,NO,NO,YES
+KT068,learner_cold_start,learner cold-start,NO,NO,YES
+KT070,learner_cold_start,learner cold-start,NO,NO,YES
+KT076,learner_cold_start,learner cold-start,NO,NO,YES
+KT077,learner_cold_start,learner cold-start,NO,NO,YES
+KT079,learner_cold_start,learner cold-start,NO,NO,YES
+KT004,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT011,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT014,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT026,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT031,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT035,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT037,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT038,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT039,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT042,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT043,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT044,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT047,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT050,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT066,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT068,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT070,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT076,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT077,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT079,strict_kc_cold_start,strict KC cold-start,NO,NO,YES
+KT004,ece_reported,ECE reported,NO,NO,YES
+KT011,ece_reported,ECE reported,NO,NO,YES
+KT014,ece_reported,ECE reported,NO,NO,YES
+KT026,ece_reported,ECE reported,NO,NO,YES
+KT031,ece_reported,ECE reported,NO,NO,YES
+KT035,ece_reported,ECE reported,NO,NO,YES
+KT037,ece_reported,ECE reported,NO,NO,YES
+KT038,ece_reported,ECE reported,NO,NO,YES
+KT039,ece_reported,ECE reported,NO,NO,YES
+KT042,ece_reported,ECE reported,NO,NO,YES
+KT043,ece_reported,ECE reported,NO,NO,YES
+KT044,ece_reported,ECE reported,NO,NO,YES
+KT047,ece_reported,ECE reported,NO,NO,YES
+KT050,ece_reported,ECE reported,NO,NO,YES
+KT066,ece_reported,ECE reported,NO,NO,YES
+KT068,ece_reported,ECE reported,NO,NO,YES
+KT070,ece_reported,ECE reported,NO,NO,YES
+KT076,ece_reported,ECE reported,NO,NO,YES
+KT077,ece_reported,ECE reported,NO,NO,YES
+KT079,ece_reported,ECE reported,NO,NO,YES

@@ -1,0 +1,66 @@
+ref_no,bib_key,title,primary_or_background,doi_status,style_status,audit_note_removed,final_status
+1,KT004_GKT_2019,Graph-based Knowledge Tracing: Modeling Student Proficiency Using Graph Neural N,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+2,KT010_GIKT_2021,{GIKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+3,KT011_BiCLKT_2022,{Bi-CLKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+4,KT012_JKT_2021,{JKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+5,KT014_PDKTC_2018,Prerequisite-Driven Deep Knowledge Tracing,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+6,KT016_SKT_2020,Structure-Based Knowledge Tracing: An Influence Propagation View,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+7,KT023_SGKT_2022,{SGKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+8,KT026_PretrainQ_2020,Improving Knowledge Tracing via Pre-training Question Embeddings,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+9,KT029_DGEKT_2024,{DGEKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+10,KT031_KSGAKT_2022,Knowledge Structure Enhanced Graph Representation Learning Model for Attentive K,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+11,KT033_DGMN_2023,Deep Graph Memory Networks for Forgetting-Robust Knowledge Tracing,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+12,KT035_HHSKT_2023,{HHSKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+13,KT036_TSKT_2024,Heterogeneous Graph-Based Knowledge Tracing with Spatiotemporal Evolution,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+14,KT037_CMKT_2022,{CMKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+15,KT038_DyGKT_2024,{DyGKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+16,KT039_CL4KT_2022,Contrastive Learning for Knowledge Tracing,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+17,KT042_S2HHN_2023,Self-Supervised Heterogeneous Hypergraph Network for Knowledge Tracing,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+18,KT043_3VCLKT_2024,Weighted Heterogeneous Graph-Based Three-View Contrastive Learning for Knowledge,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+19,KT044_SINKT_2024,{SINKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+20,KT047_DCSSL_2023,Fusing Hybrid Attentive Network with Self-Supervised Dual-Channel Heterogeneous ,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+21,KT050_GraphCA_2023,{GraphCA,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+22,KT052_CapsuleGNN_2022,Modeling Knowledge Proficiency Using Multi-Hierarchical Capsule Graph Neural Net,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+23,KT053_GASKT_2021,{GASKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+24,KT056_LSTGraph_2025,Exploring Long- and Short-Term Knowledge State Graph Representations with Adapti,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+25,KT060_STHKT_2025,{STHKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+26,KT062_LGSKT_2025,{LGS-KT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+27,KT063_MAHKT_2025,{MAHKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+28,KT064_MGEnsemble_2025,Multi-Granularity Ensemble Interaction Graph Modeling for Knowledge Tracing,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+29,KT066_HyperKT_2025,Dual-Channel Adaptive Scale Hypergraph Encoders With Cross-View Contrastive Lear,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+30,KT067_SKMGKT_2025,Graph-Based Effective Knowledge Tracing via Subject Knowledge Mapping,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+31,KT068_HKT_2025,{HKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+32,KT069_AEGOTCDKT_2025,A Cross-Domain Knowledge Tracing Model Based on Graph Optimal Transport,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+33,KT070_Coda_2025,Denoising Programming Knowledge Tracing with a Code Graph-based Tuning Adaptor,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+34,KT076_KGNNKT_2025,{KGNN-KT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+35,KT077_R2GCurL_2026,{R\textsuperscript{2,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+36,KT065_CSGKT_2025,Graph Knowledge Tracing in Cognitive Situation: Validation of Classic Assertions,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+37,KT079_STGSKT_2026,Spatio-Temporal Fusion in Graph Neural Network for Streaming Knowledge Tracing,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+38,Piech_DKT_2015,Deep Knowledge Tracing,background,HAS_NOTE_URL,IEEE_CLEAN,N/A,OK
+39,Pandey_SAKT_2019,A Self-Attentive Model for Knowledge Tracing,background,HAS_NOTE_URL,IEEE_CLEAN,N/A,OK
+40,Ghosh_AKT_2020,Context-Aware Attentive Knowledge Tracing,background,HAS_DOI,IEEE_CLEAN,N/A,OK
+41,Zhang_DKVMN_2017,Dynamic Key-Value Memory Networks for Knowledge Tracing,background,HAS_DOI,IEEE_CLEAN,N/A,OK
+42,Abdelrahman_Survey_2023,Knowledge Tracing: A Survey,background,HAS_DOI,IEEE_CLEAN,N/A,OK
+43,Liu_pyKT_2022,{pyKT,background,HAS_DOI,IEEE_CLEAN,N/A,OK
+44,Liu_DLKT_2025,"Deep Learning Based Knowledge Tracing: A Review, a Tool and Empirical Studies",background,HAS_DOI,IEEE_CLEAN,N/A,OK
+45,Shukurlu_LossKT_2025,Survey of Loss Augmented Knowledge Tracing,background,HAS_DOI,IEEE_CLEAN,N/A,OK
+46,Xu_GbKT_2026,A Survey of Graph-Based Knowledge Tracing from Structural and Propagation Perspe,background,HAS_NOTE_URL,IEEE_CLEAN,N/A,OK
+47,Shen_KTSurvey_2024,"A Survey of Knowledge Tracing: Models, Variants, and Applications",background,HAS_DOI,IEEE_CLEAN,N/A,OK
+48,DECKT_2025,A Dual-Encoder Contrastive Learning Model for Knowledge Tracing,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+49,Han_KTDeeper_2024,Dynamic Heterogeneous Graph Contrastive Networks for Knowledge Tracing,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+50,HCMKT_2026,Heterogeneous Graph Knowledge Tracing with Novel Contrastive View and Meta-Path ,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+51,CoSKT_2024,{CoSKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+52,DTransformer_2023,Tracing Knowledge Instead of Patterns: Stable Knowledge Tracing with Diagnostic ,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+53,SPCLKT_2024,Self-Paced Contrastive Learning for Knowledge Tracing,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+54,CLBG_2025,Contrastive Learning Based on Bipartite Graphs for Interpretable Knowledge Traci,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+55,Cursor_AI_2026,{Cursor,background,NO_DOI,IEEE_CLEAN,N/A,OK
+56,Zanellati_HybridKT_2024,Hybrid Models for Knowledge Tracing: A Systematic Literature Review,background,HAS_DOI,IEEE_CLEAN,N/A,OK
+57,KT090_AGKT_2022,{AGKT,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+58,KT091_ExpertGraphs_2024,Enhancing Knowledge Tracing Efficacy with Expert-defined Graphs: A Case Study in,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+59,KT092_GRKT_2024,Leveraging Pedagogical Theories to Understand Student Learning Process with Grap,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+60,KT093_BiCo_2024,Pre-training Question Embeddings for Improving Knowledge Tracing with Self-super,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+61,KT094_GCLFKT_2025,Graph Contrast Learning Fused Question Features Based Knowledge Tracing,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+62,KT095_TransKT_2025,Contrastive Cross-Course Knowledge Tracing via Concept Graph Guided Knowledge Tr,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+63,KT096_SCDI_2025,Dual-Channel Knowledge Tracing With Self-Supervised Contrastive and Directed Int,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+64,KT097_MSCL_2026,Self-supervised Contrastive Learning with Multi-dimensional Graph Structures for,primary,HAS_DOI,IEEE_CLEAN,N/A,OK
+65,KT098_KGSKT_2025,Knowledge Tracing Enhanced by Graph Convolutional Networks with Self-Supervised ,primary,HAS_DOI,IEEE_CLEAN,N/A,OK

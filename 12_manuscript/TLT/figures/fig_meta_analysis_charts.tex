@@ -19,14 +19,14 @@
 \node[anchor=west, text=white!88, font=\sffamily\small] at (0.30,8.40)
   {Unique papers under the survey protocol};
 \node[anchor=east, text=white, font=\sffamily\bfseries] at (13.10,8.65)
-  {$N_G=40$};
+  {$N_G=49$};
 
 \begin{axis}[
     at={(0.20,1.35)},
     ybar,
     bar width=26pt,
     ymin=0,
-    ymax=16,
+    ymax=22,
     width=13.1cm,
     height=6.2cm,
     axis line style={draw=none},
@@ -34,7 +34,7 @@
     xtick=data,
     symbolic x coords={GCN/generic, Heterogeneous, Other, GAT, Hypergraph, Dynamic, NONE},
     x tick label style={font=\sffamily\scriptsize, text=ink, align=center, text width=1.55cm},
-    ytick={0,4,8,12,16},
+    ytick={0,5,10,15,20},
     y tick label style={font=\sffamily\scriptsize, text=muted},
     ylabel={Papers},
     ylabel style={font=\sffamily\small, text=muted},
@@ -45,10 +45,10 @@
     major grid style={line width=0.3pt, draw=black!12},
 ]
 \addplot[fill=bar, draw=none] coordinates {
-    (GCN/generic,14)
-    (Heterogeneous,7)
-    (Other,6)
-    (GAT,6)
+    (GCN/generic,19)
+    (Heterogeneous,9)
+    (Other,7)
+    (GAT,7)
     (Hypergraph,2)
     (Dynamic,2)
     (NONE,3)
@@ -56,6 +56,6 @@
 \end{axis}
 
 \node[anchor=west, text=muted, font=\sffamily\scriptsize, text width=13.0cm] at (0.20,0.25)
-  {Locked $N_G=40$ encoder tallies. NONE = PDKT-C, CMKT, PEBG. Other = GGNN, graph memory, capsule, optimal transport, spatiotemporal, Metapath2Vec (one each).};
+  {Locked $N_G=49$ encoder tallies $19/9/7/7/2/2/3$. NONE = PDKT-C, CMKT, PEBG. Other = GGNN, graph memory, capsule, optimal transport, spatiotemporal, and related one-offs.};
 \end{tikzpicture}
 \end{document}

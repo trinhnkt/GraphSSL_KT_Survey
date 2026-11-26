@@ -11,7 +11,7 @@ Hung Yen, Vietnam\\
 Email: \href{mailto:haunv@utehy.edu.vn}{haunv@utehy.edu.vn}
 }
 
-\date{November 10, 2026}
+\date{November 25, 2026}
 
 \begin{document}
 
@@ -26,24 +26,23 @@ IEEE Education Society
 We submit the critical survey
 
 \begin{center}
-\textbf{Graph-Based and Self-Supervised Knowledge Tracing in Sparse-Concept Settings: A Critical Survey}
+\textbf{Graph-Based and Self-Supervised Knowledge Tracing: A Critical Survey of Structure, Sparsity, and Reliability}
 \end{center}
 
-for consideration as a \textbf{Survey and Tutorial} article in \textit{IEEE Transactions on Learning Technologies}. The compiled anonymous manuscript is 17 double-column pages; the author-identified version is 17 pages (TLT Survey and Tutorial cap: 18 pages, effective 1 January 2025). We submit through the IEEE TLT Author Portal (IEEE account), not ScholarOne.
+for consideration as a \textbf{Survey and Tutorial} article in \textit{IEEE Transactions on Learning Technologies}. The compiled anonymous manuscript and the author-identified version are each 16 double-column pages (TLT Survey and Tutorial cap: 18 pages, effective 1 January 2025). We submit through the IEEE TLT Author Portal (IEEE account), not ScholarOne.
 
-\textbf{Fit to TLT (dual bar).} Knowledge tracing is the mastery-estimation engine of intelligent tutoring and adaptive platforms. This critical survey of 37 locked primary-core PDFs meets TLT's dual requirement: (i)~a computer-science coding audit of Graph-Based and Self-Supervised KT under sparse-concept conditions, and (ii)~an explicit learning-technology use case---a three-job go/not-enough-evidence checklist (new-KC onboarding, treating a graph as a skill map, acting on $P(r{=}1)$) that a learning engineer can apply without reading the survey as a classroom result.
+\textbf{Fit to TLT (dual bar).} Knowledge tracing is the mastery-estimation engine of intelligent tutoring and adaptive platforms. This critical survey of 53 primary-core PDFs meets TLT's dual requirement: (i)~a computer-science coding audit of Graph-Based and Self-Supervised KT under sparse-concept conditions, and (ii)~an explicit learning-technology use case---a three-job go/not-enough-evidence checklist (new-KC onboarding, treating a graph as a skill map, acting on $P(r{=}1)$) that a learning engineer can apply without reading the survey as a classroom result.
 
-\textbf{Why this paper after Shen et al.\ (TLT 2024).} Shen et al.\ remain the broad TLT map of KT models, variants, and applications. This submission does not replace that survey and does not claim primacy. A TLT reader who already knows Shen still needs answers Shen does not code: when may Graph/SSL-KT support sparse or newly introduced KCs? We answer with (i)~graph provenance $\times$ encoder coding ($N_G=36$), (ii)~locked SSL pretext coding ($N_S=9$; not a saturated taxonomy), (iii)~interaction sparsity versus item / learner / strict KC cold-start, (iv)~manuscript ECE reporting $0/37$, and (v)~Table~VI plus the T1--T3 checklist. Those five deliverables are the incremental contribution relative to Shen.
+\textbf{Why this paper after Shen et al.\ (TLT 2024).} Shen et al.\ remain the broad TLT map of KT models, variants, and applications. Complementary hybrid/informed KT coverage appears in Zanellati et al.\ (2024). This submission does not replace those surveys and does not claim primacy. A TLT reader who already knows Shen still needs answers Shen does not code: when may Graph/SSL-KT support sparse or newly introduced KCs? We answer with (i)~graph provenance $\times$ encoder coding ($N_G=49$), (ii)~SSL pretext and view-source coding on the final SSL set ($N_S=22$; $N_{G\cap S}=18$), (iii)~interaction sparsity versus item / learner / strict KC cold-start, (iv)~manuscript ECE reporting $0/53$, and (v)~the learning-technology decision table plus the T1--T3 checklist. Those five deliverables are the incremental contribution relative to Shen.
 
-\textbf{Reliability (honest).} The 20-paper coding sample was double-coded twice. After excluding three invariant all-NO fields for which Cohen's $\kappa$ is undefined ($p_e=1$), the locator-assisted pass (\texttt{NguyenKT}) yields mean $\kappa=0.97$ over five defined fields ($158/160$ cells). The independent pass (\texttt{DaoMT}, no locator) yields mean $\kappa=0.96$ over the same five defined fields ($157/160$). The two coefficients are not pooled. Screening and full-text second-screener pair files remain absent. Identification $N_{\mathrm{rec}}=2{,}017$ is from the locked search log; stage counts 750/140/103 are from the search-expansion report and are not backed by a deposited record-level ledger. The 37 primary-core PDFs were identity-checked by the authors. Screening and primary coding were performed by an AI research assistant; human coding exists only for the 20-paper sample, so the coefficients measure agreement between human coders and an AI-generated, partly adjudicated reference. A post hoc venue probe (EDM, AIED, LAK, L@S, JEDM, IJAIED) found ten candidate Graph/SSL-KT papers outside the locked core; they are reported, not coded. Count-based findings are protocol-coded audit results.
+\textbf{Reliability (honest).} Principal coding reliability is direct human--human agreement between \texttt{NguyenKT} (locator-assisted) and \texttt{DaoMT} (independent) on the 20-paper sample: $155/160$ cells; macro-average Cohen's $\kappa=0.93$ over five defined fields (three invariant all-NO fields have $\kappa$ undefined when $p_e=1$). AI--human comparisons are Supplementary only and are not pooled with the principal coefficient. Screening agreement is available only for a deposited independently double-screened subset (11 title/abstract pairs, raw agreement $10/11$; 1 full-text pair, raw agreement $0/1$; $\kappa$ undefined at both stages). Identification $N_{\mathrm{rec}}=2{,}017$ is from the locked search log; stage counts 750/140/103 are from the search-expansion report and are not backed by a deposited record-level ledger. The 53 primary-core PDFs were identity-checked by the authors. Screening and primary coding were performed by an AI research assistant under the survey protocol; human coding exists for the 20-paper sample, and AI--human comparisons remain Supplementary. A post hoc venue probe found ten Graph/SSL-KT candidates outside the deposited screening records; nine were full-text integrated into the coded core after gateway review (one was already included). Count-based findings are protocol-coded audit results.
 
-\textbf{Locked corpus facts (not a new count in this letter):}
+\textbf{Locked corpus facts:}
 \begin{itemize}
-    \item Search-log identification $N_{\mathrm{rec}}=2{,}017$ from six core databases plus arXiv preprint monitoring; 37 locked primary-core PDFs. Stage counts in the PRISMA-style figure are report arithmetic; a record-level screening ledger is not deposited.
-    \item $N_G=36$, $N_S=9$, $N_{G\cap S}=8$.
-    \item Strict zero-exposure KC cold-start: $0/37$. Item cold-start: $1/37$ (SINKT question hold-out). Learner cold-start: $0/37$.
-    \item ECE reported in the published manuscripts: $0/37$. Twelve PDFs report RMSE beside AUC or accuracy; that overall error is not an ECE or Brier report.
-    \item A full-text check through 23 November 2026 of seven further in-window papers found no ECE and no zero-exposure KC split. Those papers, including the bipartite-graph chapter CLBG, are not rows in the itemized tables.
+    \item Search-log identification $N_{\mathrm{rec}}=2{,}017$ from six core databases plus arXiv preprint monitoring. Stage counts in the PRISMA-style figure are original-path report arithmetic ($140-103=37$); a record-level screening ledger is not deposited. A supplementary full-text update plus venue-probe integration yield the coded core ($N=53$).
+    \item $N_G=49$, $N_S=22$, $N_{G\cap S}=18$; provenance display $31/9/9$.
+    \item Strict zero-exposure KC cold-start: $0/53$. Item cold-start: $1/53$ (SINKT question hold-out). Learner cold-start: $2/53$ (SGKT, CoSKT). Interaction-drop: $1/53$ (HCMKT).
+    \item ECE and Brier reported in the published manuscripts: $0/53$. Fifteen PDFs report RMSE beside AUC or accuracy; that overall error is not an ECE or Brier report.
 \end{itemize}
 
 \textbf{What this paper does not claim.} We do not report a locked leakage percentage, a cross-paper AUC/ECE league table, a reproduced representation-collapse statistic, a classroom deployment study, or an executed \emph{pyKT-ColdStart} benchmark. The last item is an agenda specification only. Classroom outcomes are out of Survey and Tutorial scope for this manuscript.

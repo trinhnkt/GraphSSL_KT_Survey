@@ -1,0 +1,14 @@
+section,AI_generated_text,AI_restructured_text,AI_coding_used,human_reviewed,AI_reference_citation_required,note
+Abstract,YES,YES,NO,YES,NO,AI-assisted drafting; author-approved
+I Introduction,PARTIAL,YES,NO,YES,NO,AI-assisted drafting
+II Methods,PARTIAL,YES,YES,YES,YES,AI screening/coding disclosed; cite Cursor in AI role/ack
+II AI role,YES,YES,YES,YES,YES,Primary disclosure section
+III Graph-KT,PARTIAL,YES,YES,YES,NO,Coding AI-primary
+IV SSL-KT,PARTIAL,YES,YES,YES,NO,Coding AI-primary
+V Sparse/cold-start,PARTIAL,YES,YES,YES,NO,Coding AI-primary
+VI Reliability/ECE,PARTIAL,YES,YES,YES,NO,QA AI-primary
+VII Discussion,PARTIAL,YES,NO,YES,NO,AI-assisted drafting
+VIII Agenda,PARTIAL,YES,NO,YES,NO,AI-assisted drafting
+IX Threats,PARTIAL,YES,NO,YES,NO,AI-assisted drafting
+X Conclusion,PARTIAL,YES,NO,YES,NO,AI-assisted drafting
+Acknowledgment,YES,YES,YES,YES,YES,Cursor citation

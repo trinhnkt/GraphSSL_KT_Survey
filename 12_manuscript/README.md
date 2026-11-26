@@ -1,17 +1,24 @@
-# Manuscript folder — current TLT package
+# Manuscript folder — IEEE TLT (N=53) — cleaned 2026-11-26
 
-**Canonical paper (compile and submit from here):** `12_manuscript/TLT/`
+**Title:** Graph-Based and Self-Supervised Knowledge Tracing: A Critical Survey of Structure, Sparsity, and Reliability
 
-Do not submit the historical TKDE files in this parent folder (`Graph_Based_SSL_KT_Sparse_Concept_Survey_2026.*`, `MANUSCRIPT_EVIDENCE_ALIGNED_DRAFT.tex`, `SECTION_*.md`). Those drafts are superseded. Locked counts: `TLT/audit/LOCKED_COUNTS_v1.8.md`.
+**Gate:** `../audit/TLT_FINAL_PRE_SUBMISSION_GATE_vNext.md` → READY = YES
 
-## Current submission files (copied to this folder)
+## Upload (this folder)
 
 | File | Role |
 |---|---|
-| `Graph-Based and Self-Supervised Knowledge Tracing in Sparse-Concept Settings - A Critical Survey.pdf` | Full 14-page PDF |
-| `Graph-Based and Self-Supervised Knowledge Tracing in Sparse-Concept Settings - A Critical Survey - Anonymous.pdf` | Anonymous 14-page PDF |
-| `COVER_LETTER.tex` / `COVER_LETTER.pdf` | TLT Author Portal letter |
-| `HIGHLIGHTS.md` | TLT highlights (v1.1) |
-| `references.bib` | Same bibliography as `TLT/references.bib` |
+| `Graph-Based and Self-Supervised Knowledge Tracing - A Critical Survey of Structure, Sparsity, and Reliability - Anonymous.pdf` | Anonymous (**16 pp**) |
+| `Graph-Based and Self-Supervised Knowledge Tracing - A Critical Survey of Structure, Sparsity, and Reliability.pdf` | Full (**16 pp**) |
+| `COVER_LETTER.pdf` | Cover |
 
-Source LaTeX: `TLT/main_tlt_full.tex`, `TLT/main_tlt_anonymous.tex`, `TLT/manuscript_TLT_FORMATTED_v1.3.tex`.
+## Source
+
+| Path | Role |
+|---|---|
+| `TLT/Graph_SSL_KT_TLT_REVISED_vNext_{full,anonymous}.{tex,pdf}` | Canonical rebuild |
+| `TLT/references_vNext.bib` | Bibliography |
+| `TLT/figures/` | Figures |
+| `Graph_SSL_KT_TLT_REVISED_vNext.*` | Engineering alias |
+
+Superseded drafts / compile logs moved to `_local_archive/cleanup_2026-11-26/` (not deleted).

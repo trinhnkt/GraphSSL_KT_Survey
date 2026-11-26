@@ -1,0 +1,649 @@
+\documentclass[lettersize,journal]{IEEEtran}
+% IEEE Transactions / Journals authoring format (IEEEtran V1.8b).
+% Do not invent received/revised/accepted dates or volume/issue headers.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{array}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{balance}
+\usepackage[hidelinks]{hyperref}
+% PAGEFIT_TUNING: keep Survey/Tutorial <=18pp without cutting coded claims
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\begin{document}
+\bstctlcite{IEEEtran:BSTcontrol}
+\title{Graph-Based and Self-Supervised Knowledge Tracing: A Critical Survey of Structure, Sparsity, and Reliability}
+\author{Anonymous Authors
+\thanks{Anonymous for double-blind peer review.}%
+}
+\markboth{IEEE Transactions on Learning Technologies}%
+{Nguyen \MakeLowercase{\textit{et al.}}: Graph/SSL Knowledge Tracing---Structure, Sparsity, Reliability}
+
+\maketitle
+
+\begin{abstract}
+Knowledge Tracing (KT) estimates mastery over Knowledge Components (KCs) from interaction logs and underpins Intelligent Tutoring Systems (ITS), adaptive platforms, and Educational Data Mining (EDM). Graph-Based KT (Graph-KT) and Self-Supervised KT (SSL-KT) have grown rapidly, yet sparse-concept, cold-start, and calibration evaluation remain unstandardized. This protocol-driven critical survey codes 53 primary-core PDFs (2018--2026) after a search-log identification total of $N_{\mathrm{rec}}=2{,}017$ and a supplementary full-text update, yielding $N_G=49$, $N_S=22$, and $N_{G\cap S}=18$. Strict zero-exposure KC cold-start is absent ($0/53$); item cold-start is YES for SINKT only; learner cold-start is YES for SGKT and CoSKT; interaction-drop evaluation is YES for HCMKT only. None of the 53 manuscripts report Expected Calibration Error or Brier score; 15 report RMSE as overall prediction error, not calibration. Relative to prior TLT-scoped KT maps, the deliverable is a provenance--encoder and SSL audit plus a go/not-enough-evidence checklist for new-KC onboarding, log-derived skill maps, and mastery actions from raw $P(r=1)$. Screening agreement is reported for a deposited double-screened subset only. The agenda prioritizes zero-exposure benchmarks, calibration reporting, and train-only graph construction.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Knowledge Tracing, Educational Data Mining, Graph Neural Networks, Self-Supervised Learning, Intelligent Tutoring Systems.
+\end{IEEEkeywords}
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 1: INTRODUCTION
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Introduction}
+\label{sec:intro}
+
+\IEEEPARstart{K}{nowledge} Tracing (KT) estimates a learner's mastery of Knowledge Components (KCs---concepts, skills, or rules) from sequential interaction logs. In Intelligent Tutoring Systems (ITS), Educational Data Mining (EDM), and related adaptive platforms, KT supplies the mastery signal used for pathway selection, scaffolding, and curriculum adaptation. Formally, given a sequence of $T$ student interaction tuples $\mathcal{X}_{1:T} = \{(x_1, r_1), (x_2, r_2), \dots, (x_T, r_T)\}$, where $x_t \in \mathcal{E}$ represents the exercise or concept attempted at time $t$, and $r_t \in \{0, 1\}$ indicates the binary response accuracy (0 for incorrect, 1 for correct), the goal of Knowledge Tracing is to predict the response probability $P(r_{T+1} = 1 \mid x_{T+1}, \mathcal{X}_{1:T})$ on a target exercise $x_{T+1}$. Table~\ref{tab:notation_summary} summarizes the principal mathematical notations used throughout this survey.
+\begin{table*}[t]
+\caption{Summary of Key Mathematical Notations}
+\label{tab:notation_summary}
+\centering
+\footnotesize
+\begin{tabular}{@{}lp{0.78\textwidth}@{}}
+\toprule
+\textbf{Symbol} & \textbf{Mathematical Definition / Meaning} \\
+\midrule
+$N_{\mathrm{rec}}$ & Number of raw records in the search log \\
+$N$ & Number of primary-core papers \\
+$n$ & Count of a stated sample, or the number of predictions in an ECE sum \\
+$\mathcal{X}_{1:T}$ & Sequential interaction history of a student up to time $T$ \\
+$x_t, r_t$ & Exercise/concept attempted at time $t$ and binary response $r_t \in \{0,1\}$ \\
+$\mathcal{E}, \mathcal{K}$ & Repository sets of exercises and Knowledge Components (KCs) \\
+$\mathbf{A} \in \mathbb{R}^{|\mathcal{K}| \times |\mathcal{K}|}$ & Concept graph adjacency matrix (co-occurrence / prerequisite) \\
+$\tau$ & Temperature hyperparameter in InfoNCE contrastive loss \\
+$\text{ECE}$ & Expected calibration error over equal-width bins of predicted confidence \\
+\bottomrule
+\end{tabular}
+\end{table*}
+Since the seminal Deep Knowledge Tracing (DKT) model \cite{Piech_DKT_2015} introduced Recurrent Neural Networks (RNNs) to sequence modeling in education, deep sequence models---including Attention-based KT (SAKT \cite{Pandey_SAKT_2019}, AKT \cite{Ghosh_AKT_2020}) and Memory Network KT (DKVMN \cite{Zhang_DKVMN_2017})---have become the standard predictive baselines over classic psychometric models such as Bayesian Knowledge Tracing (BKT) and Item Response Theory (IRT).
+
+\subsection{Learning-Technology Motivation: Data Sparsity \& Cold-Start}
+Despite strong predictive results on public logs, many deep KT models still treat exercise and concept identifiers as isolated categorical tokens. That design leaves two practical gaps for tutoring systems:
+\begin{enumerate}
+    \item \textbf{Sparse-interaction representations}: In realistic educational platforms, interaction matrices are extremely sparse. Most students attempt only a tiny fraction of the overall item repository, and long-tail concepts receive minimal interaction logs. Sequence models that treat IDs as isolated tokens therefore have little evidence from which to estimate embeddings for those concepts---a motivation widely stated in the Graph-KT and SSL-KT literature, not a collapse statistic measured in this survey.
+    \item \textbf{Strict Concept Cold-Start}: When new concepts or exercises are introduced into a curriculum without prior historical interaction logs, conventional deep KT models cannot infer student mastery from interaction IDs alone. Handling zero-exposure concepts during curriculum adaptation requires incorporating external structural, pedagogical, or semantic knowledge graph priors.
+\end{enumerate}
+
+\subsection{Scope \& Gateway Criteria}
+Two methodological responses have become prominent:
+\begin{itemize}
+    \item \textbf{Graph-Based Knowledge Tracing (Graph-KT)}: Incorporating explicit graph or graph-structured relations (e.g., concept prerequisite trees, question-KC bipartite maps, or dynamic co-occurrence graphs) as a central structural mechanism, including but not limited to Graph Neural Network (GNN) message passing. A Graph-KT paper need not use a GNN.
+    \item \textbf{Self-Supervised Knowledge Tracing (SSL-KT)}: Formulating an auxiliary pretext objective on sequences or graphs (e.g., multi-view contrast, bipartite graph reconstruction, or sequence contrast) to regularize student-state representations. Exclusive family codes are the coding protocol tokens; PEBG is graph reconstruction, not a masked auto-encoder.
+\end{itemize}
+Our protocol-driven survey enforces a strict, frozen primary-corpus gateway rule:
+\begin{equation}
+\begin{split}
+\text{PRIMARY\_CORE} = \; & \text{KT} \land (\text{GRAPH\_BASED} \\
+& \lor \text{SELF\_SUPERVISED})
+\end{split}
+\end{equation}
+In that rule, KT means knowledge tracing is the central prediction task, graph-based means an explicit graph is a structural mechanism of the tracing model, and self-supervised means an auxiliary pretext objective whose target is taken from the observed data. Only studies that meet the rule are included in the primary synthesis corpus.
+
+\subsection{Comparison with Prior Reviews and Benchmarks}
+Prior reviews cover broad KT \cite{Abdelrahman_Survey_2023}, TLT-scoped KT models, variants, and applications \cite{Shen_KTSurvey_2024}, hybrid/informed KT with prior-knowledge integration \cite{Zanellati_HybridKT_2024}, deep-KT tooling and empirical comparison under standard splits \cite{Liu_pyKT_2022,Liu_DLKT_2025}, and Graph-KT structure/propagation \cite{Xu_GbKT_2026}. Those works are complementary but methodologically distinct. This paper does not claim to be the first KT or Graph-KT review. It is a narrower operational audit: Graph-KT and SSL-KT only, coded for graph provenance, SSL pretext family, strict KC versus item versus learner cold-start, ECE reporting, and tutoring-deployment implications. Table~\ref{tab:survey_comparison} records those differences of scope. Shukurlu \cite{Shukurlu_LossKT_2025} reviews loss-augmented KT, including the contrastive losses of Bi-CLKT, SP-CLKT, CL4KT, and CoSKT (that survey's Sec.~4 and Table~1), and names GKT only in related work (its Sec.~2). That survey is not a graph-provenance coding and has no ECE section. The $0/53$ ECE count in this paper is the manuscript-reporting result inside the Graph/SSL primary corpus; calibration studies outside that corpus are not coded here.
+For TLT readers, Shen \textit{et al.} remain the broad learning-technology map of KT. The present paper does not replace that survey. A reader who already knows Shen still needs this paper for three jobs Shen does not code: (i)~whether a published Graph/SSL-KT protocol supports \emph{new-KC} onboarding versus only interaction sparsity, (ii)~whether a log-derived graph may be treated as a pedagogical skill map, and (iii)~whether raw $P(r=1)$ may trigger remediation without a calibration report. Those jobs are answered with coded sparse/cold-start fields, provenance$\times$encoder coding, an ECE manuscript-reporting audit ($0/53$), and the go/not-enough-evidence checklist in Sec.~\ref{sec:go_nogo}.
+\begin{table*}[t]
+\caption{Comparison with Prior Knowledge Tracing Reviews and Benchmark Suites}
+\label{tab:survey_comparison}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.0cm}
+>{\raggedright\arraybackslash}p{2.3cm}
+>{\raggedright\arraybackslash}p{2.4cm}
+>{\raggedright\arraybackslash}p{2.3cm}
+>{\raggedright\arraybackslash}p{2.3cm}
+>{\raggedright\arraybackslash}p{2.7cm}@{}}
+\toprule
+\textbf{Dimension} & \cite{Shen_KTSurvey_2024} & \cite{Zanellati_HybridKT_2024} & \cite{Xu_GbKT_2026} & \cite{Shukurlu_LossKT_2025} & \textbf{This survey} \\
+\midrule
+Focus & Broad TLT KT map & Hybrid/informed KT; prior-knowledge source/representation/integration & Graph structure $\times$ propagation & Loss-augmented KT & Provenance $\times$ encoder; SSL paradigm $\times$ view; sparse/cold-start; ECE; T1--T3 \\
+Protocol & Narrative TLT review & PRISMA hybrid-KT SLR & Graph-KT survey (JEDM) & Loss review & 53 PDFs after venue-probe integration; search-log $N_{\mathrm{rec}}=2{,}017$; deposited screening subset only \\
+Graph-KT & One DL variant & Prior knowledge as hybrid signal & Structure taxonomy & GKT named only & Provenance $\times$ encoder ($N_G=49$) \\
+SSL-KT & Not dedicated & Not an SSL taxonomy & Not an SSL survey & Four contrastive losses & Final $N_S=22$ paradigm $\times$ view ($N_{G\cap S}=18$) \\
+Sparse / cold-start & Learning-process variants & Not zero-exposure ontology & Dataset catalogue & Data sparsity named & Interaction vs item / learner / strict KC \\
+ECE / trust & Not evaluated & Not an ECE audit & Not an ECE audit & No ECE section & Manuscript ECE $0/53$ \\
+Learning-technology use & Models/variants/apps & Informed ML for education & Graph structure for EDM & Deployment named & T1--T3 evidence-to-GO checklist \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Main Contributions}
+For TLT readers in ITS, EDM, learning analytics, and adaptive systems, the contributions are:
+\begin{enumerate}
+    \item \textbf{53-PDF corpus and coding protocol}: Six core bibliographic databases plus arXiv preprint monitoring yield a search-log identification total of $N_{\mathrm{rec}}=2{,}017$. A supplementary full-text update plus venue-probe full-text integration yield the coded primary core ($N=53$; $N_G=49$, $N_S=22$, $N_{G \cap S}=18$). Stage counts 750/140/103 in Fig.~\ref{fig:prisma_flow} remain search-expansion report arithmetic for the original identification path; a record-level historical ledger is not deposited. Paper-, model-, and experiment-level labels are released as supplementary artifacts. Every primary-core study is cited in the bibliography under its inventory key (KT$\#\#\#$ / gateway aliases).
+    \item \textbf{Two-dimensional coding}: Graph-KT is classified by provenance (model-defined, external, or dynamically learned) and encoder family. SSL-KT is coded by pretext paradigm and view source among $N_S=22$ papers ($N_{G\cap S}=18$), with sequence-only SSL retained as an explicit cell.
+    \item \textbf{Sparse-concept validity audit}: The coding separates item, learner, and strict KC cold-start (one-sentence learner definition and decision table, Table~\ref{tab:coldstart_decision}) from baseline interaction sparsity, which is not itself a finding. None of the 53 studies isolate a zero-exposure KC split. Item cold-start is YES for SINKT only ($1/53$); learner cold-start is YES for SGKT and CoSKT ($2/53$); interaction-drop evaluation is YES for HCMKT only ($1/53$).
+    \item \textbf{ECE reporting audit}: None of the 53 manuscripts report ECE ($0/53$) or Brier score; one paper (CL4KT) shows a calibration plot without an ECE summary. Fifteen PDFs report RMSE beside AUC or accuracy as an overall prediction error, not as calibration.
+    \item \textbf{Design recommendations}: Section~\ref{sec:go_nogo} states a three-decision go/not-enough-evidence checklist for learning engineers; Section~\ref{sec:design_recs} states the five reporting rules those verdicts require. Corpus-derived agenda items precede open technical directions.
+\end{enumerate}
+
+\subsection{Scope of Claims}
+\label{sec:scope_claims}
+Counts reported here are coded properties of the 53 primary-core papers. They are not pooled cross-paper effects, and the survey is not a model league table. The paper reports no classroom or deployment outcome. The go/not-enough-evidence checklist in Sec.~\ref{sec:go_nogo} states the evidence a tutoring action would require before a GO verdict.
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 2: SYSTEMATIC REVIEW METHODOLOGY
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Review Methodology and PRISMA-Style Flow}
+\label{sec:methodology}
+This paper reports identification, screening, eligibility, and inclusion in a PRISMA-style flow (Fig.~\ref{fig:prisma_flow}) under the survey protocol. Identification $N_{\mathrm{rec}}=2{,}017$ is the search-log sum; a record-level screening ledger is not deposited. Screening agreement is available for the deposited independently double-screened subset, but not for the complete historical screening stages (Sec.~\ref{sec:icr}). A locator-assisted coding-sample $\kappa$ and a separate independent-blind 20-paper $\kappa$ are reported for coded study attributes and are not pooled with screening agreement.
+We address six core research questions:
+\begin{itemize}
+    \item \textbf{RQ1}: How are graphs constructed and represented in Graph-KT (provenance, encoder), and under what reporting conditions can a log-derived graph be treated as leakage-free?
+    \item \textbf{RQ2}: What GNN architectures, temporal backbones, and fusion mechanisms are used in Graph-KT?
+    \item \textbf{RQ3}: What self-supervised learning pretext tasks, augmentation strategies, and structure preservation mechanisms exist in SSL-KT?
+    \item \textbf{RQ4}: How are sparse-concept and cold-start settings defined, operationalized, and evaluated?
+    \item \textbf{RQ5}: What is the status of reproducibility, statistical rigor, calibration, and computational reporting in Graph/SSL-KT?
+    \item \textbf{RQ6}: What research agenda follows from the coded gaps, and which items remain open inferences?
+\end{itemize}
+
+\subsection{Literature Search Architecture \& Database Executions}
+We executed four search query families (\texttt{Q-G} Graph-KT, \texttt{Q-S} Self-Supervised KT, \texttt{Q-P} Sparse-Concept Lens, \texttt{Q-R} Reliability Lens) across the six core bibliographic databases named in the survey protocol, covering 2015-01-01 to 2026-07-31, and used arXiv only for preprint monitoring:
+\begin{enumerate}
+    \item \textbf{Scopus} ($n = 531$ records)
+    \item \textbf{Web of Science Core Collection} ($n = 344$ records)
+    \item \textbf{ScienceDirect} ($n = 257$ records)
+    \item \textbf{SpringerLink} ($n = 255$ records)
+    \item \textbf{IEEE Xplore} ($n = 232$ records)
+    \item \textbf{ACM Digital Library} ($n = 200$ records)
+\end{enumerate}
+arXiv contributed $n = 198$ additional preprint records. These six core runs plus preprint monitoring sum to $N_{\mathrm{rec}} = 2{,}017$ identified records. One exact string is reproduced here. The Scopus Q-S search (search log SRCH\_010; title, abstract, and keywords; English journal and conference records; 2015-01-01 to 2026-07-31) returned 112 records on 2026-08-26:
+\begin{quote}
+\texttt{TITLE-ABS-KEY(("knowledge tracing" OR "student knowledge tracing") AND ("self-supervised" OR contrastive OR "masked modeling" OR "pretext task"))}
+\end{quote}
+The other fifteen strings, with fields, filters, the same run date, and the logged record counts, are Supplementary Table~S-Search. Two defects are part of that record. The graph and self-supervised term lists are not the same across databases, so a paper that matches the ACM Digital Library string need not match the Scopus string. The arXiv strings are written with \texttt{OR}, so a title containing ``knowledge tracing'' matches even when no graph or self-supervised term is present. The systematic database search was closed on 31 July 2026 ($N_{\mathrm{rec}}=2{,}017$). Named per-query export files from that run are not deposited; logged totals remain the identification denominator (Supplementary Table~S-Search). Later November rerun files are supplementary evidence only and are not added to $N_{\mathrm{rec}}$ (Supplementary Table~S-Search-Rerun).
+
+\subsection{Venue-Extension Probe}
+\label{sec:venue_ext}
+After the recorded search, we probed six education-technology venues (EDM, AIED, LAK, L@S, JEDM, IJAIED) with one search-engine query per venue on 2026-11-11 (first five results reviewed; not a database export; log in Supplementary Table~S-Files). Two venue-confirmed Graph-KT candidates were found: an EDM~2022 poster (AGKT) and an L@S~2024 paper on expert-defined graphs. The AIED, LAK, and IJAIED queries returned none, and the only JEDM hit is the graph-KT survey already cited as a prior review. The same queries surfaced eight further Graph-KT or SSL-KT papers in other venues (KDD~2024, IJCAI~2025, ACM TKDD~2023, IEEE Access~2025, Neurocomputing~2026, and others); seven of the ten candidates are described in their abstracts as combining a graph with contrastive or self-supervised learning. None of the ten appears in any deposited screening record, and eight are published in outlets covered by databases we searched (ACM DL, IEEE Xplore, ScienceDirect), so their absence reflects either a recall gap or an unrecorded screening decision; the missing ledger cannot distinguish the two. The ten candidates (Supplementary Table~S-Files) were full-text reviewed under the coding protocol: nine were added as KT090--KT098, and HCMKT (VX05) was already present as KT086. That integration yields the locked core $N=53$ ($N_G=49$, $N_S=22$, $N_{G\cap S}=18$). The core is still not a saturated census of all Graph/SSL-KT outlets, so further recall gaps remain possible.
+
+\subsection{Identification Flow and Final Corpus}
+Identification $N_{\mathrm{rec}}=2{,}017$ is the search-log sum. Fig.~\ref{fig:prisma_flow} separates two branches. Branch~A is historical search-expansion report arithmetic: 750 unique records after deduplication, 140 full-text assessments, and $140-103=37$ original-path inclusions. Those stage counts are report arithmetic; a complete 750-row screening ledger is not deposited. Branch~B starts from that original-path core and adds the Sec.~\ref{sec:gateway_ext} supplementary full-text papers and the Sec.~\ref{sec:venue_ext} venue-probe unique additions, yielding the coded synthesis corpus $N=53$. The final $N$ is not $140-103$. Five expansion identifiers (KT078, KT080--KT083) were removed at corpus verification when deposited Crossref checks failed (Supplementary Table~S-PRISMA-5). Inventory labels \texttt{KT\#\#\#} are not a contiguous numbering of the 140 full-text records.
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\linewidth]{figures/fig_prisma_flow.pdf}
+\caption{Two-branch inclusion flow. Branch~A: historical search-expansion arithmetic ($N_{\mathrm{rec}}=2{,}017\rightarrow 750\rightarrow 140\rightarrow 37$); a complete row-level screening ledger is not deposited. Branch~B: supplementary full-text and venue-probe additions yield the coded synthesis corpus $N=53$. The final coded core is not the direct result of $140-103$.}
+\label{fig:prisma_flow}
+\end{figure}
+
+\subsection{Full-Text Gateway Check after the Search}
+\label{sec:gateway_ext}
+By 23 November 2026 we completed a supplementary full-text update that integrates seven gateway-eligible papers into the coded primary core: DECKT \cite{DECKT_2025}, KT-Deeper \cite{Han_KTDeeper_2024}, HCMKT \cite{HCMKT_2026}, CLBG \cite{CLBG_2025}, CoSKT \cite{CoSKT_2024}, DTransformer \cite{DTransformer_2023}, and SP-CLKT \cite{SPCLKT_2024}. The gateway is unchanged. Together with the venue-probe additions in Sec.~\ref{sec:venue_ext}, the locked core is $N=53$ ($N_G=49$, $N_S=22$, $N_{G\cap S}=18$). The update does not show that the seven papers were among the original $N_{\mathrm{rec}}=2{,}017$ search records, so the PRISMA-stage arithmetic in Fig.~\ref{fig:prisma_flow} remains the original identification path. Each of the seven appears in at least one export saved on 14 or 16 November 2026 (Supplementary Table~S-Search-Rerun).
+
+\subsection{Role of the AI Research Assistant}
+\label{sec:ai_role}
+Screening and primary coding were carried out by an AI research assistant (a tool-using LLM agent) under the coding protocol; this is a methodological fact and not language polishing. The deposited title/abstract and full-text screening files (43 and 48 rows, seed-stage records rather than the 750-record ledger) list the assistant as both screener and reviewer. A human second screener later labeled a deposited independently double-screened subset (11 title/abstract rows and 1 full-text row) with primary decisions hidden; those pair files do not restore the historical 750-record ledger. Of the 45 coding-record files (pilot versions included), 41 name the assistant as coder. Documented human steps are limited to (i)~author verification of the inclusion identity of the 53 PDFs, (ii)~independent double-coding of a 20-paper sample by two human coders (Sec.~\ref{sec:icr}) with adjudication of five cells to the adjudicated reference, (iii)~PDF-level re-checks of seven provenance records plus KT085 display lock (Sec.~\ref{sec:deviations}), (iv)~human adjudication of the deposited full-text disagreement REC\_0047, (v)~the deposited screening subset above, and (vi)~an author-verified locator-backed audit of the nine venue-probe additions (KT090--KT098; wet-ink signoff v2; not a full re-code of every field on all 53 papers). Per-paper human verification of every remaining primary-coding field across the full core is not documented. Consequently the primary coding is not an independent human judgment on every field. Principal coding reliability is the human--human NguyenKT$\leftrightarrow$DaoMT agreement (Sec.~\ref{sec:icr}); AI--human comparisons are Supplementary only and are not pooled with that coefficient. An error shared by the assistant and both human coders would not be detected. The stage-level inclusion and exclusion decisions behind 750/140/103 cannot be audited at record level.
+
+
+\subsection{Primary-Core Bibliographic Traceability}
+The coded primary core comprises 53 studies. Each study has a bibliography entry; inventory identifiers map to those entries as follows: \cite{KT004_GKT_2019,KT010_GIKT_2021,KT011_BiCLKT_2022,KT012_JKT_2021,KT014_PDKTC_2018,KT016_SKT_2020,KT023_SGKT_2022,KT026_PretrainQ_2020,KT029_DGEKT_2024,KT031_KSGAKT_2022,KT033_DGMN_2023,KT035_HHSKT_2023,KT036_TSKT_2024,KT037_CMKT_2022,KT038_DyGKT_2024} \cite{KT039_CL4KT_2022,KT042_S2HHN_2023,KT043_3VCLKT_2024,KT044_SINKT_2024,KT047_DCSSL_2023,KT050_GraphCA_2023,KT052_CapsuleGNN_2022,KT053_GASKT_2021,KT056_LSTGraph_2025,KT060_STHKT_2025,KT062_LGSKT_2025,KT063_MAHKT_2025,KT064_MGEnsemble_2025,KT065_CSGKT_2025,KT066_HyperKT_2025} \cite{KT067_SKMGKT_2025,KT068_HKT_2025,KT069_AEGOTCDKT_2025,KT070_Coda_2025,KT076_KGNNKT_2025,KT077_R2GCurL_2026,KT079_STGSKT_2026,DECKT_2025,Han_KTDeeper_2024,HCMKT_2026,CoSKT_2024,DTransformer_2023,SPCLKT_2024,CLBG_2025,KT090_AGKT_2022} \cite{KT091_ExpertGraphs_2024,KT092_GRKT_2024,KT093_BiCo_2024,KT094_GCLFKT_2025,KT095_TransKT_2025,KT096_SCDI_2025,KT097_MSCL_2026,KT098_KGSKT_2025}.
+\subsection{Evidence Coding Scheme}
+To enforce methodological traceability, every study was coded across three linked levels: \textbf{PAPER}, \textbf{MODEL}, and \textbf{EXPERIMENT}. Field-level evidence tuples capture
+\begin{equation}
+\begin{aligned}
+\text{Tuple} = \langle &\text{entity\_id},\; \text{field\_name},\; \text{coded\_value},\\
+&\text{evidence\_locator},\; \text{evidence\_note} \rangle.
+\end{aligned}
+\end{equation}
+In that tuple, the five slots are the record identifier, the field name, the assigned code, the location of the supporting passage, and the coding note.
+
+\subsection{Quality \& Reliability Assessment Protocol}
+We scored each study on codebook items QA1--QA8 ($0$--$2$). The total is a review-specific evidence-reporting completeness score for the present review, not a ranking of overall scientific quality. Normalized scores use $\mathrm{raw}/16$. Tiers are HIGH ($\ge 0.80$), MODERATE ($0.55$--$0.79$), and LIMITED ($< 0.55$).
+QA7 scores how informative the evaluation design is for RQ4. It applies to all 53 primary-core papers because RQ4 asks how well each protocol supports sparse-concept inference, not because every author claimed to solve cold-start. The survey protocol permits QA7 to be coded not applicable when a paper makes no sparse or cold-start claim; this survey does not use that option, so the applicable maximum remains $16$.
+Two review variables are kept separate from QA7. They are a coarse overlay from sparse-protocol category, not a new abstract-level recode of all 53 papers. Claim values use code values in Supplementary Table~S-Tokens. Interaction-drop evaluation is YES for HCMKT only; HHSKT is sparse-only under the locked decision table. The 53-row expanded file is Supplementary Table~S-Files.
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}rl@{}}
+\toprule
+$n$ & Evaluation reported \\
+\midrule
+49 & Standard interaction split \\
+1 & Interaction-drop (HCMKT) \\
+1 & Item cold-start (SINKT) \\
+2 & Learner cold-start (SGKT, CoSKT) \\
+0 & Strict KC cold-start \\
+\bottomrule
+\end{tabular}
+\end{center}
+QA7 is applicable on every row of that overlay. Generic data sparsity does not separate papers under the locked decision table and is not used as a synthesis variable.
+
+\subsection{Inter-Coder Reliability and Adjudication}
+\label{sec:icr}
+The survey protocol targets (i)~a 25\% second-screener sample of deduplicated title/abstract records plus all uncertain records, (ii)~second review of all exclude at full text / uncertain full-text decisions and at least 25\% of full-text eligibility decisions, and (iii)~double-coding of $\max(20, 25\%)$ primary-core papers (20 papers; the sample was fixed before the Sec.~\ref{sec:gateway_ext} update to $N=53$).
+\textbf{Selection/screening reliability.} Screening agreement is available for the deposited independently double-screened subset, but not for the complete historical screening stages. On 11 of 42 deposited title/abstract rows ($11/42=26.2\%$ of that deposited subset; not $11/750$), a human second screener independently labeled records with the primary decision hidden. Pre-adjudication raw agreement was $10/11$; Cohen's $\kappa$ is undefined because the primary labels on this subset have no category variation. One full-text pair is deposited (REC\_0047): primary \texttt{EXCLUDE\_FULLTEXT} versus second \texttt{PRIMARY\_ADJACENT\_METHOD} (raw agreement $0/1$; $\kappa$ undefined at $n=1$). Human adjudication by Nguyen Van Hau set the final decision to \texttt{PRIMARY\_ADJACENT\_METHOD} (COMPLETED); the paper is not in the primary core. Pair tables are in the supplementary reliability package. These coefficients characterize the deposited independently double-screened subset and are not estimates of reliability for the full historical 750-record title/abstract stage or the 103 reported full-text exclusions.
+\textbf{Coding reliability.} Inclusion identity of the 53 primary-core PDFs was verified by the authors. QA1--QA8 were assigned by the primary coder (an AI research assistant; Sec.~\ref{sec:ai_role}). The 20-paper coding sample (all nine S-criterion papers, all five H1 S=N papers, plus six Graph-only coverage rows) was double-coded on eight fields. Principal coding consistency on the predefined 20-paper double-coded sample is direct human--human pre-adjudication agreement between \texttt{NguyenKT} (locator-assisted) and \texttt{DaoMT} (independent): $155/160$ cells; macro-average Cohen's $\kappa=0.93$ over five defined fields (three invariant all-NO fields have $\kappa=\mathrm{NA}$ when $p_e=1$). AI--human comparisons are Supplementary only. Legacy locator-assisted AI-reference agreement was $158/160$ cells. For invariant fields on which both coders assigned the same category to all 20 papers (strict KC cold-start, learner cold-start, ECE reported: all NO), percent agreement was $100\%$, whereas Cohen's $\kappa$ is undefined because the expected agreement $p_e=1$; those three fields were therefore excluded from the macro-average $\kappa$. For the same five fields, Supplementary AI--human means are $0.97$ (AI reference versus locator-assisted \texttt{NguyenKT}) and $0.96$ (AI reference versus independent \texttt{DaoMT}); those two AI--human series are not pooled with each other or with the principal human--human $\kappa$. The 20-paper sample was fixed before the corpus expanded to $N=53$ and does not provide a field-by-field human re-code of all 53 papers. Adjudicated cells (KT011, KT026 on the locator-assisted pass; KT047, KT070, KT068 on the independent pass) follow the deposited reference sheet. Pair tables and the recomputation sheet are in the supplementary reliability package. Count-based conclusions remain protocol-coded audit findings, not a pooled-effect meta-analysis.
+
+\subsection{Methodological Evidence Synthesis Strategy}
+We synthesize the corpus with field-level codes, taxonomy counts, and qualitative grouping of evaluation protocols---not with pooled effect sizes.
+
+\subsection{Deviations from the Survey Protocol}
+\label{sec:deviations}
+The survey protocol files were not edited. The following departures are recorded in the protocol-deviation record (DEV-20261106-01 to -03 and DEV-20261111-01).
+\begin{itemize}
+    \item \textbf{Screening evidence.} The protocol requires a second-screener sample and record-level ledgers for the reported stages. The historical 750-row ledger is still not deposited, so the 1{,}267/750/610/140/103 stage counts remain report arithmetic. A deposited independently double-screened subset (11 title/abstract pairs and 1 full-text pair) is now available and is reported separately (Sec.~\ref{sec:icr}). This deposited subset did not meet the originally planned second-screening coverage for the historical screening stages and is treated as a protocol deviation.
+    \item \textbf{Provenance display and recodes.} The eight-value graph provenance field is reported as three display tokens on the expanded Graph-KT set ($N_G=49$): model-defined fixed $31$, external fixed $9$, dynamically learned $9$, unclear $0$ (Sec.~\ref{sec:graph_provenance}, Appendix~\ref{app:provenance}; \texttt{PROVENANCE\_COUNTS\_LOCKED}). Seven PDF-level provenance re-reads plus the KT085 display lock are deposited. TSKT was earlier recoded from external fixed graph to model-defined fixed graph after a PDF check; SKT stays in the model-defined bin although its PDF is mixed.
+    \item \textbf{S-criterion narrowing.} Re-auditing the SSL criterion reduced $N_S$ from 14 to 9 on the pre-expansion core. SINKT, Coda, KGNN-KT, R$^2$GCurL, and STSKT were removed from SSL coding and remain Graph-KT. After the Sec.~\ref{sec:gateway_ext} update, $N_S=22$ and $N_{G\cap S}=18$. The exclusive pretext-family table on the pre-expansion SSL set used four family codes (Supplementary Table~S-Tokens); an earlier ``seven families'' count used display aliases.
+    \item \textbf{Reliability recomputation.} Cohen's $\kappa$ is undefined for three invariant all-no coding fields; they are excluded from the coding macro-average. The locator-assisted and independent coding passes are reported separately and are not pooled with each other or with the deposited screening-subset agreement.
+    \item \textbf{Sparse/cold-start file.} An earlier deposited sparse file carried an interaction-drop column that was YES for all rows. The locked expanded coding sets interaction-drop YES for HCMKT only, item cold-start YES for SINKT only, learner cold-start YES for SGKT and CoSKT, and strict KC cold-start YES for $0/53$ (Sec.~\ref{sec:sparse_coldstart}). HHSKT is NO on all four constructs under the decision table. QA7 was subsequently aligned to those fields for KT035 and KT023.
+    \item \textbf{Post hoc additions outside the protocol.} The venue-extension probe (Sec.~\ref{sec:venue_ext}) was not specified in the survey protocol.
+\end{itemize}
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 3: GRAPH-BASED KNOWLEDGE TRACING
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Taxonomy and Synthesis of Graph-Based Knowledge Tracing (RQ1 \& RQ2)}
+\label{sec:graph_kt}
+Graph-Based Knowledge Tracing (Graph-KT) incorporates explicit graph topologies to model structural dependencies between Knowledge Components, questions, and student interaction histories. Paper-level coding of the 53 primary-core papers yields $N_G = 49$ Graph-KT papers; sequence-only SSL papers are CL4KT, DTransformer, CoSKT, and SP-CLKT. Fig.~\ref{fig:taxonomy_2d} presents the taxonomy axes used in this survey.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.78\linewidth]{figures/fig_taxonomy_2d.pdf}
+\caption{Taxonomy axes coded under the survey protocol: $N=53$ papers; $N_G=49$; provenance $31/9/9$; encoder tallies $19/9/7/7/2/2/3$; $N_S=22$; $N_{G\cap S}=18$.}
+\label{fig:taxonomy_2d}
+\end{figure*}
+
+\subsection{Graph Provenance}
+\label{sec:graph_provenance}
+Paper-level coding of the 49 Graph-KT studies uses a three-token display collapse of the codebook graph provenance field (Appendix~\ref{app:provenance}; Supplementary Table~S-Files). Counts are unique papers, not GKT Dense/Transition variants. Display model-defined fixed graph includes architecture-defined, Q-matrix, and log-derived \emph{fixed} graphs; it does not mean the graph was independent of interaction logs.
+\begin{enumerate}
+    \item \textbf{model-defined fixed graph ($n=31/49$, 63.3\%)}: A fixed graph that is not an expert/curriculum/LLM map and is not learned as a free adjacency during training (Q-matrix, co-occurrence schema, session graph, and similar constructions). TSKT is in this bin; SKT stays one paper under the three-token rule despite a mixed PDF construction.
+    \item \textbf{external fixed graph ($n=9/49$, 18.4\%)}: Expert prerequisite maps, concept/skill maps, or LLM/semantic graphs coded as external.
+    \item \textbf{dynamically learned graph ($n=9/49$, 18.4\%)}: Adjacency updated during training (including Coda's learnable code-graph \(A_u\)).
+\end{enumerate}
+On pre-expansion model-defined records, a source-token rule yielded Q-matrix/expert-authored ($n=3$), log-derived ($n=10$), and architecture-defined ($n=6$); that sub-bin split was not re-derived for the expansion papers inside the locked $31/49$. Log-derived graphs are the ones for which a train-only construction statement matters (Sec.~\ref{sec:graph_kt}). Locked display totals are 31/9/9 with unresolved count $=0$. A deposited pre-expansion provenance$\times$encoder contingency ($N=36$) is retained only in Supplementary Table~S-Files; corpus claims use the locked $N_G=49$ marginals.
+These tokens support different tutoring uses; none licenses T1 (new-KC onboarding). An external fixed graph can support T2 interpretation when the source is a documented expert/concept map. Dynamically learned and model-defined fixed graphs remain representation mechanisms and still require every KC in training unless a zero-exposure split is reported. Because strict KC cold-start is $0/53$, provenance does not change the T1 verdict in Sec.~\ref{sec:go_nogo}.
+
+\subsection{GNN Encoder Architectures}
+Coded GNN encoder values on the 49 Graph-KT papers follow the locked expanded CSV (one paper each; KT004 and HKT are generic GNN). Display grouping:
+\begin{itemize}
+    \item \textbf{GCN / generic ($n=19/49$)}: \texttt{GCN} ($n=15$) plus generic GNN ($n=4$; GKT, HKT). PEBG is not a GCN. A typical GCN update is:
+    \begin{equation}
+    \mathbf{H}^{(l+1)} = \sigma\left(\tilde{\mathbf{D}}^{-\frac{1}{2}} \tilde{\mathbf{A}} \tilde{\mathbf{D}}^{-\frac{1}{2}} \mathbf{H}^{(l)} \mathbf{W}^{(l)}\right)
+    \end{equation}
+    where $\mathbf{H}^{(l)}$ is the node-state matrix at layer $l$, $\mathbf{W}^{(l)}$ is the weight matrix of that layer, $\sigma$ is a pointwise nonlinearity, $\mathbf{A}$ is the adjacency matrix, $\mathbf{I}_{|\mathcal{K}|}$ is the identity of order $|\mathcal{K}|$, $\tilde{\mathbf{A}} = \mathbf{A} + \mathbf{I}_{|\mathcal{K}|}$ adds self-loops, and $\tilde{\mathbf{D}}$ is the corresponding degree matrix.
+    \item \textbf{heterogeneous GNN ($n=9/49$)}.
+    \item \textbf{\texttt{GAT} ($n=7/49$)}.
+    \item \textbf{hypergraph GNN ($n=2/49$)} and \textbf{dynamic GNN ($n=2/49$)}.
+    \item \textbf{none ($n=3/49$)}: PDKT-C, CMKT, and PEBG use an explicit graph (or bipartite relation) without a GNN encoder. PEBG pretrains embeddings with a product-based neural network.
+    \item \textbf{Other ($n=7/49$)}: \texttt{GGNN}, graph memory, capsule GNN, optimal transport on graphs, spatiotemporal GNN, and KSG-AKT other (Metapath2Vec + convolutional embedding; one paper each).
+\end{itemize}
+
+\subsection{Temporal Integration \& State Fusion Mechanisms}
+To predict student performance sequentially, Graph-KT models combine structural embeddings with temporal backbones coded in the CSV (RNN/LSTM/GRU, self-attention, memory networks, or continuous Hawkes). Table~\ref{tab:graph_taxonomy} samples provenance$\times$encoder diversity across the $N_G=49$ set; the complete 49-row coding and Appendix~\ref{app:provenance} cover every Graph-KT paper.
+\begin{table*}[t]
+\caption{Representative Graph-KT coding ($N_G=49$ corpus; full 49-row file in Supplementary Material). PDKT-C/CMKT/PEBG have no GNN encoder.}
+\label{tab:graph_taxonomy}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}ll>{\raggedright\arraybackslash}p{2.15cm}l>{\raggedright\arraybackslash}p{1.55cm}lll@{}}
+\toprule
+\textbf{Paper} & \textbf{Model} & \textbf{Graph source} & \textbf{Provenance} & \textbf{Nodes} & \textbf{Encoder} & \textbf{Temporal} & \textbf{Fusion} \\
+\midrule
+\textbf{KT004} & GKT \cite{KT004_GKT_2019} & Multiple graph variants & Model-defined & KC--KC & Generic GNN & RNN & Concat \\
+\textbf{KT010} & GIKT \cite{KT010_GIKT_2021} & Q-matrix & Model-defined & Exercise--KC & GAT & RNN & Attentive \\
+\textbf{KT011} & Bi-CLKT \cite{KT011_BiCLKT_2022} & Co-occurrence & Model-defined & Dual subgraph & GCN & Attention & GNN state \\
+\textbf{KT014} & PDKT-C \cite{KT014_PDKTC_2018} & Expert prerequisite & External & KC--KC & none & RNN & Regularizer \\
+\textbf{KT023} & SGKT \cite{KT023_SGKT_2022} & Session graph & Model-defined & Interaction & GGNN & RNN & Concat \\
+\textbf{KT026} & Pretrain Q-Emb \cite{KT026_PretrainQ_2020} & Q-matrix & Model-defined & Exercise--KC & none / PNN pretrain & RNN & Embedding init \\
+\textbf{KT029} & DGEKT \cite{KT029_DGEKT_2024} & Dynamic co-occ. & Dynamic & KC--KC & GCN & RNN & Attentive \\
+\textbf{KT035} & HHSKT \cite{KT035_HHSKT_2023} & Heterogeneous schema & Model-defined & Student--ex.--KC & Heterogeneous & RNN & Attentive \\
+\textbf{KT037} & CMKT \cite{KT037_CMKT_2022} & Concept map & External & KC--KC & none & RNN & Regularizer \\
+\textbf{KT044} & SINKT \cite{KT044_SINKT_2024} & LLM semantic & External & KC--KC & GAT & Attention & Attentive \\
+\textbf{KT066} & HyperKT \cite{KT066_HyperKT_2025} & Dual hypergraph & Model-defined & State hypergraph & Hypergraph & Attention & Attentive \\
+\textbf{KT068} & HKT \cite{KT068_HKT_2025} & Hierarchical & External & KC--KC & Generic GNN & Attention & Attentive \\
+\textbf{KT070} & Coda \cite{KT070_Coda_2025} & Covariate-debiased & Dynamic & KC--KC & GCN & RNN & Attentive \\
+\textbf{KT076} & KGNN-KT \cite{KT076_KGNNKT_2025} & LLM knowledge graph & External & Exercise--KC & Heterogeneous & RNN & Attentive \\
+\textbf{KT084} & DECKT \cite{DECKT_2025} & Dual-encoder contrastive & Model-defined & Exercise--KC & GAT & RNN & Init \\
+\textbf{KT085} & KT-Deeper \cite{Han_KTDeeper_2024} & Dynamic heterogeneous & Dynamic & Multi-node & GCN & RNN & Unclear \\
+\textbf{KT086} & HCMKT \cite{HCMKT_2026} & Heterogeneous meta-path & Model-defined & Multi-node & GCN & RNN & Unclear \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Methodological Risk: Data Leakage in Log-Derived Graphs}
+A methodological risk remains when a graph is built from interaction logs without a documented train-only construction rule. RQ1 is therefore answered at the level of provenance, encoder, and the reporting condition for a leakage-free claim; this survey does not measure how many papers leaked test-set structure. The codebook defines a categorical graph-leakage risk field, but its values in the current coding records are reviewer-inferred and lack page-level locators, so they are not reported here and no leakage percentage is given. Papers whose graph source is log-derived (for example co-occurrence similarity, sequential transition, dynamic co-occurrence) require an explicit split statement before the adjacency can be treated as leakage-free. Learning-technology consequences for this risk are summarized in Table~\ref{tab:its_implications}.
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 4: SELF-SUPERVISED KNOWLEDGE TRACING
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Coding and Synthesis of Self-Supervised Knowledge Tracing (RQ3)}
+\label{sec:ssl_kt}
+Twenty-two of the 53 primary-core papers satisfy the S-criterion (a self-generated pretext or consistency target); eighteen of those also satisfy the G-criterion ($N_{G\cap S}=18$). Thirty-one Graph-KT papers do not meet the S-criterion. Five of those that were previously SSL-coded and then removed under the narrowed S-criterion (SINKT, Coda, KGNN-KT, R$^2$GCurL, STSKT) remain Graph-KT only: they use inductive, denoising, LLM-graph, curriculum/RL, or streaming-graph mechanisms without a self-generated pretext or consistency target. Fig.~\ref{fig:ssl_framework} illustrates pretext-family axes used in this survey.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\linewidth]{figures/fig_ssl_framework.pdf}
+\caption{SSL-KT coding under the expanded freeze: $N_S=22$ papers; $N_{G\cap S}=18$. Sequence-only SSL: CL4KT, DTransformer, CoSKT, SP-CLKT.}
+\label{fig:ssl_framework}
+\end{figure*}
+
+\subsection{SSL Objective Coding}
+The final SSL corpus is coded by pretext paradigm and view source on all $N_S=22$ papers (Supplementary Table~S-Files; \texttt{SSL\_TAXONOMY\_FINAL.csv}). Collapsed paradigm counts are contrastive ($n=20$) and reconstruction ($n=2$; PEBG and KGS-KT). View-source display groups are multi-view ($n=8$), graph ($n=7$), sequence ($n=3$), hypergraph ($n=2$), hierarchical ($n=1$), and bipartite ($n=1$). Fig.~\ref{fig:ssl_framework} summarizes those final axes; the legacy pre-expansion nine-paper exclusive family partition is Supplementary Material only and is not the main-text taxonomy of $N_S=22$. A common contrastive objective is InfoNCE:
+\begin{equation}
+\mathcal{L}_{\text{InfoNCE}} = -\log \frac{\exp\left(\text{sim}(\mathbf{z}_i^{(1)}, \mathbf{z}_i^{(2)}) / \tau\right)}{\sum_{j=1}^B \exp\left(\text{sim}(\mathbf{z}_i^{(1)}, \mathbf{z}_j^{(2)}) / \tau\right)}
+\end{equation}
+where $\mathbf{z}_i^{(1)}$ and $\mathbf{z}_i^{(2)}$ are the two normalized view embeddings of anchor $i$, $\mathrm{sim}$ is cosine similarity, $\tau$ is the temperature, $B$ is the batch size, and $j$ indexes the other embeddings in the denominator.
+Sequence-only SSL papers are CL4KT, DTransformer, CoSKT, and SP-CLKT.
+
+
+\subsection{Augmentation Strategies \& Perturbation Operators}
+CL4KT \cite{KT039_CL4KT_2022} forms a positive pair from two augmented copies of one history (Sec.~3.4.1) using question mask, interaction crop, interaction permute, and question replace; responses are unchanged and these operators are not the hard-negative view (Sec.~3.5). Edge dropping, node-attribute masking, random walks, and counterfactual rewiring are not treated as a shared operator list. Table~\ref{tab:ssl_taxonomy} records page-checked augmentation wording for the printed SSL rows; the remaining expansion rows are in the supplementary 22-row file.
+
+\subsection{Educational Structure Preservation}
+CL4KT hard negatives reverse selected responses ($\tilde{r}_t = 1 - r_t$; Sec.~3.6) and are separate from positive-view masking. Because CL4KT has no concept graph, none of its positive operators is constrained to preserve a prerequisite edge; question replacement follows training-set difficulty order and does not claim edge preservation.
+
+\subsection{Graph + SSL Intersection Paradigm}
+Eighteen primary-core papers ($N_{G \cap S} = 18$) combine an explicit graph mechanism with a self-supervised objective. Sequence-only SSL papers are CL4KT, DTransformer, CoSKT, and SP-CLKT. Table~\ref{tab:ssl_taxonomy} prints representative SSL-KT rows from the $N_S=22$ set.
+\begin{table*}[t]
+\caption{SSL-KT coding ($N_S=22$; representative rows; full 22-row file in Supplementary Material). Paradigm and view source are the expanded axes. Structure records whether an explicit educational graph is part of the model.}
+\label{tab:ssl_taxonomy}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.0pt}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{2.15cm}>{\raggedright\arraybackslash}p{1.85cm}>{\raggedright\arraybackslash}p{1.85cm}>{\raggedright\arraybackslash}p{2.05cm}l>{\raggedright\arraybackslash}p{1.45cm}@{}}
+\toprule
+\textbf{Paper} & \textbf{Model} & \textbf{SSL family} & \textbf{Mechanism} & \textbf{Augmentation} & \textbf{Train.} & \textbf{Structure} \\
+\midrule
+\textbf{KT011} & Bi-CLKT \cite{KT011_BiCLKT_2022} & Multiview contrast & Node + graph views & Corrupted views; centrality (pp.~7, 10) & Joint & Graph retained \\
+\textbf{KT026} & Pre-train Q-Emb (PEBG) \cite{KT026_PretrainQ_2020} & Graph reconstruction & Bipartite Q--S & Recover bipartite side information (pp.~1, 3) & Two-st. & Graph retained \\
+\textbf{KT039} & CL4KT \cite{KT039_CL4KT_2022} & Sequence contrast & Positive pair of one history & Mask, crop, permute, replace & Joint & No concept graph \\
+\textbf{KT042} & S2-HHN \cite{KT042_S2HHN_2023} & Multiview contrast & Hypergraph views & Adaptive node dropout (p.~8) & Joint & Graph retained \\
+\textbf{KT043} & 3V-CLKT \cite{KT043_3VCLKT_2024} & Multiview contrast & Three graph views & Three views; mask non-questions (pp.~4--5) & Joint & Graph retained \\
+\textbf{KT047} & DC-SSL \cite{KT047_DCSSL_2023} & Multiview contrast & Dual-channel views & Two-channel InfoNCE (pp.~4--5) & Joint & Graph retained \\
+\textbf{KT050} & GraphCA \cite{KT050_GraphCA_2023} & Graph contrast & Counterfactual views & Replace questions; reorder answers (pp.~6--7) & Joint & Graph retained \\
+\textbf{KT066} & HyperKT \cite{KT066_HyperKT_2025} & Multiview contrast & Hypergraph / line-graph & Line-graph views (pp.~8, 11) & Joint & Graph retained \\
+\textbf{KT068} & HKT \cite{KT068_HKT_2025} & Graph contrast & Hierarchical levels & Reconstruction and hierarchical contrast (pp.~5, 7) & Joint & Graph retained \\
+\bottomrule
+\end{tabular}
+\end{table*}
+The augmentation phrases in Table~\ref{tab:ssl_taxonomy} are the operators named in each deposited PDF; none of those passages states that a prerequisite edge is kept or removed. The 22 SSL-KT manuscripts \emph{report} that pretext objectives regularize representations under interaction sparsity; this survey does not reproduce a collapse-prevention or accuracy effect (Table~\ref{tab:its_implications}).
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 5: SPARSE-CONCEPT & COLD-START EVALUATION
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Sparse-Concept \& Cold-Start Evaluation Protocols (RQ4)}
+\label{sec:sparse_coldstart}
+Published KT papers often use ``sparsity'' for several distinct evaluation designs. We separate two settings that are easy to conflate (Table~\ref{tab:sparse_taxonomy}):
+\begin{enumerate}
+    \item \textbf{Generic Interaction Data Sparsity}: Student interaction logs are randomly partitioned (e.g., 80/20 train/test learner split). While the overall interaction matrix is sparse, \textbf{every Knowledge Component (KC) appears in the training split}. None of the 53 studies isolates a strict zero-exposure KC hold-out.
+    \item \textbf{Strict Zero-Exposure KC Cold-Start}: A subset of KCs is completely withheld from training interaction logs (zero training exposure). No primary-core paper implements that split. SINKT \cite{KT044_SINKT_2024} evaluates a one-quarter \emph{question} hold-out and is coded YES for item cold-start, not for zero-exposure KC. HCMKT \cite{HCMKT_2026} evaluates interaction-drop sparsity and is coded no for strict KC cold-start. HHSKT is NO on all four constructs under the locked decision table.
+\end{enumerate}
+\textbf{Learner cold-start} is a new learner or a minimal-history condition at prediction time (a learner with few or no prior interactions); it is not equivalent to sparse KCs, and holding out whole learners with their full histories is not by itself a learner cold-start evaluation. Table~\ref{tab:coldstart_decision} operationalizes the four constructs; the coded fields were coded under the SCOPE definitions and this table restates them without re-coding.
+\begin{table}[t]
+\caption{Decision table for the sparsity and cold-start constructs. ``Not sufficient'' lists a common claim that does not by itself earn a YES. Counts are from the coded records ($N=53$).}
+\label{tab:coldstart_decision}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.19\columnwidth}>{\raggedright\arraybackslash}p{0.30\columnwidth}>{\raggedright\arraybackslash}p{0.25\columnwidth}c@{}}
+\toprule
+\textbf{Construct} & \textbf{YES iff} & \textbf{Not sufficient} & \textbf{n} \\
+\midrule
+Interaction-drop evaluation & Interactions are deliberately removed from training or history and results are reported by drop level & A random 80/20 split & 1 \\
+Item cold-start & Test items are withheld from training & Random interaction split & 1 \\
+Learner cold-start & Test learners have no or truncated history and are scored separately & Learner-level split with full histories & 2 \\
+Strict KC cold-start & At least one KC has zero training interactions & An external graph alone & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Methodological Audit of Evaluation Split Vulnerabilities}
+Two construct risks recur in the literature; neither is reported here as a corpus count:
+\begin{itemize}
+    \item \textbf{Train-only graph construction}: When a co-occurrence or item-similarity graph can be built from interaction logs, adjacency weights can leak test-set structure unless the paper documents a train-only construction rule. The survey protocol codes provenance and split transparency; it does not count how many papers used the full interaction matrix.
+    \item \textbf{Inclusion criterion mismatch}: Models motivated by ``solving the cold-start problem'' often report standard AUC on random 80/20 splits in which every KC still appears in training.
+\end{itemize}
+
+\subsection{Methodological Analysis of Cold-Start vs. Generic Interaction Splits}
+The following is a structural reading of model families, not a measured AUC or random-guess result on this corpus:
+\begin{itemize}
+    \item \textbf{Standard transductive sequence models (e.g., DKT, SAKT, AKT)}: Depend on fixed ID lookup embeddings. A withheld KC has no training embedding unless an external prior is supplied. This survey does not measure how close such models come to chance under that split.
+    \item \textbf{Transductive Graph-KT models (e.g., GKT, GIKT, Bi-CLKT)}: Use GNN message passing over co-occurrence or prerequisite graphs. If the graph is precomputed over full logs or lacks out-of-vocabulary node features, held-out-KC behavior remains a structural question rather than a demonstrated inductive evaluation.
+    \item \textbf{Inductive semantic-graph models (SINKT for item/question hold-out)}: SINKT \cite{KT044_SINKT_2024} uses LLM/semantic graph priors and is the only primary-core paper coded YES for item cold-start (one-quarter question hold-out). It is coded no for a zero-exposure KC split. HCMKT \cite{HCMKT_2026} is the interaction-drop paper and is not treated here as an inductive cold-start evaluation. HHSKT is sparse-only under the locked decision table.
+\end{itemize}
+To standardize future evaluations, Section~\ref{sec:agenda} specifies a proposed benchmark suite (\emph{pyKT-ColdStart}). That suite is a research-agenda specification only; this paper does not report an executed run.
+\begin{table*}[t]
+\caption{Sparse/cold-start coding under the survey protocol ($N=53$). Interaction-drop evaluation YES: $1/53$ (HCMKT). Strict KC cold-start YES: $0/53$. Item cold-start YES: $1/53$ (SINKT question hold-out). Learner cold-start YES: $2/53$ (SGKT, CoSKT). Display labels: Strict KC $=strict KC cold-start$; Item CS $=item cold-start$; Sparse only $=interaction sparsity only$. PEBG and KGNN-KT remain sparse-only. The full 53-row file is Supplementary Table~S-Files.}
+\label{tab:sparse_taxonomy}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{@{}ll l ccc p{3.55cm}@{}}
+\toprule
+\textbf{ID} & \textbf{Model} & \textbf{Protocol} & \textbf{KC} & \textbf{Item} & \textbf{Learn.} & \textbf{Note} \\
+\midrule
+\textbf{KT044} & SINKT \cite{KT044_SINKT_2024} & Item CS & \textbf{NO} & YES & NO & Only item cold-start YES (question hold-out) \\
+\textbf{KT086} & HCMKT \cite{HCMKT_2026} & Interaction-drop & \textbf{NO} & NO & NO & Drop rates 20/40/60\% \\
+\textbf{KT023} & SGKT \cite{KT023_SGKT_2022} & Learner CS & \textbf{NO} & NO & YES & Truncated history groups \\
+\textbf{KT087} & CoSKT \cite{CoSKT_2024} & Learner CS & \textbf{NO} & NO & YES & Sequences shorter than 50 \\
+\textbf{KT035} & HHSKT \cite{KT035_HHSKT_2023} & Sparse only & \textbf{NO} & NO & NO & Sparse only; drop claim superseded \\
+\textbf{KT026} & Pretrain Q-Emb \cite{KT026_PretrainQ_2020} & Sparse only & \textbf{NO} & NO & NO & Question-level sparsity; not item hold-out \\
+\textbf{KT076} & KGNN-KT \cite{KT076_KGNNKT_2025} & Sparse only & \textbf{NO} & NO & NO & 7:2:1 + difficulty bins; not item hold-out \\
+\bottomrule
+\end{tabular}
+\end{table*}
+Interaction-drop evaluation is YES for HCMKT only ($1/53$). Strict KC cold-start is YES for $0/53$ papers. Item cold-start is YES for SINKT only ($1/53$). Learner cold-start is YES for SGKT and CoSKT ($2/53$). The printed table is a representative subset; the full 53-row file is Supplementary Table~S-Files. An earlier deposited constant-YES drop column is superseded (Sec.~\ref{sec:deviations}). This survey does not report a reproduced cold-start AUC. See Table~\ref{tab:its_implications}.
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 6: RELIABILITY, REPRODUCIBILITY & CALIBRATION AUDIT
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Reliability, Reproducibility \& ECE Reporting Audit (RQ5)}
+\label{sec:reliability}
+We scored the 53 primary-core studies on codebook items QA1--QA8 (each $0$--$2$): QA1 task clarity; QA2 data/preprocessing transparency; QA3 split/provenance/leakage transparency; QA4 baseline/ablation adequacy; QA5 statistical uncertainty; QA6 author artifacts; QA7 sparse/cold-start construct validity; QA8 computational transparency. These items form a review-specific reporting-completeness score for the present review, not a ranking of scientific contribution or model quality. The HIGH/MODERATE/LIMITED thresholds are review-defined operational categories rather than externally validated quality cutoffs. QA7 remains the RQ4 evidence-adequacy item (Sec.~\ref{sec:methodology}); two carry-forward cells were aligned to the locked cold-start fields as noted below. Each paper is normalized by $16$. QA6 is capped at $2$. Inventory identifiers KT078 and KT080--KT083 are excluded from this score because they were removed at corpus verification (Supplementary Table~S-PRISMA-5).
+Using codebook thresholds on those QA6-capped sums, 13 studies meet the HIGH reporting-completeness threshold of this review ($\ge 0.80$), 39 meet MODERATE ($0.55$--$0.79$), and 1 meets LIMITED ($< 0.55$; KT091); the corpus mean is $0.73$. The identifiers at the HIGH threshold remain KT023, KT029, KT033, KT038, KT040, KT044, KT050, KT060, KT064, KT066, KT070, KT077, and KT087. QA7 was aligned to the locked cold-start fields (KT035 HHSKT set to $0$; KT023 SGKT set to $2$) on the pre-venue-probe overlay; after venue-probe integration the tier split is $13/39/1$. That list is a reporting-adequacy partition for this review, not a ranking of scientific contribution.
+\begin{table}[t]
+\caption{QA1--QA8 item scores on the 53 primary-core papers. Each item is scored $0$, $1$, or $2$. The counts are the item distribution. HIGH and MODERATE thresholds are unchanged.}
+\label{tab:qa_distribution}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Item} & \textbf{0} & \textbf{1} & \textbf{2} \\
+\midrule
+QA1 Task clarity & 0 & 0 & 53 \\
+QA2 Data and preprocessing & 0 & 1 & 52 \\
+QA3 Split, provenance, leakage & 0 & 15 & 38 \\
+QA4 Baselines and ablations & 0 & 1 & 52 \\
+QA5 Statistical uncertainty & 0 & 53 & 0 \\
+QA6 Author artifacts & 9 & 29 & 15 \\
+QA7 Sparse and cold-start construct & 49 & 0 & 4 \\
+QA8 Computational reporting & 0 & 18 & 35 \\
+\bottomrule
+\end{tabular}
+\end{table}
+Table~\ref{tab:qa_distribution} counts each score. QA1 is $2$ on every paper and QA5 is $1$ on every paper; QA2 and QA4 are $2$ on $52/53$ papers (one paper each scores $1$). QA7 is $2$ for four papers with a locked cold-start YES (SINKT, HCMKT, SGKT, CoSKT). No cutoff was moved. The LIMITED tier contains KT091 only.
+\textbf{Sensitivity to QA7 applicability.} The survey protocol allows QA7 to be coded not applicable when a paper makes no sparse or cold-start claim. A legacy recomputation on the pre-expansion 37-paper score file is not the primary $N=53$ score. Under the aligned expanded coding, QA7 $=2$ only for HCMKT, SINKT, SGKT, and CoSKT (Table~\ref{tab:sparse_taxonomy}). The tiers remain a coarse reporting-completeness partition and are not evidence about sparse-concept adequacy; that evidence is in the dedicated sparse/cold-start fields.
+
+\subsection{Computational Reporting (QA8)}
+We did not extract wall-clock time, GPU memory, or paper-specific complexity formulas from the 53 manuscripts. Standard textbook GCN/GAT costs scale with edges, nodes, and embedding dimension, but those expressions are orientation only and are not coded results. QA8 records whether a paper reports computational transparency; implications for deployment cost are therefore limited to that reporting gap.
+
+\subsection{ECE Reporting Audit}
+None of the 53 primary-core manuscripts report Expected Calibration Error (ECE). That manuscript-reporting count remains $0/53$. This survey does not treat a specific confidence such as $P(r=1)>0.90$ as a corpus statistic. The agenda uses the standard equal-width definition across $M=10$ bins,
+\begin{equation}
+\text{ECE} = \sum_{m=1}^{M} \frac{|B_m|}{n} \left| \text{acc}(B_m) - \text{conf}(B_m) \right|,
+\end{equation}
+where $B_m$ is the set of predictions whose confidence falls in $((m-1)/M, m/M]$, $\mathrm{acc}(B_m)$ is the accuracy inside that bin, $\mathrm{conf}(B_m)$ is the mean predicted confidence inside that bin, $M$ is the number of bins, and $n$ is the number of predictions in that sum.
+\textbf{Keyword scan beyond ECE.} ECE and Brier remain unreported ($0/53$) after opening every primary-core PDF text layer (including Sec.~\ref{sec:gateway_ext}; KGNN-KT is image-only). CL4KT shows a prediction-binned calibration plot without an ECE summary; DECKT's Figure~4 is an author-described prediction heatmap, not a reliability diagram. Evaluation-time NLL appears only for KT-Deeper's graph-generation probe. RMSE is overall prediction error in $15/53$ PDFs (including HCMKT and DTransformer; rows in \texttt{calibration\_rmse\_textlayer\_v1.10.csv}) and is not calibration. The audit is ECE reporting $0/53$, not the absence of any calibration-related figure.
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 7: DISCUSSION
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Synthesis for Learning-Technology Decisions}
+Graph provenance implications are in Sec.~\ref{sec:graph_provenance}: an external fixed map can support T2 interpretation; dynamically learned and model-defined fixed graphs do not license T1. The 22 SSL-KT papers \emph{report} pretext regularizers under interaction sparsity ($N_{G\cap S}=18$); this survey does not reproduce collapse prevention, and zero-exposure KC evaluation remains $0/53$ (not a measured AUC degradation). Cross-paper AUC gains are not a league table.
+
+\subsection{Learning-Technology Implications for Intelligent Tutoring Systems}
+Table~\ref{tab:its_implications} translates those coded gaps into deployment constraints for ITS, adaptive platforms, EDM, and formative assessment.
+\begin{table*}[t]
+\caption{Learning-technology decision table for ITS and adaptive platforms. Corpus basis is coded evidence under the survey protocol.}
+\label{tab:its_implications}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.8pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}
+>{\raggedright\arraybackslash}p{0.17\textwidth}
+>{\raggedright\arraybackslash}p{0.20\textwidth}
+>{\raggedright\arraybackslash}p{0.20\textwidth}
+>{\raggedright\arraybackslash}p{0.18\textwidth}@{}}
+\toprule
+\textbf{Learning-technology decision} & \textbf{Evaluation risk} & \textbf{Required reporting before deployment} & \textbf{Corpus evidence} & \textbf{Practical implication} \\
+\midrule
+New KC or module onboarding.
+\textit{TLT: ITS; adaptive systems} & Standard 80/20 AUC treats every KC as seen in training & Zero-exposure KC split plus an external or semantic prior & Strict KC cold-start YES: $0/53$. Item cold-start YES: SINKT only ($1/53$). HCMKT is interaction-drop; SGKT and CoSKT are learner cold-start. & Do not onboard a new module from a learner-level 80/20 split. \\
+Log-derived graph construction.
+\textit{TLT: EDM} & Test-set structure can enter adjacency weights & Train-only construction rule; do not claim a pedagogical prerequisite map without that statement & Split/provenance coded; no leakage rate. Log-derived graph source values need an explicit split statement. & Do not treat a log graph as a skill map until the split is documented. \\
+Short learner histories.
+\textit{TLT: adaptive systems; learning analytics} & Sparse logs are not the same as withheld KCs & Report the sparsity construct (interaction vs item vs learner vs KC) and the pretext target & $N_S=22$ papers \emph{report} SSL pretext regularizers; not reproduced here. & SSL is a reported regularizer, not demonstrated collapse prevention or calibrated mastery. \\
+Using $P(r=1)$ for remediation or skipping.
+\textit{TLT: formative assessment} & ECE is unreported ($0/53$). Fifteen papers report overall RMSE beside AUC or accuracy & ECE and Brier (or equivalent) on the decision split & $0/53$ report ECE. Brier is $0/53$. Fifteen papers report overall RMSE. & An overall RMSE does not by itself license a remediation threshold. \\
+Interpretable skill maps for scaffolding.
+\textit{TLT: ITS; EDM ontologies} & Message passing is not the same as a readable prerequisite & Document graph source (expert/concept map vs log-derived) & external fixed graph $n=9/49$; GNN encoder = none for PDKT-C and CMKT. & Graph-KT for interpretability does not require a GNN. \\
+Calibration-aware ITS decision support.
+\textit{TLT: trustworthy adaptive systems} & Acting on logits as mastery states & Pair predictive metrics with a decision rule (scaffold / review / adapt) and a calibration report & ECE reporting $0/53$; no classroom deployment. Temperature scaling is a recommendation, not a measured corpus result. & Predictive AUC is not a license to trigger curriculum actions. \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Three Tutoring Decisions: a Go/Not-Enough-Evidence Checklist}
+\label{sec:go_nogo}
+The checklist is an agenda inference from the coded records. Apply the three decisions in order (new content, then graph interpretation, then probability actions). A verdict of ``not enough evidence to GO'' says that the corpus lacks the evidence the action requires; it does not say the action is unsafe or that the models fail.
+\textbf{T1 --- Onboard a new KC or module.}
+Coded evidence: strict KC cold-start YES is $0/53$. SINKT \cite{KT044_SINKT_2024} is coded YES only for item cold-start (one-quarter question hold-out), not zero-exposure KC. PEBG / Pre-train Q-Emb \cite{KT026_PretrainQ_2020} and KGNN-KT \cite{KT076_KGNNKT_2025} are coded no for item cold-start. HCMKT is an interaction-drop protocol; SGKT and CoSKT are learner cold-start evaluations.
+Verdict: \textbf{not enough evidence to GO} for new-KC onboarding: the coded protocols do not test it, and an untested case is not a failed one. A new \emph{item} whose KCs already appear in training has only one coded YES protocol (SINKT). Required evidence before GO: a zero-exposure KC split plus an external or semantic prior (agenda A1).
+\textbf{T2 --- Treat a graph as a scaffolding skill map.}
+If the graph is an expert or concept map and no GNN is required for interpretability, two coded examples exist: PDKT-C \cite{KT014_PDKTC_2018} and CMKT \cite{KT037_CMKT_2022} (external fixed graph, $GNN encoder = none$). If the graph is log-derived, this survey does not lock a leakage rate.
+Verdict: \textbf{conditional GO} only when the source is a documented external map; for a co-occurrence or transition graph, \textbf{not enough evidence to GO} as a pedagogical prerequisite unless a train-only construction statement is reported.
+\textbf{T3 --- Skip practice or assign remediation from $P(r=1)$.}
+Coded evidence: manuscript-reported ECE is $0/53$. Brier is $0/53$. One calibration plot without a summary statistic appears (CL4KT). Fifteen papers report RMSE beside AUC or accuracy as an overall prediction error. No corpus rate such as $P(r=1)>0.90$ is coded. An ECE or Brier report on the tutoring-decision split is still absent.
+Verdict: \textbf{not enough evidence to GO}. Required evidence before GO: ECE or Brier on the same split used for the tutoring action, plus an explicit rule for when a probability may trigger scaffold, review, or adapt. Temperature scaling is a recommended reporting practice, not a measured corpus result.
+\textbf{Worked example (SINKT, KT044).} A learning engineer asks whether SINKT can onboard a newly authored module. \emph{Step~1 (T1).} Read the coded fields: strict KC cold-start$=$NO and item cold-start$=$YES (one quarter of questions held out). The held-out unit is a question, so the evidence covers a new item whose KCs appear in training. \emph{Step~2.} The new module introduces KCs absent from training, so no coded protocol matches it: not enough evidence to GO. \emph{Step~3 (T2).} graph provenance$=$external fixed graph (LLM/semantic graph from a documented source), so the graph can be inspected as an artifact, but its pedagogical validity is not coded: conditional, not GO. \emph{Step~4 (T3).} ECE reported$=$NO, and no Brier score is coded for SINKT: not enough evidence to GO for remediation triggers; closing it needs ECE or Brier on the decision split (Recommendation~3). The checklist output for SINKT is T1 not enough evidence to GO, T2 conditional on graph inspection, T3 not enough evidence to GO. It is a reading of coded fields, not a test of SINKT.
+These three verdicts are why Table~\ref{tab:its_implications} is a deployment-constraint table, not an accuracy ranking.
+
+\subsection{Design Recommendations for Trustworthy Graph/SSL Knowledge Tracing Systems}
+\label{sec:design_recs}
+The following recommendations are the reporting rules that would change a T1--T3 verdict from not-enough-evidence to GO. They are critical readings of the coded records.
+\textit{Recommendation 1 --- Strict KC cold-start (closes T1).} Do not claim concept cold-start support unless the evaluation uses a strict zero-exposure KC split. A standard learner-level 80/20 protocol leaves every KC visible in training and cannot license onboarding of a new module.
+\textit{Recommendation 2 --- Train-only graphs (closes T2).} For log-derived graphs, report whether construction is train-only. Otherwise, deployment claims that treat the adjacency as a pedagogical skill map remain vulnerable to structural leakage. This survey does not lock a leakage percentage.
+\textit{Recommendation 3 --- Calibration before action (closes T3).} Report calibration metrics such as ECE and Brier score when KT probabilities are used for mastery decisions, remediation, or skipping practice. Treat raw $P(r=1)$ as lacking an ECE or Brier report until one of those, or an equivalent calibration report, is given ($0/53$ manuscripts report ECE). An overall RMSE beside AUC does not replace that report.
+\textit{Recommendation 4 --- Separate sparsity constructs (prevents T1/T2/T3 conflation).} Distinguish interaction sparsity, item cold-start, learner cold-start, and KC cold-start in both terminology and evaluation design. Baseline interaction sparsity is not evidence of any cold-start construct.
+\textit{Recommendation 5 --- Pair prediction with a tutoring rule (operationalizes T3).} For ITS deployment, pair predictive metrics with an explicit learning-technology decision rule---when a predicted probability may trigger scaffolding, review, or curriculum adaptation---and state the evidence that rule requires. Predictive AUC alone is not that license.
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 8: RESEARCH AGENDA
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Research Agenda (RQ6)}
+\label{sec:agenda}
+We separate two groups. Group~A follows coded gaps and should be closed before Graph-KT or SSL-KT is treated as deployment-ready. Group~B lists open technical directions in one paragraph; they are \emph{not} coded results of the 53-paper audit. Group~A is the priority.
+
+\subsection{Group A: Corpus-Derived Priorities}
+
+\subsubsection{A1. Standardized Zero-Exposure KC Cold-Start Benchmarks (\emph{pyKT-ColdStart})}
+This gap is coded: $53/53$ papers do not isolate a strict zero-exposure KC split. A held-out concept subset $\mathcal{K}_{\text{cold}} \subset \mathcal{K}$ is defined such that the training interaction count $n_{\text{train}}(k) = 0$ for every $k \in \mathcal{K}_{\text{cold}}$. The cold training interaction set $\mathcal{D}_{\text{train}}^{\text{cold}}$ is constructed via interaction-level filtering:
+\begin{equation}
+\mathcal{D}_{\text{train}}^{\text{cold}} = \{(x_t, r_t) \in \mathcal{D}_{\text{train}} \mid \text{KC}(x_t) \subseteq \mathcal{K} \setminus \mathcal{K}_{\mathrm{cold}}\}
+\end{equation}
+where $\text{KC}(x_t)$ is the set of knowledge components linked to exercise $x_t$, $(x_t, r_t)$ is one training interaction, and $\mathcal{D}_{\text{train}}$ is the training interaction set. The subset condition removes every interaction whose exercise contains at least one cold KC, including an exercise that also contains warm KCs. Any graph built from the interaction log, including a co-occurrence or transition graph, must be built from $\mathcal{D}_{\text{train}}^{\text{cold}}$. The fraction of training interactions removed by this filter is a required report of the benchmark. This paper does not compute that fraction. Models must infer response accuracy over $\mathcal{K}_{\text{cold}}$ at test time using external structural graphs or semantic priors. \emph{pyKT-ColdStart} is a specification only; this paper does not report an executed run.
+
+\subsubsection{A2. Calibration and Trustworthy Probability Reporting}
+This gap is coded: $0/53$ manuscripts report ECE, and no Brier score is reported. Fifteen papers report RMSE as an overall prediction error beside AUC or accuracy. The extracted contexts place that RMSE in an overall prediction table. When tutoring systems use $P(r=1)$ to skip practice or assign remediation, raw logits $z_i$ should be converted to calibrated probabilities $\hat{p}_i = \sigma(z_i/T)$, where $\sigma$ is the logistic function and the temperature $T>0$ is fitted on a held-out validation set by minimizing negative log-likelihood, after which ECE and Brier score are evaluated on the test set. Temperature scaling remains a recommended reporting practice for future KT papers.
+
+\subsubsection{A3. Train-Only Graph Construction and Leakage Reporting}
+Log-derived graph source values (for example co-occurrence or sequential transition) require an explicit train-only construction statement before the adjacency is used as a skill map. The survey protocol codes provenance and split transparency; it does not lock a leakage percentage, and we do not invent one.
+
+\subsubsection{A4. Reproducible Evidence Packages}
+Future Graph/SSL-KT papers---and updates of this survey---should release split statements, graph-construction scripts or rules, calibration tables, and pair-level inter-coder files when double screening or double coding is claimed. Deposited screening-subset pairs are now available; recovering reliability for the full historical 750/103 stages remains open because those ledgers are not deposited.
+
+\subsection{Group B: Open Technical Directions (not coded results)}
+Four technical directions are open for Graph/SSL-KT: LLM--graph fusion for KCs introduced by text, hyperbolic representations of deep prerequisite hierarchies, continuous-time state models for irregular practice intervals, and causal debiasing of tutoring logs. None is a coded property of the 53 papers except that SINKT and KGNN-KT already use LLM or semantic graphs as external fixed graph structure; this survey does not measure a fusion architecture, a hyperbolic encoder, a continuous-time model, or causal identification. None of them changes a T1--T3 verdict unless it is evaluated on a zero-exposure KC split with calibration reporting (Group~A). They are listed after Group~A for that reason and are not part of the contribution claims.
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 9: THREATS TO VALIDITY
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Threats to Validity}
+\label{sec:validity}
+\textbf{Search completeness.} Grey literature was excluded per protocol. The systematic database search closed on 31 July 2026 ($N_{\mathrm{rec}}=2{,}017$). A targeted supplementary update and venue probe through 23 November 2026 added papers outside that denominator; further recall gaps remain possible.
+\textbf{Historical screening ledger.} Stage counts 750/140/103 are report arithmetic without a deposited row-level ledger, so historical screening decisions cannot be reconstructed record by record.
+\textbf{Screening reliability / protocol deviation.} Agreement is reported only for the deposited independently double-screened subset (11 title/abstract pairs; 1 full-text pair). That subset did not meet planned second-screening coverage and is a protocol deviation; it is not reliability for the historical 750-record stage.
+\textbf{AI-assisted primary coding.} QA1--QA8 and most PAPER/MODEL/EXPERIMENT fields were assigned by an AI research assistant under protocol. Authors verified the 53 PDF identities; per-field human verification of the full core is not documented.
+\textbf{Human--human reliability scope.} Principal coding consistency is NguyenKT$\leftrightarrow$DaoMT on the predefined 20-paper sample ($155/160$; macro-average $\kappa\approx 0.93$ over five defined fields). The sample was fixed before $N=53$ and is not a field-by-field re-code of all 53 papers. Venue-probe rows KT090--KT098 were author-verified against locator-backed full-text evidence (wet-ink signoff v2).
+\textbf{Sparse/cold-start construct validity.} Interaction-drop, item, learner, and strict KC cold-start are separate fields; prose mentions of ``sparsity'' are not recoded as YES for unevaluated constructs.
+\textbf{External validity.} Findings may not transfer beyond the public logs commonly used in the corpus; this Survey and Tutorial article does not report classroom deployments.
+\textbf{Temporal validity.} Systematic search cutoff is 31 July 2026; supplementary reading extends to 23 November 2026. LLM-augmented KT is changing faster than a typical survey cycle.
+\textbf{Audit survey versus reproduced benchmark.} This paper audits published protocols and does not support a cross-paper AUC/ECE league table.
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 10: CONCLUSION
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Conclusion}
+\label{sec:conclusion}
+This paper is a protocol-driven critical survey of Graph-Based and Self-Supervised Knowledge Tracing focused on structure, sparsity, and reliability. Across 53 primary-core PDFs (2018--2026) identified from six core bibliographic databases plus arXiv preprint monitoring (search-log $N_{\mathrm{rec}} = 2{,}017$) with a targeted supplementary full-text update through 23 November 2026, the TLT-facing contributions are as follows.
+\textbf{Contribution 1 --- Protocol.} A 53-PDF primary core and reproducible coding schema for Graph/SSL-KT ($N_G=49$, $N_S=22$, $N_{G \cap S}=18$). Identification $N_{\mathrm{rec}}=2{,}017$ is the search-log sum; screening stage counts are report arithmetic without a deposited record-level ledger. Paper-level labels are in the supplementary package.
+\textbf{Contribution 2 --- Coding.} Graph-KT is classified by a three-token provenance display (model-defined $31$, external $9$, dynamically learned $9$) and encoder family, including papers that use an explicit graph without a GNN. SSL-KT is coded by pretext paradigm and view source ($N_S=22$; $N_{G\cap S}=18$).
+\textbf{Contribution 3 --- Validity audit.} Item, learner, and strict KC cold-start are separated from baseline interaction sparsity. None of the 53 studies isolate a zero-exposure KC split; item cold-start is YES for SINKT only; learner cold-start is YES for SGKT and CoSKT; interaction-drop evaluation is YES for HCMKT only.
+\textbf{Contribution 4 --- ECE reporting audit.} None of the 53 manuscripts report ECE ($0/53$) or Brier score; one calibration plot appears (CL4KT). Fifteen PDFs report RMSE beside AUC or accuracy as an overall prediction error. That error does not supply the ECE or Brier report a tutoring action would need.
+\textbf{Contribution 5 --- Design recommendations.} A three-decision go/not-enough-evidence checklist (new KC, skill-map graph, $P(r=1)$ action) plus five reporting rules constrain trustworthy KT deployment in ITS and adaptive systems. Corpus-derived agenda items (zero-exposure benchmarks, calibration reporting, train-only graphs, evidence packages) precede open technical directions.
+The intended use is to give a learning engineer a coded go/not-enough-evidence reading before Graph-KT or SSL-KT informs tutoring---onboarding a new KC, treating a log-derived graph as a skill map, or acting on $P(r=1)$.
+\appendices
+
+\section{Per-Paper Provenance Records}
+\label{app:provenance}
+Table~\ref{tab:prov_appendix} lists all Graph-KT papers under the locked three-token display ($N_G=49$: model-defined 31, external 9, dynamically learned 9). Token keys: Disp.\ MDF/EXT/DYN; Rec.\ JNT/PRE/UNC/MIX; Sub.\ Q/L/A (MDF only); St.\ A/D/U (A$=$matches Disp.; D$=$PDF adjudication; U$=$no PDF re-check on file). Eight-value machine records are in Supplementary Table~S-Files. No locked record states a train-only graph build.
+\begin{table*}[t]
+\caption{Per-paper provenance display records ($N_G=49$). Column keys are defined in the appendix text; locked display totals are 31/9/9.}
+\label{tab:prov_appendix}
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{0.92}
+\setlength{\tabcolsep}{3.0pt}
+\begin{tabular}{@{}lllll@{\hspace{1.4em}}lllll@{}}
+\toprule
+ID & Disp. & Rec. & Sub & St & ID & Disp. & Rec. & Sub & St \\
+\midrule
+KT004 & MDF & MIX & L & A & KT047 & MDF & PRE & L & A \\
+KT010 & MDF & PRE & Q & A & KT050 & MDF & JNT & A & U \\
+KT011 & MDF & PRE & L & A & KT052 & MDF & EXT & A & D \\
+KT012 & MDF & PRE & L & A & KT053 & MDF & PRE & Q & A \\
+KT014 & EXT & EXT & -- & A & KT056 & DYN & JNT & -- & A \\
+KT016 & MDF & EXT & L & D & KT060 & DYN & JNT & -- & A \\
+KT023 & MDF & JNT & L & U & KT062 & MDF & PRE & -- & D \\
+KT026 & MDF & PRE & Q & A & KT063 & MDF & PRE & L & A \\
+KT029 & DYN & JNT & -- & A & KT064 & MDF & JNT & A & U \\
+KT031 & EXT & EXT & -- & A & KT065 & MDF & EXT & A & U \\
+KT033 & DYN & JNT & -- & A & KT066 & MDF & PRE & L & A \\
+KT035 & MDF & UNC & A & U & KT067 & EXT & EXT & -- & A \\
+KT036 & MDF & JNT & A & D & KT068 & EXT & EXT & -- & A \\
+KT037 & EXT & EXT & -- & A & KT069 & MDF & PRE & -- & D \\
+KT038 & DYN & JNT & -- & A & KT070 & DYN & JNT & -- & A \\
+KT042 & MDF & PRE & L & A & KT076 & EXT & PRE & -- & D \\
+KT043 & MDF & PRE & L & A & KT077 & DYN & JNT & -- & A \\
+KT044 & EXT & JNT & -- & D & KT079 & DYN & JNT & -- & A \\
+KT084 & MDF & PRE & Q & A & KT085 & DYN & JNT & -- & A \\
+KT086 & MDF & UNC & A & U & KT089 & MDF & PRE & Q & A \\
+KT090 & MDF & PRE & A & U & KT091 & EXT & EXT & -- & A \\
+KT092 & MDF & PRE & L & A & KT093 & MDF & PRE & L & A \\
+KT094 & MDF & PRE & A & U & KT095 & EXT & EXT & -- & A \\
+KT096 & MDF & UNC & A & U & KT097 & MDF & UNC & A & U \\
+KT098 & MDF & PRE & Q & A &  &  &  &  &  \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section*{Acknowledgment}
+An AI research assistant (Cursor~\cite{Cursor_AI_2026}; earlier coding logs also name ``Antigravity'') screened candidates and produced primary PAPER/MODEL/EXPERIMENT coding under the protocol (Sec.~\ref{sec:ai_role}), and assisted with drafting, formatting, and author-approved revisions. The authors defined the protocol, verified the 53 PDF identities, double-coded a 20-paper sample, adjudicated disagreements, completed an author-verified locator-backed audit of the nine venue-probe additions (KT090--KT098), and take responsibility for the content. Per-paper human verification of every primary-coding field across the full core is not documented. Principal coding $\kappa$ is human--human (Sec.~\ref{sec:icr}); AI--human agreement is Supplementary only.
+\bibliographystyle{IEEEtran}
+\bibliography{references_vNext}
+\end{document}
